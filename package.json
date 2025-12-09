@@ -2,13 +2,16 @@
   "name": "meetwork",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "build:prod": "NODE_ENV=production astro build --force --verbose",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "clean": "rimraf node_modules package-lock.json .astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -25,6 +28,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10"
+    "@types/bootstrap": "^5.2.10",
+    "rimraf": "^5.0.5"
   }
 }
