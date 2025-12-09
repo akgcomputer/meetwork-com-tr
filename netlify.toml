@@ -1,26 +1,23 @@
 ﻿[build]
   command = "npm run build"
   publish = "dist"
-  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
-
-[context.production.environment]
-  NODE_ENV = "production"
-
-[context.deploy-preview.environment]
-  NODE_ENV = "development"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Astro için gerekli ayarlar
+[[plugins]]
+  package = "@netlify/plugin-astro"
+
+# Headers for security
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
