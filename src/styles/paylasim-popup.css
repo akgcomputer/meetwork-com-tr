@@ -1,0 +1,470 @@
+/* MeetWork Paylaşım Pop-up Stilleri - 1080x1920px Instagram/WhatsApp Story Formatı */
+
+/* Ana Pop-up Konteyner */
+.paylasim-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 99999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.paylasim-popup-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.paylasim-popup-overlay.closing {
+    opacity: 0;
+}
+
+/* Pop-up İçerik Alanı - 9:16 Aspect Ratio */
+.paylasim-popup-content {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    aspect-ratio: 9 / 16;
+    max-height: 90vh;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.paylasim-popup-overlay.active .paylasim-popup-content {
+    transform: scale(1);
+}
+
+/* Gradient Arka Plan Kombinasyonları */
+.gradient-0 {
+    background: linear-gradient(135deg, #e53935 0%, #1a1a1a 100%);
+}
+
+.gradient-1 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #e53935 100%);
+}
+
+.gradient-2 {
+    background: linear-gradient(180deg, #e53935 0%, #ffffff 100%);
+}
+
+.gradient-3 {
+    background: linear-gradient(180deg, #ffffff 0%, #e53935 100%);
+}
+
+.gradient-4 {
+    background: linear-gradient(45deg, #ff6b6b 0%, #1a1a1a 50%, #e53935 100%);
+}
+
+.gradient-5 {
+    background: linear-gradient(225deg, #1a1a1a 0%, #ff8a80 50%, #e53935 100%);
+}
+
+.gradient-6 {
+    background: linear-gradient(90deg, #b71c1c 0%, #1a1a1a 50%, #e53935 100%);
+}
+
+.gradient-7 {
+    background: linear-gradient(270deg, #e53935 0%, #212121 100%);
+}
+
+.gradient-8 {
+    background: linear-gradient(135deg, #2c2c2c 0%, #e53935 25%, #ffcdd2 50%, #e53935 75%, #2c2c2c 100%);
+}
+
+.gradient-9 {
+    background: linear-gradient(45deg, #1a1a1a 0%, #e53935 50%, #ffffff 100%);
+}
+
+.gradient-10 {
+    background: linear-gradient(225deg, #ffebee 0%, #e53935 50%, #1a1a1a 100%);
+}
+
+.gradient-11 {
+    background: linear-gradient(90deg, #ffffff 0%, #e53935 100%);
+}
+
+.gradient-12 {
+    background: linear-gradient(270deg, #e53935 0%, #ffffff 100%);
+}
+
+.gradient-13 {
+    background: radial-gradient(circle at center, #e53935 0%, #1a1a1a 100%);
+}
+
+.gradient-14 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #c62828 100%);
+}
+
+/* Pop-up İç Yapısı */
+.paylasim-popup-ic {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+/* Logo Alanı */
+.paylasim-popup-ust {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.meetwork-logo {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.meetwork-logo .meet {
+    color: #e53935;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.meetwork-logo .work {
+    color: inherit;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient'e göre work rengi */
+.gradient-0 .meetwork-logo .work,
+.gradient-1 .meetwork-logo .work,
+.gradient-4 .meetwork-logo .work,
+.gradient-5 .meetwork-logo .work,
+.gradient-6 .meetwork-logo .work,
+.gradient-7 .meetwork-logo .work,
+.gradient-8 .meetwork-logo .work,
+.gradient-9 .meetwork-logo .work,
+.gradient-10 .meetwork-logo .work,
+.gradient-13 .meetwork-logo .work,
+.gradient-14 .meetwork-logo .work {
+    color: #ffffff;
+}
+
+.gradient-2 .meetwork-logo .work,
+.gradient-3 .meetwork-logo .work,
+.gradient-11 .meetwork-logo .work,
+.gradient-12 .meetwork-logo .work {
+    color: #1a1a1a;
+}
+
+/* İçerik Alanı */
+.paylasim-popup-orta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.paylasim-baslik {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.paylasim-aciklama {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.paylasim-detaylar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.paylasim-detay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.paylasim-detay:last-child {
+    border-bottom: none;
+}
+
+.paylasim-detay-label {
+    font-size: 13px;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.paylasim-detay-deger {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Alt Alanı */
+.paylasim-popup-alt {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.paylasim-web-site {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Sosyal Medya Butonları */
+.paylasim-sosyal {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.paylasim-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.paylasim-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.paylasim-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.paylasim-btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+}
+
+.paylasim-btn-whatsapp:hover {
+    background: #128c7e;
+}
+
+.paylasim-btn-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff;
+}
+
+.paylasim-btn-instagram:hover {
+    opacity: 0.9;
+}
+
+.paylasim-btn-linkedin {
+    background: #0077b5;
+    color: #fff;
+}
+
+.paylasim-btn-linkedin:hover {
+    background: #005582;
+}
+
+.paylasim-btn-indir {
+    background: #fff;
+    color: #1a1a1a;
+}
+
+.paylasim-btn-indir:hover {
+    background: #f0f0f0;
+}
+
+/* Kapatma Butonu */
+.paylasim-kapat {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.paylasim-kapat:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.paylasim-kapat svg {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .paylasim-popup-content {
+        max-width: 90%;
+        max-height: 85vh;
+    }
+
+    .paylasim-popup-ic {
+        padding: 30px 20px;
+    }
+
+    .meetwork-logo {
+        font-size: 26px;
+    }
+
+    .paylasim-baslik {
+        font-size: 22px;
+    }
+
+    .paylasim-aciklama {
+        font-size: 14px;
+    }
+
+    .paylasim-detaylar {
+        padding: 15px;
+    }
+
+    .paylasim-detay-label {
+        font-size: 11px;
+    }
+
+    .paylasim-detay-deger {
+        font-size: 13px;
+    }
+
+    .paylasim-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .paylasim-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .paylasim-popup-content {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+
+    .paylasim-popup-ic {
+        padding: 25px 15px;
+    }
+
+    .meetwork-logo {
+        font-size: 22px;
+    }
+
+    .paylasim-baslik {
+        font-size: 18px;
+    }
+
+    .paylasim-aciklama {
+        font-size: 13px;
+        max-height: 80px;
+    }
+
+    .paylasim-sosyal {
+        gap: 10px;
+    }
+
+    .paylasim-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .paylasim-web-site {
+        font-size: 12px;
+    }
+}
+
+/* Canvas için gizli alan */
+#paylasim-canvas-area {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    visibility: hidden;
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.paylasim-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.paylasim-btn.loading svg {
+    animation: spin 1s linear infinite;
+}
+
+/* Print Stilleri */
+@media print {
+    .paylasim-popup-overlay {
+        position: static;
+        display: block;
+        opacity: 1;
+        background: none;
+    }
+
+    .paylasim-popup-content {
+        max-width: none;
+        max-height: none;
+        box-shadow: none;
+    }
+
+    .paylasim-kapat {
+        display: none;
+    }
+}
