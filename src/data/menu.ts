@@ -38,14 +38,15 @@ export const menuItems: MenuItem[] = [
     url: '#',
     icon: 'bi-calendar-event',
     subItems: [
-      { id: 75, title: 'Mini-Maxi Etkinlik', url: '/etkinlik', icon: 'bi-scale' },
-      { id: 76, title: 'Etkinlik Takvimi', url: '/etkinlik-takvimi', icon: 'bi-headset' },
+    { id: 113, title: 'Talepler', url: '/talepler', icon: 'bi-headset' },
+    { id: 75, title: 'Mini-Maxi Etkinlik', url: '/etkinlik', icon: 'bi-scale' },
+    { id: 76, title: 'Etkinlik Takvimi', url: '/etkinlik-takvimi', icon: 'bi-headset' },
     { id: 77, title: 'Win-Win', url: '/win-win', icon: 'bi-headset' },
     { id: 78, title: 'İş Birliği', url: '/isbirligi', icon: 'bi-headset' },
     { id: 79, title: 'İştep İştirakleri', url: '/istirakler', icon: 'bi-headset' },
     { id: 90, title: 'Teşvik ve Hibe', url: '/tesvik-hibe', icon: 'bi-headset' },
-    { id: 100, title: 'Pro ile Ücretsiz Hizmetler', url: '/dijital-donusum', icon: 'bi-headset' },
-    { id: 101, title: 'Hesaplama Araçları', url: '/hesaplama', icon: 'bi-headset' },
+    { id: 112, title: 'Pro ile Ücretsiz Hizmetler', url: '/dijital-donusum', icon: 'bi-headset' },
+    { id: 111, title: 'Hesaplama Araçları', url: '/hesaplama', icon: 'bi-headset' },
     
     //{ id: 102, title: 'Firmalar', url: '/firmalar', icon: 'bi-briefcase' },
     ]
