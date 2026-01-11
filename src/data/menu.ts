@@ -23,7 +23,7 @@ export const menuItems: MenuItem[] = [
     { id: 83, title: 'MeetWork Kurullar', url: '/meetwork-kurullar', icon: 'bi-headset' },
     { id: 84, title: 'MeetWork Türkiye Temcilcileri', url: '/meetwork-temsilciler-turkiye', icon: 'bi-headset' },
     { id: 85, title: 'MeetWork Dünya Temcilcileri', url: '/meetwork-temsilciler-dunya', icon: 'bi-headset' },
-    
+    { id: 86, title: 'Franchise', url: '/franchise', icon: 'bi-headset' },
     ]
   },
   {
