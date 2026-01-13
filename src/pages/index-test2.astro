@@ -1,0 +1,394 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="MeetWork | B2B Networking Platform"
+  description="Türkiye'nin en güçlü B2B networking platformu. İş bağlantıları kurun, fırsatları keşfedin."
+>
+
+  <!-- Hero Slider Bölümü -->
+  <section class="hero-slider">
+    <!-- Bootstrap Carousel -->
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+      <!-- Carousel Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+
+      <!-- Carousel Items -->
+      <div class="carousel-inner">
+        <!-- Slide 1: Networking Toplantısı -->
+        <div class="carousel-item active">
+          <img 
+            src="/images/meetwork-etkinlik1.jpg" 
+            class="d-block w-100" 
+            alt="MeetWork Networking Etkinlikleri"
+          />
+          <div class="carousel-overlay">
+            <div class="container">
+              <div class="carousel-caption">
+                <h2 class="display-5 fw-bold text-white mb-3">İş Ağınızı Genişletin</h2>
+                <p class="lead text-white mb-4">Türkiye'nin en güçlü B2B networking platformunda doğru bağlantıları kurun</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Toplantı Sonrası Toplu Foto -->
+        <div class="carousel-item">
+          <img 
+            src="/images/meetwork-etkinlik2.jpg" 
+            class="d-block w-100" 
+            alt="MeetWork Toplantı Sonrası Anı"
+          />
+          <div class="carousel-overlay">
+            <div class="container">
+              <div class="carousel-caption">
+                <h2 class="display-5 fw-bold text-white mb-3">Başarılı Buluşmalar</h2>
+                <p class="lead text-white mb-4">Her etkinlik yeni iş fırsatları ve kalıcı bağlantılar demek</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Global Networking -->
+        <div class="carousel-item">
+          <img 
+            src="/images/meetwork-etkinlik3.jpg" 
+            class="d-block w-100" 
+            alt="MeetWork Global Networking"
+          />
+          <div class="carousel-overlay">
+            <div class="container">
+              <div class="carousel-caption">
+                <h2 class="display-5 fw-bold text-white mb-3">Global Networking Ağı</h2>
+                <p class="lead text-white mb-4">80+ ülkede, 500+ şehirde iş bağlantıları kurun</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Önceki</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Sonraki</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Hızlı Erişim Butonları (Slider altında ayrı bölüm) -->
+  <section class="quick-access-section py-4 bg-light">
+    <div class="container">
+      <div class="row g-3 justify-content-center">
+        <!-- WhatsApp Butonu -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." 
+             target="_blank" 
+             class="btn btn-success w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-whatsapp fs-3 mb-2"></i>
+            <span class="small fw-medium">WhatsApp Hattı</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Duyuru Grubu -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="https://chat.whatsapp.com/KopePcksWpdKf3hQVv15vh" 
+             target="_blank" 
+             class="btn btn-warning w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-people-fill fs-3 mb-2"></i>
+            <span class="small fw-medium">Duyuru Grubu</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Kanalı -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="https://whatsapp.com/channel/0029VbBefthHVvTdOqftD91i" 
+             target="_blank" 
+             class="btn btn-primary w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-megaphone-fill fs-3 mb-2"></i>
+            <span class="small fw-medium">WhatsApp Kanalı</span>
+          </a>
+        </div>
+
+        <!-- Ücretsiz Kayıt Butonu -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="https://panel.meetwork.net" 
+             target="_blank" 
+             class="btn btn-danger w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-person-plus-fill fs-3 mb-2"></i>
+            <span class="small fw-medium">Ücretsiz Kayıt Ol</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Ek Açıklama -->
+      <div class="text-center mt-4">
+        <p class="text-muted small mb-0">
+          <i class="bi bi-info-circle me-1"></i>
+            Hızlı erişim butonları ile MeetWork iletişim kanallarına ve kayıt sayfasına kolayca ulaşabilirsiniz.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSS Stilleri -->
+  <style>
+    /* Hero Slider Stilleri */
+    .hero-slider {
+      position: relative;
+    }
+
+    /* Slider Görselleri */
+    #heroCarousel .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* Carousel Overlay - Daha açık siyah ton */
+    .carousel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.2) 0%, 
+        rgba(0,0,0,0.1) 20%, 
+        rgba(0,0,0,0.3) 80%, 
+        rgba(0,0,0,0.4) 100%);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Carousel Caption Stilleri */
+    .carousel-caption {
+      position: relative;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.25); /* Daha açık transparan siyah */
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Carousel Indicator Stilleri */
+    .carousel-indicators {
+      bottom: 30px;
+    }
+
+    .carousel-indicators button {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      margin: 0 8px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-indicators button.active {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: scale(1.2);
+    }
+
+    .carousel-indicators button:hover:not(.active) {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Carousel Control Butonları */
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 70px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      opacity: 1;
+    }
+
+    /* Hızlı Erişim Butonları Bölümü */
+    .quick-access-section {
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .quick-access-section .btn {
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border-width: 2px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .quick-access-section .btn:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Buton Renkleri */
+    .btn-success, .btn-outline-success:hover {
+      background-color: #25D366;
+      border-color: #25D366;
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background-color: #1da851;
+      border-color: #1da851;
+    }
+    
+    .btn-warning, .btn-outline-warning:hover {
+      background-color: #FFC107;
+      border-color: #FFC107;
+      color: #212529;
+    }
+    
+    .btn-warning:hover {
+      background-color: #e0a800;
+      border-color: #e0a800;
+    }
+    
+    .btn-primary, .btn-outline-primary:hover {
+      background-color: #0D6EFD;
+      border-color: #0D6EFD;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+      border-color: #0b5ed7;
+    }
+    
+    .btn-danger, .btn-outline-danger:hover {
+      background-color: #DC3545;
+      border-color: #DC3545;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background-color: #bb2d3b;
+      border-color: #bb2d3b;
+    }
+
+    /* Responsive Tasarım */
+    @media (max-width: 768px) {
+      #heroCarousel .carousel-item img {
+        height: 400px;
+      }
+      
+      .carousel-caption {
+        padding: 1.5rem;
+        margin: 0 1rem;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 1.8rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 1rem;
+      }
+      
+      .quick-access-section .btn {
+        padding: 0.75rem 0.5rem;
+      }
+      
+      .quick-access-section .btn i {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #heroCarousel .carousel-item img {
+        height: 350px;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 1.5rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.9rem;
+      }
+      
+      .quick-access-section .btn span {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* PC Görünümü için ek stiller */
+    @media (min-width: 992px) {
+      .carousel-caption {
+        padding: 3rem;
+      }
+      
+      .carousel-caption h2 {
+        font-size: 2.8rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 1.3rem;
+      }
+      
+      .quick-access-section {
+        padding: 2rem 0;
+      }
+    }
+
+    /* Animasyonlar */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .carousel-caption {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
+
+  <!-- JavaScript - Carousel Otomatik Başlatma -->
+  <script>
+    // Bootstrap Carousel'ı başlat
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = new bootstrap.Carousel(document.getElementById('heroCarousel'), {
+        interval: 4000, // 4 saniyede bir geçiş
+        wrap: true,
+        pause: 'hover',
+        touch: true // Mobil dokunmatik desteği
+      });
+      
+      // Butonlara hover efekti için ek class
+      const buttons = document.querySelectorAll('.quick-access-section .btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+
+</BaseLayout>
