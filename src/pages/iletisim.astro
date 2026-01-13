@@ -1,44 +1,504 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO Parametreleri
+const seoTitle = "MeetWork İletişim | WhatsApp İletişim Hattı";
+const seoDescription = "MeetWork ile iletişime geçin. WhatsApp hattı, duyuru grubu, kanal ve ücretsiz kayıt için iletişim bilgilerimiz. Hemen ulaşın!";
+const seoKeywords = "meetwork iletişim, whatsapp hattı, networking iletişim, B2B iletişim, iş ağı iletişim";
+const canonicalUrl = "https://meetwork.com/iletisim";
 ---
 
-<BaseLayout title="İletişim - MeetWork">
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/iletisim-og.jpg"
+>
 
-  <section class="py-5">
+  <!-- Hero İletişim Bölümü -->
+  <section class="py-5 bg-light">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 class="display-4 text-dark">MeetWork İletişim</h2>
+        <h1 class="display-5 fw-bold text-dark mb-3">MeetWork İletişim</h1>
+        <p class="lead text-muted">
+          Size ulaşmak için buradayız. <br>Sorularınız, iş birliği teklifleriniz veya geri bildirimleriniz için doğrudan iletişim kanallarımızı kullanabilirsiniz.
+        </p>
       </div>
 
-      <!-- Size Ulaşmak İçin Buradayız -->
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-10 text-center">
-          <h3 class="text-primary">Size Ulaşmak İçin Buradayız</h3>
-          <p class="lead text-muted">
-            Sorularınız, iş birliği teklifleriniz veya geri bildirimleriniz için bize doğrudan ulaşabilirsiniz.
-          </p>
+      <!-- Hızlı İletişim Butonları -->
+      <div class="row g-4 justify-content-center mb-5">
+        <!-- WhatsApp Hattı -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 text-center">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-success bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-whatsapp text-success fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-2">WhatsApp Hattı</h5>
+              <p class="card-text text-muted small mb-4">
+                Etkinlik kayıt, bilgi alma ve genel sorularınız için
+              </p>
+              <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." 
+                 target="_blank" 
+                 class="btn btn-success w-100">
+                <i class="bi bi-whatsapp me-2"></i>Mesaj Gönder
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- WhatsApp Hattımız -->
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-8 text-center">
-          <h4 class="text-success">Etkinliklerimize kaydolmak veya detaylı bilgi almak için doğrudan WhatsApp hattımızı kullanabilirsiniz.</h4>
-          <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="btn btn-success btn-lg mt-3">
-            <i class="bi bi-whatsapp me-2"></i> WhatsApp Hattımızdan İletişime Geçin
-          </a>
+        <!-- WhatsApp Duyuru Grubu -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 text-center">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-warning bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-people-fill text-warning fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-2">Duyuru Grubu</h5>
+              <p class="card-text text-muted small mb-4">
+                Etkinlik duyuruları ve önemli güncellemeler için
+              </p>
+              <a href="https://chat.whatsapp.com/KopePcksWpdKf3hQVv15vh" 
+                 target="_blank" 
+                 class="btn btn-warning w-100">
+                <i class="bi bi-people me-2"></i>Gruba Katıl
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- MeetWork Türkiye ve İŞTEP -->
-      <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-          <p class="lead text-muted">
-            MeetWork Türkiye'nin resmi temsilciği olan <strong>İşte Birlik Platformu (İŞTEP)</strong> üzerinden de bize ulaşabilirsiniz.
-          </p>
+        <!-- WhatsApp Kanalı -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 text-center">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-megaphone-fill text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-2">WhatsApp Kanalı</h5>
+              <p class="card-text text-muted small mb-4">
+                Güncel içerikler ve networking ipuçları için
+              </p>
+              <a href="https://whatsapp.com/channel/0029VbBefthHVvTdOqftD91i" 
+                 target="_blank" 
+                 class="btn btn-primary w-100">
+                <i class="bi bi-megaphone me-2"></i>Kanalı Takip Et
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ücretsiz Kayıt -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 text-center">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-danger bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-person-plus-fill text-danger fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-2">Ücretsiz Kayıt</h5>
+              <p class="card-text text-muted small mb-4">
+                MeetWork üyesi olun, networking fırsatlarını kaçırmayın
+              </p>
+              <a href="https://panel.meetwork.net" 
+                 target="_blank" 
+                 class="btn btn-danger w-100">
+                <i class="bi bi-box-arrow-up-right me-2"></i>Hemen Kayıt Ol
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Detaylı İletişim Bilgileri -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h2 class="display-6 text-dark mb-4">📞 Size Nasıl Yardımcı Olabiliriz?</h2>
+          
+          <div class="accordion" id="iletisimAccordion">
+            <!-- Etkinlik Kayıt -->
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button bg-light text-dark fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                  <i class="bi bi-calendar-event me-3 text-warning"></i>
+                  Etkinliklere Nasıl Kayıt Olurum?
+                </button>
+              </h3>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#iletisimAccordion">
+                <div class="accordion-body bg-light">
+                  <p>Etkinliklerimize katılmak için:</p>
+                  <ol class="mb-0">
+                    <li>Öncelikle <strong>panel.meetwork.net</strong> adresinden ücretsiz üye olun</li>
+                    <li>Üye girişi yaptıktan sonra "Etkinlikler" bölümüne gidin</li>
+                    <li>Katılmak istediğiniz etkinliği seçin ve rezervasyon yapın</li>
+                    <li>Veya direkt WhatsApp hattımızdan bize ulaşın</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sponsorluk -->
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button bg-light text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                  <i class="bi bi-star-fill me-3 text-primary"></i>
+                  Sponsor Olmak İstiyorum
+                </button>
+              </h3>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#iletisimAccordion">
+                <div class="accordion-body bg-light">
+                  <p>Sponsorluk fırsatlarımız hakkında bilgi almak için:</p>
+                  <ul class="mb-0">
+                    <li>WhatsApp hattımızdan "Sponsorluk" yazarak mesaj gönderin</li>
+                    <li>Veya <a href="/sponsor-ol" class="text-decoration-none">Sponsor Ol</a> sayfamızı ziyaret edin</li>
+                    <li>Bronz, Gümüş ve Altın sponsorluk paketlerimiz mevcut</li>
+                    <li>Size özel sponsorluk çözümleri sunuyoruz</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Temsilcilik -->
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button bg-light text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                  <i class="bi bi-geo-alt-fill me-3 text-success"></i>
+                  Bölge Temsilcisi Olmak İstiyorum
+                </button>
+              </h3>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#iletisimAccordion">
+                <div class="accordion-body bg-light">
+                  <p>MeetWork temsilcisi olmak için:</p>
+                  <ul class="mb-0">
+                    <li><a href="/franchise" class="text-decoration-none">Temsilcilik Sayfamızı</a> ziyaret edin</li>
+                    <li>WhatsApp hattımızdan "Temsilcilik" yazarak mesaj gönderin</li>
+                    <li>Yerel, Şehir ve Bölge temsilciliği paketlerimiz mevcut</li>
+                    <li>%35-60 arası komisyon oranları</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-5">
+              <h3 class="h4 text-dark mb-4 text-center">💬 Hızlı İletişim Formu</h3>
+              <p class="text-muted mb-4 text-center">
+                Aşağıdaki konulardan hangisiyle ilgileniyorsunuz? WhatsApp üzerinden doğrudan iletişime geçin.
+              </p>
+              
+              <div class="row g-3">
+                <div class="col-12">
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20etkinlik%20kaydı%20hakkında%20bilgi%20almak%20istiyorum." 
+                     target="_blank"
+                     class="btn btn-outline-warning w-100 text-start py-3">
+                    <i class="bi bi-calendar-check me-2"></i>
+                    Etkinlik Kayıt Bilgisi
+                  </a>
+                </div>
+                
+                <div class="col-12">
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20sponsorluk%20fırsatları%20hakkında%20bilgi%20almak%20istiyorum." 
+                     target="_blank"
+                     class="btn btn-outline-primary w-100 text-start py-3">
+                    <i class="bi bi-star me-2"></i>
+                    Sponsorluk Bilgisi
+                  </a>
+                </div>
+                
+                <div class="col-12">
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20temsilcilik%20hakkında%20bilgi%20almak%20istiyorum." 
+                     target="_blank"
+                     class="btn btn-outline-success w-100 text-start py-3">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    Temsilcilik Bilgisi
+                  </a>
+                </div>
+                
+                <div class="col-12">
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20genel%20bilgi%20almak%20istiyorum." 
+                     target="_blank"
+                     class="btn btn-outline-info w-100 text-start py-3">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Genel Bilgi
+                  </a>
+                </div>
+                
+                <div class="col-12">
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20win-win%20fırsatları%20hakkında%20bilgi%20almak%20istiyorum." 
+                     target="_blank"
+                     class="btn btn-outline-danger w-100 text-start py-3">
+                    <i class="bi bi-trophy me-2"></i>
+                    Win-Win Fırsatları
+                  </a>
+                </div>
+              </div>
+              
+              <div class="text-center mt-4">
+                <p class="text-muted small mb-2">
+                  <i class="bi bi-clock-history me-1"></i>
+                  WhatsApp mesajlarınıza 7/24 en geç 2 saat içinde yanıt veriyoruz
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İŞTEP ve Kurumsal İletişim -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h3 class="h2 mb-3">🤝 MeetWork Türkiye & İŞTEP</h3>
+          <p class="lead opacity-75 mb-4">
+            MeetWork'ün Türkiye'deki resmi temsilcisi <strong>İşte Birlik Platformu (İŞTEP)</strong>'tir. 
+            Kurumsal iş birlikleri, franchise anlaşmaları ve resmi görüşmeler için İŞTEP ile iletişime geçebilirsiniz.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <div class="bg-white bg-opacity-10 rounded p-3">
+              <h6 class="mb-0 opacity-75">Resmi Temsilci</h6>
+              <p class="mb-0 fw-bold">İşte Birlik Platformu (İŞTEP)</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded p-3">
+              <h6 class="mb-0 opacity-75">WhatsApp Hattı</h6>
+              <p class="mb-0 fw-bold">24 Saat Açık</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+          <a href="https://wa.me/905412465429?text=Merhaba,%20kurumsal%20iş%20birliği%20hakkında%20bilgi%20almak%20istiyorum." 
+             target="_blank"
+             class="btn btn-warning btn-lg px-5">
+            <i class="bi bi-building me-2"></i>Kurumsal İletişim
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Acil Durum ve Özel Talepler -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h3 class="h2 text-dark mb-3">⚡ Acil Durum ve Özel Talepler</h3>
+        <p class="lead text-muted">
+          Aşağıdaki durumlarda doğrudan WhatsApp hattımızdan acil olarak iletişime geçebilirsiniz
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 border-start border-warning border-3 h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-exclamation-triangle-fill text-warning fs-4 me-3"></i>
+                <div>
+                  <h5 class="card-title text-dark mb-2">Etkinlik İptali</h5>
+                  <p class="card-text text-muted small">
+                    Kayıtlı olduğunuz etkinlikle ilgili acil iptal veya değişiklik talebi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 border-start border-danger border-3 h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-calendar-x-fill text-danger fs-4 me-3"></i>
+                <div>
+                  <h5 class="card-title text-dark mb-2">Rezervasyon Sorunu</h5>
+                  <p class="card-text text-muted small">
+                    Etkinlik rezervasyonunuzda teknik sorun yaşıyorsanız
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 border-start border-primary border-3 h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-shield-fill-exclamation text-primary fs-4 me-3"></i>
+                <div>
+                  <h5 class="card-title text-dark mb-2">Güvenlik Bildirimi</h5>
+                  <p class="card-text text-muted small">
+                    Platformumuzla ilgili güvenlik endişeleriniz varsa
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 border-start border-success border-3 h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-lightbulb-fill text-success fs-4 me-3"></i>
+                <div>
+                  <h5 class="card-title text-dark mb-2">Öneri ve Geliştirme</h5>
+                  <p class="card-text text-muted small">
+                    Platformumuzu geliştirmemize yardımcı olacak önerileriniz
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <div class="alert alert-warning d-inline-block">
+          <i class="bi bi-info-circle me-2"></i>
+          Acil durumlarda WhatsApp hattımıza "ACİL" yazarak mesaj gönderin, en kısa sürede dönüş yapacağız.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Son CTA -->
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <h3 class="h2 text-dark mb-4">🚀 MeetWork Ailesine Katılın</h3>
+      <p class="lead text-muted mb-4">
+        Networking dünyasının bir parçası olun, iş ağınızı genişletin ve yeni fırsatları keşfedin.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20detaylı%20bilgi%20almak%20istiyorum." 
+           target="_blank"
+           class="btn btn-success btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+        <a href="https://panel.meetwork.net" 
+           target="_blank"
+           class="btn btn-primary btn-lg px-5">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Panele Giriş Yap
+        </a>
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-warning btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+      </div>
+      <p class="mt-3 text-muted small">
+        <i class="bi bi-shield-check me-1"></i>
+        Tüm iletişimleriniz gizli tutulur. Kişisel verileriniz güvendedir.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    /* İletişim Sayfası Özel Stilleri */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Accordion Stilleri */
+    .accordion-button:not(.collapsed) {
+      background-color: #fff8e1 !important;
+      color: #212529 !important;
+      border-color: #ffc107 !important;
+    }
+    
+    .accordion-button:focus {
+      box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25) !important;
+      border-color: #ffc107 !important;
+    }
+    
+    /* Buton Stilleri */
+    .btn-outline-warning:hover,
+    .btn-outline-primary:hover,
+    .btn-outline-success:hover,
+    .btn-outline-info:hover,
+    .btn-outline-danger:hover {
+      transform: translateX(5px);
+      transition: all 0.3s ease;
+    }
+    
+    /* Acil Durum Kartları */
+    .border-start {
+      border-left-width: 4px !important;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-5 {
+        font-size: 2rem;
+      }
+      
+      .h2 {
+        font-size: 1.75rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Animasyonlar */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .btn-success:hover {
+      animation: pulse 0.5s ease;
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "MeetWork İletişim",
+    "description": "MeetWork networking platformu iletişim bilgileri",
+    "url": "https://meetwork.com/iletisim",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+905412465429",
+        "contactOption": "TollFree",
+        "areaServed": "TR",
+        "availableLanguage": ["Turkish"],
+        "contactType": "WhatsApp"
+      }
+    }
+  }
+  </script>
 
 </BaseLayout>
