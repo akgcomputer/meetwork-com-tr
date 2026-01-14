@@ -101,15 +101,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="quick-access-section py-4 bg-light">
     <div class="container">
       <div class="row g-3 justify-content-center">
-        <!-- WhatsApp Butonu -->
+       
+        
+
+        <!-- Ücretsiz Kayıt Butonu -->
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-          <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." 
+          <a href="https://panel.meetwork.net" 
              target="_blank" 
-             class="btn btn-success w-100 d-flex flex-column align-items-center py-3">
-            <i class="bi bi-whatsapp fs-3 mb-2"></i>
-            <span class="small fw-medium">WhatsApp Hattı</span>
+             class="btn btn-danger w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-person-plus-fill fs-3 mb-2"></i>
+            <span class="small fw-medium">Ücretsiz Kayıt Ol</span>
           </a>
         </div>
+
+
+        <!-- Talepler Butonu -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="/talepler"
+             class="btn btn-info w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-chat-left-text fs-3 mb-2"></i>
+            <span class="small fw-medium">Talepler</span>
+          </a>
+        </div>
+
+        
 
         <!-- WhatsApp Duyuru Grubu -->
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
@@ -131,15 +146,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </a>
         </div>
 
-        <!-- Ücretsiz Kayıt Butonu -->
+        <!-- Etkinlik Takvimi Butonu -->
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-          <a href="https://panel.meetwork.net" 
-             target="_blank" 
-             class="btn btn-danger w-100 d-flex flex-column align-items-center py-3">
-            <i class="bi bi-person-plus-fill fs-3 mb-2"></i>
-            <span class="small fw-medium">Ücretsiz Kayıt Ol</span>
+          <a href="/etkinlik-takvimi"
+             class="btn btn-pink w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-calendar-check fs-3 mb-2"></i>
+            <span class="small fw-medium">Etkinlik Takvimi</span>
           </a>
         </div>
+
+
+        <!-- WhatsApp Butonu -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." 
+             target="_blank" 
+             class="btn btn-success w-100 d-flex flex-column align-items-center py-3">
+            <i class="bi bi-whatsapp fs-3 mb-2"></i>
+            <span class="small fw-medium">WhatsApp Hattı</span>
+          </a>
+        </div>
+
+
       </div>
       
       <!-- Ek Açıklama -->
@@ -1275,6 +1302,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .btn-danger:hover {
       background-color: #bb2d3b;
       border-color: #bb2d3b;
+    }
+
+    /* mor */
+    .btn-indigo {
+    background-color: #6610f2;
+    border-color: #6610f2;
+    color: white;
+    }
+
+    /* pembe */
+    .btn-pink {
+    background-color: #e83e8c;
+    border-color: #e83e8c;
+    color: white;
     }
 
     /* Responsive Tasarım */
