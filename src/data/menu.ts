@@ -26,21 +26,29 @@ export const menuItems: MenuItem[] = [
     { id: 86, title: 'Franchise', url: '/franchise', icon: 'bi-headset' },
     ]
   },
+
   {
     id: 2,
-    title: 'Sponsor Ol',
-    url: '/sponsor-ol',
-    icon: 'bi-hand-thumbs-up'
+    title: 'Etkinlik',
+    url: '#',
+    icon: 'bi-hand-thumbs-up',
+    subItems: [
+    { id: 114, title: 'Etkinlikten Kareler', url: '/etkinliklerden-kareler', icon: 'bi-headset' },
+    { id: 115, title: 'Sponsor Ol', url: '/sponsor-ol', icon: 'bi-headset' },
+    { id: 75, title: 'Mini-Maxi Etkinlik', url: '/etkinlik', icon: 'bi-scale' },
+    { id: 76, title: 'Etkinlik Takvimi', url: '/etkinlik-takvimi', icon: 'bi-headset' },
+    
+    //{ id: 102, title: 'Firmalar', url: '/firmalar', icon: 'bi-briefcase' },
+    ]
   },
+  
   {
     id: 3,
-    title: 'Etkinlik & Kazanım',
+    title: 'Kazanımlar',
     url: '#',
     icon: 'bi-calendar-event',
     subItems: [
     { id: 113, title: 'Talepler', url: '/talepler', icon: 'bi-headset' },
-    { id: 75, title: 'Mini-Maxi Etkinlik', url: '/etkinlik', icon: 'bi-scale' },
-    { id: 76, title: 'Etkinlik Takvimi', url: '/etkinlik-takvimi', icon: 'bi-headset' },
     { id: 77, title: 'Win-Win', url: '/win-win', icon: 'bi-headset' },
     { id: 78, title: 'İş Birliği', url: '/isbirligi', icon: 'bi-headset' },
     { id: 79, title: 'İştep İştirakleri', url: '/istirakler', icon: 'bi-headset' },

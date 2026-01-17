@@ -2,27 +2,41 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
+
 <BaseLayout title="MeetWork | B2B Networking Platform"
-  description="Türkiye'nin en güçlü B2B networking platformu. İş bağlantıları kurun, fırsatları keşfedin."
->
+  description="Türkiye'nin en güçlü B2B networking platformu. İş bağlantıları kurun, fırsatları keşfedin.">
 
   <!-- Hero Slider Bölümü -->
 <section class="hero-slider">
   <!-- Bootstrap Carousel -->
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
-    <!-- Carousel Indicators -->
+    <!-- Carousel Indicators - DÜZELTİLDİ -->
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 4"></button>
     </div>
 
-    <!-- Carousel Items -->
+    <!-- Carousel Items - DÜZELTİLDİ -->
     <div class="carousel-inner">
-      <!-- Slide 1 -->
+      <!-- Slide 0 - TEK ACTIVE -->
       <div class="carousel-item active">
-        <img src="/images/meetwork-etkinlik1.jpg" class="d-block w-100" alt="Slide 1" />
+        <img src="/images/MeetWork.png" class="d-block w-100" alt="Slide 0 - Toplantılar" />
+        <div class="carousel-overlay">
+          <div class="container">
+            <div class="carousel-caption">
+              <h2 class="display-5 fw-bold text-white mb-3">Toplantılara Katıl</h2>
+              <p class="lead text-white mb-4">Yüz yüze toplantılarla iş bağlantıları kurun</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="carousel-item">
+        <img src="/images/meetwork-etkinlik1.jpg" class="d-block w-100" alt="Slide 1 - İş Ağı" />
         <div class="carousel-overlay">
           <div class="container">
             <div class="carousel-caption">
@@ -35,7 +49,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Slide 2 -->
       <div class="carousel-item">
-        <img src="/images/meetwork-etkinlik11.jpg" class="d-block w-100" alt="Slide 2" />
+        <img src="/images/meetwork-etkinlik11.jpg" class="d-block w-100" alt="Slide 2 - Başarılı Buluşmalar" />
         <div class="carousel-overlay">
           <div class="container">
             <div class="carousel-caption">
@@ -48,7 +62,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Slide 3 -->
       <div class="carousel-item">
-        <img src="/images/meetwork-etkinlik111.jpg" class="d-block w-100" alt="Slide 3" />
+        <img src="/images/meetwork-etkinlik111.jpg" class="d-block w-100" alt="Slide 3 - Global Networking" />
         <div class="carousel-overlay">
           <div class="container">
             <div class="carousel-caption">
@@ -59,9 +73,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <!-- Slide 4 (YENİ) -->
+      <!-- Slide 4 -->
       <div class="carousel-item">
-        <img src="/images/meetwork-etkinlik1111.jpg" class="d-block w-100" alt="Slide 4" />
+        <img src="/images/meetwork-etkinlik1111.jpg" class="d-block w-100" alt="Slide 4 - Maxi Etkinlikler" />
         <div class="carousel-overlay">
           <div class="container">
             <div class="carousel-caption">
@@ -73,7 +87,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <!-- Carousel Controls (aynı kalır) -->
+    <!-- Carousel Controls (bu kısımda da tekrar eden kodlar var, silmeniz gerek) -->
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Önceki</span>
@@ -1666,7 +1680,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     document.addEventListener('DOMContentLoaded', function() {
       // Gallery Carousel'ı başlat
       const galleryCarousel = new bootstrap.Carousel(document.getElementById('galleryCarousel'), {
-        interval: 8000, // 8 saniyede bir ilerler
+        interval: 4000, // 4 saniyede bir ilerler
         wrap: true,
         pause: 'hover',
         touch: true,

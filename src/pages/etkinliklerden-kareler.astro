@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Tüm resimler - daha fazla ekleyebilirsin
+const galleryImages = [
+  { src: '/images/MeetWork.png', alt: 'Mini etkinlik networking ortamı' },
+  { src: '/images/meetwork-etkinlik-0.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-00.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-1.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-2.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-3.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-4.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-5.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-6.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-7.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-8.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-9.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-10.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-11.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-12.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-13.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-14.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-15.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik-16.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik2.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik3.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik4.jpg', alt: 'MeetWork' },
+  { src: '/images/meetwork-etkinlik1.jpg', alt: 'MeetWork' },
+  // Daha fazla resim ekle...
+];
+---
+
+<BaseLayout 
+  title="Etkinliklerden Kareler | MeetWork"
+  description="MeetWork etkinliklerinden fotoğraflar ve anılar. İş buluşmaları, networking etkinlikleri ve daha fazlası."
+>
+
+  <!-- Sade Galeri Sayfası -->
+  <main class="simple-gallery">
+    
+    <!-- Hero Bölümü -->
+    <section class="hero-section bg-dark text-white py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h1 class="display-4 fw-bold mb-4">Etkinliklerden Kareler</h1>
+            <p class="lead mb-4">
+              MeetWork'ün samimi ve verimli buluşmalarından özel anlar. 
+              İş bağlantıları kurarken yaşanan keyifli dakikaları bu sayfada bulabilirsiniz.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+              
+              <a href="/etkinlik-takvimi" class="bg-danger btn btn-outline-light btn-lg">
+                <i class="bi bi-calendar-event me-2"></i> Etkinlik Takvimi
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeri Grid -->
+    <div class="gallery-grid py-4">
+      <div class="container">
+        <div class="row g-3">
+          {galleryImages.map((image, index) => (
+            <div class="col-6 col-md-4 col-lg-3">
+              <div class="gallery-item">
+                <img 
+                  src={image.src} 
+                  alt={image.alt}
+                  class="img-fluid"
+                  loading="lazy"
+                  onError="this.src='/images/placeholder.jpg'; this.alt='Resim yüklenemedi'"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Alt Bilgi -->
+    <div class="info-section text-center py-4 bg-light">
+      <div class="container">
+        <p class="text-muted mb-0">
+          <i class="bi bi-camera me-1"></i>
+          MeetWork Etkinlikleri {galleryImages.length} 
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- CSS Stilleri -->
+  <style is:global>
+    /* Temel stil sıfırlama */
+    .simple-gallery {
+      min-height: 100vh;
+      background: white;
+    }
+
+    /* Başlık bölümü */
+    .title-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-bottom: 2px solid #dee2e6;
+    }
+
+    .title-section h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .title-section .lead {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #444;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Galeri grid */
+    .gallery-grid {
+      background: white;
+    }
+
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      background: #f8f9fa;
+      aspect-ratio: 1 / 1; /* Kare görünüm */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Mobil responsive */
+    @media (max-width: 768px) {
+      .title-section h1 {
+        font-size: 2rem;
+      }
+      
+      .title-section .lead {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .title-section .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .gallery-item {
+        border-radius: 6px;
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .title-section {
+        padding: 2rem 0;
+      }
+      
+      .title-section h1 {
+        font-size: 1.8rem;
+      }
+      
+      .col-6 {
+        padding: 4px !important;
+      }
+      
+      .gallery-grid .container {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      
+      .row.g-3 {
+        --bs-gutter-x: 8px;
+        --bs-gutter-y: 8px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .title-section h1 {
+        font-size: 1.6rem;
+      }
+      
+      .title-section .lead {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Büyük ekranlar */
+    @media (min-width: 1200px) {
+      .gallery-item {
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    /* Placeholder stil */
+    .gallery-item img[src*="placeholder"] {
+      padding: 20%;
+      opacity: 0.7;
+      object-fit: contain;
+    }
+
+    /* Buton */
+    .btn-primary {
+      background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+  </style>
+
+  <!-- Basit JavaScript (sadece placeholder için) -->
+  <script is:inline>
+    // Resim yükleme hatalarını yakala
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.gallery-item img');
+      images.forEach(img => {
+        img.addEventListener('error', function() {
+          if (!this.src.includes('placeholder')) {
+            this.src = '/images/placeholder.jpg';
+            this.alt = 'Resim yüklenemedi';
+          }
+        });
+      });
+    });
+  </script>
+
+</BaseLayout>
