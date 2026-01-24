@@ -50,6 +50,9 @@ export const menuItems: MenuItem[] = [
     subItems: [
     { id: 113, title: 'Talepler', url: '/talepler', icon: 'bi-headset' },
     { id: 77, title: 'Win-Win', url: '/win-win', icon: 'bi-headset' },
+    { id: 200, title: 'Tış Ticaret', url: '/dis-ticaret', icon: 'bi-headset' },
+    { id: 201, title: 'İhracat', url: '/ihracat', icon: 'bi-headset' },
+    { id: 202, title: 'İthalat', url: '/ithalat', icon: 'bi-headset' },
     { id: 78, title: 'İş Birliği', url: '/isbirligi', icon: 'bi-headset' },
     { id: 79, title: 'İştep İştirakleri', url: '/istirakler', icon: 'bi-headset' },
     { id: 90, title: 'Teşvik ve Hibe', url: '/tesvik-hibe', icon: 'bi-headset' },

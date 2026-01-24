@@ -1,0 +1,683 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO Parametreleri
+const seoTitle = "MeetWork Dış Ticaret | İhracat ve İthalat Çözümleri";
+const seoDescription = "Dünya ile ticaret yapın, MeetWork yanınızda. İhracat ve ithalat için profesyonel çözümler. Size müşteri, pazar ve tedarikçi buluyoruz.";
+const seoKeywords = "ihracat, ithalat, dış ticaret, uluslararası ticaret, dış ticaret danışmanlığı, ihracat çözümleri, ithalat çözümleri";
+const canonicalUrl = "https://meetwork.com.tr/dis-ticaret";
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+>
+
+  <!-- Hero Dış Ticaret Bölümü -->
+  <section class="py-5 bg-gradient-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold text-dark mb-4">
+            Nasıl Dünya ile <br>Ticaret Yaparsın?
+            <br>Cevap: <span class="text-warning">MeetWork</span> ile..
+          </h1>
+          <p class="lead text-muted mb-5">
+            <strong class="text-danger">İhracat mı, İthalat mı?</strong> 
+            <br>Hangi yöne giderseniz gidin, biz sizinle birlikte yürüyoruz.
+            <br>Global pazarda başarılı olmanız için gerekli tüm desteği sağlıyoruz.
+          </p>
+          
+          <!-- İstatistikler -->
+          <div class="row g-4 mb-5 justify-content-center">
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card">
+                <h3 class="display-6 fw-bold text-warning mb-0">50++</h3>
+                <p class="text-muted mb-0">Onlarca Ülkede İrtibat</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card">
+                <h3 class="display-6 fw-bold text-primary mb-0">1000+</h3>
+                <p class="text-muted mb-0">Binlerce İş Ortağı</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card">
+                <h3 class="display-6 fw-bold text-success mb-0">$M++</h3>
+                <p class="text-muted mb-0">Milyonlarca Dolar İş Hacmi</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card">
+                <h3 class="display-6 fw-bold text-danger mb-0">7/24</h3>
+                <p class="text-muted mb-0">Ticket Desteği ile Çözüm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="/ihracat" class="btn btn-warning btn-lg px-5 py-3">
+          <i class="bi bi-globe-americas me-2"></i>İhracat Yapmak İstiyorum
+        </a>
+        <a href="/ithalat" class="btn btn-primary btn-lg px-5 py-3">
+          <i class="bi bi-cart-check me-2"></i>İthalat Yapmak İstiyorum
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20dış%20ticaret%20hakkında%20detaylı%20bilgi%20almak%20istiyorum." 
+           target="_blank"
+           class="btn btn-success btn-lg px-5 py-3">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- İki Büyük CTA Kartları -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="h1 text-dark mb-3">Hangi Yöne Gitmek İstiyorsunuz?</h2>
+        <p class="lead text-muted">
+          İşinizi global ölçeğe taşımak için doğru yolu seçin
+        </p>
+      </div>
+      
+      <div class="row g-5">
+        <!-- İHRACAT KARTI -->
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-lg h-100 export-card">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <div class="icon-wrapper bg-warning bg-opacity-10 rounded-circle p-4 d-inline-block">
+                  <i class="bi bi-globe-americas text-warning fs-1"></i>
+                </div>
+                <h3 class="h2 text-dark mt-4 mb-3">İHRACAT</h3>
+                <p class="lead text-muted mb-4">
+                  Ürünlerinizi dünyaya satın, gelirinizi katlayın
+                </p>
+              </div>
+              
+              <div class="features-list mb-5">
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Size Müşteri Buluyoruz</h5>
+                    <p class="text-muted mb-0 small">Global ağımızla ürünlerinize uygun alıcılar buluyoruz</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Pazar Buluyoruz</h5>
+                    <p class="text-muted mb-0 small">Ürününüz için en karlı pazarları sizin için analiz ediyoruz</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Lojistik Desteği</h5>
+                    <p class="text-muted mb-0 small">Nakliye, gümrük ve teslimat süreçlerinde yanınızdayız</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Finansman Çözümleri</h5>
+                    <p class="text-muted mb-0 small">İhracat finansmanı ve ödeme için seçenek sağlıyoruz</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="text-center">
+                <a href="/ihracat" class="btn btn-warning btn-lg px-5 py-3">
+                  <i class="bi bi-arrow-right-circle me-2"></i>
+                  İhracat Yapmak İstiyorum
+                </a>
+              </div>
+            </div>
+            
+            <!-- İhracat Avantajları -->
+            <div class="card-footer bg-warning bg-opacity-10 border-0 py-4">
+              <div class="row text-center g-3">
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-cash-stack text-warning fs-4 mb-2"></i>
+                    <span class="small fw-bold">Kâr Artışı</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-graph-up-arrow text-warning fs-4 mb-2"></i>
+                    <span class="small fw-bold">Büyüme</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-shield-check text-warning fs-4 mb-2"></i>
+                    <span class="small fw-bold">Güvence</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-globe text-warning fs-4 mb-2"></i>
+                    <span class="small fw-bold">Global Ağ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- İTHALAT KARTI -->
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-lg h-100 import-card">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-4 d-inline-block">
+                  <i class="bi bi-cart-check text-primary fs-1"></i>
+                </div>
+                <h3 class="h2 text-dark mt-4 mb-3">İTHALAT</h3>
+                <p class="lead text-muted mb-4">
+                  Dünyadan ürün temin edin.
+                </p>
+              </div>
+              
+              <div class="features-list mb-5">
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Size Tedarikçi Buluyoruz</h5>
+                    <p class="text-muted mb-0 small">Güvenilir ve sertifikalı tedarikçilerle tanıştırıyoruz</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Ürün Buluyoruz</h5>
+                    <p class="text-muted mb-0 small">İhtiyacınıza en uygun ürünleri araştırıp sizin için buluyoruz</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start mb-3">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Kalite Kontrol</h5>
+                    <p class="text-muted mb-0 small">Ürün kalitesini yerinde kontrol ediyoruz</p>
+                  </div>
+                </div>
+                
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success fs-5 me-3 mt-1"></i>
+                  <div>
+                    <h5 class="text-dark mb-1">Fiyat Avantajı</h5>
+                    <p class="text-muted mb-0 small">Toplu alım gücümüzle en iyi fiyatları sağlıyoruz</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="text-center">
+                <a href="/ithalat" class="btn btn-primary btn-lg px-5 py-3">
+                  <i class="bi bi-arrow-left-circle me-2"></i>
+                  İthalat Yapmak İstiyorum
+                </a>
+              </div>
+            </div>
+            
+            <!-- İthalat Avantajları -->
+            <div class="card-footer bg-primary bg-opacity-10 border-0 py-4">
+              <div class="row text-center g-3">
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-currency-dollar text-primary fs-4 mb-2"></i>
+                    <span class="small fw-bold">Maliyet Avantajı</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-search text-primary fs-4 mb-2"></i>
+                    <span class="small fw-bold">Kaliteli Ürün</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-truck text-primary fs-4 mb-2"></i>
+                    <span class="small fw-bold">Kolay Lojistik</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-hand-thumbs-up text-primary fs-4 mb-2"></i>
+                    <span class="small fw-bold">Güvenilirlik</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Süreç Adımları -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="h1 text-dark mb-3">Dış Ticaret Sürecimiz</h2>
+        <p class="lead text-muted">
+          Adım adım yanınızdayız. İşinizi global pazara taşımak için gereken tüm adımları birlikte atıyoruz.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Adım 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+              <span class="h4 mb-0">1</span>
+            </div>
+            <h4 class="h5 text-dark mb-3">Analiz ve Planlama</h4>
+            <p class="text-muted small">
+              İşletmenizi analiz ediyor, hedef pazarları belirliyor ve özelleştirilmiş bir dış ticaret stratejisi oluşturuyoruz.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+              <span class="h4 mb-0">2</span>
+            </div>
+            <h4 class="h5 text-dark mb-3">Eşleştirme</h4>
+            <p class="text-muted small">
+              Size en uygun alıcı/tedarikçileri buluyor, görüşmeleri ayarlıyor ve ön anlaşmaları sağlıyoruz.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+              <span class="h4 mb-0">3</span>
+            </div>
+            <h4 class="h5 text-dark mb-3">Lojistik ve Gümrük</h4>
+            <p class="text-muted small">
+              Nakliye, sigorta, gümrük işlemleri ve tüm belgelendirme süreçlerini profesyonelce yönetiyoruz.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+              <span class="h4 mb-0">4</span>
+            </div>
+            <h4 class="h5 text-dark mb-3">Takip ve Destek</h4>
+            <p class="text-muted small">
+              Sürecin her aşamasında yanınızdayız. Teslimat sonrası da destek sağlayarak uzun vadeli iş birlikleri kuruyoruz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Referanslar ve Başarı Hikayeleri -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="h1 text-dark mb-3">Başarı Hikayeleri</h2>
+        <p class="lead text-muted">
+          MeetWork ile dünyaya açılan yüzlerce mutlu işletme
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Referans 1 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-warning bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-building text-warning fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">Tekstil Üreticisi</h5>
+                  <p class="text-muted small mb-0">İstanbul</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "MeetWork sayesinde Avrupa'ya ihracata başladık. İyi bir iş hacmine ulaştık. Profesyonel ekip ve sürekli destekleri için teşekkürler."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <span class="ms-2 text-muted small">5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Referans 2 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-shop text-primary fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">Perakende Zinciri</h5>
+                  <p class="text-muted small mb-0">Ankara</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "Çin'den ürün ithalatında MeetWork'in desteği çok değerliydi. Hem fiyat avantajı sağladılar hem de kalite kontrol süreçlerini mükemmel yönettiler."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-half text-warning me-1"></i>
+                <span class="ms-2 text-muted small">4.5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Referans 3 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-cpu text-success fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">Teknoloji Firması</h5>
+                  <p class="text-muted small mb-0">İzmir</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "Yazılım hizmetlerimizi Orta Doğu'ya ihraç etmek istiyorduk. MeetWork doğru bağlantıları kurdu ve 6 ayda 3 yeni ülkede müşteri portföyümüzü oluşturduk."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <span class="ms-2 text-muted small">5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Danışmanlık ve Destek -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h3 class="h1 mb-4">Ücretsiz Dış Ticaret Danışmanlığı</h3>
+          <p class="lead opacity-75 mb-4">
+            İhracat veya ithalat yapmak istiyor ama nereden başlayacağınızı bilmiyor musunuz?
+            Uzman ekibimizle ücretsiz danışmanlık görüşmesi yapın, işiniz için en uygun yol haritasını birlikte oluşturalım.
+          </p>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-warning fs-4 me-3"></i>
+                <div>
+                  <h6 class="mb-0">Ücretsiz Analiz</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-warning fs-4 me-3"></i>
+                <div>
+                  <h6 class="mb-0">Pazar Araştırması</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-warning fs-4 me-3"></i>
+                <div>
+                  <h6 class="mb-0">Strateji Planı</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+          <a href="https://wa.me/905412465429?text=Merhaba,%20dış%20ticaret%20danışmanlığı%20almak%20istiyorum." 
+             target="_blank"
+             class="btn btn-warning btn-lg px-5 py-3">
+            <i class="bi bi-whatsapp me-2"></i>Ücretsiz Danışmanlık Al
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Son CTA -->
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <h3 class="h1 text-dark mb-4">Dünya Pazarında Yerinizi Alın</h3>
+      <p class="lead text-muted mb-5">
+        İster ihracat ister ithalat yapmak isteyin, <strong>MeetWork</strong> olarak sizi dünya pazarlarına güvenle taşıyoruz.
+        <br>Binlerce başarılı ticaretin parçası olun.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="/ihracat" class="btn btn-warning btn-lg px-5 py-3">
+          <i class="bi bi-globe-americas me-2"></i>İhracat Yapmak İstiyorum
+        </a>
+        <a href="/ithalat" class="btn btn-primary btn-lg px-5 py-3">
+          <i class="bi bi-cart-check me-2"></i>İthalat Yapmak İstiyorum
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20dış%20ticaret%20hakkında%20detaylı%20bilgi%20almak%20istiyorum." 
+           target="_blank"
+           class="btn btn-success btn-lg px-5 py-3">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+      </div>
+      <p class="mt-4 text-muted small">
+        <i class="bi bi-shield-check me-1"></i>
+        Tüm işlemleriniz güvence altında. Profesyonel ekip ve uluslararası standartlarda hizmet.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    /* Dış Ticaret Sayfası Özel Stilleri */
+    
+    /* Hero Gradient */
+    .bg-gradient-light {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    /* İstatistik Kartları */
+    .stat-card {
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* İhracat ve İthalat Kartları */
+    .export-card {
+      border-top: 4px solid #ffc107 !important;
+    }
+    
+    .import-card {
+      border-top: 4px solid #0d6efd !important;
+    }
+    
+    .export-card:hover {
+      box-shadow: 0 15px 30px rgba(255, 193, 7, 0.1) !important;
+    }
+    
+    .import-card:hover {
+      box-shadow: 0 15px 30px rgba(13, 110, 253, 0.1) !important;
+    }
+    
+    /* Süreç Adımları */
+    .process-step {
+      padding: 2rem 1rem;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      font-weight: bold;
+    }
+    
+    /* Müşteri Avatar */
+    .client-avatar {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Kart Animasyonları */
+    .card {
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Buton Animasyonları */
+    .btn {
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Özellik Listesi */
+    .features-list {
+      border-left: 3px solid #ffc107;
+      padding-left: 1.5rem;
+    }
+    
+    .import-card .features-list {
+      border-left-color: #0d6efd;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2.5rem;
+      }
+      
+      .h1 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-card {
+        margin-bottom: 1rem;
+      }
+      
+      .card-body {
+        padding: 2rem 1.5rem !important;
+      }
+    }
+    
+    /* Animasyonlar */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Görsel Efektler */
+    .icon-wrapper {
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover .icon-wrapper {
+      transform: rotate(10deg) scale(1.1);
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "MeetWork Dış Ticaret Hizmetleri",
+    "description": "İhracat ve ithalat için profesyonel dış ticaret çözümleri",
+    "provider": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Worldwide"
+    },
+    "serviceType": "International Trade Consulting",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "TRY",
+        "price": "0"
+      }
+    }
+  }
+  </script>
+
+</BaseLayout>

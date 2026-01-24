@@ -1,0 +1,1052 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO Parametreleri
+const seoTitle = "MeetWork İthalat Hizmetleri | Dünyadan Ürün Tedariki";
+const seoDescription = "MeetWork ile güvenilir ithalat yapın! Çin, Avrupa, Asya'dan tedarikçi bulma, kalite kontrol, lojistik ve gümrük hizmetleri.";
+const seoKeywords = "ithalat, tedarikçi bulma, uluslararası tedarik, ithalat danışmanlığı, Çin'den ithalat, gümrük işlemleri";
+const canonicalUrl = "https://meetwork.com.tr/ithalat";
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/ithalat-og.jpg"
+>
+
+  <!-- Hero İthalat Bölümü -->
+  <section class="py-5 bg-gradient-primary-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold text-dark mb-4">
+            Dünyanın Her Yerinden Size <span class="text-primary">Ürün Getiriyoruz</span>
+          </h1>
+          <p class="lead text-dark mb-5">
+            Güvenilir tedarikçi mi arıyorsunuz? Doğru ürünü mü bulmak istiyorsunuz? 
+            <br>Global tedarik ağımız ve deneyimli ekibimizle buradayız.
+          </p>
+          
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <a href="#hizmetler" class="btn btn-primary btn-lg px-5">
+              <i class="bi bi-list-check me-2"></i>Hizmetlerimiz
+            </a>
+            <a href="#danismanlik" class="btn btn-dark btn-lg px-5">
+              <i class="bi bi-chat-dots me-2"></i>Ücretsiz Danışmanlık
+            </a>
+          </div>
+          
+          <!-- Hızlı İstatistikler -->
+          <div class="row g-4 mt-4">
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">50+</div>
+                <p class="text-dark mb-0">Onlarca Ülkeden Tedarikçi</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">2000+</div>
+                <p class="text-dark mb-0">Binlerce Onaylı Tedarikçi</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">%98</div>
+                <p class="text-dark mb-0">Müşteri Mutlu Memnuniyeti</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">7/24</div>
+                <p class="text-dark mb-0">Takip Desteği</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hizmet Kartları -->
+  <section id="hizmetler" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Kapsamlı İthalat Hizmetlerimiz</h2>
+        <p class="lead text-muted">
+          İthalatın tüm aşamalarında profesyonel destek alın. Riskleri minimize edin, güvenle ithalat yapın.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Tedarikçi Bulma -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-search text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">🔍 Tedarikçi Bulma</h5>
+              <p class="card-text text-muted mb-3">
+                Çin, Avrupa, Asya'dan güvenilir üreticiler buluyoruz. Sertifikalı ve onaylı tedarikçilerle çalışıyoruz.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Verenifikasyon</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Kapasite kontrolü</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Referans araştırması</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ürün Temin -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-box-seam text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">📦 Ürün Temin</h5>
+              <p class="card-text text-muted mb-3">
+                İhtiyacınız olan ürünü en uygun fiyatla buluyoruz. Minimum sipariş miktarı ve ödeme koşullarını optimize ediyoruz.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>En uygun fiyat</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>MOQ danışmanlığı</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Ödeme koşulları</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kalite Kontrol -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-clipboard-check text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">✅ Kalite Kontrol</h5>
+              <p class="card-text text-muted mb-3">
+                Fabrika ziyaretleri ve yerinde denetim. Üretim sürecinde kalite kontrol, paketleme ve etiketleme denetimi.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Fabrika denetimi</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Üretim kontrolü</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Final kontrol</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Numune Temini -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-box2-heart text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">🏭 Numune Temini</h5>
+              <p class="card-text text-muted mb-3">
+                Sipariş öncesi numune organizasyonu. Numunelerin hızlı ve güvenli şekilde size ulaştırılması.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Numune siparişi</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Hızlı kargo</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Kalite onayı</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiyat Müzakeresi -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-currency-exchange text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">💰 Fiyat Müzakeresi</h5>
+              <p class="card-text text-muted mb-3">
+                En avantajlı fiyatları sizin için alıyoruz. Toplu alım gücümüzle indirim sağlıyor, maliyetlerinizi düşürüyoruz.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Fiyat müzakeresi</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Toplu alım avantajı</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Alternatif teklifler</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lojistik -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-truck text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">🚚 Lojistik</h5>
+              <p class="card-text text-muted mb-3">
+                Deniz, hava, kara, demiryolu taşımacılığı. En uygun taşıma modunu seçiyor, kapıdan kapıya teslimat sağlıyoruz.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Multi-modal taşıma</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Sigorta</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Takip sistemi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gümrük İşlemleri -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-file-earmark-text text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">📋 Gümrük İşlemleri</h5>
+              <p class="card-text text-muted mb-3">
+                Tüm gümrük ve evrak süreçleri. Gümrük beyannamesi, vergi hesaplama, gerekli belgelerin hazırlanması.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Gümrük beyannamesi</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Vergi hesaplama</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Belge hazırlama</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depolama -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card service-card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4">
+                <i class="bi bi-building text-primary fs-2"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">🏪 Depolama</h5>
+              <p class="card-text text-muted mb-3">
+                Konsolidasyon ve depo hizmetleri. Farklı tedarikçilerden gelen ürünlerin birleştirilmesi ve güvenli depolanması.
+              </p>
+              <ul class="list-unstyled text-muted small">
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Konsolidasyon</li>
+                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>Güvenli depolama</li>
+                <li><i class="bi bi-check-circle-fill text-success me-1"></i>Paketleme hizmeti</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tedarik Ağımız -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Küresel Tedarik Ağımız</h2>
+        <p class="lead text-muted">
+          Dünyanın farklı bölgelerinde yerel ofislerimiz ve uzman ekiplerimizle yanınızdayız
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Çin -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center p-4">
+              <div class="country-flag mb-4" style="font-size: 3rem;">🇨🇳</div>
+              <h4 class="text-dark mb-3">Çin</h4>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-geo-alt-fill text-primary me-2 mt-1"></i>
+                <div class="text-start">
+                  <h6 class="mb-1">Yiwu & Guangzhou Ofisleri</h6>
+                  <p class="text-muted small mb-0">Yerel Türk ve Çinli ekip</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Fabrika denetimi</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Kalite kontrol</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Körfez -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center p-4">
+              <div class="country-flag mb-4" style="font-size: 3rem;">BAE</div>
+              <h4 class="text-dark mb-3">Körfez</h4>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-geo-alt-fill text-primary me-2 mt-1"></i>
+                <div class="text-start">
+                  <h6 class="mb-1">Dubai/Riyad/Katar Ofisleri</h6>
+                  <p class="text-muted small mb-0">Yerel Türk ve Arap ekip</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Elektronik, Tekstil ve Tarım ürünleri</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Doğrudan üretici erişimi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rusya -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center p-4">
+              <div class="country-flag mb-4" style="font-size: 3rem;">🇷🇺</div>
+              <h4 class="text-dark mb-3">Rusya</h4>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-geo-alt-fill text-primary me-2 mt-1"></i>
+                <div class="text-start">
+                  <h6 class="mb-1">Moskova Ofisi</h6>
+                  <p class="text-muted small mb-0">Yerel Rus ve Türk ekibi</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Enerji ve hammadde</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Sanayi ürünleri</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Avrupa -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center p-4">
+              <div class="country-flag mb-4" style="font-size: 3rem;">🇪🇺</div>
+              <h4 class="text-dark mb-3">Avrupa</h4>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-geo-alt-fill text-primary me-2 mt-1"></i>
+                <div class="text-start">
+                  <h6 class="mb-1">Geniş Partner Ağı</h6>
+                  <p class="text-muted small mb-0">20+ ülkede güvenilir partner</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Yüksek teknoloji ürünler</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                <div class="text-start">
+                  <p class="text-muted small mb-0">Kalite standartları</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Süreç Akışı -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">9 Adımda İthalat Sürecimiz</h2>
+        <p class="lead text-muted">
+          Basit, şeffaf ve güvenilir bir yaklaşımla ithalat yapın
+        </p>
+      </div>
+      
+      <!-- Desktop Süreç Akışı -->
+      <div class="process-timeline d-none d-lg-block">
+        <div class="row g-0">
+          <!-- Adım 1 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">1</span>
+              </div>
+              <h5 class="text-dark mb-2">Talep Analizi</h5>
+              <p class="text-muted small">İhtiyaç ve beklenti analizi</p>
+            </div>
+          </div>
+          
+          <!-- Ok 1 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 2 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">2</span>
+              </div>
+              <h5 class="text-dark mb-2">Tedarikçi Araştırma</h5>
+              <p class="text-muted small">Uygun tedarikçi bulma</p>
+            </div>
+          </div>
+          
+          <!-- Ok 2 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 3 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">3</span>
+              </div>
+              <h5 class="text-dark mb-2">Teklif</h5>
+              <p class="text-muted small">Fiyat teklifleri alma</p>
+            </div>
+          </div>
+          
+          <!-- Ok 3 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 4 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">4</span>
+              </div>
+              <h5 class="text-dark mb-2">Numune</h5>
+              <p class="text-muted small">Numune sipariş ve kontrol</p>
+            </div>
+          </div>
+          
+          <!-- Ok 4 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 5 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">5</span>
+              </div>
+              <h5 class="text-dark mb-2">Sipariş</h5>
+              <p class="text-muted small">Sözleşme ve ödeme</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- İkinci Satır -->
+        <div class="row g-0 mt-5">
+          <!-- Adım 6 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">6</span>
+              </div>
+              <h5 class="text-dark mb-2">Kalite Kontrol</h5>
+              <p class="text-muted small">Üretim süreci kontrolü</p>
+            </div>
+          </div>
+          
+          <!-- Ok 5 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 7 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">7</span>
+              </div>
+              <h5 class="text-dark mb-2">Sevkiyat</h5>
+              <p class="text-muted small">Paketleme ve nakliye</p>
+            </div>
+          </div>
+          
+          <!-- Ok 6 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 8 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">8</span>
+              </div>
+              <h5 class="text-dark mb-2">Gümrük</h5>
+              <p class="text-muted small">Gümrük işlemleri</p>
+            </div>
+          </div>
+          
+          <!-- Ok 7 -->
+          <div class="col-auto">
+            <div class="timeline-arrow">
+              <i class="bi bi-arrow-right text-primary fs-4"></i>
+            </div>
+          </div>
+          
+          <!-- Adım 9 -->
+          <div class="col">
+            <div class="process-step-timeline text-center">
+              <div class="step-circle-timeline bg-primary text-white mb-3">
+                <span class="h5 mb-0">9</span>
+              </div>
+              <h5 class="text-dark mb-2">Teslimat</h5>
+              <p class="text-muted small">Kapıda teslim</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobil Süreç Akışı -->
+      <div class="d-lg-none">
+        <div class="row g-4">
+          <!-- Adım 1 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">1</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Talep Analizi</h5>
+                <p class="text-muted small mb-0">İhtiyaç ve beklenti analizi</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 2 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">2</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Tedarikçi Araştırma</h5>
+                <p class="text-muted small mb-0">Uygun tedarikçi bulma</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 3 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">3</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Teklif</h5>
+                <p class="text-muted small mb-0">Fiyat teklifleri alma</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 4 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">4</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Numune</h5>
+                <p class="text-muted small mb-0">Numune sipariş ve kontrol</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 5 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">5</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Sipariş</h5>
+                <p class="text-muted small mb-0">Sözleşme ve ödeme</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 6 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">6</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Kalite Kontrol</h5>
+                <p class="text-muted small mb-0">Üretim süreci kontrolü</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 7 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">7</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Sevkiyat</h5>
+                <p class="text-muted small mb-0">Paketleme ve nakliye</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 8 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">8</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Gümrük</h5>
+                <p class="text-muted small mb-0">Gümrük işlemleri</p>
+              </div>
+            </div>
+            <div class="vertical-line"></div>
+          </div>
+          
+          <!-- Adım 9 -->
+          <div class="col-12">
+            <div class="process-step-vertical">
+              <div class="step-number-vertical bg-primary text-white">9</div>
+              <div class="step-content">
+                <h5 class="text-dark mb-1">Teslimat</h5>
+                <p class="text-muted small mb-0">Kapıda teslim</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neden MeetWork? -->
+  <section class="py-5 bg-primary bg-opacity-10">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Neden MeetWork İle İthalat Yapmalısınız?</h2>
+        <p class="lead text-muted">
+          Farkımızı ortaya koyan 5 temel avantaj
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-building text-primary fs-3"></i>
+              </div>
+              <h5 class="text-dark mb-3">✅ Yerinde Ofisler</h5>
+              <p class="text-muted mb-0">
+                Çin, Özbekistan ve Rusya'da yerel ofislerimizle güvenli iş ortaklığı sağlıyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-clipboard-check text-primary fs-3"></i>
+              </div>
+              <h5 class="text-dark mb-3">✅ Fabrika Ziyaretleri</h5>
+              <p class="text-muted mb-0">
+                Fabrika ziyaretleri ve kalite denetimi ile üretim sürecini yakından takip ediyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-diagram-3 text-primary fs-3"></i>
+              </div>
+              <h5 class="text-dark mb-3">✅ Tek Noktadan Hizmet</h5>
+              <p class="text-muted mb-0">
+                Tedarikçi bulmadan teslimata kadar tüm süreci tek noktadan yönetiyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-cash-coin text-primary fs-3"></i>
+              </div>
+              <h5 class="text-dark mb-3">✅ Şeffaf Fiyatlandırma</h5>
+              <p class="text-muted mb-0">
+                Tüm maliyetleri önceden belirtiyor, gizli masraf olmadan şeffaf fiyatlandırma yapıyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-phone text-primary fs-3"></i>
+              </div>
+              <h5 class="text-dark mb-3">✅ 7/24 Takip Sistemi</h5>
+              <p class="text-muted mb-0">
+                Ürününüzün her aşamasını anlık takip edin. 7/24 erişilebilir destek ekibimiz var.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ücretsiz Danışmanlık -->
+  <section id="danismanlik" class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h3 class="display-6 fw-bold text-dark mb-4">Ücretsiz İthalat Danışmanlığı</h3>
+          <p class="lead text-muted mb-4">
+            Hangi üründen ne kadar miktarda ithalat yapmak istiyorsunuz? Uzman ekibimizle ücretsiz danışmanlık görüşmesi yapın,
+            size özel ithalat stratejinizi birlikte oluşturalım.
+          </p>
+          
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-primary fs-4 me-3 mt-1"></i>
+                <div>
+                  <h5 class="text-dark mb-1">Ücretsiz Tedarikçi Araştırması</h5>
+                  <p class="text-muted small mb-0">İhtiyacınıza uygun tedarikçi bulma</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-primary fs-4 me-3 mt-1"></i>
+                <div>
+                  <h5 class="text-dark mb-1">Detaylı Maliyet Analizi</h5>
+                  <p class="text-muted small mb-0">Tüm ithalat maliyetlerinin hesaplanması</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-primary fs-4 me-3 mt-1"></i>
+                <div>
+                  <h5 class="text-dark mb-1">Yasal Süreç Danışmanlığı</h5>
+                  <p class="text-muted small mb-0">Gümrük ve vergi süreçleri</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start">
+                <i class="bi bi-check-circle-fill text-primary fs-4 me-3 mt-1"></i>
+                <div>
+                  <h5 class="text-dark mb-1">Risk Analizi</h5>
+                  <p class="text-muted small mb-0">Olası risklerin önceden tespiti</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 text-center mt-5 mt-lg-0">
+          <div class="card border-0 shadow-lg">
+            <div class="card-body p-5">
+              <h5 class="card-title text-dark mb-4">Hemen Danışmanlık Alın</h5>
+              <a href="https://wa.me/905412465429?text=Merhaba,%20ithalat%20danışmanlığı%20almak%20istiyorum." 
+                 target="_blank"
+                 class="btn btn-primary btn-lg w-100 mb-3">
+                <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Ulaşın
+              </a>
+              <p class="text-muted small mb-2">
+                <i class="bi bi-clock me-1"></i>
+                Hafta içi 09:00 - 18:00
+              </p>
+              <p class="text-muted small mb-0">
+                <i class="bi bi-shield-check me-1"></i>
+                Gizlilik garantili
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Son CTA -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container text-center">
+      <h3 class="h1 mb-4">Dünyanın En İyi Ürünlerini Getirtin</h3>
+      <p class="lead opacity-75 mb-5">
+        MeetWork ile güvenilir ithalat yapın, rekabet avantajı yakalayın.
+        Global tedarik ağımız ve profesyonel ekibimizle yanınızdayız.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://wa.me/905412465429?text=Merhaba,%20ithalat%20yapmak%20istiyorum,%20detaylı%20bilgi%20almak%20istiyorum." 
+           target="_blank"
+           class="btn btn-primary btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Başvur
+        </a>
+        <a href="tel:+905412465429" class="btn btn-outline-light btn-lg px-5">
+          <i class="bi bi-telephone me-2"></i>Hemen Ara
+        </a>
+        <a href="/dis-ticaret" class="btn btn-outline-primary btn-lg px-5">
+          <i class="bi bi-arrow-left me-2"></i>Dış Ticaret Ana Sayfa
+        </a>
+      </div>
+      <p class="mt-4 opacity-75 small">
+        <i class="bi bi-info-circle me-1"></i>
+        Ücretsiz danışmanlık hizmetimizden yararlanın. Hiçbir taahhütte bulunmanız gerekmez.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    /* İthalat Sayfası Özel Stilleri */
+    
+    /* Hero Gradient */
+    .bg-gradient-primary-light {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
+    
+    /* Hizmet Kartları */
+    .service-card {
+      transition: all 0.3s ease;
+      border-top: 3px solid #0d6efd !important;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(13, 110, 253, 0.15) !important;
+    }
+    
+    .icon-wrapper {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Ülke Bayrakları */
+    .country-flag {
+      line-height: 1;
+    }
+    
+    /* Süreç Akışı - Desktop */
+    .process-timeline {
+      position: relative;
+    }
+    
+    .step-circle-timeline {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      font-weight: bold;
+    }
+    
+    .timeline-arrow {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+    }
+    
+    .process-step-timeline {
+      padding: 1rem;
+    }
+    
+    /* Süreç Akışı - Mobil */
+    .process-step-vertical {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      position: relative;
+    }
+    
+    .step-number-vertical {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .step-content {
+      flex-grow: 1;
+    }
+    
+    .vertical-line {
+      height: 40px;
+      width: 2px;
+      background-color: #0d6efd;
+      margin-left: 24px;
+      opacity: 0.3;
+    }
+    
+    /* Neden MeetWork Kartları */
+    .card {
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Buton Animasyonları */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2.5rem;
+      }
+      
+      .display-5 {
+        font-size: 2rem;
+      }
+      
+      .display-6 {
+        font-size: 1.75rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      .service-card {
+        margin-bottom: 1rem;
+      }
+      
+      .stat-small {
+        margin-bottom: 1rem;
+      }
+    }
+    
+    /* Animasyonlar */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .service-card:hover .icon-wrapper {
+      animation: float 0.5s ease-in-out;
+    }
+    
+    /* Özel Arka Planlar */
+    .bg-primary-light {
+      background-color: #e3f2fd !important;
+    }
+    
+    /* List Stilleri */
+    .list-unstyled li {
+      margin-bottom: 0.25rem;
+    }
+    
+    /* Grid Düzenlemeleri */
+    .row.g-4 > [class*="col-"] {
+      margin-bottom: 1rem;
+    }
+    
+    /* Özel Padding */
+    .p-4 {
+      padding: 1.5rem !important;
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "MeetWork İthalat Hizmetleri",
+    "description": "Profesyonel ithalat danışmanlığı, tedarikçi bulma ve lojistik hizmetleri",
+    "provider": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com.tr"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Worldwide"
+    },
+    "serviceType": "Import Consulting",
+    "serviceOutput": {
+      "@type": "Thing",
+      "name": "Reliable International Sourcing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Ücretsiz ithalat danışmanlığı",
+      "price": "0",
+      "priceCurrency": "TRY"
+    }
+  }
+  </script>
+
+</BaseLayout>
