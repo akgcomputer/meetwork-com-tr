@@ -27,11 +27,24 @@ export const menuItems: MenuItem[] = [
     ]
   },
 
-  {
+   {
     id: 2,
-    title: 'Etkinlik',
+    title: 'Talepler',
     url: '#',
     icon: 'bi-hand-thumbs-up',
+    subItems: [
+    { id: 113, title: 'Tüm Talepler', url: '/talepler', icon: 'bi-star' },
+    { id: 77, title: 'Talep Oluşturmak Nedir?', url: '/talep-olustur', icon: 'bi-headset' },
+    { id: 113, title: 'Talep Gir', url: 'https://panel.meetwork.net/register', icon: 'bi-headset' },
+    { id: 77, title: 'Win-Win Fırsatlar', url: '/win-win', icon: 'bi-headset' },
+    ]
+  },
+
+  {
+    id: 3,
+    title: 'Etkinlik',
+    url: '#',
+    icon: 'bi-calendar-day',
     subItems: [
     { id: 114, title: 'Etkinlikten Kareler', url: '/etkinliklerden-kareler', icon: 'bi-headset' },
     { id: 115, title: 'Sponsor Ol', url: '/sponsor-ol', icon: 'bi-headset' },
@@ -43,13 +56,11 @@ export const menuItems: MenuItem[] = [
   },
   
   {
-    id: 3,
+    id: 4,
     title: 'Kazanımlar',
     url: '#',
-    icon: 'bi-calendar-event',
+    icon: 'bi-stars',
     subItems: [
-    { id: 113, title: 'Talepler', url: '/talepler', icon: 'bi-headset' },
-    { id: 77, title: 'Win-Win', url: '/win-win', icon: 'bi-headset' },
     { id: 200, title: 'Tış Ticaret', url: '/dis-ticaret', icon: 'bi-headset' },
     { id: 201, title: 'İhracat', url: '/ihracat', icon: 'bi-headset' },
     { id: 202, title: 'İthalat', url: '/ithalat', icon: 'bi-headset' },
@@ -63,7 +74,7 @@ export const menuItems: MenuItem[] = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'Sektörler',
     url: '#',
     icon: 'bi-folder',
@@ -97,7 +108,7 @@ export const menuItems: MenuItem[] = [
   },
   
   {
-    id: 5,
+    id: 6,
     title: 'Üye Ol',
     url: '#',
     icon: 'bi-person-plus',
@@ -112,19 +123,19 @@ export const menuItems: MenuItem[] = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: 'SSS',
     url: '/sss',
     icon: 'bi-patch-question'
   },
   {
-    id: 7,
+    id: 8,
     title: 'İletişim',
     url: '/iletisim',
     icon: 'bi-envelope'
   },
    {
-    id: 8,
+    id: 9,
       title: 'MeetWork',
     url: 'https://meetwork.net',
     icon: 'bi-globe',

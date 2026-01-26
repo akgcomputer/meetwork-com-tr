@@ -1,0 +1,782 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO Parametreleri
+const seoTitle = "MeetWork Talepleri | İş İhtiyaçlarınızı Paylaşın, Çözümlerle Buluşun";
+const seoDescription = "MeetWork'te iş ihtiyaçlarınızı paylaşın, size özel teklifler alın. Ürün tedarikinden hizmet alımına, iş ortaklığından insan kaynaklarına tüm talepleriniz için.";
+const seoKeywords = "iş talepleri, tedarik talebi, hizmet alımı, iş ortaklığı talebi, B2B talepler, iş ağı talepleri";
+const canonicalUrl = "https://meetwork.com.tr/talepler";
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/talepler-og.jpg"
+>
+
+  <!-- Hero Bölümü -->
+  <section class="py-5 bg-gradient-primary-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold text-dark mb-4">
+            Taleplerinizi Oluşturun, <span class="text-danger">Doğru Çözümler</span> <br>Sizi Bulsun
+          </h1>
+          <p class="lead text-dark mb-5">
+            MeetWork network'ünde ihtiyaçlarınızı paylaşın, size özel teklifler alın.
+            <br>Zaman kaybetmeden aradığınızı bulun veya aradığınız sizi bulsun.
+          </p>
+          
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <a href="https://panel.meetwork.net" 
+               target="_blank"
+               class="btn btn-primary btn-lg px-5 py-3">
+              <i class="bi bi-plus-circle me-2"></i>Talep Oluşturmak İçin Panele Git
+            </a>
+            <a href="/talepler" class="btn btn-outline-primary btn-lg px-5 py-3">
+              <i class="bi bi-lightning-charge me-2"></i>Talepleri Gör
+            </a>
+          </div>
+          
+          <!-- Hızlı İstatistikler -->
+          <div class="row g-4 mt-5">
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">5.000+</div>
+                <p class="text-dark mb-0">İşbirliklerimiz ile Aktif Taleple</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">50.000+</div>
+                <p class="text-dark mb-0">İşbirliklerimiz ile İşletme</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">%92</div>
+                <p class="text-dark mb-0">Memnuniyet</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stat-small">
+                <div class="h2 fw-bold text-primary mb-0">10 Saat</div>
+                <p class="text-dark mb-0">Ortalama Yanıt</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Talepler Neden Önemli? -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Talepler Neden Önemli?</h2>
+        <p class="lead text-muted">
+          İş dünyasında zaman en değerli kaynağınız. Talepler ile zamanınızı verimli kullanın.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Kart 1 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-clock-history text-primary fs-1"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">Zaman Tasarrufu</h5>
+              <p class="card-text text-muted">
+                Aradığınızı bulmak için saatler harcamayın. İhtiyacınızı bildirin, 
+                size uygun çözümler sizi bulsun. 
+                <br>Ortalama 10 saatte teklif almaya başlayın.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Kart 2 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-check-circle text-primary fs-1"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">Doğru Eşleşme</h5>
+              <p class="card-text text-muted">
+                İhtiyacınıza özel teklifler alın. 
+                <br>MeetWork algoritması talebinizi 
+                en uygun firmalarla eşleştirir. Kaliteli ve güvenilir tedarikçilerle tanışın.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Kart 3 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-wrapper bg-primary bg-opacity-10 rounded-circle p-3 mb-4 mx-auto">
+                <i class="bi bi-currency-dollar text-primary fs-1"></i>
+              </div>
+              <h5 class="card-title text-dark mb-3">Fiyat Avantajı</h5>
+              <p class="card-text text-muted">
+                Onaylanmış firmadan teklif alarak piyasa ile karşılaştırma şansı yakalayın. 
+                <br>Rekabetçi fiyatlara ulaşın ve bütçenizi en verimli şekilde kullanın.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hangi Alanlarda Talep Oluşturabilirsiniz? -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Hangi Alanlarda Talep Oluşturabilirsiniz?</h2>
+        <p class="lead text-muted">
+          İşinizle ilgili her türlü ihtiyacınız için talep oluşturabilirsiniz
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Ürün Tedariği -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-box-seam text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">Ürün Tedariği</h5>
+                <p class="text-muted small mb-0">
+                  İmalat, hammadde, ekipman, yarı mamul, nihai ürün tedarik ihtiyaçlarınız
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hizmet Alımı -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-tools text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">Hizmet Alımı</h5>
+                <p class="text-muted small mb-0">
+                  Dijital pazarlama, muhasebe, danışmanlık, yazılım, tasarım hizmetleri
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- İş Ortaklığı -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-handshake text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">İş Ortaklığı</h5>
+                <p class="text-muted small mb-0">
+                  Distribütörlük, franchise, temsilcilik, bayi ağı, ortak yatırım fırsatları
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- İnsan Kaynakları -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-people text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">İnsan Kaynakları</h5>
+                <p class="text-muted small mb-0">
+                  Personel, uzman, danışman, freelance çalışan, yönetici arayışlarınız
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Yatırım & Finans -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-graph-up-arrow text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">Yatırım & Finans</h5>
+                <p class="text-muted small mb-0">
+                  Yatırımcı, kredi, finansman, ortaklık, sermaye artırımı ihtiyaçları
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Diğer Talepler -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card">
+            <div class="d-flex align-items-start mb-3">
+              <div class="category-icon bg-primary bg-opacity-10 rounded p-3 me-3">
+                <i class="bi bi-three-dots text-primary fs-4"></i>
+              </div>
+              <div>
+                <h5 class="text-dark mb-2">Diğer Talepler</h5>
+                <p class="text-muted small mb-0">
+                  Ofis kiralama, eğitim, etkinlik, seyahat ve diğer tüm iş ihtiyaçları
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Taleplerin İşleyiş Süreci -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">4 Adımda Talep Süreciniz</h2>
+        <p class="lead text-muted">
+          Basit ve etkili bir süreçle ihtiyaçlarınızı karşılayın
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Adım 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4">
+              <span class="h4 mb-0">1</span>
+            </div>
+            <h5 class="text-dark mb-3">Talep Gir</h5>
+            <p class="text-muted small">
+              İhtiyacınızı detaylı şekilde tanımlayın. Kategori seçin, açıklama yazın, 
+              bütçe ve zaman aralığını belirtin.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4">
+              <span class="h4 mb-0">2</span>
+            </div>
+            <h5 class="text-dark mb-3">Yayınla</h5>
+            <p class="text-muted small">
+              Talebiniz ilgili kategoride yayınlansın. MeetWork network'ündeki 
+              ilgili firmalar talebinizi görsün.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4">
+              <span class="h4 mb-0">3</span>
+            </div>
+            <h5 class="text-dark mb-3">Teklif Al</h5>
+            <p class="text-muted small">
+              İlgili firmalardan teklifler gelmeye başlasın. Firmaların profillerini 
+              inceleyin, referanslarını görün.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Adım 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="process-step text-center">
+            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4">
+              <span class="h4 mb-0">4</span>
+            </div>
+            <h5 class="text-dark mb-3">Değerlendir</h5>
+            <p class="text-muted small">
+              Gelen teklifleri karşılaştırıp en uygununu seçin. İletişime geçin ve 
+              iş birliğinizi başlatın.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MeetWork'te Taleplerin Avantajları -->
+  <section class="py-5 bg-danger text-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold mb-4">MeetWork'te Taleplerin Avantajları</h2>
+        <p class="mb-2">
+          Neden binlerce işletme taleplerini MeetWork'te oluşturuyor?
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="d-flex align-items-start mb-4">
+            <i class="bi bi-people-fill text-warning fs-3 me-3"></i>
+            <div>
+              <h5 class="mb-2">Geniş Network</h5>
+              <p class="opacity-75 mb-0">
+                50.000+ işletmeden oluşan network'te talebiniz yayınlansın. 
+                Türkiye'nin en büyük B2B iş ağında yerinizi alın.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="d-flex align-items-start mb-4">
+            <i class="bi bi-shield-check text-warning fs-3 me-3"></i>
+            <div>
+              <h5 class="mb-2">Güvenilir İşletmeler</h5>
+              <p class="opacity-75 mb-0">
+                Onaylı ve denetlenmiş üyelerden teklif alın. Tüm üyelerimiz 
+                kimlik doğrulamasından geçmiştir.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="d-flex align-items-start mb-4">
+            <i class="bi bi-eye-fill text-warning fs-3 me-3"></i>
+            <div>
+              <h5 class="mb-2">Şeffaf Süreç</h5>
+              <p class="opacity-75 mb-0">
+                Tüm iletişim kayıt altında. Teklifler, mesajlar ve değerlendirmeler 
+                güvenli platformumuzda saklanır.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="d-flex align-items-start mb-4">
+            <i class="bi bi-gift-fill text-warning fs-3 me-3"></i>
+            <div>
+              <h5 class="mb-2">Ücretsiz Hizmet</h5>
+              <p class="opacity-75 mb-0">
+                Talep oluşturmak ve yayınlamak tamamen ücretsiz. Sadece başarılı 
+                eşleşmelerde küçük bir komisyon alırız.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Başarı Hikayeleri -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Başarı Hikayeleri</h2>
+        <p class="lead text-muted">
+          MeetWork talepleri ile hedeflerine ulaşan işletmeler
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Hikaye 1 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-gear-fill text-primary fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">İmalat Firması</h5>
+                  <p class="text-muted small mb-0">İstanbul</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "Özel üretim ekipmanı arayışımız vardı. MeetWork'te talep oluşturduktan 
+                sonra 3 gün içinde 5 firmadan teklif aldık. En uygun fiyat ve kaliteyi 
+                seçerek 2 haftada teslimat aldık."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hikaye 2 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-laptop text-primary fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">Teknoloji Startup'ı</h5>
+                  <p class="text-muted small mb-0">Ankara</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "Yazılım geliştirme için uzman arayışımız vardı. 1 haftada 8 firmadan 
+                teklif aldık. Hem teknik yetenekleri hem de fiyatları karşılaştırma 
+                şansımız oldu. Çok verimli bir süreçti."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-half text-warning me-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hikaye 3 -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="client-avatar bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                  <i class="bi bi-shop text-primary fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-0">Perakende Zinciri</h5>
+                  <p class="text-muted small mb-0">İzmir</p>
+                </div>
+              </div>
+              <p class="card-text text-muted mb-4">
+                "Avrupa'da distribütör arayışımız vardı. MeetWork'in uluslararası 
+                network'ü sayesinde 3 farklı ülkeden distribütör teklifleri aldık. 
+                İhtiyacımıza en uygun partneri bulduk."
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SSS -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Sıkça Sorulan Sorular</h2>
+        <p class="lead text-muted">
+          Talepler hakkında merak edilenler
+        </p>
+      </div>
+      
+      <div class="accordion" id="talepSSS">
+        <!-- Soru 1 -->
+        <div class="accordion-item mb-3 border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button bg-white text-dark fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              <i class="bi bi-question-circle me-3 text-primary"></i>
+              Talep oluşturmak ücretli mi?
+            </button>
+          </h3>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#talepSSS">
+            <div class="accordion-body">
+              <p>Hayır, talep oluşturmak ve yayınlamak tamamen ücretsizdir. Sadece başarılı bir eşleşme sonucunda iş birliği gerçekleştiğinde küçük bir komisyon alırız.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soru 2 -->
+        <div class="accordion-item mb-3 border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button bg-white text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+              <i class="bi bi-question-circle me-3 text-primary"></i>
+              Talebim ne kadar süre yayında kalacak?
+            </button>
+          </h3>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#talepSSS">
+            <div class="accordion-body">
+              <p>Talepleriniz varsayılan olarak 30 gün süreyle yayında kalır. Bu süreyi istediğiniz zaman uzatabilir veya talebinizi erken kapatabilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soru 3 -->
+        <div class="accordion-item mb-3 border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button bg-white text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+              <i class="bi bi-question-circle me-3 text-primary"></i>
+              Kaç firmadan teklif alabilirim?
+            </button>
+          </h3>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#talepSSS">
+            <div class="accordion-body">
+              <p>Teklif sayısı talebinizin niteliğine göre değişir. Ortalama bir talep 3-8 firma arasında teklif alır. Bazı popüler kategorilerde bu sayı 15-20'ye kadar çıkabilir.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soru 4 -->
+        <div class="accordion-item mb-3 border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button bg-white text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+              <i class="bi bi-question-circle me-3 text-primary"></i>
+              Talebimi nasıl detaylandırmalıyım?
+            </button>
+          </h3>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#talepSSS">
+            <div class="accordion-body">
+              <p>Ne kadar detaylı olursa o kadar iyi teklif alırsınız. Ürün/hizmet özellikleri, miktar, kalite beklentileri, teslimat zamanı ve bütçe aralığını mutlaka belirtin.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soru 5 -->
+        <div class="accordion-item mb-3 border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button bg-white text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+              <i class="bi bi-question-circle me-3 text-primary"></i>
+              Teklifleri nasıl değerlendirmeliyim?
+            </button>
+          </h3>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#talepSSS">
+            <div class="accordion-body">
+              <p>Fiyat, kalite, teslimat süresi, firma referansları ve iletişim kalitesini dikkate alın. Firmaların profillerini inceleyin, varsa önceki işlerini görün.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Son CTA -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container text-center">
+      <h3 class="h1 mb-4">İşiniz İçin İhtiyaç Duyduğunuz Her Şeyi Talep Edin</h3>
+      <p class="lead opacity-75 mb-5">
+        MeetWork network'ü sizin için çalışsın. İhtiyaçlarınızı paylaşın, 
+        size en uygun çözümler kapınızı çalsın.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://panel.meetwork.net" 
+           target="_blank"
+           class="btn btn-primary btn-lg px-5 py-3">
+          <i class="bi bi-plus-circle me-2"></i>Talep Oluşturmaya Başla
+        </a>
+        <a href="/talepler" class="btn btn-outline-light btn-lg px-5 py-3">
+          <i class="bi bi-lightning-charge me-2"></i>Tüm Talepleri Gör
+        </a>
+      </div>
+      <p class="mt-4 opacity-75 small">
+        <i class="bi bi-info-circle me-1"></i>
+        Talep oluşturmak için ücretsiz üye olmanız yeterli. Hiçbir taahhütte bulunmanız gerekmez.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    /* Talepler Sayfası Özel Stilleri */
+    
+    /* Hero Gradient */
+    .bg-gradient-primary-light {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
+    
+    /* İstatistikler */
+    .stat-small {
+      padding: 1rem;
+    }
+    
+    /* Kartlar */
+    .card {
+      transition: all 0.3s ease;
+      border-top: 3px solid #0d6efd !important;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(13, 110, 253, 0.15) !important;
+    }
+    
+    /* İkon Wrapper */
+    .icon-wrapper {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Kategori Kartları */
+    .category-card {
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .category-card:hover {
+      border-color: #0d6efd;
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.1);
+    }
+    
+    .category-icon {
+      flex-shrink: 0;
+    }
+    
+    /* Süreç Adımları */
+    .process-step {
+      padding: 2rem 1rem;
+    }
+    
+    .step-number {
+      width: 70px;
+      height: 70px;
+      font-weight: bold;
+    }
+    
+    /* Müşteri Avatar */
+    .client-avatar {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Accordion Stilleri */
+    .accordion-button:not(.collapsed) {
+      background-color: #e3f2fd !important;
+      color: #212529 !important;
+      border-color: #0d6efd !important;
+    }
+    
+    .accordion-button:focus {
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+      border-color: #0d6efd !important;
+    }
+    
+    /* Buton Animasyonları */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2.5rem;
+      }
+      
+      .display-5 {
+        font-size: 2rem;
+      }
+      
+      .h1 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-small {
+        margin-bottom: 1rem;
+      }
+      
+      .process-step {
+        margin-bottom: 2rem;
+      }
+      
+      .category-card {
+        margin-bottom: 1rem;
+      }
+    }
+    
+    /* Animasyonlar */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card, .category-card, .process-step {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    /* Özel Renkler */
+    .bg-primary-light {
+      background-color: #e3f2fd !important;
+    }
+    
+    /* Opacity Class */
+    .opacity-75 {
+      opacity: 0.75;
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "MeetWork Talepler Hizmeti",
+    "description": "İş ihtiyaçlarınızı paylaşın, size özel teklifler alın. B2B talepleri oluşturma ve yönetme platformu",
+    "provider": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com.tr"
+    },
+    "serviceType": "Business Matching Service",
+    "offers": {
+      "@type": "Offer",
+      "description": "Ücretsiz talep oluşturma hizmeti",
+      "price": "0",
+      "priceCurrency": "TRY"
+    }
+  }
+  </script>
+
+</BaseLayout>
