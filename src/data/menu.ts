@@ -37,6 +37,7 @@ export const menuItems: MenuItem[] = [
     { id: 77, title: 'Talep Oluşturmak Nedir?', url: '/talep-olustur', icon: 'bi-headset' },
     { id: 113, title: 'Talep Gir', url: 'https://panel.meetwork.net/register', icon: 'bi-headset' },
     { id: 77, title: 'Win-Win Fırsatlar', url: '/win-win', icon: 'bi-headset' },
+    { id: 177, title: 'Acil Durum', url: '/acil-durum', icon: 'bi-headset' },
     ]
   },
 

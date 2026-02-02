@@ -1,0 +1,1493 @@
+---
+// src/pages/acil-durum.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO parametreleri
+const seoTitle = "Acil Durum Destek | KOBİ'ler ve Girişimciler İçin Acil Destek Platformu - MeetWork";
+const seoDescription = "MeetWork Acil Durum Destek Platformu ile zor durumdaki firmalara ekosistem olarak destek oluyoruz. Ücretsiz üye olun, acil destek talep edin veya destek olun.";
+const seoKeywords = "acil durum destek, KOBİ destek, girişimci destek, firma kurtarma, acil finansal destek, işletme desteği, meetwork acil durum";
+const canonicalUrl = "https://meetwork.com/acil-durum";
+
+// Örnek acil durum verileri (gerçek uygulamada API'den gelecek)
+const acilDurumVerileri = {
+  success: true,
+  data: [
+    {
+      id: "ACL001",
+      firmaAdi: "XYZ Gıda İşletmesi",
+      sektor: "Gıda Üretimi",
+      konum: "İstanbul / Ümraniye",
+      acilDurumTipi: "yangın",
+      aciklama: "Depomuzda çıkan yangın nedeniyle üretim durdu. Acil finansal destek ihtiyacımız var.",
+      ihtiyacTutari: 500000,
+      toplananTutar: 125000,
+      baslangicTarihi: "15.02.2024",
+      sonTarih: "30.04.2024",
+      destekYuzdesi: 25,
+      durum: "aktif",
+      aciliyet: "yuksek"
+    },
+    {
+      id: "ACL002",
+      firmaAdi: "ABC Tekstil",
+      sektor: "Tekstil Üretimi",
+      konum: "Bursa / Nilüfer",
+      acilDurumTipi: "finansal",
+      aciklama: "Büyük bir müşterimizin iflası nedeniyle nakit sıkıntısı yaşıyoruz. 3 aylık ücret ödemesi için destek bekliyoruz.",
+      ihtiyacTutari: 750000,
+      toplananTutar: 450000,
+      baslangicTarihi: "01.03.2024",
+      sonTarih: "31.05.2024",
+      destekYuzdesi: 60,
+      durum: "aktif",
+      aciliyet: "orta"
+    },
+    {
+      id: "ACL003",
+      firmaAdi: "MNO Mobilya",
+      sektor: "Mobilya Üretimi",
+      konum: "Ankara / Çankaya",
+      acilDurumTipi: "deprem",
+      aciklama: "Deprem nedeniyle atölyemiz hasar gördü. Makine ve ekipman yenileme için destek ihtiyacımız var.",
+      ihtiyacTutari: 1200000,
+      toplananTutar: 850000,
+      baslangicTarihi: "10.02.2024",
+      sonTarih: "30.06.2024",
+      destekYuzdesi: 71,
+      durum: "aktif",
+      aciliyet: "yuksek"
+    },
+    {
+      id: "ACL004",
+      firmaAdi: "PQR Otomotiv Yan Sanayi",
+      sektor: "Otomotiv",
+      konum: "Kocaeli / Gebze",
+      acilDurumTipi: "tedarikci",
+      aciklama: "Ana tedarikçimizle yaşadığımız sorun nedeniyle üretim durma noktasına geldi.",
+      ihtiyacTutari: 300000,
+      toplananTutar: 300000,
+      baslangicTarihi: "05.01.2024",
+      sonTarih: "31.03.2024",
+      destekYuzdesi: 100,
+      durum: "tamamlandi",
+      aciliyet: "dusuk"
+    },
+    {
+      id: "ACL005",
+      firmaAdi: "STU Teknoloji",
+      sektor: "Yazılım Geliştirme",
+      konum: "İzmir / Karşıyaka",
+      acilDurumTipi: "finansal",
+      aciklama: "Yatırımcı anlaşmasının iptali nedeniyle 6 aylık operasyonel giderlerimiz için destek ihtiyacımız var.",
+      ihtiyacTutari: 900000,
+      toplananTutar: 180000,
+      baslangicTarihi: "20.03.2024",
+      sonTarih: "30.09.2024",
+      destekYuzdesi: 20,
+      durum: "aktif",
+      aciliyet: "orta"
+    },
+    {
+      id: "ACL006",
+      firmaAdi: "VWX Turizm",
+      sektor: "Turizm",
+      konum: "Antalya / Lara",
+      acilDurumTipi: "saglik",
+      aciklama: "Ortaklarımızdan birinin ciddi sağlık sorunu nedeniyle işletme yönetiminde ve finansal yapıda zorluk yaşıyoruz.",
+      ihtiyacTutari: 400000,
+      toplananTutar: 80000,
+      baslangicTarihi: "01.04.2024",
+      sonTarih: "30.06.2024",
+      destekYuzdesi: 20,
+      durum: "aktif",
+      aciliyet: "yuksek"
+    }
+  ],
+  meta: {
+    toplamAktif: 5,
+    toplamTamamlanan: 1,
+    toplamDestek: 2185000,
+    toplananTutar: 1115000
+  }
+};
+
+const acilDurumlar = acilDurumVerileri.data;
+const meta = acilDurumVerileri.meta;
+
+// Aciliyet renkleri
+const aciliyetRenkleri = {
+  yuksek: "danger",
+  orta: "warning",
+  dusuk: "info"
+};
+
+// Durum renkleri
+const durumRenkleri = {
+  aktif: "success",
+  tamamlandi: "secondary",
+  beklemede: "warning"
+};
+
+// Tarih kontrolü
+const tarihKontrol = (tarih) => {
+  const [gun, ay, yil] = tarih.split('.');
+  return new Date(`${yil}-${ay}-${gun}`);
+};
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/acil-durum-og.jpg"
+>
+
+  <main class="container py-5">
+    <!-- Üst Bilgilendirme Bölümü -->
+    <section class="mb-5">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="display-5 fw-bold text-dark mb-4">Acil Durum Destek Platformu</h1>
+          <p class="lead text-dark mb-4">
+            MeetWork ekosistemi olarak zor durumda olan, destek verilmesi gereken girişimci, KOBİ, 
+            imalatçı ve diğer firmalara birlikte destek oluyoruz. Zor zamanlarda yanınızdayız.
+          </p>
+          
+          <div class="bg-light p-4 rounded-3 mb-4">
+            <h4 class="h5 text-dark mb-3">🚨 Acil Durum Destek Sistemi Nasıl Çalışır?</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="d-flex mb-3">
+                  <div class="flex-shrink-0">
+                    <i class="bi bi-exclamation-triangle-fill text-danger fs-4"></i>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h6 class="text-dark mb-1">Acil Durum Yaşıyorsanız:</h6>
+                    <p class="text-muted mb-0 small">
+                      <strong>panel.meetwork.net</strong> adresinden ücretsiz üye olun ve "Acil Durum" bölümünden talebinizi oluşturun.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex mb-3">
+                  <div class="flex-shrink-0">
+                    <i class="bi bi-hand-thumbs-up-fill text-success fs-4"></i>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h6 class="text-dark mb-1">Destek Olmak İsterseniz:</h6>
+                    <p class="text-muted mb-0 small">
+                      Aktif acil durum çağrılarını inceleyin, size uygun olana destek verin veya uzmanlığınızla yardım edin.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="d-flex flex-wrap gap-3 mt-3">
+              <a href="https://panel.meetwork.net/kayit" 
+                 target="_blank"
+                 class="btn btn-danger px-4">
+                <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+              </a>
+              <a href="https://panel.meetwork.net/acil-durum" 
+                 target="_blank"
+                 class="btn btn-warning px-4">
+                <i class="bi bi-exclamation-triangle me-2"></i>Talep Oluştur
+              </a>
+              <a href="https://wa.me/905412465429?text=Merhaba,%20Acil%20Durum%20Destek%20Platformu%20hakkında%20bilgi%20almak%20istiyorum" 
+                 target="_blank"
+                 class="btn btn-outline-dark px-4">
+                <i class="bi bi-whatsapp me-2"></i>Bilgi Al
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg">
+            <div class="card-body p-4">
+              <h5 class="card-title text-dark mb-3">📊 Platform İstatistikleri</h5>
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-danger bg-opacity-10 rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                  <i class="bi bi-exclamation-triangle text-danger fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0">Aktif Acil Durum</h6>
+                  <small class="text-muted">176 işletme</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                  <i class="bi bi-check-circle text-success fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0">Tamamlanan Destekler</h6>
+                  <small class="text-muted">108 firma</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                  <i class="bi bi-coin text-warning fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0">Toplam İhtiyaç</h6>
+                  <small class="text-muted">235.455.000₺ (yaklaşık)</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="bg-info bg-opacity-10 rounded-circle p-2 me-3" style="width: 40px; height: 40px;">
+                  <i class="bi bi-people text-info fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0">Toplanan Destek</h6>
+                  <small class="text-muted">55.000.000₺ (yaklaşık)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slogan -->
+    <section class="mb-5">
+      <div class="text-center bg-danger bg-opacity-10 p-4 rounded-3">
+        <h3 class="display-6 text-danger mb-3">"Zor Zamanlarda Birlikte Güçlüyüz!"</h3>
+        <p class="lead text-dark mb-0">
+          MeetWork ekosistemi olarak zor durumdaki firmaların yanındayız. 
+          <br>Birlikte üstesinden gelelim.
+        </p>
+      </div>
+    </section>
+
+    <!-- Aktif Acil Durum Desteği Bekleyen Firmalar -->
+<section class="mb-5" id="destek-cagrilari">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="h3 text-dark mb-0">🚨 Aktif Acil Durum Desteği Bekleyen Firmalar</h2>
+    <div class="text-muted small">
+      <i class="bi bi-exclamation-triangle me-1"></i>
+      * Firma bilgileri gizli tutulur, sadece destek talebi detayları paylaşılır.
+    </div>
+  </div>
+  
+  <div class="row g-4">
+    <!-- Örnek 1 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">Teknoloji Firması</h5>
+            <span class="badge bg-danger">Yüksek Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">Yazılım Geliştirme</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">İstanbul / Kadıköy</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Finansal Kriz</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Yatırımcı anlaşmasının beklenmedik şekilde iptal edilmesi nedeniyle nakit akışı sıkıntısı yaşıyoruz. 
+              6 aylık operasyonel giderlerimizi karşılamak için acil desteğe ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">50.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">350.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">120.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">4.2M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">900.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%15</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%20</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-warning" style="width: 20%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/TEK001"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Örnek 2 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">Mobilya Firması</h5>
+            <span class="badge bg-warning">Orta Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">Mobilya Üretimi</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">Ankara / Çankaya</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Deprem Hasarlı</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Deprem nedeniyle atölyemizde ciddi hasar oluştu. Üretim ekipmanlarımızın %60'ı kullanılamaz durumda. 
+              Üretime tekrar başlayabilmek için makine yenileme desteğine ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">180.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">450.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">250.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">8.5M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">1.200.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%12</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%71</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-success" style="width: 71%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/MOB002"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Örnek 3 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">Gıda Üretim Firması</h5>
+            <span class="badge bg-danger">Yüksek Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">Gıda İşleme</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">Bursa / Nilüfer</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Yangın Hasarlı</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Depomuzda çıkan yangın nedeniyle 3 aylık stokumuz ve paketleme ekipmanlarımız zarar gördü. 
+              Müşteri siparişlerimizi karşılayabilmek için acil stok ve ekipman desteğine ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">320.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">280.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">410.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">12.5M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">500.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%25</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-warning" style="width: 25%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/GID003"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Örnek 4 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">Turizm Firması</h5>
+            <span class="badge bg-warning">Orta Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">Turizm & Otelcilik</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">Antalya / Lara</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Sağlık Sorunu</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Ortaklarımızdan birinin ciddi sağlık sorunu nedeniyle işletme yönetiminde ve operasyonel süreçlerde 
+              aksaklıklar yaşanmaktadır. Sezon öncesi hazırlıklar için acil finansal desteğe ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">210.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">190.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">85.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">15.8M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">400.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%10</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%20</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-warning" style="width: 20%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/TUR004"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Örnek 5 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">Tekstil Firması</h5>
+            <span class="badge bg-info">Düşük Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">Tekstil Üretimi</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">İzmir / Çiğli</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Tedarikçi Sorunu</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Büyük bir müşterimizin iflası nedeniyle nakit akışı sıkıntısı yaşıyoruz. 
+              3 aylık işçi ücretleri ve hammadde ödemeleri için acil finansal desteğe ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">150.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">750.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">450.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">7.3M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">750.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%15</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%60</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-success" style="width: 60%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/TEK005"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Örnek 6 -->
+    <div class="col-lg-6">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-light py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="h6 mb-0 text-dark">İnşaat Firması</h5>
+            <span class="badge bg-warning">Orta Acil</span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-muted small">Sektör</div>
+              <div class="h6 text-dark fw-bold">İnşaat & Müteahhitlik</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Konum</div>
+              <div class="h6 text-dark fw-bold">Ankara / Etimesgut</div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="text-muted small mb-1">Acil Durum Tipi</div>
+            <span class="badge bg-danger">Proje Gecikmesi</span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-dark">
+              Ana projemizdeki gecikmeler nedeniyle nakit sıkıntısı yaşıyoruz. 
+              Taşeron ve malzeme ödemelerini yapabilmek için kısa vadeli finansal desteğe ihtiyacımız var.
+            </p>
+          </div>
+          
+          <!-- Mali Durum -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">💰 Mali Durum</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Sermaye</div>
+                  <div class="fw-bold text-dark">280.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Borç</div>
+                  <div class="fw-bold text-dark">920.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Mevcut Alacaklar</div>
+                  <div class="fw-bold text-dark">1.150.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6 mt-2">
+                <div class="bg-light p-2 rounded">
+                  <div class="text-muted small">Son 5 Yıl Cirosu</div>
+                  <div class="fw-bold text-dark">22.4M TL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Talep Detayları -->
+          <div class="mb-4">
+            <h6 class="text-dark mb-3">🎯 Talep Detayları</h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="bg-warning bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">İhtiyaç Duyulan Tutar</div>
+                  <div class="fw-bold text-dark h5">600.000 TL</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="bg-info bg-opacity-10 p-2 rounded">
+                  <div class="text-muted small">Teklif Edilen Hisse</div>
+                  <div class="fw-bold text-dark h5">%7</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- İlerleme Çubuğu -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted small">Destek İlerlemesi</span>
+              <span class="text-dark fw-bold">%45</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-warning" style="width: 45%" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-0 pt-0">
+          <div class="d-grid">
+            <a href="https://panel.meetwork.net/acil-durum/destek/INS006"
+               target="_blank"
+               class="btn btn-danger">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Bu Talep İle İlgileniyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center mt-5">
+    <div class="alert alert-warning">
+      <h5 class="alert-heading">💡 Yatırım Fırsatı Olarak Değerlendirin</h5>
+      <p class="mb-0">
+        Onlarca acil durum talebini inceleyebilir, taleplerle ilgilenerek hem yatırım yapmış olursunuz 
+        hem de bir kuruluşun devamlılığına destek olmuş olursunuz. Acil Durum çağrılarını yatırım fırsatı olarak değerlendiriniz.
+      </p>
+    </div>
+    
+    <div class="mt-4">
+      <a href="https://panel.meetwork.net/acil-durum/tum-talepler" 
+         target="_blank"
+         class="btn btn-outline-dark btn-lg px-5 me-3">
+        <i class="bi bi-list-ul me-2"></i>Tüm Talepleri İncele
+      </a>
+      <a href="https://panel.meetwork.net/kayit" 
+         target="_blank"
+         class="btn btn-danger btn-lg px-5">
+        <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+      </a>
+    </div>
+  </div>
+</section>
+
+    <!-- Neden Böyle Bir Platform? -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-danger text-white py-3">
+          <h5 class="mb-0"><i class="bi bi-question-circle-fill me-2"></i>Neden Acil Durum Destek Platformu?</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="text-dark mb-3">💡 Platformun Amacı</h6>
+              <p class="text-muted">
+                Ekonomik dalgalanmalar, doğal afetler, beklenmedik krizler gibi durumlarda KOBİ'ler ve girişimciler 
+                çok zor durumda kalabiliyor. Geleneksel finansman kaynaklarına erişim zorlaşıyor. Bu platform, 
+                böyle zamanlarda işletmelere hızlı destek sağlamak için oluşturuldu.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Hızlı Destek:</strong> Geleneksel yöntemlere göre çok daha hızlı
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Topluluk Gücü:</strong> Binlerce üyenin kolektif desteği
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Şeffaflık:</strong> Tüm süreçler açık ve takip edilebilir
+                </li>
+              </ul>
+            </div>
+            
+            <div class="col-md-6">
+              <h6 class="text-dark mb-3">🤝 Nasıl Katkı Sağlıyoruz?</h6>
+              <p class="text-muted">
+                MeetWork ekosistemi 50.000+ ziyaretçisi ile, zor durumdaki firmalara çeşitli şekillerde destek oluyor:
+              </p>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded text-center h-100">
+                    <i class="bi bi-cash-coin text-success fs-4 mb-2"></i>
+                    <h6 class="text-dark mb-1">Finansal Destek</h6>
+                    <small class="text-muted">Doğrudan bağış veya yatırım</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded text-center h-100">
+                    <i class="bi bi-lightbulb text-warning fs-4 mb-2"></i>
+                    <h6 class="text-dark mb-1">Danışmanlık</h6>
+                    <small class="text-muted">Uzmanlık ve tecrübe paylaşımı</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded text-center h-100">
+                    <i class="bi bi-briefcase text-primary fs-4 mb-2"></i>
+                    <h6 class="text-dark mb-1">İş Ortaklığı</h6>
+                    <small class="text-muted">Yeni iş fırsatları yaratma</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded text-center h-100">
+                    <i class="bi bi-truck text-info fs-4 mb-2"></i>
+                    <h6 class="text-dark mb-1">Lojistik Destek</h6>
+                    <small class="text-muted">Nakliye ve depolama yardımı</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Firmalar Nasıl Yararlanabilir? -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">🏢 Firmalar Nasıl Yararlanabilir?</h2>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-danger bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-person-plus fs-3 text-danger"></i>
+              </div>
+              <h5 class="h5 text-dark mb-3">1. Ücretsiz Üye Olun</h5>
+              <p class="text-muted">
+                panel.meetwork.net adresinden tamamen ücretsiz üye olun. Kayıt işlemi 2 dakikanızı alır.
+              </p>
+              <a href="https://panel.meetwork.net/kayit" 
+                 target="_blank"
+                 class="btn btn-outline-danger">
+                Üye Ol
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-warning bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-exclamation-triangle fs-3 text-warning"></i>
+              </div>
+              <h5 class="h5 text-dark mb-3">2. Talep Oluşturun</h5>
+              <p class="text-muted">
+                Paneldaki "Acil Durum" bölümünden detaylı talep formunu doldurun ve gönderin.
+              </p>
+              <a href="https://panel.meetwork.net/acil-durum" 
+                 target="_blank"
+                 class="btn btn-outline-warning">
+                Talep Oluştur
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-success bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 80px; height: 80px;">
+                <i class="bi bi-hand-thumbs-up fs-3 text-success"></i>
+              </div>
+              <h5 class="h5 text-dark mb-3">3. Destek Alın</h5>
+              <p class="text-muted">
+                Talebiniz onaylandıktan sonra MeetWork ekosisteminden destek almaya başlayın.
+              </p>
+              <a href="#destek-cagrilari" 
+                 class="btn btn-outline-success">
+                Destekleri Gör
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ücretsiz Üyelik ve İmkanlar -->
+    <section class="mb-5">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="h2 text-dark mb-3">🎯 Ücretsiz Üye Olun, Ücretsiz Faydalanın</h3>
+              <p class="lead text-dark mb-4">
+                MeetWork platformu tamamen ücretsizdir. Acil Durum Destek Platformu'ndan yararlanmak için herhangi bir ücret ödemezsiniz. Platformda sunduğumuz tüm imkanlardan ücretsiz olarak faydalanabilirsiniz:
+              </p>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="mb-2">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Tamamen ücretsiz üyelik
+                    </li>
+                    <li class="mb-2">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Ücretsiz acil durum talebi oluşturma
+                    </li>
+                    <li class="mb-2">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Ücretsiz danışmanlık ve rehberlik
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="mb-2">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Ücretsiz iş eşleştirme hizmeti
+                    </li>
+                    <li class="mb-2">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Ücretsiz eğitim ve workshop'lar
+                    </li>
+                    <li>
+                      <i class="bi bi-check-circle-fill text-success me-2"></i>
+                      Ücretsiz ağ oluşturma etkinlikleri
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="card border-0 shadow">
+                <div class="card-body text-center p-4">
+                  <h4 class="text-danger mb-3">📈 Hızlı Kayıt</h4>
+                  <p class="text-muted small mb-4">
+                    Sadece 2 dakikanızı ayırarak 50.000+ ziyaretçisi ve iş insanına katılın
+                  </p>
+                  <a href="https://panel.meetwork.net/kayit" 
+                     target="_blank"
+                     class="btn btn-danger btn-lg w-100 mb-2">
+                    <i class="bi bi-lightning-fill me-2"></i>Hemen Üye Ol
+                  </a>
+                  <small class="text-muted">Tamamen ücretsiz, hiçbir gizli ücret yok</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+
+
+
+    <!-- Destek Olma Yöntemleri -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-success text-white py-3">
+          <h5 class="mb-0"><i class="bi bi-hand-thumbs-up-fill me-2"></i>Nasıl Destek Olabilirsiniz?</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="text-center p-3">
+                <div class="bg-success bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                  <i class="bi bi-cash-coin fs-3 text-success"></i>
+                </div>
+                <h6 class="text-dark mb-2">Finansal Destek</h6>
+                <p class="text-muted small mb-0">
+                  Doğrudan bağış veya yatırım yaparak finansal destek sağlayın.
+                </p>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="text-center p-3">
+                <div class="bg-warning bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                  <i class="bi bi-lightbulb fs-3 text-warning"></i>
+                </div>
+                <h6 class="text-dark mb-2">Danışmanlık</h6>
+                <p class="text-muted small mb-0">
+                  Uzmanlığınızı paylaşarak firmanın sorunlarına çözüm üretin.
+                </p>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="text-center p-3">
+                <div class="bg-primary bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                  <i class="bi bi-briefcase fs-3 text-primary"></i>
+                </div>
+                <h6 class="text-dark mb-2">İş Ortaklığı</h6>
+                <p class="text-muted small mb-0">
+                  Yeni iş fırsatları yaratarak firmanın yeniden canlanmasına yardımcı olun.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <a href="https://panel.meetwork.net/acil-durum/destek-ol" 
+               target="_blank"
+               class="btn btn-success px-5">
+              <i class="bi bi-hand-thumbs-up me-2"></i>Destek Olmak İstiyorum
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SSS Bölümü -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">❓ Sıkça Sorulan Sorular</h2>
+      
+      <div class="accordion" id="sssAccordion">
+        <div class="accordion-item border-0 shadow-sm mb-3">
+          <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sss1">
+              Acil Durum Destek Platformu tamamen ücretsiz mi?
+            </button>
+          </h3>
+          <div id="sss1" class="accordion-collapse collapse show" data-bs-parent="#sssAccordion">
+            <div class="accordion-body">
+              <strong>Evet, tamamen ücretsizdir.</strong> MeetWork platformuna üye olmak, acil durum talebi oluşturmak ve destek almak için hiçbir ücret ödemezsiniz. Platform, üyelerin dayanışması ve iş birliği ile çalışmaktadır.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item border-0 shadow-sm mb-3">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sss2">
+              Hangi durumlarda acil destek talebinde bulunabilirim?
+            </button>
+          </h3>
+          <div id="sss2" class="accordion-collapse collapse" data-bs-parent="#sssAccordion">
+            <div class="accordion-body">
+              Doğal afetler (deprem, yangın, sel), beklenmedik finansal krizler, büyük müşteri kaybı, sağlık sorunları, tedarik zinciri kesintileri gibi işletmenizin devamlılığını tehdit eden her türlü durumda acil destek talebinde bulunabilirsiniz.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item border-0 shadow-sm mb-3">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sss3">
+              Destek talebim ne kadar sürede değerlendirilir?
+            </button>
+          </h3>
+          <div id="sss3" class="accordion-collapse collapse" data-bs-parent="#sssAccordion">
+            <div class="accordion-body">
+              Acil durum talepleri <strong>en geç 48 saat içinde</strong> değerlendirilir. Özellikle yüksek aciliyetli durumlarda bu süre 24 saate kadar düşebilir. Talebiniz onaylandıktan sonra platformda yayınlanır ve destek almaya başlayabilirsiniz.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item border-0 shadow-sm mb-3">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sss4">
+              Destek olmak için mutlaka finansal yardım mı yapmam gerekiyor?
+            </button>
+          </h3>
+          <div id="sss4" class="accordion-collapse collapse" data-bs-parent="#sssAccordion">
+            <div class="accordion-body">
+              <strong>Hayır, finansal yardım tek seçenek değil.</strong> Uzmanlığınızla danışmanlık yapabilir, iş fırsatları sunabilir, lojistik destek sağlayabilir veya ağınızdaki diğer kişileri yönlendirebilirsiniz. Her türlü destek değerlidir.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item border-0 shadow-sm">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sss5">
+              MeetWork üyeliği için herhangi bir belge veya şart gerekiyor mu?
+            </button>
+          </h3>
+          <div id="sss5" class="accordion-collapse collapse" data-bs-parent="#sssAccordion">
+            <div class="accordion-body">
+              Hayır, MeetWork platformuna üye olmak için herhangi bir belge veya özel şart gerekmemektedir. Tüm girişimciler, KOBİ'ler, serbest çalışanlar ve iş insanları ücretsiz olarak üye olabilir. Kayıt işlemi tamamen online olarak 2 dakika içinde tamamlanır.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Son CTA -->
+    <section class="text-center py-5 bg-light rounded-3">
+      <h3 class="h2 text-dark mb-4">Zor Zamanlarda Birlikte Güçlüyüz</h3>
+      <p class="lead text-muted mb-4">
+        Acil durumda destek ihtiyacınız varsa veya başkalarına destek olmak istiyorsanız, 
+        MeetWork Acil Durum Destek Platformu yanınızda.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-danger btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+        <a href="https://panel.meetwork.net/acil-durum" 
+           target="_blank"
+           class="btn btn-warning btn-lg px-5">
+          <i class="bi bi-exclamation-triangle me-2"></i>Talep Oluştur
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20Acil%20Durum%20Destek%20Platformu%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+           target="_blank"
+           class="btn btn-outline-dark btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Kart Stilleri */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* İlerleme çubuğu */
+    .progress {
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    /* Geri sayım */
+    .countdown-timer {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    
+    /* Accordion */
+    .accordion-button {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: #fff5f5;
+      color: #dc3545;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-5 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    
+  /* Kart Stilleri */
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+  }
+  
+  /* İlerleme çubuğu */
+  .progress {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  /* Buton hover efekti */
+  .btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #bb2d3b;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #212529;
+    color: white;
+  }
+  
+  /* Aciliyet badge'leri */
+  .badge.bg-danger {
+    background-color: #dc3545 !important;
+  }
+  
+  .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000;
+  }
+  
+  .badge.bg-info {
+    background-color: #0dcaf0 !important;
+  }
+  
+  /* Mali durum kutuları */
+  .bg-light.p-2.rounded {
+    border: 1px solid #e9ecef;
+  }
+  
+  /* Talep detay kutuları */
+  .bg-warning.bg-opacity-10 {
+    border: 2px solid rgba(255, 193, 7, 0.2);
+  }
+  
+  .bg-info.bg-opacity-10 {
+    border: 2px solid rgba(13, 202, 240, 0.2);
+  }
+  
+  /* Alert */
+  .alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+    color: #664d03;
+  }
+    
+    
+    /* Aciliyet badge'leri */
+    .badge.bg-danger {
+      background-color: #dc3545 !important;
+    }
+    
+    .badge.bg-warning {
+      background-color: #ffc107 !important;
+      color: #000;
+    }
+    
+    .badge.bg-info {
+      background-color: #0dcaf0 !important;
+    }
+    
+    /* Linkler */
+    a {
+      text-decoration: none;
+    }
+    
+    /* Buton hover efektleri */
+    .btn-danger:hover {
+      background-color: #bb2d3b;
+      border-color: #bb2d3b;
+    }
+    
+    .btn-warning:hover {
+      background-color: #ffca2c;
+      border-color: #ffca2c;
+      color: #000;
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MeetWork Acil Durum Destek Platformu",
+    "description": "KOBİ'ler ve girişimciler için acil durum destek platformu",
+    "url": "https://meetwork.com/acil-durum",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com",
+      "logo": "https://meetwork.com/logo.png"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {meta.toplamAktif},
+      "itemListElement": [
+        {acilDurumlar.filter(d => d.durum === 'aktif').slice(0, 3).map((durum, index) => `{
+          "@type": "Organization",
+          "position": ${index + 1},
+          "name": "${durum.firmaAdi}",
+          "description": "${durum.aciklama}",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "${durum.konum.split('/')[0].trim()}",
+            "addressRegion": "${durum.konum.split('/')[1] ? durum.konum.split('/')[1].trim() : durum.konum.split('/')[0].trim()}"
+          }
+        }`).join(',')}
+      ]
+    }
+  }
+  </script>
+
+</BaseLayout>
