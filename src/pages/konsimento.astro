@@ -1,0 +1,752 @@
+---
+// src/pages/konsimento.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO parametreleri
+const seoTitle = "Konşimento Veritabanı | 144 Ülke İhracat-İthalat Müşteri Verileri - MeetWork";
+const seoDescription = "MeetWork Konşimento Veritabanı ile 144 ülkenin gerçek ithalat-ihracat verilerine erişin. Yurt dışı müşteri bulun, esnek ödeme ile veri başına ücret ödeyin.";
+const seoKeywords = "konşimento veritabanı, ihracat müşteri bulma, ithalat verileri, yurt dışı müşteri, ticaret verileri, gümrük verileri, ihracatçı veritabanı";
+const canonicalUrl = "https://meetwork.com.tr/konsimento";
+
+// Ülke verileri (tam liste)
+const ulkeler = [
+  { isim: "Afghanistan", bayrak: "https://flagcdn.com/24x18/af.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Algeria", bayrak: "https://flagcdn.com/24x18/dz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Angola", bayrak: "https://flagcdn.com/24x18/ao.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Argentina", bayrak: "https://flagcdn.com/24x18/ar.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Armenia", bayrak: "https://flagcdn.com/24x18/am.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Australia", bayrak: "https://flagcdn.com/24x18/au.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Austria", bayrak: "https://flagcdn.com/24x18/at.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Azerbaijan", bayrak: "https://flagcdn.com/24x18/az.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bahrain", bayrak: "https://flagcdn.com/24x18/bh.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bangladesh", bayrak: "https://flagcdn.com/24x18/bd.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Barbados", bayrak: "https://flagcdn.com/24x18/bb.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Belarus", bayrak: "https://flagcdn.com/24x18/by.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Belgium", bayrak: "https://flagcdn.com/24x18/be.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Benin", bayrak: "https://flagcdn.com/24x18/bj.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bermuda", bayrak: "https://flagcdn.com/24x18/bm.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bhutan", bayrak: "https://flagcdn.com/24x18/bt.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bolivia", bayrak: "https://flagcdn.com/24x18/bo.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Botswana", bayrak: "https://flagcdn.com/24x18/bw.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Brazil", bayrak: "https://flagcdn.com/24x18/br.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Bulgaria", bayrak: "https://flagcdn.com/24x18/bg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Burundi", bayrak: "https://flagcdn.com/24x18/bi.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Cambodia", bayrak: "https://flagcdn.com/24x18/kh.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Cameroon", bayrak: "https://flagcdn.com/24x18/cm.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Canada", bayrak: "https://flagcdn.com/24x18/ca.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Chad", bayrak: "https://flagcdn.com/24x18/td.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Chile", bayrak: "https://flagcdn.com/24x18/cl.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "China", bayrak: "https://flagcdn.com/24x18/cn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Colombia", bayrak: "https://flagcdn.com/24x18/co.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Costa Rica", bayrak: "https://flagcdn.com/24x18/cr.png", ihracat: 0, ithalat: 1, guncel: true },
+  { isim: "Cote d Ivoire", bayrak: "https://flagcdn.com/24x18/ci.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Croatia", bayrak: "https://flagcdn.com/24x18/hr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Cyprus", bayrak: "https://flagcdn.com/24x18/cy.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Czech Republic", bayrak: "https://flagcdn.com/24x18/cz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Denmark", bayrak: "https://flagcdn.com/24x18/dk.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Dominican Republic", bayrak: "https://flagcdn.com/24x18/do.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "DR Congo", bayrak: "https://flagcdn.com/24x18/cd.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Ecuador", bayrak: "https://flagcdn.com/24x18/ec.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Egypt", bayrak: "https://flagcdn.com/24x18/eg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "El Salvador", bayrak: "https://flagcdn.com/24x18/sv.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Estonia", bayrak: "https://flagcdn.com/24x18/ee.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Ethiopia", bayrak: "https://flagcdn.com/24x18/et.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Fiji", bayrak: "https://flagcdn.com/24x18/fj.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Finland", bayrak: "https://flagcdn.com/24x18/fi.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "France", bayrak: "https://flagcdn.com/24x18/fr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Gabon", bayrak: "https://flagcdn.com/24x18/ga.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Georgia", bayrak: "https://flagcdn.com/24x18/ge.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Germany", bayrak: "https://flagcdn.com/24x18/de.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Ghana", bayrak: "https://flagcdn.com/24x18/gh.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Greece", bayrak: "https://flagcdn.com/24x18/gr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Guatemala", bayrak: "https://flagcdn.com/24x18/gt.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Guinea", bayrak: "https://flagcdn.com/24x18/gn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Guyana", bayrak: "https://flagcdn.com/24x18/gy.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Honduras", bayrak: "https://flagcdn.com/24x18/hn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Hungary", bayrak: "https://flagcdn.com/24x18/hu.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "India", bayrak: "https://flagcdn.com/24x18/in.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Indonesia", bayrak: "https://flagcdn.com/24x18/id.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Iran", bayrak: "https://flagcdn.com/24x18/ir.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Iraq", bayrak: "https://flagcdn.com/24x18/iq.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Ireland", bayrak: "https://flagcdn.com/24x18/ie.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Israel", bayrak: "https://flagcdn.com/24x18/il.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Italy", bayrak: "https://flagcdn.com/24x18/it.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Jamaica", bayrak: "https://flagcdn.com/24x18/jm.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Japan", bayrak: "https://flagcdn.com/24x18/jp.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Jordan", bayrak: "https://flagcdn.com/24x18/jo.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Kazakhstan", bayrak: "https://flagcdn.com/24x18/kz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Kenya", bayrak: "https://flagcdn.com/24x18/ke.png", ihracat: 0, ithalat: 1, guncel: true },
+  { isim: "Kosovo", bayrak: "https://flagcdn.com/24x18/xk.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Kuwait", bayrak: "https://flagcdn.com/24x18/kw.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Kyrgyzstan", bayrak: "https://flagcdn.com/24x18/kg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Latvia", bayrak: "https://flagcdn.com/24x18/lv.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Lesotho", bayrak: "https://flagcdn.com/24x18/ls.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Liberia", bayrak: "https://flagcdn.com/24x18/lr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Libya", bayrak: "https://flagcdn.com/24x18/ly.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Lithuania", bayrak: "https://flagcdn.com/24x18/lt.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Luxembourg", bayrak: "https://flagcdn.com/24x18/lu.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Malawi", bayrak: "https://flagcdn.com/24x18/mw.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Malaysia", bayrak: "https://flagcdn.com/24x18/my.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Maldives", bayrak: "https://flagcdn.com/24x18/mv.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Mauritius", bayrak: "https://flagcdn.com/24x18/mu.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Mexico", bayrak: "https://flagcdn.com/24x18/mx.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Moldova", bayrak: "https://flagcdn.com/24x18/md.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Morocco", bayrak: "https://flagcdn.com/24x18/ma.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Mozambique", bayrak: "https://flagcdn.com/24x18/mz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Namibia", bayrak: "https://flagcdn.com/24x18/na.png", ihracat: 0, ithalat: 1, guncel: true },
+  { isim: "Nepal", bayrak: "https://flagcdn.com/24x18/np.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Netherland", bayrak: "https://flagcdn.com/24x18/nl.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "New Zealand", bayrak: "https://flagcdn.com/24x18/nz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Nicaragua", bayrak: "https://flagcdn.com/24x18/ni.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Niger", bayrak: "https://flagcdn.com/24x18/ne.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Nigeria", bayrak: "https://flagcdn.com/24x18/ng.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Norway", bayrak: "https://flagcdn.com/24x18/no.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Oman", bayrak: "https://flagcdn.com/24x18/om.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Pakistan", bayrak: "https://flagcdn.com/24x18/pk.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Palestine", bayrak: "https://flagcdn.com/24x18/ps.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Panama", bayrak: "https://flagcdn.com/24x18/pa.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Papua New Guinea", bayrak: "https://flagcdn.com/24x18/pg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Paraguay", bayrak: "https://flagcdn.com/24x18/py.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Peru", bayrak: "https://flagcdn.com/24x18/pe.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Philippines", bayrak: "https://flagcdn.com/24x18/ph.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Poland", bayrak: "https://flagcdn.com/24x18/pl.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Portugal", bayrak: "https://flagcdn.com/24x18/pt.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Qatar", bayrak: "https://flagcdn.com/24x18/qa.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Romania", bayrak: "https://flagcdn.com/24x18/ro.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Russia", bayrak: "https://flagcdn.com/24x18/ru.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Rwanda", bayrak: "https://flagcdn.com/24x18/rw.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Sao Tome and Principe", bayrak: "https://flagcdn.com/24x18/st.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Saudi Arabia", bayrak: "https://flagcdn.com/24x18/sa.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Senegal", bayrak: "https://flagcdn.com/24x18/sn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Serbia", bayrak: "https://flagcdn.com/24x18/rs.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Seychelles", bayrak: "https://flagcdn.com/24x18/sc.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Sierra Leone", bayrak: "https://flagcdn.com/24x18/sl.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Singapore", bayrak: "https://flagcdn.com/24x18/sg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Slovakia", bayrak: "https://flagcdn.com/24x18/sk.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Slovenia", bayrak: "https://flagcdn.com/24x18/si.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Somalia", bayrak: "https://flagcdn.com/24x18/so.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "South Africa", bayrak: "https://flagcdn.com/24x18/za.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "South Korea", bayrak: "https://flagcdn.com/24x18/kr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Spain", bayrak: "https://flagcdn.com/24x18/es.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Sri Lanka", bayrak: "https://flagcdn.com/24x18/lk.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Sudan", bayrak: "https://flagcdn.com/24x18/sd.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Sweden", bayrak: "https://flagcdn.com/24x18/se.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Switzerland", bayrak: "https://flagcdn.com/24x18/ch.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Syria", bayrak: "https://flagcdn.com/24x18/sy.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Taiwan", bayrak: "https://flagcdn.com/24x18/tw.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Tajikistan", bayrak: "https://flagcdn.com/24x18/tj.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Tanzania", bayrak: "https://flagcdn.com/24x18/tz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Thailand", bayrak: "https://flagcdn.com/24x18/th.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Togo", bayrak: "https://flagcdn.com/24x18/tg.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Trinidad and Tobago", bayrak: "https://flagcdn.com/24x18/tt.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Tunisia", bayrak: "https://flagcdn.com/24x18/tn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Turkey", bayrak: "https://flagcdn.com/24x18/tr.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Turkmenistan", bayrak: "https://flagcdn.com/24x18/tm.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Uganda", bayrak: "https://flagcdn.com/24x18/ug.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Ukraine", bayrak: "https://flagcdn.com/24x18/ua.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "United Arab Emirates", bayrak: "https://flagcdn.com/24x18/ae.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "United Kingdom", bayrak: "https://flagcdn.com/24x18/gb.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "United States", bayrak: "https://flagcdn.com/24x18/us.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Uruguay", bayrak: "https://flagcdn.com/24x18/uy.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Uzbekistan", bayrak: "https://flagcdn.com/24x18/uz.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Venezuela", bayrak: "https://flagcdn.com/24x18/ve.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Vietnam", bayrak: "https://flagcdn.com/24x18/vn.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Yemen", bayrak: "https://flagcdn.com/24x18/ye.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Zambia", bayrak: "https://flagcdn.com/24x18/zm.png", ihracat: 1, ithalat: 1, guncel: true },
+  { isim: "Zimbabwe", bayrak: "https://flagcdn.com/24x18/zw.png", ihracat: 1, ithalat: 1, guncel: true }
+];
+
+// İstatistik hesaplama
+const toplamUlke = ulkeler.length;
+const ihracatVerisi = ulkeler.filter(ulke => ulke.ihracat === 1).length;
+const ithalatVerisi = ulkeler.filter(ulke => ulke.ithalat === 1).length;
+const guncelVeri = ulkeler.filter(ulke => ulke.guncel === true).length;
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/konsimento-og.jpg"
+>
+
+  <main class="container py-5">
+    <!-- Hero Bölümü -->
+    <section class="mb-5 text-center">
+      <h1 class="display-4 fw-bold text-dark mb-4">Konşimento Veritabanı</h1>
+      <p class="lead text-dark mb-4">
+        Dünya çapında ticaret yapan firmaların gerçek verilerine anında erişim sağlayın. 
+        <br>İhtiyacınız olan müşteri bilgilerini tek tıkla elde edin.
+      </p>
+      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <div class="bg-light p-4 rounded-3 shadow-sm">
+            <h3 class="h4 text-danger mb-3">Yurt Dışı Müşterisi Verilerine Ulaş</h3>
+            <p class="text-muted mb-4">
+              144 ülkenin güncel ihracat ve ithalat verileriyle, 
+              <br>hedef pazarlarınızdaki gerçek alıcı ve satıcı firmalara kolayca ulaşın.
+            </p>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              
+              <a href="https://panel.meetwork.net/kayit" 
+                 target="_blank"
+                 class="btn btn-warning btn-lg px-4">
+                <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+              </a>
+              <a href="https://panel.meetwork.net" 
+                target="_blank"
+                class="btn btn-outline-dark btn-lg px-5">
+                <i class="bi bi-box-arrow-up-right me-2"></i>Panele Git
+                </a>
+                <a href="https://wa.me/905412465429?text=Merhaba,%20Kon%C5%9Fimento%20Veritaban%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.%20%C3%9Cr%C3%BCnlerim%20i%C3%A7in%20%C3%B6rnek%20al%C4%B1c%C4%B1%20firma%20bilgisi%20g%C3%B6nderebilir%20misiniz?"
+                 target="_blank"
+                 class="btn btn-success btn-lg px-4">
+                <i class="bi bi-whatsapp me-2"></i>Örnek Veri İste
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- İstatistikler -->
+    <section class="mb-5">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body py-4">
+              <h2 class="display-6 text-primary fw-bold">{toplamUlke}</h2>
+              <h6 class="text-dark mb-0">Aktif Ülke</h6>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body py-4">
+              <h2 class="display-6 text-success fw-bold">{ihracatVerisi}</h2>
+              <h6 class="text-dark mb-0">İhracat Verisi</h6>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body py-4">
+              <h2 class="display-6 text-warning fw-bold">{ithalatVerisi}</h2>
+              <h6 class="text-dark mb-0">İthalat Verisi</h6>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body py-4">
+              <h2 class="display-6 text-info fw-bold">7/24</h2>
+              <h6 class="text-dark mb-0">Güncel Veri</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Özellikler -->
+    <section class="mb-5">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="card-body">
+              <div class="bg-primary bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                <i class="bi bi-lightning-fill fs-3 text-primary"></i>
+              </div>
+              <h4 class="h5 text-dark mb-3">Anında Erişim</h4>
+              <p class="text-muted mb-0">
+                İstediğiniz ülke ve ürün grubu için veriler liste halinde anında size ulaşsın.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="card-body">
+              <div class="bg-success bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                <i class="bi bi-credit-card fs-3 text-success"></i>
+              </div>
+              <h4 class="h5 text-dark mb-3">Esnek Ödeme</h4>
+              <p class="text-muted mb-0">
+                Yıllık bağlayıcılık yok. Sadece ihtiyacınız olan veri başına ödeme yaparsınız.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="card-body">
+              <div class="bg-info bg-opacity-10 rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                <i class="bi bi-laptop fs-3 text-info"></i>
+              </div>
+              <h4 class="h5 text-dark mb-3">Kolay Kullanım</h4>
+              <p class="text-muted mb-0">
+                Eğitim gerektirmez. Hangi veriye ihtiyacınız olduğunu belirtin, biz size gönderelim.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ücretsiz Deneme -->
+    <section class="mb-5">
+      <div class="card border-0 bg-warning bg-opacity-10 shadow-sm">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="h2 text-dark mb-3">Ücretsiz Dene</h3>
+              <p class="lead text-dark mb-4">
+                Ürünleriniz için örnek alıcı firma bilgilerini WhatsApp üzerinden size gönderelim. 
+                Hiçbir ücret ödemeden veri kalitemizi test edin.
+              </p>
+              
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                    <div>
+                      <h6 class="mb-0">Gerçek Veriler</h6>
+                      <small class="text-muted">Güncel konşimento kayıtları</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                    <div>
+                      <h6 class="mb-0">Anında Teslimat</h6>
+                      <small class="text-muted">Sipariş sonrası hemen</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                    <div>
+                      <h6 class="mb-0">Risk-free</h6>
+                      <small class="text-muted">Örnek veri tamamen ücretsiz</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                    <div>
+                      <h6 class="mb-0">500+ Test Kullanıcısı</h6>
+                      <small class="text-muted">4.9/5 memnuniyet oranı</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="text-center">
+                <div class="bg-white p-4 rounded-3 shadow-sm">
+                  <h4 class="text-dark mb-3">Ücretsiz Örnek İsteyin</h4>
+                  <p class="text-muted small mb-4">
+                    Hangi ürünü ihraç etmek istiyorsunuz? Size uygun alıcı listesini gönderelim.
+                  </p>
+                  <a href="https://wa.me/905412465429?text=Merhaba,%20Kon%C5%9Fimento%20Veritaban%C4%B1%20i%C3%A7in%20%C3%BCcretsiz%20%C3%B6rnek%20veri%20almak%20istiyorum.%20%C3%9Cr%C3%BCn%3A%20"
+                     target="_blank"
+                     class="btn btn-success btn-lg w-100 mb-2">
+                    <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan İletişim
+                  </a>
+                  <small class="text-muted">5 dakika içinde yanıt veriyoruz</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mevcut Ülkeler Tablosu -->
+    <section class="mb-5">
+      <div class="text-center mb-5">
+        <h2 class="h1 text-dark mb-3">Küresel Kapsama</h2>
+        <p class="lead text-muted">
+          144 Ülkenin Küresel İhracat İthalat Verileri
+        </p>
+        <p class="text-dark">
+          Dünyanın her yerinden güncel ticaret verileri tek platformda
+        </p>
+      </div>
+      
+      <div class="mb-4">
+        <h3 class="h4 text-dark mb-4">Mevcut Ülkeler</h3>
+        <p class="text-muted mb-4">
+          Aşağıda listelenen ülkelerin güncel ticaret verilerine erişim sağlayabilirsiniz
+        </p>
+        
+        
+        
+        <!-- Ülke Tablosu -->
+        <div class="table-responsive">
+          <table class="table table-hover table-striped" id="ulkeTablosu">
+            <thead class="table-dark">
+              <tr>
+                <th style="width: 40%">Ülke Adı</th>
+                <th class="text-center" style="width: 15%">
+                  <i class="bi bi-arrow-down-circle me-1"></i>İthalat
+                </th>
+                <th class="text-center" style="width: 15%">
+                  <i class="bi bi-arrow-up-circle me-1"></i>İhracat
+                </th>
+                <th class="text-center" style="width: 15%">Durum</th>
+                <th class="text-center" style="width: 15%">Veritabanı</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ulkeler.map((ulke) => {
+                const veritabanSayisi = (ulke.ihracat + ulke.ithalat);
+                return (
+                  <tr 
+                    data-ihracat={ulke.ihracat} 
+                    data-ithalat={ulke.ithalat} 
+                    data-guncel={ulke.guncel}
+                    class="ulke-satiri"
+                  >
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img src={ulke.bayrak} 
+                             alt={`${ulke.isim} Bayrağı`} 
+                             class="me-2 rounded" 
+                             style="width: 24px; height: 18px;">
+                        <span>{ulke.isim}</span>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      {ulke.ithalat === 1 ? (
+                        <span class="badge bg-warning">1</span>
+                      ) : (
+                        <span class="badge bg-secondary">0</span>
+                      )}
+                    </td>
+                    <td class="text-center">
+                      {ulke.ihracat === 1 ? (
+                        <span class="badge bg-success">1</span>
+                      ) : (
+                        <span class="badge bg-secondary">0</span>
+                      )}
+                    </td>
+                    <td class="text-center">
+                      {ulke.guncel ? (
+                        <span class="badge bg-info">Güncel</span>
+                      ) : (
+                        <span class="badge bg-secondary">Güncel Değil</span>
+                      )}
+                    </td>
+                    <td class="text-center">
+                      <span class="badge bg-secondary">{veritabanSayisi} veritabanı</span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Sayfalama Bilgisi -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <div class="text-muted small">
+            <i class="bi bi-info-circle me-1"></i>
+            Toplam <span id="toplamSayi">{ulkeler.length}</span> ülke listeleniyor
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Nasıl Çalışır? -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white py-3">
+          <h3 class="mb-0"><i class="bi bi-gear-fill me-2"></i>Nasıl Çalışır?</h3>
+        </div>
+        <div class="card-body p-4">
+          <div class="row text-center">
+            <div class="col-md-3">
+              <div class="mb-3">
+                <div class="bg-primary bg-opacity-10 rounded-circle p-3 mx-auto d-inline-block">
+                  <i class="bi bi-1-circle-fill fs-2 text-primary"></i>
+                </div>
+              </div>
+              <h5 class="text-dark mb-2">İhtiyacınızı Belirtin</h5>
+              <p class="text-muted small">
+                Hangi ülkeden, hangi ürün grubunda veriye ihtiyacınız olduğunu WhatsApp üzerinden bize iletin.
+              </p>
+            </div>
+            
+            <div class="col-md-3">
+              <div class="mb-3">
+                <div class="bg-success bg-opacity-10 rounded-circle p-3 mx-auto d-inline-block">
+                  <i class="bi bi-2-circle-fill fs-2 text-success"></i>
+                </div>
+              </div>
+              <h5 class="text-dark mb-2">Verileri Hazırlayalım</h5>
+              <p class="text-muted small">
+                Konşimento veritabanımızdan size özel alıcı/satıcı listesini hazırlayalım.
+              </p>
+            </div>
+            
+            <div class="col-md-3">
+              <div class="mb-3">
+                <div class="bg-warning bg-opacity-10 rounded-circle p-3 mx-auto d-inline-block">
+                  <i class="bi bi-3-circle-fill fs-2 text-warning"></i>
+                </div>
+              </div>
+              <h5 class="text-dark mb-2">Örnek Veri Gönderelim</h5>
+              <p class="text-muted small">
+                Veri kalitemizi görmeniz için ücretsiz örnek veri setini size gönderelim.
+              </p>
+            </div>
+            
+            <div class="col-md-3">
+              <div class="mb-3">
+                <div class="bg-danger bg-opacity-10 rounded-circle p-3 mx-auto d-inline-block">
+                  <i class="bi bi-4-circle-fill fs-2 text-danger"></i>
+                </div>
+              </div>
+              <h5 class="text-dark mb-2">Tam Listeyi Alın</h5>
+              <p class="text-muted small">
+                Beğenmeniz halinde, tam veri setini veri başına ödeme yaparak anında alın.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Bölümü -->
+    <section class="text-center py-5 bg-light rounded-3">
+      <h3 class="h2 text-dark mb-4">İhracatınızı Büyütmeye Hazır mısınız?</h3>
+      <p class="lead text-muted mb-4">
+        Konşimento veritabanımızla, hedef pazarlarınızdaki gerçek alıcılara kolayca ulaşın. 
+        Yurt dışı müşteri bulma sürecinizi hızlandırın.
+      </p>
+      
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://wa.me/905412465429?text=Merhaba,%20Kon%C5%9Fimento%20Veritaban%C4%B1%20hakk%C4%B1nda%20detayl%C4%B1%20bilgi%20almak%20ve%20%C3%BCcretsiz%20%C3%B6rnek%20veri%20istemek%20istiyorum."
+           target="_blank"
+           class="btn btn-success btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-warning btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+        <a href="https://panel.meetwork.net" 
+           target="_blank"
+           class="btn btn-outline-dark btn-lg px-5">
+          <i class="bi bi-box-arrow-up-right me-2"></i>Panele Git
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Kart Stilleri */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Tablo stilleri */
+    .table-hover tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    /* Badge stilleri */
+    .badge.bg-warning {
+      background-color: #ffc107 !important;
+      color: #000;
+      min-width: 30px;
+      padding: 0.35em 0.65em;
+    }
+    
+    .badge.bg-success {
+      background-color: #198754 !important;
+      min-width: 30px;
+      padding: 0.35em 0.65em;
+    }
+    
+    .badge.bg-info {
+      background-color: #0dcaf0 !important;
+      min-width: 70px;
+      padding: 0.35em 0.65em;
+    }
+    
+    .badge.bg-secondary {
+      background-color: #6c757d !important;
+      min-width: 100px;
+      padding: 0.35em 0.65em;
+    }
+    
+    /* Bayrak stilleri */
+    .table td img {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Buton hover efektleri */
+    .btn-success:hover {
+      background-color: #146c43;
+      border-color: #146c43;
+    }
+    
+    .btn-warning:hover {
+      background-color: #ffca2c;
+      border-color: #ffca2c;
+      color: #000;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .table-responsive {
+        font-size: 0.875rem;
+      }
+      
+      .badge {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+
+  <!-- Tablo Filtreleme JavaScript -->
+  <script>
+    // Tablo filtreleme fonksiyonları
+    function filterTable() {
+      const input = document.getElementById('ulkeArama');
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById('ulkeTablosu');
+      const tr = table.getElementsByTagName('tr');
+      
+      let visibleCount = 0;
+      
+      // Tablo satırlarında dolaş (0 indeksi başlık satırı)
+      for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = '';
+            visibleCount++;
+          } else {
+            tr[i].style.display = 'none';
+          }
+        }
+      }
+      
+      // Toplam görünen sayısını güncelle
+      document.getElementById('toplamSayi').textContent = visibleCount;
+    }
+    
+    function filterTableByType(type) {
+      const table = document.getElementById('ulkeTablosu');
+      const tr = table.getElementsByTagName('tr');
+      
+      let visibleCount = 0;
+      
+      for (let i = 1; i < tr.length; i++) {
+        const ihracat = tr[i].getAttribute('data-ihracat');
+        const ithalat = tr[i].getAttribute('data-ithalat');
+        const guncel = tr[i].getAttribute('data-guncel');
+        
+        let show = true;
+        
+        switch(type) {
+          case 'ihracat':
+            show = ihracat === '1';
+            break;
+          case 'ithalat':
+            show = ithalat === '1';
+            break;
+          case 'guncel':
+            show = guncel === 'true';
+            break;
+          case 'all':
+          default:
+            show = true;
+        }
+        
+        if (show) {
+          tr[i].style.display = '';
+          visibleCount++;
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+      
+      // Toplam görünen sayısını güncelle
+      document.getElementById('toplamSayi').textContent = visibleCount;
+    }
+    
+    // Sayfa yüklendiğinde toplam sayıyı göster
+    document.addEventListener('DOMContentLoaded', function() {
+      const table = document.getElementById('ulkeTablosu');
+      const trCount = table.getElementsByTagName('tr').length - 1; // Başlık satırını çıkar
+      document.getElementById('toplamSayi').textContent = trCount;
+    });
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MeetWork Konşimento Veritabanı",
+    "description": "144 ülkenin ihracat ve ithalat verilerine erişim sağlayan konşimento veritabanı",
+    "url": "https://meetwork.com.tr/konsimento",
+    "brand": {
+      "@type": "Brand",
+      "name": "MeetWork"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "TRY",
+      "description": "Veri başına ödeme, esnek fiyatlandırma"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "500"
+    }
+  }
+  </script>
+
+</BaseLayout>
