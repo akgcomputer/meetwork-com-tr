@@ -4,8 +4,46 @@ import { menuItems } from '../../data/menu';
 // Ana menü (Nedir?, Sponsor Ol, vs.)
 const mainMenu = menuItems.filter(item => item.id !== 4); // "Sektörler" hariç
 
-// Sektör menüsü
-const sectorMenu = menuItems.find(item => item.id === 4)?.subItems || [];
+// Sektör menüsü - GÜNCELLENDİ
+const sectorMenu = [
+  { title: 'Teknoloji & Yazılım', url: '/sektorler/teknoloji' },
+  { title: 'E-Ticaret & Dijital Pazarlama', url: '/sektorler/eticaret' },
+  { title: 'Finans & Yatırım (FinTech)', url: '/sektorler/fintech' },
+  { title: 'Sağlık & Medikal', url: '/sektorler/saglik' },
+  { title: 'Enerji & Yenilenebilir', url: '/sektorler/enerji' },
+  { title: 'Gıda & Tarım', url: '/sektorler/gida' },
+  { title: 'Makine & Ekipman', url: '/sektorler/makine' },
+  { title: 'Otomotiv & Yan Sanayi', url: '/sektorler/otomotiv' },
+  { title: 'Metal & Maden', url: '/sektorler/metal' },
+  { title: 'Kimya & Kozmetik', url: '/sektorler/kozmetik' },
+  { title: 'Tekstil & Moda', url: '/sektorler/moda' },
+  { title: 'Mobilya & Dekorasyon', url: '/sektorler/mobilya' },
+  { title: 'İnşaat & Yapı', url: '/sektorler/insaat' },
+  { title: 'Ambalaj & Matbaa', url: '/sektorler/ambalaj' },
+  { title: 'Lojistik & Taşımacılık', url: '/sektorler/lojistik' },
+  { title: 'Turizm & Seyahat', url: '/sektorler/turizm' },
+  { title: 'Eğitim & Danışmanlık', url: '/sektorler/egitim' },
+  { title: 'Hukuk & Mali Müşavirlik', url: '/sektorler/hukuk' },
+  { title: 'Reklam & Pazarlama', url: '/sektorler/reklam' },
+  { title: 'Sigorta & Risk Yönetimi', url: '/sektorler/sigorta' },
+  { title: 'İK & İstihdam', url: '/sektorler/ik' },
+  { title: 'Temizlik & Bakım', url: '/sektorler/temizlik' },
+  { title: 'Güvenlik', url: '/sektorler/guvenlik' },
+  { title: 'Yapay Zeka & Makine Öğrenmesi', url: '/sektorler/ai' },
+  { title: 'Nesnelerin İnterneti (IoT)', url: '/sektorler/iot' },
+  { title: 'Siber Güvenlik', url: '/sektorler/siber' },
+  { title: 'Blockchain & Kripto', url: '/sektorler/blockchain' },
+  { title: 'Oyun & Eğlence', url: '/sektorler/oyun' },
+  { title: 'Savunma & Havacılık', url: '/sektorler/savunma' },
+  { title: 'Drone & İHA Teknolojileri', url: '/sektorler/drone' },
+  { title: 'Biyoteknoloji & Genetik', url: '/sektorler/biyoteknoloji' },
+  { title: 'Çevre & Sürdürülebilirlik', url: '/sektorler/cevre' },
+  { title: 'Perakende & Mağazacılık', url: '/sektorler/perakende' },
+  { title: 'Toptan Ticaret', url: '/sektorler/toptan' },
+  { title: 'İhracat & İthalat', url: '/sektorler/dis-ticaret' },
+  { title: 'E-İhracat', url: '/sektorler/e-ihracat' },
+  { title: 'Franchise', url: '/sektorler/franchise' }
+];
 
 // Sektörleri 3 parçaya böl
 const chunkSize = Math.ceil(sectorMenu.length / 3);
@@ -21,6 +59,18 @@ const legalPages = [
   { title: 'Kullanım Koşulları', url: '/bilgi-kullanim-kosullari' },
   { title: 'KVKK Aydınlatma Metni', url: '/bilgi-kisisel-verilerin-korunmasi-ve-islenmesi-politikasi-aydinlatma-metni' },
   { title: 'KVKK Açık Rıza Metni', url: '/bilgi-kvkk' }
+];
+
+// ACİL DURUM DESTEK - YENİ
+const acilDestekPages = [
+  { title: 'Acil Durum Talebi Gir', url: '/acil-durum', icon: 'bi-exclamation-triangle-fill', iconColor: 'text-danger' },
+  { title: 'Şirket Birleşme & Satın Alma', url: '/sirket-birlesme-satin-alma', icon: 'bi-building' },
+  { title: 'Şirket Değerleme', url: '/sirket-degerleme', icon: 'bi-calculator' },
+  { title: 'Şirket Satış Süreci', url: '/sirket-satis-sureci', icon: 'bi-arrow-right-circle' },
+  { title: 'Girişimci Destek', url: '/girisimci-destek', icon: 'bi-rocket' },
+  { title: 'İş Planı Hazırlama', url: '/is-plani-hazirlama', icon: 'bi-file-text' },
+  { title: 'Akıllı İş Eşleştirme', url: '/akilli-is-eslestirme', icon: 'bi-diagram-3' }
+  
 ];
 
 // PRO Üyelik Avantajları - Dijital Dönüşüm
@@ -41,7 +91,6 @@ const proAdvantages = [
   { title: 'Lojistik ve Tedarik Zinciri', url: '/dijital-donusum/lojistik-ve-tedarik-zinciri' },
   { title: 'Bulut Çözümleri', url: '/dijital-donusum/bulut-cozumleri-ve-barindirma' },
   { title: 'Yapay Zeka ve Akıllı Çözümler', url: '/dijital-donusum/yapay-zeka-ve-akilli-cozumler' }
-    
 ];
 
 // İŞTEP İştirakleri - Liste formatında
@@ -81,6 +130,28 @@ const eventPages = [
 
 <footer class="bg-dark text-white py-5">
   <div class="container">
+
+    <!-- ACİL DURUM DESTEK - YENİ -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h5 class="text-danger mb-3">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          Acil Durum Destek
+        </h5>
+        <div class="row">
+          {acilDestekPages.map((page) => (
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+              <a href={page.url} class={`text-white text-decoration-none small ${page.iconColor || ''}`}>
+                <i class={`bi ${page.icon} me-1`}></i>
+                {page.title}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4 bg-light opacity-25">
     
     <!-- PRO Üyelik Avantajları -->
     <div class="row mb-4">
@@ -123,236 +194,235 @@ const eventPages = [
 
     <hr class="my-4 bg-light opacity-25">
 
-    
     <!-- Ana Footer İçeriği -->
-<div class="row">
-  <!-- 1. Bölüm: Logo ve İletişim -->
-  <div class="col-lg-3 col-md-6 mb-4">
-    <h5 class="text-uppercase text-danger mb-4">Meet<span class="text-white">Work</span></h5>
-    <p class="text-light mb-3">
-      Profesyonel iş ağı ve etkinlik platformu
-    </p>
-    <div class="text-light small">
-      
-      <p class="mb-1">
-        <i class="bi bi-whatsapp text-success"></i>
-       <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." class="text-white text-decoration-none">
-         <span>WhatsApp Hattı</span>
-       </a></p>
-      
-      <p class="mb-1">
-        <i class="bi bi-people-fill text-warning"></i>
-       <a href="https://chat.whatsapp.com/KopePcksWpdKf3hQVv15vh" 
-         target="_blank." class="text-white text-decoration-none">
-         <span>WhatsApp Duyuru Grubu</span>
-       </a></p>
-
-       <p class="mb-1">
-        <i class="bi bi-megaphone-fill text-primary"></i>
-       <a href="https://whatsapp.com/channel/0029VbBefthHVvTdOqftD91i" 
-         target="_blank." class="text-white text-decoration-none">
-         <span>WhatsApp Kanalı</span>
-       </a></p>
-
-       <p class="mb-1">
-        <i class="bi bi-person-plus-fill text-danger"></i>
-       <a href="https://panel.meetwork.net" class="text-white text-decoration-none">
-         <span>Ücretsiz Kayıt Ol</span>
-       </a></p>
-
-       <p class="mb-1">
-        <i class="bi bi-phone text-primary"></i>
-       <a href="/iletisim" class="text-white text-decoration-none">
-         <span>İletişim</span>
-       </a></p>
-
-
-    </div>
-    
-    <!-- Yasal Bölümü buraya taşındı -->
-    <div class="mt-4">
-      <h6 class="text-uppercase text-success mb-3">Yasal</h6>
-      <ul class="list-unstyled">
-        {legalPages.map((page) => (
-          <li class="mb-2">
-            <a href={page.url} class="text-white text-decoration-none small">
-              <i class="bi bi-file-text me-1"></i>
-              {page.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <!-- 2. Bölüm: Etkinlik & Kazanım -->
-  <div class="col-lg-3 col-md-6 mb-4">
-    <h6 class="text-uppercase text-warning mb-3">Etkinlik & Kazanım</h6>
-    <ul class="list-unstyled">
-      {eventPages.map((page) => (
-        <li class="mb-2">
-          <a href={page.url} class="text-white text-decoration-none small">
-            <i class="bi bi-calendar-event me-1"></i>
-            {page.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-
-  <!-- 3. Bölüm: Sektörler -->
-  <div class="col-lg-6 col-md-12 mb-4">
-    <h6 class="text-uppercase text-info mb-3">Sektörler</h6>
     <div class="row">
-      {sectorChunks.map((chunk, index) => (
-        <div class="col-lg-4 col-md-4 col-sm-4">
+      <!-- 1. Bölüm: Logo ve İletişim -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="text-uppercase text-danger mb-4">Meet<span class="text-white">Work</span></h5>
+        <p class="text-light mb-3">
+          Profesyonel iş ağı ve etkinlik platformu
+        </p>
+        <div class="text-light small">
+          
+          <p class="mb-1">
+            <i class="bi bi-whatsapp text-success"></i>
+            <a href="https://wa.me/905412465429?text=Merhaba,%20MeetWork%20hakkında%20bilgi%20almak%20istiyorum." class="text-white text-decoration-none">
+              <span>WhatsApp Hattı</span>
+            </a>
+          </p>
+          
+          <p class="mb-1">
+            <i class="bi bi-people-fill text-warning"></i>
+            <a href="https://chat.whatsapp.com/KopePcksWpdKf3hQVv15vh" 
+              target="_blank." class="text-white text-decoration-none">
+              <span>WhatsApp Duyuru Grubu</span>
+            </a>
+          </p>
+
+          <p class="mb-1">
+            <i class="bi bi-megaphone-fill text-primary"></i>
+            <a href="https://whatsapp.com/channel/0029VbBefthHVvTdOqftD91i" 
+              target="_blank." class="text-white text-decoration-none">
+              <span>WhatsApp Kanalı</span>
+            </a>
+          </p>
+
+          <p class="mb-1">
+            <i class="bi bi-person-plus-fill text-danger"></i>
+            <a href="https://panel.meetwork.net" class="text-white text-decoration-none">
+              <span>Ücretsiz Kayıt Ol</span>
+            </a>
+          </p>
+
+          <p class="mb-1">
+            <i class="bi bi-phone text-primary"></i>
+            <a href="/iletisim" class="text-white text-decoration-none">
+              <span>İletişim</span>
+            </a>
+          </p>
+        </div>
+        
+        <!-- Yasal Bölümü -->
+        <div class="mt-4">
+          <h6 class="text-uppercase text-success mb-3">Yasal</h6>
           <ul class="list-unstyled">
-            {chunk.map((sector) => (
+            {legalPages.map((page) => (
               <li class="mb-2">
-                <a href={sector.url} class="text-white text-decoration-none small">
-                  {sector.title}
+                <a href={page.url} class="text-white text-decoration-none small">
+                  <i class="bi bi-file-text me-1"></i>
+                  {page.title}
                 </a>
               </li>
             ))}
           </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
-
-
-<!-- Alt Bilgi -->
-<hr class="my-4 bg-light opacity-25">
-
-<!-- Yeni Eklenen Hızlı Erişim Linkleri -->
-<div class="row mb-4">
-  <div class="col-12">
-    <h6 class="text-uppercase text-warning mb-3">Ticaret Destekleri</h6>
-    <div class="row">
-      <!-- Ticaret Bakanlığı Destekleri -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="bi bi-building text-primary me-2"></i>
-          <strong class="text-light small">Ticaret Bakanlığı</strong>
-        </div>
-        <div class="ps-3">
-          <a href="/ticaret-bakanligi-destekler" class="text-white text-decoration-none small d-block mb-1">
-            Tüm Destekler
-          </a>
-          <a href="/ticaret-bakanligi-kolay-ihracat" class="text-white text-decoration-none small d-block mb-1">
-            İhracat Destekleri
-          </a>
-          <a href="/ticaret-bakanligi-e-ihracat" class="text-white text-decoration-none small d-block mb-1">
-            E-İhracat Destekleri
-          </a>
-          <a href="/ticaret-bakanligi-hizmet-sektor-destek" class="text-white text-decoration-none small d-block mb-1">
-            Hizmet Sektörü
-          </a>
-          <a href="/ticaret-bakanligi-yurt-disi-teknik-musavir-destek" class="text-white text-decoration-none small d-block">
-            Teknik Müşavirlik
-          </a>
-          <a href="/ticaret-bakanligi-proje-bazli-destekler" class="text-white text-decoration-none small d-block">
-            Proje Bazlı Teşvik Sistemi
-          </a>
-        </div>
       </div>
 
-      <!-- Kolay Platformlar -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="bi bi-laptop text-success me-2"></i>
-          <strong class="text-light small">Kolay Platformlar</strong>
-        </div>
-        <div class="ps-3">
-          <a href="/dis-ticaret" class="text-white text-decoration-none small d-block mb-1">
-            Dış Ticaret
-          </a>
-          <a href="/ihracat" class="text-white text-decoration-none small d-block mb-1">
-            İhracat
-          </a>
-          <a href="/ithalat" class="text-white text-decoration-none small d-block mb-1">
-            İthalat
-          </a>
-          <a href="/ticaret-bakanligi-kolay-ihracat" class="text-white text-decoration-none small d-block mb-1">
-            Kolay İhracat
-          </a>
-          <a href="/ticaret-bakanligi-kolay-ihracat-detay" class="text-white text-decoration-none small d-block mb-1">
-            Kolay İhracat Detay
-          </a>
-          <a href="/ticaret-bakanligi-kolay-e-ihracat-detay" class="text-white text-decoration-none small d-block mb-1">
-            E-Kolay İhracat
-          </a>
-          <a href="/ticaret-bakanligi-kolay-destek" class="text-white text-decoration-none small d-block">
-            Kolay Destek
-          </a>
-        </div>
+      <!-- 2. Bölüm: Etkinlik & Kazanım -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h6 class="text-uppercase text-warning mb-3">Etkinlik & Kazanım</h6>
+        <ul class="list-unstyled">
+          {eventPages.map((page) => (
+            <li class="mb-2">
+              <a href={page.url} class="text-white text-decoration-none small">
+                <i class="bi bi-calendar-event me-1"></i>
+                {page.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <!-- Dijital Dönüşüm -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="bi bi-cpu text-info me-2"></i>
-          <strong class="text-light small">Dijital Dönüşüm</strong>
-        </div>
-        <div class="ps-3">
-          <a href="/dijital-donusum" class="text-white text-decoration-none small d-block mb-1">
-            Dijital Dönüşüm Ana Sayfa
-          </a>
-          <a href="/dijital-donusum/web-sitesi-paketleri" class="text-white text-decoration-none small d-block mb-1">
-            Web Sitesi Paketleri
-          </a>
-          <a href="/dijital-donusum/e-ticaret-ve-internetten-satis" class="text-white text-decoration-none small d-block mb-1">
-            E-Ticaret Çözümleri
-          </a>
-          <a href="/dijital-donusum/on-muhasebe-magazacilik-edonusum-erp" class="text-white text-decoration-none small d-block">
-            ERP & Muhasebe
-          </a>
-        </div>
-      </div>
-
-      <!-- İş Ortakları -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="bi bi-handshake text-warning me-2"></i>
-          <strong class="text-light small">İş Ortakları</strong>
-        </div>
-        <div class="ps-3">
-          <a href="/isbirligi" class="text-white text-decoration-none small d-block mb-1">
-            İş Birliği
-          </a>
-          <a href="/sponsor-ol" class="text-white text-decoration-none small d-block mb-1">
-            Sponsor Ol
-          </a>
-          <a href="/istirakler" class="text-white text-decoration-none small d-block mb-1">
-            İştiraklerimiz
-          </a>
-          <a href="/win-win" class="text-white text-decoration-none small d-block">
-            Win-Win
-          </a>
+      <!-- 3. Bölüm: Sektörler (GÜNCELLENDİ) -->
+      <div class="col-lg-6 col-md-12 mb-4">
+        <h6 class="text-uppercase text-info mb-3">Sektörler</h6>
+        <div class="row">
+          {sectorChunks.map((chunk, index) => (
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <ul class="list-unstyled">
+                {chunk.map((sector) => (
+                  <li class="mb-2">
+                    <a href={sector.url} class="text-white text-decoration-none small">
+                      {sector.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>
+
+    <!-- Alt Bilgi -->
+    <hr class="my-4 bg-light opacity-25">
+
+    <!-- Yeni Eklenen Hızlı Erişim Linkleri (AYNEN KALDI) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h6 class="text-uppercase text-warning mb-3">Ticaret Destekleri</h6>
+        <div class="row">
+          <!-- Ticaret Bakanlığı Destekleri -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-building text-primary me-2"></i>
+              <strong class="text-light small">Ticaret Bakanlığı</strong>
+            </div>
+            <div class="ps-3">
+              <a href="/ticaret-bakanligi-destekler" class="text-white text-decoration-none small d-block mb-1">
+                Tüm Destekler
+              </a>
+              <a href="/ticaret-bakanligi-kolay-ihracat" class="text-white text-decoration-none small d-block mb-1">
+                İhracat Destekleri
+              </a>
+              <a href="/ticaret-bakanligi-e-ihracat" class="text-white text-decoration-none small d-block mb-1">
+                E-İhracat Destekleri
+              </a>
+              <a href="/ticaret-bakanligi-hizmet-sektor-destek" class="text-white text-decoration-none small d-block mb-1">
+                Hizmet Sektörü
+              </a>
+              <a href="/ticaret-bakanligi-yurt-disi-teknik-musavir-destek" class="text-white text-decoration-none small d-block">
+                Teknik Müşavirlik
+              </a>
+              <a href="/ticaret-bakanligi-proje-bazli-destekler" class="text-white text-decoration-none small d-block">
+                Proje Bazlı Teşvik Sistemi
+              </a>
+            </div>
+          </div>
+
+          <!-- Kolay Platformlar -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-laptop text-success me-2"></i>
+              <strong class="text-light small">Kolay Platformlar</strong>
+            </div>
+            <div class="ps-3">
+              <a href="/dis-ticaret" class="text-white text-decoration-none small d-block mb-1">
+                Dış Ticaret
+              </a>
+              <a href="/ihracat" class="text-white text-decoration-none small d-block mb-1">
+                İhracat
+              </a>
+              <a href="/ithalat" class="text-white text-decoration-none small d-block mb-1">
+                İthalat
+              </a>
+              <a href="/ticaret-bakanligi-kolay-ihracat" class="text-white text-decoration-none small d-block mb-1">
+                Kolay İhracat
+              </a>
+              <a href="/ticaret-bakanligi-kolay-ihracat-detay" class="text-white text-decoration-none small d-block mb-1">
+                Kolay İhracat Detay
+              </a>
+              <a href="/ticaret-bakanligi-kolay-e-ihracat-detay" class="text-white text-decoration-none small d-block mb-1">
+                E-Kolay İhracat
+              </a>
+              <a href="/ticaret-bakanligi-kolay-destek" class="text-white text-decoration-none small d-block">
+                Kolay Destek
+              </a>
+            </div>
+          </div>
+
+          <!-- Dijital Dönüşüm -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-cpu text-info me-2"></i>
+              <strong class="text-light small">Dijital Dönüşüm</strong>
+            </div>
+            <div class="ps-3">
+              <a href="/dijital-donusum" class="text-white text-decoration-none small d-block mb-1">
+                Dijital Dönüşüm Ana Sayfa
+              </a>
+              <a href="/dijital-donusum/web-sitesi-paketleri" class="text-white text-decoration-none small d-block mb-1">
+                Web Sitesi Paketleri
+              </a>
+              <a href="/dijital-donusum/e-ticaret-ve-internetten-satis" class="text-white text-decoration-none small d-block mb-1">
+                E-Ticaret Çözümleri
+              </a>
+              <a href="/dijital-donusum/on-muhasebe-magazacilik-edonusum-erp" class="text-white text-decoration-none small d-block">
+                ERP & Muhasebe
+              </a>
+            </div>
+          </div>
+
+          <!-- İş Ortakları -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-handshake text-warning me-2"></i>
+              <strong class="text-light small">İş Ortakları</strong>
+            </div>
+            <div class="ps-3">
+              <a href="/isbirligi" class="text-white text-decoration-none small d-block mb-1">
+                İş Birliği
+              </a>
+              <a href="/sponsor-ol" class="text-white text-decoration-none small d-block mb-1">
+                Sponsor Ol
+              </a>
+              <a href="/istirakler" class="text-white text-decoration-none small d-block mb-1">
+                İştiraklerimiz
+              </a>
+              <a href="/win-win" class="text-white text-decoration-none small d-block">
+                Win-Win
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alt Bilgi -->
+    <hr class="my-4 bg-light opacity-25">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="mb-2 mb-md-0 small text-light">
+          Vizyon 2030 © MeetWork Global. Tüm hakları saklıdır.
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <p class="mb-0 small text-light">
+          Türkiye Resmi Temsilciği: İşte Birlik Platformu (İŞTEP)
+        </p>
+      </div>
+    </div>
   </div>
-</div>
-
-
-<!-- Alt Bilgi -->
-<hr class="my-4 bg-light opacity-25">
-<div class="row align-items-center">
-  <div class="col-md-6 text-center text-md-start">
-    <p class="mb-2 mb-md-0 small text-light">
-      Vizyon 2030 © MeetWork Global. Tüm hakları saklıdır.
-    </p>
-  </div>
-  <div class="col-md-6 text-center text-md-end">
-    <p class="mb-0 small text-light">
-      Türkiye Resmi Temsilciği: İşte Birlik Platformu (İŞTEP)
-    </p>
-  </div>
-</div>
-
-
 </footer>
 
 <style>
@@ -370,5 +440,10 @@ const eventPages = [
   
   footer a:hover .bi-arrow-right-short {
     transform: translateX(3px);
+  }
+
+  /* Acil durum linkleri için hover */
+  footer a.text-danger:hover {
+    color: #ff6b6b !important;
   }
 </style>

@@ -1,0 +1,160 @@
+---
+// src/pages/is-plani-hazirlama.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seoTitle = "İş Planı Hazırlama Rehberi | Yatırımcı Sunumu ve Şablonlar - MeetWork";
+const seoDescription = "Etkili iş planı hazırlamanın püf noktaları. Yatırımcıların görmek istediği bölümler, iş modeli kanvası ve sunum ipuçları.";
+const canonicalUrl = "https://meetwork.com.tr/is-plani-hazirlama";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription} canonical={canonicalUrl}>
+  <main class="container py-5">
+
+    <!-- Hero -->
+    <section class="mb-5">
+      <h1 class="display-5 fw-bold text-dark mb-4">İş Planı Hazırlama Rehberi</h1>
+      <p class="lead text-dark">Yatırımcıyı etkileyen, yatırım almanızı sağlayan iş planı nasıl hazırlanır?</p>
+    </section>
+
+    <!-- İş Planı Bölümleri -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">İş Planında Olması Gerekenler</h2>
+      
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Yönetici Özeti</h6>
+              <p class="text-muted small">İş fikrinizi, pazarı ve ihtiyaç duyulan yatırımı özetleyin. En önemli bölüm.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Şirket Tanıtımı</h6>
+              <p class="text-muted small">Vizyon, misyon, hedefler, ekip ve şirket yapısı.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Pazar Analizi</h6>
+              <p class="text-muted small">Hedef pazar büyüklüğü, rakipler, pazar trendleri, SWOT analizi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Ürün/Hizmet</h6>
+              <p class="text-muted small">Ne satıyorsunuz? Müşteri problemi, çözüm, faydalar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Pazarlama Planı</h6>
+              <p class="text-muted small">Müşteri edinme kanalları, satış stratejisi, fiyatlandırma.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+            <div>
+              <h6 class="text-dark">Finansal Plan</h6>
+              <p class="text-muted small">Satış projeksiyonu, giderler, karlılık, nakit akışı, yatırım ihtiyacı.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- İş Modeli Kanvası -->
+    <section class="mb-5">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-4">
+          <h3 class="h4 text-dark mb-3">İş Modeli Kanvası (9 Blok)</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-1-circle me-2 text-primary"></i>Müşteri Segmentleri</li>
+                <li class="mb-2"><i class="bi bi-2-circle me-2 text-primary"></i>Değer Önerisi</li>
+                <li class="mb-2"><i class="bi bi-3-circle me-2 text-primary"></i>Kanallar</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-4-circle me-2 text-primary"></i>Müşteri İlişkileri</li>
+                <li class="mb-2"><i class="bi bi-5-circle me-2 text-primary"></i>Gelir Akışları</li>
+                <li class="mb-2"><i class="bi bi-6-circle me-2 text-primary"></i>Temel Kaynaklar</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-7-circle me-2 text-primary"></i>Temel Faaliyetler</li>
+                <li class="mb-2"><i class="bi bi-8-circle me-2 text-primary"></i>Ana Ortaklar</li>
+                <li class="mb-2"><i class="bi bi-9-circle me-2 text-primary"></i>Maliyet Yapısı</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Yatırımcı İpuçları -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-3">Yatırımcılar Neye Bakar?</h2>
+      <div class="row">
+        <div class="col-md-3 col-6">
+          <div class="text-center">
+            <i class="bi bi-people fs-1 text-primary"></i>
+            <h6 class="mt-2">Ekip</h6>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="text-center">
+            <i class="bi bi-graph-up fs-1 text-primary"></i>
+            <h6 class="mt-2">Pazar Büyüklüğü</h6>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="text-center">
+            <i class="bi bi-rocket fs-1 text-primary"></i>
+            <h6 class="mt-2">Büyüme Potansiyeli</h6>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="text-center">
+            <i class="bi bi-cash-coin fs-1 text-primary"></i>
+            <h6 class="mt-2">Finansallar</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- CTA -->
+    <section class="text-center py-4">
+      <h4 class="text-dark mb-3">İş Planınızı Hazırlamak İçin Destek Alın</h4>
+      <a href="https://panel.meetwork.net/kayit" target="_blank" class="btn btn-primary btn-lg px-5">
+        <i class="bi bi-arrow-right me-2"></i>Uzman Desteği Al
+      </a>
+    </section>
+
+  </main>
+</BaseLayout>

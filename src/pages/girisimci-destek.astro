@@ -1,0 +1,865 @@
+---
+// src/pages/girisimci-destek.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO parametreleri
+const seoTitle = "Girişimci Destek ve Büyüme Programı | MeetWork KOBİ Danışmanlık";
+const seoDescription = "Girişimciler ve KOBİ'ler için ücretsiz mentorluk, danışmanlık, eğitim ve finansmana erişim desteği. İş kurma, büyütme ve yatırım alma süreçlerinde yanınızdayız.";
+const seoKeywords = "girişimci destek, KOBİ danışmanlık, iş kurma desteği, startup mentoring, hibe teşvik danışmanlığı, iş planı hazırlama, yatırım alma, girişimcilik eğitimleri";
+const canonicalUrl = "https://meetwork.com.tr/girisimci-destek";
+
+// Örnek veriler (gerçek uygulamada API'den gelecek)
+const mentorVerileri = {
+  mentorlar: [
+    {
+      id: "MEN001",
+      ad: "Av.Burhan Teker",
+      uzmanlik: ["Finansal Danışmanlık", "Yatırım Alma", "İş Planı"],
+      deneyim: "20+ Firma Danışmanlığı ve Yatırımcı Görüşmeleri",
+      mentorlukAlani: "Finansal modelleme, yatırımcı sunumu hazırlama",
+      sektorDeneyimi: ["Finans", "Teknoloji", "Perakende"],
+      profilFoto: "/images/mentor1.jpg",
+      uygunluk: "Haftada 4 saat"
+    },
+    {
+      id: "MEN002",
+      ad: "M. Fatih Akgün",
+      uzmanlik: ["Yazılım", "Pazarlama", "Dijital Dönüşüm", "Marka Stratejisi"],
+      deneyim: "1999 yılından bu yana teknoloji sektöründe",
+      mentorlukAlani: "Dijital pazarlama stratejileri, marka konumlandırma",
+      sektorDeneyimi: ["FMCG", "E-ticaret", "Perakende"],
+      profilFoto: "/images/mentor2.jpg",
+      uygunluk: "Haftada 6 saat"
+    },
+    {
+      id: "MEN003",
+      ad: "Mehmet Kaya",
+      uzmanlik: ["İhracat", "Yurtdışı Pazarlama", "Lojistik"],
+      deneyim: "20 yıl (Dış Ticaret Müsteşarlığı, İhracatçılar Birliği)",
+      mentorlukAlani: "İhracat stratejileri, yurtdışı fuar katılımları",
+      sektorDeneyimi: ["İmalat", "Tarım", "Tekstil"],
+      profilFoto: "/images/mentor3.jpg",
+      uygunluk: "Haftada 3 saat"
+    },
+    {
+      id: "MEN004",
+      ad: "Burhan Teker",
+      uzmanlik: ["Hukuk", "Şirket Kuruluşu", "Fikri Mülkiyet"],
+      deneyim: "10 yıl (Kurumsal Hukuk Bürosu)",
+      mentorlukAlani: "Şirket kurulumu, patent-marka tescili, sözleşmeler",
+      sektorDeneyimi: ["Tüm Sektörler"],
+      profilFoto: "/images/mentor4.jpg",
+      uygunluk: "Haftada 5 saat"
+    }
+  ],
+  egitimler: [
+    {
+      id: "EGT001",
+      baslik: "İş Planı Hazırlama ve Yatırımcı Sunumu",
+      egitmen: "Burhan Teker",
+      tarih: "Her ay düzenli 1 eğitim",
+      saat: "17:00 - 19:00",
+      format: "Online (Zoom)",
+      kontenjan: 50,
+      kayitli: 32,
+      aciklama: "Etkili iş planı hazırlama teknikleri, yatırımcıları etkileyecek sunumlar oluşturma"
+    },
+    {
+      id: "EGT002",
+      baslik: "Dijital Pazarlama Stratejileri",
+      egitmen: "M. Fatih Akgün",
+      tarih: "Her ay düzenli 1 eğitim",
+      saat: "17:00 - 19:00",
+      format: "Online (Zoom)",
+      kontenjan: 30,
+      kayitli: 28,
+      aciklama: "Sosyal medya yönetimi, Google Ads, SEO, içerik pazarlaması"
+    },
+    {
+      id: "EGT003",
+      baslik: "İhracata Başlangıç: Adım Adım Dış Ticaret",
+      egitmen: "Mehmet Kaya",
+      tarih: "Her ay düzenli 1 eğitim",
+      saat: "17:00 - 19:00",
+      format: "Online (Zoom)",
+      kontenjan: 100,
+      kayitli: 67,
+      aciklama: "İhracat mevzuatı, gümrük işlemleri, lojistik, pazar araştırması"
+    }
+  ],
+  finansmanFırsatları: [
+    {
+      id: "FON001",
+      baslik: "KOSGEB Ar-Ge ve İnovasyon Destek Programı",
+      kurum: "KOSGEB",
+      tur: "Hibe",
+      tutar: "500.000 ₺'ye kadar",
+      sonTarih: "31 Aralık 2024",
+      uygunluk: "Ar-Ge projesi olan KOBİ'ler",
+      aciklama: "Teknolojik ürün yatırımı, prototip geliştirme, test-analiz destekleri"
+    },
+    {
+      id: "FON002",
+      baslik: "TÜBİTAK 1512 Girişimcilik Destek Programı",
+      kurum: "TÜBİTAK",
+      tur: "Hibe + Teşvik",
+      tutar: "450.000 ₺'ye kadar",
+      sonTarih: "15 Mayıs 2024",
+      uygunluk: "Teknoloji tabanlı erken aşama girişimler",
+      aciklama: "Bireysel girişimcilerin teknoloji tabanlı iş fikirlerini şirketleştirmeleri"
+    },
+    {
+      id: "FON003",
+      baslik: "Kalkınma Ajansı KOBİ Mali Destek Programı",
+      kurum: "İstanbul Kalkınma Ajansı",
+      tur: "Hibe",
+      tutar: "1.200.000 ₺'ye kadar",
+      sonTarih: "30 Haziran 2024",
+      uygunluk: "İstanbul'da faaliyet gösteren KOBİ'ler",
+      aciklama: "Üretim altyapısı, makine ekipman, yazılım yatırımları"
+    }
+  ],
+  istatistikler: {
+    mentorSayisi: 48,
+    egitimSayisi: 124,
+    yararlananGirisimci: 3250,
+    saglananFon: "28.5M ₺"
+  }
+};
+
+const mentorlar = mentorVerileri.mentorlar;
+const egitimler = mentorVerileri.egitimler;
+const finansmanFirsatlari = mentorVerileri.finansmanFırsatları;
+const istatistikler = mentorVerileri.istatistikler;
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/girisimci-destek-og.jpg"
+>
+
+  <main class="container py-5">
+    <!-- Hero Banner -->
+    <section class="mb-5">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="mb-3">
+            <span class="badge bg-success mb-2">Ücretsiz Girişimci Destek Programı</span>
+            <h1 class="display-5 fw-bold text-dark mb-4">Girişimciler ve KOBİ'ler İçin Kapsamlı Destek Platformu</h1>
+            <p class="lead text-dark mb-4">
+              İş fikrinizden yatırım almaya, şirket kuruluşundan ihracata kadar her aşamada 
+              ücretsiz mentorluk, danışmanlık ve eğitim desteği. MeetWork ekosistemi yanınızda.
+            </p>
+          </div>
+          
+          <!-- Hızlı İstatistikler -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-success mb-0">{istatistikler.mentorSayisi}+</h3>
+                <small class="text-muted">Uzman Mentor</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-info mb-0">{istatistikler.egitimSayisi}+</h3>
+                <small class="text-muted">Eğitim & Workshop</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-warning mb-0">{istatistikler.yararlananGirisimci}+</h3>
+                <small class="text-muted">Yararlanan Girişimci</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-primary mb-0">{istatistikler.saglananFon}</h3>
+                <small class="text-muted">Sağlanan Fon</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-3">
+            <a href="https://panel.meetwork.net/kayit" 
+               target="_blank"
+               class="btn btn-success px-4">
+              <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+            </a>
+            <a href="#mentorluk" 
+               class="btn btn-outline-success px-4">
+              <i class="bi bi-chat-dots me-2"></i>Mentör Bul
+            </a>
+            <a href="https://wa.me/905412465429?text=Merhaba,%20Girişimci%20destek%20programınız%20hakkında%20bilgi%20almak%20istiyorum" 
+               target="_blank"
+               class="btn btn-outline-dark px-4">
+              <i class="bi bi-whatsapp me-2"></i>Danışmanlık Al
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg bg-success text-white">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-4">🎯 Hemen Başvurun, Ücretsiz Danışmanlık Alın</h5>
+              <p class="mb-3">
+                Size özel mentor eşleştirmesi, iş planı değerlendirmesi ve yatırım hazırlık desteği için hemen başvurun.
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>15+ farklı uzmanlık alanı
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>Birebir mentorluk seansları
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>İş planı ve yatırımcı sunumu desteği
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill me-2"></i>Hibe ve teşvik danışmanlığı
+                </li>
+              </ul>
+              <a href="https://panel.meetwork.net/kayit" 
+                 target="_blank"
+                 class="btn btn-light w-100">
+                <i class="bi bi-arrow-right me-2"></i>Hemen Başvur
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Girişimci Yol Haritası -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-5 text-center">Girişimcilik Yolculuğunuzda MeetWork Yanınızda</h2>
+      
+      <div class="row">
+        <div class="col-md-3">
+          <div class="text-center position-relative">
+            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <i class="bi bi-lightbulb fs-1 text-success"></i>
+            </div>
+            <h5 class="h6 text-dark mb-2">1. İş Fikri</h5>
+            <p class="text-muted small">
+              Fikrinizi geliştirin, iş modeli oluşturun, pazar araştırması yapın
+            </p>
+            <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y">
+              <i class="bi bi-arrow-right fs-4 text-muted"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center position-relative">
+            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <i class="bi bi-building fs-1 text-success"></i>
+            </div>
+            <h5 class="h6 text-dark mb-2">2. Şirket Kuruluşu</h5>
+            <p class="text-muted small">
+              Hukuki danışmanlık, şirket kurulumu, mali müşavirlik
+            </p>
+            <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y">
+              <i class="bi bi-arrow-right fs-4 text-muted"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center position-relative">
+            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <i class="bi bi-graph-up-arrow fs-1 text-success"></i>
+            </div>
+            <h5 class="h6 text-dark mb-2">3. Büyüme</h5>
+            <p class="text-muted small">
+              Pazarlama stratejisi, satış geliştirme, operasyonel mükemmellik
+            </p>
+            <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y">
+              <i class="bi bi-arrow-right fs-4 text-muted"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <i class="bi bi-cash-coin fs-1 text-success"></i>
+            </div>
+            <h5 class="h6 text-dark mb-2">4. Yatırım</h5>
+            <p class="text-muted small">
+              Yatırımcı sunumu, fon başvuruları, yatırımcı görüşmeleri
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentorluk Bölümü -->
+    <section class="mb-5" id="mentorluk">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 text-dark mb-0">
+          <i class="bi bi-people fs-1 text-success me-2"></i>
+          Ücretsiz Mentorluk ve Danışmanlık
+        </h2>
+        <a href="https://panel.meetwork.net/mentorler" 
+           target="_blank"
+           class="btn btn-outline-success">
+          Tüm Mentorler <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+      
+      <div class="row g-4">
+        {mentorlar.slice(0, 4).map((mentor) => (
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 100px; height: 100px;">
+                  <i class="bi bi-person-circle fs-1 text-success"></i>
+                </div>
+                <h5 class="h6 text-dark mb-1">{mentor.ad}</h5>
+                <p class="text-muted small mb-2">{mentor.deneyim}</p>
+                <div class="d-flex flex-wrap gap-1 justify-content-center mb-3">
+                  {mentor.uzmanlik.slice(0, 2).map(uzmanlik => (
+                    <span class="badge bg-light text-dark">{uzmanlik}</span>
+                  ))}
+                  {mentor.uzmanlik.length > 2 && (
+                    <span class="badge bg-light text-dark">+{mentor.uzmanlik.length-2}</span>
+                  )}
+                </div>
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-chat-quote me-1"></i>
+                  {mentor.mentorlukAlani}
+                </p>
+                <hr class="my-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>{mentor.uygunluk}
+                  </small>
+                  <a href={`https://panel.meetwork.net/kayit?mentor=${mentor.id}`}
+                     target="_blank"
+                     class="btn btn-sm btn-success">
+                    Randevu Al
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Eğitim ve Workshoplar -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 text-dark mb-0">
+          <i class="bi bi-mortarboard fs-1 text-warning me-2"></i>
+          Ücretsiz Eğitim ve Workshoplar
+        </h2>
+        <a href="https://panel.meetwork.net/egitimler" 
+           target="_blank"
+           class="btn btn-outline-warning">
+          Tüm Eğitimler <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+      
+      <div class="row g-4">
+        {egitimler.map((egitim) => (
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <span class="badge bg-warning text-dark">
+                    {egitim.format}
+                  </span>
+                  <span class="badge bg-light text-dark">
+                    {egitim.kayitli}/{egitim.kontenjan} Kayıt
+                  </span>
+                </div>
+                
+                <h5 class="h6 text-dark mb-2">{egitim.baslik}</h5>
+                <p class="text-muted small mb-3">{egitim.aciklama}</p>
+                
+                <div class="bg-light p-3 rounded-3 mb-3">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-person me-2 text-warning"></i>
+                    <small class="text-dark">{egitim.egitmen}</small>
+                  </div>
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-calendar me-2 text-warning"></i>
+                    <small class="text-dark">{egitim.tarih}</small>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock me-2 text-warning"></i>
+                    <small class="text-dark">{egitim.saat}</small>
+                  </div>
+                </div>
+                
+                <div class="progress mb-3" style="height: 5px;">
+                  <div class="progress-bar bg-warning" style="width: {(egitim.kayitli/egitim.kontenjan)*100}%"></div>
+                </div>
+                
+                <div class="d-grid">
+                  <a href={`https://panel.meetwork.net/kayit?egitim=${egitim.id}`}
+                     target="_blank"
+                     class="btn btn-warning">
+                    <i class="bi bi-calendar-check me-2"></i>Ücretsiz Kayıt Ol
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Finansmana Erişim Desteği -->
+    <section class="mb-5">
+      <div class="card border-0 bg-primary bg-opacity-10">
+        <div class="card-body p-5">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="h2 text-dark mb-3">
+                <i class="bi bi-cash-coin fs-1 text-primary me-2"></i>
+                Finansmana Erişim Desteği
+              </h3>
+              <p class="lead text-dark mb-4">
+                KOSGEB, TÜBİTAK, Kalkınma Ajansları ve özel yatırım fonlarından hibe, teşvik 
+                ve yatırım almanız için size özel danışmanlık hizmeti.
+              </p>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary rounded-circle p-2 me-3">
+                      <i class="bi bi-check-lg text-white"></i>
+                    </div>
+                    <div>
+                      <h6 class="text-dark mb-0">Hibe Programları</h6>
+                      <small class="text-muted">KOSGEB, TÜBİTAK, Ajanslar</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary rounded-circle p-2 me-3">
+                      <i class="bi bi-check-lg text-white"></i>
+                    </div>
+                    <div>
+                      <h6 class="text-dark mb-0">Yatırımcı Ağı</h6>
+                      <small class="text-muted">Melek yatırımcılar, VC fonlar</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary rounded-circle p-2 me-3">
+                      <i class="bi bi-check-lg text-white"></i>
+                    </div>
+                    <div>
+                      <h6 class="text-dark mb-0">Teşvik Danışmanlığı</h6>
+                      <small class="text-muted">Yatırım teşvik belgesi, Ar-Ge teşvikleri</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary rounded-circle p-2 me-3">
+                      <i class="bi bi-check-lg text-white"></i>
+                    </div>
+                    <div>
+                      <h6 class="text-dark mb-0">Başvuru Desteği</h6>
+                      <small class="text-muted">Proje yazımı, dosya hazırlama</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="card border-0 shadow">
+                <div class="card-body p-4">
+                  <h5 class="text-primary mb-3">Aktif Fonlar</h5>
+                  {finansmanFirsatlari.slice(0, 2).map((fon) => (
+                    <div class="mb-3 pb-3 border-bottom">
+                      <h6 class="text-dark mb-1">{fon.baslik}</h6>
+                      <p class="text-muted small mb-2">{fon.kurum}</p>
+                      <div class="d-flex justify-content-between">
+                        <span class="badge bg-success">{fon.tur}</span>
+                        <small class="text-primary fw-bold">{fon.tutar}</small>
+                      </div>
+                    </div>
+                  ))}
+                  <a href="/tesvik-hibe" 
+                     target="_blank"
+                     class="btn btn-danger w-100">
+                    Teşvik Hibe Programlarını İncele
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hızlı Başvuru Formu -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3 class="h2 text-dark mb-3">Size Özel Destek Planı Oluşturalım</h3>
+              <p class="lead text-muted mb-4">
+                Girişiminizin durumuna ve hedeflerinize göre size özel bir destek paketi hazırlayalım. 
+                Mentor ataması, eğitim planlaması ve finansman yol haritası için hemen başvurun.
+              </p>
+              
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Hızlı değerlendirme:</strong> 24 saat içinde size özel destek planı
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Uzman mentor eşleştirmesi:</strong> Alanınızda deneyimli mentor
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>
+                  <strong>Düzenli takip:</strong> Aylık ilerleme değerlendirmeleri
+                </li>
+              </ul>
+            </div>
+            
+            <div class="col-lg-6">
+              <div class="bg-light p-4 rounded-3">
+                <h5 class="text-dark mb-4">Hızlı Başvuru Formu 
+                    <br>(Sisteme girdikten sonra kayıt edebilirsiniz)</h5>
+                <form>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" placeholder="Adınız Soyadınız" disabled>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="email" class="form-control" placeholder="E-posta Adresiniz" disabled>
+                    </div>
+                    <div class="col-12">
+                      <input type="text" class="form-control" placeholder="Firma Adı (varsa)" disabled>
+                    </div>
+                    <div class="col-12">
+                      <select class="form-select" disabled>
+                        <option>Girişiminizin aşamasını seçin</option>
+                        <option>Fikir Aşaması</option>
+                        <option>Kuruluş Aşaması</option>
+                        <option>Büyüme Aşaması</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <select class="form-select" disabled>
+                        <option>İhtiyacınız olan destek türü</option>
+                        <option>Mentorluk/Danışmanlık</option>
+                        <option>Eğitim/Workshop</option>
+                        <option>Finansman/Fon danışmanlığı</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <textarea class="form-control" rows="3" placeholder="Kısaca girişiminizi ve ihtiyaçlarınızı anlatın..." disabled></textarea>
+                    </div>
+                    <div class="col-12">
+                      <a href="https://panel.meetwork.net/kayit" 
+                         target="_blank"
+                         class="btn btn-success w-100 py-3">
+                        <i class="bi bi-send me-2"></i>Başvuruyu Tamamla (Üyelik Gerekli)
+                      </a>
+                      <small class="text-muted d-block mt-2 text-center">
+                        *Formu doldurmak için üye girişi yapın
+                      </small>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Başarı Hikayeleri -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4 text-center">Başarı Hikayeleri</h2>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-quote fs-1 text-success opacity-25"></i>
+              </div>
+              <p class="text-muted mb-3">
+                "MeetWork'teki mentor desteği sayesinde iş planımı profesyonelleştirdim ve KOSGEB'den 
+                3.350.000 TL hibe almaya hak kazandım. Şimdi 5 kişilik ekibimle üretime başladık."
+              </p>
+              <div class="d-flex align-items-center">
+                <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                  <i class="bi bi-person text-success"></i>
+                </div>
+                <div>
+                  <h6 class="text-dark mb-0">Ali Kaya</h6>
+                  <small class="text-muted">Tarım Teknolojileri</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-quote fs-1 text-success opacity-25"></i>
+              </div>
+              <p class="text-muted mb-3">
+                "İhracat danışmanımız sayesinde Almanya'ya ilk ihracatımızı gerçekleştirdik. 
+                MeetWork olmasaydı bu kadar hızlı ilerleyemezdik."
+              </p>
+              <div class="d-flex align-items-center">
+                <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                  <i class="bi bi-person text-success"></i>
+                </div>
+                <div>
+                  <h6 class="text-dark mb-0">A.Zeynep Demir</h6>
+                  <small class="text-muted">Demir Tekstil</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-quote fs-1 text-success opacity-25"></i>
+              </div>
+              <p class="text-muted mb-3">
+                "Yatırımcı sunumu hazırlama workshop'u sayesinde 3 yatırımcıdan teklif aldık. 
+                MeetWork ekosistemindeki mentorlar gerçekten çok değerli."
+              </p>
+              <div class="d-flex align-items-center">
+                <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                  <i class="bi bi-person text-success"></i>
+                </div>
+                <div>
+                  <h6 class="text-dark mb-0">Ahmet Can Yılmaz</h6>
+                  <small class="text-muted">Yapay Zeka Girişimi</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SSS Bölümü -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4 text-center">❓ Sıkça Sorulan Sorular</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion" id="girisimciSssAccordion">
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#girisimciSss1">
+                  Mentorluk hizmeti gerçekten ücretsiz mi?
+                </button>
+              </h3>
+              <div id="girisimciSss1" class="accordion-collapse collapse show" data-bs-parent="#girisimciSssAccordion">
+                <div class="accordion-body">
+                  <strong>Evet, tamamen ücretsizdir.</strong> MeetWork platformundaki tüm mentorluk ve danışmanlık hizmetleri ücretsizdir. Mentorlarımız gönüllü olarak deneyimlerini paylaşmakta ve girişimcilere destek olmaktadır. Herhangi bir ücret talep edilmez.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#girisimciSss2">
+                  Hangi aşamadaki girişimler başvurabilir?
+                </button>
+              </h3>
+              <div id="girisimciSss2" class="accordion-collapse collapse" data-bs-parent="#girisimciSssAccordion">
+                <div class="accordion-body">
+                  Henüz iş fikri aşamasında olan girişimcilerden, kuruluşunu tamamlamış ve büyümekte olan KOBİ'lere kadar her aşamadaki girişimci başvurabilir. Her aşama için farklı mentor ve destek programlarımız mevcuttur.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#girisimciSss3">
+                  Mentor görüşmeleri nasıl gerçekleşiyor?
+                </button>
+              </h3>
+              <div id="girisimciSss3" class="accordion-collapse collapse" data-bs-parent="#girisimciSssAccordion">
+                <div class="accordion-body">
+                  Mentor görüşmeleri online (Zoom, Google Meet) veya yüz yüze (uygunluk durumuna göre) gerçekleştirilebilir. Panel üzerinden mentorunuza randevu alabilir, görüşme öncesi sorularınızı iletebilir ve görüşme sonrası notları takip edebilirsiniz.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#girisimciSss4">
+                  Finansman danışmanlığında hangi konularda destek alabilirim?
+                </button>
+              </h3>
+              <div id="girisimciSss4" class="accordion-collapse collapse" data-bs-parent="#girisimciSssAccordion">
+                <div class="accordion-body">
+                  KOSGEB, TÜBİTAK, Kalkınma Ajansları gibi kurumların hibe ve teşvik programlarına başvuru süreçlerinde, proje yazımında, yatırımcı sunumu hazırlamada, melek yatırımcı ve VC fonlarla görüşme hazırlığında, yatırım değerlemesi ve due diligence süreçlerinde profesyonel destek alabilirsiniz.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Son CTA -->
+    <section class="text-center py-5 bg-light rounded-3">
+      <h3 class="h2 text-dark mb-4">Girişiminizi Büyütmek İçin İlk Adımı Atın</h3>
+      <p class="lead text-muted mb-5">
+        Ücretsiz mentorluk, eğitimler ve finansman desteği için hemen başvurun. 
+        MeetWork ekosistemi olarak yanınızdayız.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-success btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+        <a href="https://panel.meetwork.net/mentor-talebi" 
+           target="_blank"
+           class="btn btn-outline-success btn-lg px-5">
+          <i class="bi bi-chat-dots me-2"></i>Mentör Talep Et
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20Girişimci%20destek%20programı%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+           target="_blank"
+           class="btn btn-outline-dark btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Kart Stilleri */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Badge Stilleri */
+    .badge.bg-light {
+      background-color: #f8f9fa !important;
+      color: #212529;
+      font-weight: normal;
+      padding: 6px 10px;
+    }
+    
+    /* İstatistik Kartları */
+    .bg-light.p-3.rounded-3 {
+      transition: transform 0.3s ease;
+    }
+    
+    .bg-light.p-3.rounded-3:hover {
+      transform: scale(1.05);
+      background-color: #e9ecef !important;
+    }
+    
+    /* Yol Haritası */
+    .bg-success.bg-opacity-10 {
+      transition: all 0.3s ease;
+    }
+    
+    .bg-success.bg-opacity-10:hover {
+      transform: scale(1.1);
+      background-color: rgba(25, 135, 84, 0.2) !important;
+    }
+    
+    /* Accordion */
+    .accordion-button {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: #d1e7dd;
+      color: #0f5132;
+    }
+    
+    /* Progress Bar */
+    .progress {
+      border-radius: 10px;
+    }
+    
+    .progress-bar {
+      border-radius: 10px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-5 {
+        font-size: 1.8rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .bg-success.bg-opacity-10 {
+        width: 60px !important;
+        height: 60px !important;
+      }
+      
+      .bg-success.bg-opacity-10 i {
+        font-size: 1.5rem !important;
+      }
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MeetWork Girişimci Destek Platformu",
+    "description": "Girişimciler ve KOBİ'ler için ücretsiz mentorluk, eğitim ve finansman desteği",
+    "url": "https://meetwork.com.tr/girisimci-destek",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com.tr"
+    },
+    "mainEntity": {
+      "@type": "Service",
+      "name": "Girişimci Destek Programı",
+      "provider": {
+        "@type": "Organization",
+        "name": "MeetWork"
+      },
+      "areaServed": "Turkey",
+      "audience": {
+        "@type": "BusinessAudience",
+        "businessRole": "Startup, SME"
+      }
+    }
+  }
+  </script>
+</BaseLayout>

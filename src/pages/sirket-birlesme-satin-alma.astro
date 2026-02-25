@@ -1,0 +1,783 @@
+---
+// src/pages/sirket-birlesme-satin-alma.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO parametreleri
+const seoTitle = "Şirket Birleşme, Satın Alma ve Ortaklık Fırsatları | MeetWork M&A Platformu";
+const seoDescription = "Şirketini satmak, büyümek için şirket satın almak veya stratejik ortaklık kurmak isteyen işletmeler için MeetWork M&A platformu. Ücretsiz üye olun, fırsatları keşfedin.";
+const seoKeywords = "şirket birleşme, şirket satın alma, şirket satmak istiyorum, şirket almak istiyorum, iş ortaklığı, M&A danışmanlık, şirket devri, birleşme ve satın alma platformu";
+const canonicalUrl = "https://meetwork.com.tr/sirket-birlesme-satin-alma";
+
+// Örnek veriler (gerçek uygulamada API'den gelecek)
+const sirketVerileri = {
+  satilikSirketler: [
+    {
+      id: "MNA001",
+      firmaAdi: "A** S**",
+      sektor: "Makine İmalat",
+      konum: "Konya / Organize Sanayi",
+      yillikCiro: "12.500.000 ₺",
+      calisanSayisi: 45,
+      kurulusYili: 1998,
+      talepEdilenDeger: "4.200.000 ₺",
+      fiyatTalepEdiyor: true,
+      fiyatTalepAralik: "3.500.000 ₺ - 5.000.000 ₺",
+      fiyatPazarlik: true,
+      fiyatAciklama: "Son kullanıcı değerlemesi 6.2M ₺, acil satış nedeniyle pazarlığa açık.",
+      satisNedeni: "Ortakların emeklilik ve yurtdışına yerleşme planı",
+      aciklama: "35 yıllık köklü firma, CNC işleme merkezleriyle otomotiv yan sanayine üretim yapıyor. Avrupa'ya ihracatı var.",
+      finansalDurum: "Kârlı, borçsuz, düzenli nakit akışı",
+      durum: "aktif",
+      tel: "Telefonla görüşme için üyelik gerekli"
+    },
+    {
+      id: "MNA002",
+      firmaAdi: "Y** T**",
+      sektor: "Tarım ve Gıda",
+      konum: "Antalya / Manavgat",
+      yillikCiro: "8.750.000 ₺",
+      calisanSayisi: 28,
+      kurulusYili: 2005,
+      fiyatTalepEdiyor: false,
+      fiyatTalepAralik: "2.800.000 ₺ - 3.500.000 ₺",
+      fiyatPazarlik: true,
+      fiyatAciklama: "Değerleme raporu mevcut",
+      satisNedeni: "Büyüme için stratejik ortak arayışı",
+      aciklama: "Örtüaltı tarım yapan firma, modern seralarıyla yılda 4 ürün hasadı yapıyor. Avrupa'ya organik ürün ihracatı var.",
+      finansalDurum: "İstikrarlı büyüme, düşük borç oranı",
+      durum: "aktif"
+    },
+    {
+      id: "MNA003",
+      firmaAdi: "D** Y**",
+      sektor: "Bilişim / Yazılım",
+      konum: "İstanbul / Teknopark",
+      yillikCiro: "5.200.000 ₺",
+      calisanSayisi: 18,
+      kurulusYili: 2017,
+      fiyatTalepEdiyor: true,
+      fiyatTalepAralik: "6.500.000 ₺",
+      fiyatPazarlik: true,
+      fiyatAciklama: "Teknoloji odaklı değerleme",
+      satisNedeni: "Yurtdışına taşınma, ortaklık devri",
+      aciklama: "Kurumsal firmalar için özel yazılım çözümleri, ERP entegrasyonları ve mobil uygulama geliştirme. 50+ aktif müşteri.",
+      finansalDurum: "Yüksek kâr marjı, büyüyen müşteri portföyü",
+      durum: "aktif"
+    },
+    {
+      id: "MNA004",
+      firmaAdi: "E** T** K**",
+      sektor: "Tekstil / Hazır Giyim",
+      konum: "İzmir / Kemalpaşa",
+      yillikCiro: "18.200.000 ₺",
+      calisanSayisi: 85,
+      kurulusYili: 1992,
+      fiyatTalepEdiyor: false,
+      fiyatTalepAralik: "7.500.000 ₺ - 9.000.000 ₺",
+      fiyatPazarlik: true,
+      fiyatAciklama: "Marka değeri dahil",
+      satisNedeni: "Aile şirketi, profesyonel yönetim arayışı",
+      aciklama: "Kendi markasıyla iç piyasada 30 mağaza, ayrıca yurtdışına fason üretim. Güçlü tedarikçi ağı.",
+      finansalDurum: "Stabil, sektör ortalamasının üzerinde kârlılık",
+      durum: "aktif"
+    },
+    {
+      id: "MNA005",
+      firmaAdi: "K** L**",
+      sektor: "Lojistik / Nakliye",
+      konum: "Samsun / Tekkeköy",
+      yillikCiro: "9.800.000 ₺",
+      calisanSayisi: 32,
+      kurulusYili: 2001,
+      fiyatTalepEdiyor: true,
+      fiyatTalepAralik: "3.200.000 ₺",
+      fiyatPazarlik: true,
+      fiyatAciklama: "Araç filosu dahil",
+      satisNedeni: "Sektör değiştirme, yeni yatırım",
+      aciklama: "20 araçlık filosuyla Karadeniz bölgesinde yaygın hizmet ağı. Soğuk hava deposu ve dağıtım merkezi.",
+      finansalDurum: "Düzenli gelir, mevsimsel dalgalanmalar",
+      durum: "aktif"
+    }
+  ],
+  aliciFirmalar: [
+    {
+      id: "BYR001",
+      firmaAdi: "G*** Holding A.Ş.",
+      ilgilenilenSektor: ["Makine İmalat", "Otomotiv Yan Sanayi"],
+      butce: "20.000.000 ₺+",
+      konum: "İstanbul / Gebze",
+      aradigiOzellikler: "İhracat potansiyeli yüksek, teknolojik altyapısı güçlü firmalar"
+    },
+    {
+      id: "BYR002",
+      firmaAdi: "A** Y** Fonu",
+      ilgilenilenSektor: ["Yazılım", "Fintech", "E-ticaret"],
+      butce: "5.000.000 ₺ - 15.000.000 ₺",
+      konum: "Türkiye geneli",
+      aradigiOzellikler: "Ölçeklenebilir iş modeli, güçlü ekip, uluslararası pazara açılma potansiyeli"
+    }
+  ]
+};
+
+const satilikSirketler = sirketVerileri.satilikSirketler;
+const aliciFirmalar = sirketVerileri.aliciFirmalar;
+
+// Sektörlere göre filtreleme için (ilerde kullanılacak)
+const sektorler = [...new Set(satilikSirketler.map(s => s.sektor))];
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/ma-og.jpg"
+>
+
+  <main class="container py-5">
+    <!-- Hero Banner -->
+    <section class="mb-5">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="mb-3">
+            <span class="badge bg-primary mb-2">M&A Platformu</span>
+            <h1 class="display-5 fw-bold text-dark mb-4">Şirket Birleşme, Satın Alma ve Ortaklık Platformu</h1>
+            <p class="lead text-dark mb-4">
+              Şirketinizi satmak, büyümek için yeni bir şirket satın almak veya stratejik ortaklık 
+              kurmak mı istiyorsunuz? MeetWork M&A platformu ile doğru iş ortağını bulun.
+            </p>
+          </div>
+          
+          <!-- Hızlı Bilgi Kutuları -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-primary mb-0">35+</h3>
+                <small class="text-muted">Aktif Satılık Şirket</small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-success mb-0">120M ₺</h3>
+                <small class="text-muted">Toplam İşlem Hacmi</small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-info mb-0">18</h3>
+                <small class="text-muted">Tamamlanan Birleşme</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-3">
+            <a href="https://panel.meetwork.net/kayit" 
+               target="_blank"
+               class="btn btn-primary px-4">
+              <i class="bi bi-plus-circle me-2"></i>Şirketimi Satışa Çıkar
+            </a>
+            <a href="#satilik-sirketler" 
+               class="btn btn-outline-primary px-4">
+              <i class="bi bi-search me-2"></i>Satılık Şirketleri İncele
+            </a>
+            <a href="https://wa.me/905412465429?text=Merhaba,%20Şirket%20birleşme%20ve%20satın%20alma%20platformunuz%20hakkında%20bilgi%20almak%20istiyorum" 
+               target="_blank"
+               class="btn btn-outline-dark px-4">
+              <i class="bi bi-whatsapp me-2"></i>Danışmanlık Al
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg bg-primary text-white">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-4">📋 Ücretsiz Değerleme ve Danışmanlık</h5>
+              <p class="mb-3">
+                Şirketinizin gerçek değerini öğrenin, doğru alıcı veya yatırımcıyla buluşun.
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>Profesyonel değerleme
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>Gizlilik sözleşmesi ile koruma
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>Due diligence desteği
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill me-2"></i>Satış sonrası entegrasyon
+                </li>
+              </ul>
+              <a href="https://panel.meetwork.net/kayit" 
+                 target="_blank"
+                 class="btn btn-light w-100">
+                <i class="bi bi-arrow-right me-2"></i>Ücretsiz Değerleme Talep Et
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platformu Tanıtım Mesajı -->
+    <section class="mb-5">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-5">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="h2 text-dark mb-3">🤝 MeetWork M&A Platformu ile Doğru Ortağı Bulun</h3>
+              <p class="lead text-dark mb-4">
+                MeetWork ekosistemindeki binlerce iş insanı, yatırımcı ve girişimci ile tanışın. 
+                Şirketinizi büyütmek, yeni pazarlara açılmak veya başarılı bir çıkış yapmak için 
+                doğru fırsatları değerlendirin.
+              </p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-building fs-1 text-primary me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-0">Satıcılar İçin</h6>
+                      <small class="text-muted">Doğru alıcıyı bulun</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-cash-stack fs-1 text-success me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-0">Alıcılar İçin</h6>
+                      <small class="text-muted">Fırsatları keşfedin</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-handshake fs-1 text-info me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-0">Ortaklık</h6>
+                      <small class="text-muted">Stratejik iş birlikleri</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card border-0 shadow">
+                <div class="card-body text-center p-4">
+                  <h5 class="text-primary mb-3">Başarı Hikayeleri</h5>
+                  <div class="border-start border-3 border-primary ps-3 mb-3 text-start">
+                    <p class="text-muted mb-1">
+                      "MeetWork sayesinde 30 yıllık aile şirketimizi doğru yatırımcıya devrettik."
+                    </p>
+                    <small class="text-primary fw-bold">- Anadolu Makine</small>
+                  </div>
+                  <div class="border-start border-3 border-success ps-3 mb-3 text-start">
+                    <p class="text-muted mb-1">
+                      "Platformda bulduğumuz ortakla birlikte Avrupa'ya açıldık."
+                    </p>
+                    <small class="text-success fw-bold">- Yeşil Vadi Tarım</small>
+                  </div>
+                  <a href="#iletisim" class="btn btn-outline-primary btn-sm">Tüm Hikayeler</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Şirketimi Satmak İstiyorum -->
+    <section class="mb-5" id="satilik-sirketler">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 text-dark mb-0">
+          <i class="bi bi-building fs-1 text-primary me-2"></i>
+          Bazı Satılık Şirketler
+        </h2>
+        <span class="badge bg-primary rounded-pill px-3 py-2">
+          {satilikSirketler.length} Tane Listeleniyor
+        </span>
+      </div>
+      
+      <div class="row g-4">
+        {satilikSirketler.map((sirket) => (
+          <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <!-- Üst Bilgiler -->
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div>
+                    <h5 class="h5 text-dark mb-1">{sirket.firmaAdi}</h5>
+                    <div class="d-flex gap-2 mb-2">
+                      <span class="badge bg-light text-dark">{sirket.sektor}</span>
+                      <span class="badge bg-light text-dark">
+                        <i class="bi bi-geo-alt me-1"></i>{sirket.konum}
+                      </span>
+                    </div>
+                  </div>
+                  <span class="badge bg-success">{sirket.kurulusYili} Kuruluş</span>
+                </div>
+                
+                <!-- Temel Bilgiler -->
+                <div class="row g-3 mb-4">
+                  <div class="col-4">
+                    <div class="bg-light p-2 rounded text-center">
+                      <small class="text-muted d-block">Yıllık Ciro</small>
+                      <strong class="text-dark">{sirket.yillikCiro}</strong>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="bg-light p-2 rounded text-center">
+                      <small class="text-muted d-block">Çalışan</small>
+                      <strong class="text-dark">{sirket.calisanSayisi}</strong>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="bg-light p-2 rounded text-center">
+                      <small class="text-muted d-block">Durum</small>
+                      <strong class="text-dark text-uppercase">{sirket.finansalDurum.split(' ')[0]}</strong>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Açıklama -->
+                <p class="text-dark mb-3">{sirket.aciklama}</p>
+                
+                <!-- Satış Bilgileri -->
+                <div class="bg-primary bg-opacity-10 p-3 rounded-3 mb-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-muted">Satış Fiyatı</small>
+                      <h6 class="text-primary mb-0">{sirket.fiyatTalepEdiyor ? sirket.fiyatTalepAralik : 'Pazarlığa Açık'}</h6>
+                    </div>
+                    <span class="badge bg-warning">
+                      {sirket.fiyatPazarlik ? 'Pazarlık Var' : 'Net Fiyat'}
+                    </span>
+                  </div>
+                  {sirket.fiyatAciklama && (
+                    <small class="text-muted d-block mt-2">
+                      <i class="bi bi-info-circle me-1"></i>
+                      {sirket.fiyatAciklama}
+                    </small>
+                  )}
+                </div>
+                
+                <!-- Satış Nedeni -->
+                <div class="mb-3">
+                  <small class="text-muted">Satış Nedeni</small>
+                  <p class="text-dark mb-0">{sirket.satisNedeni}</p>
+                </div>
+                
+                <!-- Butonlar -->
+                <div class="d-grid gap-2">
+                  <a href={`https://panel.meetwork.net/kayit?firma=${sirket.id}`}
+                     target="_blank"
+                     class="btn btn-primary">
+                    <i class="bi bi-eye me-2"></i>Detayları Gör (Üyelik Gerekli)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="https://panel.meetwork.net/satilik-sirketler" 
+           target="_blank"
+           class="btn btn-outline-primary btn-lg">
+          <i class="bi bi-arrow-right me-2"></i>Tüm Satılık Şirketleri İncele
+        </a>
+      </div>
+    </section>
+
+    <!-- Şirket Satın Almak İstiyorum -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">
+        <i class="bi bi-cash-stack fs-1 text-success me-2"></i>
+        Şirket Satın Almak İsteyen Yatırımcılar
+      </h2>
+      
+      <div class="row g-4">
+        {aliciFirmalar.map((alici) => (
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                    <i class="bi bi-person-badge fs-3 text-success"></i>
+                  </div>
+                  <div>
+                    <h5 class="h5 text-dark mb-1">{alici.firmaAdi}</h5>
+                    <small class="text-muted">
+                      <i class="bi bi-geo-alt me-1"></i>{alici.konum}
+                    </small>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <small class="text-muted">İlgilendiği Sektörler</small>
+                  <div class="d-flex flex-wrap gap-2 mt-1">
+                    {alici.ilgilenilenSektor.map(sektor => (
+                      <span class="badge bg-light text-dark">{sektor}</span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <small class="text-muted">Yatırım Bütçesi</small>
+                  <h6 class="text-success fw-bold">{alici.butce}</h6>
+                </div>
+                
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-info-circle me-1"></i>
+                  {alici.aradigiOzellikler}
+                </p>
+                
+                <hr class="my-3">
+                
+                <div class="d-grid">
+                  <a href="https://panel.meetwork.net/kayit" 
+                     target="_blank"
+                     class="btn btn-outline-success">
+                    <i class="bi bi-send me-2"></i>Bu Yatırımcıya Teklif Gönder
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Ortaklık Kurmak İsteyenler -->
+    <section class="mb-5">
+      <div class="card border-0 bg-info bg-opacity-10">
+        <div class="card-body p-5">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="h3 text-dark mb-3">
+                <i class="bi bi-handshake fs-1 text-info me-2"></i>
+                Stratejik Ortaklık Kurmak İster misiniz?
+              </h3>
+              <p class="lead text-dark mb-4">
+                MeetWork ekosisteminde binlerce firma ile tanışın. Sinerji yaratacak, birlikte 
+                büyüyeceğiniz stratejik iş ortakları bulun.
+              </p>
+              
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="d-flex">
+                    <i class="bi bi-diagram-3 fs-2 text-info me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-1">MetWork Venture</h6>
+                      <small class="text-muted">Ortak girişim fırsatları</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex">
+                    <i class="bi bi-share fs-2 text-info me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-1">Azınlık Hissesi</h6>
+                      <small class="text-muted">Stratejik ortaklık yatırımı</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex">
+                    <i class="bi bi-globe fs-2 text-info me-3"></i>
+                    <div>
+                      <h6 class="text-dark mb-1">İhracat Ortaklığı</h6>
+                      <small class="text-muted">Yurtdışı pazarlara açılma</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="card border-0 shadow">
+                <div class="card-body text-center p-4">
+                  <h5 class="text-info mb-3">Ortaklık Başvurusu</h5>
+                  <form class="text-start">
+                    <div class="mb-3">
+                      <input type="text" class="form-control" placeholder="Firma Adı" disabled>
+                    </div>
+                    <div class="mb-3">
+                      <select class="form-select" disabled>
+                        <option>Ortaklık Türü Seçin</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <textarea class="form-control" rows="2" placeholder="Kısaca firmanızı tanıtın..." disabled></textarea>
+                    </div>
+                    <a href="https://panel.meetwork.net/kayit" 
+                       target="_blank"
+                       class="btn btn-info w-100">
+                      <i class="bi bi-send me-2"></i>Başvuru Yap (Üyelik Gerekli)
+                    </a>
+                    <small class="text-muted d-block mt-2 text-center">
+                      *Formu doldurmak için üye girişi yapın
+                    </small>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Süreç Nasıl İşliyor? -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-5 text-center">M&A Süreci Nasıl İşliyor?</h2>
+      
+      <div class="row">
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <span class="h3 text-primary mb-0">1</span>
+            </div>
+            <h5 class="h6 text-dark mb-2">Ücretsiz Üye Olun</h5>
+            <p class="text-muted small">
+              panel.meetwork.net adresinden 
+              <br>1 dakikada üye olun.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <span class="h3 text-primary mb-0">2</span>
+            </div>
+            <h5 class="h6 text-dark mb-2">Firma Profiliniz Oluşturun</h5>
+            <p class="text-muted small">
+              Firmanızın detaylarını, 
+              <br>hedeflerinizi ekleyin.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <span class="h3 text-primary mb-0">3</span>
+            </div>
+            <h5 class="h6 text-dark mb-2">Eşleştirme Algoritması</h5>
+            <p class="text-muted small">
+              Size en uygun alıcı/satıcı/ortakları listeleyelim.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+              <span class="h3 text-primary mb-0">4</span>
+            </div>
+            <h5 class="h6 text-dark mb-2">Görüşme ve Anlaşma</h5>
+            <p class="text-muted small">
+              Gizlilik sözleşmesi ile görüşün, 
+              <br>anlaşmayı tamamlayın.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-primary btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+      </div>
+    </section>
+
+    <!-- SSS Bölümü -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4 text-center">❓ Sıkça Sorulan Sorular</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion" id="maSssAccordion">
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#maSss1">
+                  Şirketimi satışa çıkarmak ücretli mi?
+                </button>
+              </h3>
+              <div id="maSss1" class="accordion-collapse collapse show" data-bs-parent="#maSssAccordion">
+                <div class="accordion-body">
+                  <strong>Hayır, tamamen ücretsizdir.</strong> MeetWork platformuna üye olmak, firmanızı satışa çıkarmak, alıcı aramak veya ortaklık talebi oluşturmak için hiçbir ücret ödemezsiniz. Sadece anlaşma sağlandığında, başarılı işlem üzerinden hizmet bedeli alınır (sektör standardı).
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#maSss2">
+                  Firma bilgilerim gizli kalacak mı?
+                </button>
+              </h3>
+              <div id="maSss2" class="accordion-collapse collapse" data-bs-parent="#maSssAccordion">
+                <div class="accordion-body">
+                  <strong>Evet, tamamen gizli kalır.</strong> Firmanızın detaylı bilgileri (finansal veriler, müşteri listesi vb.) sadece gizlilik sözleşmesi (NDA) imzalayan potansiyel alıcılarla paylaşılır. Platformda yayınlanan bilgiler sadece sektör, konum, ciro aralığı gibi genel bilgilerdir.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#maSss3">
+                  Şirket değerlemesi nasıl yapılıyor?
+                </button>
+              </h3>
+              <div id="maSss3" class="accordion-collapse collapse" data-bs-parent="#maSssAccordion">
+                <div class="accordion-body">
+                  MeetWork olarak profesyonel değerleme uzmanlarımızla şirketinizin gerçek değerini hesaplıyoruz. Gelir yaklaşımı, piyasa yaklaşımı ve maliyet yaklaşımı yöntemlerini kullanarak sektörünüze ve büyüklüğünüze en uygun değerleme modelini uyguluyoruz. Değerleme raporu, potansiyel alıcılarla görüşmelerde size yol gösterir.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#maSss4">
+                  Satın alma sürecinde hukuki destek alabiliyor muyum?
+                </button>
+              </h3>
+              <div id="maSss4" class="accordion-collapse collapse" data-bs-parent="#maSssAccordion">
+                <div class="accordion-body">
+                  Evet, anlaşma aşamasına geldiğinizde due diligence (hukuki, mali, ticari durum tespiti) süreçlerinde ihtiyaç duyduğunuz her konuda uzman danışmanlarımız ve anlaşmalı hukuk bürolarımızla size destek sağlıyoruz. Hisse devir sözleşmeleri, gizlilik anlaşmaları ve diğer tüm hukuki belgeler profesyonel ekipler tarafından hazırlanır.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Son CTA -->
+    <section class="text-center py-5 bg-light rounded-3">
+      <h3 class="h2 text-dark mb-4">Şirketinizi Büyütmek veya Doğru Ortakla Buluşmak İçin Harekete Geçin</h3>
+      <p class="lead text-muted mb-5">
+        İster şirketinizi satmak ister yeni bir şirket satın almak isteyin, 
+        MeetWork M&A platformu doğru iş ortağını bulmanız için yanınızda.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-primary btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+        <a href="https://panel.meetwork.net/sirket-sat" 
+           target="_blank"
+           class="btn btn-outline-primary btn-lg px-5">
+          <i class="bi bi-building me-2"></i>Şirketimi Satışa Çıkar
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20M&A%20platformunuz%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+           target="_blank"
+           class="btn btn-outline-dark btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>Uzman Danışmanlık Al
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Kart Stilleri */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Badge'ler */
+    .badge.bg-light {
+      background-color: #f8f9fa !important;
+      color: #212529;
+      font-weight: normal;
+      padding: 6px 12px;
+    }
+    
+    /* Değerleme kutusu */
+    .bg-primary.bg-opacity-10 {
+      border: 1px solid rgba(13, 110, 253, 0.2);
+    }
+    
+    /* Accordion */
+    .accordion-button {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: #e7f1ff;
+      color: #0d6efd;
+    }
+    
+    /* Hover efektleri */
+    .btn-outline-primary:hover {
+      background-color: #0d6efd;
+      color: white;
+    }
+    
+    /* Sayı daireleri */
+    .bg-primary.bg-opacity-10 {
+      transition: transform 0.3s ease;
+    }
+    
+    .bg-primary.bg-opacity-10:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-5 {
+        font-size: 1.8rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MeetWork Şirket Birleşme ve Satın Alma Platformu",
+    "description": "Şirket alım satım, birleşme ve ortaklık fırsatları",
+    "url": "https://meetwork.com/sirket-birlesme-satin-alma",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": "5",
+      "itemListElement": [
+        {
+          "@type": "Organization",
+          "name": "Anadolu Makine Sanayi",
+          "description": "35 yıllık makine imalat firması",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Konya"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+</BaseLayout>

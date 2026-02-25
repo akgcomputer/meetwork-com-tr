@@ -1,0 +1,881 @@
+---
+// src/akilli-is-eslestirme.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// SEO parametreleri
+const seoTitle = "Akıllı İş Eşleştirme | Yatırım, Ortaklık ve Çözüm Platformu - MeetWork";
+const seoDescription = "MeetWork Akıllı İş Eşleştirme ile ihtiyacınıza göre size en uygun yatırımcı, iş ortağı, mentor veya çözüm ortağını bulun. Yapay zeka destekli eşleştirme algoritması ile doğru kişilerle buluşun.";
+const seoKeywords = "iş eşleştirme, yatırımcı bul, iş ortağı bul, mentor bul, çözüm ortağı, iş birliği platformu, b2b eşleştirme, iş ağı";
+const canonicalUrl = "https://meetwork.com.tr.tr/akilli-is-eslestirme";
+
+// Örnek eşleştirme kategorileri
+const eslestirmeKategorileri = [
+  {
+    id: "yatirimci",
+    baslik: "Yatırımcı - Girişim Eşleştirme",
+    ikon: "bi-cash-coin",
+    renk: "success",
+    aciklama: "Yatırım arayan girişimler ile melek yatırımcılar, VC fonlar ve kurumsal yatırımcıları bir araya getiriyoruz.",
+    altKategoriler: ["Melek Yatırım", "VC Fon", "Kurumsal Yatırım", "Kitle Fonlaması"]
+  },
+  {
+    id: "is-ortakligi",
+    baslik: "İş Ortaklığı Eşleştirme",
+    ikon: "bi-handshake",
+    renk: "primary",
+    aciklama: "Stratejik ortaklık, joint venture, distribütörlük, bayilik ve tedarikçi eşleştirmeleri.",
+    altKategoriler: ["Stratejik Ortak", "Joint Venture", "Distribütör", "Tedarikçi"]
+  },
+  {
+    id: "mentorluk",
+    baslik: "Mentor - Danışman Eşleştirme",
+    ikon: "bi-people",
+    renk: "warning",
+    aciklama: "Alanında uzman mentorlar ve danışmanlarla birebir görüşmeler, düzenli danışmanlık hizmeti.",
+    altKategoriler: ["İş Geliştirme", "Finans", "Pazarlama", "Teknoloji", "Hukuk"]
+  },
+  {
+    id: "cozum-ortagi",
+    baslik: "Çözüm Ortağı Eşleştirme",
+    ikon: "bi-gear",
+    renk: "info",
+    aciklama: "İhtiyacınız olan yazılım, danışmanlık, dış kaynak hizmetleri için doğru çözüm ortağını bulun.",
+    altKategoriler: ["Yazılım Geliştirme", "Dijital Pazarlama", "Muhasebe", "Hukuk", "Lojistik"]
+  },
+  {
+    id: "ihracat",
+    baslik: "İhracat Eşleştirme",
+    ikon: "bi-globe",
+    renk: "danger",
+    aciklama: "Yurtdışına açılmak isteyen firmalar ile alım yapan yabancı firmalar, ihracat danışmanları ve lojistik çözümleri.",
+    altKategoriler: ["Alıcı Firmalar", "İhracat Danışmanı", "Yurtdışı Distribütör", "Lojistik"]
+  },
+  {
+    id: "acil-durum",
+    baslik: "Acil Durum Destek Eşleştirme",
+    ikon: "bi-exclamation-triangle",
+    renk: "danger",
+    aciklama: "Zor durumdaki firmalar ile destek olmak isteyen yatırımcı, danışman ve çözüm ortaklarını buluşturuyoruz.",
+    altKategoriler: ["Finansal Destek", "Danışmanlık", "Lojistik Destek", "Makine Ekipman"]
+  }
+];
+
+// Örnek başarılı eşleştirme hikayeleri
+const basariHikayeleri = [
+  {
+    id: "HIK001",
+    tip: "Yatırım Eşleştirmesi",
+    firma1: "Teknoloji Girişimi (Yazılım)",
+    firma2: "Melek Yatırımcı Ağı",
+    sonuc: "1.2M ₺ yatırım",
+    hikaye: "Yapay zeka destekli yazılım çözümleri geliştiren girişim, platformumuz üzerinden bulduğu melek yatırımcıdan 1.2 milyon TL yatırım alarak ekibini büyüttü ve yurtdışına açıldı.",
+    sure: "3 ay"
+  },
+  {
+    id: "HIK002",
+    tip: "İş Ortaklığı",
+    firma1: "Mobilya Üreticisi",
+    firma2: "İç Mimarlık Ofisi",
+    sonuc: "Stratejik Ortaklık",
+    hikaye: "Mobilya üreticisi firma, projelerinde kullanmak üzere iç mimarlık ofisi ile ortaklık kurdu. İlk yıl 5 büyük projede birlikte çalıştılar.",
+    sure: "4 ay"
+  },
+  {
+    id: "HIK003",
+    tip: "Mentorluk",
+    firma1: "Gıda Girişimi",
+    firma2: "Pazarlama Uzmanı",
+    sonuc: "Satışlarda %300 artış",
+    hikaye: "Gıda girişimi, mentor desteğiyle dijital pazarlama stratejisini yeniledi ve 6 ayda satışlarını 3 katına çıkardı.",
+    sure: "6 ay"
+  }
+];
+
+// Nasıl çalışır adımları
+const nasilCalisir = [
+  {
+    adim: 1,
+    baslik: "Ücretsiz Üye Olun",
+    aciklama: "panel.meetwork.net adresinden 2 dakikada üye olun, profilinizi oluşturun.",
+    ikon: "bi-person-plus"
+  },
+  {
+    adim: 2,
+    baslik: "İhtiyacınızı Belirleyin",
+    aciklama: "Yatırım, ortaklık, mentorluk veya çözüm ortağı ihtiyacınızı detaylandırın.",
+    ikon: "bi-chat-square-text"
+  },
+  {
+    adim: 3,
+    baslik: "Yapay Zeka Eşleştirmesi",
+    aciklama: "Akıllı algoritmamız size en uygun kişi ve firmaları listeler.",
+    ikon: "bi-cpu"
+  },
+  {
+    adim: 4,
+    baslik: "Görüşün ve Anlaşın",
+    aciklama: "Eşleştiğiniz kişi veya firmayla görüşün, iş birliğinizi başlatın.",
+    ikon: "bi-chat-dots"
+  }
+];
+
+// İstatistikler
+const istatistikler = {
+  basariliEslesme: 1250,
+  aktifKullanici: 8750,
+  mentorSayisi: 180,
+  yatirimMiktari: "185M ₺"
+};
+---
+
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={canonicalUrl}
+  ogImage="/images/akilli-eslestirme-og.jpg"
+>
+
+  <main class="container py-5">
+    <!-- Hero Banner -->
+    <section class="mb-5">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="mb-4">
+            <span class="badge bg-gradient-purple text-white mb-3 px-3 py-2">
+              <i class="bi bi-stars me-2"></i>Yapay Zeka Destekli Eşleştirme
+            </span>
+            <h1 class="display-4 fw-bold text-dark mb-4">
+              Akıllı İş Eşleştirme: 
+              <span class="text-gradient-purple">Doğru Kişi, Doğru Zaman, Doğru İş Birliği</span>
+            </h1>
+            <p class="lead text-dark mb-4">
+              MeetWork Akıllı İş Eşleştirme ile ihtiyacınıza göre size en uygun yatırımcı, iş ortağı, 
+              mentor veya çözüm ortağını bulun. Yapay zeka destekli algoritmamız, profilinizi analiz ederek 
+              size en uygun kişi ve firmaları listeler.
+            </p>
+          </div>
+          
+          <!-- İstatistikler -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-purple mb-0">{istatistikler.basariliEslesme}+</h3>
+                <small class="text-muted">Başarılı Eşleşme</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-primary mb-0">{istatistikler.aktifKullanici}+</h3>
+                <small class="text-muted">Aktif Kullanıcı</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-warning mb-0">{istatistikler.mentorSayisi}+</h3>
+                <small class="text-muted">Uzman Mentor</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="bg-light p-3 rounded-3 text-center">
+                <h3 class="h2 text-success mb-0">{istatistikler.yatirimMiktari}</h3>
+                <small class="text-muted">Toplam Yatırım</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-3">
+            <a href="https://panel.meetwork.net/kayit" 
+               target="_blank"
+               class="btn btn-purple px-4 py-3">
+              <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol, Hemen Eşleşmeye Başla
+            </a>
+            <a href="#nasil-calisir" 
+               class="btn btn-outline-purple px-4 py-3">
+              <i class="bi bi-play-circle me-2"></i>Nasıl Çalışır?
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-5">
+          <div class="card border-0 shadow-lg bg-gradient-purple text-white">
+            <div class="card-body p-5">
+              <h4 class="card-title mb-4">
+                <i class="bi bi-magic me-2"></i>
+                Yapay Zeka Eşleştirme Algoritması
+              </h4>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>Profil analizi:</strong> Sektör, büyüklük, hedefler
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>İhtiyaç eşleştirmesi:</strong> Ne arıyorsunuz?
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>Uyum skoru:</strong> %0-100 arası eşleşme yüzdesi
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>Geçmiş başarı:</strong> Benzer profillerin başarı hikayeleri
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>Öneri sistemi:</strong> Size özel tavsiyeler
+                </li>
+              </ul>
+              
+              <!-- Örnek eşleşme skoru -->
+              <div class="bg-white bg-opacity-20 p-3 rounded-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <small>Örnek Eşleşme Skoru</small>
+                  <small class="fw-bold">%95</small>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-white" style="width: 95%"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <small class="opacity-75">Teknoloji Girişimi</small>
+                  <small class="opacity-75">Yatırım Fonu</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eşleştirme Kategorileri -->
+    <section class="mb-5">
+      <div class="text-center mb-5">
+        <h2 class="display-6 fw-bold text-dark mb-3">Size Özel Eşleştirme Kategorileri</h2>
+        <p class="lead text-muted">
+          İhtiyacınız ne olursa olsun, doğru kişi veya firmayla buluşmanız için 6 farklı kategoride eşleştirme hizmeti
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        {eslestirmeKategorileri.map((kategori) => (
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm kategori-kart">
+              <div class="card-body p-4">
+                <div class={`bg-${kategori.renk} bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3`} 
+                     style="width: 60px; height: 60px;">
+                  <i class={`bi ${kategori.ikon} fs-2 text-${kategori.renk}`}></i>
+                </div>
+                <h5 class="h5 text-dark mb-2">{kategori.baslik}</h5>
+                <p class="text-muted small mb-3">{kategori.aciklama}</p>
+                
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  {kategori.altKategoriler.slice(0, 3).map(alt => (
+                    <span class="badge bg-light text-dark">{alt}</span>
+                  ))}
+                  {kategori.altKategoriler.length > 3 && (
+                    <span class="badge bg-light text-dark">+{kategori.altKategoriler.length-3}</span>
+                  )}
+                </div>
+                
+                <a href={`https://panel.meetwork.net/eslestirme/${kategori.id}`}
+                   target="_blank"
+                   class={`btn btn-outline-${kategori.renk} w-100`}>
+                  Eşleşmeye Başla <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Nasıl Çalışır? -->
+    <section class="mb-5" id="nasil-calisir">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-5">
+          <h2 class="h2 text-dark text-center mb-5">Akıllı Eşleştirme Nasıl Çalışır?</h2>
+          
+          <div class="row">
+            {nasilCalisir.map((adim) => (
+              <div class="col-md-3">
+                <div class="text-center position-relative">
+                  
+                  </div>
+                  <span class="badge bg-purple text-white rounded-pill mb-2">Adım {adim.adim}</span>
+                  <h5 class="h6 text-dark mb-2">{adim.baslik}</h5>
+                  <p class="text-muted small">{adim.aciklama}</p>
+                  
+                  {adim.adim < 4 && (
+                    <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y">
+                      <i class="bi bi-arrow-right fs-3 text-purple opacity-50"></i>
+                    </div>
+                  )}
+                </div>
+              
+            ))}
+          </div>
+          
+          <div class="text-center mt-4">
+            <a href="https://panel.meetwork.net/kayit" 
+               target="_blank"
+               class="btn btn-purple btn-lg px-5">
+              <i class="bi bi-person-plus me-2"></i>Hemen Başla
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Başarı Hikayeleri -->
+    <section class="mb-5">
+      <h2 class="h2 text-dark text-center mb-5">Başarılı Eşleştirme Hikayeleri</h2>
+      
+      <div class="row">
+        {basariHikayeleri.map((hikaye) => (
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-purple text-white me-2">{hikaye.tip}</span>
+                  <span class="badge bg-light text-dark">{hikaye.sure}</span>
+                </div>
+                
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <div class="text-center">
+                    <div class="bg-light rounded-circle p-2 mb-1 mx-auto" style="width: 50px; height: 50px;">
+                      <i class="bi bi-building fs-4 text-purple"></i>
+                    </div>
+                    <small class="text-dark fw-bold">{hikaye.firma1.split('(')[0]}</small>
+                  </div>
+                  <i class="bi bi-arrow-right fs-4 text-muted"></i>
+                  <div class="text-center">
+                    <div class="bg-light rounded-circle p-2 mb-1 mx-auto" style="width: 50px; height: 50px;">
+                      <i class="bi bi-person fs-4 text-success"></i>
+                    </div>
+                    <small class="text-dark fw-bold">{hikaye.firma2.split(' ')[0]}</small>
+                  </div>
+                </div>
+                
+                <div class="bg-light p-3 rounded-3 mb-3">
+                  <small class="text-muted">Eşleşme Sonucu</small>
+                  <h6 class="text-purple mb-0">{hikaye.sonuc}</h6>
+                </div>
+                
+                <p class="text-muted small mb-0">
+                  <i class="bi bi-quote me-1"></i>
+                  {hikaye.hikaye}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="https://panel.meetwork.net/basari-hikayeleri" 
+           target="_blank"
+           class="btn btn-outline-purple">
+          Tüm Başarı Hikayeleri <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Akıllı Eşleştirme Demo -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-lg overflow-hidden">
+        <div class="row g-0">
+          <div class="col-lg-5 bg-gradient-purple text-white p-5">
+            <h3 class="h3 mb-4">Size Özel Eşleştirme Skorunu Hemen Görün</h3>
+            <p class="mb-4">
+              Profilinizi oluşturun, yapay zeka destekli algoritmamız size en uygun 
+              yatırımcı, iş ortağı ve mentorları listelesin.
+            </p>
+            
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                %90+ eşleşme başarı oranı
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                50+ kriterde analiz
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Gerçek zamanlı öneriler
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Haftalık yeni eşleşme bildirimleri
+              </li>
+            </ul>
+            
+            <a href="https://panel.meetwork.net/kayit" 
+               target="_blank"
+               class="btn btn-light text-purple fw-bold px-4">
+              <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+            </a>
+          </div>
+          
+          <div class="col-lg-7 bg-light p-5">
+            <h5 class="text-dark mb-4">Örnek Eşleşme Sonuçları</h5>
+            
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <small class="text-dark">MeetWork Ventures (Yatırım Fonu)</small>
+                <small class="text-success fw-bold">%95</small>
+              </div>
+              <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-success" style="width: 95%"></div>
+              </div>
+              <small class="text-muted">MeetWork üyeleri doğrudan şirket birleştirme, satın alma ve Acil Destekler ile %95 kadarına destek oldu.</small>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <small class="text-dark">Melek Yatırımcı</small>
+                <small class="text-warning fw-bold">%82</small>
+              </div>
+              <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-warning" style="width: 82%"></div>
+              </div>
+              <small class="text-muted">Girişimcileri destekleyen melek yatırımcılar girişimlerin %82 kadarına yatırım yaptı.</small>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <small class="text-dark">İhracata Destek</small>
+                <small class="text-primary fw-bold">%78</small>
+              </div>
+              <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-primary" style="width: 78%"></div>
+              </div>
+              <small class="text-muted">Üylerimiz başta Ortadoğu ve Avrupa'ya sonra da diğer bölgelere MeetWork aracılığı ile %78 oranında ihracat yapıldı.</small>
+            </div>
+            
+            <div class="mt-4 pt-3 border-top">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle text-purple me-2 fs-5"></i>
+                <small class="text-muted">
+                  Eşleşme skorları, üye profillerinden gelen raporlar ve tercihlere göre hesaplanır. 
+                  Üye olduğunuzda siz de bu tabloda yer alabilirsiniz.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tüm Kategorilerde Eşleştirme -->
+    <section class="mb-5">
+      <h2 class="h2 text-dark text-center mb-4">Hangi Kategoride Eşleştirme Arıyorsunuz?</h2>
+      <p class="lead text-muted text-center mb-5">
+        Aşağıdaki kategorilerden size uygun olanı seçin, hemen eşleşmeye başlayın
+      </p>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-success bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-cash-coin fs-2 text-success"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">Yatırım Arıyorum</h5>
+              <p class="text-muted small">
+                Girişiminiz için yatırımcı, hibe veya teşvik desteği mi arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=yatirimci" 
+                 target="_blank"
+                 class="btn btn-outline-success w-100">
+                Yatırımcı Bul
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-handshake fs-2 text-primary"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">İş Ortağı Arıyorum</h5>
+              <p class="text-muted small">
+                Stratejik ortak, distribütör, tedarikçi veya joint venture partneri mi arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=is-ortagi" 
+                 target="_blank"
+                 class="btn btn-outline-primary w-100">
+                İş Ortağı Bul
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-warning bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-people fs-2 text-warning"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">Mentor / Danışman Arıyorum</h5>
+              <p class="text-muted small">
+                Size yol gösterecek deneyimli bir mentor veya uzman danışman mı arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=mentor" 
+                 target="_blank"
+                 class="btn btn-outline-warning w-100">
+                Mentor Bul
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-info bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-gear fs-2 text-info"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">Çözüm Ortağı Arıyorum</h5>
+              <p class="text-muted small">
+                Yazılım, pazarlama, lojistik gibi konularda hizmet sağlayıcı mı arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=cozum-ortagi" 
+                 target="_blank"
+                 class="btn btn-outline-info w-100">
+                Çözüm Ortağı Bul
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-danger bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-globe fs-2 text-danger"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">İhracat Ortağı Arıyorum</h5>
+              <p class="text-muted small">
+                Yurtdışına açılmak için alıcı, distribütör veya ihracat danışmanı mı arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=ihracat" 
+                 target="_blank"
+                 class="btn btn-outline-danger w-100">
+                İhracat Ortağı Bul
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+              <div class="bg-secondary bg-opacity-10 rounded-circle p-3 mx-auto mb-3" style="width: 70px; height: 70px;">
+                <i class="bi bi-exclamation-triangle fs-2 text-secondary"></i>
+              </div>
+              <h5 class="h5 text-dark mb-2">Acil Destek Arıyorum</h5>
+              <p class="text-muted small">
+                Zor durumda olan firmanız için acil finansal veya danışmanlık desteği mi arıyorsunuz?
+              </p>
+              <a href="https://panel.meetwork.net/kayit?tur=acil-destek" 
+                 target="_blank"
+                 class="btn btn-outline-secondary w-100">
+                Acil Destek Bul
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform İstatistikleri -->
+    <section class="mb-5">
+      <div class="card border-0 bg-gradient-purple text-white">
+        <div class="card-body p-5">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h3 class="h2 mb-4">Rakamlarla MeetWork Akıllı Eşleştirme</h3>
+              <p class="mb-4">
+                Binlerce kullanıcı, yüzlerce başarılı eşleşme ve milyonluk yatırımlar. 
+                MeetWork ekosistemi her geçen gün büyüyor ve daha fazla iş birliğine imza atıyor.
+              </p>
+            </div>
+            
+            <div class="col-lg-6">
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="bg-white bg-opacity-20 p-4 rounded-3 text-center">
+                    <h4 class="h2 mb-1">{istatistikler.basariliEslesme}+</h4>
+                    <small>Başarılı Eşleşme</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-white bg-opacity-20 p-4 rounded-3 text-center">
+                    <h4 class="h2 mb-1">{istatistikler.aktifKullanici}+</h4>
+                    <small>Aktif Kullanıcı</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-white bg-opacity-20 p-4 rounded-3 text-center">
+                    <h4 class="h2 mb-1">{istatistikler.mentorSayisi}+</h4>
+                    <small>Uzman Mentor</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-white bg-opacity-20 p-4 rounded-3 text-center">
+                    <h4 class="h2 mb-1">{istatistikler.yatirimMiktari}</h4>
+                    <small>Toplam Yatırım</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- SSS Bölümü -->
+    <section class="mb-5">
+      <h2 class="h2 text-dark text-center mb-5">❓ Sıkça Sorulan Sorular</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion" id="eslestirmeSssAccordion">
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#eslestirmeSss1">
+                  Eşleştirme algoritması nasıl çalışıyor?
+                </button>
+              </h3>
+              <div id="eslestirmeSss1" class="accordion-collapse collapse show" data-bs-parent="#eslestirmeSssAccordion">
+                <div class="accordion-body">
+                  Algoritmamız, profilinizdeki sektör, firma büyüklüğü, hedefler, ihtiyaçlar gibi 50'den fazla kriteri analiz eder. Aynı kriterleri karşı tarafın profiliyle karşılaştırır ve bir uyum skoru hesaplar. Geçmiş başarılı eşleşmelerden öğrenen yapay zeka modelimiz, size en uygun kişi ve firmaları önerir.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eslestirmeSss2">
+                  Eşleştiğim kişiyle nasıl iletişime geçebilirim?
+                </button>
+              </h3>
+              <div id="eslestirmeSss2" class="accordion-collapse collapse" data-bs-parent="#eslestirmeSssAccordion">
+                <div class="accordion-body">
+                  Eşleştiğiniz kişi veya firmayla panel üzerinden mesajlaşabilir, görüşme talep edebilir veya doğrudan iletişim bilgilerini görüntüleyebilirsiniz. Gizlilik sözleşmesi imzaladıktan sonra detaylı bilgileri paylaşabilirsiniz.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm mb-3">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eslestirmeSss3">
+                  Birden fazla kategoride eşleşme alabilir miyim?
+                </button>
+              </h3>
+              <div id="eslestirmeSss3" class="accordion-collapse collapse" data-bs-parent="#eslestirmeSssAccordion">
+                <div class="accordion-body">
+                  Evet, profilinizi oluştururken birden fazla kategori seçebilirsiniz. Örneğin hem yatırım arayıp hem mentor desteği almak isteyebilirsiniz. Algoritmamız tüm tercihlerinize göre size öneriler sunar.
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item border-0 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eslestirmeSss4">
+                  Eşleştirme hizmeti ücretli mi?
+                </button>
+              </h3>
+              <div id="eslestirmeSss4" class="accordion-collapse collapse" data-bs-parent="#eslestirmeSssAccordion">
+                <div class="accordion-body">
+                  <strong>Hayır, eşleştirme hizmeti tamamen ücretsizdir.</strong> Profil oluşturma, eşleşme alma, mesajlaşma ve görüşme talep etme işlemleri için herhangi bir ücret ödemezsiniz. Sadece anlaşma sağlandığında, başarılı işlem üzerinden hizmet bedeli alınır (sektör standardı).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Son CTA -->
+    <section class="text-center py-5 bg-light rounded-3">
+      <h3 class="h2 text-dark mb-4">Doğru İş Ortağını Bulmak İçin Hemen Harekete Geçin</h3>
+      <p class="lead text-muted mb-5">
+        Binlerce girişimci, yatırımcı ve iş insanı arasından size en uygun olanı bulun. 
+        MeetWork Akıllı Eşleştirme ile doğru kişiyle doğru zamanda buluşun.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="https://panel.meetwork.net/kayit" 
+           target="_blank"
+           class="btn btn-purple btn-lg px-5">
+          <i class="bi bi-person-plus me-2"></i>Ücretsiz Üye Ol
+        </a>
+        <a href="https://panel.meetwork.net/profil-olustur" 
+           target="_blank"
+           class="btn btn-outline-purple btn-lg px-5">
+          <i class="bi bi-sliders2 me-2"></i>Profil Oluştur
+        </a>
+        <a href="https://wa.me/905412465429?text=Merhaba,%20Akıllı%20İş%20Eşleştirme%20platformunuz%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+           target="_blank"
+           class="btn btn-outline-dark btn-lg px-5">
+          <i class="bi bi-whatsapp me-2"></i>WhatsApp'tan Bilgi Al
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Özel renkler */
+    .bg-gradient-purple {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .btn-purple {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+    }
+    
+    .btn-purple:hover {
+      background: linear-gradient(135deg, #5a6fd6 0%, #6a4392 100%);
+      color: white;
+    }
+    
+    .btn-outline-purple {
+      border: 2px solid #764ba2;
+      color: #764ba2;
+      background: transparent;
+    }
+    
+    .btn-outline-purple:hover {
+      background: #764ba2;
+      color: white;
+    }
+    
+    .text-purple {
+      color: #764ba2 !important;
+    }
+    
+    .bg-purple {
+      background-color: #764ba2 !important;
+    }
+    
+    .bg-opacity-20 {
+      --bs-bg-opacity: 0.2;
+    }
+    
+    /* Kart Stilleri */
+    .kategori-kart {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .kategori-kart:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+    
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Progress Bar */
+    .progress {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    /* Accordion */
+    .accordion-button {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .accordion-button:not(.collapsed)::after {
+      filter: brightness(0) invert(1);
+    }
+    
+    /* Badge */
+    .badge.bg-light {
+      background-color: #f8f9fa !important;
+      color: #212529;
+      font-weight: normal;
+      padding: 6px 10px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .display-6 {
+        font-size: 1.5rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .bg-gradient-purple.p-5 {
+        padding: 2rem !important;
+      }
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MeetWork Akıllı İş Eşleştirme",
+    "description": "Yapay zeka destekli iş eşleştirme platformu",
+    "url": "https://meetwork.com.tr/akilli-is-eslestirme",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MeetWork",
+      "url": "https://meetwork.com.tr"
+    },
+    "mainEntity": {
+      "@type": "Service",
+      "name": "Akıllı İş Eşleştirme Hizmeti",
+      "provider": {
+        "@type": "Organization",
+        "name": "MeetWork"
+      },
+      "description": "Yatırımcı, iş ortağı, mentor ve çözüm ortağı eşleştirme hizmeti",
+      "areaServed": "Turkey",
+      "audience": {
+        "@type": "BusinessAudience",
+        "businessRole": "Investor, Entrepreneur, SME"
+      }
+    }
+  }
+  </script>
+</BaseLayout>

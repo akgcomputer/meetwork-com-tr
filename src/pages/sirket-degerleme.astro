@@ -1,0 +1,123 @@
+---
+// src/pages/sirket-degerleme.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seoTitle = "Şirket Değerleme | Ücretsiz Ön Değerleme - MeetWork";
+const seoDescription = "Şirketinizin gerçek değerini öğrenin. Uzman ekibimizle ücretsiz ön değerleme, profesyonel değerleme raporu ve danışmanlık hizmeti.";
+const canonicalUrl = "https://meetwork.com.tr/sirket-degerleme";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription} canonical={canonicalUrl}>
+  <main class="container py-5">
+
+    <!-- Hero -->
+    <section class="mb-5">
+      <h1 class="display-5 fw-bold text-dark mb-4">Şirket Değerleme</h1>
+      <p class="lead text-dark">Şirketinizin gerçek değerini öğrenin, doğru fiyatla alıcı veya yatırımcı bulun.</p>
+    </section>
+
+    <!-- Değerleme Yöntemleri -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">Değerleme Yöntemleri</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="text-dark mb-3">Piyasa Yaklaşımı</h5>
+              <p class="text-muted">Benzer şirketlerin satış fiyatlarıyla karşılaştırma, sektör çarpanları analizi.</p>
+              <small class="text-muted">✚ Hızlı ve pratik</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="text-dark mb-3">Gelir Yaklaşımı</h5>
+              <p class="text-muted">Gelecekteki nakit akışlarının bugünkü değeri, iskonto oranı analizi.</p>
+              <small class="text-muted">✚ En güvenilir</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="text-dark mb-3">Maliyet Yaklaşımı</h5>
+              <p class="text-muted">Varlıkların yeniden inşa maliyeti, net aktif değeri hesaplaması.</p>
+              <small class="text-muted">✚ Somut veriler</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Değerleme Süreci -->
+    <section class="mb-5">
+      <h2 class="h3 text-dark mb-4">Değerleme Süreci</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">1</div>
+            <h6>Ön Görüşme</h6>
+            <small class="text-muted">15 dk</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">2</div>
+            <h6>Veri Toplama</h6>
+            <small class="text-muted">2-3 gün</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">3</div>
+            <h6>Analiz</h6>
+            <small class="text-muted">3-5 gün</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">4</div>
+            <h6>Rapor</h6>
+            <small class="text-muted">Teslim</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ne Zaman Değerleme Yapılır? -->
+    <section class="mb-5">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-4">
+          <h3 class="h4 text-dark mb-3">Ne Zaman Değerleme Yapılır?</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check text-primary me-2"></i>Satış veya birleşme öncesi</li>
+                <li class="mb-2"><i class="bi bi-check text-primary me-2"></i>Yatırım alma sürecinde</li>
+                <li><i class="bi bi-check text-primary me-2"></i>Ortaklık yapısı değişikliğinde</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check text-primary me-2"></i>Vergi planlaması için</li>
+                <li class="mb-2"><i class="bi bi-check text-primary me-2"></i>Kredi başvurularında</li>
+                <li><i class="bi bi-check text-primary me-2"></i>Hukuki süreçlerde</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-4">
+      <h4 class="text-dark mb-3">Şirketinizi Değerlemek İçin Hemen Başvurun</h4>
+      <p class="text-muted mb-4">Ücretsiz ön değerleme ve bilgi almak için panelden talep oluşturun.</p>
+      <a href="https://panel.meetwork.net/kayit" target="_blank" class="btn btn-primary btn-lg px-5">
+        <i class="bi bi-arrow-right me-2"></i>Değerleme Talep Et
+      </a>
+    </section>
+
+  </main>
+</BaseLayout>

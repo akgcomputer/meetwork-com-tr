@@ -1,0 +1,160 @@
+---
+// src/pages/sirket-satis-sureci.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seoTitle = "Şirket Satış Süreci | Adım Adım Şirket Devir Rehberi - MeetWork";
+const seoDescription = "Şirketinizi satmak için izlenecek adımlar: Hazırlık, değerleme, alıcı bulma, pazarlık, due diligence ve devir işlemleri.";
+const canonicalUrl = "https://meetwork.com.tr/sirket-satis-sureci";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription} canonical={canonicalUrl}>
+  <main class="container py-5">
+
+    <!-- Hero -->
+    <section class="mb-5">
+      <h1 class="display-5 fw-bold text-dark mb-4">Şirket Satış Süreci</h1>
+      <p class="lead text-dark">Şirketinizi satarken izlemeniz gereken adımlar ve bilmeniz gerekenler.</p>
+    </section>
+
+    <!-- Adımlar -->
+    <section class="mb-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">1</span>
+                <h5 class="mb-0">Hazırlık</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Finansal tabloları düzenleyin</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Hukuki belgeleri hazırlayın</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Satış nedeni ve hedef belirleyin</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Gizlilik sözleşmesi hazırlayın</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">2</span>
+                <h5 class="mb-0">Değerleme</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Profesyonel değerleme yaptırın</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Satış fiyatını belirleyin</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Pazarlık marjı belirleyin</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Değerleme raporu hazırlayın</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">3</span>
+                <h5 class="mb-0">Alıcı Bulma</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Satış ilanı oluşturun</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Potansiyel alıcıları belirleyin</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Gizlilik sözleşmesi imzalayın</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Ön bilgi paylaşımı yapın</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">4</span>
+                <h5 class="mb-0">Pazarlık</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Fiyat pazarlığı</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Ödeme koşulları</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Devir takvimi</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Niyet mektubu imzalayın</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">5</span>
+                <h5 class="mb-0">Due Diligence</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Hukuki inceleme</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Mali inceleme</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Ticari inceleme</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Teknik inceleme</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="badge bg-primary rounded-circle me-3" style="width: 30px; height: 30px;">6</span>
+                <h5 class="mb-0">Devir ve Kapanış</h5>
+              </div>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Hisse devir sözleşmesi</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Ödemenin tahsili</li>
+                <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Ticaret sicil tescil</li>
+                <li><i class="bi bi-check2 text-primary me-2"></i>Devir teslim</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Süre Bilgisi -->
+    <section class="mb-5">
+      <div class="card border-0 bg-light">
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-md-4">
+              <h6 class="text-dark">Ortalama Süre</h6>
+              <p class="h3 text-primary">4-6 ay</p>
+              <small class="text-muted">Şirket büyüklüğüne göre değişir</small>
+            </div>
+            <div class="col-md-4">
+              <h6 class="text-dark">Gerekli Belgeler</h6>
+              <p class="h3 text-primary">15-20</p>
+              <small class="text-muted">Finansal, hukuki, ticari</small>
+            </div>
+            <div class="col-md-4">
+              <h6 class="text-dark">Danışman Desteği</h6>
+              <p class="h3 text-primary">Önerilir</p>
+              <small class="text-muted">Hukuk, mali müşavir</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-4">
+      <h4 class="text-dark mb-3">Şirketinizi Satışa Çıkarmak İçin Harekete Geçin</h4>
+      <a href="https://panel.meetwork.net/kayit" target="_blank" class="btn btn-primary btn-lg px-5">
+        <i class="bi bi-arrow-right me-2"></i>Acil Durum ile Satış Sürecini Başlat
+      </a>
+    </section>
+
+  </main>
+</BaseLayout>
