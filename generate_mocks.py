@@ -27,7 +27,7 @@ urunler = [
 ]
 
 for i in range(50):
-    rfq_id = str(241000 + i)
+    rfq_id = str(242000 + i)
     urun = random.choice(urunler)
     
     title = f"{urun} Alım Talebi"
