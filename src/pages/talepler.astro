@@ -21,9 +21,13 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
 
 <BaseLayout title="MeetWork - B2B İş Talepleri">
   <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="fw-bold text-dark">Güncel İş ve Hizmet Talepleri</h1>
-      <a href="/talepler-panel" class="btn btn-outline-danger">Panel'e Git</a>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+      <h1 class="fw-bold text-dark mb-0">Güncel İş ve Hizmet Talepleri</h1>
+      <div class="d-flex gap-2 flex-wrap">
+        <a href="https://panel.meetwork.net/" class="btn btn-danger">Ücretsiz Talep Gir</a>
+        <a href="https://panel.meetwork.net/" class="btn btn-primary">Ücretsiz Teklif Gir</a>
+        <a href="/talepler-panel" class="btn btn-outline-secondary">Eski Talepler</a>
+      </div>
     </div>
     
     <p class="text-muted mb-5">Sistemimize düşen en güncel B2B iş fırsatları ve talepleri aşağıda listelenmiştir. Detayları görmek ve iletişime geçmek için taleplere tıklayınız.</p>
