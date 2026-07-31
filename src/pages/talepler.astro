@@ -30,7 +30,18 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
       </div>
     </div>
     
-    <p class="text-muted mb-5">Sistemimize düşen en güncel B2B iş fırsatları ve talepleri aşağıda listelenmiştir. Detayları görmek ve iletişime geçmek için taleplere tıklayınız.</p>
+    <!-- WOW Efektli Sayaç Banner -->
+    <div class="card bg-danger bg-gradient text-white shadow-lg border-0 mb-5 rounded-4 overflow-hidden position-relative">
+      <div class="card-body p-4 p-md-5 text-center position-relative" style="z-index: 1;">
+        <h3 class="fw-bold mb-3 text-white-50 text-uppercase tracking-wider">Sistemde Teklif Bekleyen Aktif Talep Sayısı</h3>
+        <div class="display-1 fw-bolder lh-1 mb-3" style="font-size: clamp(4rem, 8vw, 6rem); text-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+          {talepler.length}
+        </div>
+        <p class="lead mt-3 mb-0 fw-medium">Siz de rekabete katılın, geç kalmadan teklifinizi verip yeni iş fırsatlarını yakalayın!</p>
+      </div>
+      <!-- Dekoratif arka plan ikonu -->
+      <i class="bi bi-briefcase-fill position-absolute text-white opacity-10" style="font-size: 20rem; right: -5%; top: 50%; transform: translateY(-50%) rotate(-15deg); pointer-events: none;"></i>
+    </div>
 
     <div class="row">
       <div class="col-12">

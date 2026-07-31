@@ -26,8 +26,8 @@ urunler = [
     "Vinç Kiralama Hizmeti", "Güvenlik Kamerası (CCTV) Kurulumu", "Matbaa ve Broşür Basımı"
 ]
 
-for i in range(500):
-    rfq_id = str(243000 + i)
+for i in range(2500):
+    rfq_id = str(244000 + i)
     urun = random.choice(urunler)
     
     title = f"{urun} Alım Talebi"
