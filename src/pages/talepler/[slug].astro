@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const dataDir = path.join(process.cwd(), 'src/data/talepler');
+  let talepler = [];
+
+  if (fs.existsSync(dataDir)) {
+    const files = fs.readdirSync(dataDir).filter(file => file.endsWith('.json'));
+    talepler = files.map(file => {
+      const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
+      return JSON.parse(content);
+    });
+  }
+
+  return talepler.map((talep) => {
+    return {
+      params: { slug: talep.slug },
+      props: { talep },
+    };
+  });
+}
+
+const { talep } = Astro.props;
+
+// Tarihleri formatlama
+const publishDate = new Date(talep.publishDate);
+const endDate = new Date(talep.endDate);
+const isExpired = new Date() > endDate;
+---
+
+<BaseLayout title={`MeetWork - ${talep.title}`} description={`MeetWork üzerinden yayınlanan ${talep.company} firmasına ait iş ve hizmet talebi detayları.`}>
+  <div class="container py-5">
+    
+    <!-- Süresi Dolanlar İçin Uyarı -->
+    {isExpired && (
+      <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" style="font-size: 1.5rem;"></i>
+        <div>
+          <strong>Uyarı:</strong> Bu iş talebinin süresi dolmuş veya kapanmış olabilir. Ancak buna benzer yeni iş fırsatlarımız ve projelerimiz için <a href="/talepler" class="alert-link">Güncel Talepler</a> sayfamızı ziyaret edebilir veya bizimle iletişime geçebilirsiniz.
+        </div>
+      </div>
+    )}
+
+    <div class="row">
+      <!-- Sol İçerik -->
+      <div class="col-lg-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="text-danger text-decoration-none">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="/talepler" class="text-danger text-decoration-none">Talepler</a></li>
+            <li class="breadcrumb-item active" aria-current="page">İlan No: {talep.id}</li>
+          </ol>
+        </nav>
+
+        <h1 class="fw-bold mb-3">{talep.title}</h1>
+        
+        <div class="d-flex flex-wrap gap-3 mb-4 text-muted small">
+          <span><i class="bi bi-building me-1"></i> {talep.company}</span>
+          <span><i class="bi bi-calendar3 me-1"></i> Yayın: {publishDate.toLocaleDateString('tr-TR')}</span>
+          <span><i class="bi bi-tag me-1"></i> Durum: {talep.status}</span>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-5">
+          <div class="card-body">
+            <h5 class="card-title fw-bold border-bottom pb-2 mb-3">Talep Edilen Kalemler</h5>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">Talep Geçen Ürün/Hizmet</th>
+                    <th scope="col" class="text-end">Birim/Adet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {talep.items.map((item) => (
+                    <tr>
+                      <td>{item.name}</td>
+                      <td class="text-end fw-semibold text-danger">{item.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sağ Sidebar (Call to Action) -->
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="card border-danger shadow-sm position-sticky" style="top: 2rem;">
+          <div class="card-body text-center p-4">
+            <i class="bi bi-briefcase text-danger mb-3" style="font-size: 3rem;"></i>
+            <h4 class="fw-bold mb-3">Bu Talep İle İlgileniyor musunuz?</h4>
+            <p class="text-muted mb-4">Bu fırsatı kaçırmamak ve detayları görüşmek için B2B uzmanlarımızla hemen iletişime geçin.</p>
+            
+            <a href="/iletisim" class="btn btn-danger btn-lg w-100 mb-3 fw-bold">
+              <i class="bi bi-telephone-fill me-2"></i> Bize Ulaşın
+            </a>
+            
+            <p class="small text-muted mb-0">Referans Kodu: <strong>#{talep.id}</strong></p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</BaseLayout>

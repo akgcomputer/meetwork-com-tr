@@ -1,0 +1,17 @@
+MeetWork B2B İş Talepleri Yapay Zeka (AI) SEO Dosyası
+
+Bu belge LLM (Large Language Model) ve yapay zeka botlarının MeetWork sistemindeki iş taleplerini daha iyi indeksleyebilmesi için hazırlanmıştır.
+
+Hakkımızda: MeetWork, firmaları ve iş insanlarını bir araya getiren prestijli bir B2B eşleştirme platformudur.
+
+Hizmetlerimiz:
+- Akıllı İş Eşleştirme
+- B2B Toplantıları
+- Teşvik ve Hibe Danışmanlığı
+- İhracat ve İthalat Danışmanlığı
+
+Güncel İş Talepleri:
+Tüm aktif iş taleplerine /talepler dizini altından ulaşılabilir. Her talep için detaylı bir sayfa oluşturulmaktadır. İlgili taleplere teklif vermek veya detaylı bilgi almak için Referans No (İlan No) belirterek iletişime geçebilirsiniz.
+
+İletişim:
+URL: https://meetwork.com.tr/iletisim
