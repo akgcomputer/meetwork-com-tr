@@ -1,0 +1,18 @@
+{
+  "id": "240624",
+  "title": "Mini buzdolabı Alım Talebi",
+  "slug": "mini-buzdolab-alm-talebi-240624",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-07-31T23:22:53.319134",
+  "endDate": "2026-07-31T14:06:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "Mini buzdolabı",
+      "quantity": "1 Adet"
+    }
+  ]
+}
