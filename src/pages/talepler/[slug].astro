@@ -31,7 +31,7 @@ const endDate = new Date(talep.endDate);
 const isExpired = new Date() > endDate;
 ---
 
-<BaseLayout title={`MeetWork - ${talep.title}`} description={`MeetWork üzerinden yayınlanan ${talep.company} firmasına ait iş ve hizmet talebi detayları.`}>
+<BaseLayout title={`MeetWork - ${talep.title}`} description={`MeetWork üzerinden yayınlanan iş ve hizmet talebi detayları.`}>
   <div class="container py-5">
     
     <!-- Süresi Dolanlar İçin Uyarı -->
@@ -58,7 +58,6 @@ const isExpired = new Date() > endDate;
         <h1 class="fw-bold mb-3">{talep.title}</h1>
         
         <div class="d-flex flex-wrap gap-3 mb-4 text-muted small">
-          <span><i class="bi bi-building me-1"></i> {talep.company}</span>
           <span><i class="bi bi-calendar3 me-1"></i> Yayın: {publishDate.toLocaleDateString('tr-TR')}</span>
           <span><i class="bi bi-tag me-1"></i> Durum: {talep.status}</span>
         </div>

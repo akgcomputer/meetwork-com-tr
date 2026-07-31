@@ -28,34 +28,29 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
     
     <p class="text-muted mb-5">Sistemimize düşen en güncel B2B iş fırsatları ve talepleri aşağıda listelenmiştir. Detayları görmek ve iletişime geçmek için taleplere tıklayınız.</p>
 
-    <div class="row g-4">
-      {talepler.length === 0 ? (
-        <div class="col-12 text-center py-5">
-          <p class="text-muted">Şu an gösterilecek aktif talep bulunmamaktadır.</p>
-        </div>
-      ) : (
-        talepler.map((talep) => (
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <span class="badge bg-danger">{talep.status}</span>
-                  <small class="text-muted">{new Date(talep.publishDate).toLocaleDateString('tr-TR')}</small>
-                </div>
-                <h5 class="card-title fw-bold mt-3">
-                  <a href={`/talepler/${talep.slug}`} class="text-decoration-none text-dark stretched-link">
-                    {talep.title}
-                  </a>
-                </h5>
-                <p class="card-text text-muted small">{talep.company}</p>
-              </div>
-              <div class="card-footer bg-white border-top-0 pb-3">
-                <span class="text-danger fw-semibold small">İlan No: {talep.id}</span>
-              </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="list-group shadow-sm">
+          {talepler.length === 0 ? (
+            <div class="text-center py-5">
+              <p class="text-muted">Şu an gösterilecek aktif talep bulunmamaktadır.</p>
             </div>
-          </div>
-        ))
-      )}
+          ) : (
+            talepler.map((talep) => (
+              <a href={`/talepler/${talep.slug}`} class="list-group-item list-group-item-action p-4 border-0 border-bottom">
+                <div class="d-flex w-100 justify-content-between align-items-center mb-2">
+                  <h5 class="mb-0 fw-bold text-dark">{talep.title}</h5>
+                  <span class="badge bg-danger">{talep.status}</span>
+                </div>
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> Yayın Tarihi: {new Date(talep.publishDate).toLocaleDateString('tr-TR')}</small>
+                  <small class="text-danger fw-semibold">İlan No: {talep.id}</small>
+                </div>
+              </a>
+            ))
+          )}
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>
