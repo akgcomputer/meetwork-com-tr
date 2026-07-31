@@ -1,0 +1,15 @@
+{
+  "id": "243200",
+  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
+  "slug": "jenerator-bakm-hizmeti-alm-talebi-243200",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-07-30T01:28:31.577863",
+  "endDate": "2026-08-06T01:28:31.577863",
+  "items": [
+    {
+      "name": "Jeneratör Bakım Hizmeti",
+      "quantity": "30 Adet/Paket"
+    }
+  ]
+}

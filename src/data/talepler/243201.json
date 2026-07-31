@@ -1,0 +1,15 @@
+{
+  "id": "243201",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-243201",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-07-31T03:28:31.578861",
+  "endDate": "2026-08-06T03:28:31.578861",
+  "items": [
+    {
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "120 Adet/Paket"
+    }
+  ]
+}
