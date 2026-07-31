@@ -1,15 +1,18 @@
 {
   "id": "244264",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-244264",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244264",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T14:31:38.534260",
-  "endDate": "2026-08-01T14:31:38.534260",
+  "publishDate": "2026-07-30T05:31:09.340604",
+  "endDate": "2026-07-31T05:31:09.340604",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "479 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "281 Adet/Paket"
     }
   ]
 }

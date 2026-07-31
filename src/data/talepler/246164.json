@@ -1,15 +1,18 @@
 {
   "id": "246164",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-246164",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246164",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T08:31:40.941603",
-  "endDate": "2026-08-01T08:31:40.941603",
+  "publishDate": "2026-07-30T07:31:11.665604",
+  "endDate": "2026-08-02T07:31:11.665604",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "424 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "58 Adet/Paket"
     }
   ]
 }

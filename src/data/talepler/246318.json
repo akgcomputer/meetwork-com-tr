@@ -1,15 +1,18 @@
 {
   "id": "246318",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-246318",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246318",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T15:31:41.182635",
-  "endDate": "2026-08-04T15:31:41.182635",
+  "publishDate": "2026-07-31T16:31:11.879224",
+  "endDate": "2026-08-04T16:31:11.879224",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "109 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "56 Adet/Paket"
     }
   ]
 }

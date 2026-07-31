@@ -1,15 +1,18 @@
 {
   "id": "246065",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-246065",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246065",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T06:31:40.762006",
-  "endDate": "2026-08-03T06:31:40.762006",
+  "publishDate": "2026-07-28T17:31:11.550373",
+  "endDate": "2026-07-29T17:31:11.550373",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "441 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "445 Adet/Paket"
     }
   ]
 }

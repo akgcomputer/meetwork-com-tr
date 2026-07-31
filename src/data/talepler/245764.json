@@ -1,15 +1,18 @@
 {
   "id": "245764",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245764",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245764",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T11:31:40.348523",
-  "endDate": "2026-08-04T11:31:40.348523",
+  "publishDate": "2026-07-29T20:31:11.213726",
+  "endDate": "2026-08-01T20:31:11.213726",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "482 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "131 Adet/Paket"
     }
   ]
 }

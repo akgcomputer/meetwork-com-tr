@@ -4,12 +4,15 @@
   "slug": "ofis-mobilyas-alm-talebi-244308",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T12:31:38.581141",
-  "endDate": "2026-08-01T12:31:38.581141",
+  "publishDate": "2026-07-30T07:31:09.434353",
+  "endDate": "2026-07-31T07:31:09.434353",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
       "name": "Ofis Mobilyası",
-      "quantity": "314 Adet/Paket"
+      "quantity": "303 Adet/Paket"
     }
   ]
 }

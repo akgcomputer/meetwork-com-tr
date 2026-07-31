@@ -1,15 +1,18 @@
 {
   "id": "245581",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-245581",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245581",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T17:31:40.122128",
-  "endDate": "2026-07-30T17:31:40.122128",
+  "publishDate": "2026-07-30T05:31:11.015393",
+  "endDate": "2026-08-02T05:31:11.015393",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "118 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "412 Adet/Paket"
     }
   ]
 }

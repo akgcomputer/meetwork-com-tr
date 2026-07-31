@@ -1,15 +1,18 @@
 {
   "id": "245084",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245084",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245084",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T21:31:39.483239",
-  "endDate": "2026-08-05T21:31:39.483239",
+  "publishDate": "2026-07-31T14:31:10.408297",
+  "endDate": "2026-08-05T14:31:10.408297",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "425 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "451 Adet/Paket"
     }
   ]
 }

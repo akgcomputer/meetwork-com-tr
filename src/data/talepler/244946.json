@@ -1,15 +1,18 @@
 {
   "id": "244946",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244946",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244946",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:39.321682",
-  "endDate": "2026-08-03T03:31:39.321682",
+  "publishDate": "2026-07-30T06:31:10.176992",
+  "endDate": "2026-08-05T06:31:10.176992",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "440 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "14 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245271",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245271",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245271",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T09:31:39.742144",
-  "endDate": "2026-08-06T09:31:39.742144",
+  "publishDate": "2026-07-30T08:31:10.656450",
+  "endDate": "2026-08-02T08:31:10.656450",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "130 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "120 Adet/Paket"
     }
   ]
 }

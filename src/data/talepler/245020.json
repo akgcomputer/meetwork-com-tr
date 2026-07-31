@@ -1,15 +1,18 @@
 {
   "id": "245020",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245020",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245020",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T23:31:39.409454",
-  "endDate": "2026-08-03T23:31:39.409454",
+  "publishDate": "2026-07-29T04:31:10.313713",
+  "endDate": "2026-08-02T04:31:10.313713",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "64 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "319 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245423",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-245423",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245423",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T21:31:39.927648",
-  "endDate": "2026-07-31T21:31:39.927648",
+  "publishDate": "2026-07-29T05:31:10.838887",
+  "endDate": "2026-07-30T05:31:10.838887",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "278 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "76 Adet/Paket"
     }
   ]
 }

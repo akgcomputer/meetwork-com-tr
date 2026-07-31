@@ -1,15 +1,18 @@
 {
   "id": "244935",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-244935",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244935",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T02:31:39.309715",
-  "endDate": "2026-08-04T02:31:39.309715",
+  "publishDate": "2026-07-31T02:31:10.164026",
+  "endDate": "2026-08-06T02:31:10.164026",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "424 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "223 Adet/Paket"
     }
   ]
 }

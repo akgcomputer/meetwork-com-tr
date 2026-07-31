@@ -1,15 +1,18 @@
 {
   "id": "244498",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-244498",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244498",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T08:31:38.781603",
-  "endDate": "2026-08-05T08:31:38.781603",
+  "publishDate": "2026-07-31T13:31:09.671429",
+  "endDate": "2026-08-06T13:31:09.671429",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "78 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "124 Adet/Paket"
     }
   ]
 }

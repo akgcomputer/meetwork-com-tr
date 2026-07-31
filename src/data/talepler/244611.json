@@ -1,15 +1,18 @@
 {
   "id": "244611",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244611",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244611",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:38.926844",
-  "endDate": "2026-08-02T13:31:38.926844",
+  "publishDate": "2026-07-28T19:31:09.787593",
+  "endDate": "2026-08-02T19:31:09.787593",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "274 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "471 Adet/Paket"
     }
   ]
 }

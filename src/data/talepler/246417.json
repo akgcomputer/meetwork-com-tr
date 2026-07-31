@@ -1,15 +1,18 @@
 {
   "id": "246417",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-246417",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246417",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T11:31:41.319270",
-  "endDate": "2026-08-01T11:31:41.319270",
+  "publishDate": "2026-07-30T17:31:11.998902",
+  "endDate": "2026-08-01T17:31:11.998902",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "151 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "97 Adet/Paket"
     }
   ]
 }

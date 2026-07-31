@@ -1,15 +1,18 @@
 {
   "id": "245925",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245925",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245925",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:40.559092",
-  "endDate": "2026-08-02T15:31:40.559092",
+  "publishDate": "2026-07-29T23:31:11.389618",
+  "endDate": "2026-08-05T23:31:11.389618",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "61 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "379 Adet/Paket"
     }
   ]
 }

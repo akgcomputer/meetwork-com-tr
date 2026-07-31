@@ -4,12 +4,15 @@
   "slug": "personel-tasma-hizmeti-alm-talebi-244334",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:38.613055",
-  "endDate": "2026-08-02T06:31:38.613055",
+  "publishDate": "2026-07-29T10:31:09.486114",
+  "endDate": "2026-08-01T10:31:09.486114",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
       "name": "Personel Taşıma Hizmeti",
-      "quantity": "317 Adet/Paket"
+      "quantity": "419 Adet/Paket"
     }
   ]
 }

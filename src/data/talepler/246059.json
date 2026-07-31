@@ -1,15 +1,18 @@
 {
   "id": "246059",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-246059",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246059",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T17:31:40.755026",
-  "endDate": "2026-07-30T17:31:40.755026",
+  "publishDate": "2026-07-30T05:31:11.543686",
+  "endDate": "2026-08-05T05:31:11.543686",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "462 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "263 Adet/Paket"
     }
   ]
 }

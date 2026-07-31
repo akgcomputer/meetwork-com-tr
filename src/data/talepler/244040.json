@@ -1,15 +1,18 @@
 {
   "id": "244040",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-244040",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244040",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T03:31:38.245450",
-  "endDate": "2026-08-03T03:31:38.245450",
+  "publishDate": "2026-07-30T22:31:08.702313",
+  "endDate": "2026-07-31T22:31:08.702313",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "246 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "238 Adet/Paket"
     }
   ]
 }

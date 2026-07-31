@@ -1,15 +1,18 @@
 {
   "id": "245402",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245402",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245402",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T20:31:39.900720",
-  "endDate": "2026-08-05T20:31:39.900720",
+  "publishDate": "2026-07-29T18:31:10.814357",
+  "endDate": "2026-08-04T18:31:10.814357",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "176 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "74 Adet/Paket"
     }
   ]
 }

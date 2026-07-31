@@ -1,15 +1,18 @@
 {
   "id": "244216",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-244216",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244216",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T05:31:38.462642",
-  "endDate": "2026-08-01T05:31:38.462642",
+  "publishDate": "2026-07-30T12:31:09.187017",
+  "endDate": "2026-08-06T12:31:09.187017",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "452 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "340 Adet/Paket"
     }
   ]
 }

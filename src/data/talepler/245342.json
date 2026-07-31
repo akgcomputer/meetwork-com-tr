@@ -1,15 +1,18 @@
 {
   "id": "245342",
-  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
-  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245342",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245342",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T12:31:39.833899",
-  "endDate": "2026-08-01T12:31:39.833899",
+  "publishDate": "2026-07-29T12:31:10.752236",
+  "endDate": "2026-08-04T12:31:10.752236",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "CNC Freze Tezgahı Parçaları",
-      "quantity": "384 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "324 Adet/Paket"
     }
   ]
 }

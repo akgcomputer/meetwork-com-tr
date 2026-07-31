@@ -1,15 +1,18 @@
 {
   "id": "244734",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-244734",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244734",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:39.051510",
-  "endDate": "2026-08-03T18:31:39.051510",
+  "publishDate": "2026-07-29T19:31:09.934584",
+  "endDate": "2026-08-03T19:31:09.934584",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "284 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "78 Adet/Paket"
     }
   ]
 }

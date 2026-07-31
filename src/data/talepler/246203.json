@@ -1,15 +1,18 @@
 {
   "id": "246203",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-246203",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246203",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T16:31:41.016402",
-  "endDate": "2026-08-01T16:31:41.016402",
+  "publishDate": "2026-07-31T10:31:11.713842",
+  "endDate": "2026-08-01T10:31:11.713842",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "77 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "277 Adet/Paket"
     }
   ]
 }

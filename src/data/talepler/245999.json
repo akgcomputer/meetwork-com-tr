@@ -1,15 +1,18 @@
 {
   "id": "245999",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-245999",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245999",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:40.659822",
-  "endDate": "2026-08-03T05:31:40.659822",
+  "publishDate": "2026-07-30T04:31:11.476871",
+  "endDate": "2026-08-03T04:31:11.476871",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "269 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "414 Adet/Paket"
     }
   ]
 }

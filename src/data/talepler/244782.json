@@ -1,15 +1,18 @@
 {
   "id": "244782",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244782",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244782",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T03:31:39.100380",
-  "endDate": "2026-08-03T03:31:39.100380",
+  "publishDate": "2026-07-30T20:31:09.986008",
+  "endDate": "2026-08-06T20:31:09.986008",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "369 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "371 Adet/Paket"
     }
   ]
 }

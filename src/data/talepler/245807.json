@@ -1,15 +1,18 @@
 {
   "id": "245807",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-245807",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245807",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:40.402378",
-  "endDate": "2026-08-03T17:31:40.402378",
+  "publishDate": "2026-07-29T10:31:11.257762",
+  "endDate": "2026-07-31T10:31:11.257762",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "196 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "129 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245690",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-245690",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245690",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T00:31:40.249789",
-  "endDate": "2026-08-01T00:31:40.249789",
+  "publishDate": "2026-07-31T05:31:11.130510",
+  "endDate": "2026-08-03T05:31:11.130510",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "161 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "336 Adet/Paket"
     }
   ]
 }

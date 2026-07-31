@@ -1,15 +1,18 @@
 {
   "id": "246057",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-246057",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246057",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T19:31:40.752516",
-  "endDate": "2026-07-30T19:31:40.752516",
+  "publishDate": "2026-07-29T14:31:11.540692",
+  "endDate": "2026-08-02T14:31:11.540692",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "99 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "486 Adet/Paket"
     }
   ]
 }

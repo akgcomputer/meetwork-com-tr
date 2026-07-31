@@ -1,15 +1,18 @@
 {
   "id": "246125",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-246125",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246125",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:40.879767",
-  "endDate": "2026-08-04T13:31:40.879767",
+  "publishDate": "2026-07-28T18:31:11.619117",
+  "endDate": "2026-07-29T18:31:11.619117",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "140 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "179 Adet/Paket"
     }
   ]
 }

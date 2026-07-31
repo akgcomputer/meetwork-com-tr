@@ -1,15 +1,18 @@
 {
   "id": "246082",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-246082",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246082",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T13:31:40.782950",
-  "endDate": "2026-08-05T13:31:40.782950",
+  "publishDate": "2026-07-28T21:31:11.567414",
+  "endDate": "2026-07-31T21:31:11.567414",
+  "category": "Gıda & Tarım",
+  "categoryEmoji": "🍎",
+  "categoryColor": "#EF4444",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "412 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "404 Adet/Paket"
     }
   ]
 }

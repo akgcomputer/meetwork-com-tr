@@ -1,15 +1,18 @@
 {
   "id": "245484",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-245484",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245484",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T02:31:40.008434",
-  "endDate": "2026-08-04T02:31:40.008434",
+  "publishDate": "2026-07-31T16:31:10.908604",
+  "endDate": "2026-08-04T16:31:10.908604",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "51 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "75 Adet/Paket"
     }
   ]
 }

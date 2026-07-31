@@ -1,15 +1,18 @@
 {
   "id": "246042",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-246042",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246042",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T16:31:40.718029",
-  "endDate": "2026-08-06T16:31:40.718029",
+  "publishDate": "2026-07-31T09:31:11.524735",
+  "endDate": "2026-08-05T09:31:11.524735",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "67 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "321 Adet/Paket"
     }
   ]
 }

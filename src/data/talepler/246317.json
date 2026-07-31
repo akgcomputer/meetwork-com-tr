@@ -1,15 +1,18 @@
 {
   "id": "246317",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246317",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246317",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T04:31:41.181637",
-  "endDate": "2026-08-01T04:31:41.181637",
+  "publishDate": "2026-07-28T21:31:11.878226",
+  "endDate": "2026-07-29T21:31:11.878226",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "11 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "344 Adet/Paket"
     }
   ]
 }

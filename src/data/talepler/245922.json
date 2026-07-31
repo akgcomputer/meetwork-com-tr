@@ -1,15 +1,18 @@
 {
   "id": "245922",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-245922",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245922",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:40.556101",
-  "endDate": "2026-08-01T13:31:40.556101",
+  "publishDate": "2026-07-30T04:31:11.386626",
+  "endDate": "2026-08-01T04:31:11.386626",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "185 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "44 Adet/Paket"
     }
   ]
 }

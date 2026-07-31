@@ -1,15 +1,18 @@
 {
   "id": "245463",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-245463",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245463",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T11:31:39.985494",
-  "endDate": "2026-07-30T11:31:39.985494",
+  "publishDate": "2026-07-31T13:31:10.887991",
+  "endDate": "2026-08-06T13:31:10.887991",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "397 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "308 Adet/Paket"
     }
   ]
 }

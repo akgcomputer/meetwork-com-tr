@@ -1,15 +1,18 @@
 {
   "id": "244989",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244989",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244989",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T17:31:39.374548",
-  "endDate": "2026-08-02T17:31:39.374548",
+  "publishDate": "2026-07-31T15:31:10.263741",
+  "endDate": "2026-08-06T15:31:10.263741",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "437 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "238 Adet/Paket"
     }
   ]
 }

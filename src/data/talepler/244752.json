@@ -1,15 +1,18 @@
 {
   "id": "244752",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244752",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244752",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T21:31:39.069462",
-  "endDate": "2026-08-04T21:31:39.069462",
+  "publishDate": "2026-07-31T13:31:09.954706",
+  "endDate": "2026-08-04T13:31:09.954706",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "204 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "198 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246427",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246427",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246427",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:41.333834",
-  "endDate": "2026-08-04T18:31:41.333834",
+  "publishDate": "2026-07-30T16:31:12.010871",
+  "endDate": "2026-07-31T16:31:12.010871",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "89 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "496 Adet/Paket"
     }
   ]
 }

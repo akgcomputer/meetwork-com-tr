@@ -1,15 +1,18 @@
 {
   "id": "245751",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245751",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245751",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T20:31:40.332566",
-  "endDate": "2026-07-31T20:31:40.332566",
+  "publishDate": "2026-07-30T11:31:11.199762",
+  "endDate": "2026-08-05T11:31:11.199762",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "273 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "97 Adet/Paket"
     }
   ]
 }

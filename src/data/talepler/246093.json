@@ -1,15 +1,18 @@
 {
   "id": "246093",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-246093",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246093",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T17:31:40.825847",
-  "endDate": "2026-07-30T17:31:40.825847",
+  "publishDate": "2026-07-29T13:31:11.579635",
+  "endDate": "2026-08-01T13:31:11.579635",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "419 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "422 Adet/Paket"
     }
   ]
 }

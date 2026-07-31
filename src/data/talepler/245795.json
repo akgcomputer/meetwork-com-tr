@@ -1,15 +1,18 @@
 {
   "id": "245795",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-245795",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245795",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T11:31:40.389413",
-  "endDate": "2026-08-05T11:31:40.389413",
+  "publishDate": "2026-07-29T17:31:11.245209",
+  "endDate": "2026-08-02T17:31:11.245209",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "402 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "323 Adet/Paket"
     }
   ]
 }

@@ -45,12 +45,25 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
 
     <div class="row">
       <div class="col-12">
-        <div class="mb-4">
+        <div class="mb-4 d-flex flex-wrap gap-2">
           <div class="btn-group shadow-sm" role="group" id="dateFilterGroup">
             <button type="button" class="btn btn-outline-danger active fw-semibold" data-filter="all">Tümü</button>
             <button type="button" class="btn btn-outline-danger fw-semibold" data-filter="today">Bugün</button>
             <button type="button" class="btn btn-outline-danger fw-semibold" data-filter="yesterday">Dün</button>
             <button type="button" class="btn btn-outline-danger fw-semibold" data-filter="week">Son 7 Gün</button>
+          </div>
+          
+          <!-- Category Filter -->
+          <div class="dropdown shadow-sm">
+            <button class="btn btn-outline-danger fw-semibold dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Tüm Sektörler
+            </button>
+            <ul class="dropdown-menu shadow" aria-labelledby="categoryDropdown" style="max-height: 300px; overflow-y: auto;">
+              <li><a class="dropdown-item category-filter active" href="#" data-category="all">Tüm Sektörler</a></li>
+              {Array.from(new Set(talepler.map(t => t.category).filter(Boolean))).sort().map(cat => (
+                 <li><a class="dropdown-item category-filter" href="#" data-category={cat}>{cat}</a></li>
+              ))}
+            </ul>
           </div>
         </div>
 
@@ -61,9 +74,12 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
             </div>
           ) : (
             talepler.map((talep) => (
-              <a href={`/talepler/${talep.slug}`} class="list-group-item list-group-item-action p-4 border-0 border-bottom talep-item" data-publish-date={talep.publishDate}>
+              <a href={`/talepler/${talep.slug}`} class="list-group-item list-group-item-action p-4 border-0 border-bottom talep-item" data-publish-date={talep.publishDate} data-category={talep.category}>
                 <div class="d-flex w-100 justify-content-between align-items-center mb-2">
-                  <h5 class="mb-0 fw-bold text-dark">{talep.title}</h5>
+                  <h5 class="mb-0 fw-bold text-dark">
+                    {talep.categoryEmoji && <span class="badge align-text-bottom me-2" style={`background-color: ${talep.categoryColor};`}>{talep.categoryEmoji} {talep.category}</span>}
+                    {talep.title}
+                  </h5>
                   <span class="badge bg-danger">{talep.status}</span>
                 </div>
                 <div class="d-flex w-100 justify-content-between align-items-center">
@@ -97,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const spinner = document.getElementById('loading-spinner');
   
   let currentFilter = 'all';
+  let currentCategory = 'all';
   let visibleLimit = 25;
   const LOAD_STEP = 25;
   
@@ -106,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Önce filtreye uyanları bul
     const matchedItems = items.filter(item => {
+      // 1. Tarih Filtresi
       const itemDateStr = item.getAttribute('data-publish-date');
       const itemDate = new Date(itemDateStr);
       const itemDateMidnight = new Date(itemDate);
@@ -114,11 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const diffTime = now.getTime() - itemDateMidnight.getTime();
       const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
       
-      if(currentFilter === 'all') return true;
-      if (currentFilter === 'today') return diffDays === 0;
-      if (currentFilter === 'yesterday') return diffDays === 1;
-      if (currentFilter === 'week') return diffDays >= 0 && diffDays <= 7;
-      return false;
+      let dateMatch = false;
+      if(currentFilter === 'all') dateMatch = true;
+      else if (currentFilter === 'today') dateMatch = diffDays === 0;
+      else if (currentFilter === 'yesterday') dateMatch = diffDays === 1;
+      else if (currentFilter === 'week') dateMatch = diffDays >= 0 && diffDays <= 7;
+      
+      // 2. Kategori Filtresi
+      const itemCategory = item.getAttribute('data-category');
+      let categoryMatch = false;
+      if (currentCategory === 'all') categoryMatch = true;
+      else if (itemCategory === currentCategory) categoryMatch = true;
+      
+      return dateMatch && categoryMatch;
     });
     
     // Ekranda gösterme/gizleme işlemleri
@@ -140,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Filtre Butonları
+  // Filtre Butonları (Tarih)
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -148,6 +174,32 @@ document.addEventListener('DOMContentLoaded', () => {
       
       currentFilter = btn.getAttribute('data-filter');
       visibleLimit = LOAD_STEP; // Filtre değişince limiti sıfırla
+      applyFiltersAndRender();
+    });
+  });
+  
+  // Kategori Dropdown Seçimi
+  const categoryLinks = document.querySelectorAll('.category-filter');
+  const dropdownBtn = document.getElementById('categoryDropdown');
+  
+  categoryLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Aktif sınıfı güncelle
+      categoryLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      
+      currentCategory = link.getAttribute('data-category');
+      
+      // Dropdown textini güncelle
+      if(currentCategory === 'all') {
+        dropdownBtn.textContent = 'Tüm Sektörler';
+      } else {
+        dropdownBtn.textContent = currentCategory;
+      }
+      
+      visibleLimit = LOAD_STEP;
       applyFiltersAndRender();
     });
   });

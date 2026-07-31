@@ -1,15 +1,18 @@
 {
   "id": "246143",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-246143",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246143",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T06:31:40.902706",
-  "endDate": "2026-08-06T06:31:40.902706",
+  "publishDate": "2026-07-28T22:31:11.643662",
+  "endDate": "2026-07-31T22:31:11.643662",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "329 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "205 Adet/Paket"
     }
   ]
 }

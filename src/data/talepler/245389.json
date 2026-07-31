@@ -1,15 +1,18 @@
 {
   "id": "245389",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245389",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245389",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T18:31:39.887756",
-  "endDate": "2026-07-31T18:31:39.887756",
+  "publishDate": "2026-07-29T10:31:10.802130",
+  "endDate": "2026-08-05T10:31:10.802130",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "302 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "93 Adet/Paket"
     }
   ]
 }

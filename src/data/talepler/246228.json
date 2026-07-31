@@ -1,15 +1,18 @@
 {
   "id": "246228",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-246228",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246228",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T00:31:41.047089",
-  "endDate": "2026-08-04T00:31:41.047089",
+  "publishDate": "2026-07-31T02:31:11.763416",
+  "endDate": "2026-08-03T02:31:11.763416",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "231 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "68 Adet/Paket"
     }
   ]
 }

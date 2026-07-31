@@ -1,15 +1,18 @@
 {
   "id": "244487",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-244487",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244487",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T02:31:38.768639",
-  "endDate": "2026-08-07T02:31:38.768639",
+  "publishDate": "2026-07-30T04:31:09.661455",
+  "endDate": "2026-08-03T04:31:09.661455",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "220 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "167 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246166",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246166",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246166",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:40.943598",
-  "endDate": "2026-08-03T05:31:40.943598",
+  "publishDate": "2026-07-31T11:31:11.668596",
+  "endDate": "2026-08-06T11:31:11.668596",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "103 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "215 Adet/Paket"
     }
   ]
 }

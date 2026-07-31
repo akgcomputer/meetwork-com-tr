@@ -1,15 +1,18 @@
 {
   "id": "244712",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244712",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244712",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T07:31:39.030567",
-  "endDate": "2026-08-03T07:31:39.030567",
+  "publishDate": "2026-07-30T14:31:09.908592",
+  "endDate": "2026-08-05T14:31:09.908592",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "332 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "494 Adet/Paket"
     }
   ]
 }

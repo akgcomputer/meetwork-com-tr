@@ -1,15 +1,18 @@
 {
   "id": "244838",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244838",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244838",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T18:31:39.157227",
-  "endDate": "2026-07-31T18:31:39.157227",
+  "publishDate": "2026-07-30T09:31:10.050270",
+  "endDate": "2026-08-01T09:31:10.050270",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "174 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "292 Adet/Paket"
     }
   ]
 }

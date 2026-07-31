@@ -1,15 +1,18 @@
 {
   "id": "245072",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245072",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245072",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:39.470273",
-  "endDate": "2026-08-03T14:31:39.470273",
+  "publishDate": "2026-07-31T12:31:10.389241",
+  "endDate": "2026-08-03T12:31:10.389241",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "127 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "274 Adet/Paket"
     }
   ]
 }

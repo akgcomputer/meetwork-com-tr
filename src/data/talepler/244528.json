@@ -1,15 +1,18 @@
 {
   "id": "244528",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-244528",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244528",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T12:31:38.812522",
-  "endDate": "2026-07-31T12:31:38.812522",
+  "publishDate": "2026-07-31T08:31:09.701350",
+  "endDate": "2026-08-01T08:31:09.701350",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "163 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "208 Adet/Paket"
     }
   ]
 }

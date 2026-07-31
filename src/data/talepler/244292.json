@@ -1,15 +1,18 @@
 {
   "id": "244292",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244292",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244292",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T14:31:38.564185",
-  "endDate": "2026-08-01T14:31:38.564185",
+  "publishDate": "2026-07-30T12:31:09.386483",
+  "endDate": "2026-07-31T12:31:09.386483",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "485 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "461 Adet/Paket"
     }
   ]
 }

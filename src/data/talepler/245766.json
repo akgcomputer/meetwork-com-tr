@@ -1,15 +1,18 @@
 {
   "id": "245766",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245766",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245766",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T19:31:40.350517",
-  "endDate": "2026-08-04T19:31:40.350517",
+  "publishDate": "2026-07-30T07:31:11.214722",
+  "endDate": "2026-08-02T07:31:11.214722",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "387 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "246 Adet/Paket"
     }
   ]
 }

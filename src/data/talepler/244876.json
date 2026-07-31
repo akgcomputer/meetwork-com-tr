@@ -1,15 +1,18 @@
 {
   "id": "244876",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-244876",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244876",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T22:31:39.238905",
-  "endDate": "2026-08-03T22:31:39.238905",
+  "publishDate": "2026-07-30T15:31:10.091893",
+  "endDate": "2026-08-02T15:31:10.091893",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "29 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "431 Adet/Paket"
     }
   ]
 }

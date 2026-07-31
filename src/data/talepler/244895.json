@@ -1,15 +1,18 @@
 {
   "id": "244895",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-244895",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244895",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T01:31:39.259848",
-  "endDate": "2026-08-04T01:31:39.259848",
+  "publishDate": "2026-07-31T02:31:10.118427",
+  "endDate": "2026-08-02T02:31:10.118427",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "328 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "258 Adet/Paket"
     }
   ]
 }

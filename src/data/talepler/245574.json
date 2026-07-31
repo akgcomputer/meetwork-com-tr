@@ -1,15 +1,18 @@
 {
   "id": "245574",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-245574",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245574",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T13:31:40.114149",
-  "endDate": "2026-08-04T13:31:40.114149",
+  "publishDate": "2026-07-31T03:31:11.008405",
+  "endDate": "2026-08-05T03:31:11.008405",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "447 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "498 Adet/Paket"
     }
   ]
 }

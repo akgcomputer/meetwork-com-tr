@@ -1,15 +1,18 @@
 {
   "id": "244348",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244348",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244348",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T00:31:38.628015",
-  "endDate": "2026-07-30T00:31:38.628015",
+  "publishDate": "2026-07-30T03:31:09.498082",
+  "endDate": "2026-08-01T03:31:09.498082",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "78 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "266 Adet/Paket"
     }
   ]
 }

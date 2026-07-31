@@ -1,15 +1,18 @@
 {
   "id": "245607",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245607",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245607",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T18:31:40.156037",
-  "endDate": "2026-08-01T18:31:40.156037",
+  "publishDate": "2026-07-30T12:31:11.040170",
+  "endDate": "2026-08-02T12:31:11.040170",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "493 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "286 Adet/Paket"
     }
   ]
 }

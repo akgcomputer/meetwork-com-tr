@@ -1,15 +1,18 @@
 {
   "id": "246017",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-246017",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246017",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T03:31:40.678772",
-  "endDate": "2026-08-02T03:31:40.678772",
+  "publishDate": "2026-07-31T06:31:11.496123",
+  "endDate": "2026-08-02T06:31:11.496123",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "403 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "457 Adet/Paket"
     }
   ]
 }

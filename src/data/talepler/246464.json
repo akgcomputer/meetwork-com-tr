@@ -1,15 +1,18 @@
 {
   "id": "246464",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-246464",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246464",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T04:31:41.402652",
-  "endDate": "2026-08-02T04:31:41.402652",
+  "publishDate": "2026-07-30T10:31:12.054753",
+  "endDate": "2026-07-31T10:31:12.054753",
+  "category": "Gıda & Tarım",
+  "categoryEmoji": "🍎",
+  "categoryColor": "#EF4444",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "232 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "471 Adet/Paket"
     }
   ]
 }

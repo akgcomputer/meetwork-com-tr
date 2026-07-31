@@ -1,15 +1,18 @@
 {
   "id": "244947",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-244947",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244947",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T23:31:39.322679",
-  "endDate": "2026-08-04T23:31:39.322679",
+  "publishDate": "2026-07-29T09:31:10.178985",
+  "endDate": "2026-08-04T09:31:10.178985",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "51 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "37 Adet/Paket"
     }
   ]
 }

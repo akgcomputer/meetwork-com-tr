@@ -4,12 +4,15 @@
   "slug": "forklift-akusu-alm-talebi-245881",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T08:31:40.506617",
-  "endDate": "2026-08-03T08:31:40.506617",
+  "publishDate": "2026-07-29T02:31:11.340620",
+  "endDate": "2026-08-05T02:31:11.340620",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
       "name": "Forklift Aküsü",
-      "quantity": "10 Adet/Paket"
+      "quantity": "236 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244661",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-244661",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244661",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:38.976711",
-  "endDate": "2026-08-04T15:31:38.976711",
+  "publishDate": "2026-07-30T05:31:09.845581",
+  "endDate": "2026-08-06T05:31:09.845581",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "145 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "309 Adet/Paket"
     }
   ]
 }

@@ -4,12 +4,15 @@
   "slug": "personel-tasma-hizmeti-alm-talebi-244060",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:38.265391",
-  "endDate": "2026-08-02T17:31:38.265391",
+  "publishDate": "2026-07-31T03:31:08.813016",
+  "endDate": "2026-08-01T03:31:08.813016",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
       "name": "Personel Taşıma Hizmeti",
-      "quantity": "456 Adet/Paket"
+      "quantity": "227 Adet/Paket"
     }
   ]
 }

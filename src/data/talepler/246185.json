@@ -1,15 +1,18 @@
 {
   "id": "246185",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-246185",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246185",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T22:31:40.990473",
-  "endDate": "2026-08-03T22:31:40.990473",
+  "publishDate": "2026-07-30T07:31:11.692846",
+  "endDate": "2026-08-01T07:31:11.692846",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "315 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "280 Adet/Paket"
     }
   ]
 }

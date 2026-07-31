@@ -1,15 +1,18 @@
 {
   "id": "245638",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-245638",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245638",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T21:31:40.188950",
-  "endDate": "2026-08-02T21:31:40.188950",
+  "publishDate": "2026-07-29T12:31:11.079014",
+  "endDate": "2026-08-04T12:31:11.079014",
+  "category": "Gıda & Tarım",
+  "categoryEmoji": "🍎",
+  "categoryColor": "#EF4444",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "219 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "355 Adet/Paket"
     }
   ]
 }

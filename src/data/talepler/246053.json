@@ -4,12 +4,15 @@
   "slug": "paslanmaz-celik-boru-alm-talebi-246053",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T22:31:40.732987",
-  "endDate": "2026-07-30T22:31:40.732987",
+  "publishDate": "2026-07-30T06:31:11.536702",
+  "endDate": "2026-08-05T06:31:11.536702",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
       "name": "Paslanmaz Çelik Boru",
-      "quantity": "129 Adet/Paket"
+      "quantity": "436 Adet/Paket"
     }
   ]
 }

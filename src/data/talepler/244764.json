@@ -4,12 +4,15 @@
   "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244764",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T23:31:39.083424",
-  "endDate": "2026-07-30T23:31:39.083424",
+  "publishDate": "2026-07-30T00:31:09.967020",
+  "endDate": "2026-08-01T00:31:09.967020",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
       "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "437 Adet/Paket"
+      "quantity": "453 Adet/Paket"
     }
   ]
 }

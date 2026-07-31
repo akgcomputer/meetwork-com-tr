@@ -1,15 +1,18 @@
 {
   "id": "246102",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246102",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246102",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T00:31:40.841793",
-  "endDate": "2026-08-03T00:31:40.841793",
+  "publishDate": "2026-07-31T04:31:11.590606",
+  "endDate": "2026-08-04T04:31:11.590606",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "498 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "136 Adet/Paket"
     }
   ]
 }

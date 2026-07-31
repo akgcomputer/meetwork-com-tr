@@ -1,15 +1,18 @@
 {
   "id": "245991",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-245991",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245991",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T20:31:40.635886",
-  "endDate": "2026-08-02T20:31:40.635886",
+  "publishDate": "2026-07-31T14:31:11.466955",
+  "endDate": "2026-08-04T14:31:11.466955",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "376 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "278 Adet/Paket"
     }
   ]
 }

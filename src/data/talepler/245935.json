@@ -1,15 +1,18 @@
 {
   "id": "245935",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245935",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245935",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T01:31:40.570062",
-  "endDate": "2026-08-06T01:31:40.570062",
+  "publishDate": "2026-07-29T00:31:11.400147",
+  "endDate": "2026-07-30T00:31:11.400147",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "75 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "403 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245458",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245458",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245458",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T17:31:39.980507",
-  "endDate": "2026-07-29T17:31:39.980507",
+  "publishDate": "2026-07-29T06:31:10.878556",
+  "endDate": "2026-08-02T06:31:10.878556",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "252 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "109 Adet/Paket"
     }
   ]
 }

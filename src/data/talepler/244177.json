@@ -1,15 +1,18 @@
 {
   "id": "244177",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-244177",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244177",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T21:31:38.409785",
-  "endDate": "2026-07-30T21:31:38.409785",
+  "publishDate": "2026-07-30T02:31:09.092268",
+  "endDate": "2026-08-06T02:31:09.092268",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "451 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "349 Adet/Paket"
     }
   ]
 }

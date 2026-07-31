@@ -1,15 +1,18 @@
 {
   "id": "244342",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244342",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244342",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T18:31:38.619039",
-  "endDate": "2026-07-31T18:31:38.619039",
+  "publishDate": "2026-07-31T00:31:09.493095",
+  "endDate": "2026-08-04T00:31:09.493095",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "16 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "29 Adet/Paket"
     }
   ]
 }

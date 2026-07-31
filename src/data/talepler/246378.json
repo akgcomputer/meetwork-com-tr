@@ -1,15 +1,18 @@
 {
   "id": "246378",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-246378",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246378",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T14:31:41.275388",
-  "endDate": "2026-08-01T14:31:41.275388",
+  "publishDate": "2026-07-29T03:31:11.950036",
+  "endDate": "2026-07-30T03:31:11.950036",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "371 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "65 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244003",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-244003",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244003",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:38.206550",
-  "endDate": "2026-07-30T18:31:38.206550",
+  "publishDate": "2026-07-30T19:31:08.639480",
+  "endDate": "2026-08-03T19:31:08.639480",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "180 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "216 Adet/Paket"
     }
   ]
 }

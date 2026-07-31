@@ -1,15 +1,18 @@
 {
   "id": "246426",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-246426",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246426",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T11:31:41.332836",
-  "endDate": "2026-08-04T11:31:41.332836",
+  "publishDate": "2026-07-31T04:31:12.009874",
+  "endDate": "2026-08-05T04:31:12.009874",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "293 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "45 Adet/Paket"
     }
   ]
 }

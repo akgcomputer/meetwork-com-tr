@@ -1,15 +1,18 @@
 {
   "id": "244547",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244547",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244547",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T07:31:38.831471",
-  "endDate": "2026-08-06T07:31:38.831471",
+  "publishDate": "2026-07-29T15:31:09.718314",
+  "endDate": "2026-07-31T15:31:09.718314",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "25 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "226 Adet/Paket"
     }
   ]
 }

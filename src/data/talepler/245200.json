@@ -1,15 +1,18 @@
 {
   "id": "245200",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245200",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245200",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T01:31:39.651387",
-  "endDate": "2026-08-05T01:31:39.651387",
+  "publishDate": "2026-07-31T02:31:10.559535",
+  "endDate": "2026-08-06T02:31:10.559535",
+  "category": "Gıda & Tarım",
+  "categoryEmoji": "🍎",
+  "categoryColor": "#EF4444",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "243 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "12 Adet/Paket"
     }
   ]
 }

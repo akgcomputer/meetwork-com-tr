@@ -1,15 +1,18 @@
 {
   "id": "245504",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-245504",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245504",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T01:31:40.034363",
-  "endDate": "2026-08-02T01:31:40.034363",
+  "publishDate": "2026-07-30T11:31:10.929849",
+  "endDate": "2026-08-04T11:31:10.929849",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "440 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "369 Adet/Paket"
     }
   ]
 }

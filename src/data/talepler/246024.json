@@ -1,15 +1,18 @@
 {
   "id": "246024",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-246024",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246024",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T02:31:40.688746",
-  "endDate": "2026-08-02T02:31:40.688746",
+  "publishDate": "2026-07-30T23:31:11.504527",
+  "endDate": "2026-08-05T23:31:11.504527",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "391 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "184 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246066",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-246066",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-246066",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T12:31:40.763004",
-  "endDate": "2026-08-03T12:31:40.763004",
+  "publishDate": "2026-07-31T02:31:11.551451",
+  "endDate": "2026-08-06T02:31:11.551451",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "3 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "205 Adet/Paket"
     }
   ]
 }

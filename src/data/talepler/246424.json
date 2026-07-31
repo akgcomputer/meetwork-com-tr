@@ -1,15 +1,18 @@
 {
   "id": "246424",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-246424",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246424",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:41.330842",
-  "endDate": "2026-08-02T05:31:41.330842",
+  "publishDate": "2026-07-30T04:31:12.007879",
+  "endDate": "2026-08-01T04:31:12.007879",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "24 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "88 Adet/Paket"
     }
   ]
 }

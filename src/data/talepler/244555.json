@@ -1,15 +1,18 @@
 {
   "id": "244555",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244555",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244555",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T08:31:38.868001",
-  "endDate": "2026-07-30T08:31:38.868001",
+  "publishDate": "2026-07-29T23:31:09.724287",
+  "endDate": "2026-08-02T23:31:09.724287",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "158 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "465 Adet/Paket"
     }
   ]
 }

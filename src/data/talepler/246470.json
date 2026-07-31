@@ -1,15 +1,18 @@
 {
   "id": "246470",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246470",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246470",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T14:31:41.410629",
-  "endDate": "2026-08-05T14:31:41.410629",
+  "publishDate": "2026-07-31T03:31:12.061736",
+  "endDate": "2026-08-03T03:31:12.061736",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "222 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "23 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244723",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-244723",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244723",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T13:31:39.041537",
-  "endDate": "2026-08-01T13:31:39.041537",
+  "publishDate": "2026-07-29T00:31:09.921537",
+  "endDate": "2026-07-31T00:31:09.921537",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "330 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "187 Adet/Paket"
     }
   ]
 }

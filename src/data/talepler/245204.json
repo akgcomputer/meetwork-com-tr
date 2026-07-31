@@ -1,15 +1,18 @@
 {
   "id": "245204",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-245204",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245204",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T04:31:39.656377",
-  "endDate": "2026-08-07T04:31:39.656377",
+  "publishDate": "2026-07-28T21:31:10.563525",
+  "endDate": "2026-08-02T21:31:10.563525",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "95 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "55 Adet/Paket"
     }
   ]
 }

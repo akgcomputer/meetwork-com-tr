@@ -1,15 +1,18 @@
 {
   "id": "244198",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-244198",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244198",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T07:31:38.430727",
-  "endDate": "2026-08-04T07:31:38.430727",
+  "publishDate": "2026-07-29T11:31:09.167070",
+  "endDate": "2026-07-31T11:31:09.167070",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "291 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "382 Adet/Paket"
     }
   ]
 }

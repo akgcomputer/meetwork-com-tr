@@ -4,12 +4,15 @@
   "slug": "personel-tasma-hizmeti-alm-talebi-244273",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T01:31:38.546235",
-  "endDate": "2026-07-31T01:31:38.546235",
+  "publishDate": "2026-07-29T09:31:09.348583",
+  "endDate": "2026-08-03T09:31:09.348583",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
       "name": "Personel Taşıma Hizmeti",
-      "quantity": "238 Adet/Paket"
+      "quantity": "266 Adet/Paket"
     }
   ]
 }

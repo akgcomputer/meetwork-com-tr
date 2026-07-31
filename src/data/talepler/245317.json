@@ -1,15 +1,18 @@
 {
   "id": "245317",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245317",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245317",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:39.797995",
-  "endDate": "2026-08-04T00:31:39.797995",
+  "publishDate": "2026-07-31T10:31:10.722870",
+  "endDate": "2026-08-06T10:31:10.722870",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "30 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "101 Adet/Paket"
     }
   ]
 }

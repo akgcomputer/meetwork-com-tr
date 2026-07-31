@@ -1,15 +1,18 @@
 {
   "id": "245163",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-245163",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245163",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T19:31:39.602518",
-  "endDate": "2026-07-30T19:31:39.602518",
+  "publishDate": "2026-07-31T10:31:10.508925",
+  "endDate": "2026-08-01T10:31:10.508925",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "76 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "124 Adet/Paket"
     }
   ]
 }

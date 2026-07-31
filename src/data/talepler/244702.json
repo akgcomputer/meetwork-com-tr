@@ -1,15 +1,18 @@
 {
   "id": "244702",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244702",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244702",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T11:31:39.017601",
-  "endDate": "2026-08-02T11:31:39.017601",
+  "publishDate": "2026-07-31T04:31:09.893817",
+  "endDate": "2026-08-07T04:31:09.893817",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "234 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "240 Adet/Paket"
     }
   ]
 }

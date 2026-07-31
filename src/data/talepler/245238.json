@@ -1,15 +1,18 @@
 {
   "id": "245238",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245238",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245238",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:39.699259",
-  "endDate": "2026-08-04T13:31:39.699259",
+  "publishDate": "2026-07-29T18:31:10.595580",
+  "endDate": "2026-07-30T18:31:10.595580",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "347 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "260 Adet/Paket"
     }
   ]
 }

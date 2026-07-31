@@ -1,15 +1,18 @@
 {
   "id": "245636",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-245636",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245636",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T19:31:40.185957",
-  "endDate": "2026-08-03T19:31:40.185957",
+  "publishDate": "2026-07-29T23:31:11.074683",
+  "endDate": "2026-08-01T23:31:11.074683",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "323 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "191 Adet/Paket"
     }
   ]
 }

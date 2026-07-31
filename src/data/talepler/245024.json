@@ -1,15 +1,18 @@
 {
   "id": "245024",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-245024",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245024",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:39.413438",
-  "endDate": "2026-08-04T03:31:39.413438",
+  "publishDate": "2026-07-29T14:31:10.319429",
+  "endDate": "2026-08-01T14:31:10.319429",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "441 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "222 Adet/Paket"
     }
   ]
 }

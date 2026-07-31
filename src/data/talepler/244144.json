@@ -1,15 +1,18 @@
 {
   "id": "244144",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244144",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244144",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T01:31:38.374879",
-  "endDate": "2026-07-30T01:31:38.374879",
+  "publishDate": "2026-07-29T05:31:09.000513",
+  "endDate": "2026-08-04T05:31:09.000513",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "110 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "27 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244807",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-244807",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244807",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T10:31:39.126311",
-  "endDate": "2026-07-30T10:31:39.126311",
+  "publishDate": "2026-07-31T13:31:10.012761",
+  "endDate": "2026-08-01T13:31:10.012761",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "48 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "172 Adet/Paket"
     }
   ]
 }

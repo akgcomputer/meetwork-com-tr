@@ -1,15 +1,18 @@
 {
   "id": "246198",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-246198",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246198",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T19:31:41.011415",
-  "endDate": "2026-08-04T19:31:41.011415",
+  "publishDate": "2026-07-29T01:31:11.708855",
+  "endDate": "2026-08-05T01:31:11.708855",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "230 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "428 Adet/Paket"
     }
   ]
 }

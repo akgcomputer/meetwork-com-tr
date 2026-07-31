@@ -1,15 +1,18 @@
 {
   "id": "245108",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-245108",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245108",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T02:31:39.514155",
-  "endDate": "2026-08-06T02:31:39.514155",
+  "publishDate": "2026-07-29T09:31:10.442351",
+  "endDate": "2026-08-02T09:31:10.442351",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "397 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "32 Adet/Paket"
     }
   ]
 }

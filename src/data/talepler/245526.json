@@ -1,15 +1,18 @@
 {
   "id": "245526",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245526",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245526",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T05:31:40.058299",
-  "endDate": "2026-08-01T05:31:40.058299",
+  "publishDate": "2026-07-30T20:31:10.957071",
+  "endDate": "2026-08-03T20:31:10.957071",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "448 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "39 Adet/Paket"
     }
   ]
 }

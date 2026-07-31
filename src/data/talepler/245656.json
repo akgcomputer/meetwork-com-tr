@@ -4,12 +4,15 @@
   "slug": "yemek-ve-catering-hizmeti-alm-talebi-245656",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T16:31:40.209893",
-  "endDate": "2026-08-02T16:31:40.209893",
+  "publishDate": "2026-07-30T11:31:11.098808",
+  "endDate": "2026-08-05T11:31:11.098808",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
       "name": "Yemek ve Catering Hizmeti",
-      "quantity": "374 Adet/Paket"
+      "quantity": "47 Adet/Paket"
     }
   ]
 }

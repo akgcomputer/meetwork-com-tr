@@ -1,15 +1,18 @@
 {
   "id": "244949",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-244949",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244949",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T01:31:39.324675",
-  "endDate": "2026-08-03T01:31:39.324675",
+  "publishDate": "2026-07-30T19:31:10.180979",
+  "endDate": "2026-08-06T19:31:10.180979",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "67 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "229 Adet/Paket"
     }
   ]
 }

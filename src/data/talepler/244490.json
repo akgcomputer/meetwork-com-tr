@@ -1,15 +1,18 @@
 {
   "id": "244490",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244490",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244490",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T23:31:38.773627",
-  "endDate": "2026-08-02T23:31:38.773627",
+  "publishDate": "2026-07-30T11:31:09.664448",
+  "endDate": "2026-08-01T11:31:09.664448",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "61 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "38 Adet/Paket"
     }
   ]
 }

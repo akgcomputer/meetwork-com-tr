@@ -1,15 +1,18 @@
 {
   "id": "245914",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245914",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245914",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:40.546128",
-  "endDate": "2026-08-03T17:31:40.546128",
+  "publishDate": "2026-07-29T23:31:11.375621",
+  "endDate": "2026-07-31T23:31:11.375621",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "238 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "48 Adet/Paket"
     }
   ]
 }

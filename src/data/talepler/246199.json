@@ -1,15 +1,18 @@
 {
   "id": "246199",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-246199",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246199",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T03:31:41.012412",
-  "endDate": "2026-07-31T03:31:41.012412",
+  "publishDate": "2026-07-29T03:31:11.709855",
+  "endDate": "2026-08-01T03:31:11.709855",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "376 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "281 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245992",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-245992",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245992",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:40.636883",
-  "endDate": "2026-08-02T13:31:40.636883",
+  "publishDate": "2026-07-31T06:31:11.467952",
+  "endDate": "2026-08-07T06:31:11.467952",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "42 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "414 Adet/Paket"
     }
   ]
 }

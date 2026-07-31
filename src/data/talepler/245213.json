@@ -1,15 +1,18 @@
 {
   "id": "245213",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245213",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245213",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T00:31:39.667349",
-  "endDate": "2026-08-01T00:31:39.667349",
+  "publishDate": "2026-07-29T22:31:10.571504",
+  "endDate": "2026-08-02T22:31:10.571504",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "429 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "465 Adet/Paket"
     }
   ]
 }

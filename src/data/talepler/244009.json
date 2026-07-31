@@ -1,15 +1,18 @@
 {
   "id": "244009",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244009",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244009",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T16:31:38.212535",
-  "endDate": "2026-07-30T16:31:38.212535",
+  "publishDate": "2026-07-31T16:31:08.646461",
+  "endDate": "2026-08-01T16:31:08.646461",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "370 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "20 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244236",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244236",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244236",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T21:31:38.506876",
-  "endDate": "2026-08-02T21:31:38.506876",
+  "publishDate": "2026-07-29T15:31:09.263810",
+  "endDate": "2026-07-31T15:31:09.263810",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "198 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "154 Adet/Paket"
     }
   ]
 }

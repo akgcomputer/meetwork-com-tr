@@ -1,15 +1,18 @@
 {
   "id": "244244",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244244",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244244",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T13:31:38.513858",
-  "endDate": "2026-08-02T13:31:38.513858",
+  "publishDate": "2026-07-30T13:31:09.273784",
+  "endDate": "2026-08-06T13:31:09.273784",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "181 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "276 Adet/Paket"
     }
   ]
 }

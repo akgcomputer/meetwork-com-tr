@@ -1,15 +1,18 @@
 {
   "id": "246386",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246386",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246386",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:41.284362",
-  "endDate": "2026-08-01T17:31:41.284362",
+  "publishDate": "2026-07-31T02:31:11.962002",
+  "endDate": "2026-08-03T02:31:11.962002",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "115 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "429 Adet/Paket"
     }
   ]
 }

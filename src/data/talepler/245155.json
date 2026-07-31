@@ -1,15 +1,18 @@
 {
   "id": "245155",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245155",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245155",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T12:31:39.585564",
-  "endDate": "2026-07-29T12:31:39.585564",
+  "publishDate": "2026-07-30T15:31:10.500142",
+  "endDate": "2026-08-04T15:31:10.500142",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "383 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "40 Adet/Paket"
     }
   ]
 }

@@ -4,12 +4,15 @@
   "slug": "ambalaj-ve-koli-alm-talebi-244985",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T08:31:39.367559",
-  "endDate": "2026-07-30T08:31:39.367559",
+  "publishDate": "2026-07-31T03:31:10.234815",
+  "endDate": "2026-08-04T03:31:10.234815",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
       "name": "Ambalaj ve Koli",
-      "quantity": "283 Adet/Paket"
+      "quantity": "193 Adet/Paket"
     }
   ]
 }

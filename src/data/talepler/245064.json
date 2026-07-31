@@ -1,15 +1,18 @@
 {
   "id": "245064",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245064",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245064",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T17:31:39.461297",
-  "endDate": "2026-07-31T17:31:39.461297",
+  "publishDate": "2026-07-29T13:31:10.379268",
+  "endDate": "2026-07-30T13:31:10.379268",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "266 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "79 Adet/Paket"
     }
   ]
 }

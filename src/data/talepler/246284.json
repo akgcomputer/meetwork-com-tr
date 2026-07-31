@@ -1,15 +1,18 @@
 {
   "id": "246284",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-246284",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-246284",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:41.139753",
-  "endDate": "2026-07-31T13:31:41.139753",
+  "publishDate": "2026-07-29T19:31:11.840805",
+  "endDate": "2026-08-02T19:31:11.840805",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "292 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "400 Adet/Paket"
     }
   ]
 }

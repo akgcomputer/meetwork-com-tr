@@ -1,15 +1,18 @@
 {
   "id": "244138",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244138",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244138",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T19:31:38.368893",
-  "endDate": "2026-08-04T19:31:38.368893",
+  "publishDate": "2026-07-29T18:31:08.993533",
+  "endDate": "2026-08-03T18:31:08.993533",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "69 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "386 Adet/Paket"
     }
   ]
 }

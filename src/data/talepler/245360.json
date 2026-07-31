@@ -1,15 +1,18 @@
 {
   "id": "245360",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245360",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245360",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:39.855844",
-  "endDate": "2026-08-02T06:31:39.855844",
+  "publishDate": "2026-07-30T10:31:10.772063",
+  "endDate": "2026-07-31T10:31:10.772063",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "96 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "227 Adet/Paket"
     }
   ]
 }

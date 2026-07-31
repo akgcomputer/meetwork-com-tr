@@ -1,15 +1,18 @@
 {
   "id": "244429",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-244429",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244429",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T19:31:38.709796",
-  "endDate": "2026-08-04T19:31:38.709796",
+  "publishDate": "2026-07-29T05:31:09.599676",
+  "endDate": "2026-08-04T05:31:09.599676",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "194 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "232 Adet/Paket"
     }
   ]
 }

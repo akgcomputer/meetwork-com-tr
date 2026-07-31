@@ -1,15 +1,18 @@
 {
   "id": "246227",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-246227",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246227",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:41.046092",
-  "endDate": "2026-08-04T20:31:41.046092",
+  "publishDate": "2026-07-30T17:31:11.760721",
+  "endDate": "2026-07-31T17:31:11.760721",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "407 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "385 Adet/Paket"
     }
   ]
 }

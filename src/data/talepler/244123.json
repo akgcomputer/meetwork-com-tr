@@ -1,15 +1,18 @@
 {
   "id": "244123",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-244123",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244123",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:38.328582",
-  "endDate": "2026-08-01T18:31:38.328582",
+  "publishDate": "2026-07-30T22:31:08.976579",
+  "endDate": "2026-08-05T22:31:08.976579",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "387 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "416 Adet/Paket"
     }
   ]
 }

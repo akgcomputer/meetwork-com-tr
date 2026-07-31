@@ -1,15 +1,18 @@
 {
   "id": "244937",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244937",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244937",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T09:31:39.311709",
-  "endDate": "2026-08-01T09:31:39.311709",
+  "publishDate": "2026-07-29T22:31:10.167017",
+  "endDate": "2026-08-05T22:31:10.167017",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "444 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "496 Adet/Paket"
     }
   ]
 }

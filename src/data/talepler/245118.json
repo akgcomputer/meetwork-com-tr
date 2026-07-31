@@ -1,15 +1,18 @@
 {
   "id": "245118",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-245118",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245118",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:39.527122",
-  "endDate": "2026-08-03T15:31:39.527122",
+  "publishDate": "2026-07-29T22:31:10.454693",
+  "endDate": "2026-08-03T22:31:10.454693",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "243 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "462 Adet/Paket"
     }
   ]
 }

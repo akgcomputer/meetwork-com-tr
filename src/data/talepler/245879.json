@@ -1,15 +1,18 @@
 {
   "id": "245879",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-245879",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245879",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T10:31:40.503625",
-  "endDate": "2026-08-01T10:31:40.503625",
+  "publishDate": "2026-07-29T00:31:11.338627",
+  "endDate": "2026-08-03T00:31:11.338627",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "379 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "327 Adet/Paket"
     }
   ]
 }

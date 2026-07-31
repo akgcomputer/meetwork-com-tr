@@ -1,15 +1,18 @@
 {
   "id": "245246",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245246",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245246",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:39.709234",
-  "endDate": "2026-08-05T05:31:39.709234",
+  "publishDate": "2026-07-31T04:31:10.604556",
+  "endDate": "2026-08-05T04:31:10.604556",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "261 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "493 Adet/Paket"
     }
   ]
 }

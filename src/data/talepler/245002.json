@@ -1,15 +1,18 @@
 {
   "id": "245002",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-245002",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245002",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T08:31:39.387506",
-  "endDate": "2026-08-05T08:31:39.387506",
+  "publishDate": "2026-07-29T19:31:10.278698",
+  "endDate": "2026-07-31T19:31:10.278698",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "65 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "350 Adet/Paket"
     }
   ]
 }

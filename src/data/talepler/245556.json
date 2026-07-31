@@ -1,15 +1,18 @@
 {
   "id": "245556",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-245556",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245556",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T23:31:40.094203",
-  "endDate": "2026-08-01T23:31:40.094203",
+  "publishDate": "2026-07-29T21:31:10.988818",
+  "endDate": "2026-08-03T21:31:10.988818",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "10 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "16 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244341",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244341",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244341",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T12:31:38.619039",
-  "endDate": "2026-07-31T12:31:38.619039",
+  "publishDate": "2026-07-31T07:31:09.492097",
+  "endDate": "2026-08-02T07:31:09.492097",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "282 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "481 Adet/Paket"
     }
   ]
 }

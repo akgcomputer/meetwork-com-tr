@@ -1,15 +1,18 @@
 {
   "id": "245616",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245616",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245616",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:40.164017",
-  "endDate": "2026-08-03T00:31:40.164017",
+  "publishDate": "2026-07-31T10:31:11.050140",
+  "endDate": "2026-08-07T10:31:11.050140",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "220 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "15 Adet/Paket"
     }
   ]
 }

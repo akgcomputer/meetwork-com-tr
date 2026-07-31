@@ -1,15 +1,18 @@
 {
   "id": "246221",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246221",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246221",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T13:31:41.040108",
-  "endDate": "2026-08-01T13:31:41.040108",
+  "publishDate": "2026-07-29T23:31:11.747750",
+  "endDate": "2026-07-31T23:31:11.747750",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "227 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "106 Adet/Paket"
     }
   ]
 }

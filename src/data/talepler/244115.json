@@ -1,15 +1,18 @@
 {
   "id": "244115",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-244115",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244115",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T23:31:38.319608",
-  "endDate": "2026-08-01T23:31:38.319608",
+  "publishDate": "2026-07-31T05:31:08.935687",
+  "endDate": "2026-08-01T05:31:08.935687",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "18 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "395 Adet/Paket"
     }
   ]
 }

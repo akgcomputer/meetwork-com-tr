@@ -1,15 +1,18 @@
 {
   "id": "246491",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-246491",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246491",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T23:31:41.437559",
-  "endDate": "2026-08-06T23:31:41.437559",
+  "publishDate": "2026-07-30T13:31:12.091660",
+  "endDate": "2026-08-04T13:31:12.091660",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "345 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "216 Adet/Paket"
     }
   ]
 }

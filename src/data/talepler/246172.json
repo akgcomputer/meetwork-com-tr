@@ -1,15 +1,18 @@
 {
   "id": "246172",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246172",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246172",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T06:31:40.950578",
-  "endDate": "2026-08-05T06:31:40.950578",
+  "publishDate": "2026-07-30T11:31:11.675578",
+  "endDate": "2026-08-01T11:31:11.675578",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "438 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "105 Adet/Paket"
     }
   ]
 }

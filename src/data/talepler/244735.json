@@ -4,12 +4,15 @@
   "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244735",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T19:31:39.052508",
-  "endDate": "2026-07-30T19:31:39.052508",
+  "publishDate": "2026-07-31T14:31:09.936093",
+  "endDate": "2026-08-04T14:31:09.936093",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
       "name": "CNC Freze Tezgahı Parçaları",
-      "quantity": "351 Adet/Paket"
+      "quantity": "234 Adet/Paket"
     }
   ]
 }

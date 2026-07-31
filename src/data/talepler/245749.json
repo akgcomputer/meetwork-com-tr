@@ -1,15 +1,18 @@
 {
   "id": "245749",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-245749",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245749",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T07:31:40.330571",
-  "endDate": "2026-08-03T07:31:40.330571",
+  "publishDate": "2026-07-31T14:31:11.196771",
+  "endDate": "2026-08-01T14:31:11.196771",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "226 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "115 Adet/Paket"
     }
   ]
 }

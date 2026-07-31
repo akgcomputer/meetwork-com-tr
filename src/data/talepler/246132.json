@@ -1,15 +1,18 @@
 {
   "id": "246132",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-246132",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246132",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T02:31:40.890739",
-  "endDate": "2026-08-06T02:31:40.890739",
+  "publishDate": "2026-07-29T15:31:11.631694",
+  "endDate": "2026-08-05T15:31:11.631694",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "402 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "15 Adet/Paket"
     }
   ]
 }

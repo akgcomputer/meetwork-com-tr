@@ -1,15 +1,18 @@
 {
   "id": "245060",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245060",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245060",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T20:31:39.453318",
-  "endDate": "2026-08-04T20:31:39.453318",
+  "publishDate": "2026-07-28T23:31:10.375278",
+  "endDate": "2026-08-03T23:31:10.375278",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "158 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "480 Adet/Paket"
     }
   ]
 }

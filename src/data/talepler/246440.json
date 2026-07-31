@@ -1,15 +1,18 @@
 {
   "id": "246440",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246440",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246440",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T01:31:41.358769",
-  "endDate": "2026-08-02T01:31:41.358769",
+  "publishDate": "2026-07-28T17:31:12.027826",
+  "endDate": "2026-08-03T17:31:12.027826",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "106 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "399 Adet/Paket"
     }
   ]
 }

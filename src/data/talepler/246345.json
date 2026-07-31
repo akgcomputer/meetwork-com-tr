@@ -1,15 +1,18 @@
 {
   "id": "246345",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-246345",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246345",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T05:31:41.225521",
-  "endDate": "2026-08-03T05:31:41.225521",
+  "publishDate": "2026-07-31T08:31:11.910142",
+  "endDate": "2026-08-05T08:31:11.910142",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "217 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "176 Adet/Paket"
     }
   ]
 }

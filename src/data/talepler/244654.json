@@ -1,15 +1,18 @@
 {
   "id": "244654",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-244654",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244654",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T00:31:38.968731",
-  "endDate": "2026-08-04T00:31:38.968731",
+  "publishDate": "2026-07-29T07:31:09.837482",
+  "endDate": "2026-07-30T07:31:09.837482",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "469 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "132 Adet/Paket"
     }
   ]
 }

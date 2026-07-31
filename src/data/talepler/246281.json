@@ -1,15 +1,18 @@
 {
   "id": "246281",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-246281",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246281",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T09:31:41.133767",
-  "endDate": "2026-08-03T09:31:41.133767",
+  "publishDate": "2026-07-30T02:31:11.837814",
+  "endDate": "2026-08-06T02:31:11.837814",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "307 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "89 Adet/Paket"
     }
   ]
 }

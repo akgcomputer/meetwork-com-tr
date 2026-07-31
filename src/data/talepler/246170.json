@@ -1,15 +1,18 @@
 {
   "id": "246170",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-246170",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246170",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:40.948584",
-  "endDate": "2026-07-31T15:31:40.948584",
+  "publishDate": "2026-07-29T12:31:11.673583",
+  "endDate": "2026-08-03T12:31:11.673583",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "358 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "284 Adet/Paket"
     }
   ]
 }

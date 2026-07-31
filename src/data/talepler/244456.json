@@ -1,15 +1,18 @@
 {
   "id": "244456",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-244456",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244456",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T16:31:38.736724",
-  "endDate": "2026-08-01T16:31:38.736724",
+  "publishDate": "2026-07-29T20:31:09.629541",
+  "endDate": "2026-08-03T20:31:09.629541",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "306 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "68 Adet/Paket"
     }
   ]
 }

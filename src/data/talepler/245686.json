@@ -1,15 +1,18 @@
 {
   "id": "245686",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-245686",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245686",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:40.244800",
-  "endDate": "2026-08-04T06:31:40.244800",
+  "publishDate": "2026-07-31T07:31:11.127518",
+  "endDate": "2026-08-05T07:31:11.127518",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "226 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "206 Adet/Paket"
     }
   ]
 }

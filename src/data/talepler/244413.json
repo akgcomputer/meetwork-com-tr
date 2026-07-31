@@ -1,15 +1,18 @@
 {
   "id": "244413",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-244413",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244413",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T15:31:38.694837",
-  "endDate": "2026-08-02T15:31:38.694837",
+  "publishDate": "2026-07-29T21:31:09.580727",
+  "endDate": "2026-08-02T21:31:09.580727",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "59 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "113 Adet/Paket"
     }
   ]
 }

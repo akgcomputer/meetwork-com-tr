@@ -1,15 +1,18 @@
 {
   "id": "244856",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244856",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244856",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:39.212974",
-  "endDate": "2026-07-31T03:31:39.212974",
+  "publishDate": "2026-07-30T03:31:10.071290",
+  "endDate": "2026-08-06T03:31:10.071290",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "352 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "25 Adet/Paket"
     }
   ]
 }

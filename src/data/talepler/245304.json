@@ -1,15 +1,18 @@
 {
   "id": "245304",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-245304",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245304",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T10:31:39.782038",
-  "endDate": "2026-08-02T10:31:39.782038",
+  "publishDate": "2026-07-30T01:31:10.705777",
+  "endDate": "2026-08-05T01:31:10.705777",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "349 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "434 Adet/Paket"
     }
   ]
 }

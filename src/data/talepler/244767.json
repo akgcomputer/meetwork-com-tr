@@ -1,15 +1,18 @@
 {
   "id": "244767",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-244767",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244767",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:39.085420",
-  "endDate": "2026-08-02T03:31:39.085420",
+  "publishDate": "2026-07-29T01:31:09.970428",
+  "endDate": "2026-08-05T01:31:09.970428",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "51 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "26 Adet/Paket"
     }
   ]
 }

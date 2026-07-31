@@ -1,15 +1,18 @@
 {
   "id": "246347",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-246347",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246347",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T05:31:41.227516",
-  "endDate": "2026-07-31T05:31:41.227516",
+  "publishDate": "2026-07-29T18:31:11.912135",
+  "endDate": "2026-08-03T18:31:11.912135",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "42 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "125 Adet/Paket"
     }
   ]
 }

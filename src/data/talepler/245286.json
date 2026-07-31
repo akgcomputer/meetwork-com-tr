@@ -1,15 +1,18 @@
 {
   "id": "245286",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-245286",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-245286",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T09:31:39.761095",
-  "endDate": "2026-08-03T09:31:39.761095",
+  "publishDate": "2026-07-29T02:31:10.683378",
+  "endDate": "2026-08-02T02:31:10.683378",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "376 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "207 Adet/Paket"
     }
   ]
 }

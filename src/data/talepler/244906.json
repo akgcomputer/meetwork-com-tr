@@ -1,15 +1,18 @@
 {
   "id": "244906",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-244906",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244906",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T18:31:39.275805",
-  "endDate": "2026-08-01T18:31:39.275805",
+  "publishDate": "2026-07-28T19:31:10.130395",
+  "endDate": "2026-08-02T19:31:10.130395",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "139 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "248 Adet/Paket"
     }
   ]
 }

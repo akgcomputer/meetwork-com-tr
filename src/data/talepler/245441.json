@@ -4,12 +4,15 @@
   "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245441",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:39.951584",
-  "endDate": "2026-08-01T15:31:39.951584",
+  "publishDate": "2026-07-29T12:31:10.860193",
+  "endDate": "2026-08-04T12:31:10.860193",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
       "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "449 Adet/Paket"
+      "quantity": "213 Adet/Paket"
     }
   ]
 }

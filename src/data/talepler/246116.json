@@ -1,15 +1,18 @@
 {
   "id": "246116",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-246116",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-246116",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:40.865805",
-  "endDate": "2026-07-29T13:31:40.865805",
+  "publishDate": "2026-07-30T23:31:11.606151",
+  "endDate": "2026-08-04T23:31:11.606151",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "6 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "159 Adet/Paket"
     }
   ]
 }

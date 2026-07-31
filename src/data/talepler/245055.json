@@ -1,15 +1,18 @@
 {
   "id": "245055",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245055",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245055",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T04:31:39.447346",
-  "endDate": "2026-08-01T04:31:39.447346",
+  "publishDate": "2026-07-31T05:31:10.369295",
+  "endDate": "2026-08-03T05:31:10.369295",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "152 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "56 Adet/Paket"
     }
   ]
 }

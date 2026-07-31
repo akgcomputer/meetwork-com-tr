@@ -1,15 +1,18 @@
 {
   "id": "245034",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-245034",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245034",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:39.424407",
-  "endDate": "2026-08-05T18:31:39.424407",
+  "publishDate": "2026-07-30T15:31:10.329401",
+  "endDate": "2026-08-03T15:31:10.329401",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "331 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "58 Adet/Paket"
     }
   ]
 }

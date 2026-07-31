@@ -1,15 +1,18 @@
 {
   "id": "246110",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-246110",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246110",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T13:31:40.854758",
-  "endDate": "2026-08-01T13:31:40.854758",
+  "publishDate": "2026-07-29T14:31:11.599172",
+  "endDate": "2026-07-31T14:31:11.599172",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "123 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "160 Adet/Paket"
     }
   ]
 }

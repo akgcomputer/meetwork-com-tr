@@ -1,15 +1,18 @@
 {
   "id": "246499",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-246499",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246499",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T04:31:41.451498",
-  "endDate": "2026-08-03T04:31:41.451498",
+  "publishDate": "2026-07-30T12:31:12.099633",
+  "endDate": "2026-08-04T12:31:12.099633",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "113 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "310 Adet/Paket"
     }
   ]
 }

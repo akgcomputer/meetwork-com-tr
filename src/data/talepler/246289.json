@@ -1,15 +1,18 @@
 {
   "id": "246289",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-246289",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246289",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T03:31:41.144736",
-  "endDate": "2026-08-04T03:31:41.144736",
+  "publishDate": "2026-07-29T02:31:11.845793",
+  "endDate": "2026-07-30T02:31:11.845793",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "484 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "224 Adet/Paket"
     }
   ]
 }

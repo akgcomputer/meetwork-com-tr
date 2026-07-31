@@ -1,15 +1,18 @@
 {
   "id": "244870",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244870",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244870",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T22:31:39.230926",
-  "endDate": "2026-08-04T22:31:39.230926",
+  "publishDate": "2026-07-30T19:31:10.085908",
+  "endDate": "2026-08-06T19:31:10.085908",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "352 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "456 Adet/Paket"
     }
   ]
 }

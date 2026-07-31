@@ -1,15 +1,18 @@
 {
   "id": "245759",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-245759",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245759",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T22:31:40.343536",
-  "endDate": "2026-07-29T22:31:40.343536",
+  "publishDate": "2026-07-30T19:31:11.207743",
+  "endDate": "2026-08-03T19:31:11.207743",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "474 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "359 Adet/Paket"
     }
   ]
 }

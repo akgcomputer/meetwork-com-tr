@@ -1,15 +1,18 @@
 {
   "id": "245223",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-245223",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245223",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T16:31:39.679312",
-  "endDate": "2026-07-31T16:31:39.679312",
+  "publishDate": "2026-07-30T07:31:10.581617",
+  "endDate": "2026-08-03T07:31:10.581617",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "319 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "9 Adet/Paket"
     }
   ]
 }

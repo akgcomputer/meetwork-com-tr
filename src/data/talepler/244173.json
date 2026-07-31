@@ -1,15 +1,18 @@
 {
   "id": "244173",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-244173",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244173",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T10:31:38.403799",
-  "endDate": "2026-08-02T10:31:38.403799",
+  "publishDate": "2026-07-29T10:31:09.087284",
+  "endDate": "2026-08-02T10:31:09.087284",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "300 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "307 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244868",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244868",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244868",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:39.226936",
-  "endDate": "2026-08-01T13:31:39.226936",
+  "publishDate": "2026-07-30T23:31:10.083914",
+  "endDate": "2026-08-06T23:31:10.083914",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "99 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "406 Adet/Paket"
     }
   ]
 }

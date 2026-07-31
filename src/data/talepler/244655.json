@@ -1,15 +1,18 @@
 {
   "id": "244655",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244655",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244655",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T08:31:38.969728",
-  "endDate": "2026-08-06T08:31:38.969728",
+  "publishDate": "2026-07-28T23:31:09.839217",
+  "endDate": "2026-07-31T23:31:09.839217",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "290 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "65 Adet/Paket"
     }
   ]
 }

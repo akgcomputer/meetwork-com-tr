@@ -1,15 +1,18 @@
 {
   "id": "245175",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-245175",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245175",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T00:31:39.618476",
-  "endDate": "2026-08-04T00:31:39.618476",
+  "publishDate": "2026-07-28T18:31:10.521887",
+  "endDate": "2026-07-29T18:31:10.521887",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "75 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "208 Adet/Paket"
     }
   ]
 }

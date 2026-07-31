@@ -1,15 +1,18 @@
 {
   "id": "246190",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-246190",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246190",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T05:31:41.000445",
-  "endDate": "2026-08-01T05:31:41.000445",
+  "publishDate": "2026-07-29T05:31:11.697834",
+  "endDate": "2026-08-04T05:31:11.697834",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "208 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "193 Adet/Paket"
     }
   ]
 }

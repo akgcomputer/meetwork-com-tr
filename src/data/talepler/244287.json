@@ -1,15 +1,18 @@
 {
   "id": "244287",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244287",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244287",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T09:31:38.559199",
-  "endDate": "2026-08-01T09:31:38.559199",
+  "publishDate": "2026-07-31T15:31:09.371522",
+  "endDate": "2026-08-03T15:31:09.371522",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "437 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "217 Adet/Paket"
     }
   ]
 }

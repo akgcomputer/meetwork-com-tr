@@ -1,15 +1,18 @@
 {
   "id": "244047",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244047",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244047",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T01:31:38.251431",
-  "endDate": "2026-08-04T01:31:38.251431",
+  "publishDate": "2026-07-29T04:31:08.710293",
+  "endDate": "2026-08-01T04:31:08.710293",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "387 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "309 Adet/Paket"
     }
   ]
 }

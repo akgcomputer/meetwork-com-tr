@@ -1,15 +1,18 @@
 {
   "id": "244302",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244302",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244302",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T20:31:38.574161",
-  "endDate": "2026-08-03T20:31:38.574161",
+  "publishDate": "2026-07-31T01:31:09.428370",
+  "endDate": "2026-08-06T01:31:09.428370",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "265 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "491 Adet/Paket"
     }
   ]
 }

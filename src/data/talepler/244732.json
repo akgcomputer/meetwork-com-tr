@@ -1,15 +1,18 @@
 {
   "id": "244732",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-244732",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244732",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T21:31:39.050513",
-  "endDate": "2026-08-04T21:31:39.050513",
+  "publishDate": "2026-07-31T11:31:09.932178",
+  "endDate": "2026-08-01T11:31:09.932178",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "105 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "143 Adet/Paket"
     }
   ]
 }

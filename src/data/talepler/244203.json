@@ -1,15 +1,18 @@
 {
   "id": "244203",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-244203",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244203",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T04:31:38.445687",
-  "endDate": "2026-08-06T04:31:38.445687",
+  "publishDate": "2026-07-29T11:31:09.173054",
+  "endDate": "2026-07-30T11:31:09.173054",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "62 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "113 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244192",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244192",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244192",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:38.424745",
-  "endDate": "2026-08-02T03:31:38.424745",
+  "publishDate": "2026-07-30T10:31:09.162081",
+  "endDate": "2026-08-02T10:31:09.162081",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "127 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "468 Adet/Paket"
     }
   ]
 }

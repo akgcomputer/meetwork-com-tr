@@ -1,15 +1,18 @@
 {
   "id": "245142",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-245142",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245142",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:39.563025",
-  "endDate": "2026-08-01T03:31:39.563025",
+  "publishDate": "2026-07-31T10:31:10.481149",
+  "endDate": "2026-08-06T10:31:10.481149",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "142 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "498 Adet/Paket"
     }
   ]
 }

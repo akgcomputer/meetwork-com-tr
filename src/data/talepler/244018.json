@@ -1,15 +1,18 @@
 {
   "id": "244018",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244018",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244018",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T23:31:38.222509",
-  "endDate": "2026-08-04T23:31:38.222509",
+  "publishDate": "2026-07-31T03:31:08.657433",
+  "endDate": "2026-08-06T03:31:08.657433",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "148 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "261 Adet/Paket"
     }
   ]
 }

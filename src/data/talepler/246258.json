@@ -1,15 +1,18 @@
 {
   "id": "246258",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-246258",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246258",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T08:31:41.100943",
-  "endDate": "2026-08-06T08:31:41.100943",
+  "publishDate": "2026-07-29T13:31:11.809888",
+  "endDate": "2026-08-02T13:31:11.809888",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "170 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "342 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245649",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245649",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245649",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T07:31:40.200917",
-  "endDate": "2026-08-05T07:31:40.200917",
+  "publishDate": "2026-07-29T06:31:11.091826",
+  "endDate": "2026-08-02T06:31:11.091826",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "101 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "142 Adet/Paket"
     }
   ]
 }

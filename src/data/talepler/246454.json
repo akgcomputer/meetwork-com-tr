@@ -1,15 +1,18 @@
 {
   "id": "246454",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-246454",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246454",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T15:31:41.375724",
-  "endDate": "2026-07-31T15:31:41.375724",
+  "publishDate": "2026-07-30T15:31:12.044782",
+  "endDate": "2026-08-05T15:31:12.044782",
+  "category": "Sağlık & Tıbbi Cihaz",
+  "categoryEmoji": "🩺",
+  "categoryColor": "#06B6D4",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "353 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "8 Adet/Paket"
     }
   ]
 }

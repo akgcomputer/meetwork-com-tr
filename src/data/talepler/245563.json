@@ -1,15 +1,18 @@
 {
   "id": "245563",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-245563",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245563",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:40.101184",
-  "endDate": "2026-08-04T20:31:40.101184",
+  "publishDate": "2026-07-31T13:31:10.996797",
+  "endDate": "2026-08-06T13:31:10.996797",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "483 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "18 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246277",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-246277",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246277",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:41.128779",
-  "endDate": "2026-08-02T17:31:41.128779",
+  "publishDate": "2026-07-30T09:31:11.831830",
+  "endDate": "2026-08-03T09:31:11.831830",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "492 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "232 Adet/Paket"
     }
   ]
 }

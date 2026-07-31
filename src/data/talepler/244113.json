@@ -1,15 +1,18 @@
 {
   "id": "244113",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-244113",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244113",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T21:31:38.318609",
-  "endDate": "2026-08-03T21:31:38.318609",
+  "publishDate": "2026-07-30T20:31:08.933694",
+  "endDate": "2026-08-03T20:31:08.933694",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "284 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "130 Adet/Paket"
     }
   ]
 }

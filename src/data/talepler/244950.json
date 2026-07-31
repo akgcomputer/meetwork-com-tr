@@ -1,15 +1,18 @@
 {
   "id": "244950",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244950",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244950",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T10:31:39.325671",
-  "endDate": "2026-08-04T10:31:39.325671",
+  "publishDate": "2026-07-29T11:31:10.181977",
+  "endDate": "2026-07-30T11:31:10.181977",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "267 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "175 Adet/Paket"
     }
   ]
 }

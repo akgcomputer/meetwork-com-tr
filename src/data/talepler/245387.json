@@ -1,15 +1,18 @@
 {
   "id": "245387",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-245387",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245387",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T00:31:39.884762",
-  "endDate": "2026-08-01T00:31:39.884762",
+  "publishDate": "2026-07-30T19:31:10.800267",
+  "endDate": "2026-08-03T19:31:10.800267",
+  "category": "Gıda & Tarım",
+  "categoryEmoji": "🍎",
+  "categoryColor": "#EF4444",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "438 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "167 Adet/Paket"
     }
   ]
 }

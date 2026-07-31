@@ -1,15 +1,18 @@
 {
   "id": "245772",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245772",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245772",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T06:31:40.358496",
-  "endDate": "2026-08-03T06:31:40.358496",
+  "publishDate": "2026-07-31T08:31:11.221703",
+  "endDate": "2026-08-06T08:31:11.221703",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "411 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "90 Adet/Paket"
     }
   ]
 }

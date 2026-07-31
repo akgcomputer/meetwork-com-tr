@@ -1,15 +1,18 @@
 {
   "id": "244649",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244649",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244649",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:38.964742",
-  "endDate": "2026-07-31T14:31:38.964742",
+  "publishDate": "2026-07-28T22:31:09.831489",
+  "endDate": "2026-07-29T22:31:09.831489",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "280 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "67 Adet/Paket"
     }
   ]
 }

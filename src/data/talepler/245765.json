@@ -1,15 +1,18 @@
 {
   "id": "245765",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245765",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245765",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:40.349519",
-  "endDate": "2026-07-30T17:31:40.349519",
+  "publishDate": "2026-07-30T09:31:11.214722",
+  "endDate": "2026-08-02T09:31:11.214722",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "134 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "44 Adet/Paket"
     }
   ]
 }

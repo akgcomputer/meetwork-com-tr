@@ -1,15 +1,18 @@
 {
   "id": "244172",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-244172",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244172",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:38.402801",
-  "endDate": "2026-07-30T13:31:38.402801",
+  "publishDate": "2026-07-30T12:31:09.085288",
+  "endDate": "2026-08-03T12:31:09.085288",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "386 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "143 Adet/Paket"
     }
   ]
 }

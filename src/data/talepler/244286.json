@@ -1,15 +1,18 @@
 {
   "id": "244286",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244286",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244286",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T09:31:38.558202",
-  "endDate": "2026-08-04T09:31:38.558202",
+  "publishDate": "2026-07-30T21:31:09.370524",
+  "endDate": "2026-08-03T21:31:09.370524",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "130 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "128 Adet/Paket"
     }
   ]
 }

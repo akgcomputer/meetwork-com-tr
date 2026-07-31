@@ -1,15 +1,18 @@
 {
   "id": "245998",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-245998",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245998",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T16:31:40.652841",
-  "endDate": "2026-07-31T16:31:40.652841",
+  "publishDate": "2026-07-29T00:31:11.473880",
+  "endDate": "2026-08-03T00:31:11.473880",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "174 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "86 Adet/Paket"
     }
   ]
 }

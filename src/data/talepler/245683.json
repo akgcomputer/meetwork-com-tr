@@ -1,15 +1,18 @@
 {
   "id": "245683",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-245683",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245683",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T19:31:40.240813",
-  "endDate": "2026-08-03T19:31:40.240813",
+  "publishDate": "2026-07-31T14:31:11.124527",
+  "endDate": "2026-08-05T14:31:11.124527",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "435 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "22 Adet/Paket"
     }
   ]
 }

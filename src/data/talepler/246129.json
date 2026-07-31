@@ -1,15 +1,18 @@
 {
   "id": "246129",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-246129",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-246129",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T21:31:40.884754",
-  "endDate": "2026-07-30T21:31:40.884754",
+  "publishDate": "2026-07-31T04:31:11.628705",
+  "endDate": "2026-08-04T04:31:11.628705",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "276 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "54 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245121",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-245121",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245121",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:39.534102",
-  "endDate": "2026-08-02T20:31:39.534102",
+  "publishDate": "2026-07-31T11:31:10.458532",
+  "endDate": "2026-08-03T11:31:10.458532",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "128 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "122 Adet/Paket"
     }
   ]
 }

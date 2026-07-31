@@ -1,15 +1,18 @@
 {
   "id": "245634",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-245634",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245634",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T22:31:40.184959",
-  "endDate": "2026-08-02T22:31:40.184959",
+  "publishDate": "2026-07-29T18:31:11.070488",
+  "endDate": "2026-07-30T18:31:11.070488",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "38 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "428 Adet/Paket"
     }
   ]
 }

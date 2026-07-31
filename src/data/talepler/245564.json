@@ -1,15 +1,18 @@
 {
   "id": "245564",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-245564",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245564",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T19:31:40.102181",
-  "endDate": "2026-08-05T19:31:40.102181",
+  "publishDate": "2026-07-28T23:31:10.998791",
+  "endDate": "2026-08-03T23:31:10.998791",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "158 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "37 Adet/Paket"
     }
   ]
 }

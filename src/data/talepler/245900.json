@@ -1,15 +1,18 @@
 {
   "id": "245900",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245900",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245900",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T11:31:40.528558",
-  "endDate": "2026-08-05T11:31:40.528558",
+  "publishDate": "2026-07-29T10:31:11.361721",
+  "endDate": "2026-07-30T10:31:11.361721",
+  "category": "Servis Sektörü",
+  "categoryEmoji": "🔧",
+  "categoryColor": "#64748B",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "133 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "214 Adet/Paket"
     }
   ]
 }

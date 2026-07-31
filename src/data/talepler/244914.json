@@ -1,15 +1,18 @@
 {
   "id": "244914",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244914",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244914",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T19:31:39.284782",
-  "endDate": "2026-07-31T19:31:39.284782",
+  "publishDate": "2026-07-29T11:31:10.140369",
+  "endDate": "2026-08-03T11:31:10.140369",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "494 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "167 Adet/Paket"
     }
   ]
 }

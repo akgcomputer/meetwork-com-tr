@@ -1,15 +1,18 @@
 {
   "id": "246376",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-246376",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-246376",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:41.273396",
-  "endDate": "2026-08-03T20:31:41.273396",
+  "publishDate": "2026-07-29T17:31:11.949036",
+  "endDate": "2026-08-01T17:31:11.949036",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "37 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "475 Adet/Paket"
     }
   ]
 }

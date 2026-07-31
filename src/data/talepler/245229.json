@@ -1,15 +1,18 @@
 {
   "id": "245229",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-245229",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245229",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:39.685296",
-  "endDate": "2026-08-02T05:31:39.685296",
+  "publishDate": "2026-07-29T04:31:10.587602",
+  "endDate": "2026-07-31T04:31:10.587602",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "150 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "439 Adet/Paket"
     }
   ]
 }

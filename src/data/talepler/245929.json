@@ -1,15 +1,18 @@
 {
   "id": "245929",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-245929",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245929",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T15:31:40.564080",
-  "endDate": "2026-07-29T15:31:40.564080",
+  "publishDate": "2026-07-29T10:31:11.393165",
+  "endDate": "2026-08-05T10:31:11.393165",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "345 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "398 Adet/Paket"
     }
   ]
 }

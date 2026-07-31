@@ -1,15 +1,18 @@
 {
   "id": "245767",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-245767",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245767",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T11:31:40.351514",
-  "endDate": "2026-08-01T11:31:40.351514",
+  "publishDate": "2026-07-29T15:31:11.216716",
+  "endDate": "2026-08-03T15:31:11.216716",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "76 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "284 Adet/Paket"
     }
   ]
 }

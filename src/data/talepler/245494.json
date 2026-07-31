@@ -1,15 +1,18 @@
 {
   "id": "245494",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245494",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245494",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T14:31:40.018405",
-  "endDate": "2026-08-03T14:31:40.018405",
+  "publishDate": "2026-07-29T00:31:10.919572",
+  "endDate": "2026-08-03T00:31:10.919572",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "95 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "440 Adet/Paket"
     }
   ]
 }

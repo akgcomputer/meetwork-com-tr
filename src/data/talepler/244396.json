@@ -1,15 +1,18 @@
 {
   "id": "244396",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244396",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244396",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T09:31:38.677881",
-  "endDate": "2026-08-05T09:31:38.677881",
+  "publishDate": "2026-07-29T20:31:09.564770",
+  "endDate": "2026-07-30T20:31:09.564770",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "95 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "74 Adet/Paket"
     }
   ]
 }

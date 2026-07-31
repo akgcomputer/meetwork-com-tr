@@ -1,15 +1,18 @@
 {
   "id": "244050",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244050",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244050",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T16:31:38.254422",
-  "endDate": "2026-08-06T16:31:38.254422",
+  "publishDate": "2026-07-29T00:31:08.714282",
+  "endDate": "2026-07-30T00:31:08.714282",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "499 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "303 Adet/Paket"
     }
   ]
 }

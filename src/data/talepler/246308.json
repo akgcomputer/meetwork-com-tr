@@ -1,15 +1,18 @@
 {
   "id": "246308",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-246308",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-246308",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T13:31:41.173660",
-  "endDate": "2026-08-01T13:31:41.173660",
+  "publishDate": "2026-07-30T22:31:11.868253",
+  "endDate": "2026-08-06T22:31:11.868253",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "263 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "13 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244887",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244887",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244887",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T13:31:39.250871",
-  "endDate": "2026-08-04T13:31:39.250871",
+  "publishDate": "2026-07-30T22:31:10.101866",
+  "endDate": "2026-07-31T22:31:10.101866",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "184 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "332 Adet/Paket"
     }
   ]
 }

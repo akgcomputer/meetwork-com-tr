@@ -1,15 +1,18 @@
 {
   "id": "244261",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-244261",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244261",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T16:31:38.531809",
-  "endDate": "2026-08-01T16:31:38.531809",
+  "publishDate": "2026-07-29T01:31:09.337613",
+  "endDate": "2026-07-31T01:31:09.337613",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "265 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "206 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246335",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-246335",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-246335",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T09:31:41.201584",
-  "endDate": "2026-08-03T09:31:41.201584",
+  "publishDate": "2026-07-31T13:31:11.898173",
+  "endDate": "2026-08-02T13:31:11.898173",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "26 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "217 Adet/Paket"
     }
   ]
 }

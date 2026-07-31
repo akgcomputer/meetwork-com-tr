@@ -1,15 +1,18 @@
 {
   "id": "244753",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244753",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244753",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T04:31:39.072456",
-  "endDate": "2026-08-03T04:31:39.072456",
+  "publishDate": "2026-07-31T10:31:09.955785",
+  "endDate": "2026-08-06T10:31:09.955785",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "293 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "370 Adet/Paket"
     }
   ]
 }

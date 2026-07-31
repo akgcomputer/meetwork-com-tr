@@ -1,15 +1,18 @@
 {
   "id": "246343",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-246343",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246343",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:41.223527",
-  "endDate": "2026-08-03T06:31:41.223527",
+  "publishDate": "2026-07-29T11:31:11.908146",
+  "endDate": "2026-08-03T11:31:11.908146",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "284 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "350 Adet/Paket"
     }
   ]
 }

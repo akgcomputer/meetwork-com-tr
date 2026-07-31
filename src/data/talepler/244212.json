@@ -1,15 +1,18 @@
 {
   "id": "244212",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-244212",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244212",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T14:31:38.458652",
-  "endDate": "2026-07-31T14:31:38.458652",
+  "publishDate": "2026-07-28T18:31:09.183027",
+  "endDate": "2026-08-01T18:31:09.183027",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "29 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "308 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244585",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-244585",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244585",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:38.898918",
-  "endDate": "2026-07-31T00:31:38.898918",
+  "publishDate": "2026-07-29T03:31:09.751960",
+  "endDate": "2026-08-05T03:31:09.751960",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "353 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "396 Adet/Paket"
     }
   ]
 }

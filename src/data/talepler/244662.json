@@ -4,12 +4,15 @@
   "slug": "yemek-ve-catering-hizmeti-alm-talebi-244662",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T00:31:38.978705",
-  "endDate": "2026-08-07T00:31:38.978705",
+  "publishDate": "2026-07-30T08:31:09.846898",
+  "endDate": "2026-08-05T08:31:09.846898",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
       "name": "Yemek ve Catering Hizmeti",
-      "quantity": "175 Adet/Paket"
+      "quantity": "42 Adet/Paket"
     }
   ]
 }

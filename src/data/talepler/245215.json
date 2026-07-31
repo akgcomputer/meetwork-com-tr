@@ -1,15 +1,18 @@
 {
   "id": "245215",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-245215",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245215",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:39.669338",
-  "endDate": "2026-08-06T14:31:39.669338",
+  "publishDate": "2026-07-28T21:31:10.573499",
+  "endDate": "2026-07-29T21:31:10.573499",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "210 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "252 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245430",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245430",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245430",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T08:31:39.936625",
-  "endDate": "2026-08-02T08:31:39.936625",
+  "publishDate": "2026-07-30T16:31:10.847787",
+  "endDate": "2026-07-31T16:31:10.847787",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "112 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "309 Adet/Paket"
     }
   ]
 }

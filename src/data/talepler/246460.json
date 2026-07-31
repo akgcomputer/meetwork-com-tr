@@ -1,15 +1,18 @@
 {
   "id": "246460",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-246460",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246460",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T23:31:41.383702",
-  "endDate": "2026-07-31T23:31:41.383702",
+  "publishDate": "2026-07-28T22:31:12.051765",
+  "endDate": "2026-08-03T22:31:12.051765",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "496 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "120 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244817",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-244817",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244817",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T10:31:39.135286",
-  "endDate": "2026-08-04T10:31:39.135286",
+  "publishDate": "2026-07-29T01:31:10.024123",
+  "endDate": "2026-08-04T01:31:10.024123",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "215 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "189 Adet/Paket"
     }
   ]
 }

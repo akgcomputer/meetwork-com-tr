@@ -1,15 +1,18 @@
 {
   "id": "245131",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-245131",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-245131",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T17:31:39.548065",
-  "endDate": "2026-07-31T17:31:39.548065",
+  "publishDate": "2026-07-28T20:31:10.469556",
+  "endDate": "2026-07-30T20:31:10.469556",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "368 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "37 Adet/Paket"
     }
   ]
 }

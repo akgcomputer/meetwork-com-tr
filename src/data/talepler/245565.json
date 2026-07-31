@@ -1,15 +1,18 @@
 {
   "id": "245565",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-245565",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245565",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T05:31:40.103178",
-  "endDate": "2026-08-07T05:31:40.103178",
+  "publishDate": "2026-07-30T13:31:10.999789",
+  "endDate": "2026-08-04T13:31:10.999789",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "316 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "45 Adet/Paket"
     }
   ]
 }

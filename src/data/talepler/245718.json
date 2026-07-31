@@ -1,15 +1,18 @@
 {
   "id": "245718",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-245718",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245718",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T10:31:40.291674",
-  "endDate": "2026-07-31T10:31:40.291674",
+  "publishDate": "2026-07-28T19:31:11.159049",
+  "endDate": "2026-07-31T19:31:11.159049",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "94 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "52 Adet/Paket"
     }
   ]
 }

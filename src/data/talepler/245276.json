@@ -1,15 +1,18 @@
 {
   "id": "245276",
-  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
-  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245276",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245276",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T13:31:39.748128",
-  "endDate": "2026-08-04T13:31:39.748128",
+  "publishDate": "2026-07-28T19:31:10.661438",
+  "endDate": "2026-07-31T19:31:10.661438",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "CNC Freze Tezgahı Parçaları",
-      "quantity": "421 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "255 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244211",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-244211",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244211",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T09:31:38.457655",
-  "endDate": "2026-07-30T09:31:38.457655",
+  "publishDate": "2026-07-29T03:31:09.182028",
+  "endDate": "2026-08-01T03:31:09.182028",
+  "category": "Hukuk Sektörü",
+  "categoryEmoji": "⚖️",
+  "categoryColor": "#1E3A8A",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "469 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "40 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244578",
-  "title": "Forklift Aküsü Alım Talebi",
-  "slug": "forklift-akusu-alm-talebi-244578",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244578",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T16:31:38.892936",
-  "endDate": "2026-08-02T16:31:38.892936",
+  "publishDate": "2026-07-28T23:31:09.744978",
+  "endDate": "2026-08-02T23:31:09.744978",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Forklift Aküsü",
-      "quantity": "221 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "388 Adet/Paket"
     }
   ]
 }

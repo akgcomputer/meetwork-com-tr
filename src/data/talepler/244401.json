@@ -1,15 +1,18 @@
 {
   "id": "244401",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-244401",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244401",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:38.682868",
-  "endDate": "2026-07-31T00:31:38.682868",
+  "publishDate": "2026-07-30T09:31:09.569757",
+  "endDate": "2026-08-01T09:31:09.569757",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "221 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "468 Adet/Paket"
     }
   ]
 }

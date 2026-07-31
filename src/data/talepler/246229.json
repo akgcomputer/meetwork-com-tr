@@ -1,15 +1,18 @@
 {
   "id": "246229",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-246229",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246229",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T04:31:41.048085",
-  "endDate": "2026-08-02T04:31:41.048085",
+  "publishDate": "2026-07-31T07:31:11.763923",
+  "endDate": "2026-08-07T07:31:11.763923",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "313 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "69 Adet/Paket"
     }
   ]
 }

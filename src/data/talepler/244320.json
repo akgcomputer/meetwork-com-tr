@@ -1,15 +1,18 @@
 {
   "id": "244320",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244320",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244320",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T20:31:38.597098",
-  "endDate": "2026-07-31T20:31:38.597098",
+  "publishDate": "2026-07-30T04:31:09.472636",
+  "endDate": "2026-08-01T04:31:09.472636",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "257 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "115 Adet/Paket"
     }
   ]
 }

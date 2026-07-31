@@ -1,15 +1,18 @@
 {
   "id": "245791",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-245791",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245791",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T03:31:40.382431",
-  "endDate": "2026-08-06T03:31:40.382431",
+  "publishDate": "2026-07-28T17:31:11.241220",
+  "endDate": "2026-07-30T17:31:11.241220",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "41 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "381 Adet/Paket"
     }
   ]
 }

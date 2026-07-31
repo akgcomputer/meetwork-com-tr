@@ -1,15 +1,18 @@
 {
   "id": "245078",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-245078",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245078",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:39.477254",
-  "endDate": "2026-07-31T18:31:39.477254",
+  "publishDate": "2026-07-29T22:31:10.396222",
+  "endDate": "2026-08-05T22:31:10.396222",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "77 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "271 Adet/Paket"
     }
   ]
 }

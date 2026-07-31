@@ -1,15 +1,18 @@
 {
   "id": "245679",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-245679",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245679",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T01:31:40.235824",
-  "endDate": "2026-08-01T01:31:40.235824",
+  "publishDate": "2026-07-31T06:31:11.120536",
+  "endDate": "2026-08-01T06:31:11.120536",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "7 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "172 Adet/Paket"
     }
   ]
 }

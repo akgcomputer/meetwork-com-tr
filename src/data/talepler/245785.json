@@ -1,15 +1,18 @@
 {
   "id": "245785",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245785",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245785",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T13:31:40.375452",
-  "endDate": "2026-08-06T13:31:40.375452",
+  "publishDate": "2026-07-29T04:31:11.234237",
+  "endDate": "2026-07-30T04:31:11.234237",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "362 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "371 Adet/Paket"
     }
   ]
 }

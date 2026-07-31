@@ -1,15 +1,18 @@
 {
   "id": "246447",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-246447",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-246447",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T05:31:41.366746",
-  "endDate": "2026-08-03T05:31:41.366746",
+  "publishDate": "2026-07-29T03:31:12.037800",
+  "endDate": "2026-08-01T03:31:12.037800",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "258 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "131 Adet/Paket"
     }
   ]
 }

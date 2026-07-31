@@ -1,15 +1,18 @@
 {
   "id": "244079",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-244079",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244079",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T18:31:38.283702",
-  "endDate": "2026-07-31T18:31:38.283702",
+  "publishDate": "2026-07-30T03:31:08.859891",
+  "endDate": "2026-08-02T03:31:08.859891",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "81 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "420 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246232",
-  "title": "Paslanmaz Çelik Boru Alım Talebi",
-  "slug": "paslanmaz-celik-boru-alm-talebi-246232",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-246232",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T18:31:41.051077",
-  "endDate": "2026-08-03T18:31:41.051077",
+  "publishDate": "2026-07-30T06:31:11.766921",
+  "endDate": "2026-07-31T06:31:11.766921",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Paslanmaz Çelik Boru",
-      "quantity": "448 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "364 Adet/Paket"
     }
   ]
 }

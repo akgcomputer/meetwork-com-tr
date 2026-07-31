@@ -1,15 +1,18 @@
 {
   "id": "246458",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246458",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246458",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T21:31:41.380712",
-  "endDate": "2026-08-02T21:31:41.380712",
+  "publishDate": "2026-07-30T07:31:12.049768",
+  "endDate": "2026-08-01T07:31:12.049768",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "120 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "364 Adet/Paket"
     }
   ]
 }

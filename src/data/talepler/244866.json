@@ -1,15 +1,18 @@
 {
   "id": "244866",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-244866",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244866",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T04:31:39.224941",
-  "endDate": "2026-08-05T04:31:39.224941",
+  "publishDate": "2026-07-31T15:31:10.081919",
+  "endDate": "2026-08-02T15:31:10.081919",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "94 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "227 Adet/Paket"
     }
   ]
 }

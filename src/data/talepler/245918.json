@@ -1,15 +1,18 @@
 {
   "id": "245918",
-  "title": "Ambalaj ve Koli Alım Talebi",
-  "slug": "ambalaj-ve-koli-alm-talebi-245918",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245918",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T03:31:40.550116",
-  "endDate": "2026-08-02T03:31:40.550116",
+  "publishDate": "2026-07-29T04:31:11.380271",
+  "endDate": "2026-07-31T04:31:11.380271",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "Ambalaj ve Koli",
-      "quantity": "150 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "490 Adet/Paket"
     }
   ]
 }

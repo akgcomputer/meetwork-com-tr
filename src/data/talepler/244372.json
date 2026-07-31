@@ -1,15 +1,18 @@
 {
   "id": "244372",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-244372",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244372",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T14:31:38.651951",
-  "endDate": "2026-07-29T14:31:38.651951",
+  "publishDate": "2026-07-30T03:31:09.530992",
+  "endDate": "2026-08-02T03:31:09.530992",
+  "category": "Sigorta Sektörü",
+  "categoryEmoji": "💼",
+  "categoryColor": "#2563EB",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "82 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "101 Adet/Paket"
     }
   ]
 }

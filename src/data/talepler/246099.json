@@ -1,15 +1,18 @@
 {
   "id": "246099",
-  "title": "Yemek ve Catering Hizmeti Alım Talebi",
-  "slug": "yemek-ve-catering-hizmeti-alm-talebi-246099",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246099",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T17:31:40.834812",
-  "endDate": "2026-07-31T17:31:40.834812",
+  "publishDate": "2026-07-31T06:31:11.586617",
+  "endDate": "2026-08-03T06:31:11.586617",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "Yemek ve Catering Hizmeti",
-      "quantity": "416 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "224 Adet/Paket"
     }
   ]
 }

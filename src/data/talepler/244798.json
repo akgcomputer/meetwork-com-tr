@@ -1,15 +1,18 @@
 {
   "id": "244798",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-244798",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244798",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T02:31:39.117334",
-  "endDate": "2026-08-06T02:31:39.117334",
+  "publishDate": "2026-07-29T16:31:10.003882",
+  "endDate": "2026-07-31T16:31:10.003882",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "338 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "100 Adet/Paket"
     }
   ]
 }

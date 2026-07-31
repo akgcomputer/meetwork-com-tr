@@ -1,15 +1,18 @@
 {
   "id": "245559",
-  "title": "Kablo ve Elektrik Malzemeleri Alım Talebi",
-  "slug": "kablo-ve-elektrik-malzemeleri-alm-talebi-245559",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245559",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T20:31:40.098191",
-  "endDate": "2026-08-02T20:31:40.098191",
+  "publishDate": "2026-07-31T09:31:10.991810",
+  "endDate": "2026-08-02T09:31:10.991810",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Kablo ve Elektrik Malzemeleri",
-      "quantity": "263 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "254 Adet/Paket"
     }
   ]
 }

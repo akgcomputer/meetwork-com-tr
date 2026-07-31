@@ -1,15 +1,18 @@
 {
   "id": "244345",
-  "title": "Matbaa ve Broşür Basımı Alım Talebi",
-  "slug": "matbaa-ve-brosur-basm-alm-talebi-244345",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244345",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T01:31:38.623028",
-  "endDate": "2026-08-03T01:31:38.623028",
+  "publishDate": "2026-07-29T17:31:09.495090",
+  "endDate": "2026-07-31T17:31:09.495090",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "Matbaa ve Broşür Basımı",
-      "quantity": "253 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "42 Adet/Paket"
     }
   ]
 }

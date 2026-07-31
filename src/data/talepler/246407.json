@@ -1,15 +1,18 @@
 {
   "id": "246407",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-246407",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246407",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T04:31:41.308298",
-  "endDate": "2026-08-02T04:31:41.308298",
+  "publishDate": "2026-07-31T10:31:11.987932",
+  "endDate": "2026-08-02T10:31:11.987932",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "451 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "39 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246287",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-246287",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-246287",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:41.142742",
-  "endDate": "2026-08-02T06:31:41.142742",
+  "publishDate": "2026-07-30T00:31:11.843799",
+  "endDate": "2026-08-01T00:31:11.843799",
+  "category": "Eğitim Teknolojileri",
+  "categoryEmoji": "📚",
+  "categoryColor": "#3B82F6",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "336 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "12 Adet/Paket"
     }
   ]
 }

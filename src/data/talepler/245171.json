@@ -1,15 +1,18 @@
 {
   "id": "245171",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-245171",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245171",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T02:31:39.614486",
-  "endDate": "2026-08-06T02:31:39.614486",
+  "publishDate": "2026-07-30T00:31:10.517896",
+  "endDate": "2026-08-02T00:31:10.517896",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "249 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "202 Adet/Paket"
     }
   ]
 }

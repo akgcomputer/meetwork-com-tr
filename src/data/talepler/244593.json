@@ -1,15 +1,18 @@
 {
   "id": "244593",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-244593",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244593",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T15:31:38.907905",
-  "endDate": "2026-08-03T15:31:38.907905",
+  "publishDate": "2026-07-30T13:31:09.765651",
+  "endDate": "2026-08-02T13:31:09.765651",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "475 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "51 Adet/Paket"
     }
   ]
 }

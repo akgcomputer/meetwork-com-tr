@@ -1,15 +1,18 @@
 {
   "id": "244303",
-  "title": "Güvenlik Kamerası (CCTV) Kurulumu Alım Talebi",
-  "slug": "guvenlik-kameras-cctv-kurulumu-alm-talebi-244303",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244303",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T02:31:38.575157",
-  "endDate": "2026-07-31T02:31:38.575157",
+  "publishDate": "2026-07-30T18:31:09.429368",
+  "endDate": "2026-08-05T18:31:09.429368",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Güvenlik Kamerası (CCTV) Kurulumu",
-      "quantity": "107 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "452 Adet/Paket"
     }
   ]
 }

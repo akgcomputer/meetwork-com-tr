@@ -1,15 +1,18 @@
 {
   "id": "244478",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244478",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-244478",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T02:31:38.760660",
-  "endDate": "2026-08-01T02:31:38.760660",
+  "publishDate": "2026-07-29T10:31:09.653478",
+  "endDate": "2026-08-01T10:31:09.653478",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "291 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "324 Adet/Paket"
     }
   ]
 }

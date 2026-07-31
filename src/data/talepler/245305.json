@@ -1,15 +1,18 @@
 {
   "id": "245305",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-245305",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245305",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:39.783035",
-  "endDate": "2026-08-06T00:31:39.783035",
+  "publishDate": "2026-07-31T00:31:10.707320",
+  "endDate": "2026-08-07T00:31:10.707320",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "367 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "406 Adet/Paket"
     }
   ]
 }

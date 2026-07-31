@@ -1,15 +1,18 @@
 {
   "id": "244015",
-  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
-  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244015",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244015",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T03:31:38.218517",
-  "endDate": "2026-08-01T03:31:38.218517",
+  "publishDate": "2026-07-28T18:31:08.653443",
+  "endDate": "2026-07-29T18:31:08.653443",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Sunucu ve Ağ Cihazları",
-      "quantity": "321 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "1 Adet/Paket"
     }
   ]
 }

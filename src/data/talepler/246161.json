@@ -1,15 +1,18 @@
 {
   "id": "246161",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-246161",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246161",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T21:31:40.937614",
-  "endDate": "2026-07-31T21:31:40.937614",
+  "publishDate": "2026-07-31T02:31:11.662612",
+  "endDate": "2026-08-05T02:31:11.662612",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "494 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "275 Adet/Paket"
     }
   ]
 }

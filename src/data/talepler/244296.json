@@ -1,15 +1,18 @@
 {
   "id": "244296",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244296",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244296",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T05:31:38.568175",
-  "endDate": "2026-08-04T05:31:38.568175",
+  "publishDate": "2026-07-30T22:31:09.390471",
+  "endDate": "2026-08-06T22:31:09.390471",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "479 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "133 Adet/Paket"
     }
   ]
 }

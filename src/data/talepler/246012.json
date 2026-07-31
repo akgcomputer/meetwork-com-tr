@@ -1,15 +1,18 @@
 {
   "id": "246012",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-246012",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-246012",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T11:31:40.674782",
-  "endDate": "2026-08-01T11:31:40.674782",
+  "publishDate": "2026-07-31T01:31:11.491830",
+  "endDate": "2026-08-03T01:31:11.491830",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "483 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "70 Adet/Paket"
     }
   ]
 }

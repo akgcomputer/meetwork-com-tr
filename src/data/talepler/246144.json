@@ -1,15 +1,18 @@
 {
   "id": "246144",
-  "title": "İş Güvenliği Ekipmanı (Baret, Eldiven) Alım Talebi",
-  "slug": "is-guvenligi-ekipman-baret-eldiven-alm-talebi-246144",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-246144",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T02:31:40.904703",
-  "endDate": "2026-07-30T02:31:40.904703",
+  "publishDate": "2026-07-29T09:31:11.644659",
+  "endDate": "2026-08-03T09:31:11.644659",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "İş Güvenliği Ekipmanı (Baret, Eldiven)",
-      "quantity": "35 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "153 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "246113",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-246113",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246113",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T23:31:40.858748",
-  "endDate": "2026-08-01T23:31:40.858748",
+  "publishDate": "2026-07-29T17:31:11.603160",
+  "endDate": "2026-08-04T17:31:11.603160",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "361 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "304 Adet/Paket"
     }
   ]
 }

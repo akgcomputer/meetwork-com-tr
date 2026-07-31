@@ -1,15 +1,18 @@
 {
   "id": "245708",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-245708",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-245708",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T05:31:40.273723",
-  "endDate": "2026-08-03T05:31:40.273723",
+  "publishDate": "2026-07-29T15:31:11.149074",
+  "endDate": "2026-07-31T15:31:11.149074",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "239 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "181 Adet/Paket"
     }
   ]
 }

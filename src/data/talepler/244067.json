@@ -1,15 +1,18 @@
 {
   "id": "244067",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244067",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244067",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T09:31:38.271466",
-  "endDate": "2026-08-01T09:31:38.271466",
+  "publishDate": "2026-07-30T07:31:08.826978",
+  "endDate": "2026-08-06T07:31:08.826978",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "82 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "437 Adet/Paket"
     }
   ]
 }

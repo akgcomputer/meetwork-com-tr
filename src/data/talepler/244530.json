@@ -1,15 +1,18 @@
 {
   "id": "244530",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-244530",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244530",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:38.814516",
-  "endDate": "2026-08-03T20:31:38.814516",
+  "publishDate": "2026-07-30T03:31:09.703345",
+  "endDate": "2026-08-02T03:31:09.703345",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "46 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "107 Adet/Paket"
     }
   ]
 }

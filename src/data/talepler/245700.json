@@ -1,15 +1,18 @@
 {
   "id": "245700",
-  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
-  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245700",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245700",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T16:31:40.263749",
-  "endDate": "2026-07-29T16:31:40.263749",
+  "publishDate": "2026-07-29T07:31:11.140484",
+  "endDate": "2026-08-02T07:31:11.140484",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "43 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "404 Adet/Paket"
     }
   ]
 }

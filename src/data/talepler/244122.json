@@ -1,15 +1,18 @@
 {
   "id": "244122",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-244122",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244122",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T07:31:38.327587",
-  "endDate": "2026-08-03T07:31:38.327587",
+  "publishDate": "2026-07-30T08:31:08.974585",
+  "endDate": "2026-08-02T08:31:08.974585",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "32 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "272 Adet/Paket"
     }
   ]
 }

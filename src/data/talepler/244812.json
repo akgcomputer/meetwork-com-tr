@@ -1,15 +1,18 @@
 {
   "id": "244812",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244812",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244812",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T20:31:39.131297",
-  "endDate": "2026-08-03T20:31:39.131297",
+  "publishDate": "2026-07-30T01:31:10.017777",
+  "endDate": "2026-08-03T01:31:10.017777",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "81 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "133 Adet/Paket"
     }
   ]
 }

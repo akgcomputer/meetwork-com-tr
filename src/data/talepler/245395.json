@@ -1,15 +1,18 @@
 {
   "id": "245395",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245395",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245395",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T00:31:39.894736",
-  "endDate": "2026-08-03T00:31:39.894736",
+  "publishDate": "2026-07-30T15:31:10.808108",
+  "endDate": "2026-08-01T15:31:10.808108",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "486 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "208 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245896",
-  "title": "Alüminyum Profil Alım Talebi",
-  "slug": "aluminyum-profil-alm-talebi-245896",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-245896",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T15:31:40.523574",
-  "endDate": "2026-07-30T15:31:40.523574",
+  "publishDate": "2026-07-29T18:31:11.357731",
+  "endDate": "2026-07-31T18:31:11.357731",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "Alüminyum Profil",
-      "quantity": "367 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "88 Adet/Paket"
     }
   ]
 }

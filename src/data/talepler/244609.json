@@ -1,15 +1,18 @@
 {
   "id": "244609",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-244609",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244609",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T16:31:38.924849",
-  "endDate": "2026-07-31T16:31:38.924849",
+  "publishDate": "2026-07-31T00:31:09.785599",
+  "endDate": "2026-08-05T00:31:09.785599",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "429 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "272 Adet/Paket"
     }
   ]
 }

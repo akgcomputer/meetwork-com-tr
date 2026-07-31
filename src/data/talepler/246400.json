@@ -1,15 +1,18 @@
 {
   "id": "246400",
-  "title": "Yangın Söndürme Sistemleri Alım Talebi",
-  "slug": "yangn-sondurme-sistemleri-alm-talebi-246400",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-246400",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:41.299322",
-  "endDate": "2026-07-31T14:31:41.299322",
+  "publishDate": "2026-07-29T19:31:11.980951",
+  "endDate": "2026-08-01T19:31:11.980951",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Yangın Söndürme Sistemleri",
-      "quantity": "89 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "170 Adet/Paket"
     }
   ]
 }

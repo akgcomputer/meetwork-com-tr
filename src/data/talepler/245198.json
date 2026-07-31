@@ -1,15 +1,18 @@
 {
   "id": "245198",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245198",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245198",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T07:31:39.648395",
-  "endDate": "2026-07-31T07:31:39.648395",
+  "publishDate": "2026-07-31T06:31:10.558539",
+  "endDate": "2026-08-01T06:31:10.558539",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "195 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "413 Adet/Paket"
     }
   ]
 }

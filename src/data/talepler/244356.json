@@ -1,15 +1,18 @@
 {
   "id": "244356",
-  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
-  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-244356",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244356",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T01:31:38.634996",
-  "endDate": "2026-07-31T01:31:38.634996",
+  "publishDate": "2026-07-30T02:31:09.516035",
+  "endDate": "2026-08-02T02:31:09.516035",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "CNC Freze Tezgahı Parçaları",
-      "quantity": "94 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "235 Adet/Paket"
     }
   ]
 }

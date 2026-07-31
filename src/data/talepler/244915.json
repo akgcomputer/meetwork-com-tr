@@ -1,15 +1,18 @@
 {
   "id": "244915",
-  "title": "Vinç Kiralama Hizmeti Alım Talebi",
-  "slug": "vinc-kiralama-hizmeti-alm-talebi-244915",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-244915",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T12:31:39.285779",
-  "endDate": "2026-07-29T12:31:39.285779",
+  "publishDate": "2026-07-30T13:31:10.141366",
+  "endDate": "2026-07-31T13:31:10.141366",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "Vinç Kiralama Hizmeti",
-      "quantity": "98 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "237 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244028",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-244028",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244028",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T15:31:38.231483",
-  "endDate": "2026-08-06T15:31:38.231483",
+  "publishDate": "2026-07-30T17:31:08.685357",
+  "endDate": "2026-08-04T17:31:08.685357",
+  "category": "Biyoteknoloji & Genetik",
+  "categoryEmoji": "🧬",
+  "categoryColor": "#A855F7",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "293 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "143 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244147",
-  "title": "Güneş Paneli Sistemi Kurulumu Alım Talebi",
-  "slug": "gunes-paneli-sistemi-kurulumu-alm-talebi-244147",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244147",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T17:31:38.377870",
-  "endDate": "2026-08-03T17:31:38.377870",
+  "publishDate": "2026-07-31T14:31:09.003506",
+  "endDate": "2026-08-01T14:31:09.003506",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
   "items": [
     {
-      "name": "Güneş Paneli Sistemi Kurulumu",
-      "quantity": "288 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "40 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245438",
-  "title": "ISO 9001 Denetim Hizmeti Alım Talebi",
-  "slug": "iso-9001-denetim-hizmeti-alm-talebi-245438",
+  "title": "CNC Freze Tezgahı Parçaları Alım Talebi",
+  "slug": "cnc-freze-tezgah-parcalar-alm-talebi-245438",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-28T16:31:39.948592",
-  "endDate": "2026-07-30T16:31:39.948592",
+  "publishDate": "2026-07-30T06:31:10.856282",
+  "endDate": "2026-08-03T06:31:10.856282",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "ISO 9001 Denetim Hizmeti",
-      "quantity": "194 Adet/Paket"
+      "name": "CNC Freze Tezgahı Parçaları",
+      "quantity": "95 Adet/Paket"
     }
   ]
 }

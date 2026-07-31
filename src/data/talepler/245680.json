@@ -4,12 +4,15 @@
   "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245680",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T04:31:40.236821",
-  "endDate": "2026-08-06T04:31:40.236821",
+  "publishDate": "2026-07-28T19:31:11.121534",
+  "endDate": "2026-08-04T19:31:11.121534",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
       "name": "Endüstriyel Temizlik Malzemesi",
-      "quantity": "484 Adet/Paket"
+      "quantity": "382 Adet/Paket"
     }
   ]
 }

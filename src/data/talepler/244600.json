@@ -1,15 +1,18 @@
 {
   "id": "244600",
-  "title": "Kurumsal Promosyon Ürünleri Alım Talebi",
-  "slug": "kurumsal-promosyon-urunleri-alm-talebi-244600",
+  "title": "Paslanmaz Çelik Boru Alım Talebi",
+  "slug": "paslanmaz-celik-boru-alm-talebi-244600",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:38.914877",
-  "endDate": "2026-08-02T14:31:38.914877",
+  "publishDate": "2026-07-30T19:31:09.776623",
+  "endDate": "2026-07-31T19:31:09.776623",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "Kurumsal Promosyon Ürünleri",
-      "quantity": "435 Adet/Paket"
+      "name": "Paslanmaz Çelik Boru",
+      "quantity": "292 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244031",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-244031",
+  "title": "Sunucu ve Ağ Cihazları Alım Talebi",
+  "slug": "sunucu-ve-ag-cihazlar-alm-talebi-244031",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T08:31:38.234474",
-  "endDate": "2026-08-05T08:31:38.234474",
+  "publishDate": "2026-07-29T22:31:08.689347",
+  "endDate": "2026-08-04T22:31:08.689347",
+  "category": "Otomotiv",
+  "categoryEmoji": "🚗",
+  "categoryColor": "#DC2626",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "413 Adet/Paket"
+      "name": "Sunucu ve Ağ Cihazları",
+      "quantity": "288 Adet/Paket"
     }
   ]
 }

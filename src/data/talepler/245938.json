@@ -1,15 +1,18 @@
 {
   "id": "245938",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245938",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-245938",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T02:31:40.575049",
-  "endDate": "2026-08-06T02:31:40.575049",
+  "publishDate": "2026-07-29T20:31:11.402961",
+  "endDate": "2026-08-05T20:31:11.402961",
+  "category": "E-Ticaret & Pazarlama",
+  "categoryEmoji": "🛒",
+  "categoryColor": "#7C3AED",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "83 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "67 Adet/Paket"
     }
   ]
 }

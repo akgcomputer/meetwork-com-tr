@@ -1,15 +1,18 @@
 {
   "id": "245761",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-245761",
+  "title": "Personel Taşıma Hizmeti Alım Talebi",
+  "slug": "personel-tasma-hizmeti-alm-talebi-245761",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T07:31:40.345532",
-  "endDate": "2026-08-05T07:31:40.345532",
+  "publishDate": "2026-07-30T00:31:11.209735",
+  "endDate": "2026-08-01T00:31:11.209735",
+  "category": "Finansal Teknolojiler",
+  "categoryEmoji": "💰",
+  "categoryColor": "#14B8A6",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "188 Adet/Paket"
+      "name": "Personel Taşıma Hizmeti",
+      "quantity": "408 Adet/Paket"
     }
   ]
 }

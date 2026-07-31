@@ -1,15 +1,18 @@
 {
   "id": "245394",
-  "title": "Jeneratör Bakım Hizmeti Alım Talebi",
-  "slug": "jenerator-bakm-hizmeti-alm-talebi-245394",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-245394",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T17:31:39.893739",
-  "endDate": "2026-08-04T17:31:39.893739",
+  "publishDate": "2026-07-30T00:31:10.807112",
+  "endDate": "2026-08-01T00:31:10.807112",
+  "category": "Turizm & Seyahat",
+  "categoryEmoji": "✈️",
+  "categoryColor": "#0EA5E9",
   "items": [
     {
-      "name": "Jeneratör Bakım Hizmeti",
-      "quantity": "467 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "386 Adet/Paket"
     }
   ]
 }

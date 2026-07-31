@@ -1,15 +1,18 @@
 {
   "id": "244634",
-  "title": "Ofis Mobilyası Alım Talebi",
-  "slug": "ofis-mobilyas-alm-talebi-244634",
+  "title": "Yemek ve Catering Hizmeti Alım Talebi",
+  "slug": "yemek-ve-catering-hizmeti-alm-talebi-244634",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T06:31:38.948785",
-  "endDate": "2026-08-02T06:31:38.948785",
+  "publishDate": "2026-07-31T08:31:09.814264",
+  "endDate": "2026-08-07T08:31:09.814264",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Ofis Mobilyası",
-      "quantity": "454 Adet/Paket"
+      "name": "Yemek ve Catering Hizmeti",
+      "quantity": "437 Adet/Paket"
     }
   ]
 }

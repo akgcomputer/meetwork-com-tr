@@ -1,15 +1,18 @@
 {
   "id": "244421",
-  "title": "Polietilen Hammadde Alım Talebi",
-  "slug": "polietilen-hammadde-alm-talebi-244421",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-244421",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T13:31:38.701818",
-  "endDate": "2026-08-02T13:31:38.701818",
+  "publishDate": "2026-07-30T20:31:09.587708",
+  "endDate": "2026-08-05T20:31:09.587708",
+  "category": "Savunma & Havacılık",
+  "categoryEmoji": "🚀",
+  "categoryColor": "#475569",
   "items": [
     {
-      "name": "Polietilen Hammadde",
-      "quantity": "479 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "276 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "244955",
-  "title": "Yedek Parça ve Rulman Alım Talebi",
-  "slug": "yedek-parca-ve-rulman-alm-talebi-244955",
+  "title": "Ambalaj ve Koli Alım Talebi",
+  "slug": "ambalaj-ve-koli-alm-talebi-244955",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T01:31:39.330658",
-  "endDate": "2026-08-03T01:31:39.330658",
+  "publishDate": "2026-07-28T19:31:10.196402",
+  "endDate": "2026-07-31T19:31:10.196402",
+  "category": "Metal & Maden",
+  "categoryEmoji": "💎",
+  "categoryColor": "#94A3B8",
   "items": [
     {
-      "name": "Yedek Parça ve Rulman",
-      "quantity": "146 Adet/Paket"
+      "name": "Ambalaj ve Koli",
+      "quantity": "197 Adet/Paket"
     }
   ]
 }

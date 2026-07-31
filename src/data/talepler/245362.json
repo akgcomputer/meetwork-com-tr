@@ -1,15 +1,18 @@
 {
   "id": "245362",
-  "title": "Personel Taşıma Hizmeti Alım Talebi",
-  "slug": "personel-tasma-hizmeti-alm-talebi-245362",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245362",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T22:31:39.858833",
-  "endDate": "2026-08-01T22:31:39.858833",
+  "publishDate": "2026-07-29T18:31:10.773968",
+  "endDate": "2026-08-01T18:31:10.773968",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
   "items": [
     {
-      "name": "Personel Taşıma Hizmeti",
-      "quantity": "359 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "465 Adet/Paket"
     }
   ]
 }

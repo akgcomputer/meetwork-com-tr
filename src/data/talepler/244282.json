@@ -1,15 +1,18 @@
 {
   "id": "244282",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-244282",
+  "title": "Ofis Mobilyası Alım Talebi",
+  "slug": "ofis-mobilyas-alm-talebi-244282",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T07:31:38.554212",
-  "endDate": "2026-07-31T07:31:38.554212",
+  "publishDate": "2026-07-29T17:31:09.357560",
+  "endDate": "2026-08-03T17:31:09.357560",
+  "category": "Moda & Tekstil",
+  "categoryEmoji": "👕",
+  "categoryColor": "#EC4899",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "24 Adet/Paket"
+      "name": "Ofis Mobilyası",
+      "quantity": "489 Adet/Paket"
     }
   ]
 }

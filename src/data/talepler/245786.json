@@ -1,15 +1,18 @@
 {
   "id": "245786",
-  "title": "Pazarlama Ajansı Danışmanlığı Alım Talebi",
-  "slug": "pazarlama-ajans-dansmanlg-alm-talebi-245786",
+  "title": "Forklift Aküsü Alım Talebi",
+  "slug": "forklift-akusu-alm-talebi-245786",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-29T03:31:40.376448",
-  "endDate": "2026-07-31T03:31:40.376448",
+  "publishDate": "2026-07-30T09:31:11.236232",
+  "endDate": "2026-08-05T09:31:11.236232",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Pazarlama Ajansı Danışmanlığı",
-      "quantity": "319 Adet/Paket"
+      "name": "Forklift Aküsü",
+      "quantity": "158 Adet/Paket"
     }
   ]
 }

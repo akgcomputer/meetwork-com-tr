@@ -1,15 +1,18 @@
 {
   "id": "244189",
-  "title": "Ağır Yük Nakliye Hizmeti Alım Talebi",
-  "slug": "agr-yuk-nakliye-hizmeti-alm-talebi-244189",
+  "title": "İş Güvenliği Ekipmanı Alım Talebi",
+  "slug": "is-guvenligi-ekipman-alm-talebi-244189",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T14:31:38.420753",
-  "endDate": "2026-08-01T14:31:38.420753",
+  "publishDate": "2026-07-29T20:31:09.159090",
+  "endDate": "2026-08-04T20:31:09.159090",
+  "category": "İHA-SİHA Teknolojileri",
+  "categoryEmoji": "🚁",
+  "categoryColor": "#1E293B",
   "items": [
     {
-      "name": "Ağır Yük Nakliye Hizmeti",
-      "quantity": "116 Adet/Paket"
+      "name": "İş Güvenliği Ekipmanı",
+      "quantity": "313 Adet/Paket"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "id": "245467",
-  "title": "Soğuk Hava Deposu Bakımı Alım Talebi",
-  "slug": "soguk-hava-deposu-bakm-alm-talebi-245467",
+  "title": "Endüstriyel Temizlik Malzemesi Alım Talebi",
+  "slug": "endustriyel-temizlik-malzemesi-alm-talebi-245467",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-30T23:31:39.990481",
-  "endDate": "2026-08-03T23:31:39.990481",
+  "publishDate": "2026-07-29T06:31:10.891980",
+  "endDate": "2026-07-30T06:31:10.891980",
+  "category": "Çevre Teknolojileri",
+  "categoryEmoji": "🌿",
+  "categoryColor": "#22C55E",
   "items": [
     {
-      "name": "Soğuk Hava Deposu Bakımı",
-      "quantity": "81 Adet/Paket"
+      "name": "Endüstriyel Temizlik Malzemesi",
+      "quantity": "90 Adet/Paket"
     }
   ]
 }
