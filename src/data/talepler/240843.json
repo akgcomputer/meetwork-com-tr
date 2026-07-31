@@ -1,18 +1,30 @@
 {
   "id": "240843",
-  "title": "Otokoç 2.El Kağıt Paspas ve Kaza Tespit Tutanağı Teklif Toplama Alım Talebi",
-  "slug": "otokoc-2el-kagt-paspas-ve-kaza-tespit-tutanag-teklif-toplama-alm-talebi-240843",
+  "title": "AVİS-KAZA TESPİT TUTANAĞI Alım Talebi",
+  "slug": "avis-kaza-tespit-tutanagi-alm-talebi-240843",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.679634",
   "endDate": "2026-08-04T16:00:00",
   "category": "Teknoloji & Yazılım",
   "categoryEmoji": "💻",
   "categoryColor": "#0F172A",
   "items": [
     {
-      "name": "Otokoç 2.El Kağıt Paspas ve Kaza Tespit Tutanağı Teklif Toplama",
-      "quantity": "1 Adet"
+      "name": "AVİS-KAZA TESPİT TUTANAĞI",
+      "quantity": "100 Adet"
+    },
+    {
+      "name": "BUDGET-KAZA TESPİT TUTANAĞI",
+      "quantity": "100 Adet"
+    },
+    {
+      "name": "2.EL BASKILI KRAFT KAĞIT PASPAS - SİYAH",
+      "quantity": "2,000 Adet"
+    },
+    {
+      "name": "2.EL BASKILI KRAFT KAĞIT PASPAS - BEYAZ",
+      "quantity": "2,000 Adet"
     }
   ]
 }

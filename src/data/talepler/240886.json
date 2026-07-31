@@ -1,18 +1,18 @@
 {
   "id": "240886",
-  "title": "ADÇ-30935 Alım Talebi",
-  "slug": "adc-30935-alm-talebi-240886",
+  "title": "GRANÜLLÜ EL SABUNU Alım Talebi",
+  "slug": "granullu-el-sabunu-alm-talebi-240886",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.677640",
   "endDate": "2026-08-01T12:00:00",
-  "category": "Makine Sanayi",
-  "categoryEmoji": "⚙️",
-  "categoryColor": "#52525B",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "ADÇ-30935",
-      "quantity": "1 Adet"
+      "name": "GRANÜLLÜ EL SABUNU",
+      "quantity": "36 Kilogram"
     }
   ]
 }

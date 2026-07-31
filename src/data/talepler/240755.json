@@ -1,18 +1,18 @@
 {
   "id": "240755",
-  "title": "İDÇ RFQ Talebi-,146488 Alım Talebi",
-  "slug": "idc-rfq-talebi-146488-alm-talebi-240755",
+  "title": "2x2x0.8x0.8 JH-H-FE180 KABLO Alım Talebi",
+  "slug": "2x2x08x08-jh-h-fe180-kablo-alm-talebi-240755",
   "company": "Gizli Müşteri",
   "status": "Teknik Onayda",
-  "publishDate": "2026-07-31T18:03:04.922785",
+  "publishDate": "2026-07-31T18:30:06.680631",
   "endDate": "2026-07-31T16:00:00",
-  "category": "Makine Sanayi",
-  "categoryEmoji": "⚙️",
-  "categoryColor": "#52525B",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
   "items": [
     {
-      "name": "İDÇ RFQ Talebi-,146488",
-      "quantity": "1 Adet"
+      "name": "2x2x0.8x0.8 JH-H-FE180 KABLO",
+      "quantity": "500 Metre"
     }
   ]
 }

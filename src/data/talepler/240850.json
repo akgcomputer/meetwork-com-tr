@@ -1,18 +1,30 @@
 {
   "id": "240850",
-  "title": "Otokoç 2.El Ruhsat Kabı,Anahtarlık ve Otokoku Teklif Toplama Alım Talebi",
-  "slug": "otokoc-2el-ruhsat-kabanahtarlk-ve-otokoku-teklif-toplama-alm-talebi-240850",
+  "title": "OTOKOÇ 2. EL RUHSAT KILIFI Alım Talebi",
+  "slug": "otokoc-2-el-ruhsat-kilifi-alm-talebi-240850",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.679634",
   "endDate": "2026-08-04T16:30:00",
   "category": "Makine Sanayi",
   "categoryEmoji": "⚙️",
   "categoryColor": "#52525B",
   "items": [
     {
-      "name": "Otokoç 2.El Ruhsat Kabı,Anahtarlık ve Otokoku Teklif Toplama",
-      "quantity": "1 Adet"
+      "name": "OTOKOÇ 2. EL RUHSAT KILIFI",
+      "quantity": "200 Adet"
+    },
+    {
+      "name": "OTOKOÇ 2. EL ANAHTARLIK",
+      "quantity": "200 Adet"
+    },
+    {
+      "name": "Otokoç 2.El - Dönkart Otokokusu(Dikiz Ayna - 6cm çap)",
+      "quantity": "2,000 Adet"
+    },
+    {
+      "name": "OTOKOÇ FORD ANAHTARLIK",
+      "quantity": "300 Adet"
     }
   ]
 }

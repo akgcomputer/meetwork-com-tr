@@ -1,17 +1,57 @@
 {
   "id": "240801",
-  "title": "İDÇ RFQ Talebi-,146005 Lastik Ekipmanları ihalaesi - ürün özelliklerine dikkat ediniz Alım Talebi",
-  "slug": "idc-rfq-talebi-146005-lastik-ekipmanlar-ihalaesi-urun-ozelliklerine-dikkat-ediniz-alm-talebi-240801",
+  "title": "GBT-02 MARUNİ DUBLEKS YAMA (PK:15adet) Alım Talebi",
+  "slug": "gbt-02-maruni-dubleks-yama-pk15adet-alm-talebi-240801",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.679634",
   "endDate": "2026-08-04T12:00:00",
-  "category": "İHA-SİHA Teknolojileri",
-  "categoryEmoji": "🚁",
-  "categoryColor": "#1E293B",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "İDÇ RFQ Talebi-,146005 Lastik Ekipmanları ihalaesi - ürün özelliklerine dikkat ediniz",
+      "name": "GBT-02 MARUNİ DUBLEKS YAMA (PK:15adet)",
+      "quantity": "10 Paket"
+    },
+    {
+      "name": "FİTİL İGNESİ (TIĞ UCU) UZUN",
+      "quantity": "20 Adet"
+    },
+    {
+      "name": "C-2 SUBAP İĞNESİ",
+      "quantity": "İŞ MAKİNESİ TECH MARKA"
+    },
+    {
+      "name": "GNR-25 MARUNİ DUBLEKS YAMA (PK:10adet)",
+      "quantity": "5 Paket"
+    },
+    {
+      "name": "1000cc MARUNİ SUPER VALKARN (DUBLEKS YAPIŞTIRICI)",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "200cc SİLİSYON MARUNİ (ŞAMREL İÇİN)",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "LASTİKHANE İKİ TARAFLI TORNAVİDA PAFTA",
+      "quantity": "10 Adet"
+    },
+    {
+      "name": "LASTİKHANE TORNAVİDA PAFTA",
+      "quantity": "10 Adet"
+    },
+    {
+      "name": "KİBAROĞLU HAVA SAATİ 208-10/160 psi 1/1 bar",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "LASTİK ŞİŞİRME HAVA JAKI",
+      "quantity": "5 Adet"
+    },
+    {
+      "name": "0-12 BAR MANOMETRELİ LASTİK ŞİŞİRME TABANCASI",
       "quantity": "1 Adet"
     }
   ]

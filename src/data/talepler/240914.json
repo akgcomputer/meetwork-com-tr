@@ -1,18 +1,22 @@
 {
   "id": "240914",
-  "title": "REKAOİL EAGLEBURGMANN MARKA SALAMSTRA VE SKF-FAG MARKA RULMAN TEDARİKİ Alım Talebi",
-  "slug": "rekaoil-eagleburgmann-marka-salamstra-ve-skf-fag-marka-rulman-tedariki-alm-talebi-240914",
+  "title": "EAGLEBURGMANN MARKA SALMASTRA MEKANİK M3/40-00-R SBVGG Alım Talebi",
+  "slug": "eagleburgmann-marka-salmastra-mekanik-m340-00-r-sbvgg-alm-talebi-240914",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.677640",
   "endDate": "2026-08-13T09:00:00",
   "category": "Makine Sanayi",
   "categoryEmoji": "⚙️",
   "categoryColor": "#52525B",
   "items": [
     {
-      "name": "REKAOİL EAGLEBURGMANN MARKA SALAMSTRA VE SKF-FAG MARKA RULMAN TEDARİKİ",
+      "name": "EAGLEBURGMANN MARKA SALMASTRA MEKANİK M3/40-00-R SBVGG",
       "quantity": "1 Adet"
+    },
+    {
+      "name": "FAG MARKA 6308 ZZ RULMAN",
+      "quantity": "2 Adet"
     }
   ]
 }

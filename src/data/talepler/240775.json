@@ -1,18 +1,22 @@
 {
   "id": "240775",
-  "title": "İDÇ 147187 Alım Talebi",
-  "slug": "idc-147187-alm-talebi-240775",
+  "title": "418-54-33110 VISCOUS,MOUNT (KOMATSU WA 250 KABİN TAKOZU) KOMATSU WA 250 KEPÇE Alım Talebi",
+  "slug": "418-54-33110-viscousmount-komatsu-wa-250-kabin-takozu-komatsu-wa-250-kepce-alm-talebi-240775",
   "company": "Gizli Müşteri",
   "status": "Teknik Onayda",
-  "publishDate": "2026-07-31T18:03:04.922785",
+  "publishDate": "2026-07-31T18:30:06.680631",
   "endDate": "2026-07-31T12:00:00",
-  "category": "Makine Sanayi",
-  "categoryEmoji": "⚙️",
-  "categoryColor": "#52525B",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
   "items": [
     {
-      "name": "İDÇ 147187",
-      "quantity": "1 Adet"
+      "name": "418-54-33110 VISCOUS,MOUNT (KOMATSU WA 250 KABİN TAKOZU) KOMATSU WA 250 KEPÇE",
+      "quantity": "4 Adet"
+    },
+    {
+      "name": "01010-81845 BOLT ( KOMATSU WA 250 KABİN CİVATASI) KOMATSU WA 250 KEPÇE",
+      "quantity": "16 Adet"
     }
   ]
 }

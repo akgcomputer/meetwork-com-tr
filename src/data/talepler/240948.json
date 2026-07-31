@@ -1,17 +1,21 @@
 {
   "id": "240948",
-  "title": "İDÇ 145992 5 ve 10 Tonluk Kanca Bloğu Alım Talebi",
-  "slug": "idc-145992-5-ve-10-tonluk-kanca-blogu-alm-talebi-240948",
+  "title": "ÇİFT MAKARALI KANCA BLOĞU 10 TONLUK Alım Talebi",
+  "slug": "cift-makarali-kanca-blogu-10-tonluk-alm-talebi-240948",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.920792",
+  "publishDate": "2026-07-31T18:30:06.677640",
   "endDate": "2026-08-03T10:00:00",
   "category": "Makine Sanayi",
   "categoryEmoji": "⚙️",
   "categoryColor": "#52525B",
   "items": [
     {
-      "name": "İDÇ 145992 5 ve 10 Tonluk Kanca Bloğu",
+      "name": "ÇİFT MAKARALI KANCA BLOĞU 10 TONLUK",
+      "quantity": "1 Adet"
+    },
+    {
+      "name": "TEK MAKARALI KANCA BLOĞU 5 TONLUK",
       "quantity": "1 Adet"
     }
   ]

@@ -1,18 +1,86 @@
 {
   "id": "240952",
-  "title": "T26 BİLECİK Şantiyesinde Satılacak Demir Metal Kablo Trafo Köşk vb. Malzemeler Alım Talebi",
-  "slug": "t26-bilecik-santiyesinde-satlacak-demir-metal-kablo-trafo-kosk-vb-malzemeler-alm-talebi-240952",
+  "title": "Muhtelif Demir/Metal/Sac vb. Hurdası Alım Talebi",
+  "slug": "muhtelif-demirmetalsac-vb-hurdas-alm-talebi-240952",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.920792",
+  "publishDate": "2026-07-31T18:30:06.677640",
   "endDate": "2026-08-05T14:00:00",
-  "category": "Enerji & Yenilenebilir",
-  "categoryEmoji": "⚡",
-  "categoryColor": "#EAB308",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "T26 BİLECİK Şantiyesinde Satılacak Demir Metal Kablo Trafo Köşk vb. Malzemeler",
-      "quantity": "1 Adet"
+      "name": "Muhtelif Demir/Metal/Sac vb. Hurdası",
+      "quantity": "400,000 Kilogram"
+    },
+    {
+      "name": "Muhtelif Plastik Boru vb. Hurdası",
+      "quantity": "5,000 Kilogram"
+    },
+    {
+      "name": "ALPEK HURDA (AL)",
+      "quantity": "11,814 Kilogram"
+    },
+    {
+      "name": "NAYY KABLO (AL)",
+      "quantity": "27,081 Kilogram"
+    },
+    {
+      "name": "XLPE KABLO (AL-BAKIR)",
+      "quantity": "8,160 Kilogram"
+    },
+    {
+      "name": "NYAF BAKIR KABLO",
+      "quantity": "265 Kilogram"
+    },
+    {
+      "name": "NYY BAKIR KABLO",
+      "quantity": "6,845 Kilogram"
+    },
+    {
+      "name": "TTR BAKIR KABLO",
+      "quantity": "15,645 Kilogram"
+    },
+    {
+      "name": "DİĞER KABLOLAR",
+      "quantity": "1,595 Kilogram"
+    },
+    {
+      "name": "DEMİR DİREKLER",
+      "quantity": "80,622 Kilogram"
+    },
+    {
+      "name": "ENH İLETKENİ PİGEON",
+      "quantity": "10,102 Kilogram"
+    },
+    {
+      "name": "HÜCRE, PANO, AKÜ KARKASLARI, KÖŞK KAPILARI (SAC METAL)",
+      "quantity": "14,151 Kilogram"
+    },
+    {
+      "name": "HÜCRE KESİCİ-AYIRICI MEKANİZMALAR (Birimi Adet!)",
+      "quantity": "32 Adet"
+    },
+    {
+      "name": "TRAFOLAR",
+      "quantity": "22,830 Kilogram"
+    },
+    {
+      "name": "HÜCRE-KÖŞK, PANO BAKIR BARALARI",
+      "quantity": "856 Kilogram"
+    },
+    {
+      "name": "AKÜ",
+      "quantity": "165 Kilogram"
+    },
+    {
+      "name": "NYY KABLOLAR (TRAFO PANO BAĞLANTILARI) (BAKIR BARA)",
+      "quantity": "900 Kilogram"
+    },
+    {
+      "name": "BOŞ BETON KÖŞK",
+      "quantity": "165,000 Kilogram"
     }
   ]
 }

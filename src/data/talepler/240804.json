@@ -1,18 +1,30 @@
 {
   "id": "240804",
-  "title": "30.07. Tarihli Talepler Klm Depo Alım Talebi",
-  "slug": "3007-tarihli-talepler-klm-depo-alm-talebi-240804",
+  "title": "Knipex 280 mm betoncu kerpeten Alım Talebi",
+  "slug": "knipex-280-mm-betoncu-kerpeten-alm-talebi-240804",
   "company": "Gizli Müşteri",
   "status": "Teklif Aşamasında",
-  "publishDate": "2026-07-31T18:03:04.921790",
+  "publishDate": "2026-07-31T18:30:06.679634",
   "endDate": "2026-08-01T09:42:00",
-  "category": "Lojistik & Tedarik",
-  "categoryEmoji": "🚚",
-  "categoryColor": "#F97316",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
   "items": [
     {
-      "name": "30.07. Tarihli Talepler Klm Depo",
+      "name": "Knipex 280 mm betoncu kerpeten",
       "quantity": "1 Adet"
+    },
+    {
+      "name": "3\\8 sarı nipel",
+      "quantity": "10 Adet"
+    },
+    {
+      "name": "3\\8 flex hortum",
+      "quantity": "10 Adet"
+    },
+    {
+      "name": "1\\4 sarı nipel",
+      "quantity": "5 Adet"
     }
   ]
 }
