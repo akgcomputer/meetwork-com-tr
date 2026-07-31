@@ -76,6 +76,12 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
           <div id="empty-state" style="display: none;" class="text-center py-5">
             <p class="text-muted mb-0">Seçtiğiniz tarihte henüz bir talep işlenmemiş.</p>
           </div>
+          <!-- Infinite Scroll Trigger -->
+          <div id="load-more-trigger" class="text-center py-4">
+            <div class="spinner-border text-danger" role="status" id="loading-spinner" style="display: none;">
+              <span class="visually-hidden">Yükleniyor...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -85,59 +91,81 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const filterBtns = document.querySelectorAll('#dateFilterGroup .btn');
-  const items = document.querySelectorAll('.talep-item');
+  const items = Array.from(document.querySelectorAll('.talep-item'));
   const emptyState = document.getElementById('empty-state');
+  const trigger = document.getElementById('load-more-trigger');
+  const spinner = document.getElementById('loading-spinner');
   
+  let currentFilter = 'all';
+  let visibleLimit = 25;
+  const LOAD_STEP = 25;
+  
+  function applyFiltersAndRender() {
+    const now = new Date();
+    now.setHours(0,0,0,0);
+    
+    // Önce filtreye uyanları bul
+    const matchedItems = items.filter(item => {
+      const itemDateStr = item.getAttribute('data-publish-date');
+      const itemDate = new Date(itemDateStr);
+      const itemDateMidnight = new Date(itemDate);
+      itemDateMidnight.setHours(0,0,0,0);
+      
+      const diffTime = now.getTime() - itemDateMidnight.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+      
+      if(currentFilter === 'all') return true;
+      if (currentFilter === 'today') return diffDays === 0;
+      if (currentFilter === 'yesterday') return diffDays === 1;
+      if (currentFilter === 'week') return diffDays >= 0 && diffDays <= 7;
+      return false;
+    });
+    
+    // Ekranda gösterme/gizleme işlemleri
+    items.forEach(item => item.style.display = 'none'); // Önce hepsini gizle
+    
+    const itemsToShow = matchedItems.slice(0, visibleLimit);
+    itemsToShow.forEach(item => item.style.display = 'block'); // Sadece limite kadar olanları göster
+    
+    // Boş durum kontrolü
+    if(emptyState) {
+      emptyState.style.display = matchedItems.length === 0 ? 'block' : 'none';
+    }
+    
+    // Yükleme animasyonunu gizle/göster
+    if (matchedItems.length > visibleLimit) {
+      spinner.style.display = 'inline-block';
+    } else {
+      spinner.style.display = 'none';
+    }
+  }
+
+  // Filtre Butonları
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Aktif butonu güncelle
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       
-      const filter = btn.getAttribute('data-filter');
-      const now = new Date();
-      now.setHours(0,0,0,0);
-      
-      let visibleCount = 0;
-      
-      items.forEach(item => {
-        const itemDateStr = item.getAttribute('data-publish-date');
-        const itemDate = new Date(itemDateStr);
-        const itemDateMidnight = new Date(itemDate);
-        itemDateMidnight.setHours(0,0,0,0);
-        
-        // Zaman farkını gün olarak hesapla
-        const diffTime = now.getTime() - itemDateMidnight.getTime();
-        const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
-        
-        let show = false;
-        
-        if(filter === 'all') {
-          show = true;
-        } else if (filter === 'today') {
-          show = (diffDays === 0);
-        } else if (filter === 'yesterday') {
-          show = (diffDays === 1);
-        } else if (filter === 'week') {
-          show = (diffDays >= 0 && diffDays <= 7);
-        }
-        
-        if (show) {
-          item.style.display = 'block';
-          visibleCount++;
-        } else {
-          item.style.display = 'none';
-        }
-      });
-      
-      if(emptyState) {
-        if(visibleCount === 0) {
-          emptyState.style.display = 'block';
-        } else {
-          emptyState.style.display = 'none';
-        }
-      }
+      currentFilter = btn.getAttribute('data-filter');
+      visibleLimit = LOAD_STEP; // Filtre değişince limiti sıfırla
+      applyFiltersAndRender();
     });
   });
+  
+  // İlk Yükleme
+  applyFiltersAndRender();
+  
+  // Sonsuz Kaydırma (Intersection Observer)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        // Eğer trigger görünürse limiti artır
+        visibleLimit += LOAD_STEP;
+        applyFiltersAndRender();
+      }
+    }, { rootMargin: '100px' });
+    
+    observer.observe(trigger);
+  }
 });
 </script>
