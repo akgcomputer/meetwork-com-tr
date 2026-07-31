@@ -1,0 +1,18 @@
+{
+  "id": "240777",
+  "title": "Endüstriyel Ürün / Hizmet Alım Talebi",
+  "slug": "endustriyel-urun-hizmet-alm-talebi-240777",
+  "company": "Gizli Müşteri",
+  "status": "Teknik Onayda",
+  "publishDate": "2026-07-31T18:03:04.922785",
+  "endDate": "2026-07-31T16:00:00",
+  "category": "Hizmet Sektörü",
+  "categoryEmoji": "🍽️",
+  "categoryColor": "#F59E0B",
+  "items": [
+    {
+      "name": "Liman-4277",
+      "quantity": "1 Adet"
+    }
+  ]
+}

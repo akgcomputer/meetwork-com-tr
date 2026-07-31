@@ -1,0 +1,18 @@
+{
+  "id": "240782",
+  "title": "YAZICI KİRALAMA Alım Talebi",
+  "slug": "yazici-kiralama-alm-talebi-240782",
+  "company": "Gizli Müşteri",
+  "status": "İptal",
+  "publishDate": "2026-07-31T18:03:04.922785",
+  "endDate": "2026-08-07T09:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "YAZICI KİRALAMA",
+      "quantity": "1 Adet"
+    }
+  ]
+}
