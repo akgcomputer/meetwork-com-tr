@@ -1,0 +1,22 @@
+{
+  "id": "242134",
+  "title": "RULMAN,6312-Z Alım Talebi",
+  "slug": "rulman6312-z-alm-talebi-242134",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-10T09:31:10.629692",
+  "endDate": "2026-08-10T12:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "RULMAN,6312-Z",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN, 23130 CC/W33 C3 ÇELİK KAFES (SKF-FAG-TIMKEN-NACHI-NSK-NTN)",
+      "quantity": "8 Adet"
+    }
+  ]
+}

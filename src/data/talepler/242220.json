@@ -1,0 +1,18 @@
+{
+  "id": "242220",
+  "title": "Kimyasal Dübel Alım Talebi",
+  "slug": "kimyasal-dubel-alm-talebi-242220",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-10T09:31:10.628213",
+  "endDate": "2026-08-10T14:45:00",
+  "category": "Kozmetik & Kimya",
+  "categoryEmoji": "🧪",
+  "categoryColor": "#D946EF",
+  "items": [
+    {
+      "name": "Kimyasal Dübel",
+      "quantity": "20 Adet"
+    }
+  ]
+}

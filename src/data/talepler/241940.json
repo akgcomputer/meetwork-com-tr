@@ -1,0 +1,26 @@
+{
+  "id": "241940",
+  "title": "ELEKTRİK ARK ELDİVENİ Alım Talebi",
+  "slug": "elektrik-ark-eldiveni-alm-talebi-241940",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-08-10T09:31:10.631689",
+  "endDate": "2026-08-10T09:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "ELEKTRİK ARK ELDİVENİ",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "KORUYUCU GÖZLÜK",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "FFP2 TOZ MASKESİ",
+      "quantity": "10 Adet"
+    }
+  ]
+}

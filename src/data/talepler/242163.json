@@ -1,0 +1,22 @@
+{
+  "id": "242163",
+  "title": "M5 BAŞLIK (TERMİNAL ) (OTO ELEKTRİK) Alım Talebi",
+  "slug": "m5-baslik-terminal-oto-elektrik-alm-talebi-242163",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-08-10T09:31:10.629692",
+  "endDate": "2026-08-07T14:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "M5 BAŞLIK (TERMİNAL ) (OTO ELEKTRİK)",
+      "quantity": "200 Adet"
+    },
+    {
+      "name": "M6 BAŞLIK (TERMİNAL ) (OTO ELEKTRİK)",
+      "quantity": "200 Adet"
+    }
+  ]
+}
