@@ -1,0 +1,30 @@
+{
+  "id": "243533",
+  "title": "SKF 6304 ZZ/C3 RULMAN Alım Talebi",
+  "slug": "skf-6304-zzc3-rulman-alm-talebi-243533",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-15T00:40:50.888205",
+  "endDate": "2026-08-17T12:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "SKF 6304 ZZ/C3 RULMAN",
+      "quantity": "20 Adet"
+    },
+    {
+      "name": "KOYO DG 176221RMZ ( ŞARJ RULMANI ) ( TGS )",
+      "quantity": "15 Adet"
+    },
+    {
+      "name": "SKF 6305 ZZ/C3 RULMAN (19,400",
+      "quantity": "41,400 volant rulmanı )"
+    },
+    {
+      "name": "SKF 6206 ZZ/C3 RULMAN VOLANT RULMANI ( TGS )",
+      "quantity": "20 Adet"
+    }
+  ]
+}

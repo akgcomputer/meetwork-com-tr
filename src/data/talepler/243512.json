@@ -1,0 +1,18 @@
+{
+  "id": "243512",
+  "title": "KAPI Alım Talebi",
+  "slug": "kapi-alm-talebi-243512",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-15T00:40:50.889202",
+  "endDate": "2026-08-17T11:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "KAPI",
+      "quantity": "KAPAK KULBU PLASTİK EKİPMAN"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "243410",
+  "title": "RULMAN YATAĞI SN 3030 Alım Talebi",
+  "slug": "rulman-yatagi-sn-3030-alm-talebi-243410",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-15T00:40:50.890457",
+  "endDate": "2026-08-17T12:00:00",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
+  "items": [
+    {
+      "name": "RULMAN YATAĞI SN 3030",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN ÇEKTİRME SOMUNU,KM-18 (KALIN TİP)",
+      "quantity": "5 Adet"
+    },
+    {
+      "name": "RULMAN YATAK RİNGİ 2FRB 14/215",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "V KAYIŞI 13X1400",
+      "quantity": "2 Adet"
+    }
+  ]
+}
