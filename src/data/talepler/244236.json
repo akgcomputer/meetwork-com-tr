@@ -1,0 +1,46 @@
+{
+  "id": "244236",
+  "title": "ICA - Ø14 nervürlü inşaat demiri (L=12 m. standart boy) Alım Talebi",
+  "slug": "ica-14-nervurlu-insaat-demiri-l12-m-standart-boy-alm-talebi-244236",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-19T16:03:47.316353",
+  "endDate": "2026-08-19T16:00:00",
+  "category": "Yapı & İnşaat",
+  "categoryEmoji": "🏗️",
+  "categoryColor": "#8B5CF6",
+  "items": [
+    {
+      "name": "ICA - Ø14 nervürlü inşaat demiri (L=12 m. standart boy)",
+      "quantity": "24 Ton"
+    },
+    {
+      "name": "DK - Ø10 nervürlü inşaat demiri (L=12 m. standart boy)",
+      "quantity": "12 Ton"
+    },
+    {
+      "name": "DK - Ø12 ve üzeri nervürlü inşaat demiri (L=12 m. standart boy)",
+      "quantity": "144 Ton"
+    },
+    {
+      "name": "SKT - Ø10 nervürlü inşaat demiri (L=12 m. standart boy)",
+      "quantity": "26 Ton"
+    },
+    {
+      "name": "SKT - Ø12 ve üzeri nervürlü inşaat demiri (L=12 m. standart boy)",
+      "quantity": "260 Ton"
+    },
+    {
+      "name": "SKT - Ø131 & 221 & 589 Çelik Hasır (215x500 cm. standart ölçü)",
+      "quantity": "286 Ton"
+    },
+    {
+      "name": "MBE - Ø12 üzeri nervürlü inşaat demiri (L=12 m. standart boy) Çubuk Donatı Sınıfı: B 500 BC",
+      "quantity": "158 Ton"
+    },
+    {
+      "name": "MBE - Ø131 Çelik Hasır (215x500 cm. standart ölçü)",
+      "quantity": "26 Ton"
+    }
+  ]
+}

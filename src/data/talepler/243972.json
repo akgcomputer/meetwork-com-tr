@@ -1,0 +1,34 @@
+{
+  "id": "243972",
+  "title": "HAVA FİLTRESİ Alım Talebi",
+  "slug": "hava-filtresi-alm-talebi-243972",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-19T16:03:47.318345",
+  "endDate": "2026-08-20T12:00:00",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
+  "items": [
+    {
+      "name": "HAVA FİLTRESİ",
+      "quantity": "FİLTREVİDHHM.0021"
+    },
+    {
+      "name": "YAĞ FİLTRESİ",
+      "quantity": "FİLTREVİDYHM.0002"
+    },
+    {
+      "name": "PANEL FİLTRESİ",
+      "quantity": "FİLTREVİDHM.0026, Cam Elyaf"
+    },
+    {
+      "name": "SEPERATÖR FİLTRESİ",
+      "quantity": "FİLTREVİDSHM.0013"
+    },
+    {
+      "name": "SEPERATÖR FİLTRESİ",
+      "quantity": "FİLTREVİDSHM.0009 /MANN FILTER LB 962/2 /Aydın Trafo"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "243988",
+  "title": "SKF/FAG 6209 Z RULMAN Alım Talebi",
+  "slug": "skffag-6209-z-rulman-alm-talebi-243988",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-19T16:03:47.318345",
+  "endDate": "2026-08-20T12:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "SKF/FAG 6209 Z RULMAN",
+      "quantity": "7 Adet"
+    },
+    {
+      "name": "SKF/FAG 6212 ZZ RULMAN",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "SKF/FAG 6312 Z RULMAN",
+      "quantity": "1 Adet"
+    },
+    {
+      "name": "RULMAN 6203ZZ C3",
+      "quantity": "8 Adet"
+    },
+    {
+      "name": "RULMAN 7311 AC",
+      "quantity": "4 Adet"
+    }
+  ]
+}

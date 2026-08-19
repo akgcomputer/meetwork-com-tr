@@ -1,0 +1,26 @@
+{
+  "id": "244017",
+  "title": "HAVA FİLTRESİ Alım Talebi",
+  "slug": "hava-filtresi-alm-talebi-244017",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-19T16:03:47.318345",
+  "endDate": "2026-08-20T12:00:00",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
+  "items": [
+    {
+      "name": "HAVA FİLTRESİ",
+      "quantity": "FİLTREVİDHHM.0018"
+    },
+    {
+      "name": "YAĞ FİLTRESİ",
+      "quantity": "FİLTREVİDYHM.0001"
+    },
+    {
+      "name": "SEPERATÖR FİLTRESİ",
+      "quantity": "FİLTREVİDSHM.0009"
+    }
+  ]
+}

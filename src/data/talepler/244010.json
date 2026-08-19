@@ -1,0 +1,38 @@
+{
+  "id": "244010",
+  "title": "SKF/FAG 6308 Z RULMAN Alım Talebi",
+  "slug": "skffag-6308-z-rulman-alm-talebi-244010",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-19T16:03:47.318345",
+  "endDate": "2026-08-20T12:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "SKF/FAG 6308 Z RULMAN",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN INA F553575.01",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN/7213 ACM",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN INA F554185.01 (REDÜKTÖR)",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN",
+      "quantity": "33210"
+    },
+    {
+      "name": "RULMAN/INA 81117-TV",
+      "quantity": "2 Adet"
+    }
+  ]
+}
