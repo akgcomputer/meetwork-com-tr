@@ -1,0 +1,30 @@
+{
+  "id": "244365",
+  "title": "SKF MARKA 6020 ITEM CODE:240101000832 RULMAN Alım Talebi",
+  "slug": "skf-marka-6020-item-code240101000832-rulman-alm-talebi-244365",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-20T09:33:20.939881",
+  "endDate": "2026-08-20T17:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "SKF MARKA 6020 ITEM CODE:240101000832 RULMAN",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "SKF MARKA 6824 LLU (61824 2RSR-HLC) RULMAN",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "NTN MARKA RULMAN CHN 6919 2RS LLU (61919 2SRS)",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "RULMAN 6920 2RS (61920 2RS)",
+      "quantity": "2 Adet"
+    }
+  ]
+}
