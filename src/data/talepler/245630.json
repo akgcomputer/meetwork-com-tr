@@ -1,0 +1,18 @@
+{
+  "id": "245630",
+  "title": "RULMAN,61864 MC3 Alım Talebi",
+  "slug": "rulman61864-mc3-alm-talebi-245630",
+  "company": "Gizli Müşteri",
+  "status": "İptal",
+  "publishDate": "2026-08-27T10:35:39.402724",
+  "endDate": "2026-08-27T09:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "RULMAN,61864 MC3",
+      "quantity": "6 Adet"
+    }
+  ]
+}

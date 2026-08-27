@@ -1,0 +1,26 @@
+{
+  "id": "245644",
+  "title": "V KAYIŞI 17X3200 Alım Talebi",
+  "slug": "v-kayisi-17x3200-alm-talebi-245644",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.402724",
+  "endDate": "2026-08-28T14:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "V KAYIŞI 17X3200",
+      "quantity": "6 Adet"
+    },
+    {
+      "name": "V KAYIŞ 17X3600",
+      "quantity": "4 Adet"
+    },
+    {
+      "name": "V KAYIŞ 22X2100",
+      "quantity": "6 Adet"
+    }
+  ]
+}

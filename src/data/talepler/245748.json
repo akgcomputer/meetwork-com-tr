@@ -1,0 +1,18 @@
+{
+  "id": "245748",
+  "title": "Filtre Kahve Makinesi Alım Talebi",
+  "slug": "filtre-kahve-makinesi-alm-talebi-245748",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.400731",
+  "endDate": "2026-08-27T16:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "Filtre Kahve Makinesi",
+      "quantity": "1 Adet"
+    }
+  ]
+}

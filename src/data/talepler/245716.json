@@ -1,0 +1,22 @@
+{
+  "id": "245716",
+  "title": "GRES POMPASI Alım Talebi",
+  "slug": "gres-pompasi-alm-talebi-245716",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.400731",
+  "endDate": "2026-08-28T10:52:00",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
+  "items": [
+    {
+      "name": "GRES POMPASI",
+      "quantity": "3 Adet"
+    },
+    {
+      "name": "KARABİNA 12*120 GALVANİZ",
+      "quantity": "10 Adet"
+    }
+  ]
+}

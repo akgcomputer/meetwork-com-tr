@@ -1,0 +1,26 @@
+{
+  "id": "245712",
+  "title": "STEM/ POZ:400/ VALVE MODEL: DSK26.25 Alım Talebi",
+  "slug": "stem-poz400-valve-model-dsk2625-alm-talebi-245712",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.400731",
+  "endDate": "2026-08-31T08:45:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "STEM/ POZ:400/ VALVE MODEL: DSK26.25",
+      "quantity": "700 JT 46.2 DN 100 TS=280°C PS=350 bar PERSTA"
+    },
+    {
+      "name": "STEM/ POZ:400/ VALVE MODEL:DSK 26.25",
+      "quantity": "700 JT 63.2 DN 80 TS=502°C PS=350 bar"
+    },
+    {
+      "name": "STEM/ POZ:400/ VALVE MODEL:200 LM 63.2 DN65 TS=550°C PS=350 bar",
+      "quantity": "1 Adet"
+    }
+  ]
+}

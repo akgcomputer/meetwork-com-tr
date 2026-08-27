@@ -1,0 +1,30 @@
+{
+  "id": "245730",
+  "title": "YAĞ KEÇESİ 240X280X16 Alım Talebi",
+  "slug": "yag-kecesi-240x280x16-alm-talebi-245730",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.400731",
+  "endDate": "2026-08-28T14:00:00",
+  "category": "Teknoloji & Yazılım",
+  "categoryEmoji": "💻",
+  "categoryColor": "#0F172A",
+  "items": [
+    {
+      "name": "YAĞ KEÇESİ 240X280X16",
+      "quantity": "10 Adet"
+    },
+    {
+      "name": "PNÖ.PİS.BAŞI KEÇE 80X25X16 MM ( K25 - 080 )",
+      "quantity": "15 Adet"
+    },
+    {
+      "name": "PNÖ.PİST.B.KEÇESİ 27X200X35 MM ( K25 - 200 )",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "PNÖ.BOĞAZ-TOZ KEÇESİ 25X35X7",
+      "quantity": "9,5"
+    }
+  ]
+}

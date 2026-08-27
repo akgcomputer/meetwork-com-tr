@@ -1,0 +1,38 @@
+{
+  "id": "245672",
+  "title": "SAPLAMA Alım Talebi",
+  "slug": "saplama-alm-talebi-245672",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-27T10:35:39.401727",
+  "endDate": "2026-08-27T17:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "SAPLAMA",
+      "quantity": "M22X1000 10.9 SİYAH DIN975"
+    },
+    {
+      "name": "Booster Pompa gövde pulu, Bakır pul, D1:24,5mm,D2:48mm,s:4mm",
+      "quantity": "50 Adet"
+    },
+    {
+      "name": "Booster pompa gövde pulu ,Bakır pul, D1:36,5mm,D2:64mm,s:4mm",
+      "quantity": "100 Adet"
+    },
+    {
+      "name": "8 mm Roket Dübeli 5x50 Vidalı Dübel Vida Seti",
+      "quantity": "150 Adet"
+    },
+    {
+      "name": "M24x3 Booster Pompa Gövde Somunu",
+      "quantity": "İZE-12J-2079-1.1-00"
+    },
+    {
+      "name": "M36x4 Booster Pompa Gövde Somunu",
+      "quantity": "İZE-12J-2080-1.1-00"
+    }
+  ]
+}
