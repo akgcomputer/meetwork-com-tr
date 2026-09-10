@@ -1,0 +1,18 @@
+{
+  "id": "246148",
+  "title": "İLAÇLAMA Alım Talebi",
+  "slug": "ilaclama-alm-talebi-246148",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-08-31T16:01:42.343086",
+  "endDate": "2026-08-31T16:05:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "İLAÇLAMA",
+      "quantity": "1 Proje"
+    }
+  ]
+}

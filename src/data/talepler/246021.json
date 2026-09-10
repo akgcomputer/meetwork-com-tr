@@ -1,0 +1,22 @@
+{
+  "id": "246021",
+  "title": "RULMAN MAFSAL GE 25 ES Alım Talebi",
+  "slug": "rulman-mafsal-ge-25-es-alm-talebi-246021",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-08-31T16:01:42.343086",
+  "endDate": "2026-08-31T12:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "RULMAN MAFSAL GE 25 ES",
+      "quantity": "20 Adet"
+    },
+    {
+      "name": "RULMAN, 24132 CC/W33 C3 ÇELİK KAFES ( SKF-FAG )",
+      "quantity": "12 Adet"
+    }
+  ]
+}

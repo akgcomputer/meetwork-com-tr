@@ -1,0 +1,22 @@
+{
+  "id": "248479",
+  "title": "4,5x50 sunta vidası Alım Talebi",
+  "slug": "45x50-sunta-vidas-alm-talebi-248479",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-09-10T23:59:15.814149",
+  "endDate": "2026-09-11T16:42:00",
+  "category": "Gıda Üretimi",
+  "categoryEmoji": "🥐",
+  "categoryColor": "#D97706",
+  "items": [
+    {
+      "name": "4,5x50 sunta vidası",
+      "quantity": "1,000 Adet"
+    },
+    {
+      "name": "8'lik Dübel",
+      "quantity": "1,000 Adet"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "248478",
+  "title": "TRANSPALET Alım Talebi",
+  "slug": "transpalet-alm-talebi-248478",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-09-10T23:59:15.814149",
+  "endDate": "2026-09-11T16:41:00",
+  "category": "Lojistik & Tedarik",
+  "categoryEmoji": "🚚",
+  "categoryColor": "#F97316",
+  "items": [
+    {
+      "name": "TRANSPALET",
+      "quantity": "10 Adet"
+    }
+  ]
+}

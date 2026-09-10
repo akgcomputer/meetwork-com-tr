@@ -1,0 +1,18 @@
+{
+  "id": "248147",
+  "title": "Gaz,Suva Du Pont,R 134A Alım Talebi",
+  "slug": "gazsuva-du-pontr-134a-alm-talebi-248147",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-09-10T23:59:15.817139",
+  "endDate": "2026-09-10T10:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "Gaz,Suva Du Pont,R 134A",
+      "quantity": "10 Adet"
+    }
+  ]
+}

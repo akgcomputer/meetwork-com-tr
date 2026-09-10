@@ -1,0 +1,22 @@
+{
+  "id": "246337",
+  "title": "LOCTİTE 406 20 GR Alım Talebi",
+  "slug": "loctite-406-20-gr-alm-talebi-246337",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-08-31T16:01:42.339096",
+  "endDate": "2026-08-31T14:35:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "LOCTİTE 406 20 GR",
+      "quantity": "48 Adet"
+    },
+    {
+      "name": "LOCTİTE 401 20 GR",
+      "quantity": "48 Adet"
+    }
+  ]
+}

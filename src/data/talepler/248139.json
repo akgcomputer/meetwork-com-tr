@@ -1,0 +1,22 @@
+{
+  "id": "248139",
+  "title": "N2XH KABLO 1X150 Alım Talebi",
+  "slug": "n2xh-kablo-1x150-alm-talebi-248139",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-09-10T23:59:15.817139",
+  "endDate": "2026-09-10T09:10:00",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
+  "items": [
+    {
+      "name": "N2XH KABLO 1X150",
+      "quantity": "330 Metre"
+    },
+    {
+      "name": "N2XH KABLO 1X70",
+      "quantity": "110 Metre"
+    }
+  ]
+}
