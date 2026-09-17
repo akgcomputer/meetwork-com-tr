@@ -1,0 +1,26 @@
+{
+  "id": "249862",
+  "title": "5 Metre Fisco Alım Talebi",
+  "slug": "5-metre-fisco-alm-talebi-249862",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-09-17T21:14:11.194239",
+  "endDate": "2026-09-18T08:30:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "5 Metre Fisco",
+      "quantity": "30 Adet"
+    },
+    {
+      "name": "Termometre Ölçüm Aleti TFA 30.3054 Sıcaklık ve Nem",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "Kurt Ağzı Yatay 800Kg Atlas",
+      "quantity": "4 Adet"
+    }
+  ]
+}

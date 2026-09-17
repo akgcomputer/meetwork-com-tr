@@ -1,0 +1,18 @@
+{
+  "id": "249950",
+  "title": "Beyaz satış dosyası Alım Talebi",
+  "slug": "beyaz-sats-dosyas-alm-talebi-249950",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-09-17T21:14:11.192164",
+  "endDate": "2026-09-18T15:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "Beyaz satış dosyası",
+      "quantity": "1 Adet"
+    }
+  ]
+}

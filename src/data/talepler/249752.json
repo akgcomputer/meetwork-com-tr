@@ -1,0 +1,30 @@
+{
+  "id": "249752",
+  "title": "5x10 Kalıp Kerestesi (İnşaat için Boy 3 Metre) Alım Talebi",
+  "slug": "5x10-kalp-kerestesi-insaat-icin-boy-3-metre-alm-talebi-249752",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-09-17T21:14:11.195239",
+  "endDate": "2026-09-18T11:00:00",
+  "category": "Enerji & Yenilenebilir",
+  "categoryEmoji": "⚡",
+  "categoryColor": "#EAB308",
+  "items": [
+    {
+      "name": "5x10 Kalıp Kerestesi (İnşaat için Boy 3 Metre)",
+      "quantity": "80 Adet"
+    },
+    {
+      "name": "PLYWOOD KONTRAPLAK 2500X1250X18 MM",
+      "quantity": "30 Adet"
+    },
+    {
+      "name": "20x20 Azman Kerestesi (Adet Boyu En az 10 Metre)",
+      "quantity": "5 Adet"
+    },
+    {
+      "name": "10x10 Kalıp Kerestesi (Boyu en az 4 Metre)",
+      "quantity": "100 Adet"
+    }
+  ]
+}
