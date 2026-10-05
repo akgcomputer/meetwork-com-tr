@@ -1,0 +1,18 @@
+{
+  "id": "253105",
+  "title": "mutfak ihtiyaçları Alım Talebi",
+  "slug": "mutfak-ihtiyaclar-alm-talebi-253105",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-10-05T13:46:27.858038",
+  "endDate": "2026-10-06T10:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "mutfak ihtiyaçları",
+      "quantity": "1 Adet"
+    }
+  ]
+}

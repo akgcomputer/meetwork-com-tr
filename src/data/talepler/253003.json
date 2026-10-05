@@ -1,0 +1,18 @@
+{
+  "id": "253003",
+  "title": "Çay Kazanı Damlalık Alım Talebi",
+  "slug": "cay-kazan-damlalk-alm-talebi-253003",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-10-05T13:46:27.862027",
+  "endDate": "2026-10-05T11:50:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "Çay Kazanı Damlalık",
+      "quantity": "4 Adet"
+    }
+  ]
+}
