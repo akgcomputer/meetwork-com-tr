@@ -1,0 +1,394 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { menuItems } from '../data/menu';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Statik talepleri derleme anında JSON özet listesi olarak hazırla (istemci tarafında hızlı arama için)
+const dataDir = path.join(process.cwd(), 'src/data/talepler');
+let taleplerIndex: any[] = [];
+if (fs.existsSync(dataDir)) {
+  const files = fs.readdirSync(dataDir).filter(f => f.endsWith('.json'));
+  taleplerIndex = files.map(file => {
+    try {
+      const raw = JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf-8'));
+      return {
+        id: raw.id,
+        title: raw.title,
+        slug: raw.slug,
+        category: raw.category || 'Alım Talebi',
+        date: raw.publishDate || ''
+      };
+    } catch (_) {
+      return null;
+    }
+  }).filter(Boolean);
+}
+
+// Site içi tüm menü ve işleyiş sayfalarını düz liste haline getir
+const sitePages: { title: string; url: string; group: string }[] = [
+  { title: 'Keşfet & Canlı Sosyal İş Akışı', url: '/', group: 'Platform' },
+  { title: 'İlanlar (Emlak, Vasıta, Sanayi, 2. El)', url: '/ilanlar', group: 'Platform' },
+  { title: 'E-İhale & Satın Alma Talepleri', url: '/ihaleler', group: 'Platform' },
+  { title: 'Akıllı Eşleşme (Hedef + Sürpriz İş Ağı)', url: '/akilli-eslesme', group: 'Platform' },
+  { title: 'Vitrin & Doğrulanmış İşletmeler', url: '/isletmeler', group: 'Platform' },
+  { title: 'Sıkça Sorulan Sorular (SSS)', url: '/sss', group: 'Kurumsal' },
+  { title: 'İletişim & Temsilcilikler', url: '/iletisim', group: 'Kurumsal' }
+];
+
+menuItems.forEach((group) => {
+  if (group.subItems) {
+    group.subItems.forEach((sub) => {
+      if (sub.title && sub.url && sub.url !== '#') {
+        sitePages.push({
+          title: sub.title,
+          url: sub.url,
+          group: group.title || 'İşleyiş & Sektörler'
+        });
+      }
+    });
+  }
+});
+---
+
+<BaseLayout
+  title="Site Geneli Arama | MeetWork"
+  description="MeetWork genelinde sosyal medya paylaşımları, emlak/vasıta/sanayi ilanları, e-ihaleler, alım talepleri, işletmeler ve sektörlerde arama yapın."
+>
+  <div class="mw-panel-card p-4 mb-4 shadow-sm">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-7">
+        <span class="badge bg-danger mb-2">Tüm Ekosistemde Arama</span>
+        <h3 class="fw-bold mb-1">MeetWork Site Geneli Arama</h3>
+        <p class="small text-muted mb-0">
+          Sosyal medya paylaşımları, ilanlar, e-ihaleler, satın alma talepleri, işletme vitrini, sektörler ve işleyiş sayfalarında tek noktadan arayın.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <form id="mwSearchPageForm" class="d-flex gap-2">
+          <input
+            type="search"
+            id="mwSearchPageInput"
+            class="form-control"
+            placeholder="Arama yapın..."
+          />
+          <button type="submit" class="btn btn-danger fw-bold px-4">
+            <i class="bi bi-search me-1"></i> Ara
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Kategori Filtre Sekmeleri -->
+    <div class="d-flex flex-wrap gap-2 mt-3 pt-3 border-top" style="border-color:var(--mw-border)!important;" id="mwSearchTabs">
+      <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 fw-semibold" data-search-tab="all">
+        Tümü (<span id="countAll">0</span>)
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" data-search-tab="posts">
+        <i class="bi bi-chat-square-text me-1"></i> Sosyal Akış (<span id="countPosts">0</span>)
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" data-search-tab="listings">
+        <i class="bi bi-shop me-1"></i> İlanlar (<span id="countListings">0</span>)
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" data-search-tab="tenders">
+        <i class="bi bi-hammer me-1"></i> İhale & Talepler (<span id="countTenders">0</span>)
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" data-search-tab="companies">
+        <i class="bi bi-buildings me-1"></i> Vitrin & İşletmeler (<span id="countCompanies">0</span>)
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" data-search-tab="pages">
+        <i class="bi bi-compass me-1"></i> Sektör & İşleyiş (<span id="countPages">0</span>)
+      </button>
+    </div>
+  </div>
+
+  <!-- Sonuç Alanı -->
+  <div id="mwSearchResultsContainer" class="d-flex flex-column gap-4 mb-5">
+    <div class="mw-panel-card p-5 text-center text-muted">
+      <div class="spinner-border text-danger mb-2" role="status"></div>
+      <div>Arama sonuçları taranıyor...</div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ taleplerIndex, sitePages }}>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentTab = 'all';
+      let lastResults = { posts: [], listings: [], tenders: [], companies: [], pages: [] };
+
+      function normalize(str) {
+        return String(str || '')
+          .toLocaleLowerCase('tr-TR')
+          .trim();
+      }
+
+      async function performGlobalSearch(query) {
+        const q = normalize(query);
+        const container = document.getElementById('mwSearchResultsContainer');
+        if (container) {
+          container.innerHTML = `
+            <div class="mw-panel-card p-5 text-center text-muted">
+              <div class="spinner-border text-danger mb-2" role="status"></div>
+              <div>"${query || 'Tüm kayıtlar'}" için sosyal medya, ilanlar, ihaleler, talepler ve işletmeler taranıyor...</div>
+            </div>`;
+        }
+
+        let feedData = { posts: [], vitrinListings: [], activeTenders: [], featuredCompanies: [] };
+        let allListings = [];
+        let allCompanies = [];
+
+        try {
+          const [feedRes, listRes, compRes] = await Promise.all([
+            fetch(`${API_URL}/api/feed`).then(r => r.json()).catch(() => ({})),
+            fetch(`${API_URL}/api/listings${q ? `?q=${encodeURIComponent(query)}` : ''}`).then(r => r.json()).catch(() => ({})),
+            fetch(`${API_URL}/api/companies${q ? `?q=${encodeURIComponent(query)}` : ''}`).then(r => r.json()).catch(() => ({}))
+          ]);
+          feedData = feedRes || {};
+          allListings = listRes.listings || feedData.vitrinListings || [];
+          allCompanies = compRes.companies || feedData.featuredCompanies || [];
+        } catch (_) {}
+
+        // 1. Sosyal Medya Paylaşımları
+        const rawPosts = feedData.posts || [];
+        const matchedPosts = rawPosts.filter(p =>
+          !q ||
+          normalize(p.content).includes(q) ||
+          normalize(p.author_name).includes(q) ||
+          normalize(p.company_name).includes(q)
+        );
+
+        // 2. İlanlar
+        const matchedListings = allListings.filter(item =>
+          !q ||
+          normalize(item.title).includes(q) ||
+          normalize(item.main_category).includes(q) ||
+          normalize(item.sub_category).includes(q) ||
+          normalize(item.listing_no).includes(q) ||
+          normalize(item.seller_city).includes(q) ||
+          normalize(item.description).includes(q)
+        );
+
+        // 3. E-İhaleler + Statik Alım Talepleri
+        const liveTenders = (feedData.activeTenders || []).filter(t =>
+          !q ||
+          normalize(t.title).includes(q) ||
+          normalize(t.sector).includes(q) ||
+          normalize(t.description).includes(q)
+        ).map(t => ({
+          type: 'Canlı E-İhale',
+          title: t.title,
+          category: t.tender_type || 'Açık Eksiltme',
+          url: '/ihaleler',
+          meta: `${Number(t.start_price || 0).toLocaleString('tr-TR')} ${t.currency || 'TRY'}`
+        }));
+
+        const matchedDemands = (taleplerIndex || []).filter(t =>
+          !q ||
+          normalize(t.title).includes(q) ||
+          normalize(t.category).includes(q) ||
+          normalize(t.id).includes(q)
+        ).slice(0, 40).map(t => ({
+          type: 'Satın Alma Talebi',
+          title: t.title,
+          category: t.category,
+          url: `/talepler/${t.slug}`,
+          meta: `Talep #${t.id}`
+        }));
+
+        const matchedTenders = [...liveTenders, ...matchedDemands];
+
+        // 4. İşletmeler & Vitrin
+        const matchedCompanies = allCompanies.filter(c =>
+          !q ||
+          normalize(c.name).includes(q) ||
+          normalize(c.sector).includes(q) ||
+          normalize(c.city).includes(q) ||
+          normalize(c.about).includes(q)
+        );
+
+        // 5. Sektörler & İşleyiş Sayfaları
+        const matchedPages = (sitePages || []).filter(p =>
+          !q ||
+          normalize(p.title).includes(q) ||
+          normalize(p.group).includes(q)
+        );
+
+        lastResults = {
+          posts: matchedPosts,
+          listings: matchedListings,
+          tenders: matchedTenders,
+          companies: matchedCompanies,
+          pages: matchedPages
+        };
+
+        const total = matchedPosts.length + matchedListings.length + matchedTenders.length + matchedCompanies.length + matchedPages.length;
+        document.getElementById('countAll').textContent = String(total);
+        document.getElementById('countPosts').textContent = String(matchedPosts.length);
+        document.getElementById('countListings').textContent = String(matchedListings.length);
+        document.getElementById('countTenders').textContent = String(matchedTenders.length);
+        document.getElementById('countCompanies').textContent = String(matchedCompanies.length);
+        document.getElementById('countPages').textContent = String(matchedPages.length);
+
+        renderResults();
+      }
+
+      function renderResults() {
+        const container = document.getElementById('mwSearchResultsContainer');
+        if (!container) return;
+
+        const sections = [];
+
+        // Sosyal Akış
+        if ((currentTab === 'all' || currentTab === 'posts') && lastResults.posts.length > 0) {
+          sections.push(`
+            <div class="mw-panel-card p-3 shadow-sm">
+              <h6 class="fw-bold text-danger mb-3"><i class="bi bi-chat-square-text me-1"></i> Sosyal Medya & İş Paylaşımları (${lastResults.posts.length})</h6>
+              <div class="d-flex flex-column gap-2">
+                ${lastResults.posts.map(p => `
+                  <a href="/" class="p-2 rounded border text-decoration-none d-block" style="border-color:var(--mw-border)!important;">
+                    <div class="fw-bold small" style="color:var(--mw-text);">${p.author_name} <span class="text-muted fw-normal">• ${p.company_name || ''}</span></div>
+                    <div class="small text-muted text-truncate">${p.content}</div>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `);
+        }
+
+        // İlanlar
+        if ((currentTab === 'all' || currentTab === 'listings') && lastResults.listings.length > 0) {
+          sections.push(`
+            <div class="mw-panel-card p-3 shadow-sm">
+              <h6 class="fw-bold text-danger mb-3"><i class="bi bi-shop me-1"></i> İlanlar (${lastResults.listings.length})</h6>
+              <div class="row g-2">
+                ${lastResults.listings.map(item => `
+                  <div class="col-md-6">
+                    <a href="/ilanlar?ilan=${encodeURIComponent(item.slug || item.listing_no)}" class="p-2 rounded border text-decoration-none d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                      <div class="text-truncate pe-2">
+                        <span class="badge bg-danger me-1" style="font-size:0.65rem;">${item.main_category}</span>
+                        <span class="fw-bold small" style="color:var(--mw-text);">${item.title}</span>
+                        <div class="small text-muted" style="font-size:0.72rem;"><i class="bi bi-geo-alt"></i> ${item.seller_city} • #${item.listing_no}</div>
+                      </div>
+                      <span class="fw-black text-danger small flex-shrink-0">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</span>
+                    </a>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `);
+        }
+
+        // İhale & Talepler
+        if ((currentTab === 'all' || currentTab === 'tenders') && lastResults.tenders.length > 0) {
+          sections.push(`
+            <div class="mw-panel-card p-3 shadow-sm">
+              <h6 class="fw-bold text-danger mb-3"><i class="bi bi-hammer me-1"></i> E-İhaleler & Satın Alma Talepleri (${lastResults.tenders.length})</h6>
+              <div class="row g-2">
+                ${lastResults.tenders.map(t => `
+                  <div class="col-md-6">
+                    <a href="${t.url}" class="p-2 rounded border text-decoration-none d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                      <div class="text-truncate pe-2">
+                        <span class="badge ${t.type === 'Canlı E-İhale' ? 'bg-success' : 'bg-danger'} me-1" style="font-size:0.65rem;">${t.type}</span>
+                        <span class="fw-semibold small" style="color:var(--mw-text);">${t.title}</span>
+                      </div>
+                      <small class="text-muted flex-shrink-0" style="font-size:0.72rem;">${t.meta}</small>
+                    </a>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `);
+        }
+
+        // İşletmeler & Vitrin
+        if ((currentTab === 'all' || currentTab === 'companies') && lastResults.companies.length > 0) {
+          sections.push(`
+            <div class="mw-panel-card p-3 shadow-sm">
+              <h6 class="fw-bold text-danger mb-3"><i class="bi bi-buildings me-1"></i> Vitrin & Doğrulanmış İşletmeler (${lastResults.companies.length})</h6>
+              <div class="row g-2">
+                ${lastResults.companies.map(c => `
+                  <div class="col-md-6">
+                    <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="p-2 rounded border text-decoration-none d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                      <div>
+                        <div class="fw-bold small" style="color:var(--mw-text);">${c.name}</div>
+                        <small class="text-muted">${c.sector} • ${c.city || 'Türkiye'}</small>
+                      </div>
+                      <span class="badge bg-danger">Vitrin</span>
+                    </a>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `);
+        }
+
+        // Sektör & İşleyiş Sayfaları
+        if ((currentTab === 'all' || currentTab === 'pages') && lastResults.pages.length > 0) {
+          sections.push(`
+            <div class="mw-panel-card p-3 shadow-sm">
+              <h6 class="fw-bold text-danger mb-3"><i class="bi bi-compass me-1"></i> Sektörler & İşleyiş Sayfaları (${lastResults.pages.length})</h6>
+              <div class="row g-2">
+                ${lastResults.pages.map(p => `
+                  <div class="col-md-4 col-sm-6">
+                    <a href="${p.url}" class="p-2 rounded border text-decoration-none d-block" style="border-color:var(--mw-border)!important;">
+                      <small class="text-danger fw-bold d-block" style="font-size:0.65rem;">${p.group}</small>
+                      <span class="fw-semibold small" style="color:var(--mw-text);">${p.title}</span>
+                    </a>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `);
+        }
+
+        if (sections.length === 0) {
+          container.innerHTML = `
+            <div class="mw-panel-card p-5 text-center">
+              <i class="bi bi-search fs-2 text-danger"></i>
+              <h6 class="fw-bold mt-2">Eşleşen sonuç bulunamadı</h6>
+              <p class="small text-muted mb-0">Farklı bir anahtar kelimeyle tekrar deneyebilir veya sekmeler arasında geçiş yapabilirsiniz.</p>
+            </div>
+          `;
+        } else {
+          container.innerHTML = sections.join('');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const initialQ = params.get('q') || '';
+        const input = document.getElementById('mwSearchPageInput');
+        if (input) input.value = initialQ;
+
+        performGlobalSearch(initialQ);
+
+        const form = document.getElementById('mwSearchPageForm');
+        if (form && input) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const q = input.value.trim();
+            const url = new URL(window.location.href);
+            if (q) url.searchParams.set('q', q);
+            else url.searchParams.delete('q');
+            window.history.replaceState({}, '', url.toString());
+            performGlobalSearch(q);
+          });
+        }
+
+        const tabs = document.querySelectorAll('[data-search-tab]');
+        tabs.forEach(btn => {
+          btn.addEventListener('click', () => {
+            tabs.forEach(b => {
+              b.classList.remove('btn-danger');
+              b.classList.add('btn-outline-secondary');
+            });
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-danger');
+            currentTab = btn.getAttribute('data-search-tab') || 'all';
+            renderResults();
+          });
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
