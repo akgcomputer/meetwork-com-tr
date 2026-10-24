@@ -17,239 +17,291 @@ if (fs.existsSync(dataDir)) {
   }).filter(Boolean);
 }
 talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-const recentTalepler = talepler.slice(0, 6);
+const recentTalepler = talepler.slice(0, 5);
 ---
 
 <BaseLayout
-  title="MeetWork | İş Ağı, Sosyal Medya, İlan Pazarı, E-İhale & ERP Ekosistemi"
-  description="Türkiye'nin yeni nesil B2B ve ticari iş ağı. Sosyal medya akışı, Emlak/Vasıta/Sanayi ilan pazarı, Akıllı Eşleşme (2+1), E-İhale, StokPratik ERP ve DepodanDirekt Toptan İhracat tek çatı altında."
+  title="MeetWork | İş Ağı, Sosyal Medya, Akıllı Eşleşme, İlan Pazarı & E-İhale Ekosistemi"
+  description="Türkiye'nin yeni nesil B2B sosyal iş ağı ve ticaret platformu. İş dünyası sosyal akışı, 2+1 Akıllı Eşleşme, E-İhale, Emlak/Vasıta/Sanayi ilan pazarı, StokPratik ERP ve DepodanDirekt tek çatı altında."
 >
-  <!-- Üst Hızlı Mod Geçiş Bandı (5 Ana Sütun) -->
-  <div class="mw-panel-card p-3 mb-4 shadow-sm">
-    <div class="row g-2 align-items-center">
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/ilanlar?category=Emlak" class="btn btn-outline-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-houses-fill fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">Emlak İlanları</div>
-            <small class="text-muted" style="font-size:0.7rem;">Daire, Dükkan, Fabrika</small>
-          </div>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/ilanlar?category=Vasıta" class="btn btn-outline-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-car-front-fill fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">Vasıta (Oto/Ticari)</div>
-            <small class="text-muted" style="font-size:0.7rem;">Binek, Ticari, Kiralık</small>
-          </div>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/ilanlar?category=Sanayi%20%26%20Makine" class="btn btn-outline-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-gear-wide-connected fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">Sanayi & 2. El</div>
-            <small class="text-muted" style="font-size:0.7rem;">Makine, Demirbaş, Stok</small>
-          </div>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/ihaleler" class="btn btn-outline-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-hammer fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">E-İhale & Talepler</div>
-            <small class="text-muted" style="font-size:0.7rem;">Açık Eksiltme & Zarf</small>
-          </div>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/akilli-eslesme" class="btn btn-outline-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-diagram-3-fill fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">Akıllı Eşleşme</div>
-            <small class="text-muted" style="font-size:0.7rem;">2 Hedef + 1 Sürpriz</small>
-          </div>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="/isletmeler" class="btn btn-danger w-100 text-start d-flex align-items-center gap-2 py-2">
-          <i class="bi bi-globe2 fs-5"></i>
-          <div class="lh-1">
-            <div class="fw-bold small">ERP & İhracat</div>
-            <small class="text-white-50" style="font-size:0.7rem;">CariNet & DepodanDirekt</small>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ANA 3 SÜTUNLU HİBRİT MİMARİ: Sol (Kategori Ağacı) + Orta (Vitrin İlanları & Sosyal Akış) + Sağ (2+1 Eşleşme & Canlı İhale) -->
+  <!-- ANA 3 SÜTUNLU SOSYAL İŞ AĞI MİMARİSİ: Sol (Profil & Networking) + Orta (Hikayeler, Post Kutusu & Sosyal Akış) + Sağ (2+1 Eşleşme & İhale Radarı) -->
   <div class="row g-4 mb-5">
-    <!-- SOL SÜTUN (%25): İlan Kategori Ağacı & Hızlı Erişim -->
+
+    <!-- SOL SÜTUN (%25): İş Ağı Profilim + Networking Kısayolları + Kompakt İlan Pazarı -->
     <div class="col-lg-3">
-      <div class="mw-panel-card p-3 mb-4 shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-          <h6 class="fw-bold mb-0"><i class="bi bi-list-ul text-danger me-1"></i> İlan Pazarı Kategorileri</h6>
-          <a href="/ilanlar" class="small text-danger text-decoration-none fw-bold">Tümü</a>
-        </div>
 
+      <!-- 1. İş Ağı Profilim / Kurumsal Kimlik Kartı (Giriş Durumuna Göre Dinamik) -->
+      <div class="mw-panel-card overflow-hidden mb-3 shadow-sm">
+        <div style="height: 64px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%); position: relative;">
+          <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2" style="font-size:0.68rem;">
+            <i class="bi bi-broadcast text-danger me-1"></i>Canlı B2B Ağ
+          </span>
+        </div>
+        <div class="p-3 pt-0" id="mwSidebarProfileBox">
+          <div class="d-flex align-items-end justify-content-between" style="margin-top: -28px;">
+            <div
+              id="mwSidebarAvatar"
+              class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-black border border-3 border-white shadow-sm"
+              style="width: 56px; height: 56px; font-size: 1.15rem; font-weight: 800;"
+            >
+              MW
+            </div>
+            <span id="mwSidebarBadge" class="mw-trust-badge-1">
+              <i class="bi bi-unlock-fill"></i> Açık Erişim
+            </span>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="fw-bold mb-0" id="mwSidebarUserName">MeetWork İş Ağı</h6>
+            <small class="text-muted d-block" id="mwSidebarCompanyName">Üyeliksiz gezebilir, üye olarak ticaret ağınızı kurabilirsiniz</small>
+          </div>
+
+          <div class="row g-2 text-center my-3 py-2 rounded" style="background: var(--mw-surface-alt);">
+            <div class="col-6 border-end" style="border-color: var(--mw-border) !important;">
+              <div class="fw-black text-danger small" id="mwSidebarMatchStat">2 + 1</div>
+              <div class="text-muted" style="font-size: 0.68rem;">Akıllı Eşleşme</div>
+            </div>
+            <div class="col-6">
+              <div class="fw-black text-danger small" id="mwSidebarCreditStat">Açık</div>
+              <div class="text-muted" style="font-size: 0.68rem;">İhale & İlan</div>
+            </div>
+          </div>
+
+          <div id="mwSidebarAuthActions" class="d-grid gap-2">
+            <a href="/giris" class="btn btn-danger btn-sm fw-bold">
+              <i class="bi bi-person-circle me-1"></i> Giriş Yap / Profilim
+            </a>
+            <a href="/giris?tab=register" class="btn btn-outline-secondary btn-sm fw-semibold" style="font-size:0.78rem;">
+              5 Hedef Sektör Seç & Ücretsiz Katıl
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Networking & Etkinlik Kısayolları -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="fw-bold mb-0 small text-uppercase" style="letter-spacing:0.4px;">
+            <i class="bi bi-diagram-3-fill text-danger me-1"></i> İş Ağı & Networking
+          </h6>
+        </div>
         <div class="d-flex flex-column gap-1">
-          <a href="/ilanlar?category=Emlak" class="mw-sidebar-cat">
-            <span><i class="bi bi-house-door-fill text-danger me-2"></i> Emlak</span>
-            <span class="badge bg-secondary-subtle text-secondary rounded-pill">Konut / İş Yeri</span>
+          <a href="/akilli-eslesme" class="mw-sidebar-cat">
+            <span><i class="bi bi-magic text-danger me-2"></i> 2+1 Akıllı Eşleşmeler</span>
+            <span class="badge bg-danger rounded-pill">Hedef+Sürpriz</span>
           </a>
-          <div class="ps-4 small d-flex flex-column gap-1 mb-2">
-            <a href="/ilanlar?category=Emlak&sub_category=Daire" class="text-muted text-decoration-none">• Daire (Satılık / Kiralık)</a>
-            <a href="/ilanlar?category=Emlak&sub_category=Dükkan%20%26%20Mağaza" class="text-muted text-decoration-none">• Dükkan & Mağaza</a>
-            <a href="/ilanlar?category=Emlak&sub_category=Fabrika%20%26%20Depo" class="text-muted text-decoration-none">• İş Yeri, Fabrika & Depo</a>
-            <a href="/ilanlar?category=Emlak&sub_category=Devren%20İş%20Yeri" class="text-muted text-decoration-none">• Devren Satılık İş Yeri</a>
-          </div>
+          <a href="/etkinlik-takvimi" class="mw-sidebar-cat">
+            <span><i class="bi bi-cup-hot-fill text-danger me-2"></i> Yüz Yüze Toplantılar</span>
+            <span class="badge bg-secondary-subtle text-secondary rounded-pill">Mini/Maxi</span>
+          </a>
+          <a href="/isletmeler" class="mw-sidebar-cat">
+            <span><i class="bi bi-building-fill-check text-danger me-2"></i> Doğrulanmış İşletmeler</span>
+            <span class="badge bg-secondary-subtle text-secondary rounded-pill">CariNet</span>
+          </a>
+          <a href="/ihaleler" class="mw-sidebar-cat">
+            <span><i class="bi bi-hammer text-danger me-2"></i> E-İhale & Alım Talepleri</span>
+            <span class="badge bg-secondary-subtle text-secondary rounded-pill">Canlı</span>
+          </a>
+          <a href="/meetwork-temsilciler-turkiye" class="mw-sidebar-cat">
+            <span><i class="bi bi-globe-americas text-danger me-2"></i> Temsilcilikler & Bölgeler</span>
+          </a>
+          <a href="/sektorler" class="mw-sidebar-cat">
+            <span><i class="bi bi-grid-3x3-gap-fill text-danger me-2"></i> Tüm Sektör Grupları</span>
+          </a>
+        </div>
+      </div>
 
-          <a href="/ilanlar?category=Vasıta" class="mw-sidebar-cat">
-            <span><i class="bi bi-car-front-fill text-danger me-2"></i> Vasıta</span>
-            <span class="badge bg-secondary-subtle text-secondary rounded-pill">Binek / Ticari</span>
-          </a>
-          <div class="ps-4 small d-flex flex-column gap-1 mb-2">
-            <a href="/ilanlar?category=Vasıta&sub_category=Otomobil%20(Binek)" class="text-muted text-decoration-none">• Otomobil (Binek Satılık)</a>
-            <a href="/ilanlar?category=Vasıta&sub_category=Ticari%20Araç%20%26%20Panelvan" class="text-muted text-decoration-none">• Ticari Araç, Kamyon & Tır</a>
-            <a href="/ilanlar?category=Vasıta&type=Kiralık" class="text-muted text-decoration-none">• Kiralık Binek & Ticari Filo</a>
-          </div>
+      <!-- 3. Kompakt İlan Pazarı Kutusu -->
+      <div class="mw-panel-card p-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="fw-bold mb-0 small text-uppercase" style="letter-spacing:0.4px;">
+            <i class="bi bi-shop text-danger me-1"></i> İlan Pazarı
+          </h6>
+          <a href="/ilanlar" class="small text-danger text-decoration-none fw-bold" style="font-size:0.75rem;">Vitrin →</a>
+        </div>
 
-          <a href="/ilanlar?category=Sanayi%20%26%20Makine" class="mw-sidebar-cat">
-            <span><i class="bi bi-cpu-fill text-danger me-2"></i> Sanayi & İş Makineleri</span>
-            <span class="badge bg-secondary-subtle text-secondary rounded-pill">Sıfır / 2.El</span>
+        <div class="d-flex flex-column gap-1 mb-2">
+          <a href="/ilanlar?category=Emlak" class="mw-sidebar-cat py-1">
+            <span><i class="bi bi-house-door-fill text-danger me-2"></i> Emlak (Daire / İş Yeri)</span>
+            <small class="text-muted" style="font-size:0.7rem;">Satılık/Kiralık</small>
           </a>
-          <div class="ps-4 small d-flex flex-column gap-1 mb-2">
-            <a href="/ilanlar?category=Sanayi%20%26%20Makine&sub_category=Üretim%20%26%20CNC%20Tezgahı" class="text-muted text-decoration-none">• Üretim, CNC & Torna</a>
-            <a href="/ilanlar?category=Sanayi%20%26%20Makine&sub_category=Forklift%20%26%20İstif" class="text-muted text-decoration-none">• Forklift, Vinç & İstif</a>
-            <a href="/ilanlar?category=Sanayi%20%26%20Makine&sub_category=Seri%20Sonu%20%26%20Fırsat%20Stok" class="text-muted text-decoration-none">• Seri Sonu & Fazla Stok</a>
-          </div>
-
-          <a href="/ilanlar?category=İkinci%20El%20%26%20Demirbaş" class="mw-sidebar-cat">
-            <span><i class="bi bi-box2-heart-fill text-danger me-2"></i> 2. El Eşya & Demirbaş</span>
+          <a href="/ilanlar?category=Vasıta" class="mw-sidebar-cat py-1">
+            <span><i class="bi bi-car-front-fill text-danger me-2"></i> Vasıta (Binek / Ticari)</span>
+            <small class="text-muted" style="font-size:0.7rem;">Satılık/Filo</small>
           </a>
-          <a href="/ilanlar?category=Hizmet%20%26%20Fason" class="mw-sidebar-cat">
-            <span><i class="bi bi-tools text-danger me-2"></i> Hizmet & Fason Kapasite</span>
+          <a href="/ilanlar?category=Sanayi%20%26%20Makine" class="mw-sidebar-cat py-1">
+            <span><i class="bi bi-cpu-fill text-danger me-2"></i> Sanayi & İş Makinesi</span>
+            <small class="text-muted" style="font-size:0.7rem;">Sıfır/2.El</small>
+          </a>
+          <a href="/ilanlar?category=İkinci%20El%20%26%20Demirbaş" class="mw-sidebar-cat py-1">
+            <span><i class="bi bi-box2-heart-fill text-danger me-2"></i> 2. El & Fırsat Stok</span>
           </a>
         </div>
 
-        <hr class="my-3" />
-        <a href="/ilanlar?yeni=1" class="btn btn-danger w-100 fw-bold btn-sm">
+        <a href="/ilanlar?yeni=1" class="btn btn-outline-danger w-100 fw-bold btn-sm">
           <i class="bi bi-plus-circle me-1"></i> Ücretsiz İlan Ver
         </a>
       </div>
 
-      <!-- Fiziksel Networking & Etkinlik Kartı -->
-      <div class="mw-panel-card p-3 shadow-sm">
-        <span class="badge bg-danger mb-2">Yüz Yüze B2B Networking</span>
-        <h6 class="fw-bold">MeetWork Mini & Maxi Toplantılar</h6>
-        <p class="small text-muted mb-3">
-          Kahvaltılı iş toplantılarımıza katılın, yaka kartı QR kodu ve masa eşleşmesiyle doğrudan ticaret kurun.
-        </p>
-        <div class="d-grid gap-2">
-          <a href="/etkinlik-takvimi" class="btn btn-outline-danger btn-sm fw-semibold">
-            <i class="bi bi-calendar-event me-1"></i> Etkinlik Takvimini Gör
+    </div>
+
+    <!-- ORTA SÜTUN (%50): Günün Öne Çıkanları (Stories) + Sosyal Post Kutusu + Birleşik Sosyal & Ticaret Akışı -->
+    <div class="col-lg-6">
+
+      <!-- 1. Günün Öne Çıkanları / İş Dünyası Hikayeleri (Stories Bar) -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="small fw-bold"><i class="bi bi-lightning-charge-fill text-danger me-1"></i> İş Ağı Gündemi & Hızlı Etkileşim</span>
+          <small class="text-muted" style="font-size:0.72rem;">Canlı Panolar</small>
+        </div>
+        <div class="d-flex gap-2 overflow-auto pb-1" style="scrollbar-width: thin;">
+          <a href="/akilli-eslesme" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 104px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #0b0b0e); border: 2px solid #dc3545;">
+              <i class="bi bi-magic fs-5"></i>
+            </div>
+            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">2+1 Eşleşme</div>
+            <small class="text-danger d-block" style="font-size: 0.64rem;">Şimdi Eşleş</small>
           </a>
-          <a href="/meetwork-nedir" class="btn btn-link btn-sm text-decoration-none text-muted">
-            MeetWork Nasıl Çalışır? →
+
+          <a href="/etkinlik-takvimi" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 104px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #fd7e14); border: 2px solid #dc3545;">
+              <i class="bi bi-cup-hot-fill fs-5"></i>
+            </div>
+            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">Mini & Maxi</div>
+            <small class="text-muted d-block" style="font-size: 0.64rem;">Kahvaltı / B2B</small>
+          </a>
+
+          <a href="/ihaleler" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 104px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #198754, #0b0b0e); border: 2px solid #198754;">
+              <i class="bi bi-hammer fs-5"></i>
+            </div>
+            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">E-İhale</div>
+            <small class="text-success d-block" style="font-size: 0.64rem;">Açık Eksiltme</small>
+          </a>
+
+          <a href="/ilanlar" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 104px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #6f42c1); border: 2px solid #dc3545;">
+              <i class="bi bi-stars fs-5"></i>
+            </div>
+            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">Fırsat Vitrin</div>
+            <small class="text-muted d-block" style="font-size: 0.64rem;">Emlak & Oto</small>
+          </a>
+
+          <a href="/isletmeler" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 104px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0d6efd, #0b0b0e); border: 2px solid #0d6efd;">
+              <i class="bi bi-box-seam-fill fs-5"></i>
+            </div>
+            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">CariNet B2B</div>
+            <small class="text-primary d-block" style="font-size: 0.64rem;">StokPratik</small>
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- ORTA SÜTUN (%50): Vitrin İlanları + Sosyal Medya & Ticaret Akışı -->
-    <div class="col-lg-6">
-      <!-- Paylaşım Yap / Hızlı Aksiyon Kutusu -->
-      <div class="mw-panel-card p-3 mb-4 shadow-sm">
+      <!-- 2. Sosyal Medya Paylaşım Kutusu (Post Composer) -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm">
         <div class="d-flex gap-2 align-items-start mb-2">
-          <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0" style="width:42px;height:42px;">
+          <div
+            id="mwComposerAvatar"
+            class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
+            style="width:42px;height:42px;"
+          >
             MW
           </div>
-          <textarea
-            id="mwQuickPostContent"
-            class="form-control form-control-sm"
-            rows="2"
-            placeholder="İş dünyasıyla bir gelişme, yeni yatırım, ürün veya ticari fırsat paylaşın..."
-          ></textarea>
-        </div>
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-2 border-top">
-          <div class="d-flex flex-wrap gap-2">
-            <a href="/ilanlar?yeni=1" class="btn btn-sm btn-outline-secondary">
-              <i class="bi bi-camera-fill text-danger"></i> Satılık/Kiralık İlan
-            </a>
-            <a href="/ihaleler?yeni=1" class="btn btn-sm btn-outline-secondary">
-              <i class="bi bi-hammer text-danger"></i> E-İhale / Talep Aç
-            </a>
+          <div class="w-100">
+            <textarea
+              id="mwQuickPostContent"
+              class="form-control form-control-sm mb-2"
+              rows="2"
+              placeholder="İş dünyasıyla bir gelişme, yeni üretim/yatırım haberi, iş birliği arayışı veya ticari fırsat paylaşın..."
+            ></textarea>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+              <div class="d-flex flex-wrap align-items-center gap-1">
+                <select id="mwQuickPostTag" class="form-select form-select-sm py-1" style="width: auto; font-size: 0.75rem;">
+                  <option value="İş & Sektör Paylaşımı">📢 İş & Sektör Paylaşımı</option>
+                  <option value="Tedarikçi / İş Ortağı Arayışı">🤝 İş Ortağı / Bayi Arayışı</option>
+                  <option value="Yeni Yatırım & Kapasite">🏭 Üretim & Kapasite Duyurusu</option>
+                  <option value="B2B Etkinlik & Toplantı">☕ B2B Toplantı & Networking</option>
+                </select>
+                <a href="/ilanlar?yeni=1" class="btn btn-sm btn-outline-secondary py-1 px-2" style="font-size:0.75rem;">
+                  <i class="bi bi-tag-fill text-danger"></i> İlan Ekle
+                </a>
+                <a href="/ihaleler?yeni=1" class="btn btn-sm btn-outline-secondary py-1 px-2" style="font-size:0.75rem;">
+                  <i class="bi bi-hammer text-danger"></i> İhale Aç
+                </a>
+              </div>
+              <button type="button" id="mwQuickPostSubmit" class="btn btn-sm btn-danger fw-bold px-3">
+                <i class="bi bi-send-fill me-1"></i> Akışta Paylaş
+              </button>
+            </div>
           </div>
-          <button type="button" id="mwQuickPostSubmit" class="btn btn-sm btn-danger fw-bold px-3">
-            <i class="bi bi-send-fill me-1"></i> Akışta Paylaş
-          </button>
         </div>
         <div id="mwQuickPostFeedback" class="small mt-2" style="display:none;"></div>
       </div>
 
-      <!-- VİTRİN İLANLARI BÖLÜMÜ -->
-      <div class="mw-panel-card p-3 mb-4 shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <div>
-            <h6 class="fw-bold mb-0"><i class="bi bi-stars text-danger me-1"></i> Vitrin İlanları & Acil Fırsatlar</h6>
-            <small class="text-muted">Emlak, Binek/Ticari Oto, Sanayi Makinesi & 2. El Fırsatlar</small>
-          </div>
-          <a href="/ilanlar" class="btn btn-sm btn-outline-danger fw-semibold">Tüm İlanlar</a>
+      <!-- 3. Sosyal Akış Filtre Sekmeleri (Pills) -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <div class="d-flex flex-wrap gap-1" id="mwFeedFilterTabs">
+          <button type="button" class="btn btn-sm btn-danger fw-semibold rounded-pill px-3" data-feed-filter="all">
+            <i class="bi bi-fire me-1"></i> Tüm Akış
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold rounded-pill px-3" data-feed-filter="posts">
+            <i class="bi bi-chat-square-text me-1"></i> İş Paylaşımları
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold rounded-pill px-3" data-feed-filter="listings">
+            <i class="bi bi-shop me-1"></i> Vitrin İlanları
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold rounded-pill px-3" data-feed-filter="tenders">
+            <i class="bi bi-hammer me-1"></i> Canlı İhaleler
+          </button>
         </div>
-
-        <div id="mwHomeVitrinGrid" class="row g-2">
-          <div class="col-12 text-center py-4 text-muted small">
-            <div class="spinner-border spinner-border-sm text-danger me-2" role="status"></div>
-            Canlı vitrin ilanları yükleniyor...
-          </div>
-        </div>
+        <span class="badge bg-danger-subtle text-danger" style="font-size:0.7rem;">Canlı Akış</span>
       </div>
 
-      <!-- SOSYAL MEDYA + TİCARET AKIŞI (FEED) -->
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h6 class="fw-bold mb-0"><i class="bi bi-activity text-danger me-1"></i> Canlı İş Ağı & Sosyal Akış</h6>
-        <span class="badge bg-danger-subtle text-danger">Üyeliksiz Açık Erişim</span>
-      </div>
-
+      <!-- 4. Birleşik Sosyal Medya + Ticaret Akışı (Feed Stream) -->
       <div id="mwHomeSocialFeed" class="d-flex flex-column gap-3 mb-4">
-        <!-- JS ile Canlı D1 Postları buraya yüklenir -->
+        <div class="mw-panel-card p-4 text-center text-muted small">
+          <div class="spinner-border spinner-border-sm text-danger me-2" role="status"></div>
+          MeetWork iş ağı akışı yükleniyor...
+        </div>
       </div>
+
     </div>
 
-    <!-- SAĞ SÜTUN (%25): Akıllı Eşleşme (2+1) + Canlı E-İhaleler + Ekosistem Köprüsü -->
+    <!-- SAĞ SÜTUN (%25): 2+1 Akıllı Eşleşme Önerileri + Canlı E-İhaleler + Ekosistem Köprüsü -->
     <div class="col-lg-3">
-      <!-- 2+1 Akıllı Eşleşme Özeti -->
-      <div class="mw-panel-card p-3 mb-4 shadow-sm border-danger">
+
+      <!-- 1. Sizin İçin 2+1 Akıllı Eşleşme Önerisi -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm border-danger">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="badge bg-danger">2 Hedef + 1 Sürpriz</span>
-          <small class="text-muted fw-semibold">Akıllı Eşleşme</small>
+          <a href="/akilli-eslesme" class="small text-danger fw-bold text-decoration-none" style="font-size:0.75rem;">Tümünü Gör</a>
         </div>
-        <h6 class="fw-bold mb-1">Zaman Kaybetmeden Nokta Atışı İş Ağı</h6>
-        <p class="small text-muted mb-3">
-          Tanışmak istediğiniz <strong>en fazla 5 sektörü</strong> seçin; sistem size uygun <strong>2 hedef firma</strong> + farklı sektörden <strong>1 sürpriz fırsat firması</strong> eşleştirsin!
+        <h6 class="fw-bold mb-1">Bugünün Tanışma Önerileri</h6>
+        <p class="small text-muted mb-3" style="font-size:0.76rem;">
+          Seçtiğiniz 5 hedef sektörden <strong>2 nokta atışı firma</strong> ve farklı sektörden <strong>1 sürpriz iş ortağı</strong>:
         </p>
         <div id="mwHomeMatchPreview" class="d-flex flex-column gap-2 mb-3"></div>
         <a href="/akilli-eslesme" class="btn btn-danger btn-sm w-100 fw-bold">
-          <i class="bi bi-magic me-1"></i> Eşleşmelerimi Gör
+          <i class="bi bi-diagram-3-fill me-1"></i> Yeni 2+1 Eşleşme Başlat
         </a>
       </div>
 
-      <!-- Aktif Satın Alma & E-İhale Radarı -->
-      <div class="mw-panel-card p-3 mb-4 shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-          <h6 class="fw-bold mb-0"><i class="bi bi-hammer text-danger me-1"></i> Canlı Talepler ({3105 + talepler.length})</h6>
-          <a href="/ihaleler" class="small text-danger fw-bold text-decoration-none">Tümü</a>
+      <!-- 2. Gündemdeki E-İhaleler & Alım Talepleri -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="fw-bold mb-0 small text-uppercase">
+            <i class="bi bi-hammer text-danger me-1"></i> İhale & Talep Radarı
+          </h6>
+          <a href="/ihaleler" class="small text-danger fw-bold text-decoration-none" style="font-size:0.75rem;">Tümü ({3105 + talepler.length})</a>
         </div>
         <div class="d-flex flex-column gap-2">
           {recentTalepler.map((t) => (
             <a href={`/talepler/${t.slug}`} class="p-2 rounded border text-decoration-none d-block" style="border-color:var(--mw-border) !important;">
               <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-danger" style="font-size:0.65rem;">{t.category || 'Alım Talebi'}</span>
-                <small class="text-muted" style="font-size:0.7rem;">#{t.id}</small>
+                <span class="badge bg-danger" style="font-size:0.62rem;">{t.category || 'Alım Talebi'}</span>
+                <small class="text-muted" style="font-size:0.68rem;">#{t.id}</small>
               </div>
-              <div class="fw-semibold small text-truncate" style="color:var(--mw-text);">{t.title}</div>
+              <div class="fw-semibold small text-truncate" style="color:var(--mw-text); font-size:0.78rem;">{t.title}</div>
             </a>
           ))}
         </div>
@@ -258,64 +310,72 @@ const recentTalepler = talepler.slice(0, 6);
         </a>
       </div>
 
-      <!-- StokPratik CariNet & DepodanDirekt Köprü Kartı -->
+      <!-- 3. StokPratik CariNet & DepodanDirekt Ekosistem Köprüsü -->
       <div class="mw-panel-card p-3 shadow-sm">
-        <h6 class="fw-bold mb-2"><i class="bi bi-Cpu text-danger me-1"></i> Entegre Ticaret Gücü</h6>
+        <h6 class="fw-bold mb-2 small text-uppercase">
+          <i class="bi bi-boxes text-danger me-1"></i> Entegre Ticaret Köprüsü
+        </h6>
         <div class="p-2 rounded mb-2" style="background:var(--mw-surface-alt);">
-          <div class="fw-bold small text-danger">StokPratik ERP & CariNet</div>
-          <small class="text-muted d-block mb-1">40+ entegrasyon, e-Fatura, depo barkod ve cariye özel B2B toptan ekranı.</small>
-          <a href="https://stokpratik.com.tr" target="_blank" class="small fw-bold text-decoration-none text-danger">StokPratik'e Git →</a>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold small text-danger">StokPratik ERP & CariNet</span>
+            <span class="badge bg-success" style="font-size:0.62rem;">Canlı</span>
+          </div>
+          <small class="text-muted d-block my-1" style="font-size:0.73rem;">Ön muhasebe, e-Fatura ve cariye özel B2B toptan sipariş portalı.</small>
+          <a href="https://stokpratik.com.tr" target="_blank" class="small fw-bold text-decoration-none text-danger" style="font-size:0.75rem;">StokPratik'e Git →</a>
         </div>
         <div class="p-2 rounded" style="background:var(--mw-surface-alt);">
-          <div class="fw-bold small text-danger">DepodanDirekt.com</div>
-          <small class="text-muted d-block mb-1">Üreticiden ve depodan direkt küresel ihracat ve B2B toptan pazaryeri.</small>
-          <a href="https://depodandirekt.com" target="_blank" class="small fw-bold text-decoration-none text-danger">Toptan Pazaryerine Git →</a>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold small text-danger">DepodanDirekt.com</span>
+            <span class="badge bg-dark" style="font-size:0.62rem;">İhracat</span>
+          </div>
+          <small class="text-muted d-block my-1" style="font-size:0.73rem;">Üreticiden ve depodan direkt küresel ihracat ve toptan pazaryeri.</small>
+          <a href="https://depodandirekt.com" target="_blank" class="small fw-bold text-decoration-none text-danger" style="font-size:0.75rem;">Toptan Pazaryerine Git →</a>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- MEVCUT KURUMSAL BİLGİ, İŞLEYİŞ, ETKİNLİKLER VE TANITIM BÖLÜMLERİ (KORUNAN YAPI) -->
-  <section class="mw-panel-card p-4 p-lg-5 mb-5 shadow-sm">
-    <div class="text-center mb-4">
-      <span class="badge bg-danger mb-2 px-3 py-2">MeetWork Kurumsal İşleyiş & Ekosistem Rehberi</span>
-      <h2 class="fw-bold">MeetWork Nasıl Çalışır? Neden B2B Networking?</h2>
-      <p class="text-muted mx-auto" style="max-width: 720px;">
-        Fiziksel Mini & Maxi toplantılarımızdan küresel ülke/şehir temsilciliklerimize, dış ticaret desteklerinden kurumsal eşleştirme sistemimize kadar tüm bilgi sayfalarımıza buradan ulaşabilirsiniz.
-      </p>
-    </div>
-
-    <div class="row g-3">
-      <div class="col-md-3 col-sm-6">
-        <div class="p-3 rounded h-100 border" style="border-color:var(--mw-border) !important;">
-          <i class="bi bi-people-fill fs-3 text-danger"></i>
-          <h6 class="fw-bold mt-2">Yüz Yüze Networking</h6>
-          <p class="small text-muted mb-2">Mini (kahvaltılı/yemekli) ve Maxi etkinliklerle karar vericilerle aynı masada buluşun.</p>
-          <a href="/etkinlik" class="small fw-bold text-danger text-decoration-none">Detaylı İncele →</a>
-        </div>
+  <!-- KURUMSAL İŞLEYİŞ & REHBER BÖLÜMÜ (KOMPAKT BANT) -->
+  <section class="mw-panel-card p-4 mb-4 shadow-sm">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-4">
+        <span class="badge bg-danger mb-1">MeetWork İşleyiş & Kurumsal Rehber</span>
+        <h5 class="fw-bold mb-1">Fiziksel Masadan Dijital Ticarete</h5>
+        <p class="small text-muted mb-0">
+          Mini & Maxi yüz yüze toplantılarımız, 81 il/küresel temsilciliklerimiz ve devlet teşvik rehberlerimizle tanışın.
+        </p>
       </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="p-3 rounded h-100 border" style="border-color:var(--mw-border) !important;">
-          <i class="bi bi-globe-americas fs-3 text-danger"></i>
-          <h6 class="fw-bold mt-2">Türkiye & Dünya Temsilcileri</h6>
-          <p class="small text-muted mb-2">81 il ve onlarca ülkede yerel MeetWork temsilcilerimizle küresel ticaret ağınızı büyütün.</p>
-          <a href="/meetwork-temsilciler-turkiye" class="small fw-bold text-danger text-decoration-none">Temsilcilikler →</a>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="p-3 rounded h-100 border" style="border-color:var(--mw-border) !important;">
-          <i class="bi bi-rocket-takeoff-fill fs-3 text-danger"></i>
-          <h6 class="fw-bold mt-2">PRO Dijital Dönüşüm & Teşvikler</h6>
-          <p class="small text-muted mb-2">Ticaret Bakanlığı ihracat destekleri, hibe/teşvik rehberleri ve ücretsiz PRO avantajları.</p>
-          <a href="/dijital-donusum" class="small fw-bold text-danger text-decoration-none">Avantajları Gör →</a>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="p-3 rounded h-100 border" style="border-color:var(--mw-border) !important;">
-          <i class="bi bi-calculator-fill fs-3 text-danger"></i>
-          <h6 class="fw-bold mt-2">Ticari Hesaplama & Rehberler</h6>
-          <p class="small text-muted mb-2">Pazaryeri komisyon hesaplayıcı, şirket değerleme, konşimento ve dış ticaret sözlüğü.</p>
-          <a href="/hesaplama" class="small fw-bold text-danger text-decoration-none">Araçları Kullan →</a>
+      <div class="col-lg-8">
+        <div class="row g-2">
+          <div class="col-sm-6 col-md-3">
+            <a href="/etkinlik" class="p-2 rounded border d-block text-decoration-none h-100" style="border-color:var(--mw-border)!important;">
+              <i class="bi bi-people-fill text-danger"></i>
+              <div class="fw-bold small mt-1" style="color:var(--mw-text);">Mini & Maxi</div>
+              <small class="text-muted d-block" style="font-size:0.7rem;">Yüz yüze B2B toplantılar</small>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <a href="/meetwork-temsilciler-turkiye" class="p-2 rounded border d-block text-decoration-none h-100" style="border-color:var(--mw-border)!important;">
+              <i class="bi bi-globe-americas text-danger"></i>
+              <div class="fw-bold small mt-1" style="color:var(--mw-text);">Temsilcilikler</div>
+              <small class="text-muted d-block" style="font-size:0.7rem;">Türkiye & Dünya Ağı</small>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <a href="/dijital-donusum" class="p-2 rounded border d-block text-decoration-none h-100" style="border-color:var(--mw-border)!important;">
+              <i class="bi bi-rocket-takeoff-fill text-danger"></i>
+              <div class="fw-bold small mt-1" style="color:var(--mw-text);">PRO Dönüşüm</div>
+              <small class="text-muted d-block" style="font-size:0.7rem;">Teşvik & Hibeler</small>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <a href="/hesaplama" class="p-2 rounded border d-block text-decoration-none h-100" style="border-color:var(--mw-border)!important;">
+              <i class="bi bi-calculator-fill text-danger"></i>
+              <div class="fw-bold small mt-1" style="color:var(--mw-text);">Ticari Araçlar</div>
+              <small class="text-muted d-block" style="font-size:0.7rem;">Komisyon & Değerleme</small>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -324,131 +384,286 @@ const recentTalepler = talepler.slice(0, 6);
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let cachedFeedData = { posts: [], vitrinListings: [], activeTenders: [], featuredCompanies: [] };
+      let currentFilter = 'all';
+
+      // Örnek başlangıç sosyal paylaşımları (D1'de henüz post yoksa bile akışın dolu ve canlı görünmesi için)
+      const fallbackSocialPosts = [
+        {
+          id: 'seed-post-1',
+          author_name: 'Ahmet Yılmaz',
+          company_name: 'Anadolu Çelik & Makine San. Tic. A.Ş.',
+          company_slug: 'anadolu-celik-makine',
+          trust_level: 3,
+          tag: 'Yeni Yatırım & Kapasite',
+          content: 'Gebze OSB fabrikamızda yeni 5 eksenli CNC işleme parkurumuzu devreye aldık. Otomotiv ve savunma sanayi fason talaşlı imalat talepleriniz için doğrudan CariNet kataloğumuzdan veya MeetWork üzerinden teklif isteyebilirsiniz. 🏭⚙️',
+          likes_count: 28,
+          created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString()
+        },
+        {
+          id: 'seed-post-2',
+          author_name: 'Zeynep Kaya',
+          company_name: 'Ege Organik Gıda & Tarım İhracat Ltd.',
+          company_slug: 'ege-organik-gida-ihracat',
+          trust_level: 3,
+          tag: 'Tedarikçi / İş Ortağı Arayışı',
+          content: 'Avrupa pazarına gerçekleştirdiğimiz zeytinyağı ve kuru incir ihracatımız için oluklu mukavva koli ve cam şişe tedarikçileriyle uzun vadeli anlaşma yapacağız. Açık eksiltme ihalemize tüm üreticileri bekliyoruz! 🤝🌍',
+          likes_count: 19,
+          created_at: new Date(Date.now() - 1000 * 60 * 180).toISOString()
+        },
+        {
+          id: 'seed-post-3',
+          author_name: 'Murat Demir',
+          company_name: 'Marmara Filo & Ticari Otomotiv A.Ş.',
+          company_slug: 'marmara-filo-ticari-otomotiv',
+          trust_level: 2,
+          tag: 'İş & Sektör Paylaşımı',
+          content: 'Bu sabah İstanbul Maxi Kahvaltı etkinliğinde 2+1 Akıllı Eşleşme masasında tanıştığımız lojistik ve gıda firmalarıyla 12 araçlık uzun dönem ticari filo kiralama sözleşmemizi imzaladık. Yüz yüze networking gibisi yok! ☕🚗',
+          likes_count: 42,
+          created_at: new Date(Date.now() - 1000 * 60 * 360).toISOString()
+        }
+      ];
 
       function getTrustBadge(level) {
-        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> MeetWork Gold Onaylı</span>';
+        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>';
         if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> StokPratik VKN Onaylı</span>';
-        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Kayıtlı Üye</span>';
+        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> İş Ağı Üyesi</span>';
+      }
+
+      function hydrateUserSidebar() {
+        let user = null;
+        try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+        if (!user) return;
+
+        const avatar = document.getElementById('mwSidebarAvatar');
+        const composerAvatar = document.getElementById('mwComposerAvatar');
+        const userName = document.getElementById('mwSidebarUserName');
+        const compName = document.getElementById('mwSidebarCompanyName');
+        const badge = document.getElementById('mwSidebarBadge');
+        const creditStat = document.getElementById('mwSidebarCreditStat');
+        const actions = document.getElementById('mwSidebarAuthActions');
+
+        const initials = (user.company_name || user.full_name || 'MW').slice(0, 2).toUpperCase();
+        if (avatar) avatar.textContent = initials;
+        if (composerAvatar) composerAvatar.textContent = initials;
+        if (userName) userName.textContent = user.full_name || 'MeetWork Üyesi';
+        if (compName) compName.textContent = `${user.company_name || 'Kurumsal Üye'} • ${user.sector || 'B2B'}`;
+        if (badge) badge.outerHTML = getTrustBadge(user.trust_level || 2);
+        if (creditStat) creditStat.textContent = `${user.tender_credits ?? 5} Kredi`;
+
+        if (actions) {
+          actions.innerHTML = `
+            <a href="/akilli-eslesme" class="btn btn-danger btn-sm fw-bold">
+              <i class="bi bi-magic me-1"></i> 2+1 Eşleşmelerim
+            </a>
+            <div class="d-flex gap-1">
+              <a href="/isletmeler" class="btn btn-outline-secondary btn-sm flex-grow-1" style="font-size:0.75rem;">İşletmem</a>
+              ${user.role === 'superadmin' ? '<a href="/yonetim" class="btn btn-dark btn-sm flex-grow-1" style="font-size:0.75rem;"><i class="bi bi-shield-lock-fill text-danger"></i> SuperAdmin</a>' : '<a href="/ilanlar?yeni=1" class="btn btn-outline-danger btn-sm flex-grow-1" style="font-size:0.75rem;">+ İlan Ver</a>'}
+            </div>
+          `;
+        }
+      }
+
+      function renderPostCard(post) {
+        const initials = (post.company_name || post.author_name || 'MW').slice(0, 2).toUpperCase();
+        const tag = post.tag || 'İş & Sektör Paylaşımı';
+        return `
+          <div class="mw-panel-card p-3 shadow-sm">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex gap-2 align-items-center">
+                <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0" style="width:42px;height:42px;">
+                  ${initials}
+                </div>
+                <div>
+                  <div class="fw-bold small">
+                    ${post.author_name}
+                    ${post.company_name ? `<span class="text-muted fw-normal"> • ${post.company_name}</span>` : ''}
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                    ${getTrustBadge(post.trust_level)}
+                    <span class="badge bg-secondary-subtle text-secondary" style="font-size:0.65rem;">${tag}</span>
+                    <small class="text-muted" style="font-size:0.68rem;">${new Date(post.created_at).toLocaleDateString('tr-TR')}</small>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-1 flex-shrink-0">
+                <a href="/ihaleler?yeni=1" class="btn btn-sm btn-outline-danger py-0 px-2 fw-semibold" style="font-size:0.72rem;">Teklif İste</a>
+                ${post.company_slug ? `<a href="/isletmeler?firma=${encodeURIComponent(post.company_slug)}" class="btn btn-sm btn-dark py-0 px-2" style="font-size:0.72rem;">Mağaza</a>` : ''}
+              </div>
+            </div>
+            <p class="small mb-3" style="white-space:pre-line; line-height:1.55;">${post.content}</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-center pt-2 border-top small gap-2" style="border-color:var(--mw-border)!important;">
+              <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sm btn-link text-decoration-none text-danger p-0 fw-semibold" onclick="window.mwLikePost('${post.id}', this)">
+                  <i class="bi bi-hand-thumbs-up-fill"></i> Beğen (<span>${post.likes_count || 0}</span>)
+                </button>
+                <a href="/akilli-eslesme" class="text-muted text-decoration-none small">
+                  <i class="bi bi-person-plus-fill text-danger"></i> Ağa Ekle
+                </a>
+              </div>
+              <a href="/isletmeler" class="small text-muted text-decoration-none" style="font-size:0.74rem;">
+                <i class="bi bi-box-seam text-danger"></i> CariNet B2B Kataloğu →
+              </a>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderInlineListingCard(item) {
+        return `
+          <div class="mw-panel-card p-3 shadow-sm border-start border-4 border-danger">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-danger"><i class="bi bi-shop me-1"></i> Vitrin İlanı • ${item.main_category}</span>
+                <span class="badge bg-dark" style="font-size:0.68rem;">${item.listing_type}</span>
+              </div>
+              <small class="text-muted" style="font-size:0.7rem;">İlan No: #${item.listing_no}</small>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <div>
+                <h6 class="fw-bold mb-1">${item.title}</h6>
+                <div class="small text-muted">
+                  <i class="bi bi-building me-1"></i> ${item.seller_name || 'Doğrulanmış Üye'} •
+                  <i class="bi bi-geo-alt text-danger"></i> ${item.seller_city} ${item.seller_district || ''}
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-black text-danger fs-6">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</div>
+                <a href="/ilanlar?ilan=${encodeURIComponent(item.slug || item.listing_no)}" class="btn btn-sm btn-outline-danger mt-1 py-0 px-2 fw-bold" style="font-size:0.75rem;">
+                  İlanı İncele →
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderInlineTenderCard(tender) {
+        return `
+          <div class="mw-panel-card p-3 shadow-sm border-start border-4 border-success">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge bg-success"><i class="bi bi-hammer me-1"></i> Canlı E-İhale • ${tender.tender_type || 'Açık Eksiltme'}</span>
+              <small class="text-muted" style="font-size:0.7rem;">#${tender.tender_no || tender.id}</small>
+            </div>
+            <h6 class="fw-bold mb-1">${tender.title}</h6>
+            <p class="small text-muted mb-2">${tender.description || 'Kurumsal tedarik ve satın alma ihalesi.'}</p>
+            <div class="d-flex justify-content-between align-items-center pt-2 border-top" style="border-color:var(--mw-border)!important;">
+              <span class="small fw-bold text-success">Başlangıç / Hedef: ${Number(tender.start_price || 0).toLocaleString('tr-TR')} ${tender.currency || 'TRY'}</span>
+              <a href="/ihaleler" class="btn btn-sm btn-danger py-0 px-3 fw-bold" style="font-size:0.75rem;">Teklif Ver</a>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderFeedStream() {
+        const feedContainer = document.getElementById('mwHomeSocialFeed');
+        if (!feedContainer) return;
+
+        const apiPosts = cachedFeedData.posts || [];
+        const posts = apiPosts.length > 0 ? [...apiPosts, ...fallbackSocialPosts.slice(0, 2)] : fallbackSocialPosts;
+        const listings = cachedFeedData.vitrinListings || [];
+        const tenders = cachedFeedData.activeTenders || [];
+
+        if (currentFilter === 'posts') {
+          feedContainer.innerHTML = posts.map(renderPostCard).join('');
+          return;
+        }
+        if (currentFilter === 'listings') {
+          feedContainer.innerHTML = listings.length > 0
+            ? listings.map(renderInlineListingCard).join('')
+            : '<div class="mw-panel-card p-4 text-center small text-muted">Vitrin ilanı bulunamadı.</div>';
+          return;
+        }
+        if (currentFilter === 'tenders') {
+          feedContainer.innerHTML = tenders.length > 0
+            ? tenders.map(renderInlineTenderCard).join('')
+            : '<div class="mw-panel-card p-4 text-center small text-muted">Aktif e-ihale bulunamadı.</div>';
+          return;
+        }
+
+        // 'all' -> Sosyal medya akışı önde, aralarında doğal olarak vitrin ilanları ve canlı ihaleler!
+        const streamHtml = [];
+        const maxLen = Math.max(posts.length, listings.length, tenders.length);
+        for (let i = 0; i < maxLen; i++) {
+          if (posts[i]) streamHtml.push(renderPostCard(posts[i]));
+          if (listings[i] && i < 3) streamHtml.push(renderInlineListingCard(listings[i]));
+          if (tenders[i] && i < 2) streamHtml.push(renderInlineTenderCard(tenders[i]));
+        }
+
+        feedContainer.innerHTML = streamHtml.join('');
       }
 
       async function loadHomeFeed() {
-        const vitrinGrid = document.getElementById('mwHomeVitrinGrid');
-        const feedContainer = document.getElementById('mwHomeSocialFeed');
         const matchPreview = document.getElementById('mwHomeMatchPreview');
 
         try {
           const res = await fetch(`${API_URL}/api/feed`);
           const data = await res.json();
+          cachedFeedData = data || {};
+          renderFeedStream();
 
-          // 1. Vitrin İlanları
-          if (vitrinGrid) {
-            const listings = data.vitrinListings || [];
-            if (listings.length === 0) {
-              vitrinGrid.innerHTML = `
-                <div class="col-12 text-center py-4">
-                  <p class="small text-muted mb-2">Henüz vitrine eklenmiş ilan bulunmuyor. İlk ilanı ücretsiz siz yayınlayın!</p>
-                  <a href="/ilanlar?yeni=1" class="btn btn-sm btn-danger fw-bold">+ İlk İlanı Ücretsiz Ver</a>
-                </div>`;
-            } else {
-              vitrinGrid.innerHTML = listings.slice(0, 6).map((item) => `
-                <div class="col-sm-6 col-md-4">
-                  <a href="/ilanlar?ilan=${encodeURIComponent(item.slug || item.listing_no)}" class="mw-vitrin-card p-2">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                      <span class="badge ${item.is_urgent ? 'bg-danger' : 'bg-dark'}" style="font-size:0.65rem;">
-                        ${item.is_urgent ? 'ACİL' : item.listing_type} • ${item.main_category}
+          // Sağ Sütun: 2+1 Akıllı Eşleşme Önizleme
+          if (matchPreview) {
+            const comps = data.featuredCompanies || [];
+            if (comps.length > 0) {
+              matchPreview.innerHTML = comps.slice(0, 3).map((c, idx) => `
+                <div class="p-2 rounded border d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                  <div class="text-truncate pe-2">
+                    <div class="d-flex align-items-center gap-1">
+                      <span class="badge ${idx < 2 ? 'bg-danger' : 'bg-dark'}" style="font-size:0.6rem;">
+                        ${idx < 2 ? '🎯 Hedef' : '🎲 Sürpriz'}
                       </span>
-                      <small class="text-muted" style="font-size:0.65rem;">#${item.listing_no}</small>
+                      <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="fw-bold small text-decoration-none text-truncate" style="color:var(--mw-text); font-size:0.78rem;">
+                        ${c.name}
+                      </a>
                     </div>
-                    <div class="fw-bold small mb-1 text-truncate">${item.title}</div>
-                    <div class="mt-auto d-flex justify-content-between align-items-center pt-2 border-top" style="border-color:var(--mw-border)!important;">
-                      <span class="fw-bolder text-danger small">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</span>
-                      <small class="text-muted" style="font-size:0.7rem;"><i class="bi bi-geo-alt"></i> ${item.seller_city}</small>
-                    </div>
+                    <small class="text-muted d-block mt-1" style="font-size:0.68rem;">${c.sector} • ${c.city || 'Türkiye'}</small>
+                  </div>
+                  <a href="/akilli-eslesme" class="btn btn-sm btn-outline-danger py-0 px-2 flex-shrink-0" style="font-size:0.7rem;">
+                    + Tanış
                   </a>
                 </div>
               `).join('');
             }
           }
-
-          // 2. Sosyal Medya Akışı
-          if (feedContainer) {
-            const posts = data.posts || [];
-            if (posts.length === 0) {
-              feedContainer.innerHTML = `
-                <div class="mw-panel-card p-4 text-center">
-                  <i class="bi bi-chat-square-quote fs-2 text-danger"></i>
-                  <h6 class="fw-bold mt-2">MeetWork Sosyal Ticaret Akışı Hazır</h6>
-                  <p class="small text-muted mb-0">Yukarıdaki kutudan ilk iş paylaşımınızı yapın veya yeni bir ilan/ihale yayınlayın.</p>
-                </div>`;
-            } else {
-              feedContainer.innerHTML = posts.map((post) => `
-                <div class="mw-panel-card p-3 shadow-sm">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold" style="width:38px;height:38px;">
-                        ${(post.company_name || post.author_name || 'M').slice(0, 2).toUpperCase()}
-                      </div>
-                      <div>
-                        <div class="fw-bold small">
-                          ${post.author_name}
-                          ${post.company_name ? `<span class="text-muted fw-normal"> • ${post.company_name}</span>` : ''}
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                          ${getTrustBadge(post.trust_level)}
-                          <small class="text-muted" style="font-size:0.7rem;">${new Date(post.created_at).toLocaleDateString('tr-TR')}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex gap-1">
-                      <a href="/ihaleler?yeni=1" class="btn btn-sm btn-outline-danger py-0 px-2" style="font-size:0.72rem;">Teklif İste</a>
-                      ${post.company_slug ? `<a href="/isletmeler?firma=${encodeURIComponent(post.company_slug)}" class="btn btn-sm btn-dark py-0 px-2" style="font-size:0.72rem;">Mağaza / Stoklar</a>` : ''}
-                    </div>
-                  </div>
-                  <p class="small mb-2" style="white-space:pre-line;">${post.content}</p>
-                  <div class="d-flex justify-content-between align-items-center pt-2 border-top small" style="border-color:var(--mw-border)!important;">
-                    <button type="button" class="btn btn-sm btn-link text-decoration-none text-danger p-0" onclick="window.mwLikePost('${post.id}', this)">
-                      <i class="bi bi-hand-thumbs-up-fill"></i> Beğen (<span>${post.likes_count || 0}</span>)
-                    </button>
-                    <a href="/isletmeler" class="small text-muted text-decoration-none">
-                      <i class="bi bi-box-seam text-danger"></i> B2B CariNet & Toptan Ürünlerini Gör →
-                    </a>
-                  </div>
-                </div>
-              `).join('');
-            }
-          }
-
-          // 3. Öne Çıkan İşletmeler / Eşleşme Önizleme
-          if (matchPreview) {
-            const comps = data.featuredCompanies || [];
-            if (comps.length > 0) {
-              matchPreview.innerHTML = comps.slice(0, 3).map((c, idx) => `
-                <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="p-2 rounded border text-decoration-none d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
-                  <div class="text-truncate pe-2">
-                    <div class="fw-bold small" style="color:var(--mw-text);">${c.name}</div>
-                    <small class="text-muted" style="font-size:0.7rem;">${idx < 2 ? '🎯 Hedef:' : '🎲 Sürpriz:'} ${c.sector} (${c.city || 'Türkiye'})</small>
-                  </div>
-                  <span class="badge bg-danger">İncele</span>
-                </a>
-              `).join('');
-            }
-          }
-        } catch (_) {}
+        } catch (_) {
+          renderFeedStream();
+        }
       }
 
       window.mwLikePost = async function (postId, btnEl) {
-        try {
-          await fetch(`${API_URL}/api/posts/${postId}/like`, { method: 'POST' });
-          const span = btnEl.querySelector('span');
-          if (span) span.textContent = String(Number(span.textContent || 0) + 1);
-        } catch (_) {}
+        const span = btnEl.querySelector('span');
+        if (span) span.textContent = String(Number(span.textContent || 0) + 1);
+        if (!String(postId).startsWith('seed-')) {
+          try {
+            await fetch(`${API_URL}/api/posts/${postId}/like`, { method: 'POST' });
+          } catch (_) {}
+        }
       };
 
       document.addEventListener('DOMContentLoaded', () => {
+        hydrateUserSidebar();
         loadHomeFeed();
 
+        // Filtre sekmeleri
+        const filterButtons = document.querySelectorAll('[data-feed-filter]');
+        filterButtons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            filterButtons.forEach((b) => {
+              b.classList.remove('btn-danger');
+              b.classList.add('btn-outline-secondary');
+            });
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-danger');
+            currentFilter = btn.getAttribute('data-feed-filter') || 'all';
+            renderFeedStream();
+          });
+        });
+
+        // Hızlı Post Paylaşımı
         const submitBtn = document.getElementById('mwQuickPostSubmit');
         const contentInput = document.getElementById('mwQuickPostContent');
+        const tagSelect = document.getElementById('mwQuickPostTag');
         const feedback = document.getElementById('mwQuickPostFeedback');
 
         if (submitBtn && contentInput) {
@@ -458,6 +673,7 @@ const recentTalepler = talepler.slice(0, 6);
 
             let user = null;
             try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+            const selectedTag = tagSelect ? tagSelect.value : 'İş & Sektör Paylaşımı';
 
             submitBtn.disabled = true;
             try {
@@ -467,11 +683,11 @@ const recentTalepler = talepler.slice(0, 6);
                 body: JSON.stringify({
                   user_id: user ? user.user_id : 'guest',
                   company_id: user ? user.company_id : '',
-                  author_name: user ? user.full_name : 'MeetWork Ziyaretçi Üye',
+                  author_name: user ? user.full_name : 'MeetWork İş Ağı Üyesi',
                   company_name: user ? user.company_name : 'Doğrulanmış İş Ağı',
                   company_slug: user ? user.company_slug : '',
                   trust_level: user ? user.trust_level : 1,
-                  content: text
+                  content: `[${selectedTag}] ${text}`
                 })
               });
               const out = await res.json();
@@ -480,7 +696,7 @@ const recentTalepler = talepler.slice(0, 6);
                 if (feedback) {
                   feedback.style.display = 'block';
                   feedback.className = 'small mt-2 text-success fw-bold';
-                  feedback.textContent = '✓ Paylaşımınız canlı akışa eklendi!';
+                  feedback.textContent = '✓ Paylaşımınız canlı iş ağı akışına eklendi!';
                 }
                 loadHomeFeed();
               }
