@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
   <!-- Ana Navigasyon Barı -->
   <nav class="navbar navbar-expand-xl py-2">
     <div class="container-fluid px-lg-4">
-      <!-- Dinamik MeetWork Logosu (PRO Kaldırıldı) -->
+      <!-- Dinamik MeetWork Logosu -->
       <a class="navbar-brand d-flex align-items-center me-3" href="/" aria-label="MeetWork Ana Sayfa">
         <span class="mw-logo-meet">Meet</span><span class="mw-logo-work">Work</span>
       </a>
@@ -64,7 +64,7 @@ const currentPath = Astro.url.pathname;
         <div id="mwLiveSearchDropdown" class="mw-search-dropdown p-2"></div>
       </form>
 
-      <!-- Mobil Sağ Aksiyonlar (LED +, Tema, Giriş & Hamburger) -->
+      <!-- Mobil Sağ Aksiyonlar (LED +, Tema, Giriş/Profil & Hamburger) -->
       <div class="d-flex align-items-center gap-2 d-xl-none">
         <a href="/ilanlar?yeni=1" class="mw-led-plus-btn" title="İlan veya İhale Ver" aria-label="İlan veya İhale Ver">
           <i class="bi bi-plus-lg"></i>
@@ -72,9 +72,49 @@ const currentPath = Astro.url.pathname;
         <button type="button" class="btn btn-sm mw-theme-btn" id="mwThemeToggleMobile" aria-label="Tema Değiştir" title="Açık / Koyu Tema">
           <span class="mw-theme-icon">☀️</span>
         </button>
-        <a href="/giris" class="btn btn-sm btn-danger fw-bold">
+
+        <!-- Mobil Giriş Butonu (Giriş Yapılmamışsa) -->
+        <a href="/giris" class="btn btn-sm btn-danger fw-bold mw-guest-auth-btn">
           <i class="bi bi-person-circle"></i> Giriş
         </a>
+
+        <!-- Mobil Kullanıcı İkonu & Mini Menü (Giriş Yapılmışsa - Yazısız İkon) -->
+        <div class="dropdown mw-user-auth-dropdown" style="display:none;">
+          <button
+            type="button"
+            class="btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center p-0"
+            style="width: 36px; height: 36px;"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            title="Hesabım & İşletme Menüsü"
+          >
+            <i class="bi bi-person-check-fill fs-5"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 245px; border-top: 3px solid var(--mw-red);">
+            <div class="px-2 py-2 border-bottom mb-1" style="border-color:var(--mw-border)!important;">
+              <div class="fw-bold small text-truncate mw-drop-company">İşletmem</div>
+              <div class="text-muted text-truncate mw-drop-user" style="font-size:0.74rem;">Üye</div>
+              <div class="mt-1 mw-drop-badge"></div>
+            </div>
+            <a class="dropdown-item rounded py-1 small fw-semibold mw-drop-profile-link" href="/isletmeler">
+              <i class="bi bi-building text-danger me-2"></i>Profilim & İşletme Vitrini
+            </a>
+            <a class="dropdown-item rounded py-1 small fw-semibold" href="/akilli-eslesme">
+              <i class="bi bi-magic text-danger me-2"></i>Akıllı Eşleşmelerim
+            </a>
+            <button type="button" class="dropdown-item rounded py-1 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
+              <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
+            </button>
+            <a class="dropdown-item rounded py-1 small fw-bold text-danger mw-drop-admin-link" href="/yonetim" style="display:none;">
+              <i class="bi bi-shield-lock-fill me-2"></i>SuperAdmin Paneli
+            </a>
+            <hr class="dropdown-divider my-1" />
+            <button type="button" class="dropdown-item rounded py-1 small fw-bold text-danger mw-drop-logout-btn">
+              <i class="bi bi-box-arrow-right me-2"></i>Çıkış Yap
+            </button>
+          </div>
+        </div>
+
         <button
           class="navbar-toggler border-0 p-1"
           type="button"
@@ -181,7 +221,7 @@ const currentPath = Astro.url.pathname;
           </li>
         </ul>
 
-        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + İkonu (Yazısız), Tema İkonu, Giriş -->
+        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + İkonu (Yazısız), Tema İkonu, Giriş/Profil İkonu -->
         <div class="d-none d-xl-flex align-items-center gap-2 ms-2">
           <div class="dropdown">
             <a
@@ -223,15 +263,83 @@ const currentPath = Astro.url.pathname;
             <span class="mw-theme-icon">☀️</span>
           </button>
 
-          <a href="/giris" id="mwHeaderAuthBtn" class="btn btn-sm btn-danger fw-bold px-3 d-flex align-items-center gap-2">
+          <!-- Giriş Yapılmamışsa: Giriş Butonu -->
+          <a href="/giris" class="btn btn-sm btn-danger fw-bold px-3 d-flex align-items-center gap-2 mw-guest-auth-btn">
             <i class="bi bi-person-circle fs-6"></i>
-            <span id="mwHeaderAuthLabel">Giriş</span>
+            <span>Giriş</span>
           </a>
+
+          <!-- Giriş Yapılmışsa: Yazısız Sadece Profil İkonu + Mini Kurumsal Açılır Menü -->
+          <div class="dropdown mw-user-auth-dropdown" style="display:none;">
+            <button
+              type="button"
+              class="btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center p-0 shadow-sm"
+              style="width: 38px; height: 38px;"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              title="Profilim & İşletme Menüsü"
+              aria-label="Profil Menüsü"
+            >
+              <i class="bi bi-person-check-fill fs-5"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 255px; border-top: 3px solid var(--mw-red);">
+              <div class="px-3 py-2 border-bottom mb-1" style="border-color:var(--mw-border)!important;">
+                <div class="fw-bold small text-truncate mw-drop-company">İşletmem</div>
+                <div class="text-muted text-truncate mw-drop-user" style="font-size:0.74rem;">Üye</div>
+                <div class="mt-1 mw-drop-badge"></div>
+              </div>
+              <a class="dropdown-item rounded py-2 small fw-semibold mw-drop-profile-link" href="/isletmeler">
+                <i class="bi bi-building-fill-check text-danger me-2"></i>Profilim & İşletme Vitrini
+              </a>
+              <a class="dropdown-item rounded py-2 small fw-semibold" href="/akilli-eslesme">
+                <i class="bi bi-magic text-danger me-2"></i>Akıllı Eşleşmelerim
+              </a>
+              <a class="dropdown-item rounded py-2 small fw-semibold" href="/ilanlar?yeni=1">
+                <i class="bi bi-plus-circle text-danger me-2"></i>İlan / İhale Oluştur
+              </a>
+              <button type="button" class="dropdown-item rounded py-2 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
+                <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
+              </button>
+              <a class="dropdown-item rounded py-2 small fw-bold text-danger mw-drop-admin-link" href="/yonetim" style="display:none;">
+                <i class="bi bi-shield-lock-fill me-2"></i>SuperAdmin Yönetim Paneli
+              </a>
+              <hr class="dropdown-divider my-1" />
+              <button type="button" class="dropdown-item rounded py-2 small fw-bold text-danger mw-drop-logout-btn">
+                <i class="bi bi-box-arrow-right me-2"></i>Çıkış Yap
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 </header>
+
+<!-- Şifre Değiştir Modalı -->
+<div class="modal fade" id="mwChangePasswordModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content mw-panel-card border-danger">
+      <div class="modal-header border-bottom py-2" style="border-color:var(--mw-border)!important;">
+        <h6 class="modal-title fw-bold"><i class="bi bi-key-fill text-warning me-1"></i> Şifre Değiştir</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body">
+        <form id="mwChangePasswordForm">
+          <div class="mb-2">
+            <label class="form-label small fw-semibold mb-1">Mevcut Şifreniz</label>
+            <input type="password" id="mwOldPassword" class="form-control form-control-sm" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold mb-1">Yeni Şifreniz</label>
+            <input type="password" id="mwNewPassword" class="form-control form-control-sm" minlength="4" required />
+          </div>
+          <div id="mwPasswordFeedback" class="small mb-2" style="display:none;"></div>
+          <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">Şifremi Güncelle</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script is:inline>
   (function () {
@@ -246,6 +354,12 @@ const currentPath = Astro.url.pathname;
       icons.forEach((el) => {
         el.textContent = theme === 'dark' ? '☀️' : '🌙';
       });
+    }
+
+    function getBadgeHtml(level) {
+      if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>';
+      if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> Silver / VKN Onaylı</span>';
+      return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Kayıtlı Üye</span>';
     }
 
     const savedTheme = localStorage.getItem(STORAGE_KEY) || 'dark';
@@ -266,30 +380,84 @@ const currentPath = Astro.url.pathname;
       if (btnDesktop) btnDesktop.addEventListener('click', toggleTheme);
       if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
 
-      // Update Auth Button if Logged In
+      // Giriş Durumu: Yazısız Profil İkonu ve Mini Açılır Menü
       try {
         const rawUser = localStorage.getItem(USER_KEY);
         if (rawUser) {
           const user = JSON.parse(rawUser);
-          const authLabel = document.getElementById('mwHeaderAuthLabel');
-          const authBtn = document.getElementById('mwHeaderAuthBtn');
-          if (authLabel && user.company_name) {
-            authLabel.textContent = user.company_name.slice(0, 16);
-          } else if (authLabel && user.full_name) {
-            authLabel.textContent = user.full_name.slice(0, 16);
-          }
-          if (authBtn) {
+          if (user && (user.email || user.user_id)) {
+            document.querySelectorAll('.mw-guest-auth-btn').forEach(el => { el.style.display = 'none'; });
+            document.querySelectorAll('.mw-user-auth-dropdown').forEach(el => { el.style.display = 'block'; });
+
+            document.querySelectorAll('.mw-drop-company').forEach(el => {
+              el.textContent = user.company_name || 'Kurumsal İşletmem';
+            });
+            document.querySelectorAll('.mw-drop-user').forEach(el => {
+              el.textContent = `${user.full_name || ''} (${user.email || ''})`;
+            });
+            document.querySelectorAll('.mw-drop-badge').forEach(el => {
+              el.innerHTML = getBadgeHtml(user.trust_level || 2);
+            });
+            document.querySelectorAll('.mw-drop-profile-link').forEach(el => {
+              if (user.company_slug) {
+                el.setAttribute('href', `/isletmeler?firma=${encodeURIComponent(user.company_slug)}`);
+              }
+            });
             if (user.role === 'superadmin') {
-              authBtn.setAttribute('href', '/yonetim');
-              if (authLabel) authLabel.textContent = 'SuperAdmin';
-            } else if (user.company_slug) {
-              authBtn.setAttribute('href', `/isletmeler?firma=${user.company_slug}`);
+              document.querySelectorAll('.mw-drop-admin-link').forEach(el => {
+                el.style.display = 'block';
+              });
             }
           }
         }
       } catch (_) {}
 
-      // Canlı Site Geneli Arama Önizlemesi (Sosyal Medya, İlanlar, İhaleler, İşletmeler)
+      // Çıkış Yap Aksiyonu
+      document.querySelectorAll('.mw-drop-logout-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          localStorage.removeItem(USER_KEY);
+          localStorage.removeItem('mw_token');
+          window.location.href = '/';
+        });
+      });
+
+      // Şifre Değiştir Formu
+      const pwdForm = document.getElementById('mwChangePasswordForm');
+      if (pwdForm) {
+        pwdForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const oldPass = document.getElementById('mwOldPassword').value;
+          const newPass = document.getElementById('mwNewPassword').value;
+          const fb = document.getElementById('mwPasswordFeedback');
+          let user = null;
+          try { user = JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch (_) {}
+
+          if (!user) return;
+          try {
+            const res = await fetch(`${API_URL}/api/auth/change-password`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                user_id: user.user_id,
+                email: user.email,
+                current_password: oldPass,
+                new_password: newPass
+              })
+            });
+            const data = await res.json();
+            if (fb) {
+              fb.style.display = 'block';
+              fb.className = `small mb-2 fw-bold ${data.success ? 'text-success' : 'text-danger'}`;
+              fb.textContent = data.message || (data.success ? 'Şifreniz güncellendi.' : 'Hata oluştu.');
+            }
+            if (data.success) {
+              pwdForm.reset();
+            }
+          } catch (_) {}
+        });
+      }
+
+      // Canlı Site Geneli Arama Önizlemesi
       const searchInput = document.getElementById('mwGlobalSearchInput');
       const dropdown = document.getElementById('mwLiveSearchDropdown');
       let searchCache = null;

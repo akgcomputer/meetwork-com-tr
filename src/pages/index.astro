@@ -24,45 +24,56 @@ const recentTalepler = talepler.slice(0, 5);
   title="MeetWork | İş Ağı, Sosyal Medya, Akıllı Eşleşme, İlan Pazarı & E-İhale Ekosistemi"
   description="Türkiye'nin yeni nesil B2B sosyal iş ağı ve ticaret platformu. İş dünyası sosyal akışı, Akıllı Eşleşme, E-İhale, Emlak/Vasıta/Sanayi ilan pazarı, StokPratik ERP ve DepodanDirekt tek çatı altında."
 >
-  <!-- ANA 3 SÜTUNLU SOSYAL İŞ AĞI MİMARİSİ: Sol (Profil & Networking) + Orta (Hikayeler, Post Kutusu & Sosyal Akış) + Sağ (Akıllı Eşleşme & İhale Radarı) -->
+  <!-- ANA 3 SÜTUNLU SOSYAL İŞ AĞI MİMARİSİ: Sol (Profil & Networking) + Orta (Yuvarlak Hikayeler, 5'li Gündem, Post Kutusu & Sosyal Akış) + Sağ (Akıllı Eşleşme & İhale Radarı) -->
   <div class="row g-4 mb-5">
 
-    <!-- SOL SÜTUN (%25): İş Ağı Profilim + Networking Kısayolları + Kompakt İlan Pazarı -->
+    <!-- SOL SÜTUN (%25): Profesyonel Kurumsal Kimlik Kartı + Networking Kısayolları + Kompakt İlanlar -->
     <div class="col-lg-3">
 
-      <!-- 1. İş Ağı Profilim / Kurumsal Kimlik Kartı (Giriş Durumuna Göre Dinamik) -->
+      <!-- 1. Kurumsal İş Ağı Kimlik Kartı (Dar Üst Şerit, Kesilmeyen Tam Görünür Avatar, Kredisiz Temiz Tasarım) -->
       <div class="mw-panel-card overflow-hidden mb-3 shadow-sm">
-        <div style="height: 64px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%); position: relative;">
-          <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2" style="font-size:0.68rem;">
-            <i class="bi bi-broadcast text-danger me-1"></i>Canlı B2B Ağ
+        <!-- İnce Kurumsal Üst Şerit -->
+        <div
+          class="d-flex justify-content-between align-items-center px-3"
+          style="height: 28px; background: linear-gradient(90deg, #0b0b0e 0%, #dc3545 100%);"
+        >
+          <span class="text-white-50 fw-semibold" style="font-size: 0.65rem; letter-spacing: 0.4px;">MEETWORK B2B</span>
+          <span class="text-white fw-bold d-inline-flex align-items-center gap-1" style="font-size: 0.66rem;">
+            <span class="rounded-circle bg-success d-inline-block" style="width:6px;height:6px;"></span> Canlı B2B Ağ
           </span>
         </div>
-        <div class="p-3 pt-0" id="mwSidebarProfileBox">
-          <div class="d-flex align-items-end justify-content-between" style="margin-top: -28px;">
+
+        <div class="p-3" id="mwSidebarProfileBox">
+          <!-- Avatar & Başlık Yan Yana (Kesilme Yok, Tam Profesyonel Görünüm) -->
+          <div class="d-flex align-items-center gap-3 mb-2">
             <div
               id="mwSidebarAvatar"
-              class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-black border border-3 border-white shadow-sm"
-              style="width: 56px; height: 56px; font-size: 1.15rem; font-weight: 800;"
+              class="rounded-3 bg-danger text-white d-flex align-items-center justify-content-center fw-black flex-shrink-0 shadow-sm"
+              style="width: 52px; height: 52px; font-size: 1.15rem; font-weight: 900; border: 2px solid rgba(220,53,69,0.35);"
             >
               MW
             </div>
-            <span id="mwSidebarBadge" class="mw-trust-badge-1">
-              <i class="bi bi-unlock-fill"></i> Açık Erişim
-            </span>
+            <div class="min-w-0">
+              <div class="mb-1" id="mwSidebarBadgeWrap">
+                <span id="mwSidebarBadge" class="mw-trust-badge-1">
+                  <i class="bi bi-unlock-fill"></i> Açık Erişim
+                </span>
+              </div>
+              <h6 class="fw-bold mb-0 text-truncate" id="mwSidebarUserName">MeetWork İş Ağı</h6>
+            </div>
           </div>
 
-          <div class="mt-2">
-            <h6 class="fw-bold mb-0" id="mwSidebarUserName">MeetWork İş Ağı</h6>
-            <small class="text-muted d-block" id="mwSidebarCompanyName">Üyeliksiz gezebilir, üye olarak ticaret ağınızı kurabilirsiniz</small>
-          </div>
+          <small class="text-muted d-block mb-3" id="mwSidebarCompanyName" style="font-size: 0.78rem; line-height: 1.4;">
+            Üyeliksiz gezebilir, üye olarak kurumsal ticaret ağınızı kurabilirsiniz.
+          </small>
 
-          <div class="row g-2 text-center my-3 py-2 rounded" style="background: var(--mw-surface-alt);">
+          <div class="row g-2 text-center mb-3 py-2 rounded border" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
             <div class="col-6 border-end" style="border-color: var(--mw-border) !important;">
-              <div class="fw-black text-danger small" id="mwSidebarMatchStat">Aktif</div>
+              <div class="fw-bold text-danger small" id="mwSidebarMatchStat"><i class="bi bi-magic me-1"></i>Aktif</div>
               <div class="text-muted" style="font-size: 0.68rem;">Akıllı Eşleşme</div>
             </div>
             <div class="col-6">
-              <div class="fw-black text-danger small" id="mwSidebarCreditStat">Açık</div>
+              <div class="fw-bold text-success small" id="mwSidebarCreditStat"><i class="bi bi-check2-circle me-1"></i>Açık</div>
               <div class="text-muted" style="font-size: 0.68rem;">İhale & İlan</div>
             </div>
           </div>
@@ -71,7 +82,7 @@ const recentTalepler = talepler.slice(0, 5);
             <a href="/giris" class="btn btn-danger btn-sm fw-bold">
               <i class="bi bi-person-circle me-1"></i> Giriş Yap / Profilim
             </a>
-            <a href="/giris?tab=register" class="btn btn-outline-secondary btn-sm fw-semibold" style="font-size:0.78rem;">
+            <a href="/giris?tab=register" class="btn btn-outline-secondary btn-sm fw-semibold" style="font-size:0.76rem;">
               5 Hedef Sektör Seç & Ücretsiz Katıl
             </a>
           </div>
@@ -145,59 +156,86 @@ const recentTalepler = talepler.slice(0, 5);
 
     </div>
 
-    <!-- ORTA SÜTUN (%50): Günün Öne Çıkanları (Stories) + Sosyal Post Kutusu + Birleşik Sosyal & Ticaret Akışı -->
+    <!-- ORTA SÜTUN (%50): 1. Yuvarlak Hikayeler + 2. 5'li İş Ağı Gündemi + 3. Sosyal Post Kutusu + 4. Birleşik Sosyal Akış -->
     <div class="col-lg-6">
 
-      <!-- 1. Günün Öne Çıkanları / İş Dünyası Hikayeleri (Stories Bar) -->
+      <!-- 1. YUVARLAK HİKAYELER (STORIES) ALANI (Misafirler Son Eklenenleri Görür, İşletmeler Hikaye Ekler) -->
+      <div class="mw-panel-card p-3 mb-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="small fw-bold"><i class="bi bi-play-circle-fill text-danger me-1"></i> İşletme Hikayeleri & Anlık Vitrin</span>
+          <button
+            type="button"
+            class="btn btn-link btn-sm text-danger text-decoration-none p-0 fw-bold"
+            style="font-size: 0.75rem;"
+            data-bs-toggle="modal"
+            data-bs-target="#mwAddStoryModal"
+          >
+            + Hikaye Paylaş
+          </button>
+        </div>
+
+        <div class="mw-stories-row" id="mwHomeStoriesRow">
+          <!-- İlk Yuvarlak: + Hikaye Ekle -->
+          <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwAddStoryModal">
+            <div class="mw-story-add-ring">
+              <i class="bi bi-plus-lg"></i>
+            </div>
+            <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
+          </div>
+          <!-- JS ile son eklenen hikayeler buraya yuvarlak halkalar halinde yüklenir -->
+        </div>
+      </div>
+
+      <!-- 2. İş Ağı Gündemi & Hızlı Etkileşim (5 Kart Yan Yana Tam Sığan Grid) -->
       <div class="mw-panel-card p-3 mb-3 shadow-sm">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="small fw-bold"><i class="bi bi-lightning-charge-fill text-danger me-1"></i> İş Ağı Gündemi & Hızlı Etkileşim</span>
-          <small class="text-muted" style="font-size:0.72rem;">Canlı Panolar</small>
+          <small class="text-muted" style="font-size:0.72rem;">Hızlı Erişim</small>
         </div>
-        <div class="d-flex gap-2 overflow-auto pb-1" style="scrollbar-width: thin;">
-          <a href="/akilli-eslesme" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 112px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
-            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #0b0b0e); border: 2px solid #dc3545;">
+        <div class="mw-agenda-5grid">
+          <a href="/akilli-eslesme" class="mw-agenda-card">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #dc3545, #0b0b0e); border: 2px solid #dc3545;">
               <i class="bi bi-magic fs-5"></i>
             </div>
-            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">Akıllı Eşleşme</div>
-            <small class="text-danger d-block" style="font-size: 0.64rem;">Şimdi Eşleş</small>
+            <div class="fw-bold text-truncate" style="font-size: 0.73rem; color: var(--mw-text);">Akıllı Eşleşme</div>
+            <small class="text-danger d-block text-truncate" style="font-size: 0.64rem;">Şimdi Eşleş</small>
           </a>
 
-          <a href="/etkinlik-takvimi" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 112px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
-            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #fd7e14); border: 2px solid #dc3545;">
+          <a href="/etkinlik-takvimi" class="mw-agenda-card">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #dc3545, #fd7e14); border: 2px solid #dc3545;">
               <i class="bi bi-cup-hot-fill fs-5"></i>
             </div>
-            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">Mini & Maxi</div>
-            <small class="text-muted d-block" style="font-size: 0.64rem;">Etkinlikler</small>
+            <div class="fw-bold text-truncate" style="font-size: 0.73rem; color: var(--mw-text);">Mini & Maxi</div>
+            <small class="text-muted d-block text-truncate" style="font-size: 0.64rem;">Etkinlikler</small>
           </a>
 
-          <a href="/ihaleler" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 118px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
-            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #198754, #0b0b0e); border: 2px solid #198754;">
+          <a href="/ihaleler" class="mw-agenda-card">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #198754, #0b0b0e); border: 2px solid #198754;">
               <i class="bi bi-hammer fs-5"></i>
             </div>
-            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">E-İhale</div>
+            <div class="fw-bold text-truncate" style="font-size: 0.73rem; color: var(--mw-text);">E-İhale</div>
             <small class="text-success d-block text-truncate" style="font-size: 0.62rem;">Kurumsal Satın Alma</small>
           </a>
 
-          <a href="/ilanlar" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 112px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
-            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #dc3545, #6f42c1); border: 2px solid #dc3545;">
+          <a href="/ilanlar" class="mw-agenda-card">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #dc3545, #6f42c1); border: 2px solid #dc3545;">
               <i class="bi bi-stars fs-5"></i>
             </div>
-            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">2. El İlanlar</div>
-            <small class="text-muted d-block" style="font-size: 0.64rem;">Emlak & Oto</small>
+            <div class="fw-bold text-truncate" style="font-size: 0.73rem; color: var(--mw-text);">2. El İlanlar</div>
+            <small class="text-muted d-block text-truncate" style="font-size: 0.64rem;">Emlak & Oto</small>
           </a>
 
-          <a href="/isletmeler" class="text-decoration-none text-center flex-shrink-0 p-2 rounded border" style="width: 112px; border-color: var(--mw-border) !important; background: var(--mw-surface-alt);">
-            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 44px; height: 44px; background: linear-gradient(135deg, #0d6efd, #0b0b0e); border: 2px solid #0d6efd;">
+          <a href="/isletmeler" class="mw-agenda-card">
+            <div class="rounded-circle mx-auto mb-1 d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 42px; height: 42px; background: linear-gradient(135deg, #0d6efd, #0b0b0e); border: 2px solid #0d6efd;">
               <i class="bi bi-box-seam-fill fs-5"></i>
             </div>
-            <div class="fw-bold text-truncate" style="font-size: 0.72rem; color: var(--mw-text);">Toptan Sat</div>
-            <small class="text-primary d-block" style="font-size: 0.64rem;">StokPratik</small>
+            <div class="fw-bold text-truncate" style="font-size: 0.73rem; color: var(--mw-text);">Toptan Sat</div>
+            <small class="text-primary d-block text-truncate" style="font-size: 0.64rem;">StokPratik</small>
           </a>
         </div>
       </div>
 
-      <!-- 2. Sosyal Medya Paylaşım Kutusu (Post Composer) -->
+      <!-- 3. Sosyal Medya Paylaşım Kutusu (Post Composer) -->
       <div class="mw-panel-card p-3 mb-3 shadow-sm">
         <div class="d-flex gap-2 align-items-start mb-2">
           <div
@@ -238,7 +276,7 @@ const recentTalepler = talepler.slice(0, 5);
         <div id="mwQuickPostFeedback" class="small mt-2" style="display:none;"></div>
       </div>
 
-      <!-- 3. Sosyal Akış Filtre Sekmeleri (Pills) -->
+      <!-- 4. Sosyal Akış Filtre Sekmeleri (Pills) -->
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
         <div class="d-flex flex-wrap gap-1" id="mwFeedFilterTabs">
           <button type="button" class="btn btn-sm btn-danger fw-semibold rounded-pill px-3" data-feed-filter="all">
@@ -257,7 +295,7 @@ const recentTalepler = talepler.slice(0, 5);
         <span class="badge bg-danger-subtle text-danger" style="font-size:0.7rem;">Canlı Akış</span>
       </div>
 
-      <!-- 4. Birleşik Sosyal Medya + Ticaret Akışı (Feed Stream) -->
+      <!-- 5. Birleşik Sosyal Medya + Ticaret Akışı (Feed Stream) -->
       <div id="mwHomeSocialFeed" class="d-flex flex-column gap-3 mb-4">
         <div class="mw-panel-card p-4 text-center text-muted small">
           <div class="spinner-border spinner-border-sm text-danger me-2" role="status"></div>
@@ -381,19 +419,172 @@ const recentTalepler = talepler.slice(0, 5);
     </div>
   </section>
 
+  <!-- HİKAYE GÖRÜNTÜLEYİCİ (STORY VIEWER) MODALI -->
+  <div class="modal fade" id="mwStoryViewerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
+        <div id="mwStoryModalBody" class="p-4 text-white d-flex flex-column justify-content-between" style="min-height: 460px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
+          <!-- Üst Bar -->
+          <div>
+            <div class="progress mb-3" style="height: 3px; background: rgba(255,255,255,0.25);">
+              <div class="progress-bar bg-white" style="width: 100%;"></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <div id="mwStoryViewAvatar" class="rounded-circle bg-white text-danger fw-black d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: 900;">
+                  MW
+                </div>
+                <div>
+                  <div class="fw-bold small text-white" id="mwStoryViewCompany">İşletme</div>
+                  <small class="text-white-50" style="font-size: 0.72rem;" id="mwStoryViewCategory">İş Gündemi</small>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+          </div>
+
+          <!-- Orta Hikaye İçeriği -->
+          <div class="my-4 py-3">
+            <span class="badge bg-light text-dark mb-2" id="mwStoryViewBadge">Gold Onaylı İşletme</span>
+            <h4 class="fw-bold mb-3 text-white" id="mwStoryViewTitle">Hikaye Başlığı</h4>
+            <p class="mb-0 text-white" style="font-size: 0.95rem; line-height: 1.6; opacity: 0.95;" id="mwStoryViewContent"></p>
+          </div>
+
+          <!-- Alt Aksiyonlar -->
+          <div class="d-flex gap-2 pt-3 border-top border-light border-opacity-25">
+            <a href="/isletmeler" id="mwStoryViewCta" class="btn btn-light text-danger fw-bold w-100">
+              İşletme Vitrinini İncele →
+            </a>
+            <a href="/ihaleler?yeni=1" class="btn btn-outline-light fw-semibold flex-shrink-0">
+              Teklif İste
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YENİ HİKAYE EKLEME MODALI -->
+  <div class="modal fade" id="mwAddStoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> Yeni İşletme Hikayesi Paylaş</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwAddStoryForm">
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Hikaye Kategorisi</label>
+              <select id="mwStoryCategory" class="form-select form-select-sm">
+                <option value="Üretim & Yatırım">🏭 Üretim & Yeni Yatırım</option>
+                <option value="Fırsat & Stok">🔥 Fırsat İlanı / Hazır Stok</option>
+                <option value="Canlı E-İhale">⚖️ Satın Alma & İhale Duyurusu</option>
+                <option value="B2B Etkinlik">☕ B2B Toplantı & İş Birliği</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Kısa Başlık</label>
+              <input type="text" id="mwStoryTitle" class="form-control form-control-sm" placeholder="Örn: Yeni CNC Lazer Hattımız Devrede" required />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Hikaye Detayı / Mesajınız</label>
+              <textarea id="mwStoryContent" class="form-control form-control-sm" rows="3" placeholder="İş dünyasına ve ziyaretçilere göstermek istediğiniz gelişmeyi yazın..." required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold mb-1">Arka Plan Teması</label>
+              <select id="mwStoryGradient" class="form-select form-select-sm">
+                <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı & Siyah (MeetWork Kurumsal)</option>
+                <option value="linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)">Gold / Hardal (Gold Vitrin)</option>
+                <option value="linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)">Gümüş / Antrasit (Kurumsal Silver)</option>
+                <option value="linear-gradient(135deg, #052e16 0%, #15803d 100%)">Zümrüt Yeşili (İhracat & Lojistik)</option>
+              </select>
+            </div>
+            <div id="mwAddStoryFeedback" class="small mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">
+              <i class="bi bi-send-fill me-1"></i> Hikayeyi Yayınla
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
-      let cachedFeedData = { posts: [], vitrinListings: [], activeTenders: [], featuredCompanies: [] };
+      let cachedFeedData = { stories: [], posts: [], vitrinListings: [], activeTenders: [], featuredCompanies: [] };
       let currentFilter = 'all';
 
-      // Örnek başlangıç sosyal paylaşımları (D1'de henüz post yoksa bile akışın dolu ve canlı görünmesi için)
+      const fallbackStories = [
+        {
+          id: 'st_anadolu_1',
+          company_name: 'Anadolu Çelik & Makine',
+          company_slug: 'anadolu-celik-makine-sanayi',
+          trust_level: 3,
+          title: 'Yeni 5 Eksen CNC Hattımız Devrede',
+          content: 'Tuzla OSB fabrikamızda savunma ve otomotiv yan sanayi için 5 eksenli lazer ve CNC büküm parkurumuz tam kapasite üretime başladı.',
+          category: 'Üretim & Yatırım',
+          bg_gradient: 'linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)',
+          cta_label: 'İşletme Vitrinini İncele',
+          cta_url: '/isletmeler?firma=anadolu-celik-makine-sanayi'
+        },
+        {
+          id: 'st_marmara_2',
+          company_name: 'Marmara Makine',
+          company_slug: 'marmara-endustriyel-makine',
+          trust_level: 3,
+          title: 'Bursa OSB Otomasyon Teslimatı',
+          content: 'Ambalaj ve gıda sektörü için geliştirdiğimiz tam otomatik paletleme robot hattımızı teslim ettik.',
+          category: 'Yeni Teslimat',
+          bg_gradient: 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)',
+          cta_label: 'Mağaza & Katalog',
+          cta_url: '/isletmeler?firma=marmara-endustriyel-makine'
+        },
+        {
+          id: 'st_vizyon_3',
+          company_name: 'Vizyon Otomotiv',
+          company_slug: 'vizyon-oto-kaporta-yan-sanayi',
+          trust_level: 2,
+          title: 'Yıllık 450 Ton Sac Tedarik İhalesi',
+          content: 'Gebze OSB tesislerimiz için yıllık 450 ton DKP rulo sac tedarik ihalemiz E-İhale merkezinde açıldı.',
+          category: 'Canlı E-İhale',
+          bg_gradient: 'linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)',
+          cta_label: 'İhaleye Teklif Ver',
+          cta_url: '/ihaleler'
+        },
+        {
+          id: 'st_ege_4',
+          company_name: 'Ege Global Lojistik',
+          company_slug: 'ege-global-lojistik-filo',
+          trust_level: 2,
+          title: 'Avrupa Parsiyel & Filo Kiralama',
+          content: 'Almanya, Hollanda ve İtalya hattında haftalık düzenli parsiyel çıkışlarımız ve 2026 model ticari araç filo kiralama kampanyamız başladı.',
+          category: 'Lojistik & Filo',
+          bg_gradient: 'linear-gradient(135deg, #052e16 0%, #15803d 100%)',
+          cta_label: 'Filo & İlanları Gör',
+          cta_url: '/isletmeler?firma=ege-global-lojistik-filo'
+        },
+        {
+          id: 'st_meetwork_5',
+          company_name: 'MeetWork Global',
+          company_slug: 'meetwork-global-yonetim',
+          trust_level: 3,
+          title: 'Maxi B2B Kahvaltı & Akıllı Eşleşme',
+          content: 'Bu hafta düzenlenecek yüz yüze Mini & Maxi iş toplantılarımızda yerinizi alın! Seçtiğiniz 5 hedef sektörden karar vericilerle aynı masada tanışın.',
+          category: 'B2B Etkinlik',
+          bg_gradient: 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 50%, #111115 100%)',
+          cta_label: 'Etkinlik Takvimi',
+          cta_url: '/etkinlik-takvimi'
+        }
+      ];
+
       const fallbackSocialPosts = [
         {
           id: 'seed-post-1',
           author_name: 'Ahmet Yılmaz',
           company_name: 'Anadolu Çelik & Makine San. Tic. A.Ş.',
-          company_slug: 'anadolu-celik-makine',
+          company_slug: 'anadolu-celik-makine-sanayi',
           trust_level: 3,
           tag: 'Yeni Yatırım & Kapasite',
           content: 'Gebze OSB fabrikamızda yeni 5 eksenli CNC işleme parkurumuzu devreye aldık. Otomotiv ve savunma sanayi fason talaşlı imalat talepleriniz için doğrudan CariNet kataloğumuzdan veya MeetWork üzerinden teklif isteyebilirsiniz. 🏭⚙️',
@@ -426,7 +617,7 @@ const recentTalepler = talepler.slice(0, 5);
 
       function getTrustBadge(level) {
         if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>';
-        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> StokPratik VKN Onaylı</span>';
+        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> Silver Onaylı</span>';
         return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> İş Ağı Üyesi</span>';
       }
 
@@ -439,30 +630,91 @@ const recentTalepler = talepler.slice(0, 5);
         const composerAvatar = document.getElementById('mwComposerAvatar');
         const userName = document.getElementById('mwSidebarUserName');
         const compName = document.getElementById('mwSidebarCompanyName');
-        const badge = document.getElementById('mwSidebarBadge');
-        const creditStat = document.getElementById('mwSidebarCreditStat');
+        const badgeWrap = document.getElementById('mwSidebarBadgeWrap');
         const actions = document.getElementById('mwSidebarAuthActions');
 
         const initials = (user.company_name || user.full_name || 'MW').slice(0, 2).toUpperCase();
         if (avatar) avatar.textContent = initials;
         if (composerAvatar) composerAvatar.textContent = initials;
-        if (userName) userName.textContent = user.full_name || 'MeetWork Üyesi';
-        if (compName) compName.textContent = `${user.company_name || 'Kurumsal Üye'} • ${user.sector || 'B2B'}`;
-        if (badge) badge.outerHTML = getTrustBadge(user.trust_level || 2);
-        if (creditStat) creditStat.textContent = `${user.tender_credits ?? 5} Kredi`;
+        if (userName) userName.textContent = user.company_name || user.full_name || 'MeetWork Üyesi';
+        if (compName) compName.textContent = `${user.full_name || 'Kurumsal Üye'} • ${user.sector || 'B2B İş Ağı'}`;
+        if (badgeWrap) badgeWrap.innerHTML = getTrustBadge(user.trust_level || 2);
 
         if (actions) {
+          const profileHref = user.company_slug ? `/isletmeler?firma=${encodeURIComponent(user.company_slug)}` : '/isletmeler';
           actions.innerHTML = `
-            <a href="/akilli-eslesme" class="btn btn-danger btn-sm fw-bold">
-              <i class="bi bi-magic me-1"></i> Akıllı Eşleşmelerim
+            <a href="${profileHref}" class="btn btn-danger btn-sm fw-bold">
+              <i class="bi bi-building-fill-check me-1"></i> İşletme Vitrinim
             </a>
             <div class="d-flex gap-1">
-              <a href="/isletmeler" class="btn btn-outline-secondary btn-sm flex-grow-1" style="font-size:0.75rem;">İşletmem</a>
-              ${user.role === 'superadmin' ? '<a href="/yonetim" class="btn btn-dark btn-sm flex-grow-1" style="font-size:0.75rem;"><i class="bi bi-shield-lock-fill text-danger"></i> SuperAdmin</a>' : '<a href="/ilanlar?yeni=1" class="btn btn-outline-danger btn-sm flex-grow-1" style="font-size:0.75rem;">+ İlan Ver</a>'}
+              <a href="/akilli-eslesme" class="btn btn-outline-secondary btn-sm flex-grow-1" style="font-size:0.75rem;">Akıllı Eşleşme</a>
+              ${user.role === 'superadmin' ? '<a href="/yonetim" class="btn btn-dark btn-sm flex-grow-1" style="font-size:0.75rem;"><i class="bi bi-shield-lock-fill text-danger"></i> Yönetim</a>' : '<a href="/ilanlar?yeni=1" class="btn btn-outline-danger btn-sm flex-grow-1" style="font-size:0.75rem;">+ İlan Ver</a>'}
             </div>
           `;
         }
       }
+
+      function renderStoriesBar() {
+        const row = document.getElementById('mwHomeStoriesRow');
+        if (!row) return;
+        const stories = (cachedFeedData.stories && cachedFeedData.stories.length > 0)
+          ? cachedFeedData.stories
+          : fallbackStories;
+
+        window.__mwStoriesList = stories;
+
+        const addBtnHtml = `
+          <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwAddStoryModal">
+            <div class="mw-story-add-ring">
+              <i class="bi bi-plus-lg"></i>
+            </div>
+            <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
+          </div>
+        `;
+
+        const itemsHtml = stories.map((st, idx) => {
+          const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+          const isSilver = Number(st.trust_level) === 2;
+          const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+          return `
+            <div class="mw-story-item" onclick="window.mwOpenStory(${idx})">
+              <div class="mw-story-ring ${isSilver ? 'mw-story-ring-silver' : ''}">
+                <div class="mw-story-inner" style="background: ${bg};">
+                  ${initials}
+                </div>
+              </div>
+              <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.69rem;">${st.company_name}</span>
+            </div>
+          `;
+        }).join('');
+
+        row.innerHTML = addBtnHtml + itemsHtml;
+      }
+
+      window.mwOpenStory = function (idx) {
+        const stories = window.__mwStoriesList || fallbackStories;
+        const st = stories[idx];
+        if (!st) return;
+
+        document.getElementById('mwStoryModalBody').style.background = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+        document.getElementById('mwStoryViewAvatar').textContent = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+        document.getElementById('mwStoryViewCompany').textContent = st.company_name || 'MeetWork İşletmesi';
+        document.getElementById('mwStoryViewCategory').textContent = st.category || 'İş Gündemi';
+        document.getElementById('mwStoryViewBadge').textContent = Number(st.trust_level) >= 3 ? '★ Gold Onaylı İşletme' : '✓ Silver Onaylı İşletme';
+        document.getElementById('mwStoryViewTitle').textContent = st.title || '';
+        document.getElementById('mwStoryViewContent').textContent = st.content || '';
+        const cta = document.getElementById('mwStoryViewCta');
+        if (cta) {
+          cta.textContent = (st.cta_label || 'İşletme Vitrinini İncele') + ' →';
+          cta.setAttribute('href', st.cta_url || (st.company_slug ? `/isletmeler?firma=${st.company_slug}` : '/isletmeler'));
+        }
+
+        const modalEl = document.getElementById('mwStoryViewerModal');
+        if (modalEl && window.bootstrap) {
+          const modal = new window.bootstrap.Modal(modalEl);
+          modal.show();
+        }
+      };
 
       function renderPostCard(post) {
         const initials = (post.company_name || post.author_name || 'MW').slice(0, 2).toUpperCase();
@@ -488,7 +740,7 @@ const recentTalepler = talepler.slice(0, 5);
               </div>
               <div class="d-flex gap-1 flex-shrink-0">
                 <a href="/ihaleler?yeni=1" class="btn btn-sm btn-outline-danger py-0 px-2 fw-semibold" style="font-size:0.72rem;">Teklif İste</a>
-                ${post.company_slug ? `<a href="/isletmeler?firma=${encodeURIComponent(post.company_slug)}" class="btn btn-sm btn-dark py-0 px-2" style="font-size:0.72rem;">Mağaza</a>` : ''}
+                ${post.company_slug ? `<a href="/isletmeler?firma=${encodeURIComponent(post.company_slug)}" class="btn btn-sm btn-dark py-0 px-2" style="font-size:0.72rem;">Vitrin</a>` : ''}
               </div>
             </div>
             <p class="small mb-3" style="white-space:pre-line; line-height:1.55;">${post.content}</p>
@@ -581,7 +833,6 @@ const recentTalepler = talepler.slice(0, 5);
           return;
         }
 
-        // 'all' -> Sosyal medya akışı önde, aralarında doğal olarak vitrin ilanları ve canlı ihaleler!
         const streamHtml = [];
         const maxLen = Math.max(posts.length, listings.length, tenders.length);
         for (let i = 0; i < maxLen; i++) {
@@ -595,14 +846,15 @@ const recentTalepler = talepler.slice(0, 5);
 
       async function loadHomeFeed() {
         const matchPreview = document.getElementById('mwHomeMatchPreview');
+        renderStoriesBar();
 
         try {
           const res = await fetch(`${API_URL}/api/feed`);
           const data = await res.json();
           cachedFeedData = data || {};
+          renderStoriesBar();
           renderFeedStream();
 
-          // Sağ Sütun: 2+1 Akıllı Eşleşme Önizleme
           if (matchPreview) {
             const comps = data.featuredCompanies || [];
             if (comps.length > 0) {
@@ -627,6 +879,7 @@ const recentTalepler = talepler.slice(0, 5);
             }
           }
         } catch (_) {
+          renderStoriesBar();
           renderFeedStream();
         }
       }
@@ -659,6 +912,50 @@ const recentTalepler = talepler.slice(0, 5);
             renderFeedStream();
           });
         });
+
+        // Yeni Hikaye Ekleme Formu
+        const storyForm = document.getElementById('mwAddStoryForm');
+        if (storyForm) {
+          storyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let user = null;
+            try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+            const title = document.getElementById('mwStoryTitle').value.trim();
+            const content = document.getElementById('mwStoryContent').value.trim();
+            const category = document.getElementById('mwStoryCategory').value;
+            const bg_gradient = document.getElementById('mwStoryGradient').value;
+            const fb = document.getElementById('mwAddStoryFeedback');
+
+            try {
+              const res = await fetch(`${API_URL}/api/stories`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  company_id: user ? user.company_id : '',
+                  company_name: user ? user.company_name : 'MeetWork Üye İşletme',
+                  company_slug: user ? user.company_slug : '',
+                  author_name: user ? user.full_name : 'İş Ağı Üyesi',
+                  trust_level: user ? user.trust_level : 2,
+                  title,
+                  content,
+                  category,
+                  bg_gradient
+                })
+              });
+              const out = await res.json();
+              if (out.success) {
+                storyForm.reset();
+                if (fb) {
+                  fb.style.display = 'block';
+                  fb.className = 'small mb-2 text-success fw-bold';
+                  fb.textContent = '✓ Hikayeniz canlı vitrine eklendi!';
+                }
+                loadHomeFeed();
+              }
+            } catch (_) {}
+          });
+        }
 
         // Hızlı Post Paylaşımı
         const submitBtn = document.getElementById('mwQuickPostSubmit');

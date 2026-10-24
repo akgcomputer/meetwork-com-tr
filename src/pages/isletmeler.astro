@@ -3,25 +3,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Kurumsal İşletmeler, B2B Mağaza & CariNet Vitrini | MeetWork"
-  description="MeetWork üyesi doğrulanmış işletmeler, kurumsal ilan mağazaları, DepodanDirekt toptan ihracat vitrinleri ve StokPratik CariNet B2B bayi portalları."
+  title="Vitrin, Kurumsal İşletmeler & CariNet Mağazaları | MeetWork"
+  description="MeetWork üyesi doğrulanmış işletmeler, işletme hikayeleri, kurumsal ilan mağazaları, DepodanDirekt toptan ihracat vitrinleri ve StokPratik CariNet B2B bayi portalları."
 >
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
     <div>
       <span class="badge bg-danger mb-1">Doğrulanmış Kurumsal İş Ağı & B2B Vitrin</span>
-      <h1 class="h3 fw-bold mb-0">MeetWork İşletme Profilleri & Toptan/CariNet Mağazaları</h1>
+      <h1 class="h3 fw-bold mb-0">İşletme Vitrini & Kurumsal Mağazalar</h1>
     </div>
-    <a href="/giris?tab=register" class="btn btn-danger fw-bold">
-      <i class="bi bi-building-add me-1"></i> + İşletmeni Ücretsiz Ekle
-    </a>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-outline-danger fw-bold" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal">
+        <i class="bi bi-play-circle-fill me-1"></i> + Hikaye Ekle
+      </button>
+      <a href="/giris?tab=register" class="btn btn-danger fw-bold">
+        <i class="bi bi-building-add me-1"></i> + İşletmeni Ücretsiz Ekle
+      </a>
+    </div>
   </div>
 
-  <!-- TEKİL İŞLETME PROFİLİ GÖRÜNÜMÜ (URL'de ?firma=... varsa veya ilk seçili işletme için) -->
+  <!-- TEKİL İŞLETME PROFİLİ GÖRÜNÜMÜ (URL'de ?firma=... varsa veya seçili işletme için) -->
   <div id="mwCompanyProfileContainer" class="mb-5" style="display:none;"></div>
 
+  <!-- VİTRİN GENEL HİKAYELER BARI (Misafirlerin ve Üyelerin Son Hikayeleri Görebilmesi İçin) -->
+  <div class="mw-panel-card p-3 mb-4 shadow-sm" id="mwVitrinGeneralStoriesCard">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <span class="small fw-bold"><i class="bi bi-play-circle-fill text-danger me-1"></i> Son Eklenen İşletme Hikayeleri</span>
+      <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0 fw-bold" style="font-size:0.75rem;" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal">
+        + Hikaye Paylaş
+      </button>
+    </div>
+    <div class="mw-stories-row" id="mwVitrinStoriesRow">
+      <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal">
+        <div class="mw-story-add-ring"><i class="bi bi-plus-lg"></i></div>
+        <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
+      </div>
+    </div>
+  </div>
+
   <!-- TÜM İŞLETMELER REHBERİ VE FİLTRESİ -->
-  <div class="mw-panel-card p-4 shadow-sm">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+  <div class="mw-panel-card p-4 shadow-sm mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color:var(--mw-border)!important;">
       <h5 class="fw-bold mb-0"><i class="bi bi-buildings-fill text-danger me-1"></i> Kayıtlı & Doğrulanmış İşletmeler</h5>
       <div class="d-flex gap-2">
         <a href="/akilli-eslesme" class="btn btn-sm btn-outline-danger fw-bold">
@@ -35,14 +56,164 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </div>
 
+  <!-- HİKAYE GÖRÜNTÜLEYİCİ (STORY VIEWER) MODALI -->
+  <div class="modal fade" id="mwCompanyStoryViewerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
+        <div id="mwCompStoryModalBody" class="p-4 text-white d-flex flex-column justify-content-between" style="min-height: 460px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
+          <div>
+            <div class="progress mb-3" style="height: 3px; background: rgba(255,255,255,0.25);">
+              <div class="progress-bar bg-white" style="width: 100%;"></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <div id="mwCompStoryViewAvatar" class="rounded-circle bg-white text-danger fw-black d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: 900;">
+                  MW
+                </div>
+                <div>
+                  <div class="fw-bold small text-white" id="mwCompStoryViewCompany">İşletme</div>
+                  <small class="text-white-50" style="font-size: 0.72rem;" id="mwCompStoryViewCategory">İş Gündemi</small>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+          </div>
+
+          <div class="my-4 py-3">
+            <span class="badge bg-light text-dark mb-2" id="mwCompStoryViewBadge">Gold Onaylı İşletme</span>
+            <h4 class="fw-bold mb-3 text-white" id="mwCompStoryViewTitle">Hikaye Başlığı</h4>
+            <p class="mb-0 text-white" style="font-size: 0.95rem; line-height: 1.6; opacity: 0.95;" id="mwCompStoryViewContent"></p>
+          </div>
+
+          <div class="d-flex gap-2 pt-3 border-top border-light border-opacity-25">
+            <a href="/isletmeler" id="mwCompStoryViewCta" class="btn btn-light text-danger fw-bold w-100">
+              İşletme Vitrinini İncele →
+            </a>
+            <a href="/ihaleler?yeni=1" class="btn btn-outline-light fw-semibold flex-shrink-0">
+              Teklif İste
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İŞLETME HİKAYE EKLEME MODALI -->
+  <div class="modal fade" id="mwCompanyAddStoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> İşletme Hikayesi Ekle</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCompanyAddStoryForm">
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Kategori</label>
+              <select id="mwCompStoryCategory" class="form-select form-select-sm">
+                <option value="Üretim & Yatırım">🏭 Üretim & Yeni Yatırım</option>
+                <option value="Fırsat & Stok">🔥 Fırsat İlanı / Hazır Stok</option>
+                <option value="Canlı E-İhale">⚖️ Satın Alma & İhale Duyurusu</option>
+                <option value="B2B Etkinlik">☕ B2B Toplantı & İş Birliği</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Başlık</label>
+              <input type="text" id="mwCompStoryTitle" class="form-control form-control-sm" placeholder="Örn: Yeni İhracat Sevkiyatımız" required />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Açıklama</label>
+              <textarea id="mwCompStoryContent" class="form-control form-control-sm" rows="3" placeholder="İşletmenizden güncel gelişmeyi paylaşın..." required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold mb-1">Tema</label>
+              <select id="mwCompStoryGradient" class="form-select form-select-sm">
+                <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı & Siyah (MeetWork Kurumsal)</option>
+                <option value="linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)">Gold / Hardal (Gold Vitrin)</option>
+                <option value="linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)">Gümüş / Antrasit (Kurumsal Silver)</option>
+                <option value="linear-gradient(135deg, #052e16 0%, #15803d 100%)">Zümrüt Yeşili (İhracat & Lojistik)</option>
+              </select>
+            </div>
+            <div id="mwCompAddStoryFeedback" class="small mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">
+              <i class="bi bi-send-fill me-1"></i> Hikayeyi Yayınla
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentActiveCompany = null;
 
       function getTrustBadge(level) {
-        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> 3. Kademe: MeetWork Gold & Fiziksel Onaylı</span>';
-        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> 2. Kademe: StokPratik VKN & e-Fatura Onaylı</span>';
-        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> 1. Kademe: Doğrulanmış Üye</span>';
+        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>';
+        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> Silver / VKN Onaylı</span>';
+        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Doğrulanmış Üye</span>';
+      }
+
+      function buildStoriesRowHtml(stories) {
+        window.__mwCompStoriesList = stories || [];
+        const addBtn = `
+          <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal">
+            <div class="mw-story-add-ring"><i class="bi bi-plus-lg"></i></div>
+            <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
+          </div>
+        `;
+        const circles = (stories || []).map((st, idx) => {
+          const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+          const isSilver = Number(st.trust_level) === 2;
+          const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+          return `
+            <div class="mw-story-item" onclick="window.mwOpenCompStory(${idx})">
+              <div class="mw-story-ring ${isSilver ? 'mw-story-ring-silver' : ''}">
+                <div class="mw-story-inner" style="background: ${bg};">${initials}</div>
+              </div>
+              <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.69rem;">${st.title || st.company_name}</span>
+            </div>
+          `;
+        }).join('');
+        return addBtn + circles;
+      }
+
+      window.mwOpenCompStory = function (idx) {
+        const list = window.__mwCompStoriesList || [];
+        const st = list[idx];
+        if (!st) return;
+
+        document.getElementById('mwCompStoryModalBody').style.background = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+        document.getElementById('mwCompStoryViewAvatar').textContent = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+        document.getElementById('mwCompStoryViewCompany').textContent = st.company_name || 'MeetWork İşletmesi';
+        document.getElementById('mwCompStoryViewCategory').textContent = st.category || 'İş Gündemi';
+        document.getElementById('mwCompStoryViewBadge').textContent = Number(st.trust_level) >= 3 ? '★ Gold Onaylı İşletme' : '✓ Silver Onaylı İşletme';
+        document.getElementById('mwCompStoryViewTitle').textContent = st.title || '';
+        document.getElementById('mwCompStoryViewContent').textContent = st.content || '';
+        const cta = document.getElementById('mwCompStoryViewCta');
+        if (cta) {
+          cta.textContent = (st.cta_label || 'İşletme Vitrinini İncele') + ' →';
+          cta.setAttribute('href', st.cta_url || (st.company_slug ? `/isletmeler?firma=${st.company_slug}` : '/isletmeler'));
+        }
+
+        const modalEl = document.getElementById('mwCompanyStoryViewerModal');
+        if (modalEl && window.bootstrap) {
+          const modal = new window.bootstrap.Modal(modalEl);
+          modal.show();
+        }
+      };
+
+      async function loadGeneralStories() {
+        const row = document.getElementById('mwVitrinStoriesRow');
+        if (!row) return;
+        try {
+          const res = await fetch(`${API_URL}/api/stories`);
+          const data = await res.json();
+          if (data.stories && data.stories.length > 0) {
+            row.innerHTML = buildStoriesRowHtml(data.stories);
+          }
+        } catch (_) {}
       }
 
       async function loadCompanyProfile(slugOrId) {
@@ -54,6 +225,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           if (!data.success || !data.company) return;
 
           const comp = data.company;
+          currentActiveCompany = comp;
+          const compStories = data.stories || [];
           const listings = data.listings || [];
           const tenders = data.tenders || [];
           const catalog = data.b2b_catalog || [];
@@ -63,11 +236,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           container.style.display = 'block';
           container.innerHTML = `
             <div class="mw-panel-card overflow-hidden shadow">
-              <!-- Üst Kurumsal Kapak Bandı (Kırmızı - Siyah Kurumsal Çizgi) -->
+              <!-- Üst Kurumsal Kapak Bandı -->
               <div class="p-4 text-white" style="background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                   <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-3 bg-white text-danger fw-black d-flex align-items-center justify-content-center shadow" style="width:68px;height:68px;font-size:1.6rem;font-weight:900;">
+                    <div class="rounded-3 bg-white text-danger fw-black d-flex align-items-center justify-content-center shadow flex-shrink-0" style="width:68px;height:68px;font-size:1.6rem;font-weight:900;">
                       ${(comp.name || 'MW').slice(0, 2).toUpperCase()}
                     </div>
                     <div>
@@ -79,25 +252,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
 
-                  <!-- İKİ SİHİRLİ EKOSİSTEM BUTONU + TEKLİF İSTE -->
+                  <!-- Kurumsal Aksiyon Butonları -->
                   <div class="d-flex flex-wrap gap-2">
                     <a href="/ihaleler?yeni=1" class="btn btn-light btn-sm fw-bold text-danger">
-                      <i class="bi bi-hammer me-1"></i> Hemen Teklif İste / İhaleye Davet Et
+                      <i class="bi bi-hammer me-1"></i> Teklif İste / İhaleye Davet Et
                     </a>
                     <a href="https://erp-eticaret.stokpratik.com.tr" target="_blank" class="btn btn-dark btn-sm fw-bold border-light">
-                      <i class="bi bi-lock-fill text-danger me-1"></i> StokPratik CariNet (Bayi Portalı)
+                      <i class="bi bi-lock-fill text-danger me-1"></i> StokPratik CariNet
                     </a>
                     <a href="https://depodandirekt.com" target="_blank" class="btn btn-danger btn-sm fw-bold border-light">
-                      <i class="bi bi-globe2 me-1"></i> DepodanDirekt Toptan Vitrini
+                      <i class="bi bi-globe2 me-1"></i> DepodanDirekt Vitrin
                     </a>
                   </div>
                 </div>
               </div>
 
-              <!-- 4 Ana Sekmeli Kurumsal İçerik -->
+              <!-- İşletmeye Özel Yuvarlak Hikayeler Alanı (Ana Sayfa İle Aynı Tasarım) -->
+              <div class="px-4 pt-3 pb-2 border-bottom" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="small fw-bold"><i class="bi bi-play-circle-fill text-danger me-1"></i> ${comp.name} — İşletme Hikayeleri & Güncellemeler</span>
+                  <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0 fw-bold" style="font-size:0.75rem;" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal">
+                    + Yeni Hikaye Ekle
+                  </button>
+                </div>
+                <div class="mw-stories-row" id="mwSingleCompanyStoriesRow">
+                  ${buildStoriesRowHtml(compStories)}
+                </div>
+              </div>
+
+              <!-- Kurumsal İçerik (Kredi Bilgisi Gizlendi, Sadece Kurumsal Vitrin & İlan/Katalog Gösterilir) -->
               <div class="p-4">
                 <div class="mb-3">
-                  <span class="small fw-bold text-muted me-2">Tanışmak İstediği Hedef Sektörler (Akıllı Eşleşme):</span>
+                  <span class="small fw-bold text-muted me-2">İş Birliği Aradığı Hedef Sektörler (Akıllı Eşleşme):</span>
                   ${targets.length > 0 ? targets.map(t => `<span class="badge bg-danger-subtle text-danger me-1">${t}</span>`).join('') : '<span class="small text-muted">Tüm sektörlerle iş birliğine açık</span>'}
                 </div>
 
@@ -165,7 +351,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="col-md-4 col-sm-6">
               <div class="mw-vitrin-card p-3">
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div class="rounded bg-danger text-white fw-bold d-flex align-items-center justify-content-center" style="width:42px;height:42px;">
+                  <div class="rounded-3 bg-danger text-white fw-bold d-flex align-items-center justify-content-center" style="width:42px;height:42px;">
                     ${(c.name || 'MW').slice(0, 2).toUpperCase()}
                   </div>
                   ${getTrustBadge(c.trust_level)}
@@ -188,9 +374,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         if (params.get('firma')) {
+          const genCard = document.getElementById('mwVitrinGeneralStoriesCard');
+          if (genCard) genCard.style.display = 'none';
           loadCompanyProfile(params.get('firma'));
+        } else {
+          loadGeneralStories();
         }
         loadAllCompanies();
+
+        const storyForm = document.getElementById('mwCompanyAddStoryForm');
+        if (storyForm) {
+          storyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let user = null;
+            try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+            const compId = currentActiveCompany ? currentActiveCompany.id : (user ? user.company_id : '');
+            const compName = currentActiveCompany ? currentActiveCompany.name : (user ? user.company_name : 'MeetWork Üye İşletme');
+            const compSlug = currentActiveCompany ? currentActiveCompany.slug : (user ? user.company_slug : '');
+            const trustLvl = currentActiveCompany ? currentActiveCompany.trust_level : (user ? user.trust_level : 2);
+
+            const title = document.getElementById('mwCompStoryTitle').value.trim();
+            const content = document.getElementById('mwCompStoryContent').value.trim();
+            const category = document.getElementById('mwCompStoryCategory').value;
+            const bg_gradient = document.getElementById('mwCompStoryGradient').value;
+            const fb = document.getElementById('mwCompAddStoryFeedback');
+
+            try {
+              const res = await fetch(`${API_URL}/api/stories`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  company_id: compId,
+                  company_name: compName,
+                  company_slug: compSlug,
+                  author_name: user ? user.full_name : 'Firma Yetkilisi',
+                  trust_level: trustLvl,
+                  title,
+                  content,
+                  category,
+                  bg_gradient
+                })
+              });
+              const out = await res.json();
+              if (out.success) {
+                storyForm.reset();
+                if (fb) {
+                  fb.style.display = 'block';
+                  fb.className = 'small mb-2 text-success fw-bold';
+                  fb.textContent = '✓ İşletme hikayeniz yayınlandı!';
+                }
+                if (params.get('firma')) {
+                  loadCompanyProfile(params.get('firma'));
+                } else {
+                  loadGeneralStories();
+                }
+              }
+            } catch (_) {}
+          });
+        }
       });
     })();
   </script>

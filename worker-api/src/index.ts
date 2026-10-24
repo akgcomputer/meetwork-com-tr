@@ -206,11 +206,116 @@ async function ensureSchema(db: D1Database) {
       phone TEXT NOT NULL,
       qr_code TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_stories (
+      id TEXT PRIMARY KEY,
+      company_id TEXT,
+      company_name TEXT NOT NULL,
+      company_slug TEXT,
+      author_name TEXT,
+      trust_level INTEGER DEFAULT 1,
+      title TEXT NOT NULL,
+      content TEXT NOT NULL,
+      category TEXT DEFAULT 'İş Gündemi',
+      bg_gradient TEXT DEFAULT 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)',
+      media_url TEXT,
+      cta_label TEXT DEFAULT 'İşletme Vitrini',
+      cta_url TEXT,
+      views_count INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`
   ];
 
   for (const sql of statements) {
     await db.prepare(sql).run();
+  }
+}
+
+async function ensureInitialStories(db: D1Database) {
+  const countRow = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_stories`).first() as any;
+  if (countRow && Number(countRow.cnt) > 0) return;
+
+  const initialStories = [
+    {
+      id: 'st_anadolu_1',
+      company_id: 'comp_anadolu_celik',
+      company_name: 'Anadolu Çelik & Makine',
+      company_slug: 'anadolu-celik-makine-sanayi',
+      author_name: 'Ahmet Yılmaz',
+      trust_level: 3,
+      title: 'Yeni 5 Eksen CNC Hattımız Devrede',
+      content: 'Tuzla OSB fabrikamızda savunma ve otomotiv yan sanayi için 5 eksenli lazer ve CNC büküm parkurumuz tam kapasite üretime başladı. Fason ve proje talepleriniz için iletişime geçebilirsiniz.',
+      category: 'Üretim & Yatırım',
+      bg_gradient: 'linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)',
+      cta_label: 'İşletme Vitrinini İncele',
+      cta_url: '/isletmeler?firma=anadolu-celik-makine-sanayi'
+    },
+    {
+      id: 'st_marmara_2',
+      company_id: 'comp_marmara_makine',
+      company_name: 'Marmara Makine',
+      company_slug: 'marmara-endustriyel-makine',
+      author_name: 'Selim Arslan',
+      trust_level: 3,
+      title: 'Bursa Nilüfer OSB Otomasyon Teslimatı',
+      content: 'Ambalaj ve gıda sektörü için geliştirdiğimiz tam otomatik paletleme robot hattımızı teslim ettik. Stoktan hazır konveyör ve otomasyon çözümlerimiz CariNet vitrinimizde!',
+      category: 'Yeni Teslimat',
+      bg_gradient: 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)',
+      cta_label: 'Mağaza & Katalog',
+      cta_url: '/isletmeler?firma=marmara-endustriyel-makine'
+    },
+    {
+      id: 'st_vizyon_3',
+      company_id: 'comp_vizyon_otomotiv',
+      company_name: 'Vizyon Otomotiv',
+      company_slug: 'vizyon-oto-kaporta-yan-sanayi',
+      author_name: 'Kaan Demir',
+      trust_level: 2,
+      title: 'Sac Kalıp & Soğuk Şekillendirme İhalesi',
+      content: 'Gebze OSB tesislerimiz için yıllık 450 ton DKP rulo sac tedarik ihalemiz E-İhale merkezinde açıldı. Çelik servis merkezlerinin tekliflerini bekliyoruz.',
+      category: 'Canlı E-İhale',
+      bg_gradient: 'linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)',
+      cta_label: 'İhaleye Teklif Ver',
+      cta_url: '/ihaleler'
+    },
+    {
+      id: 'st_ege_4',
+      company_id: 'comp_ege_lojistik',
+      company_name: 'Ege Global Lojistik',
+      company_slug: 'ege-global-lojistik-filo',
+      author_name: 'Berna Aydın',
+      trust_level: 2,
+      title: 'Avrupa Parsiyel & Filo Kiralama Fırsatı',
+      content: 'Almanya, Hollanda ve İtalya hattında haftalık düzenli parsiyel çıkışlarımız ve 2026 model ticari araç filo kiralama kampanyamız başladı.',
+      category: 'Lojistik & Filo',
+      bg_gradient: 'linear-gradient(135deg, #052e16 0%, #15803d 100%)',
+      cta_label: 'Filo & İlanları Gör',
+      cta_url: '/isletmeler?firma=ege-global-lojistik-filo'
+    },
+    {
+      id: 'st_meetwork_5',
+      company_id: 'comp_meetwork_hq',
+      company_name: 'MeetWork Global',
+      company_slug: 'meetwork-global-yonetim',
+      author_name: 'MeetWork Ekibi',
+      trust_level: 3,
+      title: 'Maxi B2B Kahvaltı & Akıllı Eşleşme',
+      content: 'Bu hafta düzenlenecek yüz yüze Mini & Maxi iş toplantılarımızda yerinizi alın! Seçtiğiniz 5 hedef sektörden karar vericilerle aynı masada tanışın.',
+      category: 'B2B Etkinlik',
+      bg_gradient: 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 50%, #111115 100%)',
+      cta_label: 'Etkinlik Takvimi',
+      cta_url: '/etkinlik-takvimi'
+    }
+  ];
+
+  for (const st of initialStories) {
+    await db.prepare(
+      `INSERT OR IGNORE INTO mw_stories (id, company_id, company_name, company_slug, author_name, trust_level, title, content, category, bg_gradient, cta_label, cta_url)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(
+      st.id, st.company_id, st.company_name, st.company_slug, st.author_name,
+      st.trust_level, st.title, st.content, st.category, st.bg_gradient, st.cta_label, st.cta_url
+    ).run();
   }
 }
 
@@ -395,11 +500,98 @@ app.post('/api/auth/login', async (c) => {
   return c.json({ success: true, token: sessionToken, user: sessionData });
 });
 
+app.post('/api/auth/change-password', async (c) => {
+  await ensureSchema(c.env.DB);
+  const { user_id, email, current_password, new_password } = await c.req.json();
+  if (!new_password || String(new_password).trim().length < 4) {
+    return c.json({ success: false, message: 'Yeni şifre en az 4 karakter olmalıdır.' }, 400);
+  }
+
+  let user: any = null;
+  if (user_id) {
+    user = await c.env.DB.prepare(`SELECT * FROM mw_users WHERE id = ? LIMIT 1`).bind(user_id).first();
+  } else if (email) {
+    user = await c.env.DB.prepare(`SELECT * FROM mw_users WHERE email = ? LIMIT 1`).bind(String(email).trim().toLowerCase()).first();
+  }
+
+  if (!user) {
+    return c.json({ success: false, message: 'Kullanıcı bulunamadı.' }, 404);
+  }
+
+  if (current_password && user.password_hash && user.password_hash !== 'sso' && user.password_hash !== current_password) {
+    return c.json({ success: false, message: 'Mevcut şifreniz hatalı.' }, 401);
+  }
+
+  await c.env.DB.prepare(`UPDATE mw_users SET password_hash = ? WHERE id = ?`).bind(String(new_password).trim(), user.id).run();
+  return c.json({ success: true, message: 'Şifreniz başarıyla güncellendi.' });
+});
+
 // ============================================================================
-// 3. UNIFIED FEED (SOCIAL POSTS + LATEST VITRIN LISTINGS + ACTIVE TENDERS)
+// 3. UNIFIED FEED & STORIES (SOCIAL POSTS + STORIES + VITRIN LISTINGS + TENDERS)
 // ============================================================================
+app.get('/api/stories', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialStories(c.env.DB);
+  const companyId = c.req.query('company_id');
+  const companySlug = c.req.query('company_slug');
+
+  let sql = `SELECT * FROM mw_stories WHERE 1=1`;
+  const params: any[] = [];
+  if (companyId) {
+    sql += ` AND company_id = ?`;
+    params.push(companyId);
+  } else if (companySlug) {
+    sql += ` AND company_slug = ?`;
+    params.push(companySlug);
+  }
+  sql += ` ORDER BY created_at DESC LIMIT 20`;
+
+  const { results } = await c.env.DB.prepare(sql).bind(...params).all();
+  return c.json({ success: true, stories: results || [] });
+});
+
+app.post('/api/stories', async (c) => {
+  await ensureSchema(c.env.DB);
+  const body = await c.req.json();
+  const {
+    company_id = '',
+    company_name = 'MeetWork İşletmesi',
+    company_slug = '',
+    author_name = 'Firma Yetkilisi',
+    trust_level = 1,
+    title,
+    content,
+    category = 'İş Gündemi',
+    bg_gradient = 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)',
+    media_url = '',
+    cta_label = 'İşletme Vitrini',
+    cta_url = ''
+  } = body;
+
+  if (!title || !content) {
+    return c.json({ success: false, message: 'Hikaye başlığı ve açıklaması zorunludur.' }, 400);
+  }
+
+  const id = uid('st');
+  const finalCtaUrl = cta_url || (company_slug ? `/isletmeler?firma=${company_slug}` : '/isletmeler');
+
+  await c.env.DB.prepare(
+    `INSERT INTO mw_stories (id, company_id, company_name, company_slug, author_name, trust_level, title, content, category, bg_gradient, media_url, cta_label, cta_url)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(
+    id, company_id, company_name.trim(), company_slug, author_name.trim(),
+    Number(trust_level || 1), title.trim(), content.trim(), category, bg_gradient, media_url, cta_label, finalCtaUrl
+  ).run();
+
+  return c.json({ success: true, id, message: 'Hikayeniz yayınlandı!' });
+});
+
 app.get('/api/feed', async (c) => {
   await ensureSchema(c.env.DB);
+  await ensureInitialStories(c.env.DB);
+  const { results: stories } = await c.env.DB.prepare(
+    `SELECT * FROM mw_stories ORDER BY created_at DESC LIMIT 15`
+  ).all();
   const { results: posts } = await c.env.DB.prepare(
     `SELECT * FROM mw_posts ORDER BY created_at DESC LIMIT 30`
   ).all();
@@ -415,6 +607,7 @@ app.get('/api/feed', async (c) => {
 
   return c.json({
     success: true,
+    stories: stories || [],
     posts: posts || [],
     vitrinListings: vitrinListings || [],
     activeTenders: activeTenders || [],
@@ -792,12 +985,17 @@ app.get('/api/companies', async (c) => {
 
 app.get('/api/companies/:slugOrId', async (c) => {
   await ensureSchema(c.env.DB);
+  await ensureInitialStories(c.env.DB);
   const param = c.req.param('slugOrId');
   const company = await c.env.DB.prepare(
     `SELECT * FROM mw_companies WHERE slug = ? OR id = ? LIMIT 1`
   ).bind(param, param).first() as any;
 
   if (!company) return c.json({ success: false, message: 'İşletme bulunamadı.' }, 404);
+
+  const { results: stories } = await c.env.DB.prepare(
+    `SELECT * FROM mw_stories WHERE company_id = ? OR company_slug = ? ORDER BY created_at DESC LIMIT 12`
+  ).bind(company.id, company.slug).all();
 
   const { results: listings } = await c.env.DB.prepare(
     `SELECT * FROM mw_listings WHERE company_id = ? AND status = 'active' ORDER BY created_at DESC`
@@ -829,6 +1027,7 @@ app.get('/api/companies/:slugOrId', async (c) => {
   return c.json({
     success: true,
     company,
+    stories: stories || [],
     listings: listings || [],
     tenders: tenders || [],
     posts: posts || [],
