@@ -295,8 +295,8 @@ const recentTalepler = talepler.slice(0, 5);
         <span class="badge bg-danger-subtle text-danger" style="font-size:0.7rem;">Canlı Akış</span>
       </div>
 
-      <!-- 5. Birleşik Sosyal Medya + Ticaret Akışı (Feed Stream) -->
-      <div id="mwHomeSocialFeed" class="d-flex flex-column gap-3 mb-4">
+      <!-- 5. Birleşik Sosyal Medya + Ticaret Akışı (Feed Stream - Zebra Sıralı) -->
+      <div id="mwHomeSocialFeed" class="d-flex flex-column gap-3 mb-4 mw-zebra-feed">
         <div class="mw-panel-card p-4 text-center text-muted small">
           <div class="spinner-border spinner-border-sm text-danger me-2" role="status"></div>
           MeetWork iş ağı akışı yükleniyor...
@@ -812,7 +812,14 @@ const recentTalepler = talepler.slice(0, 5);
         if (!feedContainer) return;
 
         const apiPosts = cachedFeedData.posts || [];
-        const posts = apiPosts.length > 0 ? [...apiPosts, ...fallbackSocialPosts.slice(0, 2)] : fallbackSocialPosts;
+        const combinedPosts = [...apiPosts, ...fallbackSocialPosts];
+        const seenKeys = new Set();
+        const posts = combinedPosts.filter((p) => {
+          const key = `${p.author_name || ''}_${(p.content || '').slice(0, 40)}`;
+          if (seenKeys.has(key)) return false;
+          seenKeys.add(key);
+          return true;
+        });
         const listings = cachedFeedData.vitrinListings || [];
         const tenders = cachedFeedData.activeTenders || [];
 
@@ -834,9 +841,10 @@ const recentTalepler = talepler.slice(0, 5);
         }
 
         const streamHtml = [];
-        const maxLen = Math.max(posts.length, listings.length, tenders.length);
-        for (let i = 0; i < maxLen; i++) {
-          if (posts[i]) streamHtml.push(renderPostCard(posts[i]));
+        // Önce sosyal iş paylaşımları (1. Gri, 2. Beyaz, 3. Gri...), ardından vitrin ilanları ve canlı e-ihaleler zebra sırasıyla dizilir
+        posts.forEach((p) => streamHtml.push(renderPostCard(p)));
+        const maxExtra = Math.max(listings.length, tenders.length);
+        for (let i = 0; i < maxExtra; i++) {
           if (listings[i] && i < 3) streamHtml.push(renderInlineListingCard(listings[i]));
           if (tenders[i] && i < 2) streamHtml.push(renderInlineTenderCard(tenders[i]));
         }
