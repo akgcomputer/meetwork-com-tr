@@ -378,6 +378,7 @@ app.post('/api/auth/login', async (c) => {
     user_id: user.id,
     full_name: user.full_name,
     email: user.email,
+    role: user.role || 'member',
     company_id: user.company_id,
     company_slug: user.company_slug,
     company_name: user.company_name,
@@ -881,6 +882,127 @@ app.post('/api/bridge/stokpratik-sync', async (c) => {
   }
 
   return c.json({ success: false, message: 'Bilinmeyen köprü aksiyonu.' }, 400);
+});
+
+// ============================================================================
+// 9. SUPERADMIN YÖNETİM PANELİ API'LERİ (/api/superadmin/*)
+// ============================================================================
+app.get('/api/superadmin/overview', async (c) => {
+  await ensureSchema(c.env.DB);
+  const { results: companies } = await c.env.DB.prepare(`SELECT * FROM mw_companies ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: users } = await c.env.DB.prepare(`SELECT id, email, full_name, phone, role, company_id, match_credits, tender_credits, created_at FROM mw_users ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: listings } = await c.env.DB.prepare(`SELECT * FROM mw_listings ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: tenders } = await c.env.DB.prepare(`SELECT * FROM mw_tenders ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: posts } = await c.env.DB.prepare(`SELECT * FROM mw_posts ORDER BY created_at DESC LIMIT 50`).all();
+
+  return c.json({
+    success: true,
+    stats: {
+      total_companies: (companies || []).length,
+      total_users: (users || []).length,
+      total_listings: (listings || []).length,
+      total_tenders: (tenders || []).length,
+      total_posts: (posts || []).length
+    },
+    companies: companies || [],
+    users: users || [],
+    listings: listings || [],
+    tenders: tenders || [],
+    posts: posts || []
+  });
+});
+
+app.post('/api/superadmin/company-update', async (c) => {
+  await ensureSchema(c.env.DB);
+  const { company_id, trust_level, membership_tier, match_credits, tender_credits } = await c.req.json();
+  if (!company_id) return c.json({ success: false, message: 'company_id zorunludur.' }, 400);
+
+  if (trust_level !== undefined || membership_tier !== undefined) {
+    await c.env.DB.prepare(
+      `UPDATE mw_companies SET trust_level = COALESCE(?, trust_level), membership_tier = COALESCE(?, membership_tier) WHERE id = ?`
+    ).bind(trust_level !== undefined ? Number(trust_level) : null, membership_tier || null, company_id).run();
+  }
+
+  if (match_credits !== undefined || tender_credits !== undefined) {
+    await c.env.DB.prepare(
+      `UPDATE mw_users SET match_credits = COALESCE(?, match_credits), tender_credits = COALESCE(?, tender_credits) WHERE company_id = ?`
+    ).bind(match_credits !== undefined ? Number(match_credits) : null, tender_credits !== undefined ? Number(tender_credits) : null, company_id).run();
+  }
+
+  return c.json({ success: true, message: 'İşletme rozet, paket ve kredi bilgileri güncellendi.' });
+});
+
+app.post('/api/superadmin/listing-toggle', async (c) => {
+  await ensureSchema(c.env.DB);
+  const { listing_id, is_vitrin, is_urgent, status } = await c.req.json();
+  await c.env.DB.prepare(
+    `UPDATE mw_listings SET is_vitrin = COALESCE(?, is_vitrin), is_urgent = COALESCE(?, is_urgent), status = COALESCE(?, status) WHERE id = ?`
+  ).bind(is_vitrin !== undefined ? Number(is_vitrin) : null, is_urgent !== undefined ? Number(is_urgent) : null, status || null, listing_id).run();
+  return c.json({ success: true, message: 'İlan durumu güncellendi.' });
+});
+
+app.delete('/api/superadmin/delete/:type/:id', async (c) => {
+  await ensureSchema(c.env.DB);
+  const type = c.req.param('type');
+  const id = c.req.param('id');
+  const tableMap: Record<string, string> = {
+    listing: 'mw_listings',
+    tender: 'mw_tenders',
+    post: 'mw_posts',
+    company: 'mw_companies'
+  };
+  const table = tableMap[type];
+  if (!table) return c.json({ success: false, message: 'Geçersiz tablo.' }, 400);
+
+  await c.env.DB.prepare(`DELETE FROM ${table} WHERE id = ?`).bind(id).run();
+  return c.json({ success: true, message: 'Kayıt silindi.' });
+});
+
+app.post('/api/superadmin/bootstrap', async (c) => {
+  await ensureSchema(c.env.DB);
+
+  // 1. SuperAdmin Hesabı (yonetim@meetwork.com.tr / MeetWork2026!)
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
+     VALUES ('comp_meetwork_hq', 'meetwork-global-yonetim', 'MeetWork Global & İŞTEP Yönetim Merkezi', '1234567890', 'Teknoloji, Yazılım & E-Ticaret', '["Metal & Çelik Üretim","Makine & Ekipman Üretimi","Otomotiv & Yan Sanayi","İnşaat, Yapı & Gayrimenkul","Toptan & Dış Ticaret (İhracat/İthalat)"]', 'İstanbul', 'Şişli', '05412465429', 'yonetim@meetwork.com.tr', 3, 1, 'gold', 'MeetWork B2B İş Ağı, Akıllı Eşleşme, E-İhale ve İlan Pazarı Resmi Yönetim Merkezi.')`
+  ).run();
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
+     VALUES ('usr_superadmin', 'yonetim@meetwork.com.tr', 'MeetWork2026!', 'MeetWork SuperAdmin', '05412465429', 'Platform Yöneticisi', 'comp_meetwork_hq', 'superadmin', 999, 999)`
+  ).run();
+
+  // 2. Test Üye İşletme Hesabı (test@meetwork.com.tr / 123456) + Eşleşme Havuzu İçin 3 Gerçekçi İşletme
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
+     VALUES ('comp_anadolu_celik', 'anadolu-celik-makine-sanayi', 'Anadolu Çelik & Makine San. Tic. A.Ş.', '9876543210', 'Metal & Çelik Üretim', '["Makine & Ekipman Üretimi","Otomotiv & Yan Sanayi","İnşaat, Yapı & Gayrimenkul","Lojistik, Nakliyat & Filo","Elektrik, Elektronik & Enerji"]', 'İstanbul', 'Tuzla OSB', '05321112233', 'test@meetwork.com.tr', 3, 1, 'gold', 'Paslanmaz sac işleme, CNC lazer kesim ve ağır sanayi çelik konstrüksiyon üreticisi.')`
+  ).run();
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
+     VALUES ('usr_test_member', 'test@meetwork.com.tr', '123456', 'Ahmet Yılmaz (Test Üye)', '05321112233', 'Yönetim Kurulu Başkanı', 'comp_anadolu_celik', 'member', 10, 10)`
+  ).run();
+
+  // Eşleşme (2+1) testi için hedef ve sürpriz sektör işletmeleri
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
+     VALUES ('comp_marmara_makine', 'marmara-endustriyel-makine', 'Marmara Endüstriyel Makine & Otomasyon Ltd. Şti.', '4567890123', 'Makine & Ekipman Üretimi', '["Metal & Çelik Üretim","Plastik, Kauçuk & Ambalaj"]', 'Bursa', 'Nilüfer OSB', '05412465429', 'info@marmaramakine.com.tr', 3, 1, 'gold', 'Endüstriyel üretim hatları, CNC otomasyon ve özel makine imalatı.')`
+  ).run();
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
+     VALUES ('comp_vizyon_otomotiv', 'vizyon-oto-kaporta-yan-sanayi', 'Vizyon Otomotiv Kaporta & Yan Sanayi A.Ş.', '5678901234', 'Otomotiv & Yan Sanayi', '["Metal & Çelik Üretim","Makine & Ekipman Üretimi"]', 'Kocaeli', 'Gebze OSB', '05412465429', 'satinalma@vizyonoto.com.tr', 2, 1, 'pro', 'Otomotiv sac kalıp, kaporta parçaları ve ticari araç üst yapı üretimi.')`
+  ).run();
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
+     VALUES ('comp_ege_lojistik', 'ege-global-lojistik-filo', 'Ege Global Lojistik & Ticari Filo Yönetimi A.Ş.', '6789012345', 'Lojistik, Nakliyat & Filo', '["Toptan & Dış Ticaret (İhracat/İthalat)","Gıda, Tarım & İçecek"]', 'İzmir', 'Bornova', '05412465429', 'operasyon@egelojistik.com.tr', 2, 1, 'pro', 'Yurtiçi ve uluslararası ağır nakliyat, antrepo ve kurumsal ticari araç kiralama.')`
+  ).run();
+
+  return c.json({
+    success: true,
+    message: 'SuperAdmin ve Test Üye hesapları başarıyla hazırlandı!'
+  });
 });
 
 export default app;

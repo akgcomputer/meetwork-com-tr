@@ -210,8 +210,13 @@ const currentPath = Astro.url.pathname;
           } else if (authLabel && user.full_name) {
             authLabel.textContent = user.full_name.slice(0, 18);
           }
-          if (authBtn && user.company_slug) {
-            authBtn.setAttribute('href', `/isletmeler?firma=${user.company_slug}`);
+          if (authBtn) {
+            if (user.role === 'superadmin') {
+              authBtn.setAttribute('href', '/yonetim');
+              if (authLabel) authLabel.textContent = 'SuperAdmin Panel';
+            } else if (user.company_slug) {
+              authBtn.setAttribute('href', `/isletmeler?firma=${user.company_slug}`);
+            }
           }
         }
       } catch (_) {}

@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="SuperAdmin Yönetim Paneli | MeetWork"
+  description="MeetWork İşletmeler, Güven Rozetleri, İhale/Eşleşme Kredileri, İlan Pazarı ve E-İhale Yönetim Merkezi."
+>
+  <!-- Üst Başlık ve Hızlı İstatistikler -->
+  <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div>
+        <span class="badge bg-danger mb-1">PLATFORM YÖNETİM MERKEZİ (SUPERADMIN)</span>
+        <h1 class="h3 fw-bold mb-0">MeetWork SuperAdmin Kontrol Paneli</h1>
+        <small class="text-muted">Üye işletmeleri, 3 kademeli güven rozetlerini, ihale/eşleşme kredilerini, vitrin ilanlarını ve ihaleleri buradan yönetebilirsiniz.</small>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="button" id="saRefreshBtn" class="btn btn-outline-danger btn-sm fw-bold">
+          <i class="bi bi-arrow-clockwise me-1"></i> Verileri Yenile
+        </button>
+        <a href="/giris" class="btn btn-dark btn-sm fw-bold">
+          <i class="bi bi-person-badge me-1"></i> Oturum Bilgisi
+        </a>
+      </div>
+    </div>
+
+    <div class="row g-3 text-center">
+      <div class="col-6 col-md-2">
+        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="h3 fw-bolder text-danger mb-0" id="statCompanies">0</div>
+          <small class="text-muted fw-semibold">Kayıtlı İşletme</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="h3 fw-bolder text-danger mb-0" id="statUsers">0</div>
+          <small class="text-muted fw-semibold">Kullanıcı / Yetkili</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="h3 fw-bolder text-danger mb-0" id="statListings">0</div>
+          <small class="text-muted fw-semibold">Aktif İlan (Emlak/Oto/Makine)</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="h3 fw-bolder text-danger mb-0" id="statTenders">0</div>
+          <small class="text-muted fw-semibold">Canlı E-İhale & RFQ</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-2">
+        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="h3 fw-bolder text-danger mb-0" id="statPosts">0</div>
+          <small class="text-muted fw-semibold">Sosyal Paylaşım</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="saAlertBox" class="alert" style="display:none;"></div>
+
+  <!-- Yönetim Sekmeleri -->
+  <div class="mw-panel-card p-4 shadow-sm">
+    <ul class="nav nav-pills mb-4 gap-2 border-bottom pb-3" id="saTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-companies" type="button" role="tab">
+          <i class="bi bi-buildings-fill me-1"></i> İşletmeler, Güven Rozetleri & Krediler
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-listings" type="button" role="tab">
+          <i class="bi bi-shop-window me-1"></i> İlan Pazarı & Vitrin Yönetimi
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-tenders" type="button" role="tab">
+          <i class="bi bi-hammer me-1"></i> E-İhale & Satın Alma Yönetimi
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-posts" type="button" role="tab">
+          <i class="bi bi-chat-square-text-fill me-1"></i> Sosyal Akış Moderasyonu
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- 1. İŞLETMELER, GÜVEN ROZETİ VE KREDİ YÖNETİMİ -->
+      <div class="tab-pane fade show active" id="sa-tab-companies" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle small">
+            <thead>
+              <tr class="text-muted">
+                <th>İşletme Adı & VKN</th>
+                <th>Sektör & Şehir</th>
+                <th>Güven Rozeti Kademesi</th>
+                <th>Üyelik Paketi</th>
+                <th>Eşleşme / İhale Kredisi</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="saCompaniesTable">
+              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2. İLAN PAZARI YÖNETİMİ -->
+      <div class="tab-pane fade" id="sa-tab-listings" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle small">
+            <thead>
+              <tr class="text-muted">
+                <th>İlan No</th>
+                <th>Başlık & Kategori</th>
+                <th>Fiyat</th>
+                <th>Satıcı & Şehir</th>
+                <th>Vitrin / Acil Durumu</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="saListingsTable">
+              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. E-İHALE YÖNETİMİ -->
+      <div class="tab-pane fade" id="sa-tab-tenders" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle small">
+            <thead>
+              <tr class="text-muted">
+                <th>İhale No</th>
+                <th>Başlık & Usul</th>
+                <th>Alıcı İşletme</th>
+                <th>Miktar</th>
+                <th>Teklif Sayısı / En Düşük</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="saTendersTable">
+              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. SOSYAL AKIŞ MODERASYONU -->
+      <div class="tab-pane fade" id="sa-tab-posts" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle small">
+            <thead>
+              <tr class="text-muted">
+                <th>Yazar / Firma</th>
+                <th>Paylaşım İçeriği</th>
+                <th>Beğeni</th>
+                <th>Tarih</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="saPostsTable">
+              <tr><td colspan="5" class="text-center py-4">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function notify(msg, type = 'success') {
+        const box = document.getElementById('saAlertBox');
+        if (!box) return;
+        box.style.display = 'block';
+        box.className = `alert alert-${type} small fw-bold`;
+        box.textContent = msg;
+        setTimeout(() => { box.style.display = 'none'; }, 4000);
+      }
+
+      async function loadOverview() {
+        try {
+          const res = await fetch(`${API_URL}/api/superadmin/overview`);
+          const data = await res.json();
+          if (!data.success) return;
+
+          document.getElementById('statCompanies').textContent = data.stats.total_companies;
+          document.getElementById('statUsers').textContent = data.stats.total_users;
+          document.getElementById('statListings').textContent = data.stats.total_listings;
+          document.getElementById('statTenders').textContent = data.stats.total_tenders;
+          document.getElementById('statPosts').textContent = data.stats.total_posts;
+
+          const usersByComp = {};
+          (data.users || []).forEach(u => {
+            if (u.company_id) usersByComp[u.company_id] = u;
+          });
+
+          // Render Companies
+          const compBody = document.getElementById('saCompaniesTable');
+          compBody.innerHTML = (data.companies || []).map(c => {
+            const u = usersByComp[c.id] || { match_credits: 3, tender_credits: 3 };
+            return `
+              <tr>
+                <td>
+                  <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="fw-bold text-danger text-decoration-none">${c.name}</a>
+                  <div class="text-muted" style="font-size:0.72rem;">VKN: ${c.vkn || '-'} • ${c.email || ''}</div>
+                </td>
+                <td>
+                  <div class="fw-semibold">${c.sector}</div>
+                  <small class="text-muted">${c.city || 'İstanbul'}</small>
+                </td>
+                <td>
+                  <select class="form-select form-select-sm" id="trust_${c.id}">
+                    <option value="1" ${Number(c.trust_level) === 1 ? 'selected' : ''}>1. Kademe: Kayıtlı Üye</option>
+                    <option value="2" ${Number(c.trust_level) === 2 ? 'selected' : ''}>2. Kademe: StokPratik VKN Onaylı</option>
+                    <option value="3" ${Number(c.trust_level) >= 3 ? 'selected' : ''}>3. Kademe: MeetWork Gold Onaylı</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-select form-select-sm" id="tier_${c.id}">
+                    <option value="free" ${c.membership_tier === 'free' ? 'selected' : ''}>Ücretsiz</option>
+                    <option value="pro" ${c.membership_tier === 'pro' ? 'selected' : ''}>PRO Üye</option>
+                    <option value="gold" ${c.membership_tier === 'gold' ? 'selected' : ''}>GOLD Üye</option>
+                  </select>
+                </td>
+                <td>
+                  <div class="input-group input-group-sm" style="max-width:160px;">
+                    <input type="number" class="form-control" id="mcred_${c.id}" value="${u.match_credits ?? 3}" title="Eşleşme Kredisi" />
+                    <input type="number" class="form-control" id="tcred_${c.id}" value="${u.tender_credits ?? 3}" title="İhale Kredisi" />
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-danger fw-bold" onclick="window.saSaveCompany('${c.id}')">Kaydet</button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="window.saDeleteItem('company', '${c.id}')"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            `;
+          }).join('') || '<tr><td colspan="6" class="text-center py-3">Kayıtlı işletme yok.</td></tr>';
+
+          // Render Listings
+          const lstBody = document.getElementById('saListingsTable');
+          lstBody.innerHTML = (data.listings || []).map(l => `
+            <tr>
+              <td class="fw-bold text-danger">#${l.listing_no}</td>
+              <td>
+                <a href="/ilanlar?ilan=${encodeURIComponent(l.slug)}" class="fw-bold text-decoration-none" style="color:var(--mw-text);">${l.title}</a>
+                <div class="text-muted" style="font-size:0.72rem;">${l.main_category} / ${l.sub_category} (${l.listing_type})</div>
+              </td>
+              <td class="fw-bold text-danger">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</td>
+              <td>${l.seller_name} (${l.seller_city})</td>
+              <td>
+                <button class="btn btn-sm ${l.is_vitrin ? 'btn-warning' : 'btn-outline-secondary'} me-1" onclick="window.saToggleListing('${l.id}', ${l.is_vitrin ? 0 : 1}, ${l.is_urgent})">
+                  ${l.is_vitrin ? '★ Vitrinde' : 'Vitrine Al'}
+                </button>
+                <button class="btn btn-sm ${l.is_urgent ? 'btn-danger' : 'btn-outline-secondary'}" onclick="window.saToggleListing('${l.id}', ${l.is_vitrin}, ${l.is_urgent ? 0 : 1})">
+                  ${l.is_urgent ? '🔥 Acil' : 'Acil Yap'}
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('listing', '${l.id}')"><i class="bi bi-trash"></i> Sil</button>
+              </td>
+            </tr>
+          `).join('') || '<tr><td colspan="6" class="text-center py-3">Aktif ilan bulunmuyor.</td></tr>';
+
+          // Render Tenders
+          const tndBody = document.getElementById('saTendersTable');
+          tndBody.innerHTML = (data.tenders || []).map(t => `
+            <tr>
+              <td class="fw-bold text-danger">#${t.tender_no}</td>
+              <td>
+                <div class="fw-bold">${t.title}</div>
+                <span class="badge bg-danger">${t.tender_method}</span>
+              </td>
+              <td>${t.buyer_name}</td>
+              <td>${t.quantity} ${t.unit}</td>
+              <td>${t.bids_count || 0} Teklif ${t.lowest_bid ? `(${Number(t.lowest_bid).toLocaleString('tr-TR')} ${t.currency})` : ''}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('tender', '${t.id}')"><i class="bi bi-trash"></i> Sil</button>
+              </td>
+            </tr>
+          `).join('') || '<tr><td colspan="6" class="text-center py-3">Aktif ihale bulunmuyor.</td></tr>';
+
+          // Render Posts
+          const pstBody = document.getElementById('saPostsTable');
+          pstBody.innerHTML = (data.posts || []).map(p => `
+            <tr>
+              <td><strong>${p.author_name}</strong><div class="text-muted">${p.company_name || ''}</div></td>
+              <td>${p.content}</td>
+              <td>${p.likes_count || 0}</td>
+              <td>${new Date(p.created_at).toLocaleDateString('tr-TR')}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('post', '${p.id}')"><i class="bi bi-trash"></i> Sil</button>
+              </td>
+            </tr>
+          `).join('') || '<tr><td colspan="5" class="text-center py-3">Paylaşım bulunmuyor.</td></tr>';
+        } catch (_) {}
+      }
+
+      window.saSaveCompany = async function (compId) {
+        const trust_level = document.getElementById(`trust_${compId}`).value;
+        const membership_tier = document.getElementById(`tier_${compId}`).value;
+        const match_credits = document.getElementById(`mcred_${compId}`).value;
+        const tender_credits = document.getElementById(`tcred_${compId}`).value;
+
+        const res = await fetch(`${API_URL}/api/superadmin/company-update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ company_id: compId, trust_level, membership_tier, match_credits, tender_credits })
+        });
+        const out = await res.json();
+        if (out.success) {
+          notify('✓ İşletme rozeti, paketi ve kredileri güncellendi!');
+          loadOverview();
+        }
+      };
+
+      window.saToggleListing = async function (listingId, is_vitrin, is_urgent) {
+        await fetch(`${API_URL}/api/superadmin/listing-toggle`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ listing_id: listingId, is_vitrin, is_urgent })
+        });
+        notify('✓ İlan vitrin/acil durumu güncellendi!');
+        loadOverview();
+      };
+
+      window.saDeleteItem = async function (type, id) {
+        if (!confirm('Bu kaydı silmek istediğinize emin misiniz?')) return;
+        await fetch(`${API_URL}/api/superadmin/delete/${type}/${id}`, { method: 'DELETE' });
+        notify('✓ Kayıt silindi.', 'warning');
+        loadOverview();
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadOverview();
+        document.getElementById('saRefreshBtn').addEventListener('click', loadOverview);
+      });
+    })();
+  </script>
+</BaseLayout>

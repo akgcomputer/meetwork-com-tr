@@ -269,7 +269,8 @@ const SECTORS = [
                 localStorage.setItem('mw_token', data.token);
                 localStorage.setItem('mw_user', JSON.stringify(data.user));
                 showAlert('success', 'Giriş başarılı! Yönlendiriliyorsunuz...');
-                setTimeout(() => { window.location.href = '/akilli-eslesme'; }, 800);
+                const targetUrl = (data.user && data.user.role === 'superadmin') ? '/yonetim' : '/akilli-eslesme';
+                setTimeout(() => { window.location.href = targetUrl; }, 700);
               } else {
                 showAlert('danger', data.message || 'Giriş yapılamadı.');
               }
