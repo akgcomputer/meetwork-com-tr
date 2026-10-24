@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Kurumsal İşletmeler, B2B Mağaza & CariNet Vitrini | MeetWork"
+  description="MeetWork üyesi doğrulanmış işletmeler, kurumsal ilan mağazaları, DepodanDirekt toptan ihracat vitrinleri ve StokPratik CariNet B2B bayi portalları."
+>
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+    <div>
+      <span class="badge bg-danger mb-1">Doğrulanmış Kurumsal İş Ağı & B2B Vitrin</span>
+      <h1 class="h3 fw-bold mb-0">MeetWork İşletme Profilleri & Toptan/CariNet Mağazaları</h1>
+    </div>
+    <a href="/giris?tab=register" class="btn btn-danger fw-bold">
+      <i class="bi bi-building-add me-1"></i> + İşletmeni Ücretsiz Ekle
+    </a>
+  </div>
+
+  <!-- TEKİL İŞLETME PROFİLİ GÖRÜNÜMÜ (URL'de ?firma=... varsa veya ilk seçili işletme için) -->
+  <div id="mwCompanyProfileContainer" class="mb-5" style="display:none;"></div>
+
+  <!-- TÜM İŞLETMELER REHBERİ VE FİLTRESİ -->
+  <div class="mw-panel-card p-4 shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+      <h5 class="fw-bold mb-0"><i class="bi bi-buildings-fill text-danger me-1"></i> Kayıtlı & Doğrulanmış İşletmeler</h5>
+      <div class="d-flex gap-2">
+        <a href="/akilli-eslesme" class="btn btn-sm btn-outline-danger fw-bold">
+          <i class="bi bi-diagram-3-fill me-1"></i> 2+1 Akıllı Eşleşmeye Git
+        </a>
+      </div>
+    </div>
+
+    <div id="mwCompaniesGrid" class="row g-3">
+      <div class="col-12 text-center py-4 text-muted">İşletmeler yükleniyor...</div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function getTrustBadge(level) {
+        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> 3. Kademe: MeetWork Gold & Fiziksel Onaylı</span>';
+        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> 2. Kademe: StokPratik VKN & e-Fatura Onaylı</span>';
+        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> 1. Kademe: Doğrulanmış Üye</span>';
+      }
+
+      async function loadCompanyProfile(slugOrId) {
+        const container = document.getElementById('mwCompanyProfileContainer');
+        if (!container) return;
+        try {
+          const res = await fetch(`${API_URL}/api/companies/${encodeURIComponent(slugOrId)}`);
+          const data = await res.json();
+          if (!data.success || !data.company) return;
+
+          const comp = data.company;
+          const listings = data.listings || [];
+          const tenders = data.tenders || [];
+          const catalog = data.b2b_catalog || [];
+          let targets = [];
+          try { targets = JSON.parse(comp.target_sectors || '[]'); } catch (_) {}
+
+          container.style.display = 'block';
+          container.innerHTML = `
+            <div class="mw-panel-card overflow-hidden shadow">
+              <!-- Üst Kurumsal Kapak Bandı (Kırmızı - Siyah Kurumsal Çizgi) -->
+              <div class="p-4 text-white" style="background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-3 bg-white text-danger fw-black d-flex align-items-center justify-content-center shadow" style="width:68px;height:68px;font-size:1.6rem;font-weight:900;">
+                      ${(comp.name || 'MW').slice(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                      <div class="mb-1">${getTrustBadge(comp.trust_level)}</div>
+                      <h2 class="h4 fw-bold mb-1 text-white">${comp.name}</h2>
+                      <div class="small text-white-50">
+                        <i class="bi bi-briefcase-fill me-1"></i> ${comp.sector} • <i class="bi bi-geo-alt-fill ms-2 me-1"></i> ${comp.city || 'İstanbul'}, ${comp.country || 'Türkiye'}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- İKİ SİHİRLİ EKOSİSTEM BUTONU + TEKLİF İSTE -->
+                  <div class="d-flex flex-wrap gap-2">
+                    <a href="/ihaleler?yeni=1" class="btn btn-light btn-sm fw-bold text-danger">
+                      <i class="bi bi-hammer me-1"></i> Hemen Teklif İste / İhaleye Davet Et
+                    </a>
+                    <a href="https://erp-eticaret.stokpratik.com.tr" target="_blank" class="btn btn-dark btn-sm fw-bold border-light">
+                      <i class="bi bi-lock-fill text-danger me-1"></i> StokPratik CariNet (Bayi Portalı)
+                    </a>
+                    <a href="https://depodandirekt.com" target="_blank" class="btn btn-danger btn-sm fw-bold border-light">
+                      <i class="bi bi-globe2 me-1"></i> DepodanDirekt Toptan Vitrini
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4 Ana Sekmeli Kurumsal İçerik -->
+              <div class="p-4">
+                <div class="mb-3">
+                  <span class="small fw-bold text-muted me-2">Tanışmak İstediği Hedef Sektörler (Akıllı Eşleşme):</span>
+                  ${targets.length > 0 ? targets.map(t => `<span class="badge bg-danger-subtle text-danger me-1">${t}</span>`).join('') : '<span class="small text-muted">Tüm sektörlerle iş birliğine açık</span>'}
+                </div>
+
+                <div class="row g-4">
+                  <!-- Kurumsal Mağaza İlanları (Sahibinden) -->
+                  <div class="col-md-6">
+                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-shop-window text-danger me-1"></i> Aktif İlanları (${listings.length})</h6>
+                    ${listings.length === 0 ? `<p class="small text-muted">Firmanın şu an aktif satılık/kiralık ilanı bulunmuyor.</p>` : listings.map(l => `
+                      <a href="/ilanlar?ilan=${encodeURIComponent(l.slug)}" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
+                        <div>
+                          <div class="fw-bold small">${l.title}</div>
+                          <small class="text-muted">${l.main_category} • ${l.listing_type}</small>
+                        </div>
+                        <span class="fw-bold text-danger small">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</span>
+                      </a>
+                    `).join('')}
+                  </div>
+
+                  <!-- Açık E-İhaleleri & StokPratik B2B Ürünleri -->
+                  <div class="col-md-6">
+                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-box-seam text-danger me-1"></i> B2B Toptan Katalog & Açık İhaleleri</h6>
+                    ${tenders.map(t => `
+                      <a href="/ihaleler" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
+                        <div>
+                          <span class="badge bg-danger me-1">${t.tender_method.toUpperCase()}</span>
+                          <span class="fw-bold small">${t.title}</span>
+                        </div>
+                        <small class="text-danger fw-bold">Teklif Ver →</small>
+                      </a>
+                    `).join('')}
+                    ${catalog.length > 0 ? catalog.map(p => `
+                      <div class="p-2 rounded border d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                          <div class="fw-bold small">${p.name}</div>
+                          <small class="text-muted">SKU: ${p.sku || '-'} • Stok: ${p.stock} ${p.unit || 'Adet'}</small>
+                        </div>
+                        <span class="badge bg-success">CariNet Toptan</span>
+                      </div>
+                    `).join('') : `<p class="small text-muted">Cariye özel toptan fiyat listesi için üstteki <strong>StokPratik CariNet</strong> veya <strong>DepodanDirekt</strong> butonunu kullanabilirsiniz.</p>`}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } catch (_) {}
+      }
+
+      async function loadAllCompanies() {
+        const grid = document.getElementById('mwCompaniesGrid');
+        if (!grid) return;
+        try {
+          const res = await fetch(`${API_URL}/api/companies`);
+          const data = await res.json();
+          const list = data.companies || [];
+          if (list.length === 0) {
+            grid.innerHTML = `
+              <div class="col-12 text-center py-4">
+                <p class="small text-muted mb-2">Henüz kayıtlı işletme bulunmuyor. İlk kurumsal profili siz oluşturun!</p>
+                <a href="/giris?tab=register" class="btn btn-sm btn-danger fw-bold">+ İşletmemi Kaydet</a>
+              </div>`;
+            return;
+          }
+
+          grid.innerHTML = list.map((c) => `
+            <div class="col-md-4 col-sm-6">
+              <div class="mw-vitrin-card p-3">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div class="rounded bg-danger text-white fw-bold d-flex align-items-center justify-content-center" style="width:42px;height:42px;">
+                    ${(c.name || 'MW').slice(0, 2).toUpperCase()}
+                  </div>
+                  ${getTrustBadge(c.trust_level)}
+                </div>
+                <h6 class="fw-bold mb-1">${c.name}</h6>
+                <div class="small text-muted mb-3">
+                  <i class="bi bi-tag-fill text-danger me-1"></i> ${c.sector} • ${c.city || 'İstanbul'}
+                </div>
+                <div class="mt-auto d-flex gap-2 pt-2 border-top" style="border-color:var(--mw-border)!important;">
+                  <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="btn btn-sm btn-danger w-100 fw-bold">
+                    Kurumsal Profil & Vitrin
+                  </a>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        } catch (_) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('firma')) {
+          loadCompanyProfile(params.get('firma'));
+        }
+        loadAllCompanies();
+      });
+    })();
+  </script>
+</BaseLayout>

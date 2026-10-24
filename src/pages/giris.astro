@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SECTORS = [
+  'Metal & Çelik Üretim',
+  'Makine & Ekipman Üretimi',
+  'Otomotiv & Yan Sanayi',
+  'İnşaat, Yapı & Gayrimenkul',
+  'Tekstil & Konfeksiyon',
+  'Gıda, Tarım & İçecek',
+  'Plastik, Kauçuk & Ambalaj',
+  'Elektrik, Elektronik & Enerji',
+  'Teknoloji, Yazılım & E-Ticaret',
+  'Lojistik, Nakliyat & Filo',
+  'Kimya, Kozmetik & Medikal',
+  'Mobilya, Ahşap & Dekorasyon',
+  'Toptan & Dış Ticaret (İhracat/İthalat)',
+  'Hizmet, Danışmanlık & Mali Müşavirlik'
+];
+---
+
+<BaseLayout
+  title="Giriş Yap / Üye Ol | MeetWork İş Ağı & Ticaret Platformu"
+  description="MeetWork hesabınıza giriş yapın veya StokPratik ERP tek tıkla bağlantı (SSO) ile işletmenizi doğrulayın."
+>
+  <div class="row justify-content-center py-4">
+    <div class="col-lg-10">
+      <div class="row g-4 align-items-stretch">
+        <!-- Sol Bilgi & Ekosistem Avantajları -->
+        <div class="col-md-5">
+          <div class="mw-panel-card p-4 h-100 d-flex flex-column justify-content-between" style="border-top: 4px solid var(--mw-red) !important;">
+            <div>
+              <div class="mb-3">
+                <span class="mw-logo-meet">Meet</span><span class="mw-logo-work">Work</span>
+                <span class="mw-logo-badge ms-1">ECOSYSTEM</span>
+              </div>
+              <h4 class="fw-bold mb-3">Tek Hesapla 5 Büyük Güç Elinizin Altında</h4>
+              <ul class="list-unstyled d-flex flex-column gap-3 small mb-4">
+                <li class="d-flex gap-2">
+                  <i class="bi bi-diagram-3-fill text-danger fs-5"></i>
+                  <div>
+                    <strong>2+1 Akıllı Eşleşme:</strong> Seçtiğiniz 5 hedef sektörden 2 nokta atışı + 1 sürpriz sektörden firmayla otomatik tanışın.
+                  </div>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-shop-window text-danger fs-5"></i>
+                  <div>
+                    <strong>İlan Pazarı (Sahibinden Yapısı):</strong> Emlak (Daire/Dükkan/Fabrika), Vasıta (Binek/Ticari) ve 2. El Makine ilanlarınızı güvenle yayınlayın.
+                  </div>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-hammer text-danger fs-5"></i>
+                  <div>
+                    <strong>Jetract Tarzı E-İhale:</strong> Açık Eksiltme, Kapalı Zarf ve Ortak Satın Alma ihaleleriyle en uygun fiyattan tedarik yapın.
+                  </div>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-box-seam-fill text-danger fs-5"></i>
+                  <div>
+                    <strong>StokPratik CariNet & DepodanDirekt:</strong> VKN numaranızla StokPratik hesabınızı bağlayın, 2. Kademe Güven Rozetini anında alın!
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded border" style="background:var(--mw-surface-alt); border-color:var(--mw-border)!important;">
+              <div class="fw-bold small text-danger mb-1"><i class="bi bi-gift-fill me-1"></i> Yeni Üyelere Özel Hediye</div>
+              <div class="small text-muted">Kayıt olan her işletmeye <strong>3 Akıllı Eşleşme Kredisi</strong> ve <strong>3 E-İhale Kredisi</strong> ücretsiz tanımlanır!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sağ Giriş / Kayıt Sekmeli Formu -->
+        <div class="col-md-7">
+          <div class="mw-panel-card p-4 h-100 shadow-sm">
+            <ul class="nav nav-pills nav-fill mb-4 p-1 rounded" style="background:var(--mw-surface-alt);" id="authTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="tab-login-btn" data-bs-toggle="pill" data-bs-target="#tab-login" type="button" role="tab">
+                  <i class="bi bi-box-arrow-in-right me-1"></i> Giriş Yap
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold" id="tab-register-btn" data-bs-toggle="pill" data-bs-target="#tab-register" type="button" role="tab">
+                  <i class="bi bi-person-plus-fill me-1"></i> Ücretsiz İşletme Kaydı
+                </button>
+              </li>
+            </ul>
+
+            <div id="authAlertBox" class="alert" style="display:none;"></div>
+
+            <div class="tab-content">
+              <!-- GİRİŞ YAP SEKMESİ -->
+              <div class="tab-pane fade show active" id="tab-login" role="tabpanel">
+                <form id="mwLoginForm" class="d-flex flex-column gap-3">
+                  <div>
+                    <label class="form-label small fw-bold">Kurumsal E-Posta Adresiniz</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="ornek@firmaniz.com" required />
+                  </div>
+                  <div>
+                    <label class="form-label small fw-bold">Şifreniz</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" />
+                  </div>
+                  <button type="submit" class="btn btn-danger fw-bold py-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> MeetWork Hesabıma Giriş Yap
+                  </button>
+
+                  <div class="text-center my-2 small text-muted">— VEYA EKOSİSTEM HESABI İLE —</div>
+
+                  <button type="button" id="mwStokPratikSsoBtn" class="btn btn-outline-danger fw-bold py-2">
+                    <i class="bi bi-lightning-charge-fill me-1"></i> StokPratik ERP / CariNet Hesabım İle Bağlan (SSO)
+                  </button>
+                </form>
+
+                <!-- Giriş Yapmış Kullanıcı İçin Aktif Oturum Kutusu -->
+                <div id="mwLoggedInBox" class="mt-4 p-3 rounded border" style="display:none; border-color:var(--mw-border)!important;">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div class="fw-bold text-danger" id="mwActiveUserName"></div>
+                      <small class="text-muted" id="mwActiveCompanyName"></small>
+                    </div>
+                    <button type="button" id="mwLogoutBtn" class="btn btn-sm btn-outline-secondary">Çıkış Yap</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ÜCRETSİZ KAYIT OL & 5 HEDEF SEKTÖR SEÇİMİ SEKMESİ -->
+              <div class="tab-pane fade" id="tab-register" role="tabpanel">
+                <form id="mwRegisterForm" class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Adınız Soyadınız *</label>
+                    <input type="text" id="regFullName" class="form-control form-control-sm" placeholder="Ahmet Yılmaz" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">E-Posta Adresiniz *</label>
+                    <input type="email" id="regEmail" class="form-control form-control-sm" placeholder="ahmet@firma.com" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Telefon (WhatsApp) *</label>
+                    <input type="tel" id="regPhone" class="form-control form-control-sm" placeholder="0532 000 00 00" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Şifre Belirleyin *</label>
+                    <input type="password" id="regPassword" class="form-control form-control-sm" placeholder="En az 6 karakter" required />
+                  </div>
+
+                  <div class="col-md-8">
+                    <label class="form-label small fw-bold">Firma / İşletme Unvanı *</label>
+                    <input type="text" id="regCompanyName" class="form-control form-control-sm" placeholder="Örn: Yılmaz Çelik & Makine San. Tic. Ltd. Şti." required />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label small fw-bold">VKN / TCKN (Rozet İçin)</label>
+                    <input type="text" id="regVkn" class="form-control form-control-sm" placeholder="10 veya 11 hane" />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Sizin Ana Sektörünüz *</label>
+                    <select id="regSector" class="form-select form-select-sm" required>
+                      <option value="">Sektör Seçiniz...</option>
+                      {SECTORS.map(s => <option value={s}>{s}</option>)}
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Şehir *</label>
+                    <input type="text" id="regCity" class="form-control form-control-sm" value="İstanbul" required />
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label small fw-bold text-danger">
+                      <i class="bi bi-diagram-3-fill me-1"></i> Akıllı Eşleşme: Kimlerle Tanışmak / İş Yapmak İstiyorsunuz? (En Fazla 5 Sektör Seçin)
+                    </label>
+                    <div class="row g-1 p-2 rounded border" style="max-height:165px; overflow-y:auto; background:var(--mw-surface-alt); border-color:var(--mw-border)!important;">
+                      {SECTORS.map((sec, idx) => (
+                        <div class="col-md-6">
+                          <div class="form-check small">
+                            <input class="form-check-input mw-target-sec-cb" type="checkbox" value={sec} id={`tsec_${idx}`} />
+                            <label class="form-check-label" for={`tsec_${idx}`}>{sec}</label>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <small class="text-muted" style="font-size:0.72rem;">Seçtiğiniz sektörlerden 2 nokta atışı firma + 1 sürpriz firma otomatik eşleştirilir.</small>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-danger w-100 fw-bold py-2">
+                      <i class="bi bi-check2-circle me-1"></i> İşletmemi Kaydet & Akıllı Eşleşmeyi Başlat
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function showAlert(type, msg) {
+        const box = document.getElementById('authAlertBox');
+        if (!box) return;
+        box.style.display = 'block';
+        box.className = `alert alert-${type} small fw-semibold`;
+        box.textContent = msg;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('tab') === 'register') {
+          const regTabBtn = document.getElementById('tab-register-btn');
+          if (regTabBtn) regTabBtn.click();
+        }
+
+        // Enforce max 5 target sector checkboxes
+        const checkboxes = document.querySelectorAll('.mw-target-sec-cb');
+        checkboxes.forEach((cb) => {
+          cb.addEventListener('change', () => {
+            const checked = document.querySelectorAll('.mw-target-sec-cb:checked');
+            if (checked.length > 5) {
+              cb.checked = false;
+              showAlert('warning', 'Akıllı eşleşme için en fazla 5 hedef sektör seçebilirsiniz!');
+            }
+          });
+        });
+
+        // Check existing session
+        try {
+          const raw = localStorage.getItem('mw_user');
+          if (raw) {
+            const u = JSON.parse(raw);
+            const box = document.getElementById('mwLoggedInBox');
+            const uName = document.getElementById('mwActiveUserName');
+            const cName = document.getElementById('mwActiveCompanyName');
+            if (box && uName && cName) {
+              box.style.display = 'block';
+              uName.textContent = u.full_name;
+              cName.textContent = `${u.company_name} (${u.sector})`;
+            }
+          }
+        } catch (_) {}
+
+        const logoutBtn = document.getElementById('mwLogoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('mw_user');
+            localStorage.removeItem('mw_token');
+            window.location.reload();
+          });
+        }
+
+        // Login Submit
+        const loginForm = document.getElementById('mwLoginForm');
+        if (loginForm) {
+          loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            try {
+              const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+              });
+              const data = await res.json();
+              if (data.success) {
+                localStorage.setItem('mw_token', data.token);
+                localStorage.setItem('mw_user', JSON.stringify(data.user));
+                showAlert('success', 'Giriş başarılı! Yönlendiriliyorsunuz...');
+                setTimeout(() => { window.location.href = '/akilli-eslesme'; }, 800);
+              } else {
+                showAlert('danger', data.message || 'Giriş yapılamadı.');
+              }
+            } catch (err) {
+              showAlert('danger', 'Sunucu bağlantı hatası.');
+            }
+          });
+        }
+
+        // StokPratik SSO Button
+        const ssoBtn = document.getElementById('mwStokPratikSsoBtn');
+        if (ssoBtn) {
+          ssoBtn.addEventListener('click', async () => {
+            const email = document.getElementById('loginEmail').value;
+            if (!email) {
+              showAlert('warning', 'StokPratik SSO ile bağlanmak için lütfen üstteki kutuya StokPratik e-posta adresinizi yazın.');
+              return;
+            }
+            try {
+              const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, sso_provider: 'stokpratik' })
+              });
+              const data = await res.json();
+              if (data.success) {
+                localStorage.setItem('mw_token', data.token);
+                localStorage.setItem('mw_user', JSON.stringify(data.user));
+                showAlert('success', 'StokPratik ERP hesabınız doğrulandı! Yönlendiriliyorsunuz...');
+                setTimeout(() => { window.location.href = '/akilli-eslesme'; }, 800);
+              } else {
+                showAlert('warning', data.message);
+              }
+            } catch (_) {}
+          });
+        }
+
+        // Register Submit
+        const regForm = document.getElementById('mwRegisterForm');
+        if (regForm) {
+          regForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const selectedTargets = Array.from(document.querySelectorAll('.mw-target-sec-cb:checked')).map(el => el.value);
+            const payload = {
+              full_name: document.getElementById('regFullName').value,
+              email: document.getElementById('regEmail').value,
+              phone: document.getElementById('regPhone').value,
+              password: document.getElementById('regPassword').value,
+              company_name: document.getElementById('regCompanyName').value,
+              vkn: document.getElementById('regVkn').value,
+              sector: document.getElementById('regSector').value,
+              city: document.getElementById('regCity').value,
+              target_sectors: selectedTargets
+            };
+
+            try {
+              const res = await fetch(`${API_URL}/api/auth/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const data = await res.json();
+              if (data.success) {
+                localStorage.setItem('mw_token', data.token);
+                localStorage.setItem('mw_user', JSON.stringify(data.user));
+                showAlert('success', data.message);
+                setTimeout(() => { window.location.href = '/akilli-eslesme'; }, 1000);
+              } else {
+                showAlert('danger', data.message || 'Kayıt sırasında hata oluştu.');
+              }
+            } catch (_) {
+              showAlert('danger', 'Sunucuya ulaşılamadı.');
+            }
+          });
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

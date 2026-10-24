@@ -1,10 +1,39 @@
-// 1. Tüm Bootstrap (en basit)
+// 1. Tüm Bootstrap
 @import "bootstrap/scss/bootstrap";
 
 // 2. Bootstrap icons
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-// 3. Global styles
+// 3. Kurumsal Renk Değişkenleri (Kırmızı - Siyah - Beyaz Anayasası)
+:root,
+[data-theme="light"] {
+  --mw-red: #dc3545;
+  --mw-red-hover: #b02a37;
+  --mw-bg: #f4f5f8;
+  --mw-surface: #ffffff;
+  --mw-surface-alt: #f8f9fa;
+  --mw-text: #111115;
+  --mw-text-muted: #5c606b;
+  --mw-border: #e2e5ec;
+  --mw-header-bg: #ffffff;
+  --mw-topbar-bg: #111115;
+  --mw-logo-work-color: #0b0b0e; /* Açık temada Siyah Work */
+}
+
+[data-theme="dark"] {
+  --mw-red: #e50914;
+  --mw-red-hover: #ff1f2a;
+  --mw-bg: #0b0b0e;
+  --mw-surface: #141419;
+  --mw-surface-alt: #1c1c24;
+  --mw-text: #f3f4f6;
+  --mw-text-muted: #9ca3af;
+  --mw-border: #282833;
+  --mw-header-bg: #101015;
+  --mw-topbar-bg: #070709;
+  --mw-logo-work-color: #ffffff; /* Koyu temada Beyaz Work */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,99 +44,224 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--mw-bg);
+  color: var(--mw-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 main {
   flex: 1;
 }
 
+// Dinamik MeetWork Logosu (Kırmızı Meet + Siyah/Beyaz Work)
+.mw-logo-meet {
+  color: var(--mw-red) !important;
+  font-weight: 900;
+  font-size: 1.65rem;
+  letter-spacing: -0.5px;
+}
+
+.mw-logo-work {
+  color: var(--mw-logo-work-color) !important;
+  font-weight: 900;
+  font-size: 1.65rem;
+  letter-spacing: -0.5px;
+  margin-left: 2px;
+  transition: color 0.2s ease;
+}
+
+.mw-logo-badge {
+  background: var(--mw-red);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+// Yeni Header Stilleri
+.mw-super-header {
+  background-color: var(--mw-header-bg);
+  border-bottom: 2px solid var(--mw-red);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1030;
+}
+
+.mw-topbar {
+  background-color: var(--mw-topbar-bg);
+  color: #d1d5db;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.78rem;
+
+  .mw-toplink {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.15s ease;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.mw-global-search {
+  max-width: 380px;
+  width: 100%;
+
+  .input-group-text,
+  .form-control {
+    background-color: var(--mw-surface-alt);
+    border-color: var(--mw-border);
+    color: var(--mw-text);
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border-color: var(--mw-red);
+  }
+}
+
+.mw-nav-pill {
+  color: var(--mw-text) !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.75rem !important;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+
+  &:hover,
+  &.active {
+    background-color: rgba(220, 53, 69, 0.12);
+    color: var(--mw-red) !important;
+  }
+}
+
+.mw-theme-btn {
+  background-color: var(--mw-surface-alt);
+  border: 1px solid var(--mw-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--mw-red);
+    transform: scale(1.05);
+  }
+}
+
+.mw-mega-dropdown {
+  background-color: var(--mw-surface) !important;
+  border: 1px solid var(--mw-border) !important;
+  border-top: 3px solid var(--mw-red) !important;
+  border-radius: 12px;
+
+  .dropdown-item {
+    color: var(--mw-text) !important;
+    font-weight: 500;
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.12) !important;
+      color: var(--mw-red) !important;
+    }
+  }
+}
+
+// Kart ve Yüzey Uyumluluğu
+.mw-panel-card,
+.card {
+  background-color: var(--mw-surface);
+  color: var(--mw-text);
+  border: 1px solid var(--mw-border) !important;
+  border-radius: 12px;
+}
+
+.mw-sidebar-cat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  color: var(--mw-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+
+  &:hover,
+  &.active {
+    background-color: rgba(220, 53, 69, 0.12);
+    color: var(--mw-red);
+  }
+}
+
+.mw-vitrin-card {
+  background-color: var(--mw-surface);
+  border: 1px solid var(--mw-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  color: var(--mw-text);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--mw-red);
+    color: var(--mw-text);
+  }
+}
+
+.mw-trust-badge-1 {
+  background-color: rgba(108, 117, 125, 0.15);
+  color: var(--mw-text-muted);
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.mw-trust-badge-2 {
+  background-color: rgba(13, 110, 253, 0.15);
+  color: #3b82f6;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.mw-trust-badge-3 {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: var(--mw-red);
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
 // Animasyonlar
 .fade-in {
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.4s ease-in;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-// Responsive düzenlemeler
-@media (max-width: 768px) {
-  .display-4 {
-    font-size: 2.5rem;
-  }
 }
 
 // Custom scrollbar
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--mw-bg);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-  
+  background: #555;
+  border-radius: 4px;
   &:hover {
-    background: #555;
-  }
-}
-
-// Submenu turuncu yap
-.dropdown-menu .dropdown-item {
-  &.text-warning,
-  &.text-warning:hover {
-    color: #fd7e14 !important;
-  }
-}
-
-// Mobil
-@media (max-width: 991.98px) {
-  .dropdown-menu .dropdown-item {
-    &.text-warning,
-    &.text-warning:hover {
-      color: #fd7e14 !important;
-    }
-  }
-}
-
-// Dropdown menü
-.dropdown-menu {
-  background-color: #fff !important;
-  border: 1px solid rgba(0,0,0,.15) !important;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175) !important;
-
-  .dropdown-item {
-    color: #fd7e14 !important;
-    padding: 0.5rem 1.5rem !important;
-    font-weight: 500;
-
-    &:hover,
-    &:focus {
-      background-color: #070707 !important;
-      color: #fd7e14 !important;
-    }
-  }
-}
-
-// Card
-.card {
-    border: 2px solid #e9ecef !important;
-}
-
-// Mobil dropdown
-@media (max-width: 991.98px) {
-  .dropdown-menu {
-    background-color: #fff !important;
-    .dropdown-item {
-      color: #fd7e14 !important;
-      &:hover,
-      &:focus {
-        background-color: #ffe0cc !important;
-      }
-    }
+    background: var(--mw-red);
   }
 }

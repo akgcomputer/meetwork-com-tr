@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Mevcut JSON talepleri de ihale havuzunun altında gösterelim
+const dataDir = path.join(process.cwd(), 'src/data/talepler');
+let talepler: any[] = [];
+if (fs.existsSync(dataDir)) {
+  const files = fs.readdirSync(dataDir).filter(file => file.endsWith('.json'));
+  talepler = files.map(file => {
+    try { return JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf-8')); } catch (_) { return null; }
+  }).filter(Boolean);
+}
+talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+const topTalepler = talepler.slice(0, 15);
+---
+
+<BaseLayout
+  title="E-İhale, Satın Alma (RFQ) & Ortak Alım Merkezi | MeetWork"
+  description="Açık Eksiltme Usulü İhale, Kapalı Zarf İhale, İngiliz Usulü İhale, Ortak Satın Alma Havuzu ve StokPratik otomatik tedarik sistemi."
+>
+  <!-- Üst Başlık, İhale Kredisi ve Yeni İhale Başlat Butonu -->
+  <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-8">
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <span class="badge bg-danger">Açık Eksiltme</span>
+          <span class="badge bg-dark">Kapalı Zarf Usulü</span>
+          <span class="badge bg-secondary">İngiliz Usulü</span>
+          <span class="badge bg-danger-subtle text-danger">Ortak Satın Alma (Grup Alım)</span>
+        </div>
+        <h1 class="h3 fw-bold mb-1">MeetWork E-İhale & Kurumsal Satın Alma Motoru</h1>
+        <p class="small text-muted mb-0">
+          Şirket logonuzla özel davetli veya herkese açık ihale başlatın. <strong>Magic Link</strong> ile tedarikçileriniz üye olmadan dahi saniyeler içinde teklif verebilir; <strong>Son 2 Dakika Uzatma Kuralı</strong> ile en dip satın alma fiyatını yakalayın!
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <div class="d-inline-flex align-items-center gap-3 p-3 rounded border" style="background:var(--mw-surface-alt);">
+          <div class="text-start">
+            <small class="text-muted d-block">İhale Krediniz</small>
+            <strong class="text-danger fs-5"><span id="mwTenderCreditCount">3</span> Kredi</strong>
+          </div>
+          <button type="button" class="btn btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#newTenderModal">
+            <i class="bi bi-hammer me-1"></i> + Yeni İhale / Talep Aç
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İhale Usulü Filtre Sekmeleri -->
+  <div class="d-flex flex-wrap gap-2 mb-4">
+    <button type="button" class="btn btn-sm btn-danger mw-tender-filter" data-method="all">Tüm İhaleler</button>
+    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="open_decrement">📉 Açık Eksiltme İhaleleri</button>
+    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="sealed_envelope">✉️ Kapalı Zarf Usulü</button>
+    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="english_auction">🏆 İngiliz Usulü</button>
+    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="rfq">⚡ Hızlı Teklif (RFQ)</button>
+  </div>
+
+  <!-- CANLI D1 E-İHALELER LİSTESİ -->
+  <div class="mb-5">
+    <h5 class="fw-bold mb-3"><i class="bi bi-broadcast text-danger me-1"></i> Canlı E-İhaleler & Ortak Satın Alma Havuzları</h5>
+    <div id="mwLiveTendersList" class="row g-3">
+      <div class="col-12 text-center py-4 text-muted">Canlı ihaleler yükleniyor...</div>
+    </div>
+  </div>
+
+  <!-- MEVCUT GÜNCEL ALIM TALEPLERİ HAVUZU (3.100+ TALEP) -->
+  <div class="mw-panel-card p-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+      <div>
+        <h5 class="fw-bold mb-0"><i class="bi bi-briefcase-fill text-danger me-1"></i> Güncel B2B Alım Talepleri Havuzu ({3105 + talepler.length})</h5>
+        <small class="text-muted">Türkiye genelinden anlık çekilen kurumsal mal ve hizmet alım talepleri</small>
+      </div>
+      <a href="/talepler" class="btn btn-sm btn-outline-danger fw-bold">Tüm Talepleri Gör →</a>
+    </div>
+
+    <div class="list-group list-group-flush">
+      {topTalepler.map((t) => (
+        <a href={`/talepler/${t.slug}`} class="list-group-item list-group-item-action py-3 px-2 d-flex justify-content-between align-items-center bg-transparent" style="color:var(--mw-text);">
+          <div>
+            <span class="badge bg-danger me-2">{t.category || 'Genel Tedarik'}</span>
+            <strong class="small">{t.title}</strong>
+          </div>
+          <div class="text-end flex-shrink-0 ms-2">
+            <small class="text-danger fw-bold d-block">#{t.id}</small>
+            <small class="text-muted" style="font-size:0.7rem;">{new Date(t.publishDate).toLocaleDateString('tr-TR')}</small>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- YENİ E-İHALE BAŞLATMA MODALI -->
+  <div class="modal fade" id="newTenderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content mw-panel-card">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-hammer text-danger me-1"></i> Yeni E-İhale veya Satın Alma Talebi Başlat
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCreateTenderForm" class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">İhale Usulü *</label>
+              <select id="ntMethod" class="form-select form-select-sm" required>
+                <option value="rfq">⚡ Hızlı Teklif Toplama (RFQ - Ücretsiz)</option>
+                <option value="open_decrement">📉 Açık Eksiltme Usulü İhale (+Son 2 Dk Uzatmalı)</option>
+                <option value="sealed_envelope">✉️ Kapalı Zarf Usulü İhale (Süre Sonunda Açılır)</option>
+                <option value="english_auction">🏆 İngiliz Usulü Çok Turlu İhale</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Sektör / Kategori *</label>
+              <select id="ntCategory" class="form-select form-select-sm" required>
+                <option value="Metal & Çelik">Metal, Sac & Çelik Hammadde</option>
+                <option value="Makine & Yedek Parça">Makine, Rulman & Ekipman</option>
+                <option value="Ambalaj & Sarf">Koli, Streç, Ambalaj & Ofis Sarf</option>
+                <option value="İnşaat & Yapı">İnşaat & Yapı Malzemeleri</option>
+                <option value="Lojistik & Nakliye">Lojistik, Nakliye & Filo Kiralama</option>
+                <option value="Gıda & Toptan">Gıda, İçecek & Toptan Tedarik</option>
+                <option value="Teknoloji & Donanım">Bilişim, Yazılım & Donanım</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold">İhale / Alım Başlığı *</label>
+              <input type="text" id="ntTitle" class="form-control form-control-sm" placeholder="Örn: 25 Ton DKP Sac Alımı / 10.000 Adet Baskılı Koli İhalesi" required />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">Miktar *</label>
+              <input type="text" id="ntQuantity" class="form-control form-control-sm" placeholder="Örn: 5000" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">Birim</label>
+              <select id="ntUnit" class="form-select form-select-sm">
+                <option value="Adet">Adet</option>
+                <option value="Kg / Ton">Kg / Ton</option>
+                <option value="Koli / Palet">Koli / Palet</option>
+                <option value="Metre / m²">Metre / m²</option>
+                <option value="Hizmet / Proje">Hizmet / Proje</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">Hedef/BaşlangıçBütçesi</label>
+              <input type="number" id="ntTargetPrice" class="form-control form-control-sm" placeholder="Opsiyonel" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">Ödeme & Vade Kuralı</label>
+              <input type="text" id="ntPaymentTerms" class="form-control form-control-sm" value="60 Gün Vadeli / CariNet" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Alıcı Firma Unvanı (Logolu Davet İçin) *</label>
+              <input type="text" id="ntBuyerName" class="form-control form-control-sm" placeholder="Firmanızın Unvanı" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Teslimat Şehri / Yeri *</label>
+              <input type="text" id="ntDeliveryCity" class="form-control form-control-sm" value="İstanbul (Fabrika Teslim)" required />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold">Teknik Şartname & Ek İhale Kuralları *</label>
+              <textarea id="ntDescription" class="form-control form-control-sm" rows="3" placeholder="Kalite standartları, numune şartı, teslim süresi ve ek ihale kurallarını belirtiniz..." required></textarea>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ntIsGroupBuy" />
+                <label class="form-check-label small fw-bold text-danger" for="ntIsGroupBuy">
+                  🤝 Bu ihaleyi "Ortak Satın Alma Havuzu" yap (Diğer MeetWork üyesi KOBİ'ler de kendi adetlerini ekleyip toplu iskonto alabilsin)
+                </label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-danger w-100 fw-bold py-2">
+                <i class="bi bi-rocket-takeoff-fill me-1"></i> İhaleyi Başlat & Özel Davet Linki (Magic Link) Oluştur
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIZLI TEKLİF VERME MODALI (MAGIC LINK / ÜYELİKSİZ DESTEKLİ) -->
+  <div class="modal fade" id="bidTenderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-send-check-fill text-danger me-1"></i> İhaleye Teklif Ver (Magic Link Hızlı Teklif)
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwBidForm" class="d-flex flex-column gap-3">
+            <input type="hidden" id="bidTenderId" />
+            <div class="p-2 rounded border small fw-bold text-danger" id="bidTenderTitleBox"></div>
+            <div>
+              <label class="form-label small fw-bold">Tedarikçi Firma Unvanınız *</label>
+              <input type="text" id="bidSupplierName" class="form-control form-control-sm" required />
+            </div>
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Telefon *</label>
+                <input type="tel" id="bidSupplierPhone" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">VKN (Opsiyonel)</label>
+                <input type="text" id="bidSupplierVkn" class="form-control form-control-sm" />
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Teklif Fiyatınız (TL) *</label>
+                <input type="number" id="bidPrice" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Teslim Süresi (Gün)</label>
+                <input type="number" id="bidDeliveryDays" class="form-control form-control-sm" value="7" />
+              </div>
+            </div>
+            <div>
+              <label class="form-label small fw-bold">Teklif Notunuz / Vade Şartınız</label>
+              <textarea id="bidNote" class="form-control form-control-sm" rows="2" placeholder="Nakliye dahil, 60 gün vadeli..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger fw-bold">Teklifimi İlet</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function methodBadge(m) {
+        if (m === 'open_decrement') return '<span class="badge bg-danger">📉 Açık Eksiltme</span>';
+        if (m === 'sealed_envelope') return '<span class="badge bg-dark">✉️ Kapalı Zarf</span>';
+        if (m === 'english_auction') return '<span class="badge bg-warning text-dark">🏆 İngiliz Usulü</span>';
+        return '<span class="badge bg-secondary">⚡ Hızlı Teklif (RFQ)</span>';
+      }
+
+      async function loadTenders(method = 'all') {
+        const listEl = document.getElementById('mwLiveTendersList');
+        if (!listEl) return;
+        try {
+          const qs = method !== 'all' ? `?method=${encodeURIComponent(method)}` : '';
+          const res = await fetch(`${API_URL}/api/tenders${qs}`);
+          const data = await res.json();
+          const tenders = data.tenders || [];
+
+          if (tenders.length === 0) {
+            listEl.innerHTML = `
+              <div class="col-12">
+                <div class="mw-panel-card p-4 text-center">
+                  <i class="bi bi-hammer fs-2 text-danger"></i>
+                  <h6 class="fw-bold mt-2">Bu kategoride aktif canlı e-ihale bulunmuyor</h6>
+                  <p class="small text-muted mb-3">İlk Açık Eksiltme veya Kapalı Zarf ihalenizi hemen başlatıp tedarikçilerinize Magic Link gönderebilirsiniz.</p>
+                  <button class="btn btn-sm btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#newTenderModal">+ Yeni E-İhale Başlat</button>
+                </div>
+              </div>`;
+            return;
+          }
+
+          listEl.innerHTML = tenders.map((t) => `
+            <div class="col-md-6">
+              <div class="mw-panel-card p-3 h-100 d-flex flex-column justify-content-between shadow-sm">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex gap-1 align-items-center">
+                      ${methodBadge(t.tender_method)}
+                      ${t.is_group_buy ? '<span class="badge bg-success">🤝 Ortak Alım Havuzu</span>' : ''}
+                    </div>
+                    <small class="text-muted fw-bold">#${t.tender_no}</small>
+                  </div>
+                  <h6 class="fw-bold mb-1">${t.title}</h6>
+                  <div class="small text-muted mb-2">
+                    <strong>Alıcı:</strong> ${t.buyer_name} • <strong>Miktar:</strong> ${t.quantity} ${t.unit} • <strong>Teslim:</strong> ${t.delivery_location}
+                  </div>
+                  <p class="small text-muted mb-2">${t.description}</p>
+                </div>
+
+                <div class="pt-2 border-top d-flex justify-content-between align-items-center flex-wrap gap-2" style="border-color:var(--mw-border)!important;">
+                  <div class="small">
+                    <span class="text-muted">Teklif Sayısı:</span> <strong>${t.bids_count || 0}</strong>
+                    ${t.tender_method === 'open_decrement' && t.lowest_bid ? ` • <span class="text-danger fw-bold">En Düşük: ${Number(t.lowest_bid).toLocaleString('tr-TR')} ${t.currency}</span>` : ''}
+                    ${t.tender_method === 'sealed_envelope' ? ` • <span class="text-muted fst-italic">🔒 Zarf Kapalı</span>` : ''}
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger fw-bold"
+                    onclick="window.mwOpenBidModal('${t.id}', '${t.title.replace(/'/g, '')}')"
+                  >
+                    Teklif Ver
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        } catch (_) {}
+      }
+
+      window.mwOpenBidModal = function (id, title) {
+        document.getElementById('bidTenderId').value = id;
+        document.getElementById('bidTenderTitleBox').textContent = title;
+        const modalEl = document.getElementById('bidTenderModal');
+        if (window.bootstrap && modalEl) {
+          new window.bootstrap.Modal(modalEl).show();
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (u) {
+            const bName = document.getElementById('ntBuyerName');
+            if (bName) bName.value = u.company_name || u.full_name || '';
+            const sName = document.getElementById('bidSupplierName');
+            if (sName) sName.value = u.company_name || u.full_name || '';
+          }
+        } catch (_) {}
+
+        loadTenders();
+
+        document.querySelectorAll('.mw-tender-filter').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.mw-tender-filter').forEach(b => b.className = 'btn btn-sm btn-outline-danger mw-tender-filter');
+            btn.className = 'btn btn-sm btn-danger mw-tender-filter';
+            loadTenders(btn.getAttribute('data-method'));
+          });
+        });
+
+        document.getElementById('mwCreateTenderForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          let u = null;
+          try { u = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+          const payload = {
+            company_id: u ? u.company_id : '',
+            trust_level: u ? u.trust_level : 1,
+            tender_method: document.getElementById('ntMethod').value,
+            category: document.getElementById('ntCategory').value,
+            title: document.getElementById('ntTitle').value,
+            quantity: document.getElementById('ntQuantity').value,
+            unit: document.getElementById('ntUnit').value,
+            target_price: document.getElementById('ntTargetPrice').value,
+            payment_terms: document.getElementById('ntPaymentTerms').value,
+            buyer_name: document.getElementById('ntBuyerName').value,
+            delivery_location: document.getElementById('ntDeliveryCity').value,
+            description: document.getElementById('ntDescription').value,
+            is_group_buy: document.getElementById('ntIsGroupBuy').checked ? 1 : 0
+          };
+
+          try {
+            const res = await fetch(`${API_URL}/api/tenders`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const out = await res.json();
+            if (out.success) {
+              alert(`${out.message}\n\nÖzel Davet Linkiniz (Magic Link):\n${out.magic_link}`);
+              window.location.reload();
+            }
+          } catch (_) {}
+        });
+
+        document.getElementById('mwBidForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const tenderId = document.getElementById('bidTenderId').value;
+          const payload = {
+            supplier_name: document.getElementById('bidSupplierName').value,
+            supplier_phone: document.getElementById('bidSupplierPhone').value,
+            supplier_vkn: document.getElementById('bidSupplierVkn').value,
+            price: document.getElementById('bidPrice').value,
+            delivery_days: document.getElementById('bidDeliveryDays').value,
+            note: document.getElementById('bidNote').value
+          };
+
+          try {
+            const res = await fetch(`${API_URL}/api/tenders/${encodeURIComponent(tenderId)}/bid`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const out = await res.json();
+            if (out.success) {
+              alert(out.message);
+              window.location.reload();
+            }
+          } catch (_) {}
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

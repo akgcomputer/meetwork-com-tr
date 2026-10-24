@@ -1,0 +1,602 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const CITIES = [
+  'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Kocaeli', 'Antalya', 'Konya',
+  'Gaziantep', 'Adana', 'Kayseri', 'Mersin', 'Eskişehir', 'Sakarya', 'Manisa', 'Denizli'
+];
+---
+
+<BaseLayout
+  title="MeetWork İlan Pazarı | Emlak, Vasıta (Binek/Ticari), Sanayi Makinesi & 2. El"
+  description="Doğrulanmış MeetWork üyelerinden satılık ve kiralık daire, dükkan, fabrika, binek otomobil, ticari araç, 2. el sanayi makinesi ve seri sonu fırsat ilanları."
+>
+  <!-- Üst Başlık ve İlan Ver Butonu -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+    <div>
+      <span class="badge bg-danger mb-1">Güvenilir Ticari & Bireysel İlan Pazarı</span>
+      <h1 class="h3 fw-bold mb-0">Emlak, Vasıta (Binek & Ticari), Sanayi Makinesi & 2. El İlanlar</h1>
+    </div>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#newListingModal">
+        <i class="bi bi-plus-circle-fill me-1"></i> + Ücretsiz İlan Ver
+      </button>
+    </div>
+  </div>
+
+  <!-- İLAN DETAY GÖRÜNÜMÜ (URL'de ?ilan=... varsa açılır) -->
+  <div id="mwListingDetailView" class="mb-5" style="display:none;"></div>
+
+  <!-- ANA İLAN FİLTRE VE LİSTE EKRANI -->
+  <div class="row g-4" id="mwListingMainLayout">
+    <!-- SOL SÜTUN (%28): Sahibinden Tarzı Kategori Ağacı ve Dinamik Özellik Filtreleri -->
+    <div class="col-lg-3">
+      <div class="mw-panel-card p-3 shadow-sm sticky-top" style="top: 90px;">
+        <h6 class="fw-bold border-bottom pb-2 mb-3">
+          <i class="bi bi-funnel-fill text-danger me-1"></i> Kategori & Detaylı Filtre
+        </h6>
+
+        <form id="mwListingFilterForm" class="d-flex flex-column gap-3">
+          <div>
+            <label class="form-label small fw-bold mb-1">Ana Kategori</label>
+            <select id="fltCategory" class="form-select form-select-sm">
+              <option value="all">Tüm Kategoriler</option>
+              <option value="Emlak">🏠 Emlak (Konut, Dükkan, İş Yeri)</option>
+              <option value="Vasıta">🚗 Vasıta (Binek Oto & Ticari Araç)</option>
+              <option value="Sanayi & Makine">🏭 Sanayi, İş Makinesi & Stok</option>
+              <option value="İkinci El & Demirbaş">📦 2. El Eşya & Ofis Demirbaşı</option>
+              <option value="Hizmet & Fason">🛠️ Hizmet, Usta & Fason İş</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label small fw-bold mb-1">Alt Kategori</label>
+            <select id="fltSubCategory" class="form-select form-select-sm">
+              <option value="all">Tümü</option>
+              <!-- Emlak -->
+              <option value="Daire">Daire (Konut)</option>
+              <option value="Villa & Müstakil">Villa & Müstakil Ev</option>
+              <option value="Dükkan & Mağaza">Dükkan & Mağaza</option>
+              <option value="Ofis & Plaza">Ofis & Plaza Katı</option>
+              <option value="Fabrika & Depo">Fabrika, Üretim & Depo</option>
+              <option value="Devren İş Yeri">Devren İş Yeri / Bayilik</option>
+              <option value="Arsa & Arazi">Arsa & Sanayi Arazisi</option>
+              <!-- Vasıta -->
+              <option value="Otomobil (Binek)">Otomobil (Binek)</option>
+              <option value="SUV & Pickup">Arazi, SUV & Pickup</option>
+              <option value="Ticari Araç & Panelvan">Ticari Araç, Panelvan & Kamyonet</option>
+              <option value="Kamyon & Çekici (Tır)">Kamyon, Tır & Dorse</option>
+              <option value="Filo & Araç Kiralama">Kiralık Binek / Ticari Filo</option>
+              <!-- Sanayi -->
+              <option value="Üretim & CNC Tezgahı">CNC, Torna & Üretim Makinesi</option>
+              <option value="Forklift & İstif">Forklift, Vinç & İstif</option>
+              <option value="Seri Sonu & Fırsat Stok">Seri Sonu & Fazla Stok</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label small fw-bold mb-1">İlan Türü (İşlem)</label>
+            <select id="fltType" class="form-select form-select-sm">
+              <option value="all">Satılık & Kiralık Tümü</option>
+              <option value="Satılık">Satılık</option>
+              <option value="Kiralık">Kiralık</option>
+              <option value="Devren">Devren</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label small fw-bold mb-1">Şehir</label>
+            <select id="fltCity" class="form-select form-select-sm">
+              <option value="all">Tüm Türkiye</option>
+              {CITIES.map(c => <option value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label small fw-bold mb-1">Fiyat Aralığı (TL)</label>
+            <div class="input-group input-group-sm">
+              <input type="number" id="fltMinPrice" class="form-control" placeholder="Min" />
+              <span class="input-group-text">-</span>
+              <input type="number" id="fltMaxPrice" class="form-control" placeholder="Max" />
+            </div>
+          </div>
+
+          <!-- Emlak / Vasıta Dinamik Ek Filtre Kutusu -->
+          <div id="fltDynamicBox" class="p-2 rounded border small" style="background:var(--mw-surface-alt); border-color:var(--mw-border)!important;">
+            <div class="fw-bold text-danger mb-1">Kategoriye Özel Özellikler</div>
+            <div class="text-muted" style="font-size:0.75rem;">
+              Emlak için <strong>m², Oda Sayısı, Bina Yaşı</strong>; Vasıta için <strong>Marka, Model Yılı, Km, Vites/Yakıt</strong> bilgileri ilan tablosunda doğrudan gösterilir.
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label small fw-bold mb-1">Kelime veya İlan No</label>
+            <input type="text" id="fltKeyword" class="form-control form-control-sm" placeholder="İlan no veya kelime..." />
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger btn-sm fw-bold">
+              <i class="bi bi-search me-1"></i> İlanları Filtrele
+            </button>
+            <button type="button" id="fltResetBtn" class="btn btn-outline-secondary btn-sm">
+              Filtreyi Temizle
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SAĞ SÜTUN (%72): Vitrin Özeti + Sahibinden Tablo / Kart Görünümlü İlan Listesi -->
+    <div class="col-lg-9">
+      <!-- Hızlı Kategori Sekmeleri -->
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <button type="button" class="btn btn-sm btn-danger mw-quick-cat" data-cat="all">Tümü</button>
+        <button type="button" class="btn btn-sm btn-outline-danger mw-quick-cat" data-cat="Emlak">🏠 Emlak (Daire / Dükkan / İş Yeri)</button>
+        <button type="button" class="btn btn-sm btn-outline-danger mw-quick-cat" data-cat="Vasıta">🚗 Vasıta (Binek & Ticari Satılık/Kiralık)</button>
+        <button type="button" class="btn btn-sm btn-outline-danger mw-quick-cat" data-cat="Sanayi & Makine">🏭 Sanayi & 2. El Makine</button>
+        <button type="button" class="btn btn-sm btn-outline-danger mw-quick-cat" data-cat="İkinci El & Demirbaş">📦 2. El & Fırsat</button>
+      </div>
+
+      <div class="mw-panel-card p-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+          <div class="fw-bold small">
+            Toplam <span id="mwListingCount" class="text-danger">0</span> aktif ilan listeleniyor
+          </div>
+          <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-danger active" id="viewModeTableBtn">
+              <i class="bi bi-table"></i> Liste Görünümü
+            </button>
+            <button type="button" class="btn btn-outline-danger" id="viewModeGridBtn">
+              <i class="bi bi-grid-3x3-gap"></i> Vitrin Görünümü
+            </button>
+          </div>
+        </div>
+
+        <!-- Sahibinden Tarzı Tablo Görünümü -->
+        <div class="table-responsive" id="mwListingsTableWrapper">
+          <table class="table table-hover align-middle mb-0 small">
+            <thead>
+              <tr class="text-muted">
+                <th>İlan No / Tür</th>
+                <th>İlan Başlığı & Teknik Özellikler</th>
+                <th>Kategori</th>
+                <th>Fiyat</th>
+                <th>İl / İlçe</th>
+                <th>Satıcı & Güven</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="mwListingsTableBody">
+              <tr>
+                <td colspan="7" class="text-center py-4 text-muted">İlanlar yükleniyor...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Vitrin (Grid) Görünümü -->
+        <div class="row g-3" id="mwListingsGridWrapper" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YENİ İLAN VERME MODALI (Emlak, Binek/Ticari Oto, Sanayi, 2.El) -->
+  <div class="modal fade" id="newListingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content mw-panel-card">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-plus-circle-fill text-danger me-1"></i> Yeni İlan Yayınla (Emlak / Vasıta / Sanayi / 2. El)
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCreateListingForm" class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Ana Kategori *</label>
+              <select id="nlMainCategory" class="form-select form-select-sm" required>
+                <option value="Emlak">🏠 Emlak</option>
+                <option value="Vasıta">🚗 Vasıta (Oto / Ticari)</option>
+                <option value="Sanayi & Makine">🏭 Sanayi & Makine</option>
+                <option value="İkinci El & Demirbaş">📦 2. El Eşya & Demirbaş</option>
+                <option value="Hizmet & Fason">🛠️ Hizmet & Fason İş</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Alt Kategori *</label>
+              <select id="nlSubCategory" class="form-select form-select-sm" required>
+                <option value="Daire">Daire (Konut)</option>
+                <option value="Dükkan & Mağaza">Dükkan & Mağaza</option>
+                <option value="Fabrika & Depo">İş Yeri / Fabrika / Depo</option>
+                <option value="Devren İş Yeri">Devren İş Yeri</option>
+                <option value="Otomobil (Binek)">Otomobil (Binek)</option>
+                <option value="Ticari Araç & Panelvan">Ticari Araç / Kamyon / Tır</option>
+                <option value="Filo & Araç Kiralama">Kiralık Araç / Filo</option>
+                <option value="Üretim & CNC Tezgahı">Sanayi Makinesi / CNC / Forklift</option>
+                <option value="Seri Sonu & Fırsat Stok">Seri Sonu / Fazla Stok</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">İşlem Türü *</label>
+              <select id="nlType" class="form-select form-select-sm" required>
+                <option value="Satılık">Satılık</option>
+                <option value="Kiralık">Kiralık</option>
+                <option value="Devren">Devren</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold">İlan Başlığı *</label>
+              <input type="text" id="nlTitle" class="form-control form-control-sm" placeholder="Örn: OSB'de Kiralık 1.200m² Fabrika / 2022 Hatasız Binek Otomobil / 2. El CNC Lazer" required />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Fiyat *</label>
+              <input type="number" id="nlPrice" class="form-control form-control-sm" placeholder="Örn: 850000" required />
+            </div>
+            <div class="col-md-2">
+              <label class="form-label small fw-bold">Para Birimi</label>
+              <select id="nlCurrency" class="form-select form-select-sm">
+                <option value="TRY">TL (₺)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">Şehir *</label>
+              <select id="nlCity" class="form-select form-select-sm">
+                {CITIES.map(c => <option value={c}>{c}</option>)}
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold">İlçe / Bölge</label>
+              <input type="text" id="nlDistrict" class="form-control form-control-sm" placeholder="Örn: İkitelli / Tuzla" />
+            </div>
+
+            <!-- Emlak / Vasıta / Makine Hızlı Teknik Özellikler -->
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Özellik 1 (m² / Marka-Model)</label>
+              <input type="text" id="nlAttr1" class="form-control form-control-sm" placeholder="Örn: 180 m² veya BMW 320i / Ford Transit" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Özellik 2 (Oda / Yıl & Km)</label>
+              <input type="text" id="nlAttr2" class="form-control form-control-sm" placeholder="Örn: 3+1 veya 2022 Model - 45.000 Km" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Özellik 3 (Durum / Vites-Yakıt)</label>
+              <input type="text" id="nlAttr3" class="form-control form-control-sm" placeholder="Örn: Otomatik-Dizel veya Krediye Uygun" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">İletişim Adı / Firma Adı *</label>
+              <input type="text" id="nlSellerName" class="form-control form-control-sm" placeholder="Firma veya Ad Soyad" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">İletişim Telefonu *</label>
+              <input type="tel" id="nlSellerPhone" class="form-control form-control-sm" placeholder="0532 000 00 00" required />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold">Detaylı Açıklama *</label>
+              <textarea id="nlDescription" class="form-control form-control-sm" rows="3" placeholder="İlan detaylarını, eksiksiz özelliklerini ve takas/vade koşullarını yazınız..." required></textarea>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap gap-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="nlIsVitrin" checked />
+                <label class="form-check-label small fw-bold" for="nlIsVitrin">🌟 Ana Sayfa & Kategori Vitrininde Göster</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="nlIsUrgent" />
+                <label class="form-check-label small fw-bold text-danger" for="nlIsUrgent">🔥 ACİL! ACİL! Rozeti Ekle</label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-danger w-100 fw-bold py-2">
+                <i class="bi bi-check2-circle me-1"></i> İlanı Yayınla & Sosyal Akışta Paylaş
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentListings = [];
+
+      function getTrustBadge(level) {
+        if (Number(level) >= 3) return '<span class="mw-trust-badge-3">MeetWork Gold</span>';
+        if (Number(level) === 2) return '<span class="mw-trust-badge-2">VKN Onaylı</span>';
+        return '<span class="mw-trust-badge-1">Üye</span>';
+      }
+
+      function renderListings(list) {
+        const countEl = document.getElementById('mwListingCount');
+        const tbody = document.getElementById('mwListingsTableBody');
+        const grid = document.getElementById('mwListingsGridWrapper');
+        if (countEl) countEl.textContent = String(list.length);
+
+        if (list.length === 0) {
+          const emptyHtml = `
+            <div class="text-center py-5">
+              <i class="bi bi-shop-window fs-1 text-danger"></i>
+              <h6 class="fw-bold mt-2">Seçilen kriterlerde henüz aktif ilan bulunmuyor</h6>
+              <p class="small text-muted mb-3">Bu kategorideki ilk ilanı ücretsiz olarak hemen yayınlayabilirsiniz!</p>
+              <button type="button" class="btn btn-sm btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#newListingModal">
+                + Hemen İlk İlanı Ver
+              </button>
+            </div>`;
+          if (tbody) tbody.innerHTML = `<tr><td colspan="7">${emptyHtml}</td></tr>`;
+          if (grid) grid.innerHTML = `<div class="col-12">${emptyHtml}</div>`;
+          return;
+        }
+
+        if (tbody) {
+          tbody.innerHTML = list.map((item) => {
+            let attrs = {};
+            try { attrs = JSON.parse(item.attributes || '{}'); } catch (_) {}
+            const attrLine = [attrs.attr1, attrs.attr2, attrs.attr3].filter(Boolean).join(' • ');
+
+            return `
+              <tr>
+                <td>
+                  <div class="fw-bold text-danger">#${item.listing_no}</div>
+                  <span class="badge ${item.is_urgent ? 'bg-danger' : 'bg-secondary'}">${item.is_urgent ? 'ACİL' : item.listing_type}</span>
+                </td>
+                <td>
+                  <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="fw-bold text-decoration-none d-block" style="color:var(--mw-text);">
+                    ${item.title}
+                  </a>
+                  ${attrLine ? `<small class="text-muted">${attrLine}</small>` : ''}
+                </td>
+                <td>
+                  <div class="fw-semibold">${item.main_category}</div>
+                  <small class="text-muted">${item.sub_category}</small>
+                </td>
+                <td class="fw-bolder text-danger fs-6">
+                  ${Number(item.price).toLocaleString('tr-TR')} ${item.currency}
+                </td>
+                <td>
+                  <div class="fw-semibold">${item.seller_city}</div>
+                  <small class="text-muted">${item.seller_district || ''}</small>
+                </td>
+                <td>
+                  <div class="fw-semibold">${item.seller_name}</div>
+                  ${getTrustBadge(item.trust_level)}
+                </td>
+                <td>
+                  <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="btn btn-sm btn-outline-danger fw-bold">Detay</a>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        if (grid) {
+          grid.innerHTML = list.map((item) => {
+            let attrs = {};
+            try { attrs = JSON.parse(item.attributes || '{}'); } catch (_) {}
+            const attrLine = [attrs.attr1, attrs.attr2, attrs.attr3].filter(Boolean).join(' • ');
+            return `
+              <div class="col-md-4 col-sm-6">
+                <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="mw-vitrin-card p-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge ${item.is_urgent ? 'bg-danger' : 'bg-dark'}">${item.is_urgent ? '🔥 ACİL' : item.listing_type} • ${item.main_category}</span>
+                    <small class="text-muted">#${item.listing_no}</small>
+                  </div>
+                  <h6 class="fw-bold mb-1">${item.title}</h6>
+                  <small class="text-muted d-block mb-2">${attrLine || item.sub_category}</small>
+                  <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                    <span class="fw-bolder text-danger fs-6">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</span>
+                    <small class="text-muted"><i class="bi bi-geo-alt"></i> ${item.seller_city}</small>
+                  </div>
+                </a>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      async function fetchListings() {
+        const cat = document.getElementById('fltCategory').value;
+        const sub = document.getElementById('fltSubCategory').value;
+        const type = document.getElementById('fltType').value;
+        const city = document.getElementById('fltCity').value;
+        const minP = document.getElementById('fltMinPrice').value;
+        const maxP = document.getElementById('fltMaxPrice').value;
+        const q = document.getElementById('fltKeyword').value;
+
+        const qs = new URLSearchParams();
+        if (cat && cat !== 'all') qs.set('category', cat);
+        if (sub && sub !== 'all') qs.set('sub_category', sub);
+        if (type && type !== 'all') qs.set('type', type);
+        if (city && city !== 'all') qs.set('city', city);
+        if (minP) qs.set('min_price', minP);
+        if (maxP) qs.set('max_price', maxP);
+        if (q) qs.set('q', q);
+
+        try {
+          const res = await fetch(`${API_URL}/api/listings?${qs.toString()}`);
+          const data = await res.json();
+          currentListings = data.listings || [];
+          renderListings(currentListings);
+        } catch (_) {}
+      }
+
+      async function loadSingleListingDetail(slugOrNo) {
+        const detailBox = document.getElementById('mwListingDetailView');
+        if (!detailBox) return;
+        try {
+          const res = await fetch(`${API_URL}/api/listings/${encodeURIComponent(slugOrNo)}`);
+          const data = await res.json();
+          if (!data.success || !data.listing) return;
+          const item = data.listing;
+          let attrs = {};
+          try { attrs = JSON.parse(item.attributes || '{}'); } catch (_) {}
+
+          detailBox.style.display = 'block';
+          detailBox.innerHTML = `
+            <div class="mw-panel-card p-4 shadow-sm border-danger">
+              <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 pb-3 mb-3 border-bottom">
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="badge bg-danger">${item.listing_type}</span>
+                    <span class="badge bg-secondary">${item.main_category} / ${item.sub_category}</span>
+                    <small class="text-muted fw-bold">İlan No: #${item.listing_no}</small>
+                  </div>
+                  <h2 class="h4 fw-bold mb-0">${item.title}</h2>
+                </div>
+                <div class="text-md-end">
+                  <div class="h3 fw-bolder text-danger mb-0">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</div>
+                  <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger"></i> ${item.seller_city} ${item.seller_district ? '/ ' + item.seller_district : ''}</small>
+                </div>
+              </div>
+
+              <div class="row g-4">
+                <div class="col-md-8">
+                  <h6 class="fw-bold text-danger">Teknik Özellikler & İlan Detayı</h6>
+                  <div class="row g-2 mb-3">
+                    <div class="col-sm-4"><div class="p-2 rounded border small"><strong>Özellik 1:</strong> ${attrs.attr1 || '-'}</div></div>
+                    <div class="col-sm-4"><div class="p-2 rounded border small"><strong>Özellik 2:</strong> ${attrs.attr2 || '-'}</div></div>
+                    <div class="col-sm-4"><div class="p-2 rounded border small"><strong>Özellik 3:</strong> ${attrs.attr3 || '-'}</div></div>
+                  </div>
+                  <p class="small mb-0" style="white-space:pre-line;">${item.description}</p>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="fw-bold">${item.seller_name}</span>
+                      ${getTrustBadge(item.trust_level)}
+                    </div>
+                    <div class="small text-muted mb-3">
+                      MeetWork İş Ağı Güvencesiyle Doğrudan Satıcı İletişimi
+                    </div>
+                    <div class="d-grid gap-2">
+                      <a href="https://wa.me/90${(item.seller_phone || '5412465429').replace(/[^0-9]/g, '').replace(/^0/, '')}?text=${encodeURIComponent(item.listing_no + ' nolu ' + item.title + ' ilanınız için MeetWork üzerinden yazıyorum.')}" target="_blank" class="btn btn-success btn-sm fw-bold">
+                        <i class="bi bi-whatsapp me-1"></i> WhatsApp ile Mesaj Gönder
+                      </a>
+                      <a href="/isletmeler" class="btn btn-outline-danger btn-sm fw-bold">
+                        <i class="bi bi-shop me-1"></i> Satıcının Kurumsal Mağazası & B2B Vitrini
+                      </a>
+                      <a href="/ilanlar" class="btn btn-link btn-sm text-muted text-decoration-none">Tüm İlanlara Dön</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } catch (_) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('category')) document.getElementById('fltCategory').value = params.get('category');
+        if (params.get('sub_category')) document.getElementById('fltSubCategory').value = params.get('sub_category');
+        if (params.get('type')) document.getElementById('fltType').value = params.get('type');
+        if (params.get('q')) document.getElementById('fltKeyword').value = params.get('q');
+
+        if (params.get('ilan')) {
+          loadSingleListingDetail(params.get('ilan'));
+        }
+
+        // Prefill seller info if logged in
+        try {
+          const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (u) {
+            const sName = document.getElementById('nlSellerName');
+            if (sName) sName.value = u.company_name || u.full_name || '';
+          }
+        } catch (_) {}
+
+        fetchListings();
+
+        document.getElementById('mwListingFilterForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          fetchListings();
+        });
+
+        document.getElementById('fltResetBtn').addEventListener('click', () => {
+          document.getElementById('mwListingFilterForm').reset();
+          fetchListings();
+        });
+
+        document.querySelectorAll('.mw-quick-cat').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.mw-quick-cat').forEach(b => b.className = 'btn btn-sm btn-outline-danger mw-quick-cat');
+            btn.className = 'btn btn-sm btn-danger mw-quick-cat';
+            document.getElementById('fltCategory').value = btn.getAttribute('data-cat');
+            fetchListings();
+          });
+        });
+
+        // View mode toggle
+        const tblBtn = document.getElementById('viewModeTableBtn');
+        const grdBtn = document.getElementById('viewModeGridBtn');
+        const tblWrap = document.getElementById('mwListingsTableWrapper');
+        const grdWrap = document.getElementById('mwListingsGridWrapper');
+
+        tblBtn.addEventListener('click', () => {
+          tblBtn.classList.add('active');
+          grdBtn.classList.remove('active');
+          tblWrap.style.display = 'block';
+          grdWrap.style.display = 'none';
+        });
+        grdBtn.addEventListener('click', () => {
+          grdBtn.classList.add('active');
+          tblBtn.classList.remove('active');
+          tblWrap.style.display = 'none';
+          grdWrap.style.display = 'flex';
+        });
+
+        // Create Listing Submit
+        const createForm = document.getElementById('mwCreateListingForm');
+        createForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          let u = null;
+          try { u = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+          const payload = {
+            company_id: u ? u.company_id : '',
+            user_id: u ? u.user_id : '',
+            trust_level: u ? u.trust_level : 1,
+            main_category: document.getElementById('nlMainCategory').value,
+            sub_category: document.getElementById('nlSubCategory').value,
+            listing_type: document.getElementById('nlType').value,
+            title: document.getElementById('nlTitle').value,
+            price: document.getElementById('nlPrice').value,
+            currency: document.getElementById('nlCurrency').value,
+            seller_city: document.getElementById('nlCity').value,
+            seller_district: document.getElementById('nlDistrict').value,
+            seller_name: document.getElementById('nlSellerName').value,
+            seller_phone: document.getElementById('nlSellerPhone').value,
+            description: document.getElementById('nlDescription').value,
+            is_vitrin: document.getElementById('nlIsVitrin').checked ? 1 : 0,
+            is_urgent: document.getElementById('nlIsUrgent').checked ? 1 : 0,
+            attributes: {
+              attr1: document.getElementById('nlAttr1').value,
+              attr2: document.getElementById('nlAttr2').value,
+              attr3: document.getElementById('nlAttr3').value
+            }
+          };
+
+          try {
+            const res = await fetch(`${API_URL}/api/listings`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const out = await res.json();
+            if (out.success) {
+              window.location.href = `/ilanlar?ilan=${encodeURIComponent(out.slug)}`;
+            }
+          } catch (_) {}
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

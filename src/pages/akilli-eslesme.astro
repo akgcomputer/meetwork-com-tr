@@ -1,399 +1,212 @@
 ---
-// src/pages/akilli-eslesme.astro
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Akıllı Eşleşme - Yapay Zeka Destekli İş Eşleştirme Platformu";
-const pageDescription = "MeetWork Akıllı Eşleşme ile doğru kişilerle buluşun. Yapay zeka destekli sistemimizle işletmeler, girişimciler ve akademisyenler için ticari görüşmelere ivme kazandırın.";
-const canonicalURL = "https://meetwork.com.tr/akilli-eslesme";
+const SECTORS = [
+  'Metal & Çelik Üretim',
+  'Makine & Ekipman Üretimi',
+  'Otomotiv & Yan Sanayi',
+  'İnşaat, Yapı & Gayrimenkul',
+  'Tekstil & Konfeksiyon',
+  'Gıda, Tarım & İçecek',
+  'Plastik, Kauçuk & Ambalaj',
+  'Elektrik, Elektronik & Enerji',
+  'Teknoloji, Yazılım & E-Ticaret',
+  'Lojistik, Nakliyat & Filo',
+  'Kimya, Kozmetik & Medikal',
+  'Mobilya, Ahşap & Dekorasyon',
+  'Toptan & Dış Ticaret (İhracat/İthalat)',
+  'Hizmet, Danışmanlık & Mali Müşavirlik'
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL}>
-  <div class="container py-5">
-
-
-
-        <!-- Hero Section -->
-    <section class="text-center py-5 mb-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; color: white;">
-      <div class="container">
-        <h1 class="display-3 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-          🤖 MeetWork ile Akıllı Eşleşme
-        </h1>
-        <h2 class="h3 mb-5" style="color: rgba(255,255,255,0.9);">Yapay Zeka Destekli Profesyonel İş Eşleştirme Sistemi</h2>
-        
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="card bg-white text-dark p-4 mb-5" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-              <p class="lead fs-4 mb-0">
-                <strong>Akıllı Eşleşme Nedir?</strong><br>
-                Yapay zeka destekli sistemimiz sayesinde işletmeler, girişimciler ve akademisyenler 
-                doğru kişiler ile ticari görüşmeler yaparak ticaretlerine ivme kazandırıyor.
-              </p>
-            </div>
-            
-            <p class="fs-5 mb-5" style="color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto;">
-              Etkinliklerde doğru kişilerle eşleşmenizi sağlayan yapay zeka sistemi, 
-              sektörünüzü, etiketlerinizi ve bağlantı amaçlarınızı analiz ederek 
-              <strong>size en uygun iş ortakları ile masalarda buluşmanızı sağlar.</strong>
-            </p>
-          </div>
-        </div>
-        
-        <a href="https://panel.meetwork.net" target="_blank" class="btn btn-light btn-lg px-5 py-3 fw-bold fs-4" 
-           style="background: white; color: #667eea; border: none; border-radius: 50px;">
-          🚀 Hemen Ücretsiz Kayıt Ol
-        </a>
+<BaseLayout
+  title="2+1 Akıllı Eşleşme Motoru | MeetWork B2B Networking"
+  description="Tanışmak istediğiniz en fazla 5 sektörü seçin; MeetWork algoritması size uygun 2 nokta atışı hedef firma ve farklı sektörden 1 sürpriz fırsat firması eşleştirsin."
+>
+  <!-- Üst Bilgi & Kredi Özeti -->
+  <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-left: 5px solid var(--mw-red) !important;">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-8">
+        <span class="badge bg-danger mb-2">MeetWork Özel Algoritması: 2 Hedef + 1 Sürpriz Sektör</span>
+        <h1 class="h3 fw-bold mb-2">Akıllı İş Eşleştirme Motoru (Zaman Kaybetmeden Doğru Bağlantı)</h1>
+        <p class="small text-muted mb-0">
+          Örneğin <strong>Demir-Çelik Üretimi</strong> yapıyorsunuz; tanışmak istediğiniz <strong>en fazla 5 sektörü</strong> (Makine Üreticisi, Çelik Hammadde, Beyaz Eşya, Oto Kaporta vb.) aşağıdan seçin. Sistem seçtiğiniz sektörlerden <strong>2 nokta atışı işletmeyi</strong> ve hiç beklemediğiniz bir sinerji yaratmak için <strong>rastgele bir sektörden 1 sürpriz işletmeyi</strong> karşınıza çıkarır!
+        </p>
       </div>
-    </section>
-
-    
-    <!-- Problem & Solution -->
-    <section class="mb-5">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <div class="card border-danger h-100">
-            <div class="card-body p-4">
-              <h3 class="h2 text-danger mb-4">🚫 Sıradan Toplantıların Sorunu</h3>
-              <ul class="list-unstyled fs-5">
-                <li class="mb-3">📢 <strong>İşinizi herkese anlatırsınız</strong></li>
-                <li class="mb-3">😴 <strong>Dinleyen olur, ilgilenmeyen olur</strong></li>
-                <li class="mb-3">⏰ <strong>"Bitse de gitsek" diyen olur</strong></li>
-                <li class="mb-3">🤝 <strong>Yanlış profillerle zaman kaybedersiniz</strong></li>
-              </ul>
-              <p class="text-muted fs-5">
-                Örneğin bir mobilya imalatçısı sıradan toplantılarda 
-                sigortacı, avukat, oto alım satımı yapan kişileri dinlemek zorunda kalır.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card border-success h-100">
-            <div class="card-body p-4">
-              <h3 class="h2 text-success mb-4">✅ Akıllı Eşleşme Çözümü</h3>
-              <ul class="list-unstyled fs-5">
-                <li class="mb-3">🎯 <strong>Sadece doğru kişilerle buluşursunuz</strong></li>
-                <li class="mb-3">⚡ <strong>Ticaretinize ivme kazandırırsınız</strong></li>
-                <li class="mb-3">🤖 <strong>Yapay Zeka size en uygun eşleşmeleri bulur</strong></li>
-                <li class="mb-3">💰 <strong>Zaman ve para tasarrufu sağlarsınız</strong></li>
-              </ul>
-              <p class="text-muted fs-5">
-                Mobilya imalatçısı doğrudan mimarlar, inşaat firmaları, 
-                mağazalarla görüşür. <strong>Sürekli müşteri adına tam görüşmesi 
-                gereken kişilerle buluşur.</strong>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="mb-5 py-5" style="background: #f8f9fa; border-radius: 20px;">
-      <div class="container">
-        <h2 class="text-center h1 mb-5 text-primary">🎯 Nasıl Çalışır?</h2>
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-              <div class="mb-4" style="font-size: 3rem;">1️⃣</div>
-              <h4 class="mb-3">Profil Oluştur</h4>
-              <p>Sektör ve alt sektör seçimi yapın. Anahtar kelimelerle işinizi tanıtan bir tanımlama oluşturun.</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-              <div class="mb-4" style="font-size: 3rem;">2️⃣</div>
-              <h4 class="mb-3">Etkinliklere Katıl</h4>
-              <p>İlgi alanlarınıza uygun etkinliklere katılım sağlayın. Sistem otomatik olarak çalışmaya başlar.</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-              <div class="mb-4" style="font-size: 3rem;">3️⃣</div>
-              <h4 class="mb-3">Doğru Kişilerle Buluş</h4>
-              <p>Yapay Zeka algoritmamız sizi tam ihtiyacınız olan kişilerle eşleştirir. Ticaretinizi hızlandırın.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Target Audience -->
-    <section class="mb-5">
-      <h2 class="text-center h1 mb-5 text-primary">👥 Kimler İçin?</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 text-center p-4 border-primary">
-            <div class="mb-3" style="font-size: 3rem;">🏢</div>
-            <h4 class="mb-3">İşletmeler</h4>
-            <p>KOBİ'ler, büyük ölçekli firmalar, üreticiler, distribütörler</p>
-            <ul class="list-unstyled text-start mt-3">
-              <li>✅ Yeni iş ortakları bulma</li>
-              <li>✅ Tedarikçi keşfi</li>
-              <li>✅ Distribütör ağı genişletme</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 text-center p-4 border-success">
-            <div class="mb-3" style="font-size: 3rem;">🚀</div>
-            <h4 class="mb-3">Girişimciler</h4>
-            <p>Startup'lar, yenilikçi fikir sahipleri, teknoloji girişimleri</p>
-            <ul class="list-unstyled text-start mt-3">
-              <li>✅ Yatırımcı bulma</li>
-              <li>✅ Teknik ortak keşfi</li>
-              <li>✅ Pilot müşteri edinme</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 text-center p-4 border-info">
-            <div class="mb-3" style="font-size: 3rem;">🎓</div>
-            <h4 class="mb-3">Akademisyenler & Profesyoneller</h4>
-            <p>Üniversiteler, araştırmacılar, danışmanlar, serbest çalışanlar</p>
-            <ul class="list-unstyled text-start mt-3">
-              <li>✅ Araştırma işbirlikleri</li>
-              <li>✅ Danışmanlık fırsatları</li>
-              <li>✅ Proje ortaklıkları</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Yönetim Panel Özellikleri -->
-<section class="mb-5 py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 20px;">
-  <div class="container">
-    <h2 class="text-center h1 mb-5 text-dark">🚀 MeetWork Akıllı Eşleşme <br>Yönetim Panelinde Neler Var?</h2>
-    <p class="text-center lead mb-5 text-muted">
-      Profesyonel iş ekosistemimizde ihtiyacınız olan tüm araçlar bir arada
-    </p>
-    
-    <div class="row g-4">
-      <!-- Sol Kolon -->
-      <div class="col-lg-6">
-        <!-- Profil ve İletişim -->
-        <div class="card mb-3 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-               <h5 class="mb-0 fw-bold">Profilim & İletişim</h5>
-            </div>
-            <ul class="list-unstyled">
-              <li class="mb-2">📧 <strong>Gelen Kutusu</strong> - Tüm mesajlarınız tek yerde</li>
-              <li class="mb-2">📄 <strong>Dijital Kartvizit</strong> - Modern tanıtım aracı</li>
-              <li class="mb-2">👥 <strong>İştirakçiler İncele</strong> - İş ortaklarını değerlendir</li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- İş Fırsatları -->
-        <div class="card mb-3 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-               <h5 class="mb-0 fw-bold">İş Fırsatları Platformu</h5>
-            </div>
-            <ul class="list-unstyled">
-              <li class="mb-2">🤖 <strong>Akıllı Eşleşme</strong> - Yapay Zeka ile doğru eşleşmeler</li>
-              <li class="mb-2">🛒 <strong>Talep & Teklif</strong> - Alım-satım fırsatları</li>
-              <li class="mb-2">🎯 <strong>Win-Win Fırsatları</strong> - Karşılıklı kazançlar</li>
-              <li class="mb-2">👥 <strong>İş Birliği</strong> - Ortaklık imkanları</li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Etkinlikler -->
-        <div class="card border-0 shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-               <h5 class="mb-0 fw-bold">Etkinlik & Organizasyon</h5>
-            </div>
-            <ul class="list-unstyled">
-              <li class="mb-2">📅 <strong>Etkinlikler</strong> - Sektörel buluşmalar</li>
-              <li class="mb-2">🚨 <strong>Acil Durum</strong> - Acil ihtiyaçlarınız</li>
-              <li class="mb-2">✈️ <strong>Seyahat Plan</strong> - İş seyahatleri</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sağ Kolon -->
-      <div class="col-lg-6">
-        <!-- Kaynaklar -->
-        <div class="card mb-3 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-               <h5 class="mb-0 fw-bold">Finans & Kaynaklar</h5>
-            </div>
-            <ul class="list-unstyled">
-              <li class="mb-2">💰 <strong>Hibe & Kredi</strong> - Finansman fırsatları</li>
-              <li class="mb-2">🎓 <strong>KOBİ Akademisi</strong> - Ücretsiz eğitimler</li>
-              <li class="mb-2">💼 <strong>Paketler</strong> - Premium üyelik seçenekleri</li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- İş Geliştirme -->
-        <div class="card mb-3 border-0 shadow-sm">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-              <h5 class="mb-0 fw-bold">İş Geliştirme Araçları</h5>
-            </div>
-            <ul class="list-unstyled">
-              <li class="mb-2">🏢 <strong>Firmalar</strong> - Binlerce işletme profili </li>
-              <li class="mb-2">👔 <strong>Personel İlanları</strong> - Yetenek avı</li>
-              <li class="mb-2">🔄 <strong>Dijital Dönüşüm</strong> - Teknoloji danışmanlığı </li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Dashboard -->
-        <div class="card border-0 shadow-sm bg-primary text-white">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-              <h5 class="mb-0 fw-bold">Örnek Kişisel Sayfa</h5>
-            </div>
-            <div class="row text-center">
-              <div class="col-4 mb-3">
-                <div class="p-3 bg-white rounded text-primary">
-                  <h4 class="fw-bold mb-1">20</h4>
-                  <small>Talepler</small>
-                </div>
-              </div>
-              <div class="col-4 mb-3">
-                <div class="p-3 bg-white rounded text-primary">
-                  <h4 class="fw-bold mb-1">30</h4>
-                  <small>Teklifler</small>
-                </div>
-              </div>
-              <div class="col-4 mb-3">
-                <div class="p-3 bg-white rounded text-primary">
-                  <h4 class="fw-bold mb-1">450</h4>
-                  <small>Puanım</small>
-                </div>
-              </div>
-            </div>
-            <div class="mt-3">
-              <h6 class="mb-2">📅 Yaklaşan Etkinliklerim: <strong>4</strong></h6>
-              <h6 class="mb-0">🎯 <strong>Ücretsiz Üyelik</strong> - Tüm temel özelliklere erişim</h6>
-            </div>
-          </div>
+      <div class="col-lg-4 text-lg-end">
+        <div class="p-3 rounded border d-inline-block text-start" style="background:var(--mw-surface-alt);">
+          <div class="small text-muted">Kalan Ücretsiz Eşleşme Hakkınız</div>
+          <div class="h4 fw-bolder text-danger mb-1"><span id="mwMatchCreditCount">3</span> Bağlantı Kredisi</div>
+          <a href="/uye-ol-pro" class="small fw-bold text-danger text-decoration-none">Sınırsız Eşleşme İçin PRO'ya Geç →</a>
         </div>
       </div>
     </div>
-    
-    <!-- Açıklama -->
-    <div class="mt-5 text-center">
-      <div class="alert alert-info border-0">
-        <p class="mb-0">
-          <strong>💡 Tüm bu özelliklere ÜCRETSİZ üyelik ile erişebilirsiniz!</strong><br>
-          
-        </p>
+  </div>
+
+  <!-- 5 HEDEF SEKTÖR SEÇİCİ PANELİ -->
+  <div class="mw-panel-card p-4 mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <h5 class="fw-bold mb-0">
+        <i class="bi bi-sliders text-danger me-1"></i> Kimlerle Network Kurmak İstiyorsunuz? (En Fazla 5 Sektör Seçin)
+      </h5>
+      <span class="badge bg-danger-subtle text-danger" id="mwSelectedSectorBadge">0 / 5 Sektör Seçildi</span>
+    </div>
+
+    <div class="row g-2 mb-3">
+      {SECTORS.map((sec, i) => (
+        <div class="col-md-4 col-sm-6">
+          <label class="p-2 rounded border d-flex align-items-center gap-2 w-100" style="cursor:pointer; border-color:var(--mw-border)!important;">
+            <input type="checkbox" class="form-check-input mw-match-sec-cb m-0" value={sec} checked={i < 3} />
+            <span class="small fw-semibold">{sec}</span>
+          </label>
+        </div>
+      ))}
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-2 border-top">
+      <small class="text-muted">İlk bağlantılarınız ücretsizdir; tek tıkla eşleşmeyi yenileyebilir ve doğrudan WhatsApp / Kurumsal Profil üzerinden tanışabilirsiniz.</small>
+      <button type="button" id="mwRunSmartMatchBtn" class="btn btn-danger fw-bold px-4">
+        <i class="bi bi-magic me-1"></i> 2 Hedef + 1 Sürpriz Eşleşmeyi Çalıştır
+      </button>
+    </div>
+  </div>
+
+  <!-- EŞLEŞME SONUÇ KARTLARI (2 HEDEF + 1 SÜRPRİZ) -->
+  <div class="mb-5">
+    <h5 class="fw-bold mb-3"><i class="bi bi-stars text-danger me-1"></i> Size Özel Eşleşen İşletmeler (2 Hedef + 1 Sürpriz)</h5>
+    <div class="row g-4" id="mwSmartMatchResults">
+      <div class="col-12 text-center py-4 text-muted">Eşleşmeler hesaplanıyor...</div>
+    </div>
+  </div>
+
+  <!-- BİLGİLENDİRME BÖLÜMÜ (MEVCUT AKILLI EŞLEŞME ANLATIMI KORUNDU) -->
+  <div class="mw-panel-card p-4 shadow-sm">
+    <h5 class="fw-bold mb-3">Neden "2 Hedef + 1 Sürpriz" Modeli?</h5>
+    <div class="row g-3 small text-muted">
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <strong class="text-danger d-block mb-1">1. Hedef Odaklı Ticaret (2 Firma)</strong>
+          Doğrudan tedarikçiniz veya müşteriniz olabilecek, sizin seçtiğiniz 5 sektör içerisinden en yüksek güven skoruna sahip 2 firma listelenir.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <strong class="text-danger d-block mb-1">2. Tesadüfi Ticaret Sinerjisi (1 Sürpriz Firma)</strong>
+          Yüz yüze MeetWork toplantılarında masada yanınıza oturan farklı sektördeki bir iş insanından doğan sürpriz ortaklıkları dijitale taşır.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <strong class="text-danger d-block mb-1">3. Sıfır Zaman Kaybı</strong>
+          Binlerce profil arasında kaybolmak yerine her gün nokta atışı 3 nitelikli karar vericiyle doğrudan tanışırsınız.
+        </div>
       </div>
     </div>
   </div>
-</section>
 
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
 
-    <!-- CTA Section -->
-    <section class="text-center py-5 mb-5" style="background: linear-gradient(135deg, #fd5405 0%, #f3b200 100%); border-radius: 20px; color: white;">
-      <div class="container">
-        <h2 class="display-5 fw-bold mb-4">⏰ Zaman Kaybetmeyin, <br>Ticaretinizi Hızlandırın!</h2>
-        <p class="lead fs-4 mb-5" style="color: rgba(255,255,255,0.9);">
-          <strong>Sistemi kullanmak tamamen ÜCRETSİZ!</strong><br>
-          Hemen kaydolun, doğru kişilerle buluşmaya başlayın.
-        </p>
-        <a href="https://panel.meetwork.net" target="_blank" class="btn btn-light btn-lg px-5 py-3 fw-bold fs-4" 
-           style="background: white; color: #000000; border: none; border-radius: 50px;">
-          🎯 Hemen Ücretsiz Kayıt Ol
-        </a>
-        
-      </div>
-    </section>
+      function updateBadgeCount() {
+        const count = document.querySelectorAll('.mw-match-sec-cb:checked').length;
+        const badge = document.getElementById('mwSelectedSectorBadge');
+        if (badge) badge.textContent = `${count} / 5 Sektör Seçildi`;
+      }
 
-    <!-- MeetWork Vision -->
-    <section class="mb-5">
-      <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%); color: white;">
-        <div class="card-body p-5">
-          <h2 class="text-center h1 mb-4">🌟 MeetWork Vizyonu</h2>
-          <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-              <p class="lead fs-4 mb-4">
-                MeetWork sadece dijital bir platformdan ibaret değildir. 
-                <strong>KOBİ'lerin ve profesyonellerin stratejik iş birlikleri kurarak 
-                geleceğe emin adımlarla yürüdüğü, canlı ve dinamik bir iş ekosistemidir.</strong>
-              </p>
-              <p class="fs-5 mb-4">
-                Vizyonumuz, <strong>2030 yılı hedefleri</strong> doğrultusunda sektörler arası 
-                sınırları yeniden çizmektir. İş dünyasını dönüştürecek en doğru bağlantıları 
-                kurarak, potansiyelinizi maksimize etmenize yardımcı oluyoruz.
-              </p>
-              <p class="fs-5">
-                MeetWork olarak, <strong>sadece bir araya gelmenizi değil, bu buluşmalardan 
-                somut iş fırsatları yaratmanızı</strong> amaçlıyoruz.
-              </p>
+      async function runMatch() {
+        const resultsEl = document.getElementById('mwSmartMatchResults');
+        const selected = Array.from(document.querySelectorAll('.mw-match-sec-cb:checked')).map(cb => cb.value);
+
+        let user = null;
+        try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+        const qs = new URLSearchParams();
+        if (user && user.company_id) qs.set('company_id', user.company_id);
+        if (selected.length > 0) qs.set('targets', selected.join(','));
+
+        try {
+          const res = await fetch(`${API_URL}/api/smart-match?${qs.toString()}`);
+          const data = await res.json();
+          const targets = (data.matches && data.matches.target_firms) || [];
+          const surprise = data.matches && data.matches.surprise_firm;
+
+          const cards = [];
+          targets.forEach((f, idx) => {
+            cards.push({
+              ...f,
+              cardTitle: `${idx + 1}. Nokta Atışı Hedef Eşleşme`,
+              badgeClass: 'bg-danger',
+              icon: 'bi-bullseye'
+            });
+          });
+          if (surprise) {
+            cards.push({
+              ...surprise,
+              cardTitle: `3. Sürpriz Sektör Eşleşmesi (Fırsat)`,
+              badgeClass: 'bg-dark',
+              icon: 'bi-shuffle'
+            });
+          }
+
+          if (cards.length === 0) {
+            resultsEl.innerHTML = `
+              <div class="col-12">
+                <div class="mw-panel-card p-4 text-center">
+                  <h6 class="fw-bold">Eşleşme Havuzu Hazırlanıyor</h6>
+                  <p class="small text-muted mb-2">Seçtiğiniz sektörlerde yeni işletmeler eklendikçe burada 2 Hedef + 1 Sürpriz olarak listelenecektir.</p>
+                  <a href="/giris?tab=register" class="btn btn-sm btn-danger fw-bold">+ İşletmenizi Havuza Ekleyin</a>
+                </div>
+              </div>`;
+            return;
+          }
+
+          resultsEl.innerHTML = cards.map((c) => `
+            <div class="col-md-4">
+              <div class="mw-panel-card p-4 h-100 d-flex flex-column justify-content-between shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge ${c.badgeClass}"><i class="bi ${c.icon} me-1"></i> ${c.cardTitle}</span>
+                    <small class="text-muted">${c.city || 'İstanbul'}</small>
+                  </div>
+                  <h5 class="fw-bold mb-1">${c.name}</h5>
+                  <div class="small text-danger fw-semibold mb-2">${c.sector}</div>
+                  <p class="small text-muted mb-3">
+                    ${c.description || 'MeetWork doğrulanmış kurumsal üyesi. Toptan tedarik, fason üretim ve B2B iş birliğine açık işletme.'}
+                  </p>
+                </div>
+
+                <div class="d-grid gap-2 pt-3 border-top" style="border-color:var(--mw-border)!important;">
+                  <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="btn btn-danger btn-sm fw-bold">
+                    <i class="bi bi-person-plus-fill me-1"></i> Ağına Ekle & Profilini İncele
+                  </a>
+                  <a href="/ihaleler?yeni=1" class="btn btn-outline-secondary btn-sm fw-semibold">
+                    <i class="bi bi-hammer me-1"></i> Teklif İste / İhaleye Davet Et
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          `).join('');
+        } catch (_) {}
+      }
 
-    <!-- Final CTA -->
-    <section class="text-center">
-      <div class="card border-primary shadow">
-        <div class="card-body p-5">
-          <h3 class="h2 text-primary mb-4">🚀 MeetWork Ekosistemine Katılın</h3>
-          <p class="lead mb-4">
-            Binlerce işletme, girişimci ve profesyonel sizi bekliyor. 
-            Doğru bağlantıları kurmak için geç kalmayın.
-          </p>
-          <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
-            <a href="https://panel.meetwork.net" target="_blank" class="btn btn-primary btn-lg px-5 py-3">
-              📋 Hemen Ücretsiz Kayıt Ol
-            </a>
-            <a href="/iletisim" class="btn btn-outline-primary btn-lg px-5 py-3">
-              💬 Daha Fazla Bilgi Al
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+      document.addEventListener('DOMContentLoaded', () => {
+        updateBadgeCount();
 
-  <style>
+        document.querySelectorAll('.mw-match-sec-cb').forEach((cb) => {
+          cb.addEventListener('change', () => {
+            const checked = document.querySelectorAll('.mw-match-sec-cb:checked');
+            if (checked.length > 5) {
+              cb.checked = false;
+              alert('En fazla 5 hedef sektör seçebilirsiniz!');
+            }
+            updateBadgeCount();
+          });
+        });
 
-    .material-icons-round {
-    font-size: 28px;
-  }
-  .card {
-    border-radius: 15px;
-    transition: all 0.3s ease;
-  }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-  }
-  .text-purple {
-    color: #6f42c1;
-  }
-
-    .card {
-      border-radius: 15px;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    h1, h2, h3, h4 {
-      font-weight: 700;
-    }
-    .lead {
-      line-height: 1.6;
-    }
-    .btn {
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-  </style>
+        document.getElementById('mwRunSmartMatchBtn').addEventListener('click', runMatch);
+        runMatch();
+      });
+    })();
+  </script>
 </BaseLayout>

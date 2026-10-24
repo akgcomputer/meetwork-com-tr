@@ -1,128 +1,220 @@
 ---
 import { menuItems } from '../../data/menu';
 const currentPath = Astro.url.pathname;
-// Move the external globe (MeetWork) out of the main menu and render it as an icon-only link
-const globeItem = menuItems.find((i) => i.icon === 'bi-globe' && i.target);
-const filteredMenu = menuItems.filter((i) => i !== globeItem);
 ---
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="/" aria-label="Ana Sayfa">
-      <span class="brand-meet">Meet</span><span class="brand-work">Work</span>
-    </a>
-
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        {filteredMenu.map((item) => (
-          <li class={`nav-item ${item.subItems ? 'dropdown' : ''}`}>
-            {item.subItems ? (
-              <>
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                >
-                  {item.icon && <i class={item.icon}></i>} {item.title}
-                </a>
-                <ul class="dropdown-menu">
-                  {item.subItems.map((subItem) => (
-                    <li>
-                      <a class="dropdown-item" href={subItem.url}>
-                        {subItem.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <a
-                class={`nav-link ${currentPath === item.url ? 'active' : ''}`}
-                href={item.url}
-                target={item.target}
-                rel={item.target ? 'noopener noreferrer' : null}
-                aria-label={(item.target || (typeof item.url === 'string' && item.url.startsWith('http'))) ? item.title : null}
-              >
-                {item.icon && <i class={item.icon}></i>}
-                {!(item.target || (typeof item.url === 'string' && item.url.startsWith('http'))) && ` ${item.title}`}
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
+<header class="mw-super-header sticky-top">
+  <!-- Üst İnce Ekosistem & Kurumsal Bilgi Bandı -->
+  <div class="mw-topbar d-none d-lg-block">
+    <div class="container-fluid px-lg-4 d-flex justify-content-between align-items-center py-1">
+      <div class="d-flex align-items-center gap-3 small">
+        <span class="badge bg-danger">B2B Super-Network</span>
+        <a href="https://stokpratik.com.tr" target="_blank" rel="noopener" class="mw-toplink">
+          <i class="bi bi-box-seam text-danger"></i> StokPratik ERP & CariNet
+        </a>
+        <a href="https://depodandirekt.com" target="_blank" rel="noopener" class="mw-toplink">
+          <i class="bi bi-globe2 text-danger"></i> DepodanDirekt Toptan & İhracat
+        </a>
+        <a href="/etkinlik-takvimi" class="mw-toplink">
+          <i class="bi bi-calendar-check text-danger"></i> Yüz Yüze Networking Toplantıları
+        </a>
+      </div>
+      <div class="d-flex align-items-center gap-3 small">
+        <a href="/acil-durum" class="mw-toplink text-danger fw-bold">
+          <i class="bi bi-exclamation-triangle-fill"></i> Acil Durum Destek
+        </a>
+        <a href="/uye-ol" class="mw-toplink">PRO Üyelik Avantajları</a>
+        <a href="/sss" class="mw-toplink">SSS</a>
+        <a href="/iletisim" class="mw-toplink">İletişim</a>
+      </div>
     </div>
-
-    <!-- Globe (external MeetWork) icon-only link, then login button -->
-    {globeItem && (
-      <a class="nav-globe ms-2" href={globeItem.url} target={globeItem.target} rel="noopener noreferrer" aria-label={globeItem.title}>
-        <i class={globeItem.icon}></i>
-      </a>
-    )}
-
-    <a class="login-btn" href="https://panel.meetwork.net" target="_blank" rel="noopener noreferrer">
-      <i class="bi-box-arrow-in-right"></i>
-      Giriş
-    </a>
-
   </div>
-</nav>
 
+  <!-- Ana Navigasyon Barı -->
+  <nav class="navbar navbar-expand-xl py-2">
+    <div class="container-fluid px-lg-4">
+      <!-- Dinamik MeetWork Logosu: Açık temada Kırmızı Meet + Siyah Work, Koyu temada Kırmızı Meet + Beyaz Work -->
+      <a class="navbar-brand d-flex align-items-center me-3" href="/" aria-label="MeetWork Ana Sayfa">
+        <span class="mw-logo-meet">Meet</span><span class="mw-logo-work">Work</span>
+        <span class="mw-logo-badge ms-2 d-none d-sm-inline-block">PRO</span>
+      </a>
 
+      <!-- Hızlı Arama Çubuğu (Sahibinden + LinkedIn Hibrit Arama) -->
+      <form class="mw-global-search d-none d-md-flex me-auto my-0" action="/ilanlar" method="get">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text border-end-0 bg-transparent text-danger">
+            <i class="bi bi-search"></i>
+          </span>
+          <input
+            type="search"
+            name="q"
+            class="form-control border-start-0 ps-0"
+            placeholder="İlan No, Emlak, Oto, Makine, İhale veya İşletme ara..."
+            aria-label="Ara"
+          />
+          <button class="btn btn-danger px-3 fw-semibold" type="submit">Ara</button>
+        </div>
+      </form>
 
+      <!-- Mobil Sağ Aksiyonlar (Tema & Toggler) -->
+      <div class="d-flex align-items-center gap-2 d-xl-none">
+        <button type="button" class="btn btn-sm mw-theme-btn" id="mwThemeToggleMobile" aria-label="Tema Değiştir" title="Açık / Koyu Tema">
+          <span class="mw-theme-icon">☀️</span>
+        </button>
+        <a href="/giris" class="btn btn-sm btn-danger fw-bold">
+          <i class="bi bi-person-circle"></i> Giriş
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mwMainNavbar"
+          aria-controls="mwMainNavbar"
+          aria-expanded="false"
+          aria-label="Menüyü Aç"
+        >
+          <i class="bi bi-list fs-2 text-danger"></i>
+        </button>
+      </div>
 
-<style>
-  .navbar-brand {
-    font-weight: bold;
-  }
+      <!-- Orta & Sağ Menü -->
+      <div class="collapse navbar-collapse" id="mwMainNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-xl-center gap-xl-1">
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath === '/' ? 'active' : ''}`} href="/">
+              <i class="bi bi-compass-fill text-danger"></i> Keşfet & Akış
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/ilanlar') ? 'active' : ''}`} href="/ilanlar">
+              <i class="bi bi-shop-window text-danger"></i> İlan Pazarı
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/ihaleler') || currentPath.startsWith('/talepler') ? 'active' : ''}`} href="/ihaleler">
+              <i class="bi bi-hammer text-danger"></i> E-İhale & Talepler
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/akilli-eslesme') ? 'active' : ''}`} href="/akilli-eslesme">
+              <i class="bi bi-diagram-3-fill text-danger"></i> Akıllı Eşleşme <span class="badge bg-danger ms-1" style="font-size:0.65rem;">2+1</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/isletmeler') ? 'active' : ''}`} href="/isletmeler">
+              <i class="bi bi-buildings-fill text-danger"></i> İşletmeler & Vitrin
+            </a>
+          </li>
 
-  .nav-link i {
-    margin-right: 5px;
-  }
+          <!-- Mevcut Tüm Kurumsal Bilgi ve İşleyiş Sayfalarını Koruyan Mega Dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link mw-nav-pill dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-info-circle-fill text-danger"></i> Kurumsal & İşleyiş
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end mw-mega-dropdown shadow-lg p-3">
+              <div class="row g-3" style="min-width: 640px; max-width: 90vw;">
+                {menuItems.filter(m => m.subItems && m.subItems.length > 0).map((group) => (
+                  <div class="col-md-4 col-sm-6">
+                    <div class="fw-bold text-danger small text-uppercase mb-2 border-bottom pb-1">
+                      {group.icon && <i class={`${group.icon} me-1`}></i>} {group.title}
+                    </div>
+                    <ul class="list-unstyled mb-0">
+                      {group.subItems!.slice(0, 10).map((sub) => (
+                        <li>
+                          <a class="dropdown-item py-1 px-2 rounded small" href={sub.url} target={sub.target}>
+                            {sub.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </ul>
+          </li>
+        </ul>
 
-  .login-btn {
-    background-color: #dc3545;
-    color: white !important;
-    padding: 8px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    border: none;
-    margin-left: 10px;
-    display: inline-block;
-  }
+        <!-- Sağ Aksiyon Butonları: + İlan/İhale Ver, Güneş/Ay Tema İkonu, Giriş/Profil -->
+        <div class="d-none d-xl-flex align-items-center gap-2 ms-2">
+          <a href="/ilanlar?yeni=1" class="btn btn-sm btn-outline-danger fw-bold px-3">
+            <i class="bi bi-plus-lg"></i> İlan / İhale Ver
+          </a>
 
-  .brand-meet { color: #dc3545; font-weight: 700; }
-  .brand-work { color: #ffffff; font-weight: 700; margin-left: 4px; }
+          <button
+            type="button"
+            class="btn btn-sm mw-theme-btn"
+            id="mwThemeToggleDesktop"
+            aria-label="Açık / Koyu Tema Değiştir"
+            title="Açık (☀️) / Koyu (🌙) Tema"
+          >
+            <span class="mw-theme-icon">☀️</span>
+          </button>
 
-  .nav-globe { display: inline-flex; align-items: center; justify-content: center; padding: 6px; border-radius: 6px; text-decoration: none; }
-  .nav-globe i { color: white; font-size: 1.15rem; }
+          <a href="/giris" id="mwHeaderAuthBtn" class="btn btn-sm btn-danger fw-bold px-3 d-flex align-items-center gap-2">
+            <i class="bi bi-person-circle fs-6"></i>
+            <span id="mwHeaderAuthLabel">Giriş</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 
-  .login-btn:hover {
-    background-color: #c82333;
-    color: white !important;
-  }
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'mw_theme';
+    const USER_KEY = 'mw_user';
 
-  @media (max-width: 991px) {
-    .navbar-nav {
-      padding-top: 1rem;
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-bs-theme', theme);
+      const icons = document.querySelectorAll('.mw-theme-icon');
+      icons.forEach((el) => {
+        el.textContent = theme === 'dark' ? '☀️' : '🌙';
+      });
     }
 
-    .dropdown-menu {
-      background-color: rgba(0, 0, 0, 0.1);
-      border: none;
-    }
-  }
-</style>
+    const savedTheme = localStorage.getItem(STORAGE_KEY) || 'dark';
+    applyTheme(savedTheme);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(localStorage.getItem(STORAGE_KEY) || 'dark');
+
+      const toggleTheme = () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(STORAGE_KEY, next);
+        applyTheme(next);
+      };
+
+      const btnDesktop = document.getElementById('mwThemeToggleDesktop');
+      const btnMobile = document.getElementById('mwThemeToggleMobile');
+      if (btnDesktop) btnDesktop.addEventListener('click', toggleTheme);
+      if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
+
+      // Update Auth Button if Logged In
+      try {
+        const rawUser = localStorage.getItem(USER_KEY);
+        if (rawUser) {
+          const user = JSON.parse(rawUser);
+          const authLabel = document.getElementById('mwHeaderAuthLabel');
+          const authBtn = document.getElementById('mwHeaderAuthBtn');
+          if (authLabel && user.company_name) {
+            authLabel.textContent = user.company_name.slice(0, 18);
+          } else if (authLabel && user.full_name) {
+            authLabel.textContent = user.full_name.slice(0, 18);
+          }
+          if (authBtn && user.company_slug) {
+            authBtn.setAttribute('href', `/isletmeler?firma=${user.company_slug}`);
+          }
+        }
+      } catch (_) {}
+    });
+  })();
+</script>

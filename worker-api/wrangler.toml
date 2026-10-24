@@ -1,0 +1,37 @@
+name = "meetwork-api"
+main = "src/index.ts"
+compatibility_date = "2024-03-20"
+account_id = "dd1ee82558b38cf7f7cdfe5c0207fafa"
+
+[vars]
+ENVIRONMENT = "production"
+STOKPRATIK_API_URL = "https://stok-pratik-api.akgcomputer.workers.dev"
+DEPODANDIREKT_URL = "https://depodandirekt.com"
+
+# MeetWork Ana D1 Veritabanı
+[[d1_databases]]
+binding = "DB"
+database_name = "meetwork-db"
+database_id = "c46f0afd-0de4-4070-9f26-1244181ff904"
+
+# StokPratik ERP & CariNet Ortak D1 Veritabanı (Cross-Platform Köprüsü)
+[[d1_databases]]
+binding = "SP_DB"
+database_name = "stok-pratik-master"
+database_id = "4d76a37d-3f97-4cce-8304-b479be3b6ab4"
+
+# DepodanDirekt Toptan & İhracat D1 Veritabanı
+[[d1_databases]]
+binding = "DD_DB"
+database_name = "depodandirekt-db"
+database_id = "0cc623c7-20c5-4cfc-a11f-e7b63b9ad128"
+
+# MeetWork R2 Medya ve İlan Görsel Deposu
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "meetwork-media"
+
+# MeetWork KV Oturum, Önbellek ve Canlı İhale Sayaç Alanı
+[[kv_namespaces]]
+binding = "KV"
+id = "418fd5d6921f4bff985f11d3ca1d2d30"
