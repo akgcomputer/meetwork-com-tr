@@ -73,23 +73,17 @@ const currentPath = Astro.url.pathname;
           <span class="mw-theme-icon">☀️</span>
         </button>
 
-        <!-- Mobil Giriş Butonu (Giriş Yapılmamışsa) -->
-        <a href="/giris" class="btn btn-sm btn-danger fw-bold mw-guest-auth-btn">
-          <i class="bi bi-person-circle"></i> Giriş
-        </a>
-
-        <!-- Mobil Kullanıcı İkonu & Mini Menü (Giriş Yapılmışsa - Yazısız İkon) -->
-        <div class="dropdown mw-user-auth-dropdown" style="display:none;">
-          <button
-            type="button"
-            class="btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center p-0"
-            style="width: 36px; height: 36px;"
-            data-bs-toggle="dropdown"
+        <!-- Mobil Tekil Giriş / Profil Butonu (Giriş yoksa İkon+Giriş, Giriş varsa Sadece İkon + Alt Menü) -->
+        <div class="dropdown">
+          <a
+            href="/giris"
+            class="btn btn-sm btn-danger fw-bold px-2 d-inline-flex align-items-center gap-1 mw-unified-auth-btn"
             aria-expanded="false"
-            title="Hesabım & İşletme Menüsü"
+            title="Giriş / Profilim"
           >
-            <i class="bi bi-person-check-fill fs-5"></i>
-          </button>
+            <i class="bi bi-person-circle fs-6 mw-auth-icon"></i>
+            <span class="mw-auth-text">Giriş</span>
+          </a>
           <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 245px; border-top: 3px solid var(--mw-red);">
             <div class="px-2 py-2 border-bottom mb-1" style="border-color:var(--mw-border)!important;">
               <div class="fw-bold small text-truncate mw-drop-company">İşletmem</div>
@@ -263,25 +257,17 @@ const currentPath = Astro.url.pathname;
             <span class="mw-theme-icon">☀️</span>
           </button>
 
-          <!-- Giriş Yapılmamışsa: Giriş Butonu -->
-          <a href="/giris" class="btn btn-sm btn-danger fw-bold px-3 d-flex align-items-center gap-2 mw-guest-auth-btn">
-            <i class="bi bi-person-circle fs-6"></i>
-            <span>Giriş</span>
-          </a>
-
-          <!-- Giriş Yapılmışsa: Yazısız Sadece Profil İkonu + Mini Kurumsal Açılır Menü -->
-          <div class="dropdown mw-user-auth-dropdown" style="display:none;">
-            <button
-              type="button"
-              class="btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center p-0 shadow-sm"
-              style="width: 38px; height: 38px;"
-              data-bs-toggle="dropdown"
+          <!-- Masaüstü Tekil Giriş / Profil Butonu (Giriş yoksa User İkonu + Giriş, Giriş varsa Sadece User İkonu + Alt Menü) -->
+          <div class="dropdown">
+            <a
+              href="/giris"
+              class="btn btn-sm btn-danger fw-bold px-3 d-inline-flex align-items-center gap-2 mw-unified-auth-btn"
               aria-expanded="false"
-              title="Profilim & İşletme Menüsü"
-              aria-label="Profil Menüsü"
+              title="Giriş / Profil Menüsü"
             >
-              <i class="bi bi-person-check-fill fs-5"></i>
-            </button>
+              <i class="bi bi-person-circle fs-6 mw-auth-icon"></i>
+              <span class="mw-auth-text">Giriş</span>
+            </a>
             <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 255px; border-top: 3px solid var(--mw-red);">
               <div class="px-3 py-2 border-bottom mb-1" style="border-color:var(--mw-border)!important;">
                 <div class="fw-bold small text-truncate mw-drop-company">İşletmem</div>
@@ -380,14 +366,26 @@ const currentPath = Astro.url.pathname;
       if (btnDesktop) btnDesktop.addEventListener('click', toggleTheme);
       if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
 
-      // Giriş Durumu: Yazısız Profil İkonu ve Mini Açılır Menü
+      // Giriş Durumu: Tek Buton -> Giriş yapılmışsa "Giriş" yazısı kalkar, sadece User İkonu kalır ve tıklayınca mini menü açılır
       try {
         const rawUser = localStorage.getItem(USER_KEY);
         if (rawUser) {
           const user = JSON.parse(rawUser);
           if (user && (user.email || user.user_id)) {
-            document.querySelectorAll('.mw-guest-auth-btn').forEach(el => { el.style.display = 'none'; });
-            document.querySelectorAll('.mw-user-auth-dropdown').forEach(el => { el.style.display = 'block'; });
+            document.querySelectorAll('.mw-unified-auth-btn').forEach(btn => {
+              btn.setAttribute('href', '#');
+              btn.setAttribute('data-bs-toggle', 'dropdown');
+              btn.classList.remove('px-3', 'px-2', 'gap-2', 'gap-1');
+              btn.classList.add('rounded-circle', 'p-0', 'justify-content-center');
+              btn.style.width = '38px';
+              btn.style.height = '38px';
+              const textSpan = btn.querySelector('.mw-auth-text');
+              if (textSpan) textSpan.remove();
+              const iconEl = btn.querySelector('.mw-auth-icon');
+              if (iconEl) {
+                iconEl.className = 'bi bi-person-circle fs-5 mw-auth-icon';
+              }
+            });
 
             document.querySelectorAll('.mw-drop-company').forEach(el => {
               el.textContent = user.company_name || 'Kurumsal İşletmem';
