@@ -69,8 +69,8 @@ const currentPath = Astro.url.pathname;
         <a href="/ilanlar?yeni=1" class="mw-led-plus-btn" title="İlan veya İhale Ver" aria-label="İlan veya İhale Ver">
           <i class="bi bi-plus-lg"></i>
         </a>
-        <button type="button" class="btn btn-sm mw-theme-btn" id="mwThemeToggleMobile" aria-label="Tema Değiştir" title="Açık / Koyu Tema">
-          <span class="mw-theme-icon">☀️</span>
+        <button type="button" class="btn btn-sm mw-theme-btn" id="mwThemeToggleMobile" aria-label="Tema Değiştir" title="Açık / Koyu Tema Değiştir">
+          <span class="mw-theme-icon"><i class="bi bi-moon-stars-fill mw-moon-silver"></i></span>
         </button>
 
         <!-- Mobil Tekil Giriş / Profil Butonu (Giriş yoksa İkon+Giriş, Giriş varsa Sadece İkon + Alt Menü) -->
@@ -252,9 +252,9 @@ const currentPath = Astro.url.pathname;
             class="btn btn-sm mw-theme-btn"
             id="mwThemeToggleDesktop"
             aria-label="Açık / Koyu Tema Değiştir"
-            title="Açık (☀️) / Koyu (🌙) Tema"
+            title="Açık / Koyu Tema Değiştir"
           >
-            <span class="mw-theme-icon">☀️</span>
+            <span class="mw-theme-icon"><i class="bi bi-moon-stars-fill mw-moon-silver"></i></span>
           </button>
 
           <!-- Masaüstü Tekil Giriş / Profil Butonu (Giriş yoksa User İkonu + Giriş, Giriş varsa Sadece User İkonu + Alt Menü) -->
@@ -329,7 +329,7 @@ const currentPath = Astro.url.pathname;
 
 <script is:inline>
   (function () {
-    const STORAGE_KEY = 'mw_theme';
+    const STORAGE_KEY = 'mw_theme_v2';
     const USER_KEY = 'mw_user';
     const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
 
@@ -338,7 +338,11 @@ const currentPath = Astro.url.pathname;
       document.documentElement.setAttribute('data-bs-theme', theme);
       const icons = document.querySelectorAll('.mw-theme-icon');
       icons.forEach((el) => {
-        el.textContent = theme === 'dark' ? '☀️' : '🌙';
+        if (theme === 'dark') {
+          el.innerHTML = '<i class="bi bi-sun-fill mw-sun-glow"></i>';
+        } else {
+          el.innerHTML = '<i class="bi bi-moon-stars-fill mw-moon-silver"></i>';
+        }
       });
     }
 
@@ -348,14 +352,14 @@ const currentPath = Astro.url.pathname;
       return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Kayıtlı Üye</span>';
     }
 
-    const savedTheme = localStorage.getItem(STORAGE_KEY) || 'dark';
+    const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
     applyTheme(savedTheme);
 
     document.addEventListener('DOMContentLoaded', () => {
-      applyTheme(localStorage.getItem(STORAGE_KEY) || 'dark');
+      applyTheme(localStorage.getItem(STORAGE_KEY) || 'light');
 
       const toggleTheme = () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
         const next = current === 'dark' ? 'light' : 'dark';
         localStorage.setItem(STORAGE_KEY, next);
         applyTheme(next);
