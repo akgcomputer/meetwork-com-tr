@@ -449,7 +449,7 @@ app.post('/api/posts/:id/like', async (c) => {
 });
 
 // ============================================================================
-// 4. SAHİBİNDEN KAFASI İLAN PAZARI (EMLAK, VASITA BINEK/TİCARİ, SANAYİ, 2.EL)
+// 4. İLAN PAZARI (EMLAK, VASITA BINEK/TİCARİ, SANAYİ, 2.EL)
 // ============================================================================
 app.get('/api/listings', async (c) => {
   await ensureSchema(c.env.DB);
@@ -644,7 +644,7 @@ app.put('/api/companies/:id/targets', async (c) => {
 });
 
 // ============================================================================
-// 6. JETRACT TARZI E-İHALE, RFQ, AÇIK EKSİLTME, KAPALI ZARF & ORTAK ALIM
+// 6. E-İHALE, RFQ, AÇIK EKSİLTME, KAPALI ZARF & ORTAK ALIM
 // ============================================================================
 app.get('/api/tenders', async (c) => {
   await ensureSchema(c.env.DB);
