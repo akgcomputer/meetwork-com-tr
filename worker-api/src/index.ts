@@ -223,6 +223,65 @@ async function ensureSchema(db: D1Database) {
       cta_url TEXT,
       views_count INTEGER DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_grant_profiles (
+      company_id TEXT PRIMARY KEY,
+      company_name TEXT NOT NULL,
+      org_type TEXT DEFAULT 'ltd_as',
+      founded_year INTEGER DEFAULT 2021,
+      nace_sector TEXT DEFAULT 'Teknoloji, Yazılım & E-Ticaret',
+      city TEXT DEFAULT 'İstanbul',
+      employee_range TEXT DEFAULT '10-49',
+      revenue_range TEXT DEFAULT '5M-25M',
+      balance_years INTEGER DEFAULT 4,
+      has_export INTEGER DEFAULT 1,
+      has_rd_software INTEGER DEFAULT 1,
+      seeking_consortium_partner INTEGER DEFAULT 1,
+      target_funding_types TEXT DEFAULT '["hibe","ab_fon","global","kredi","vergi_teknopark"]',
+      project_summary TEXT,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_grant_programs (
+      id TEXT PRIMARY KEY,
+      code TEXT UNIQUE NOT NULL,
+      title TEXT NOT NULL,
+      provider TEXT NOT NULL,
+      scope TEXT DEFAULT 'yerel',
+      funding_type TEXT DEFAULT 'hibe',
+      eligible_org_types TEXT DEFAULT '["ltd_as","sahis"]',
+      min_company_age INTEGER DEFAULT 0,
+      max_company_age INTEGER DEFAULT 99,
+      eligible_sectors TEXT DEFAULT '["all"]',
+      requires_export INTEGER DEFAULT 0,
+      requires_rd INTEGER DEFAULT 0,
+      grant_rate TEXT NOT NULL,
+      max_amount TEXT NOT NULL,
+      deadline_info TEXT DEFAULT 'Sürekli Açık',
+      official_url TEXT,
+      description TEXT,
+      requirements_checklist TEXT DEFAULT '[]',
+      status TEXT DEFAULT 'active',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_grant_applications (
+      id TEXT PRIMARY KEY,
+      application_no TEXT UNIQUE NOT NULL,
+      company_id TEXT NOT NULL,
+      company_name TEXT NOT NULL,
+      contact_name TEXT,
+      contact_phone TEXT,
+      contact_email TEXT,
+      program_id TEXT NOT NULL,
+      program_title TEXT NOT NULL,
+      provider TEXT,
+      scope TEXT DEFAULT 'yerel',
+      match_score INTEGER DEFAULT 95,
+      project_title TEXT,
+      project_notes TEXT,
+      current_step TEXT DEFAULT 'Ön Analiz & Evrak Hazırlığı',
+      checklist_progress TEXT DEFAULT '{}',
+      admin_notes TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`
   ];
 
@@ -389,6 +448,27 @@ app.post('/api/auth/register', async (c) => {
   ).bind(
     userId, email.trim().toLowerCase(), password || 'mw_pass', full_name.trim(),
     phone || '', body.title || 'Firma Yetkilisi', companyId, spTenantId
+  ).run();
+
+  const foundedYear = Number(body.founded_year || 2021);
+  const balanceYears = Math.max(0, 2026 - foundedYear);
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_grant_profiles (
+       company_id, company_name, org_type, founded_year, nace_sector, city,
+       employee_range, revenue_range, balance_years, has_export, has_rd_software, seeking_consortium_partner
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`
+  ).bind(
+    companyId,
+    company_name.trim(),
+    body.org_type || 'ltd_as',
+    foundedYear,
+    sector,
+    city,
+    body.employee_range || '10-49',
+    body.revenue_range || '5M-25M',
+    balanceYears,
+    body.has_export !== undefined ? Number(body.has_export) : 1,
+    body.has_rd_software !== undefined ? Number(body.has_rd_software) : (sector.includes('Yazılım') || sector.includes('Teknoloji') ? 1 : 0)
   ).run();
 
   const sessionToken = uid('mwsess');
@@ -986,10 +1066,11 @@ app.get('/api/companies', async (c) => {
 app.get('/api/companies/:slugOrId', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialStories(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
   const param = c.req.param('slugOrId');
   const company = await c.env.DB.prepare(
-    `SELECT * FROM mw_companies WHERE slug = ? OR id = ? LIMIT 1`
-  ).bind(param, param).first() as any;
+    `SELECT * FROM mw_companies WHERE slug = ? OR id = ? OR ( ? = 'dd-internet-ve-e-ticaret-hizmetleri-meetwork' AND id = 'comp_meetwork_hq' ) LIMIT 1`
+  ).bind(param, param, param).first() as any;
 
   if (!company) return c.json({ success: false, message: 'İşletme bulunamadı.' }, 404);
 
@@ -1013,6 +1094,35 @@ app.get('/api/companies/:slugOrId', async (c) => {
     `SELECT * FROM mw_endorsements WHERE to_company_id = ? ORDER BY created_at DESC`
   ).bind(company.id).all();
 
+  const grantProfile = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_profiles WHERE company_id = ? LIMIT 1`
+  ).bind(company.id).first() as any;
+
+  const { results: grantApplications } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_applications WHERE company_id = ? ORDER BY created_at DESC`
+  ).bind(company.id).all();
+
+  const { results: allPrograms } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_programs WHERE status = 'active'`
+  ).all();
+
+  const effectiveProfile = grantProfile || {
+    company_id: company.id,
+    company_name: company.name,
+    org_type: 'ltd_as',
+    founded_year: company.id === 'comp_meetwork_hq' ? 2021 : 2020,
+    nace_sector: company.sector || 'Teknoloji, Yazılım & E-Ticaret',
+    city: company.city || 'İstanbul',
+    employee_range: '10-49',
+    revenue_range: '5M-25M',
+    balance_years: 4,
+    has_export: 1,
+    has_rd_software: company.sector && company.sector.includes('Yazılım') ? 1 : 0,
+    seeking_consortium_partner: 1
+  };
+
+  const matchResult = evaluateGrantMatches(effectiveProfile, allPrograms || []);
+
   // Pull live B2B / Wholesale catalog from StokPratik MASTER_DB or DepodanDirekt DB if linked!
   let b2bCatalog: any[] = [];
   if (company.sp_tenant_id && c.env.SP_DB) {
@@ -1032,8 +1142,808 @@ app.get('/api/companies/:slugOrId', async (c) => {
     tenders: tenders || [],
     posts: posts || [],
     endorsements: endorsements || [],
-    b2b_catalog: b2bCatalog
+    b2b_catalog: b2bCatalog,
+    grant_profile: effectiveProfile,
+    grant_matches: matchResult.matched,
+    grant_filtered_out: matchResult.filteredOut,
+    grant_applications: grantApplications || []
   });
+});
+
+// ============================================================================
+// 7B. AKILLI TEŞVİK, HİBE, AB FONU & KREDİ EŞLEŞTİRME MOTORU (/api/grants/*)
+// ============================================================================
+function evaluateGrantMatches(profile: any, programs: any[]) {
+  const currentYear = 2026;
+  const foundedYear = Number(profile.founded_year || 2021);
+  const companyAge = Math.max(0, currentYear - foundedYear);
+  const orgType = profile.org_type || 'ltd_as';
+  const sector = String(profile.nace_sector || 'Teknoloji, Yazılım & E-Ticaret');
+  const hasExport = Number(profile.has_export ?? 1) === 1;
+  const hasRd = Number(profile.has_rd_software ?? 1) === 1;
+
+  const matched: any[] = [];
+  const filteredOut: any[] = [];
+
+  for (const prog of programs) {
+    let eligibleOrgs: string[] = ['ltd_as', 'sahis'];
+    let eligibleSectors: string[] = ['all'];
+    let checklist: string[] = [];
+    try { eligibleOrgs = JSON.parse(prog.eligible_org_types || '["ltd_as"]'); } catch (_) {}
+    try { eligibleSectors = JSON.parse(prog.eligible_sectors || '["all"]'); } catch (_) {}
+    try { checklist = JSON.parse(prog.requirements_checklist || '[]'); } catch (_) {}
+
+    // 1. Hukuki Statü Kontrolü (İşletme vs. STK/Dernek/Kooperatif)
+    if (!eligibleOrgs.includes(orgType) && !eligibleOrgs.includes('all')) {
+      filteredOut.push({
+        ...prog,
+        checklist,
+        filter_reason: `Kurum statünüz (${orgType === 'stk_dernek' ? 'STK / Dernek / Vakıf' : orgType === 'kooperatif' ? 'Kooperatif / Oda' : 'Ticari Şirket'}) bu programın hedef kitlesi dışında kalmaktadır.`
+      });
+      continue;
+    }
+
+    // 2. Kuruluş Yılı / Şirket Yaşı Kontrolü
+    const minAge = Number(prog.min_company_age || 0);
+    const maxAge = Number(prog.max_company_age || 99);
+    if (companyAge < minAge) {
+      filteredOut.push({
+        ...prog,
+        checklist,
+        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık) bu programın aradığı en az ${minAge} yıllık faaliyet/bilanço şartının altındadır.`
+      });
+      continue;
+    }
+    if (companyAge > maxAge) {
+      filteredOut.push({
+        ...prog,
+        checklist,
+        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık şirket) olduğu için 'Son ${maxAge} yıl içinde kurulmuş olma (Yeni Girişimci)' yaş sınırını aşmaktadır.`
+      });
+      continue;
+    }
+
+    // 3. Sektör ve Özel Şart Puanlaması
+    const sectorMatches =
+      eligibleSectors.includes('all') ||
+      eligibleSectors.some((s) => sector.toLowerCase().includes(s.toLowerCase()) || s.toLowerCase().includes(sector.toLowerCase()));
+
+    if (!sectorMatches) {
+      filteredOut.push({
+        ...prog,
+        checklist,
+        filter_reason: `Program öncelikli olarak (${eligibleSectors.join(', ')}) sektörlerini hedeflemektedir.`
+      });
+      continue;
+    }
+
+    if (Number(prog.requires_rd) === 1 && !hasRd && !sector.toLowerCase().includes('yazılım') && !sector.toLowerCase().includes('teknoloji')) {
+      filteredOut.push({
+        ...prog,
+        checklist,
+        filter_reason: `Program yazılım, Ar-Ge veya yenilikçi ürün geliştirme faaliyeti şartı aramaktadır.`
+      });
+      continue;
+    }
+
+    let score = 88;
+    const matchReasons: string[] = [];
+
+    if (minAge > 0) {
+      score += 4;
+      matchReasons.push(`✓ ${foundedYear} kuruluşlu (${companyAge} yıllık geçmiş & onaylı bilanço) şartını tam sağlıyor`);
+    } else {
+      matchReasons.push(`✓ ${foundedYear} kuruluş yılı kriterine uygun`);
+    }
+
+    if (!eligibleSectors.includes('all')) {
+      score += 4;
+      matchReasons.push(`✓ ${sector} NACE / faaliyet alanı öncelikli listede`);
+    }
+
+    if (Number(prog.requires_export) === 1 && hasExport) {
+      score += 3;
+      matchReasons.push(`✓ E-İhracat / 60+ ülke uluslararası açılım hedefiyle doğrudan örtüşüyor`);
+    }
+
+    if (Number(prog.requires_rd) === 1 && hasRd) {
+      score += 3;
+      matchReasons.push(`✓ Yazılım, yapay zekâ ve B2B dijital platform Ar-Ge niteliğine tam uyumlu`);
+    }
+
+    score = Math.min(99, score);
+
+    matched.push({
+      ...prog,
+      checklist,
+      match_score: score,
+      match_reasons: matchReasons
+    });
+  }
+
+  matched.sort((a, b) => b.match_score - a.match_score);
+  return { matched, filteredOut };
+}
+
+async function ensureInitialGrantEcosystem(db: D1Database) {
+  // 1. Ensure DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. is updated on comp_meetwork_hq
+  await db.prepare(
+    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, sub_sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description, website)
+     VALUES (
+       'comp_meetwork_hq',
+       'meetwork-global-yonetim',
+       'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+       '2720912021',
+       'Teknoloji, Yazılım & E-Ticaret',
+       'B2B Super-Network, Bulut ERP (StokPratik) & E-İhracat (DepodanDirekt)',
+       '["Teknoloji, Yazılım & E-Ticaret","Metal & Çelik Üretim","Makine & Ekipman Üretimi","Toptan & Dış Ticaret (İhracat/İthalat)","Lojistik, Nakliyat & Filo"]',
+       'İstanbul',
+       'Şişli',
+       '05412465429',
+       'yonetim@meetwork.com.tr',
+       3,
+       1,
+       'gold',
+       '2021 kuruluşlu DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti.; MeetWork B2B Super-Network, StokPratik Bulut ERP & CariNet ve DepodanDirekt E-İhracat platformlarının geliştiricisi ve işletmecisidir.',
+       'https://meetwork.com.tr'
+     )`
+  ).run();
+
+  // 2. Ensure DD İnternet 2021 Grant Eligibility Profile
+  await db.prepare(
+    `INSERT OR IGNORE INTO mw_grant_profiles (
+       company_id, company_name, org_type, founded_year, nace_sector, city,
+       employee_range, revenue_range, balance_years, has_export, has_rd_software,
+       seeking_consortium_partner, target_funding_types, project_summary
+     ) VALUES (
+       'comp_meetwork_hq',
+       'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+       'ltd_as',
+       2021,
+       'Teknoloji, Yazılım & E-Ticaret',
+       'İstanbul',
+       '10-49',
+       '5M-25M',
+       5,
+       1,
+       1,
+       1,
+       '["hibe","ab_fon","global","kredi","vergi_teknopark"]',
+       '2021 kuruluşlu DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. bünyesinde geliştirilen MeetWork (B2B Akıllı İş Eşleştirme, Canlı E-İhale ve Teşvik Eşleştirme Motoru), StokPratik (Bulut ERP & CariNet) ve DepodanDirekt (Toptan & E-İhracat Pazaryeri) bütünleşik ekosisteminin Ar-Ge, uluslararasılaşma ve kapasite büyütme yatırımları.'
+     )`
+  ).run();
+
+  // Ensure Anadolu Çelik Grant Profile for testing industrial company
+  await db.prepare(
+    `INSERT OR IGNORE INTO mw_grant_profiles (
+       company_id, company_name, org_type, founded_year, nace_sector, city,
+       employee_range, revenue_range, balance_years, has_export, has_rd_software,
+       seeking_consortium_partner, target_funding_types, project_summary
+     ) VALUES (
+       'comp_anadolu_celik',
+       'Anadolu Çelik & Makine San. Tic. A.Ş.',
+       'ltd_as',
+       2018,
+       'Metal & Çelik Üretim',
+       'İstanbul',
+       '50-249',
+       '25M-100M',
+       8,
+       1,
+       1,
+       1,
+       '["hibe","kredi","ab_fon"]',
+       '5 eksenli CNC işleme parkuru kapasite artışı, yeşil sanayi dönüşümü ve Avrupa otomotiv yan sanayi ihracat pazarlama projesi.'
+     )`
+  ).run();
+
+  // 3. Seed Grant, Fund & Credit Programs (Local + EU + Global)
+  const progCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_grant_programs`).first() as any;
+  if (!progCount || Number(progCount.cnt) === 0) {
+    const programs = [
+      {
+        id: 'prg_tubitak_1507',
+        code: 'TUBITAK-1507',
+        title: 'TÜBİTAK 1507 – KOBİ Ar-Ge Başlangıç Destek Programı',
+        provider: 'TÜBİTAK TEYDEB',
+        scope: 'yerel',
+        funding_type: 'hibe',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 0,
+        max_company_age: 99,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret","Makine & Ekipman Üretimi","Metal & Çelik Üretim","Otomotiv & Yan Sanayi","Elektrik, Elektronik & Enerji"]',
+        requires_export: 0,
+        requires_rd: 1,
+        grant_rate: '%75 Geri Ödemesiz Hibe',
+        max_amount: '3.500.000 TL (18 Ay)',
+        deadline_info: 'Sürekli / Dönemsel Çağrı Açık (PRODİS)',
+        official_url: 'https://eteydeb.tubitak.gov.tr/',
+        description: 'Yazılım, yapay zekâ algoritmaları, bulut tabanlı B2B eşleştirme/e-ihale motorları ve yenilikçi ürün projelerinde personel, yazılım, bulut ve akademik danışmanlık giderlerinin %75’ini geri ödemesiz karşılar.',
+        requirements_checklist: JSON.stringify([
+          'TÜBİTAK PRODİS (eteydeb.tubitak.gov.tr) firma ve kullanıcı kaydının tamamlanması',
+          'İş paketleri (İP): Yapay Zekâ Akıllı Eşleştirme, Dinamik E-İhale ve CariNet ERP Senkronizasyon algoritmalarının teknik kurgusu',
+          'Proje ekibindeki yazılımcı/mühendis özgeçmişleri ve adam-ay bütçe tablosunun girilmesi',
+          'Üniversiteden 1 akademisyen ile Ar-Ge danışmanlık protokolü (isteğe bağlı, puan artırıcı)'
+        ])
+      },
+      {
+        id: 'prg_ticaret_10962',
+        code: 'TICARET-10962-BILISIM',
+        title: 'Ticaret Bakanlığı – 10962 Sayılı Bilişim & Hizmet Sektörleri Atılım Programı (E-Turquality)',
+        provider: 'T.C. Ticaret Bakanlığı & HİB',
+        scope: 'yerel',
+        funding_type: 'hibe',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 1,
+        max_company_age: 99,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret","Toptan & Dış Ticaret (İhracat/İthalat)"]',
+        requires_export: 1,
+        requires_rd: 1,
+        grant_rate: '%50 – %70 Geri Ödemesiz Hibe',
+        max_amount: 'Yıllık 15.000.000 TL+ (Reklam, 5 Personel, Fuar & Marka)',
+        deadline_info: 'Sürekli Açık (DYS Üzerinden)',
+        official_url: 'https://kolaydestek.gov.tr/',
+        description: '2026 yılında yürürlüğe giren 10962 sayılı Karar kapsamında; B2B SaaS, ERP ve dijital platformların yurt dışı dijital reklamlarını (%50-%70), 5 nitelikli personel maaşını, yurt dışı fuar/etkinlik ve marka tescil giderlerini destekler.',
+        requirements_checklist: JSON.stringify([
+          'Hizmet İhracatçıları Birliği (HİB - hib.org.tr) kurumsal üyeliğinin tamamlanması',
+          'Ticaret Bakanlığı Destek Yönetim Sistemi (DYS) yararlanıcı kaydının açılması',
+          'MeetWork, StokPratik ve DepodanDirekt için Yurt Dışı Dijital Pazarlama (Google/LinkedIn/Meta) bütçe planının sunulması',
+          'Desteklenecek yazılımcı / iş geliştirme ve pazarlama personeli SGK ve sözleşme evraklarının yüklenmesi'
+        ])
+      },
+      {
+        id: 'prg_ab_eurostars_1509',
+        code: 'EU-EUROSTARS-1509',
+        title: 'EUREKA & Eurostars-3 / TÜBİTAK 1509 Uluslararası Ortaklı Ar-Ge Hibesi',
+        provider: 'Avrupa Birliği EUREKA & TÜBİTAK 1509',
+        scope: 'ab',
+        funding_type: 'ab_fon',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 1,
+        max_company_age: 99,
+        eligible_sectors: '["all"]',
+        requires_export: 1,
+        requires_rd: 1,
+        grant_rate: '%75 Geri Ödemesiz Hibe',
+        max_amount: '25.000.000 TL (Ortak Başına Bütçe Tavanı)',
+        deadline_info: 'Yılda 2 Çağrı (Mart & Eylül)',
+        official_url: 'https://www.eurekanetwork.org/programmes/eurostars/',
+        description: 'AB fonları arasında KOBİ kabul oranı en yüksek (~%28) programdır. Avrupa’dan 1 teknoloji/ticaret ortağı ile sınır ötesi B2B ticaret, yapay zekâ ve ERP entegrasyonu geliştiren Türk KOBİ’lerine %75 hibe sağlar.',
+        requirements_checklist: JSON.stringify([
+          'EU Funding & Tenders ve EUREKA portalında kurumsal profilin oluşturulması',
+          'Avrupa’dan en az 1 KOBİ/teknoloji partneri ile 2’li konsorsiyum niyet mektubunun (MoU) imzalanması',
+          'Uluslararası başvuru sonrası Türkiye bütçesi için TÜBİTAK 1509 PRODİS başvurusunun onaylanması'
+        ])
+      },
+      {
+        id: 'prg_ab_digital_europe',
+        code: 'EU-DIGITAL-EUROPE',
+        title: 'AB Dijital Avrupa Programı (Digital Europe Programme - DEP)',
+        provider: 'Avrupa Komisyonu & Sanayi ve Teknoloji Bakanlığı',
+        scope: 'ab',
+        funding_type: 'ab_fon',
+        eligible_org_types: '["ltd_as","stk_dernek","kooperatif"]',
+        min_company_age: 1,
+        max_company_age: 99,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret","Makine & Ekipman Üretimi","Metal & Çelik Üretim"]',
+        requires_export: 0,
+        requires_rd: 1,
+        grant_rate: '%50 – %75 Euro Hibesi',
+        max_amount: '150.000 € – 2.000.000 €',
+        deadline_info: '2026 – 2027 Çağrıları Açık',
+        official_url: 'https://dijitalavrupa.sanayi.gov.tr/',
+        description: 'Türkiye’nin asosiye ülke olduğu 8,1 Milyar Euro bütçeli AB programıdır. Yapay zekâ (AI), ortak B2B veri alanları (Data Spaces) ve KOBİ dijital dönüşüm platformlarının yaygınlaştırılmasını Euro bazında fonlar.',
+        requirements_checklist: JSON.stringify([
+          'Avrupa Komisyonu EU Funding & Tenders Portalından 9 haneli PIC (Participant Identification Code) numarasının alınması',
+          'Türkiye’deki Avrupa Dijital İnovasyon Merkezleri (ADİM / EDIH) ile ön değerlendirme eşleşmesi',
+          'KOBİ Veri Alanları ve Yapay Zekâ Uyarlama çağrısına proje özetinin (Proposal) yüklenmesi'
+        ])
+      },
+      {
+        id: 'prg_ebrd_sme_star',
+        code: 'GLOBAL-EBRD-SME',
+        title: 'EBRD KOBİ Danışmanlık Hibesi & Star Venture Teknoloji Ölçeklendirme Programı',
+        provider: 'EBRD (Avrupa İmar ve Kalkınma Bankası)',
+        scope: 'global',
+        funding_type: 'global',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 2,
+        max_company_age: 10,
+        eligible_sectors: '["all"]',
+        requires_export: 1,
+        requires_rd: 0,
+        grant_rate: '%50 – %75 Euro Hibesi',
+        max_amount: '10.000 € – 50.000 € Hibe + Küresel Mentorluk',
+        deadline_info: 'Sürekli / Dönemsel Çağrı Açık',
+        official_url: 'https://www.ebrd.com/small-business-support/turkiye.html',
+        description: 'En az 2 yıllık faaliyet geçmişi ve mali tablosu olan (2021 kuruluşlu şirketlere tam uyumlu) KOBİ ve teknoloji girişimlerine; ihracat, dijital pazarlama, yazılım mimarisi ve kurumsal yönetim danışmanlığı için Euro bazında hibe sağlar.',
+        requirements_checklist: JSON.stringify([
+          'Son 2 yıla ait onaylı kurumlar vergisi beyannamesi ve bilanço/gelir tablosunun hazırlanması (2021 kuruluş avantajı)',
+          'Danışmanlık alınacak alanın (Uluslararası Büyüme / Yazılım Mimarisi / İhracat Stratejisi) belirlenmesi',
+          'EBRD Türkiye KOBİ Destek ekibi ile ön uygunluk görüşmesinin başlatılması'
+        ])
+      },
+      {
+        id: 'prg_ms_google_cloud',
+        code: 'GLOBAL-CLOUD-AI-150K',
+        title: 'Microsoft for Startups Founders Hub & Global Cloud / AI Altyapı Fonu',
+        provider: 'Microsoft & Google Cloud Global',
+        scope: 'global',
+        funding_type: 'global',
+        eligible_org_types: '["ltd_as","sahis"]',
+        min_company_age: 0,
+        max_company_age: 10,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret"]',
+        requires_export: 0,
+        requires_rd: 1,
+        grant_rate: '%100 Altyapı & AI Hibesi (Özsermayesiz)',
+        max_amount: '150.000 $ Azure + OpenAI GPT-4o & Bulut Kredisi',
+        deadline_info: 'Sürekli Açık (Hemen Başvurulabilir)',
+        official_url: 'https://foundershub.startups.microsoft.com/',
+        description: 'Kendi yazılım tabanlı ürününü veya B2B SaaS platformunu (MeetWork, StokPratik, DepodanDirekt) geliştiren teknoloji şirketlerine yatırım şartı aranmaksızın 150.000 $’a kadar bulut sunucu ve yapay zekâ API hibesi verir.',
+        requirements_checklist: JSON.stringify([
+          'Kurumsal alan adı (meetwork.com.tr / stokpratik.com.tr) ve LinkedIn şirket sayfasının doğrulanması',
+          'MeetWork AI Eşleştirme ve StokPratik Bulut ERP ürün mimarisi tanıtım metninin girilmesi',
+          'İlk aşama (5.000 $ - 25.000 $) aktivasyonu sonrası 150.000 $ üst kademeye geçiş talebi'
+        ])
+      },
+      {
+        id: 'prg_kosgeb_kapasite',
+        code: 'KOSGEB-KAPASITE-20M',
+        title: 'KOSGEB Kapasite Geliştirme Destek Programı (Yazılım, Bilişim & İmalat)',
+        provider: 'KOSGEB',
+        scope: 'yerel',
+        funding_type: 'kredi',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 2,
+        max_company_age: 99,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret","Metal & Çelik Üretim","Makine & Ekipman Üretimi","Otomotiv & Yan Sanayi","Plastik, Kauçuk & Ambalaj","Gıda, Tarım & İçecek"]',
+        requires_export: 0,
+        requires_rd: 0,
+        grant_rate: '20 Puan Kredi Faiz/Kâr Payı Hibesi',
+        max_amount: '20.000.000 TL Kredi Üst Limiti (36 Ay Vade)',
+        deadline_info: '2026 Dönem Çağrıları Açık',
+        official_url: 'https://edevlet.kosgeb.gov.tr/',
+        description: 'Bilanço esasına göre defter tutan, geçmiş mali yılı onaylı (2021 kuruluşlu şirketlere tam uyumlu) yazılım, bilişim ve imalat KOBİ’lerinin personel, yazılım, makine ve işletme sermayesi kredilerinde 20 puan faiz yükünü geri ödemesiz karşılar.',
+        requirements_checklist: JSON.stringify([
+          'e-Devlet KOSGEB KOBİ Bilgi Sistemi (KBS) üzerinde güncel KOBİ Beyannamesinin onaylanması',
+          'NACE Rev.2 kodunun (62.01 Yazılım / Bilişim veya İmalat) uygunluğunun kontrolü',
+          'Anlaşmalı bankalar üzerinden 24-36 ay vadeli yatırım ve kapasite proje başvurusunun girilmesi'
+        ])
+      },
+      {
+        id: 'prg_kosgeb_yerli_yazilim',
+        code: 'KOSGEB-YERLI-YAZILIM-SATIS',
+        title: 'KOSGEB Dijital Dönüşüm & Yerli Malı Yazılım Tedarikçisi Satış Kaldıracı',
+        provider: 'KOSGEB & Sanayi ve Teknoloji Bakanlığı',
+        scope: 'yerel',
+        funding_type: 'vergi_teknopark',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 1,
+        max_company_age: 99,
+        eligible_sectors: '["Teknoloji, Yazılım & E-Ticaret"]',
+        requires_export: 0,
+        requires_rd: 1,
+        grant_rate: 'Müşteriye %60 – %75 Hibe (+%15 Yerli Malı Avantajı)',
+        max_amount: 'Sınırsız B2B Yazılım Satış Çarpanı',
+        deadline_info: 'Sürekli Açık',
+        official_url: 'https://www.kosgeb.gov.tr/',
+        description: 'StokPratik ERP, CariNet ve MeetWork yazılımları için Ticaret/Sanayi Odasından "Yazılım Yerli Malı Belgesi" alınarak; müşterilerinizin sizden satın alacağı yazılım faturalarının %75’ini KOSGEB’den hibe olarak geri almasını sağlar.',
+        requirements_checklist: JSON.stringify([
+          'Bağlı olunan Ticaret/Sanayi Odasından StokPratik ERP ve MeetWork için "Yerli Malı Belgesi" başvurusu',
+          'KOSGEB Dijital Dönüşüm yerli yazılım envanterine ürün kaydının yapılması',
+          'MeetWork üyesi fabrikalara "%75 KOSGEB Destekli ERP & B2B Paketi" satış kampanyasının başlatılması'
+        ])
+      },
+      {
+        id: 'prg_kosgeb_yeni_girisimci',
+        code: 'KOSGEB-IS-GELISTIRME',
+        title: 'KOSGEB Girişimci Destek Programı – İş Geliştirme Desteği (0-3 Yaş Şirketler)',
+        provider: 'KOSGEB',
+        scope: 'yerel',
+        funding_type: 'hibe',
+        eligible_org_types: '["ltd_as","sahis"]',
+        min_company_age: 0,
+        max_company_age: 3,
+        eligible_sectors: '["all"]',
+        requires_export: 0,
+        requires_rd: 0,
+        grant_rate: '%80 Destek Oranı (Faizsiz Geri Ödemeli)',
+        max_amount: '2.250.000 TL – 2.500.000 TL',
+        deadline_info: 'Yılda 3 Dönem Çağrı',
+        official_url: 'https://www.kosgeb.gov.tr/',
+        description: 'Sadece son 3 yıl içinde yeni kurulmuş işletmelere yöneliktir. (2021 kuruluşlu şirketler yaş kriterinden dolayı bu programa başvuramaz; yerine 20 Milyon TL üst limitli KOSGEB Kapasite Geliştirme programına başvururlar).',
+        requirements_checklist: JSON.stringify([
+          'Şirket kuruluş tarihinin başvuru tarihi itibarıyla 3 yılı aşmamış olması',
+          'İleri Girişimcilik Eğitimi sertifikasının tamamlanmış olması'
+        ])
+      },
+      {
+        id: 'prg_ticaret_5973_eihracat',
+        code: 'TICARET-5973-EIHRACAT',
+        title: 'Ticaret Bakanlığı – 5973 Sayılı E-İhracat & Dijital Pazaryeri Destekleri',
+        provider: 'T.C. Ticaret Bakanlığı',
+        scope: 'yerel',
+        funding_type: 'hibe',
+        eligible_org_types: '["ltd_as"]',
+        min_company_age: 1,
+        max_company_age: 99,
+        eligible_sectors: '["all"]',
+        requires_export: 1,
+        requires_rd: 0,
+        grant_rate: '%50 – %70 Geri Ödemesiz Hibe',
+        max_amount: 'Yıllık 10.000.000 TL+ (Dijital Pazarlama & Pazaryeri)',
+        deadline_info: 'Sürekli Açık (DYS)',
+        official_url: 'https://kolaydestek.gov.tr/',
+        description: 'DepodanDirekt ve ihracatçı KOBİ’ler için yurt dışı pazaryeri entegrasyonu, dijital reklam, sipariş karşılama (fulfillment) ve yurt dışı tanıtım giderlerinin %50 ila %70’ini geri ödemesiz karşılar.',
+        requirements_checklist: JSON.stringify([
+          'İlgili İhracatçı Birliğine üyelik ve DYS kaydı',
+          'Hedef ülkelerdeki dijital pazarlama ve e-ihracat platform gider faturalarının DYS’ye sunulması'
+        ])
+      },
+      {
+        id: 'prg_tkdk_ipard3',
+        code: 'TKDK-IPARD-III',
+        title: 'TKDK – IPARD III Tarım, Gıda, Yenilenebilir Enerji & Kooperatif Hibesi',
+        provider: 'TKDK & Avrupa Birliği (IPARD)',
+        scope: 'ab',
+        funding_type: 'hibe',
+        eligible_org_types: '["ltd_as","sahis","kooperatif"]',
+        min_company_age: 0,
+        max_company_age: 99,
+        eligible_sectors: '["Gıda, Tarım & İçecek","Elektrik, Elektronik & Enerji","Makine & Ekipman Üretimi"]',
+        requires_export: 0,
+        requires_rd: 0,
+        grant_rate: '%50 – %75 Geri Ödemesiz Hibe',
+        max_amount: '500.000 € – 3.000.000 €',
+        deadline_info: '81 İlde Dönemsel Çağrı Açık',
+        official_url: 'https://www.tkdk.gov.tr/',
+        description: '81 ilde gıda işleme, soğuk hava deposu, kırsal üretim, zanaatkârlık, GES/yenilenebilir enerji yatırımları ve üretici kooperatiflerine %50-%75 geri ödemesiz hibe sağlar.',
+        requirements_checklist: JSON.stringify([
+          'TKDK İl Koordinatörlüğü üzerinden yatırım yeri ve tedarikçi proforma tekliflerinin hazırlanması',
+          'Teknik proje ve iş planı dosyasının çağrı takviminde sunulması'
+        ])
+      },
+      {
+        id: 'prg_stk_ab_stgm',
+        code: 'STK-AB-SIVILDUSUN-IPA',
+        title: 'AB Sivil Düşün, STGM & Kalkınma Ajansı (SOGEP) STK / Dernek / Vakıf / Oda Fonları',
+        provider: 'Avrupa Birliği, STGM & Kalkınma Ajansları',
+        scope: 'ab',
+        funding_type: 'stk_fon',
+        eligible_org_types: '["stk_dernek","kooperatif"]',
+        min_company_age: 0,
+        max_company_age: 99,
+        eligible_sectors: '["all"]',
+        requires_export: 0,
+        requires_rd: 0,
+        grant_rate: '%80 – %100 Geri Ödemesiz Hibe',
+        max_amount: '15.000 € – 250.000 €',
+        deadline_info: 'Sürekli / Dönemsel Çağrı Açık',
+        official_url: 'https://www.stgm.org.tr/fon-kaynaklari',
+        description: 'Dernekler, vakıflar, kooperatifler, meslek odaları ve iş dünyası STK’larının istihdam, dijitalleşme, kadın/genç girişimciliği ve sektörel B2B eşleştirme projelerine %80-%100 hibe verir (MeetWork teknoloji çözüm ortağı olarak bütçelenebilir).',
+        requirements_checklist: JSON.stringify([
+          'Dernek / Vakıf / Kooperatif tüzüğü ve yönetim kurulu başvuru kararının hazırlanması',
+          'Sivil Düşün Bilgi Sistemi (SDBİS) veya Kalkınma Ajansı KAYS kaydının açılması',
+          'Dijital B2B eşleştirme ve etkinlik altyapısı için MeetWork çözüm ortaklığı protokolünün eklenmesi'
+        ])
+      }
+    ];
+
+    for (const p of programs) {
+      await db.prepare(
+        `INSERT OR IGNORE INTO mw_grant_programs (
+           id, code, title, provider, scope, funding_type, eligible_org_types,
+           min_company_age, max_company_age, eligible_sectors, requires_export, requires_rd,
+           grant_rate, max_amount, deadline_info, official_url, description, requirements_checklist
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
+        p.id, p.code, p.title, p.provider, p.scope, p.funding_type, p.eligible_org_types,
+        p.min_company_age, p.max_company_age, p.eligible_sectors, p.requires_export, p.requires_rd,
+        p.grant_rate, p.max_amount, p.deadline_info, p.official_url, p.description, p.requirements_checklist
+      ).run();
+    }
+  }
+
+  // 4. Pre-Seed Active Grant Applications for DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (2021)
+  const appCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_grant_applications WHERE company_id = 'comp_meetwork_hq'`).first() as any;
+  if (!appCount || Number(appCount.cnt) === 0) {
+    const ddApps = [
+      {
+        id: 'gapp_dd_1',
+        application_no: 'MW-FON-2026-001',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_ms_google_cloud',
+        program_title: 'Microsoft for Startups Founders Hub & Global Cloud / AI Altyapı Fonu (150.000 $)',
+        provider: 'Microsoft & Google Cloud Global',
+        scope: 'global',
+        match_score: 98,
+        project_title: 'MeetWork AI Eşleştirme, Teşvik Robotu ve StokPratik Bulut Altyapı Ölçeklendirme',
+        project_notes: '2021 kuruluşlu DD İnternet Ltd. Şti. kurumsal alan adı ve canlı B2B SaaS ürünleri (meetwork.com.tr & stokpratik.com.tr) ile doğrudan başvuru.',
+        current_step: 'Resmi Kayıt (DYS / PRODİS / PIC)',
+        checklist_progress: JSON.stringify({ 0: true, 1: true, 2: false })
+      },
+      {
+        id: 'gapp_dd_2',
+        application_no: 'MW-FON-2026-002',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_ticaret_10962',
+        program_title: 'Ticaret Bakanlığı – 10962 Sayılı Bilişim & Hizmet Sektörleri Atılım Programı (%50-%70 Hibe)',
+        provider: 'T.C. Ticaret Bakanlığı & HİB',
+        scope: 'yerel',
+        match_score: 98,
+        project_title: 'MeetWork Global, StokPratik ve DepodanDirekt 60 Ülke Dijital Reklam & Yazılım Personeli Desteği',
+        project_notes: 'HİB üyeliği ve DYS tanımlaması ile yurt dışı reklamların %70 hibe kapsamına alınması ve 5 personel maaş desteği.',
+        current_step: 'Ön Analiz & Evrak Hazırlığı',
+        checklist_progress: JSON.stringify({ 0: true, 1: false, 2: false, 3: false })
+      },
+      {
+        id: 'gapp_dd_3',
+        application_no: 'MW-FON-2026-003',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_tubitak_1507',
+        program_title: 'TÜBİTAK 1507 – KOBİ Ar-Ge Başlangıç Destek Programı (3.500.000 TL / %75 Hibe)',
+        provider: 'TÜBİTAK TEYDEB',
+        scope: 'yerel',
+        match_score: 96,
+        project_title: 'Yapay Zekâ ve Çok Kriterli Karar Verme Tabanlı B2B Akıllı İş Eşleştirme, Dinamik E-İhale ve CariNet ERP Entegrasyon Motoru',
+        project_notes: 'PRODİS üzerinden 18 aylık Ar-Ge projesi olarak yazılımcı maaşları ve bulut/test giderlerinin %75 hibe ile fonlanması.',
+        current_step: 'Proje Dosyası Yazılıyor',
+        checklist_progress: JSON.stringify({ 0: true, 1: true, 2: false, 3: false })
+      },
+      {
+        id: 'gapp_dd_4',
+        application_no: 'MW-FON-2026-004',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_ebrd_sme_star',
+        program_title: 'EBRD KOBİ Danışmanlık Hibesi & Star Venture (10.000 € – 50.000 € Euro Hibesi)',
+        provider: 'EBRD (Avrupa İmar ve Kalkınma Bankası)',
+        scope: 'global',
+        match_score: 96,
+        project_title: 'DD İnternet (2021) Uluslararası Büyüme, İhracat Stratejisi ve Bulut Mimarisi Danışmanlık Hibesi',
+        project_notes: '2021 kuruluşlu şirketimizin 5 yıllık onaylı bilançoları ile EBRD %70 hibe destekli danışmanlık ve Star Venture başvurusu.',
+        current_step: 'Ön Analiz & Evrak Hazırlığı',
+        checklist_progress: JSON.stringify({ 0: true, 1: false, 2: false })
+      },
+      {
+        id: 'gapp_dd_5',
+        application_no: 'MW-FON-2026-005',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_ab_digital_europe',
+        program_title: 'AB Dijital Avrupa Programı (Digital Europe) & Eurostars-3 Konsorsiyum Kaydı',
+        provider: 'Avrupa Komisyonu & TÜBİTAK',
+        scope: 'ab',
+        match_score: 95,
+        project_title: 'Avrupa B2B KOBİ Veri Alanı (Data Space) ve Akıllı Tedarik Zinciri Eşleştirme Ağı',
+        project_notes: 'EU Funding & Tenders Portal üzerinden DD İnternet Ltd. Şti. adına 9 haneli PIC numarasının alınması ve AB konsorsiyum ortaklığı.',
+        current_step: 'Resmi Kayıt (DYS / PRODİS / PIC)',
+        checklist_progress: JSON.stringify({ 0: true, 1: false, 2: false })
+      },
+      {
+        id: 'gapp_dd_6',
+        application_no: 'MW-FON-2026-006',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        contact_name: 'DD İnternet Yönetim',
+        contact_phone: '05412465429',
+        contact_email: 'yonetim@meetwork.com.tr',
+        program_id: 'prg_kosgeb_yerli_yazilim',
+        program_title: 'KOSGEB Kapasite Geliştirme (20M TL) & Yerli Malı Yazılım Tedarikçisi Kaydı',
+        provider: 'KOSGEB & Ticaret Odası',
+        scope: 'yerel',
+        match_score: 95,
+        project_title: 'StokPratik ERP ve MeetWork Yazılımlarının Müşterilere %75 KOSGEB Desteğiyle Satışı',
+        project_notes: 'Yazılım Yerli Malı Belgesi alınarak MeetWork üyesi işletmelere devlet destekli ERP ve kurumsal üyelik satışı.',
+        current_step: 'Ön Analiz & Evrak Hazırlığı',
+        checklist_progress: JSON.stringify({ 0: true, 1: false, 2: false })
+      }
+    ];
+
+    for (const appItem of ddApps) {
+      await db.prepare(
+        `INSERT OR IGNORE INTO mw_grant_applications (
+           id, application_no, company_id, company_name, contact_name, contact_phone, contact_email,
+           program_id, program_title, provider, scope, match_score, project_title, project_notes,
+           current_step, checklist_progress
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
+        appItem.id, appItem.application_no, appItem.company_id, appItem.company_name,
+        appItem.contact_name, appItem.contact_phone, appItem.contact_email,
+        appItem.program_id, appItem.program_title, appItem.provider, appItem.scope,
+        appItem.match_score, appItem.project_title, appItem.project_notes,
+        appItem.current_step, appItem.checklist_progress
+      ).run();
+    }
+  }
+}
+
+app.get('/api/grants/match', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
+
+  const companyId = c.req.query('company_id') || 'comp_meetwork_hq';
+  const savedProfile = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_profiles WHERE company_id = ? LIMIT 1`
+  ).bind(companyId).first() as any;
+
+  const customProfile = {
+    company_id: companyId,
+    company_name: c.req.query('company_name') || (savedProfile && savedProfile.company_name) || 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+    org_type: c.req.query('org_type') || (savedProfile && savedProfile.org_type) || 'ltd_as',
+    founded_year: Number(c.req.query('founded_year') || (savedProfile && savedProfile.founded_year) || 2021),
+    nace_sector: c.req.query('nace_sector') || (savedProfile && savedProfile.nace_sector) || 'Teknoloji, Yazılım & E-Ticaret',
+    city: c.req.query('city') || (savedProfile && savedProfile.city) || 'İstanbul',
+    employee_range: c.req.query('employee_range') || (savedProfile && savedProfile.employee_range) || '10-49',
+    revenue_range: c.req.query('revenue_range') || (savedProfile && savedProfile.revenue_range) || '5M-25M',
+    balance_years: Number(c.req.query('balance_years') || (savedProfile && savedProfile.balance_years) || 5),
+    has_export: c.req.query('has_export') !== undefined ? Number(c.req.query('has_export')) : Number(savedProfile ? savedProfile.has_export : 1),
+    has_rd_software: c.req.query('has_rd_software') !== undefined ? Number(c.req.query('has_rd_software')) : Number(savedProfile ? savedProfile.has_rd_software : 1),
+    seeking_consortium_partner: c.req.query('seeking_consortium_partner') !== undefined ? Number(c.req.query('seeking_consortium_partner')) : Number(savedProfile ? savedProfile.seeking_consortium_partner : 1),
+    project_summary: c.req.query('project_summary') || (savedProfile && savedProfile.project_summary) || ''
+  };
+
+  const { results: programs } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_programs WHERE status = 'active'`
+  ).all();
+
+  const { matched, filteredOut } = evaluateGrantMatches(customProfile, programs || []);
+
+  const { results: applications } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_applications WHERE company_id = ? ORDER BY created_at DESC`
+  ).bind(companyId).all();
+
+  return c.json({
+    success: true,
+    profile: customProfile,
+    matched,
+    filtered_out: filteredOut,
+    applications: applications || []
+  });
+});
+
+app.post('/api/grants/profile', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
+  const body = await c.req.json();
+  const companyId = body.company_id || 'comp_meetwork_hq';
+  const foundedYear = Number(body.founded_year || 2021);
+  const balanceYears = Math.max(0, 2026 - foundedYear);
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_grant_profiles (
+       company_id, company_name, org_type, founded_year, nace_sector, city,
+       employee_range, revenue_range, balance_years, has_export, has_rd_software,
+       seeking_consortium_partner, project_summary, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`
+  ).bind(
+    companyId,
+    body.company_name || 'MeetWork Üye İşletme',
+    body.org_type || 'ltd_as',
+    foundedYear,
+    body.nace_sector || 'Teknoloji, Yazılım & E-Ticaret',
+    body.city || 'İstanbul',
+    body.employee_range || '10-49',
+    body.revenue_range || '5M-25M',
+    balanceYears,
+    body.has_export ? 1 : 0,
+    body.has_rd_software ? 1 : 0,
+    body.seeking_consortium_partner ? 1 : 0,
+    body.project_summary || ''
+  ).run();
+
+  const { results: programs } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_programs WHERE status = 'active'`
+  ).all();
+
+  const profileObj = {
+    company_id: companyId,
+    company_name: body.company_name || 'MeetWork Üye İşletme',
+    org_type: body.org_type || 'ltd_as',
+    founded_year: foundedYear,
+    nace_sector: body.nace_sector || 'Teknoloji, Yazılım & E-Ticaret',
+    city: body.city || 'İstanbul',
+    employee_range: body.employee_range || '10-49',
+    revenue_range: body.revenue_range || '5M-25M',
+    balance_years: balanceYears,
+    has_export: body.has_export ? 1 : 0,
+    has_rd_software: body.has_rd_software ? 1 : 0,
+    seeking_consortium_partner: body.seeking_consortium_partner ? 1 : 0,
+    project_summary: body.project_summary || ''
+  };
+
+  const { matched, filteredOut } = evaluateGrantMatches(profileObj, programs || []);
+  const { results: applications } = await c.env.DB.prepare(
+    `SELECT * FROM mw_grant_applications WHERE company_id = ? ORDER BY created_at DESC`
+  ).bind(companyId).all();
+
+  return c.json({
+    success: true,
+    message: 'İşletme / STK teşvik, hibe ve fon uygunluk profili güncellendi!',
+    profile: profileObj,
+    matched,
+    filtered_out: filteredOut,
+    applications: applications || []
+  });
+});
+
+app.post('/api/grants/apply', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
+  const body = await c.req.json();
+  const id = uid('gapp');
+  const appNo = `MW-FON-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`;
+
+  await c.env.DB.prepare(
+    `INSERT INTO mw_grant_applications (
+       id, application_no, company_id, company_name, contact_name, contact_phone, contact_email,
+       program_id, program_title, provider, scope, match_score, project_title, project_notes,
+       current_step, checklist_progress
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Ön Analiz & Evrak Hazırlığı', '{}')`
+  ).bind(
+    id,
+    appNo,
+    body.company_id || 'comp_meetwork_hq',
+    body.company_name || 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti.',
+    body.contact_name || 'Firma Yetkilisi',
+    body.contact_phone || '05412465429',
+    body.contact_email || 'yonetim@meetwork.com.tr',
+    body.program_id || 'prg_tubitak_1507',
+    body.program_title || 'Hibe & Teşvik Programı',
+    body.provider || 'Resmi Kurum',
+    body.scope || 'yerel',
+    Number(body.match_score || 95),
+    body.project_title || 'Kurumsal Gelişim, Ar-Ge ve Ticaret Projesi',
+    body.project_notes || ''
+  ).run();
+
+  return c.json({
+    success: true,
+    application_no: appNo,
+    message: `Başvuru ve danışmanlık talebiniz (#${appNo}) oluşturuldu ve Başvuru Takip Masanıza eklendi!`
+  });
+});
+
+app.put('/api/grants/application/:id', async (c) => {
+  await ensureSchema(c.env.DB);
+  const id = c.req.param('id');
+  const body = await c.req.json();
+
+  await c.env.DB.prepare(
+    `UPDATE mw_grant_applications
+     SET current_step = COALESCE(?, current_step),
+         checklist_progress = COALESCE(?, checklist_progress),
+         project_notes = COALESCE(?, project_notes),
+         admin_notes = COALESCE(?, admin_notes)
+     WHERE id = ?`
+  ).bind(
+    body.current_step || null,
+    body.checklist_progress ? (typeof body.checklist_progress === 'string' ? body.checklist_progress : JSON.stringify(body.checklist_progress)) : null,
+    body.project_notes || null,
+    body.admin_notes || null,
+    id
+  ).run();
+
+  return c.json({ success: true, message: 'Başvuru adımı ve kontrol listesi güncellendi.' });
 });
 
 // ============================================================================
@@ -1088,11 +1998,13 @@ app.post('/api/bridge/stokpratik-sync', async (c) => {
 // ============================================================================
 app.get('/api/superadmin/overview', async (c) => {
   await ensureSchema(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
   const { results: companies } = await c.env.DB.prepare(`SELECT * FROM mw_companies ORDER BY created_at DESC LIMIT 100`).all();
   const { results: users } = await c.env.DB.prepare(`SELECT id, email, full_name, phone, role, company_id, match_credits, tender_credits, created_at FROM mw_users ORDER BY created_at DESC LIMIT 100`).all();
   const { results: listings } = await c.env.DB.prepare(`SELECT * FROM mw_listings ORDER BY created_at DESC LIMIT 100`).all();
   const { results: tenders } = await c.env.DB.prepare(`SELECT * FROM mw_tenders ORDER BY created_at DESC LIMIT 100`).all();
   const { results: posts } = await c.env.DB.prepare(`SELECT * FROM mw_posts ORDER BY created_at DESC LIMIT 50`).all();
+  const { results: grantApplications } = await c.env.DB.prepare(`SELECT * FROM mw_grant_applications ORDER BY created_at DESC LIMIT 100`).all();
 
   return c.json({
     success: true,
@@ -1101,13 +2013,15 @@ app.get('/api/superadmin/overview', async (c) => {
       total_users: (users || []).length,
       total_listings: (listings || []).length,
       total_tenders: (tenders || []).length,
-      total_posts: (posts || []).length
+      total_posts: (posts || []).length,
+      total_grant_applications: (grantApplications || []).length
     },
     companies: companies || [],
     users: users || [],
     listings: listings || [],
     tenders: tenders || [],
-    posts: posts || []
+    posts: posts || [],
+    grant_applications: grantApplications || []
   });
 });
 
@@ -1148,7 +2062,8 @@ app.delete('/api/superadmin/delete/:type/:id', async (c) => {
     listing: 'mw_listings',
     tender: 'mw_tenders',
     post: 'mw_posts',
-    company: 'mw_companies'
+    company: 'mw_companies',
+    grant_application: 'mw_grant_applications'
   };
   const table = tableMap[type];
   if (!table) return c.json({ success: false, message: 'Geçersiz tablo.' }, 400);
@@ -1159,16 +2074,12 @@ app.delete('/api/superadmin/delete/:type/:id', async (c) => {
 
 app.post('/api/superadmin/bootstrap', async (c) => {
   await ensureSchema(c.env.DB);
+  await ensureInitialGrantEcosystem(c.env.DB);
 
-  // 1. SuperAdmin Hesabı (yonetim@meetwork.com.tr / MeetWork2026!)
-  await c.env.DB.prepare(
-    `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
-     VALUES ('comp_meetwork_hq', 'meetwork-global-yonetim', 'MeetWork Global & İŞTEP Yönetim Merkezi', '1234567890', 'Teknoloji, Yazılım & E-Ticaret', '["Metal & Çelik Üretim","Makine & Ekipman Üretimi","Otomotiv & Yan Sanayi","İnşaat, Yapı & Gayrimenkul","Toptan & Dış Ticaret (İhracat/İthalat)"]', 'İstanbul', 'Şişli', '05412465429', 'yonetim@meetwork.com.tr', 3, 1, 'gold', 'MeetWork B2B İş Ağı, Akıllı Eşleşme, E-İhale ve İlan Pazarı Resmi Yönetim Merkezi.')`
-  ).run();
-
+  // 1. SuperAdmin & DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. Hesabı (yonetim@meetwork.com.tr / MeetWork2026!)
   await c.env.DB.prepare(
     `INSERT OR REPLACE INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
-     VALUES ('usr_superadmin', 'yonetim@meetwork.com.tr', 'MeetWork2026!', 'MeetWork SuperAdmin', '05412465429', 'Platform Yöneticisi', 'comp_meetwork_hq', 'superadmin', 999, 999)`
+     VALUES ('usr_superadmin', 'yonetim@meetwork.com.tr', 'MeetWork2026!', 'DD İnternet & MeetWork Yönetimi', '05412465429', 'Yönetim Kurulu / SuperAdmin', 'comp_meetwork_hq', 'superadmin', 999, 999)`
   ).run();
 
   // 2. Test Üye İşletme Hesabı (test@meetwork.com.tr / 123456) + Eşleşme Havuzu İçin 3 Gerçekçi İşletme
@@ -1182,7 +2093,7 @@ app.post('/api/superadmin/bootstrap', async (c) => {
      VALUES ('usr_test_member', 'test@meetwork.com.tr', '123456', 'Ahmet Yılmaz (Test Üye)', '05321112233', 'Yönetim Kurulu Başkanı', 'comp_anadolu_celik', 'member', 10, 10)`
   ).run();
 
-  // Eşleşme (2+1) testi için hedef ve sürpriz sektör işletmeleri
+  // Eşleşme (Akıllı Eşleşme) testi için hedef ve sürpriz sektör işletmeleri
   await c.env.DB.prepare(
     `INSERT OR REPLACE INTO mw_companies (id, slug, name, vkn, sector, target_sectors, city, district, phone, email, trust_level, carinet_enabled, membership_tier, description)
      VALUES ('comp_marmara_makine', 'marmara-endustriyel-makine', 'Marmara Endüstriyel Makine & Otomasyon Ltd. Şti.', '4567890123', 'Makine & Ekipman Üretimi', '["Metal & Çelik Üretim","Plastik, Kauçuk & Ambalaj"]', 'Bursa', 'Nilüfer OSB', '05412465429', 'info@marmaramakine.com.tr', 3, 1, 'gold', 'Endüstriyel üretim hatları, CNC otomasyon ve özel makine imalatı.')`
@@ -1200,7 +2111,7 @@ app.post('/api/superadmin/bootstrap', async (c) => {
 
   return c.json({
     success: true,
-    message: 'SuperAdmin ve Test Üye hesapları başarıyla hazırlandı!'
+    message: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork) hesabı, Hibe/Fon havuzu ve Test Üye hesapları başarıyla hazırlandı!'
   });
 });
 

@@ -163,6 +163,21 @@ const SECTORS = [
                     <input type="text" id="regCity" class="form-control form-control-sm" value="İstanbul" required />
                   </div>
 
+                  <!-- Hibe, Teşvik & Fon Eşleştirmesi İçin Kuruluş Yılı ve Statü -->
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Hukuki Statü (Hibe & Fon Eşleşmesi İçin)</label>
+                    <select id="regOrgType" class="form-select form-select-sm">
+                      <option value="ltd_as" selected>Ltd. Şti. / A.Ş. (Sermaye Şirketi)</option>
+                      <option value="sahis">Şahıs İşletmesi / Esnaf</option>
+                      <option value="stk_dernek">STK / Dernek / Vakıf / Oda</option>
+                      <option value="kooperatif">Kooperatif / Üretici Birliği</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Kuruluş Yılı (Hibe & Kredi Kriteri)</label>
+                    <input type="number" id="regFoundedYear" class="form-control form-control-sm" min="1950" max="2026" value="2021" required />
+                  </div>
+
                   <div class="col-12">
                     <label class="form-label small fw-bold text-danger">
                       <i class="bi bi-diagram-3-fill me-1"></i> Akıllı Eşleşme: Kimlerle Tanışmak / İş Yapmak İstiyorsunuz? (En Fazla 5 Sektör Seçin)
@@ -322,6 +337,8 @@ const SECTORS = [
               vkn: document.getElementById('regVkn').value,
               sector: document.getElementById('regSector').value,
               city: document.getElementById('regCity').value,
+              org_type: document.getElementById('regOrgType') ? document.getElementById('regOrgType').value : 'ltd_as',
+              founded_year: document.getElementById('regFoundedYear') ? Number(document.getElementById('regFoundedYear').value) : 2021,
               target_sectors: selectedTargets
             };
 

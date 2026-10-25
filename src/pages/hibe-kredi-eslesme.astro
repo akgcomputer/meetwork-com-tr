@@ -1,0 +1,901 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Akıllı Teşvik, Hibe, AB Fonu & Kredi Eşleştirme Motoru | MeetWork"
+  description="İşletmeniz veya STK'nız için kuruluş yılı, NACE kodu, bilanço yaşı ve ihracat hedeflerine göre Türkiye, AB ve Global hibe, teşvik ve kredileri eşleştirin."
+>
+  <section class="py-2">
+    <!-- Üst Başlık Bandı -->
+    <div class="mw-panel-card p-4 mb-4 border-danger shadow-sm">
+      <div class="row align-items-center g-3">
+        <div class="col-lg-7">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="badge bg-danger">AKILLI FON & KREDİ RADARI</span>
+            <span class="badge bg-dark">🇹🇷 Yerel Kamu + 🇪🇺 AB Fonları + 🌍 Global Hibeler</span>
+            <a href="/tesvik-hibe" class="badge bg-secondary-subtle text-secondary text-decoration-none">
+              <i class="bi bi-book me-1"></i> Mevzuat & Rehber Sayfası →
+            </a>
+          </div>
+          <h1 class="h3 fw-bold mb-2">
+            Akıllı Teşvik, Hibe, AB Fonu & Kredi Eşleştirme Motoru
+            <span class="d-block text-danger fw-semibold mt-1" style="font-size: 1.05rem;">
+              (İşletme ve STK'lar İçin Kriter Bazlı Uygunluk Analizi & Canlı Başvuru Takip Masası)
+            </span>
+          </h1>
+          <p class="text-muted small mb-0">
+            Kuruluş yılınız, hukuki statünüz (Ltd/A.Ş., Şahıs, STK/Dernek, Kooperatif), NACE sektörünüz ve bilanço geçmişinize göre
+            <strong>yararlanabileceğiniz tüm yerel, AB ve küresel fonları</strong> listeler; uygun olmayanları eler ve başvuru sürecinizi sistem üzerinden takip eder.
+          </p>
+        </div>
+        <div class="col-lg-5">
+          <div class="p-3 rounded border" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
+            <div class="small fw-bold mb-2 text-danger">
+              <i class="bi bi-lightning-charge-fill me-1"></i> Hızlı Senaryo & Profil Yükleyici:
+            </div>
+            <div class="d-flex flex-wrap gap-1">
+              <button type="button" class="btn btn-sm btn-danger fw-bold" id="mwPresetDDInternet" style="font-size: 0.74rem;">
+                🏢 DD İnternet Ltd. Şti. (2021 - MeetWork)
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold" id="mwPresetSanayi" style="font-size: 0.74rem;">
+                🏭 Sanayi / İmalat (2018)
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold" id="mwPresetSTK" style="font-size: 0.74rem;">
+                🤝 STK / Dernek / Oda
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold" id="mwPresetStartup" style="font-size: 0.74rem;">
+                🚀 Yeni Girişim (2025)
+              </button>
+            </div>
+            <small class="text-muted d-block mt-2" style="font-size: 0.7rem;">
+              Aktif Profil: <strong id="mwActiveProfileLabel">DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (Kuruluş: 2021)</strong>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- SOL SÜTUN: İşletme / STK Uygunluk Kriterleri Formu -->
+      <div class="col-lg-4">
+        <div class="mw-panel-card p-4 shadow-sm sticky-lg-top" style="top: 88px;">
+          <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
+            <h5 class="fw-bold mb-0 fs-6">
+              <i class="bi bi-sliders text-danger me-1"></i> İşletme / STK Kriterleri
+            </h5>
+            <span class="badge bg-success" id="mwCompanyAgeBadge">5 Yıllık Bilanço</span>
+          </div>
+
+          <form id="mwGrantProfileForm">
+            <input type="hidden" id="mwGrantCompanyId" value="comp_meetwork_hq" />
+
+            <div class="mb-2">
+              <label class="form-label small fw-bold mb-1">İşletme veya STK Ünvanı</label>
+              <input
+                type="text"
+                id="mwGrantCompanyName"
+                class="form-control form-control-sm fw-semibold"
+                value="DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)"
+                required
+              />
+            </div>
+
+            <div class="row g-2 mb-2">
+              <div class="col-7">
+                <label class="form-label small fw-bold mb-1">Hukuki Statü</label>
+                <select id="mwGrantOrgType" class="form-select form-select-sm">
+                  <option value="ltd_as" selected>Ltd. Şti. / A.Ş. (Sermaye)</option>
+                  <option value="sahis">Şahıs İşletmesi / Esnaf</option>
+                  <option value="stk_dernek">STK / Dernek / Vakıf / Oda</option>
+                  <option value="kooperatif">Kooperatif / Üretici Birliği</option>
+                </select>
+              </div>
+              <div class="col-5">
+                <label class="form-label small fw-bold mb-1">Kuruluş Yılı</label>
+                <input
+                  type="number"
+                  id="mwGrantFoundedYear"
+                  class="form-control form-control-sm fw-bold text-danger"
+                  min="1950"
+                  max="2026"
+                  value="2021"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-bold mb-1">Ana Faaliyet / NACE Sektörü</label>
+              <select id="mwGrantSector" class="form-select form-select-sm">
+                <option value="Teknoloji, Yazılım & E-Ticaret" selected>Teknoloji, Yazılım & E-Ticaret (NACE 62.01 / 63.12)</option>
+                <option value="Metal & Çelik Üretim">Metal & Çelik Üretim</option>
+                <option value="Makine & Ekipman Üretimi">Makine & Ekipman Üretimi</option>
+                <option value="Otomotiv & Yan Sanayi">Otomotiv & Yan Sanayi</option>
+                <option value="Toptan & Dış Ticaret (İhracat/İthalat)">Toptan & Dış Ticaret (İhracat/İthalat)</option>
+                <option value="Gıda, Tarım & İçecek">Gıda, Tarım & İçecek</option>
+                <option value="Elektrik, Elektronik & Enerji">Elektrik, Elektronik & Enerji</option>
+                <option value="Plastik, Kauçuk & Ambalaj">Plastik, Kauçuk & Ambalaj</option>
+                <option value="Lojistik, Nakliyat & Filo">Lojistik, Nakliyat & Filo</option>
+                <option value="Sivil Toplum, Eğitim & Sosyal Kalkınma">Sivil Toplum, Eğitim & Sosyal Kalkınma (STK)</option>
+              </select>
+            </div>
+
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Şehir / Bölge</label>
+                <select id="mwGrantCity" class="form-select form-select-sm">
+                  <option value="İstanbul" selected>İstanbul (1. Bölge)</option>
+                  <option value="Ankara">Ankara (1. Bölge)</option>
+                  <option value="İzmir">İzmir (1. Bölge)</option>
+                  <option value="Bursa">Bursa (1. Bölge)</option>
+                  <option value="Kocaeli">Kocaeli (1. Bölge)</option>
+                  <option value="Konya">Konya (2. Bölge)</option>
+                  <option value="Gaziantep">Gaziantep (3. Bölge)</option>
+                  <option value="Anadolu / Diğer">Diğer İller (4-6. Bölge)</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Çalışan Sayısı</label>
+                <select id="mwGrantEmployeeRange" class="form-select form-select-sm">
+                  <option value="1-9">1 - 9 (Mikro)</option>
+                  <option value="10-49" selected>10 - 49 (Küçük KOBİ)</option>
+                  <option value="50-249">50 - 249 (Orta KOBİ)</option>
+                  <option value="250+">250+ (Büyük Ölçek)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="p-2 rounded border mb-3" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
+              <div class="form-check form-switch mb-1">
+                <input class="form-check-input" type="checkbox" id="mwGrantHasRd" checked />
+                <label class="form-check-label small fw-semibold" for="mwGrantHasRd">
+                  Yazılım / Ar-Ge / Yeni Ürün Geliştirme Var
+                </label>
+              </div>
+              <div class="form-check form-switch mb-1">
+                <input class="form-check-input" type="checkbox" id="mwGrantHasExport" checked />
+                <label class="form-check-label small fw-semibold" for="mwGrantHasExport">
+                  İhracat / E-İhracat / Yurt Dışı Açılım Hedefi Var
+                </label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="mwGrantSeekingPartner" checked />
+                <label class="form-check-label small fw-semibold" for="mwGrantSeekingPartner">
+                  AB / Kalkınma Ajansı Ortaklı Projelere Açık
+                </label>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold mb-1">Yatırım / Proje Özeti</label>
+              <textarea
+                id="mwGrantProjectSummary"
+                class="form-control form-control-sm"
+                rows="3"
+              >2021 kuruluşlu DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. bünyesinde geliştirilen MeetWork (B2B Akıllı İş Eşleştirme, Canlı E-İhale ve Teşvik Eşleştirme Motoru), StokPratik (Bulut ERP & CariNet) ve DepodanDirekt (Toptan & E-İhracat Pazaryeri) bütünleşik ekosisteminin Ar-Ge, uluslararasılaşma ve kapasite büyütme yatırımları.</textarea>
+            </div>
+
+            <div id="mwGrantProfileFeedback" class="small mb-2" style="display: none;"></div>
+
+            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold py-2">
+              <i class="bi bi-magic me-1"></i> Profili Kaydet & Uygun Fonları Eşleştir
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- SAĞ SÜTUN: Eşleşen Fonlar, Canlı Başvuru Takip Masası ve Elenen Programlar -->
+      <div class="col-lg-8">
+        <!-- Üst Sekmeler -->
+        <div class="mw-panel-card p-2 mb-3 shadow-sm">
+          <div class="d-flex flex-wrap gap-2" id="mwGrantMainTabs">
+            <button type="button" class="btn btn-sm btn-danger fw-bold flex-grow-1 py-2" data-grant-tab="matched">
+              <i class="bi bi-check2-circle me-1"></i> Eşleşen Hibe, Fon & Krediler (<span id="mwMatchedCount">0</span>)
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger fw-bold flex-grow-1 py-2" data-grant-tab="tracker">
+              <i class="bi bi-kanban me-1"></i> Başvuru Takip Masam (<span id="mwTrackerCount">0</span>)
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold flex-grow-1 py-2" data-grant-tab="filtered">
+              <i class="bi bi-funnel me-1"></i> Kriterlere Takılan / Elenenler (<span id="mwFilteredCount">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- SEKME 1: EŞLEŞEN HİBE, AB FONU & KREDİLER -->
+        <div id="mwTabMatchedContent">
+          <!-- Kapsam Filtresi (Tümü / Yerel / AB / Global) -->
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div class="d-flex flex-wrap gap-1" id="mwScopeFilterBtns">
+              <button type="button" class="btn btn-sm btn-dark rounded-pill px-3" data-scope-filter="all">
+                Tümü
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-scope-filter="yerel">
+                🇹🇷 Yerel (TÜBİTAK / Bakanlık / KOSGEB)
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-scope-filter="ab">
+                🇪🇺 AB Fonları (Eurostars / Dijital Avrupa / IPARD)
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-scope-filter="global">
+                🌍 Global Hibeler (EBRD / Cloud & AI)
+              </button>
+            </div>
+          </div>
+
+          <div id="mwMatchedProgramsList" class="d-flex flex-column gap-3 mb-4 mw-zebra-feed">
+            <div class="mw-panel-card p-4 text-center text-muted small">
+              <div class="spinner-border spinner-border-sm text-danger me-2"></div>
+              Uygun hibe, fon ve kredi programları hesaplanıyor...
+            </div>
+          </div>
+        </div>
+
+        <!-- SEKME 2: BAŞVURU TAKİP MASAM (DD İNTERNET LTD. ŞTİ. & İŞLETME BAŞVURU SÜRECİ) -->
+        <div id="mwTabTrackerContent" style="display: none;">
+          <div class="mw-panel-card p-3 mb-3 border-start border-4 border-danger">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <div>
+                <h6 class="fw-bold mb-1">
+                  <i class="bi bi-building-check text-danger me-1"></i>
+                  Canlı Başvuru & Yol Haritası Takip Masası
+                </h6>
+                <p class="small text-muted mb-0">
+                  İşletmeniz adına başlatılan yerel, AB ve global hibe/teşvik başvurularının evrak hazırlık adımlarını buradan işaretleyip güncelleyebilirsiniz.
+                </p>
+              </div>
+              <a href="/isletmeler?firma=meetwork-global-yonetim" class="btn btn-sm btn-outline-danger fw-bold">
+                <i class="bi bi-building me-1"></i> İşletme Profilinde Gör →
+              </a>
+            </div>
+          </div>
+
+          <div id="mwApplicationsTrackerList" class="d-flex flex-column gap-3 mb-4"></div>
+        </div>
+
+        <!-- SEKME 3: KRİTERLERE TAKILAN / ELENEN PROGRAMLAR -->
+        <div id="mwTabFilteredContent" style="display: none;">
+          <div class="mw-panel-card p-3 mb-3 border-start border-4 border-secondary">
+            <h6 class="fw-bold mb-1">
+              <i class="bi bi-shield-exclamation text-warning me-1"></i>
+              Kuruluş Yılı, Hukuki Statü veya Sektör Kriterine Göre Elenen Programlar
+            </h6>
+            <p class="small text-muted mb-0">
+              Zaman kaybetmemeniz için işletmenizin kuruluş yılı (bilanço yaşı), hukuki statüsü veya NACE koduna uymayan programlar gerekçeleriyle aşağıda ayrıştırılmıştır:
+            </p>
+          </div>
+          <div id="mwFilteredProgramsList" class="d-flex flex-column gap-2 mb-4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAŞVURU & TALEBİ BAŞLATMA MODALI -->
+  <div class="modal fade" id="mwStartGrantApplyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom" style="border-color: var(--mw-border) !important;">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-rocket-takeoff-fill text-danger me-1"></i>
+            Hibe / Fon Başvuru Sürecini Başlat
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwStartGrantApplyForm">
+            <input type="hidden" id="mwApplyProgramId" />
+            <input type="hidden" id="mwApplyProgramTitle" />
+            <input type="hidden" id="mwApplyProvider" />
+            <input type="hidden" id="mwApplyScope" />
+            <input type="hidden" id="mwApplyMatchScore" />
+
+            <div class="p-2 rounded mb-3 border" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
+              <div class="small fw-bold text-danger" id="mwApplyModalProgTitle">Program Adı</div>
+              <small class="text-muted" id="mwApplyModalProvider">Kurum</small>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Başvuru Yapan İşletme / STK</label>
+              <input type="text" id="mwApplyCompanyName" class="form-control form-control-sm fw-bold" required />
+            </div>
+
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-semibold mb-1">Yetkili Ad Soyad</label>
+                <input type="text" id="mwApplyContactName" class="form-control form-control-sm" value="DD İnternet Yönetimi" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold mb-1">Telefon</label>
+                <input type="text" id="mwApplyContactPhone" class="form-control form-control-sm" value="05412465429" required />
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Proje / Başvuru Başlığı</label>
+              <input
+                type="text"
+                id="mwApplyProjectTitle"
+                class="form-control form-control-sm"
+                placeholder="Örn: MeetWork AI Eşleştirme ve StokPratik ERP Uluslararasılaşma Projesi"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold mb-1">Proje Notu & Talep Detayı</label>
+              <textarea
+                id="mwApplyProjectNotes"
+                class="form-control form-control-sm"
+                rows="3"
+                placeholder="Başvuru hazırlığı, danışmanlık veya konsorsiyum ortaklığı talebinizi yazın..."
+              ></textarea>
+            </div>
+
+            <div id="mwApplyModalFeedback" class="small mb-2" style="display: none;"></div>
+
+            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold py-2">
+              <i class="bi bi-check2-all me-1"></i> Başvuruyu Sistemde Başlat & Takip Masasına Ekle
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentMatched = [];
+      let currentFiltered = [];
+      let currentApplications = [];
+      let currentScopeFilter = 'all';
+
+      function getScopeBadge(scope) {
+        if (scope === 'ab') return '<span class="badge bg-primary"><i class="bi bi-globe-europe-africa me-1"></i>🇪🇺 AB Fonu</span>';
+        if (scope === 'global') return '<span class="badge bg-info text-dark"><i class="bi bi-globe2 me-1"></i>🌍 Global Fon</span>';
+        return '<span class="badge bg-danger"><i class="bi bi-flag-fill me-1"></i>🇹🇷 Yerel Kamu</span>';
+      }
+
+      function getFundingTypeBadge(type) {
+        if (type === 'kredi') return '<span class="badge bg-warning text-dark">Faiz Destekli Kredi / Finansman</span>';
+        if (type === 'ab_fon') return '<span class="badge bg-primary-subtle text-primary">AB Hibe & Konsorsiyum</span>';
+        if (type === 'global') return '<span class="badge bg-info-subtle text-info">Uluslararası Hibe & Altyapı</span>';
+        if (type === 'vergi_teknopark') return '<span class="badge bg-success">Müşteriye Devlet Destekli Satış Kaldıracı</span>';
+        if (type === 'stk_fon') return '<span class="badge bg-success">STK / Dernek / Kooperatif Hibesi</span>';
+        return '<span class="badge bg-success">Geri Ödemesiz Hibe</span>';
+      }
+
+      function updateAgeBadge() {
+        const yr = Number(document.getElementById('mwGrantFoundedYear').value || 2021);
+        const age = Math.max(0, 2026 - yr);
+        const badge = document.getElementById('mwCompanyAgeBadge');
+        if (!badge) return;
+        if (age <= 3) {
+          badge.className = 'badge bg-warning text-dark';
+          badge.textContent = `${age} Yıllık (Yeni Girişim / 0-3 Yaş)`;
+        } else {
+          badge.className = 'badge bg-success';
+          badge.textContent = `${age} Yıllık (${yr} Kuruluş • Bilançolu)`;
+        }
+      }
+
+      function renderMatchedPrograms() {
+        const listEl = document.getElementById('mwMatchedProgramsList');
+        const countEl = document.getElementById('mwMatchedCount');
+        if (countEl) countEl.textContent = String(currentMatched.length);
+        if (!listEl) return;
+
+        const filteredByScope = currentScopeFilter === 'all'
+          ? currentMatched
+          : currentMatched.filter((p) => p.scope === currentScopeFilter);
+
+        if (filteredByScope.length === 0) {
+          listEl.innerHTML = `<div class="mw-panel-card p-4 text-center text-muted small">Bu filtrede eşleşen program bulunamadı.</div>`;
+          return;
+        }
+
+        const alreadyAppliedIds = new Set((currentApplications || []).map((a) => a.program_id));
+
+        listEl.innerHTML = filteredByScope.map((p, idx) => {
+          const zClass = idx % 2 === 0 ? 'mw-zebra-odd' : 'mw-zebra-even';
+          const isApplied = alreadyAppliedIds.has(p.id);
+          const reasonsHtml = (p.match_reasons || []).map((r) => `<span class="badge bg-success-subtle text-success me-1 mb-1" style="font-size:0.7rem;">${r}</span>`).join('');
+          const checklistHtml = (p.checklist || []).map((step, sIdx) => `
+            <li class="small mb-1 d-flex align-items-start gap-2">
+              <span class="badge rounded-pill bg-danger" style="font-size:0.65rem;">${sIdx + 1}</span>
+              <span>${step}</span>
+            </li>
+          `).join('');
+
+          return `
+            <div class="mw-panel-card ${zClass} p-3 shadow-sm">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
+                <div class="d-flex flex-wrap align-items-center gap-1">
+                  ${getScopeBadge(p.scope)}
+                  ${getFundingTypeBadge(p.funding_type)}
+                  <span class="badge bg-dark" style="font-size:0.7rem;">${p.provider}</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-success fs-6">🎯 %${p.match_score} Uyumlu</span>
+                </div>
+              </div>
+
+              <h5 class="fw-bold mb-2" style="font-size: 1.05rem;">${p.title}</h5>
+              <p class="small text-muted mb-3">${p.description || ''}</p>
+
+              <!-- Destek Oranı & Üst Limit Kutuları -->
+              <div class="row g-2 mb-3">
+                <div class="col-sm-4">
+                  <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
+                    <small class="text-muted d-block" style="font-size:0.68rem;">Destek / Hibe Oranı</small>
+                    <strong class="text-success small">${p.grant_rate}</strong>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
+                    <small class="text-muted d-block" style="font-size:0.68rem;">Üst Limit / Bütçe Tavanı</small>
+                    <strong class="text-danger small">${p.max_amount}</strong>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
+                    <small class="text-muted d-block" style="font-size:0.68rem;">Başvuru Takvimi</small>
+                    <strong class="small">${p.deadline_info || 'Açık'}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Eşleşme Gerekçeleri -->
+              <div class="mb-3">
+                <div class="small fw-bold mb-1" style="font-size:0.74rem;">Neden İşletmenize Uygun?</div>
+                <div>${reasonsHtml}</div>
+              </div>
+
+              <!-- Adım Adım Başvuru Hazırlık Listesi -->
+              ${checklistHtml ? `
+                <div class="p-2 rounded border mb-3" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
+                  <div class="small fw-bold text-danger mb-1" style="font-size:0.75rem;">
+                    <i class="bi bi-list-check me-1"></i> Başvuru Yol Haritası & Gerekli Adımlar:
+                  </div>
+                  <ul class="list-unstyled mb-0">${checklistHtml}</ul>
+                </div>
+              ` : ''}
+
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-2 border-top" style="border-color: var(--mw-border) !important;">
+                <div class="d-flex flex-wrap gap-2">
+                  ${isApplied ? `
+                    <button type="button" class="btn btn-sm btn-success fw-bold" onclick="window.mwSwitchGrantTab('tracker')">
+                      <i class="bi bi-check2-circle me-1"></i> Başvuru Takip Masasında Aktif (İncele →)
+                    </button>
+                  ` : `
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger fw-bold"
+                      onclick="window.mwOpenApplyModal('${p.id}')"
+                    >
+                      <i class="bi bi-rocket-takeoff me-1"></i> Sistem Üzerinden Başvuruyu Başlat
+                    </button>
+                  `}
+                  <a
+                    href="https://wa.me/905412465429?text=${encodeURIComponent(p.title + ' başvurusu için DD İnternet / MeetWork üzerinden destek almak istiyorum.')}"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-sm btn-outline-success fw-semibold"
+                  >
+                    <i class="bi bi-whatsapp me-1"></i> Uzmanla Görüş
+                  </a>
+                </div>
+                ${p.official_url ? `
+                  <a href="${p.official_url}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary fw-semibold">
+                    Resmi Başvuru Kapısı <i class="bi bi-box-arrow-up-right ms-1"></i>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderTrackerApplications() {
+        const listEl = document.getElementById('mwApplicationsTrackerList');
+        const countEl = document.getElementById('mwTrackerCount');
+        if (countEl) countEl.textContent = String(currentApplications.length);
+        if (!listEl) return;
+
+        if (currentApplications.length === 0) {
+          listEl.innerHTML = `<div class="mw-panel-card p-4 text-center text-muted small">Henüz başlatılmış bir başvuru bulunmuyor. "Eşleşen Hibe, Fon & Krediler" sekmesinden başvurunuzu başlatabilirsiniz.</div>`;
+          return;
+        }
+
+        const progMap = {};
+        currentMatched.forEach((p) => { progMap[p.id] = p; });
+
+        listEl.innerHTML = currentApplications.map((app, idx) => {
+          const zClass = idx % 2 === 0 ? 'mw-zebra-odd' : 'mw-zebra-even';
+          const prog = progMap[app.program_id] || {};
+          const checklist = prog.checklist || [
+            'Resmi portal (DYS / PRODİS / EU PIC) kurumsal kayıt kontrolü',
+            'Son 2 yıl onaylı bilanço, NACE ve faaliyet belgesi hazırlığı',
+            'Proje iş paketleri ve bütçe dosyasının oluşturulması',
+            'Sistem üzerinden resmi onaya sunulması'
+          ];
+          let progressObj = {};
+          try { progressObj = JSON.parse(app.checklist_progress || '{}'); } catch (_) {}
+
+          const steps = [
+            'Ön Analiz & Evrak Hazırlığı',
+            'Resmi Kayıt (DYS / PRODİS / PIC)',
+            'Proje Dosyası Yazılıyor',
+            'Başvuru Tamamlandı / Onay Bekliyor',
+            'Onaylandı / Hibe Kullanımda'
+          ];
+
+          return `
+            <div class="mw-panel-card ${zClass} p-3 shadow-sm">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <div>
+                  <span class="badge bg-danger me-1">#${app.application_no}</span>
+                  ${getScopeBadge(app.scope)}
+                  <span class="badge bg-dark ms-1">${app.provider || ''}</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <label class="small fw-bold text-muted mb-0">Aşama:</label>
+                  <select
+                    class="form-select form-select-sm fw-bold border-danger"
+                    style="width: auto; font-size: 0.76rem;"
+                    onchange="window.mwUpdateAppStep('${app.id}', this.value)"
+                  >
+                    ${steps.map((st) => `<option value="${st}" ${app.current_step === st ? 'selected' : ''}>${st}</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+
+              <h6 class="fw-bold mb-1">${app.program_title}</h6>
+              <div class="small fw-semibold text-danger mb-1">
+                <i class="bi bi-folder2-open me-1"></i> Proje: ${app.project_title || ''}
+              </div>
+              <p class="small text-muted mb-2">${app.project_notes || ''}</p>
+
+              <!-- İnteraktif Başvuru Adımları Kontrol Listesi -->
+              <div class="p-2 rounded border mb-2" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
+                <div class="small fw-bold mb-2" style="font-size: 0.74rem;">
+                  <i class="bi bi-check2-square text-danger me-1"></i> Başvuru Dosyası & Evrak İlerleme Durumu (Tıklayarak Güncelleyin):
+                </div>
+                ${checklist.map((itemText, cIdx) => `
+                  <div class="form-check mb-1">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="chk_${app.id}_${cIdx}"
+                      ${progressObj[cIdx] ? 'checked' : ''}
+                      onchange="window.mwToggleChecklist('${app.id}', ${cIdx}, this.checked)"
+                    />
+                    <label class="form-check-label small ${progressObj[cIdx] ? 'text-decoration-line-through text-success fw-semibold' : ''}" for="chk_${app.id}_${cIdx}">
+                      ${itemText}
+                    </label>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="d-flex flex-wrap justify-content-between align-items-center small pt-2 border-top" style="border-color: var(--mw-border) !important;">
+                <span class="text-muted" style="font-size:0.72rem;">
+                  Başvuru Sahibi: <strong>${app.company_name}</strong>
+                </span>
+                ${prog.official_url ? `
+                  <a href="${prog.official_url}" target="_blank" rel="noopener" class="fw-bold text-danger text-decoration-none">
+                    Resmi Başvuru Ekranını Aç (${prog.code || 'Portal'}) ↗
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderFilteredPrograms() {
+        const listEl = document.getElementById('mwFilteredProgramsList');
+        const countEl = document.getElementById('mwFilteredCount');
+        if (countEl) countEl.textContent = String(currentFiltered.length);
+        if (!listEl) return;
+
+        if (currentFiltered.length === 0) {
+          listEl.innerHTML = `<div class="mw-panel-card p-3 text-center text-muted small">Elenen program bulunmuyor.</div>`;
+          return;
+        }
+
+        listEl.innerHTML = currentFiltered.map((p) => `
+          <div class="mw-panel-card p-3 opacity-75">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <strong class="small">${p.title}</strong>
+              <span class="badge bg-secondary">${p.provider}</span>
+            </div>
+            <div class="small text-danger fw-semibold">
+              <i class="bi bi-x-circle-fill me-1"></i> Elenme Nedeni: ${p.filter_reason}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      async function fetchMatchesWithCurrentForm(saveToDb = false) {
+        updateAgeBadge();
+        const payload = {
+          company_id: document.getElementById('mwGrantCompanyId').value || 'comp_meetwork_hq',
+          company_name: document.getElementById('mwGrantCompanyName').value.trim(),
+          org_type: document.getElementById('mwGrantOrgType').value,
+          founded_year: Number(document.getElementById('mwGrantFoundedYear').value || 2021),
+          nace_sector: document.getElementById('mwGrantSector').value,
+          city: document.getElementById('mwGrantCity').value,
+          employee_range: document.getElementById('mwGrantEmployeeRange').value,
+          has_rd_software: document.getElementById('mwGrantHasRd').checked ? 1 : 0,
+          has_export: document.getElementById('mwGrantHasExport').checked ? 1 : 0,
+          seeking_consortium_partner: document.getElementById('mwGrantSeekingPartner').checked ? 1 : 0,
+          project_summary: document.getElementById('mwGrantProjectSummary').value.trim()
+        };
+
+        document.getElementById('mwActiveProfileLabel').textContent =
+          `${payload.company_name} (Kuruluş: ${payload.founded_year})`;
+
+        try {
+          let data;
+          if (saveToDb) {
+            const res = await fetch(`${API_URL}/api/grants/profile`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            data = await res.json();
+            const fb = document.getElementById('mwGrantProfileFeedback');
+            if (fb && data.success) {
+              fb.style.display = 'block';
+              fb.className = 'small mb-2 text-success fw-bold';
+              fb.textContent = '✓ Kriterler kaydedildi ve uygun fonlar güncellendi!';
+              setTimeout(() => { fb.style.display = 'none'; }, 3500);
+            }
+          } else {
+            const qs = new URLSearchParams({
+              company_id: payload.company_id,
+              company_name: payload.company_name,
+              org_type: payload.org_type,
+              founded_year: String(payload.founded_year),
+              nace_sector: payload.nace_sector,
+              city: payload.city,
+              employee_range: payload.employee_range,
+              has_rd_software: String(payload.has_rd_software),
+              has_export: String(payload.has_export),
+              seeking_consortium_partner: String(payload.seeking_consortium_partner)
+            });
+            const res = await fetch(`${API_URL}/api/grants/match?${qs.toString()}`);
+            data = await res.json();
+          }
+
+          if (data && data.success) {
+            currentMatched = data.matched || [];
+            currentFiltered = data.filtered_out || [];
+            currentApplications = data.applications || [];
+            renderMatchedPrograms();
+            renderTrackerApplications();
+            renderFilteredPrograms();
+          }
+        } catch (_) {}
+      }
+
+      window.mwSwitchGrantTab = function (tabName) {
+        document.querySelectorAll('[data-grant-tab]').forEach((btn) => {
+          if (btn.getAttribute('data-grant-tab') === tabName) {
+            btn.classList.remove('btn-outline-danger', 'btn-outline-secondary');
+            btn.classList.add('btn-danger');
+          } else {
+            btn.classList.remove('btn-danger');
+            btn.classList.add('btn-outline-secondary');
+          }
+        });
+        document.getElementById('mwTabMatchedContent').style.display = tabName === 'matched' ? 'block' : 'none';
+        document.getElementById('mwTabTrackerContent').style.display = tabName === 'tracker' ? 'block' : 'none';
+        document.getElementById('mwTabFilteredContent').style.display = tabName === 'filtered' ? 'block' : 'none';
+      };
+
+      window.mwOpenApplyModal = function (programId) {
+        const prog = currentMatched.find((p) => p.id === programId);
+        if (!prog) return;
+
+        document.getElementById('mwApplyProgramId').value = prog.id;
+        document.getElementById('mwApplyProgramTitle').value = prog.title;
+        document.getElementById('mwApplyProvider').value = prog.provider;
+        document.getElementById('mwApplyScope').value = prog.scope;
+        document.getElementById('mwApplyMatchScore').value = prog.match_score;
+
+        document.getElementById('mwApplyModalProgTitle').textContent = prog.title;
+        document.getElementById('mwApplyModalProvider').textContent = `${prog.provider} • ${prog.grant_rate} (${prog.max_amount})`;
+        document.getElementById('mwApplyCompanyName').value = document.getElementById('mwGrantCompanyName').value;
+        document.getElementById('mwApplyProjectTitle').value = `${document.getElementById('mwGrantCompanyName').value.split('(')[0].trim()} – ${prog.code} Projesi`;
+        document.getElementById('mwApplyProjectNotes').value = document.getElementById('mwGrantProjectSummary').value;
+
+        const modalEl = document.getElementById('mwStartGrantApplyModal');
+        if (modalEl && window.bootstrap) {
+          const modal = new window.bootstrap.Modal(modalEl);
+          modal.show();
+        }
+      };
+
+      window.mwUpdateAppStep = async function (appId, newStep) {
+        try {
+          await fetch(`${API_URL}/api/grants/application/${appId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ current_step: newStep })
+          });
+          const item = currentApplications.find((a) => a.id === appId);
+          if (item) item.current_step = newStep;
+        } catch (_) {}
+      };
+
+      window.mwToggleChecklist = async function (appId, cIdx, checked) {
+        const item = currentApplications.find((a) => a.id === appId);
+        if (!item) return;
+        let progressObj = {};
+        try { progressObj = JSON.parse(item.checklist_progress || '{}'); } catch (_) {}
+        progressObj[cIdx] = checked;
+        item.checklist_progress = JSON.stringify(progressObj);
+        renderTrackerApplications();
+
+        try {
+          await fetch(`${API_URL}/api/grants/application/${appId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ checklist_progress: progressObj })
+          });
+        } catch (_) {}
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Eğer giriş yapmış bir kullanıcı varsa ve URL'de özel bir preset yoksa kendi şirketini yükleyebiliriz; varsayılan olarak DD İnternet (2021) hazır gelir
+        try {
+          const user = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (user && user.company_id && user.company_id !== 'comp_meetwork_hq') {
+            document.getElementById('mwGrantCompanyId').value = user.company_id;
+            document.getElementById('mwGrantCompanyName').value = user.company_name || 'İşletmem';
+            if (user.sector) document.getElementById('mwGrantSector').value = user.sector;
+          }
+        } catch (_) {}
+
+        fetchMatchesWithCurrentForm(false);
+
+        // Form submit
+        const form = document.getElementById('mwGrantProfileForm');
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetchMatchesWithCurrentForm(true);
+          });
+        }
+
+        document.getElementById('mwGrantFoundedYear')?.addEventListener('input', updateAgeBadge);
+
+        // Sekme geçişleri
+        document.querySelectorAll('[data-grant-tab]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            window.mwSwitchGrantTab(btn.getAttribute('data-grant-tab'));
+          });
+        });
+
+        // Kapsam filtreleri
+        document.querySelectorAll('[data-scope-filter]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-scope-filter]').forEach((b) => {
+              b.classList.remove('btn-dark');
+              b.classList.add('btn-outline-secondary');
+            });
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-dark');
+            currentScopeFilter = btn.getAttribute('data-scope-filter') || 'all';
+            renderMatchedPrograms();
+          });
+        });
+
+        // Hızlı Preset Butonları
+        document.getElementById('mwPresetDDInternet')?.addEventListener('click', () => {
+          document.getElementById('mwGrantCompanyId').value = 'comp_meetwork_hq';
+          document.getElementById('mwGrantCompanyName').value = 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)';
+          document.getElementById('mwGrantOrgType').value = 'ltd_as';
+          document.getElementById('mwGrantFoundedYear').value = '2021';
+          document.getElementById('mwGrantSector').value = 'Teknoloji, Yazılım & E-Ticaret';
+          document.getElementById('mwGrantCity').value = 'İstanbul';
+          document.getElementById('mwGrantEmployeeRange').value = '10-49';
+          document.getElementById('mwGrantHasRd').checked = true;
+          document.getElementById('mwGrantHasExport').checked = true;
+          document.getElementById('mwGrantSeekingPartner').checked = true;
+          document.getElementById('mwGrantProjectSummary').value =
+            '2021 kuruluşlu DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. bünyesinde geliştirilen MeetWork (B2B Akıllı İş Eşleştirme, Canlı E-İhale ve Teşvik Eşleştirme Motoru), StokPratik (Bulut ERP & CariNet) ve DepodanDirekt (Toptan & E-İhracat Pazaryeri) bütünleşik ekosisteminin Ar-Ge, uluslararasılaşma ve kapasite büyütme yatırımları.';
+          fetchMatchesWithCurrentForm(false);
+        });
+
+        document.getElementById('mwPresetSanayi')?.addEventListener('click', () => {
+          document.getElementById('mwGrantCompanyId').value = 'comp_anadolu_celik';
+          document.getElementById('mwGrantCompanyName').value = 'Anadolu Çelik & Makine San. Tic. A.Ş.';
+          document.getElementById('mwGrantOrgType').value = 'ltd_as';
+          document.getElementById('mwGrantFoundedYear').value = '2018';
+          document.getElementById('mwGrantSector').value = 'Metal & Çelik Üretim';
+          document.getElementById('mwGrantCity').value = 'İstanbul';
+          document.getElementById('mwGrantEmployeeRange').value = '50-249';
+          document.getElementById('mwGrantHasRd').checked = true;
+          document.getElementById('mwGrantHasExport').checked = true;
+          document.getElementById('mwGrantProjectSummary').value =
+            '5 eksenli CNC lazer işleme parkuru kapasite artışı, yeşil sanayi GES dönüşümü ve Avrupa otomotiv yan sanayi ihracat projesi.';
+          fetchMatchesWithCurrentForm(false);
+        });
+
+        document.getElementById('mwPresetSTK')?.addEventListener('click', () => {
+          document.getElementById('mwGrantCompanyId').value = 'comp_stk_demo';
+          document.getElementById('mwGrantCompanyName').value = 'Avrasya İş Dünyası ve İhracatçılar Derneği (STK)';
+          document.getElementById('mwGrantOrgType').value = 'stk_dernek';
+          document.getElementById('mwGrantFoundedYear').value = '2019';
+          document.getElementById('mwGrantSector').value = 'Sivil Toplum, Eğitim & Sosyal Kalkınma';
+          document.getElementById('mwGrantHasRd').checked = false;
+          document.getElementById('mwGrantHasExport').checked = true;
+          document.getElementById('mwGrantProjectSummary').value =
+            'Üye işletmelerin dijital dönüşümü, genç/kadın girişimciliği ve MeetWork altyapısıyla uluslararası B2B eşleştirme kapasitesinin geliştirilmesi.';
+          fetchMatchesWithCurrentForm(false);
+        });
+
+        document.getElementById('mwPresetStartup')?.addEventListener('click', () => {
+          document.getElementById('mwGrantCompanyId').value = 'comp_startup_demo';
+          document.getElementById('mwGrantCompanyName').value = 'Yeni Nesil Biyoteknoloji & Yazılım Girişimi Ltd. Şti.';
+          document.getElementById('mwGrantOrgType').value = 'ltd_as';
+          document.getElementById('mwGrantFoundedYear').value = '2025';
+          document.getElementById('mwGrantSector').value = 'Teknoloji, Yazılım & E-Ticaret';
+          document.getElementById('mwGrantHasRd').checked = true;
+          document.getElementById('mwGrantHasExport').checked = true;
+          document.getElementById('mwGrantProjectSummary').value =
+            '2025 yılında yeni kurulan girişimimiz için KOSGEB İş Geliştirme (0-3 Yaş) ve TÜBİTAK 1507 başlangıç Ar-Ge hibesi başvurusu.';
+          fetchMatchesWithCurrentForm(false);
+        });
+
+        // Başvuru Başlatma Modal Formu
+        const applyForm = document.getElementById('mwStartGrantApplyForm');
+        if (applyForm) {
+          applyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+              company_id: document.getElementById('mwGrantCompanyId').value || 'comp_meetwork_hq',
+              company_name: document.getElementById('mwApplyCompanyName').value.trim(),
+              contact_name: document.getElementById('mwApplyContactName').value.trim(),
+              contact_phone: document.getElementById('mwApplyContactPhone').value.trim(),
+              program_id: document.getElementById('mwApplyProgramId').value,
+              program_title: document.getElementById('mwApplyProgramTitle').value,
+              provider: document.getElementById('mwApplyProvider').value,
+              scope: document.getElementById('mwApplyScope').value,
+              match_score: Number(document.getElementById('mwApplyMatchScore').value || 95),
+              project_title: document.getElementById('mwApplyProjectTitle').value.trim(),
+              project_notes: document.getElementById('mwApplyProjectNotes').value.trim()
+            };
+
+            try {
+              const res = await fetch(`${API_URL}/api/grants/apply`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const out = await res.json();
+              const fb = document.getElementById('mwApplyModalFeedback');
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = `small mb-2 fw-bold ${out.success ? 'text-success' : 'text-danger'}`;
+                fb.textContent = out.message || 'Başvurunuz kaydedildi!';
+              }
+              if (out.success) {
+                await fetchMatchesWithCurrentForm(false);
+                setTimeout(() => {
+                  const modalEl = document.getElementById('mwStartGrantApplyModal');
+                  if (modalEl && window.bootstrap) {
+                    const inst = window.bootstrap.Modal.getInstance(modalEl);
+                    if (inst) inst.hide();
+                  }
+                  window.mwSwitchGrantTab('tracker');
+                }, 900);
+              }
+            } catch (_) {}
+          });
+        }
+      });
+    })();
+  </script>
+</BaseLayout>
