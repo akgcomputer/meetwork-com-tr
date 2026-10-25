@@ -1781,18 +1781,32 @@ app.get('/api/grants/match', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
 
-  const companyId = c.req.query('company_id') || 'comp_meetwork_hq';
+  const companyId = c.req.query('company_id') || '';
+  if (!companyId || companyId === 'guest') {
+    return c.json({
+      success: false,
+      requires_auth: true,
+      message: 'Teşvik, hibe ve kredi eşleşmeleri işletmeye özeldir. Lütfen işletme hesabınızla giriş yapın.'
+    }, 401);
+  }
+
   const savedProfile = await c.env.DB.prepare(
     `SELECT * FROM mw_grant_profiles WHERE company_id = ? LIMIT 1`
   ).bind(companyId).first() as any;
 
+  const companyRow = await c.env.DB.prepare(
+    `SELECT * FROM mw_companies WHERE id = ? OR slug = ? LIMIT 1`
+  ).bind(companyId, companyId).first() as any;
+
+  const resolvedCompanyId = companyRow ? companyRow.id : companyId;
+
   const customProfile = {
-    company_id: companyId,
-    company_name: c.req.query('company_name') || (savedProfile && savedProfile.company_name) || 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+    company_id: resolvedCompanyId,
+    company_name: c.req.query('company_name') || (savedProfile && savedProfile.company_name) || (companyRow && companyRow.name) || 'İşletmem',
     org_type: c.req.query('org_type') || (savedProfile && savedProfile.org_type) || 'ltd_as',
     founded_year: Number(c.req.query('founded_year') || (savedProfile && savedProfile.founded_year) || 2021),
-    nace_sector: c.req.query('nace_sector') || (savedProfile && savedProfile.nace_sector) || 'Teknoloji, Yazılım & E-Ticaret',
-    city: c.req.query('city') || (savedProfile && savedProfile.city) || 'İstanbul',
+    nace_sector: c.req.query('nace_sector') || (savedProfile && savedProfile.nace_sector) || (companyRow && companyRow.sector) || 'Teknoloji, Yazılım & E-Ticaret',
+    city: c.req.query('city') || (savedProfile && savedProfile.city) || (companyRow && companyRow.city) || 'İstanbul',
     employee_range: c.req.query('employee_range') || (savedProfile && savedProfile.employee_range) || '10-49',
     revenue_range: c.req.query('revenue_range') || (savedProfile && savedProfile.revenue_range) || '5M-25M',
     balance_years: Number(c.req.query('balance_years') || (savedProfile && savedProfile.balance_years) || 5),
@@ -1810,7 +1824,7 @@ app.get('/api/grants/match', async (c) => {
 
   const { results: applications } = await c.env.DB.prepare(
     `SELECT * FROM mw_grant_applications WHERE company_id = ? ORDER BY created_at DESC`
-  ).bind(companyId).all();
+  ).bind(resolvedCompanyId).all();
 
   return c.json({
     success: true,
@@ -1825,7 +1839,10 @@ app.post('/api/grants/profile', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
   const body = await c.req.json();
-  const companyId = body.company_id || 'comp_meetwork_hq';
+  const companyId = body.company_id || '';
+  if (!companyId || companyId === 'guest') {
+    return c.json({ success: false, message: 'Lütfen önce işletme hesabınızla giriş yapın.' }, 401);
+  }
   const foundedYear = Number(body.founded_year || 2021);
   const balanceYears = Math.max(0, 2026 - foundedYear);
 
@@ -1890,6 +1907,9 @@ app.post('/api/grants/apply', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
   const body = await c.req.json();
+  if (!body.company_id || body.company_id === 'guest') {
+    return c.json({ success: false, message: 'Başvuru başlatmak için lütfen işletme hesabınızla giriş yapın.' }, 401);
+  }
   const id = uid('gapp');
   const appNo = `MW-FON-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`;
 
@@ -1902,11 +1922,11 @@ app.post('/api/grants/apply', async (c) => {
   ).bind(
     id,
     appNo,
-    body.company_id || 'comp_meetwork_hq',
-    body.company_name || 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti.',
+    body.company_id,
+    body.company_name || 'MeetWork Üye İşletme',
     body.contact_name || 'Firma Yetkilisi',
-    body.contact_phone || '05412465429',
-    body.contact_email || 'yonetim@meetwork.com.tr',
+    body.contact_phone || '',
+    body.contact_email || '',
     body.program_id || 'prg_tubitak_1507',
     body.program_title || 'Hibe & Teşvik Programı',
     body.provider || 'Resmi Kurum',
@@ -1927,6 +1947,7 @@ app.put('/api/grants/application/:id', async (c) => {
   await ensureSchema(c.env.DB);
   const id = c.req.param('id');
   const body = await c.req.json();
+  const nextStep = body.current_step || body.status_step || null;
 
   await c.env.DB.prepare(
     `UPDATE mw_grant_applications
@@ -1936,7 +1957,7 @@ app.put('/api/grants/application/:id', async (c) => {
          admin_notes = COALESCE(?, admin_notes)
      WHERE id = ?`
   ).bind(
-    body.current_step || null,
+    nextStep,
     body.checklist_progress ? (typeof body.checklist_progress === 'string' ? body.checklist_progress : JSON.stringify(body.checklist_progress)) : null,
     body.project_notes || null,
     body.admin_notes || null,
@@ -2063,6 +2084,7 @@ app.delete('/api/superadmin/delete/:type/:id', async (c) => {
     tender: 'mw_tenders',
     post: 'mw_posts',
     company: 'mw_companies',
+    grant_app: 'mw_grant_applications',
     grant_application: 'mw_grant_applications'
   };
   const table = tableMap[type];

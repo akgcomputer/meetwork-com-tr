@@ -3,201 +3,267 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="SuperAdmin Yönetim Paneli | MeetWork"
-  description="MeetWork İşletmeler, Güven Rozetleri, İhale/Eşleşme Kredileri, İlan Pazarı ve E-İhale Yönetim Merkezi."
+  title="SuperAdmin Yönetim Girişi | MeetWork"
+  description="MeetWork SuperAdmin Şifreli Yönetim Merkezi."
 >
-  <!-- Üst Başlık ve Hızlı İstatistikler -->
-  <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
-      <div>
-        <span class="badge bg-danger mb-1">PLATFORM YÖNETİM MERKEZİ (SUPERADMIN)</span>
-        <h1 class="h3 fw-bold mb-0">MeetWork SuperAdmin Kontrol Paneli</h1>
-        <small class="text-muted">Üye işletmeleri, 3 kademeli güven rozetlerini, ihale/eşleşme kredilerini, vitrin ilanlarını ve ihaleleri buradan yönetebilirsiniz.</small>
-      </div>
-      <div class="d-flex gap-2">
-        <button type="button" id="saRefreshBtn" class="btn btn-outline-danger btn-sm fw-bold">
-          <i class="bi bi-arrow-clockwise me-1"></i> Verileri Yenile
-        </button>
-        <a href="/giris" class="btn btn-dark btn-sm fw-bold">
-          <i class="bi bi-person-badge me-1"></i> Oturum Bilgisi
-        </a>
-      </div>
-    </div>
+  <!-- 1. ŞİFRELİ SUPERADMIN GİRİŞ EKRANI (Varsayılan Olarak Açık, Panel Gizli) -->
+  <div id="saLoginWall" class="py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="mw-panel-card p-4 p-md-5 shadow border-danger" style="border-top: 4px solid var(--mw-red) !important;">
+          <div class="text-center mb-4">
+            <div
+              class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center mb-3 shadow-sm"
+              style="width: 60px; height: 60px; font-size: 1.6rem;"
+            >
+              <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <span class="badge bg-dark d-block mx-auto mb-2" style="width: fit-content;">YETKİLİ ERİŞİM KORUMASI</span>
+            <h1 class="h4 fw-bold mb-1">SuperAdmin Yönetim Girişi</h1>
+            <p class="small text-muted mb-0">
+              Bu alan şifrelidir. Devam etmek için lütfen SuperAdmin yönetici bilgilerinizi girin.
+            </p>
+          </div>
 
-    <div class="row g-3 text-center">
-      <div class="col-6 col-md-2">
-        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
-          <div class="h3 fw-bolder text-danger mb-0" id="statCompanies">0</div>
-          <small class="text-muted fw-semibold">Kayıtlı İşletme</small>
-        </div>
-      </div>
-      <div class="col-6 col-md-2">
-        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
-          <div class="h3 fw-bolder text-danger mb-0" id="statUsers">0</div>
-          <small class="text-muted fw-semibold">Kullanıcı / Yetkili</small>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
-          <div class="h3 fw-bolder text-danger mb-0" id="statListings">0</div>
-          <small class="text-muted fw-semibold">Aktif İlan (Emlak/Oto/Makine)</small>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
-          <div class="h3 fw-bolder text-danger mb-0" id="statTenders">0</div>
-          <small class="text-muted fw-semibold">Canlı E-İhale & RFQ</small>
-        </div>
-      </div>
-      <div class="col-12 col-md-2">
-        <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
-          <div class="h3 fw-bolder text-danger mb-0" id="statPosts">0</div>
-          <small class="text-muted fw-semibold">Sosyal Paylaşım</small>
+          <div id="saLoginErrorBox" class="alert alert-danger small fw-semibold py-2" style="display: none;"></div>
+
+          <form id="saLoginForm" autocomplete="off">
+            <div class="mb-3">
+              <label class="form-label small fw-bold mb-1">
+                <i class="bi bi-envelope-fill text-danger me-1"></i> Yönetici E-Posta
+              </label>
+              <input
+                type="email"
+                id="saLoginEmail"
+                class="form-control form-control-sm"
+                placeholder="yonetim@meetwork.com.tr"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-bold mb-1">
+                <i class="bi bi-key-fill text-danger me-1"></i> Yönetici Şifresi
+              </label>
+              <input
+                type="password"
+                id="saLoginPassword"
+                class="form-control form-control-sm"
+                placeholder="••••••••••••"
+                required
+              />
+            </div>
+
+            <button type="submit" id="saLoginSubmitBtn" class="btn btn-danger w-100 fw-bold py-2">
+              <i class="bi bi-unlock-fill me-1"></i> Doğrula ve Yönetim Panelini Aç
+            </button>
+          </form>
+
+          <div class="text-center mt-3 pt-3 border-top" style="border-color: var(--mw-border) !important;">
+            <a href="/" class="small text-muted text-decoration-none">
+              <i class="bi bi-arrow-left me-1"></i> Ana Sayfaya Dön
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="saAlertBox" class="alert" style="display:none;"></div>
-
-  <!-- Yönetim Sekmeleri -->
-  <div class="mw-panel-card p-4 shadow-sm">
-    <ul class="nav nav-pills mb-4 gap-2 border-bottom pb-3" id="saTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-companies" type="button" role="tab">
-          <i class="bi bi-buildings-fill me-1"></i> İşletmeler, Güven Rozetleri & Krediler
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-listings" type="button" role="tab">
-          <i class="bi bi-shop-window me-1"></i> İlan Pazarı & Vitrin Yönetimi
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-tenders" type="button" role="tab">
-          <i class="bi bi-hammer me-1"></i> E-İhale & Satın Alma Yönetimi
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-posts" type="button" role="tab">
-          <i class="bi bi-chat-square-text-fill me-1"></i> Sosyal Akış Moderasyonu
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-grants" type="button" role="tab">
-          <i class="bi bi-cash-coin me-1"></i> Hibe, Fon & Kredi Başvuruları
-        </button>
-      </li>
-    </ul>
-
-    <div class="tab-content">
-      <!-- 1. İŞLETMELER, GÜVEN ROZETİ VE KREDİ YÖNETİMİ -->
-      <div class="tab-pane fade show active" id="sa-tab-companies" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle small">
-            <thead>
-              <tr class="text-muted">
-                <th>İşletme Adı & VKN</th>
-                <th>Sektör & Şehir</th>
-                <th>Güven Rozeti Kademesi</th>
-                <th>Üyelik Paketi</th>
-                <th>Eşleşme / İhale Kredisi</th>
-                <th>İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="saCompaniesTable">
-              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
-            </tbody>
-          </table>
+  <!-- 2. KORUMALI SUPERADMIN KONTROL PANELİ (Şifre Doğrulanmadan Görünmez) -->
+  <div id="saProtectedDashboard" style="display: none;">
+    <!-- Üst Başlık ve Hızlı İstatistikler -->
+    <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <span class="badge bg-danger mb-1"><i class="bi bi-unlock-fill me-1"></i> ŞİFRELİ OTURUM AÇIK (SUPERADMIN)</span>
+          <h2 class="h3 fw-bold mb-0">MeetWork SuperAdmin Kontrol Paneli</h2>
+          <small class="text-muted">Üye işletmeleri, 3 kademeli güven rozetlerini, ihale/eşleşme kredilerini, vitrin ilanlarını, ihaleleri ve hibe başvurularını buradan yönetebilirsiniz.</small>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" id="saRefreshBtn" class="btn btn-outline-danger btn-sm fw-bold">
+            <i class="bi bi-arrow-clockwise me-1"></i> Verileri Yenile
+          </button>
+          <button type="button" id="saLockBtn" class="btn btn-dark btn-sm fw-bold">
+            <i class="bi bi-lock-fill text-danger me-1"></i> Paneli Kilitle & Çıkış
+          </button>
         </div>
       </div>
 
-      <!-- 2. İLAN PAZARI YÖNETİMİ -->
-      <div class="tab-pane fade" id="sa-tab-listings" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle small">
-            <thead>
-              <tr class="text-muted">
-                <th>İlan No</th>
-                <th>Başlık & Kategori</th>
-                <th>Fiyat</th>
-                <th>Satıcı & Şehir</th>
-                <th>Vitrin / Acil Durumu</th>
-                <th>İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="saListingsTable">
-              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
-            </tbody>
-          </table>
+      <div class="row g-3 text-center">
+        <div class="col-6 col-md-2">
+          <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+            <div class="h3 fw-bolder text-danger mb-0" id="statCompanies">0</div>
+            <small class="text-muted fw-semibold">Kayıtlı İşletme</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+            <div class="h3 fw-bolder text-danger mb-0" id="statUsers">0</div>
+            <small class="text-muted fw-semibold">Kullanıcı / Yetkili</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+            <div class="h3 fw-bolder text-danger mb-0" id="statListings">0</div>
+            <small class="text-muted fw-semibold">Aktif İlan (Emlak/Oto/Makine)</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+            <div class="h3 fw-bolder text-danger mb-0" id="statTenders">0</div>
+            <small class="text-muted fw-semibold">Canlı E-İhale & RFQ</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-2">
+          <div class="p-3 rounded border" style="background:var(--mw-surface-alt);">
+            <div class="h3 fw-bolder text-danger mb-0" id="statPosts">0</div>
+            <small class="text-muted fw-semibold">Sosyal Paylaşım</small>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- 3. E-İHALE YÖNETİMİ -->
-      <div class="tab-pane fade" id="sa-tab-tenders" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle small">
-            <thead>
-              <tr class="text-muted">
-                <th>İhale No</th>
-                <th>Başlık & Usul</th>
-                <th>Alıcı İşletme</th>
-                <th>Miktar</th>
-                <th>Teklif Sayısı / En Düşük</th>
-                <th>İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="saTendersTable">
-              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div id="saAlertBox" class="alert" style="display:none;"></div>
 
-      <!-- 4. SOSYAL AKIŞ MODERASYONU -->
-      <div class="tab-pane fade" id="sa-tab-posts" role="tabpanel">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle small">
-            <thead>
-              <tr class="text-muted">
-                <th>Yazar / Firma</th>
-                <th>Paylaşım İçeriği</th>
-                <th>Beğeni</th>
-                <th>Tarih</th>
-                <th>İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="saPostsTable">
-              <tr><td colspan="5" class="text-center py-4">Yükleniyor...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <!-- Yönetim Sekmeleri -->
+    <div class="mw-panel-card p-4 shadow-sm">
+      <ul class="nav nav-pills mb-4 gap-2 border-bottom pb-3" id="saTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-companies" type="button" role="tab">
+            <i class="bi bi-buildings-fill me-1"></i> İşletmeler, Güven Rozetleri & Krediler
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-listings" type="button" role="tab">
+            <i class="bi bi-shop-window me-1"></i> İlan Pazarı & Vitrin Yönetimi
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-tenders" type="button" role="tab">
+            <i class="bi bi-hammer me-1"></i> E-İhale & Satın Alma Yönetimi
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-posts" type="button" role="tab">
+            <i class="bi bi-chat-square-text-fill me-1"></i> Sosyal Akış Moderasyonu
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-grants" type="button" role="tab">
+            <i class="bi bi-cash-coin me-1"></i> Hibe, Fon & Kredi Başvuruları
+          </button>
+        </li>
+      </ul>
 
-      <!-- 5. HİBE, FON & KREDİ BAŞVURULARI YÖNETİMİ -->
-      <div class="tab-pane fade" id="sa-tab-grants" role="tabpanel">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <span class="small fw-bold text-muted">İşletmelerin ve DD İnternet Ltd. Şti.'nin başlattığı aktif hibe, AB fonu ve kredi başvuruları:</span>
-          <a href="/hibe-kredi-eslesme" class="btn btn-sm btn-danger fw-bold">
-            <i class="bi bi-magic me-1"></i> Hibe & Fon Eşleştirme Ekranını Aç →
-          </a>
+      <div class="tab-content">
+        <!-- 1. İŞLETMELER, GÜVEN ROZETİ VE KREDİ YÖNETİMİ -->
+        <div class="tab-pane fade show active" id="sa-tab-companies" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>İşletme Adı & VKN</th>
+                  <th>Sektör & Şehir</th>
+                  <th>Güven Rozeti Kademesi</th>
+                  <th>Üyelik Paketi</th>
+                  <th>Eşleşme / İhale Kredisi</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saCompaniesTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="table-responsive">
-          <table class="table table-hover align-middle small">
-            <thead>
-              <tr class="text-muted">
-                <th>Başvuru No</th>
-                <th>İşletme / STK</th>
-                <th>Program & Kurum</th>
-                <th>Proje Başlığı</th>
-                <th>Güncel Aşama</th>
-                <th>İşlem</th>
-              </tr>
-            </thead>
-            <tbody id="saGrantsTable">
-              <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
-            </tbody>
-          </table>
+
+        <!-- 2. İLAN PAZARI YÖNETİMİ -->
+        <div class="tab-pane fade" id="sa-tab-listings" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>İlan No</th>
+                  <th>Başlık & Kategori</th>
+                  <th>Fiyat</th>
+                  <th>Satıcı & Şehir</th>
+                  <th>Vitrin / Acil Durumu</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saListingsTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. E-İHALE YÖNETİMİ -->
+        <div class="tab-pane fade" id="sa-tab-tenders" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>İhale No</th>
+                  <th>Başlık & Usul</th>
+                  <th>Alıcı İşletme</th>
+                  <th>Miktar</th>
+                  <th>Teklif Sayısı / En Düşük</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saTendersTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. SOSYAL AKIŞ MODERASYONU -->
+        <div class="tab-pane fade" id="sa-tab-posts" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>Yazar / Firma</th>
+                  <th>Paylaşım İçeriği</th>
+                  <th>Beğeni</th>
+                  <th>Tarih</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saPostsTable">
+                <tr><td colspan="5" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. HİBE, FON & KREDİ BAŞVURULARI YÖNETİMİ -->
+        <div class="tab-pane fade" id="sa-tab-grants" role="tabpanel">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="small fw-bold text-muted">Tüm üye işletmelerin ve DD İnternet Ltd. Şti.'nin başlattığı aktif hibe, AB fonu ve kredi başvuruları:</span>
+            <a href="/hibe-kredi-eslesme" class="btn btn-sm btn-danger fw-bold">
+              <i class="bi bi-magic me-1"></i> Hibe & Fon Eşleştirme Ekranını Aç →
+            </a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>Başvuru No</th>
+                  <th>İşletme / STK</th>
+                  <th>Program & Kurum</th>
+                  <th>Proje Başlığı</th>
+                  <th>Güncel Aşama</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saGrantsTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -240,42 +306,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             return `
               <tr>
                 <td>
-                  <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="fw-bold text-danger text-decoration-none">${c.name}</a>
-                  <div class="text-muted" style="font-size:0.72rem;">VKN: ${c.vkn || '-'} • ${c.email || ''}</div>
+                  <div class="fw-bold">${c.name}</div>
+                  <small class="text-muted">VKN: ${c.vkn || 'Belirtilmedi'} • Slug: ${c.slug}</small>
                 </td>
                 <td>
-                  <div class="fw-semibold">${c.sector}</div>
+                  <div>${c.sector}</div>
                   <small class="text-muted">${c.city || 'İstanbul'}</small>
                 </td>
                 <td>
                   <select class="form-select form-select-sm" id="trust_${c.id}">
-                    <option value="1" ${Number(c.trust_level) === 1 ? 'selected' : ''}>1. Kademe: Kayıtlı Üye</option>
-                    <option value="2" ${Number(c.trust_level) === 2 ? 'selected' : ''}>2. Kademe: StokPratik VKN Onaylı</option>
-                    <option value="3" ${Number(c.trust_level) >= 3 ? 'selected' : ''}>3. Kademe: MeetWork Gold Onaylı</option>
+                    <option value="1" ${Number(c.trust_level) === 1 ? 'selected' : ''}>Kademe 1: Standart Üye</option>
+                    <option value="2" ${Number(c.trust_level) === 2 ? 'selected' : ''}>Kademe 2: Silver Onaylı</option>
+                    <option value="3" ${Number(c.trust_level) >= 3 ? 'selected' : ''}>Kademe 3: Gold Onaylı</option>
                   </select>
                 </td>
                 <td>
                   <select class="form-select form-select-sm" id="tier_${c.id}">
                     <option value="free" ${c.membership_tier === 'free' ? 'selected' : ''}>Ücretsiz</option>
-                    <option value="pro" ${c.membership_tier === 'pro' ? 'selected' : ''}>PRO Üye</option>
-                    <option value="gold" ${c.membership_tier === 'gold' ? 'selected' : ''}>GOLD Üye</option>
+                    <option value="pro" ${c.membership_tier === 'pro' ? 'selected' : ''}>PRO Kurumsal</option>
+                    <option value="gold" ${c.membership_tier === 'gold' ? 'selected' : ''}>GOLD (CariNet + VIP)</option>
                   </select>
                 </td>
                 <td>
-                  <div class="input-group input-group-sm" style="max-width:160px;">
-                    <input type="number" class="form-control" id="mcred_${c.id}" value="${u.match_credits ?? 3}" title="Eşleşme Kredisi" />
-                    <input type="number" class="form-control" id="tcred_${c.id}" value="${u.tender_credits ?? 3}" title="İhale Kredisi" />
+                  <div class="d-flex gap-1 align-items-center">
+                    <input type="number" class="form-control form-control-sm" style="width:65px;" id="mcred_${c.id}" value="${u.match_credits ?? 3}" title="Eşleşme Kredisi" />
+                    <input type="number" class="form-control form-control-sm" style="width:65px;" id="tcred_${c.id}" value="${u.tender_credits ?? 3}" title="İhale Kredisi" />
                   </div>
                 </td>
                 <td>
-                  <div class="d-flex gap-1">
-                    <button class="btn btn-sm btn-danger fw-bold" onclick="window.saSaveCompany('${c.id}')">Kaydet</button>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="window.saDeleteItem('company', '${c.id}')"><i class="bi bi-trash"></i></button>
-                  </div>
+                  <button class="btn btn-sm btn-danger fw-bold" onclick="window.saSaveCompany('${c.id}')">Kaydet</button>
                 </td>
               </tr>
             `;
-          }).join('') || '<tr><td colspan="6" class="text-center py-3">Kayıtlı işletme yok.</td></tr>';
+          }).join('') || '<tr><td colspan="6" class="text-center py-3">Kayıtlı işletme bulunmuyor.</td></tr>';
 
           // Render Listings
           const lstBody = document.getElementById('saListingsTable');
@@ -283,17 +346,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <tr>
               <td class="fw-bold text-danger">#${l.listing_no}</td>
               <td>
-                <a href="/ilanlar?ilan=${encodeURIComponent(l.slug)}" class="fw-bold text-decoration-none" style="color:var(--mw-text);">${l.title}</a>
-                <div class="text-muted" style="font-size:0.72rem;">${l.main_category} / ${l.sub_category} (${l.listing_type})</div>
+                <div class="fw-bold">${l.title}</div>
+                <small class="text-muted">${l.main_category} • ${l.listing_type}</small>
               </td>
-              <td class="fw-bold text-danger">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</td>
+              <td class="fw-bold">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</td>
               <td>${l.seller_name} (${l.seller_city})</td>
               <td>
                 <button class="btn btn-sm ${l.is_vitrin ? 'btn-warning' : 'btn-outline-secondary'} me-1" onclick="window.saToggleListing('${l.id}', ${l.is_vitrin ? 0 : 1}, ${l.is_urgent})">
-                  ${l.is_vitrin ? '★ Vitrinde' : 'Vitrine Al'}
+                  ⭐ Vitrin
                 </button>
                 <button class="btn btn-sm ${l.is_urgent ? 'btn-danger' : 'btn-outline-secondary'}" onclick="window.saToggleListing('${l.id}', ${l.is_vitrin}, ${l.is_urgent ? 0 : 1})">
-                  ${l.is_urgent ? '🔥 Acil' : 'Acil Yap'}
+                  🔥 Acil
                 </button>
               </td>
               <td>
@@ -337,50 +400,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           // Render Grant Applications
           const grBody = document.getElementById('saGrantsTable');
           if (grBody) {
-            grBody.innerHTML = (data.grant_applications || []).map(g => `
-              <tr>
-                <td class="fw-bold text-danger font-monospace">${g.application_no || g.id}</td>
-                <td>
-                  <div class="fw-bold">${g.company_name}</div>
-                  <div class="text-muted" style="font-size:0.75rem;">${g.contact_person || ''} ${g.contact_phone ? '• ' + g.contact_phone : ''}</div>
-                </td>
-                <td>
-                  <div class="fw-bold">${g.program_title}</div>
-                  <span class="badge bg-dark-subtle text-body border">${g.institution}</span>
-                  <span class="badge bg-success-subtle text-success border border-success-subtle ms-1">${g.max_amount_label || ''}</span>
-                </td>
-                <td>
-                  <div class="fw-semibold">${g.project_title || '-'}</div>
-                  <div class="text-muted text-truncate" style="max-width:260px;font-size:0.75rem;" title="${(g.project_summary || '').replace(/"/g, '&quot;')}">${g.project_summary || ''}</div>
-                </td>
-                <td>
-                  <select class="form-select form-select-sm fw-bold" onchange="window.saUpdateGrantStep('${g.id}', this.value)">
-                    <option value="Hazırlık & Kriter Analizi" ${g.status_step === 'Hazırlık & Kriter Analizi' ? 'selected' : ''}>1. Hazırlık & Kriter Analizi</option>
-                    <option value="Evrak & Proje Dosyası" ${g.status_step === 'Evrak & Proje Dosyası' ? 'selected' : ''}>2. Evrak & Proje Dosyası</option>
-                    <option value="Kurum Başvurusu Yapıldı" ${g.status_step === 'Kurum Başvurusu Yapıldı' ? 'selected' : ''}>3. Kurum Başvurusu Yapıldı</option>
-                    <option value="Kurul / Hakem Değerlendirmesinde" ${g.status_step === 'Kurul / Hakem Değerlendirmesinde' ? 'selected' : ''}>4. Kurul / Hakem Değerlendirmesinde</option>
-                    <option value="Onaylandı / Hibe & Kredi Kullanımda" ${g.status_step === 'Onaylandı / Hibe & Kredi Kullanımda' ? 'selected' : ''}>5. Onaylandı / Kullanımda</option>
-                  </select>
-                </td>
-                <td>
-                  <a href="${g.official_url || '/hibe-kredi-eslesme'}" target="_blank" class="btn btn-sm btn-outline-primary me-1" title="Resmi Başvuru Kapısı"><i class="bi bi-box-arrow-up-right"></i></a>
-                  <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('grant_app', '${g.id}')" title="Sil"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-            `).join('') || '<tr><td colspan="6" class="text-center py-3">Henüz hibe/fon başvurusu bulunmuyor.</td></tr>';
+            const stepOptions = [
+              'Ön Analiz & Evrak Hazırlığı',
+              'Resmi Kayıt (DYS / PRODİS / PIC)',
+              'Proje Dosyası Yazılıyor',
+              'Başvuru Tamamlandı / Onay Bekliyor',
+              'Onaylandı / Hibe Kullanımda'
+            ];
+            grBody.innerHTML = (data.grant_applications || []).map(g => {
+              const curStep = g.current_step || g.status_step || 'Ön Analiz & Evrak Hazırlığı';
+              return `
+                <tr>
+                  <td class="fw-bold text-danger font-monospace">${g.application_no || g.id}</td>
+                  <td>
+                    <div class="fw-bold">${g.company_name}</div>
+                    <div class="text-muted" style="font-size:0.75rem;">${g.contact_name || g.contact_person || ''} ${g.contact_phone ? '• ' + g.contact_phone : ''}</div>
+                  </td>
+                  <td>
+                    <div class="fw-bold">${g.program_title}</div>
+                    <span class="badge bg-dark-subtle text-body border">${g.provider || g.institution || ''}</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle ms-1">%${g.match_score || 95} Uyum</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold">${g.project_title || '-'}</div>
+                    <div class="text-muted text-truncate" style="max-width:260px;font-size:0.75rem;" title="${(g.project_notes || g.project_summary || '').replace(/"/g, '&quot;')}">${g.project_notes || g.project_summary || ''}</div>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-sm fw-bold" onchange="window.saUpdateGrantStep('${g.id}', this.value)">
+                      ${stepOptions.map(st => `<option value="${st}" ${curStep === st ? 'selected' : ''}>${st}</option>`).join('')}
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('grant_app', '${g.id}')" title="Sil"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+              `;
+            }).join('') || '<tr><td colspan="6" class="text-center py-3">Henüz hibe/fon başvurusu bulunmuyor.</td></tr>';
           }
         } catch (_) {}
       }
 
-      window.saUpdateGrantStep = async function (appId, status_step) {
+      window.saUpdateGrantStep = async function (appId, current_step) {
         const res = await fetch(`${API_URL}/api/grants/application/${appId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ status_step })
+          body: JSON.stringify({ current_step })
         });
         const out = await res.json();
         if (out.success) {
-          notify('✓ Başvuru aşaması güncellendi: ' + status_step);
+          notify('✓ Başvuru aşaması güncellendi: ' + current_step);
           loadOverview();
         }
       };
@@ -420,9 +488,78 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         loadOverview();
       };
 
+      function checkSuperAdminGate() {
+        const wall = document.getElementById('saLoginWall');
+        const dash = document.getElementById('saProtectedDashboard');
+        let unlocked = false;
+        try {
+          const isUnlockedSession = sessionStorage.getItem('mw_sa_unlocked') === '1';
+          const user = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (isUnlockedSession && user && user.role === 'superadmin') {
+            unlocked = true;
+          }
+        } catch (_) {}
+
+        if (unlocked) {
+          if (wall) wall.style.display = 'none';
+          if (dash) dash.style.display = 'block';
+          loadOverview();
+        } else {
+          if (wall) wall.style.display = 'block';
+          if (dash) dash.style.display = 'none';
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
-        loadOverview();
-        document.getElementById('saRefreshBtn').addEventListener('click', loadOverview);
+        checkSuperAdminGate();
+
+        const loginForm = document.getElementById('saLoginForm');
+        if (loginForm) {
+          loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('saLoginEmail').value.trim();
+            const password = document.getElementById('saLoginPassword').value.trim();
+            const errBox = document.getElementById('saLoginErrorBox');
+            const submitBtn = document.getElementById('saLoginSubmitBtn');
+            if (errBox) errBox.style.display = 'none';
+            if (submitBtn) submitBtn.disabled = true;
+
+            try {
+              const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+              });
+              const out = await res.json();
+              if (out.success && out.user && out.user.role === 'superadmin') {
+                localStorage.setItem('mw_user', JSON.stringify(out.user));
+                localStorage.setItem('mw_token', out.token || '');
+                sessionStorage.setItem('mw_sa_unlocked', '1');
+                checkSuperAdminGate();
+              } else {
+                if (errBox) {
+                  errBox.style.display = 'block';
+                  errBox.textContent = out.user && out.user.role !== 'superadmin'
+                    ? 'Bu hesap SuperAdmin yetkisine sahip değildir!'
+                    : (out.message || 'Yönetici e-posta veya şifresi hatalı!');
+                }
+              }
+            } catch (_) {
+              if (errBox) {
+                errBox.style.display = 'block';
+                errBox.textContent = 'Sunucu bağlantı hatası oluştu.';
+              }
+            } finally {
+              if (submitBtn) submitBtn.disabled = false;
+            }
+          });
+        }
+
+        document.getElementById('saRefreshBtn')?.addEventListener('click', loadOverview);
+        document.getElementById('saLockBtn')?.addEventListener('click', () => {
+          sessionStorage.removeItem('mw_sa_unlocked');
+          checkSuperAdminGate();
+        });
       });
     })();
   </script>
