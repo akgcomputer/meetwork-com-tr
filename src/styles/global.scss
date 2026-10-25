@@ -297,15 +297,19 @@ main {
   border-radius: 12px;
 }
 
-// Akış (Feed) Zebra Mantığı: 1., 3., 5. paylaşımlar hafif gri; 2., 4., 6. paylaşımlar beyaz (koyu temada koyu/gri)
+// Akış (Feed) Zebra Mantığı: 1., 3., 5. paylaşımlar hafif gri; 2., 4., 6. paylaşımlar beyaz (koyu temada gri/koyu)
+:root .mw-zebra-odd,
+[data-theme="light"] .mw-zebra-odd,
 :root #mwHomeSocialFeed > .mw-panel-card:nth-child(odd),
 [data-theme="light"] #mwHomeSocialFeed > .mw-panel-card:nth-child(odd),
 :root .mw-zebra-feed > .mw-panel-card:nth-child(odd),
 [data-theme="light"] .mw-zebra-feed > .mw-panel-card:nth-child(odd) {
-  background-color: #e6eaf2 !important;
-  border-color: #cfd6e3 !important;
+  background-color: #e3e7f0 !important;
+  border-color: #c5cedd !important;
 }
 
+:root .mw-zebra-even,
+[data-theme="light"] .mw-zebra-even,
 :root #mwHomeSocialFeed > .mw-panel-card:nth-child(even),
 [data-theme="light"] #mwHomeSocialFeed > .mw-panel-card:nth-child(even),
 :root .mw-zebra-feed > .mw-panel-card:nth-child(even),
@@ -314,16 +318,18 @@ main {
   border-color: #e2e5ec !important;
 }
 
+[data-theme="dark"] .mw-zebra-odd,
 [data-theme="dark"] #mwHomeSocialFeed > .mw-panel-card:nth-child(odd),
 [data-theme="dark"] .mw-zebra-feed > .mw-panel-card:nth-child(odd) {
-  background-color: #222430 !important;
-  border-color: #383b4d !important;
+  background-color: #252836 !important;
+  border-color: #3f445a !important;
 }
 
+[data-theme="dark"] .mw-zebra-even,
 [data-theme="dark"] #mwHomeSocialFeed > .mw-panel-card:nth-child(even),
 [data-theme="dark"] .mw-zebra-feed > .mw-panel-card:nth-child(even) {
-  background-color: #141419 !important;
-  border-color: #282833 !important;
+  background-color: #121217 !important;
+  border-color: #262730 !important;
 }
 
 .mw-sidebar-cat {

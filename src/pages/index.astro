@@ -716,11 +716,11 @@ const recentTalepler = talepler.slice(0, 5);
         }
       };
 
-      function renderPostCard(post) {
+      function renderPostCard(post, zebraClass) {
         const initials = (post.company_name || post.author_name || 'MW').slice(0, 2).toUpperCase();
         const tag = post.tag || 'İş & Sektör Paylaşımı';
         return `
-          <div class="mw-panel-card p-3 shadow-sm">
+          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <div class="d-flex gap-2 align-items-center">
                 <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0" style="width:42px;height:42px;">
@@ -761,9 +761,9 @@ const recentTalepler = talepler.slice(0, 5);
         `;
       }
 
-      function renderInlineListingCard(item) {
+      function renderInlineListingCard(item, zebraClass) {
         return `
-          <div class="mw-panel-card p-3 shadow-sm border-start border-4 border-danger">
+          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-danger">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div class="d-flex align-items-center gap-2">
                 <span class="badge bg-danger"><i class="bi bi-shop me-1"></i> Vitrin İlanı • ${item.main_category}</span>
@@ -790,9 +790,9 @@ const recentTalepler = talepler.slice(0, 5);
         `;
       }
 
-      function renderInlineTenderCard(tender) {
+      function renderInlineTenderCard(tender, zebraClass) {
         return `
-          <div class="mw-panel-card p-3 shadow-sm border-start border-4 border-success">
+          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-success">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span class="badge bg-success"><i class="bi bi-hammer me-1"></i> Canlı E-İhale • ${tender.tender_type || 'Açık Eksiltme'}</span>
               <small class="text-muted" style="font-size:0.7rem;">#${tender.tender_no || tender.id}</small>
@@ -805,6 +805,11 @@ const recentTalepler = talepler.slice(0, 5);
             </div>
           </div>
         `;
+      }
+
+      function getZebraClass(index) {
+        // index 0 -> 1. paylaşım (Hafif Gri), index 1 -> 2. paylaşım (Beyaz), index 2 -> 3. paylaşım (Hafif Gri), index 4 -> 5. paylaşım (Hafif Gri)
+        return index % 2 === 0 ? 'mw-zebra-odd' : 'mw-zebra-even';
       }
 
       function renderFeedStream() {
@@ -824,30 +829,36 @@ const recentTalepler = talepler.slice(0, 5);
         const tenders = cachedFeedData.activeTenders || [];
 
         if (currentFilter === 'posts') {
-          feedContainer.innerHTML = posts.map(renderPostCard).join('');
+          feedContainer.innerHTML = posts.map((p, idx) => renderPostCard(p, getZebraClass(idx))).join('');
           return;
         }
         if (currentFilter === 'listings') {
           feedContainer.innerHTML = listings.length > 0
-            ? listings.map(renderInlineListingCard).join('')
-            : '<div class="mw-panel-card p-4 text-center small text-muted">Vitrin ilanı bulunamadı.</div>';
+            ? listings.map((item, idx) => renderInlineListingCard(item, getZebraClass(idx))).join('')
+            : '<div class="mw-panel-card mw-zebra-odd p-4 text-center small text-muted">Vitrin ilanı bulunamadı.</div>';
           return;
         }
         if (currentFilter === 'tenders') {
           feedContainer.innerHTML = tenders.length > 0
-            ? tenders.map(renderInlineTenderCard).join('')
-            : '<div class="mw-panel-card p-4 text-center small text-muted">Aktif e-ihale bulunamadı.</div>';
+            ? tenders.map((t, idx) => renderInlineTenderCard(t, getZebraClass(idx))).join('')
+            : '<div class="mw-panel-card mw-zebra-odd p-4 text-center small text-muted">Aktif e-ihale bulunamadı.</div>';
           return;
         }
 
-        const streamHtml = [];
-        // Önce sosyal iş paylaşımları (1. Gri, 2. Beyaz, 3. Gri...), ardından vitrin ilanları ve canlı e-ihaleler zebra sırasıyla dizilir
-        posts.forEach((p) => streamHtml.push(renderPostCard(p)));
+        const rawItems = [];
+        posts.forEach((p) => rawItems.push({ type: 'post', data: p }));
         const maxExtra = Math.max(listings.length, tenders.length);
         for (let i = 0; i < maxExtra; i++) {
-          if (listings[i] && i < 3) streamHtml.push(renderInlineListingCard(listings[i]));
-          if (tenders[i] && i < 2) streamHtml.push(renderInlineTenderCard(tenders[i]));
+          if (listings[i] && i < 3) rawItems.push({ type: 'listing', data: listings[i] });
+          if (tenders[i] && i < 2) rawItems.push({ type: 'tender', data: tenders[i] });
         }
+
+        const streamHtml = rawItems.map((entry, idx) => {
+          const zClass = getZebraClass(idx);
+          if (entry.type === 'post') return renderPostCard(entry.data, zClass);
+          if (entry.type === 'listing') return renderInlineListingCard(entry.data, zClass);
+          return renderInlineTenderCard(entry.data, zClass);
+        });
 
         feedContainer.innerHTML = streamHtml.join('');
       }
