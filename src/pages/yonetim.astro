@@ -150,7 +150,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-grants" type="button" role="tab">
-            <i class="bi bi-cash-coin me-1"></i> Hibe, Fon & Kredi Başvuruları
+            <i class="bi bi-cash-coin me-1"></i> Hibe Başvuruları
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-grant-programs" type="button" role="tab">
+            <i class="bi bi-calendar-range me-1"></i> Hibe Havuzu & Çağrı Takvimi (16)
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-jobs" type="button" role="tab">
+            <i class="bi bi-briefcase-fill me-1"></i> İş İlanları Yönetimi
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold" data-bs-toggle="pill" data-bs-target="#sa-tab-talents" type="button" role="tab">
+            <i class="bi bi-person-badge-fill me-1"></i> Yetenek Havuzu (İK)
           </button>
         </li>
       </ul>
@@ -265,6 +280,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </table>
           </div>
         </div>
+
+        <!-- 6. HİBE & FON HAVUZU (GÜN BAZLI ÇAĞRI TAKVİMİ & LİMİT) YÖNETİMİ -->
+        <div class="tab-pane fade" id="sa-tab-grant-programs" role="tabpanel">
+          <div class="p-3 rounded border mb-3" style="background: var(--mw-surface-alt);">
+            <h6 class="fw-bold mb-2"><i class="bi bi-plus-circle-fill text-danger me-1"></i> Yeni Hibe / Teşvik / Kredi Programı Ekle veya Güncelle</h6>
+            <form id="saAddGrantProgramForm" class="row g-2">
+              <div class="col-md-3">
+                <input type="text" id="sapCode" class="form-control form-control-sm" placeholder="Kod (Örn: KOSGEB-2026)" required />
+              </div>
+              <div class="col-md-5">
+                <input type="text" id="sapTitle" class="form-control form-control-sm" placeholder="Program Başlığı" required />
+              </div>
+              <div class="col-md-4">
+                <input type="text" id="sapProvider" class="form-control form-control-sm" placeholder="Kurum (Örn: KOSGEB / TÜBİTAK)" required />
+              </div>
+              <div class="col-md-2">
+                <select id="sapScope" class="form-select form-select-sm">
+                  <option value="yerel">🇹🇷 Yerel</option>
+                  <option value="ab">🇪🇺 AB Fonu</option>
+                  <option value="global">🌍 Global</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <input type="text" id="sapRate" class="form-control form-control-sm" placeholder="Oran (Örn: %75 Hibe)" required />
+              </div>
+              <div class="col-md-3">
+                <input type="text" id="sapMaxAmount" class="form-control form-control-sm" placeholder="Üst Limit (Örn: 5.000.000 TL)" required />
+              </div>
+              <div class="col-md-2">
+                <input type="date" id="sapDeadlineDate" class="form-control form-control-sm" title="Son Başvuru Tarihi" />
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-sm btn-danger w-100 fw-bold">+ Havuza Ekle</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>Kod & Program Adı</th>
+                  <th>Kurum & Kapsam</th>
+                  <th>Oran & Üst Limit</th>
+                  <th>Son Başvuru Tarihi (Gün Bazlı)</th>
+                  <th>Çağrı Durumu</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saGrantProgramsTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 7. İŞ İLANLARI YÖNETİMİ (KARİYER MERKEZİ) -->
+        <div class="tab-pane fade" id="sa-tab-jobs" role="tabpanel">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="small fw-bold text-muted">İşverenlerin açtığı tam zamanlı ve dönemsel uzman iş ilanları:</span>
+            <a href="/kariyer?tab=post-job" class="btn btn-sm btn-primary fw-bold">+ Yeni İş İlanı Aç →</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>İlan No</th>
+                  <th>Pozisyon & Departman</th>
+                  <th>İşveren Firma</th>
+                  <th>Maaş Aralığı & Şehir</th>
+                  <th>Teşvik Notu</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saJobsTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 8. YETENEK HAVUZU YÖNETİMİ (ADAY KARTLARI) -->
+        <div class="tab-pane fade" id="sa-tab-talents" role="tabpanel">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="small fw-bold text-muted">Kariyer merkezindeki adayların Yetenek Kartları, Gizli Radar durumu ve Devlet Teşvik rozetleri:</span>
+            <a href="/kariyer" class="btn btn-sm btn-success fw-bold">Kariyer Merkezini Aç →</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle small">
+              <thead>
+                <tr class="text-muted">
+                  <th>Aday (Gerçek / Maskeli)</th>
+                  <th>Uzmanlık & Departman</th>
+                  <th>Deneyim & Şehir</th>
+                  <th>Devlet İstihdam Teşviki Rozeti</th>
+                  <th>Doğrulama</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="saTalentsTable">
+                <tr><td colspan="6" class="text-center py-4">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -272,6 +392,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let grantProgramsCache = [];
 
       function notify(msg, type = 'success') {
         const box = document.getElementById('saAlertBox');
@@ -344,12 +465,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const lstBody = document.getElementById('saListingsTable');
           lstBody.innerHTML = (data.listings || []).map(l => `
             <tr>
-              <td class="fw-bold text-danger">#${l.listing_no}</td>
+              <td class="fw-bold text-danger tabular-nums">#${l.listing_no}</td>
               <td>
                 <div class="fw-bold">${l.title}</div>
                 <small class="text-muted">${l.main_category} • ${l.listing_type}</small>
               </td>
-              <td class="fw-bold">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</td>
+              <td class="fw-bold tabular-nums">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</td>
               <td>${l.seller_name} (${l.seller_city})</td>
               <td>
                 <button class="btn btn-sm ${l.is_vitrin ? 'btn-warning' : 'btn-outline-secondary'} me-1" onclick="window.saToggleListing('${l.id}', ${l.is_vitrin ? 0 : 1}, ${l.is_urgent})">
@@ -369,7 +490,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const tndBody = document.getElementById('saTendersTable');
           tndBody.innerHTML = (data.tenders || []).map(t => `
             <tr>
-              <td class="fw-bold text-danger">#${t.tender_no}</td>
+              <td class="fw-bold text-danger tabular-nums">#${t.tender_no}</td>
               <td>
                 <div class="fw-bold">${t.title}</div>
                 <span class="badge bg-danger">${t.tender_method}</span>
@@ -437,8 +558,156 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               `;
             }).join('') || '<tr><td colspan="6" class="text-center py-3">Henüz hibe/fon başvurusu bulunmuyor.</td></tr>';
           }
+
+          // Render 6. Grant Programs Pool (Gün Bazlı Tarih & Çağrı Yönetimi)
+          grantProgramsCache = data.grant_programs || [];
+          const gpBody = document.getElementById('saGrantProgramsTable');
+          if (gpBody) {
+            gpBody.innerHTML = grantProgramsCache.map((gp) => `
+              <tr>
+                <td>
+                  <div class="fw-bold">${gp.title}</div>
+                  <small class="text-danger font-monospace">${gp.code}</small>
+                </td>
+                <td>
+                  <div>${gp.provider}</div>
+                  <span class="badge bg-secondary">${gp.scope}</span>
+                </td>
+                <td>
+                  <input type="text" class="form-control form-control-sm mb-1" id="gprate_${gp.id}" value="${gp.grant_rate || ''}" />
+                  <input type="text" class="form-control form-control-sm" id="gpmax_${gp.id}" value="${gp.max_amount || ''}" />
+                </td>
+                <td>
+                  <input type="date" class="form-control form-control-sm" id="gpdate_${gp.id}" value="${gp.deadline_date || ''}" />
+                  <small class="text-muted">Boş = Sürekli Açık</small>
+                </td>
+                <td>
+                  <select class="form-select form-select-sm" id="gpstatus_${gp.id}">
+                    <option value="open" ${gp.call_status === 'open' ? 'selected' : ''}>🟢 Başvuruya Açık</option>
+                    <option value="closing_soon" ${gp.call_status === 'closing_soon' ? 'selected' : ''}>⏳ Son Günler (Acil)</option>
+                    <option value="closed" ${gp.call_status === 'closed' ? 'selected' : ''}>⛔ Çağrı Kapandı</option>
+                  </select>
+                </td>
+                <td>
+                  <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-success fw-bold" onclick="window.saSaveGrantProgram('${gp.id}')">Kaydet</button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('grant_program', '${gp.id}')"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            `).join('') || '<tr><td colspan="6" class="text-center py-3">Program bulunamadı.</td></tr>';
+          }
+
+          // Render 7. Career Jobs
+          const jbBody = document.getElementById('saJobsTable');
+          if (jbBody) {
+            jbBody.innerHTML = (data.jobs || []).map((j) => `
+              <tr>
+                <td class="fw-bold text-primary tabular-nums">#${j.job_no}</td>
+                <td>
+                  <div class="fw-bold">${j.title}</div>
+                  <small class="text-muted">${j.department} • ${j.work_mode}</small>
+                </td>
+                <td>${j.company_name}</td>
+                <td class="tabular-nums"><strong>${j.salary_range}</strong><div class="text-muted">${j.city}</div></td>
+                <td><span class="badge bg-success-subtle text-success">${j.subsidy_note || '-'}</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('job', '${j.id}')"><i class="bi bi-trash"></i> Sil</button>
+                </td>
+              </tr>
+            `).join('') || '<tr><td colspan="6" class="text-center py-3">İş ilanı bulunmuyor.</td></tr>';
+          }
+
+          // Render 8. Career Talents
+          const tlBody = document.getElementById('saTalentsTable');
+          if (tlBody) {
+            tlBody.innerHTML = (data.talents || []).map((t) => `
+              <tr>
+                <td>
+                  <div class="fw-bold">${t.full_name}</div>
+                  <small class="text-muted">${t.masked_name || ''} • ${t.phone || ''}</small>
+                </td>
+                <td>
+                  <div class="fw-semibold">${t.headline}</div>
+                  <small class="text-primary">${t.department}</small>
+                </td>
+                <td>${t.experience_years} Yıl • ${t.city}</td>
+                <td><span class="badge bg-success-subtle text-success">${t.subsidy_badge || '-'}</span></td>
+                <td>
+                  <button class="btn btn-sm ${t.is_verified_skill ? 'btn-success' : 'btn-outline-secondary'}" onclick="window.saToggleTalentVerify('${t.id}', ${t.is_verified_skill ? 0 : 1})">
+                    ${t.is_verified_skill ? '✓ Doğrulanmış' : 'Onayla'}
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-danger" onclick="window.saDeleteItem('talent', '${t.id}')"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+            `).join('') || '<tr><td colspan="6" class="text-center py-3">Aday profili bulunmuyor.</td></tr>';
+          }
         } catch (_) {}
       }
+
+      window.saSaveGrantProgram = async function (progId) {
+        const gp = grantProgramsCache.find((x) => x.id === progId);
+        if (!gp) return;
+        const grant_rate = document.getElementById(`gprate_${progId}`).value;
+        const max_amount = document.getElementById(`gpmax_${progId}`).value;
+        const deadline_date = document.getElementById(`gpdate_${progId}`).value;
+        const call_status = document.getElementById(`gpstatus_${progId}`).value;
+
+        const res = await fetch(`${API_URL}/api/superadmin/grant-program`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...gp,
+            grant_rate,
+            max_amount,
+            deadline_date,
+            call_status
+          })
+        });
+        const out = await res.json();
+        if (out.success) {
+          notify('✓ Program çağrı takvimi ve limitleri güncellendi!');
+          loadOverview();
+        }
+      };
+
+      document.getElementById('saAddGrantProgramForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          code: document.getElementById('sapCode').value,
+          title: document.getElementById('sapTitle').value,
+          provider: document.getElementById('sapProvider').value,
+          scope: document.getElementById('sapScope').value,
+          grant_rate: document.getElementById('sapRate').value,
+          max_amount: document.getElementById('sapMaxAmount').value,
+          deadline_date: document.getElementById('sapDeadlineDate').value,
+          call_status: document.getElementById('sapDeadlineDate').value ? 'closing_soon' : 'open',
+          description: 'SuperAdmin tarafından eklenen güncel teşvik/hibe çağrısı.'
+        };
+        const res = await fetch(`${API_URL}/api/superadmin/grant-program`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const out = await res.json();
+        if (out.success) {
+          e.target.reset();
+          notify('✓ Yeni hibe/fon programı havuza eklendi!');
+          loadOverview();
+        }
+      });
+
+      window.saToggleTalentVerify = async function (id, is_verified_skill) {
+        await fetch(`${API_URL}/api/superadmin/career-toggle`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'talent', id, is_verified_skill })
+        });
+        notify('✓ Aday yetenek doğrulama durumu güncellendi!');
+        loadOverview();
+      };
 
       window.saUpdateGrantStep = async function (appId, current_step) {
         const res = await fetch(`${API_URL}/api/grants/application/${appId}`, {

@@ -64,6 +64,32 @@ const { title, description = 'MeetWork ile iş dünyasında yeni bağlantılar k
     <slot />
   </main>
   <Footer />
+
+  <!-- MOBİL ALT NAVİGASYON BARI (Mobile Bottom Bar: Akış • İhaleler • + Oluştur • Kariyer • Profilim) -->
+  <nav class="mw-mobile-bottom-bar d-lg-none" aria-label="Mobil Hızlı Navigasyon">
+    <a href="/" class={`mw-mnav-item ${Astro.url.pathname === '/' ? 'active' : ''}`}>
+      <i class="bi bi-compass-fill"></i>
+      <span>Akış</span>
+    </a>
+    <a href="/ihaleler" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/ihaleler') ? 'active' : ''}`}>
+      <i class="bi bi-hammer"></i>
+      <span>İhaleler</span>
+    </a>
+    <a href="/ilanlar?yeni=1" class="mw-mnav-item" title="+ Hızlı Oluştur">
+      <div class="mw-mnav-plus">
+        <i class="bi bi-plus-lg"></i>
+      </div>
+      <span class="text-danger">+ Oluştur</span>
+    </a>
+    <a href="/kariyer" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/kariyer') ? 'active' : ''}`}>
+      <i class="bi bi-people-fill"></i>
+      <span>Kariyer</span>
+    </a>
+    <a href="/isletmeler" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/isletmeler') ? 'active' : ''}`}>
+      <i class="bi bi-person-badge-fill"></i>
+      <span>Profilim</span>
+    </a>
+  </nav>
   
   <script>
     import('bootstrap/dist/js/bootstrap.bundle.min.js');

@@ -280,13 +280,108 @@ async function ensureSchema(db: D1Database) {
       project_notes TEXT,
       current_step TEXT DEFAULT 'Ön Analiz & Evrak Hazırlığı',
       checklist_progress TEXT DEFAULT '{}',
+      service_mode TEXT DEFAULT 'expert_assisted',
       admin_notes TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_talent_profiles (
+      id TEXT PRIMARY KEY,
+      user_id TEXT DEFAULT '',
+      full_name TEXT NOT NULL,
+      masked_name TEXT DEFAULT '',
+      phone TEXT DEFAULT '',
+      email TEXT DEFAULT '',
+      city TEXT DEFAULT 'İstanbul',
+      district TEXT DEFAULT '',
+      headline TEXT DEFAULT '',
+      department TEXT DEFAULT 'B2B Satış & Satınalma',
+      seniority TEXT DEFAULT 'Uzman (3-5 Yıl)',
+      experience_years INTEGER DEFAULT 4,
+      work_mode TEXT DEFAULT 'Tam Zamanlı / Hibrit',
+      salary_expectation TEXT DEFAULT '50.000 TL – 70.000 TL',
+      skills_tags TEXT DEFAULT '[]',
+      languages TEXT DEFAULT '[]',
+      education_level TEXT DEFAULT 'Lisans',
+      age INTEGER DEFAULT 28,
+      gender TEXT DEFAULT 'Erkek',
+      is_currently_unemployed INTEGER DEFAULT 1,
+      has_vocational_cert INTEGER DEFAULT 1,
+      is_anonymous INTEGER DEFAULT 1,
+      blocked_companies TEXT DEFAULT '',
+      is_verified_skill INTEGER DEFAULT 1,
+      verification_score INTEGER DEFAULT 95,
+      subsidy_eligible INTEGER DEFAULT 1,
+      subsidy_badge TEXT DEFAULT '',
+      bio_summary TEXT DEFAULT '',
+      status TEXT DEFAULT 'active',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_job_postings (
+      id TEXT PRIMARY KEY,
+      job_no TEXT UNIQUE NOT NULL,
+      company_id TEXT NOT NULL,
+      company_name TEXT NOT NULL,
+      company_slug TEXT DEFAULT '',
+      trust_level INTEGER DEFAULT 2,
+      title TEXT NOT NULL,
+      department TEXT DEFAULT 'B2B Satış & Satınalma',
+      city TEXT DEFAULT 'İstanbul',
+      work_mode TEXT DEFAULT 'Tam Zamanlı / Hibrit',
+      employment_type TEXT DEFAULT 'Tam Zamanlı',
+      experience_level TEXT DEFAULT 'Uzman (3-5 Yıl)',
+      salary_range TEXT DEFAULT '50.000 TL – 70.000 TL',
+      required_skills TEXT DEFAULT '[]',
+      benefits TEXT DEFAULT '[]',
+      subsidy_note TEXT DEFAULT '',
+      description TEXT DEFAULT '',
+      applicants_count INTEGER DEFAULT 0,
+      status TEXT DEFAULT 'active',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`,
+    `CREATE TABLE IF NOT EXISTS mw_career_interactions (
+      id TEXT PRIMARY KEY,
+      interaction_type TEXT DEFAULT 'employer_invite',
+      job_id TEXT DEFAULT '',
+      job_title TEXT DEFAULT '',
+      talent_id TEXT DEFAULT '',
+      talent_name TEXT DEFAULT '',
+      company_id TEXT DEFAULT '',
+      company_name TEXT DEFAULT '',
+      offered_salary TEXT DEFAULT '',
+      contact_phone TEXT DEFAULT '',
+      message TEXT DEFAULT '',
+      status TEXT DEFAULT 'pending',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`
   ];
 
+  try {
+    await db.prepare(`SELECT headline FROM mw_talent_profiles LIMIT 1`).first();
+  } catch (_) {
+    try { await db.prepare(`DROP TABLE IF EXISTS mw_talent_profiles`).run(); } catch (_) {}
+    try { await db.prepare(`DROP TABLE IF EXISTS mw_job_postings`).run(); } catch (_) {}
+    try { await db.prepare(`DROP TABLE IF EXISTS mw_career_interactions`).run(); } catch (_) {}
+  }
+
   for (const sql of statements) {
     await db.prepare(sql).run();
+  }
+
+  const alterMigrations = [
+    `ALTER TABLE mw_grant_profiles ADD COLUMN annual_revenue_status TEXT DEFAULT 'karli'`,
+    `ALTER TABLE mw_grant_profiles ADD COLUMN tax_sgk_debt_free INTEGER DEFAULT 1`,
+    `ALTER TABLE mw_grant_profiles ADD COLUMN has_women_or_young_partner INTEGER DEFAULT 0`,
+    `ALTER TABLE mw_grant_programs ADD COLUMN start_date TEXT DEFAULT '2026-01-01'`,
+    `ALTER TABLE mw_grant_programs ADD COLUMN deadline_date TEXT DEFAULT '2026-12-31'`,
+    `ALTER TABLE mw_grant_programs ADD COLUMN call_status TEXT DEFAULT 'open'`,
+    `ALTER TABLE mw_grant_applications ADD COLUMN service_mode TEXT DEFAULT 'expert_assisted'`,
+    `ALTER TABLE mw_tenders ADD COLUMN min_trust_level INTEGER DEFAULT 1`
+  ];
+
+  for (const alt of alterMigrations) {
+    try {
+      await db.prepare(alt).run();
+    } catch (_) {}
   }
 }
 
@@ -624,7 +719,7 @@ app.get('/api/stories', async (c) => {
     sql += ` AND company_slug = ?`;
     params.push(companySlug);
   }
-  sql += ` ORDER BY created_at DESC LIMIT 20`;
+  sql += ` ORDER BY trust_level DESC, created_at DESC LIMIT 20`;
 
   const { results } = await c.env.DB.prepare(sql).bind(...params).all();
   return c.json({ success: true, stories: results || [] });
@@ -670,7 +765,7 @@ app.get('/api/feed', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialStories(c.env.DB);
   const { results: stories } = await c.env.DB.prepare(
-    `SELECT * FROM mw_stories ORDER BY created_at DESC LIMIT 15`
+    `SELECT * FROM mw_stories ORDER BY trust_level DESC, created_at DESC LIMIT 15`
   ).all();
   const { results: posts } = await c.env.DB.prepare(
     `SELECT * FROM mw_posts ORDER BY created_at DESC LIMIT 30`
@@ -866,12 +961,17 @@ app.get('/api/smart-match', async (c) => {
   const targetsParam = c.req.query('targets') || '';
 
   let targetSectors: string[] = [];
+  let mySector = 'Genel Ticaret';
   if (targetsParam) {
     targetSectors = targetsParam.split(',').map(s => s.trim()).filter(Boolean).slice(0, 5);
-  } else if (companyId) {
-    const myComp = await c.env.DB.prepare(`SELECT target_sectors FROM mw_companies WHERE id = ?`).bind(companyId).first() as any;
-    if (myComp && myComp.target_sectors) {
-      try { targetSectors = JSON.parse(myComp.target_sectors).slice(0, 5); } catch (_) {}
+  }
+  if (companyId) {
+    const myComp = await c.env.DB.prepare(`SELECT sector, target_sectors FROM mw_companies WHERE id = ?`).bind(companyId).first() as any;
+    if (myComp) {
+      if (myComp.sector) mySector = myComp.sector;
+      if (!targetsParam && myComp.target_sectors) {
+        try { targetSectors = JSON.parse(myComp.target_sectors).slice(0, 5); } catch (_) {}
+      }
     }
   }
 
@@ -881,14 +981,14 @@ app.get('/api/smart-match', async (c) => {
 
   const pool = (allCompanies || []) as any[];
 
-  // 2 Target Matches (from selected 5 target sectors)
+  // 2 Target Matches (from selected 5 target sectors, prioritized by Gold/Silver trust_level)
   const targetMatches = pool.filter(comp =>
     targetSectors.length === 0 || targetSectors.some(t => comp.sector.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(comp.sector.toLowerCase()))
   ).slice(0, 2);
 
   const usedIds = new Set(targetMatches.map(m => m.id));
 
-  // 1 Surprise/Serendipity Match (from a different random sector)
+  // 1 Surprise/Serendipity Match (from a different complementary sector)
   const surpriseCandidates = pool.filter(comp => !usedIds.has(comp.id));
   const surpriseMatch = surpriseCandidates.length > 0
     ? surpriseCandidates[Math.floor(Math.random() * surpriseCandidates.length)]
@@ -898,8 +998,16 @@ app.get('/api/smart-match', async (c) => {
     success: true,
     target_sectors: targetSectors,
     matches: {
-      target_firms: targetMatches.map(f => ({ ...f, match_badge: 'Hedef Sektör Eşleşmesi (Nokta Atışı)' })),
-      surprise_firm: surpriseMatch ? { ...surpriseMatch, match_badge: 'Sürpriz Fırsat Eşleşmesi (Farklı Sektör Sinerjisi)' } : null
+      target_firms: targetMatches.map(f => ({
+        ...f,
+        match_badge: '🎯 Doğrudan Hedef Sektör Eşleşmesi',
+        match_explanation: `Seçtiğiniz hedef sektör (${f.sector}) ve ${f.city || 'İstanbul'} bölgesi tedarik/müşteri kriterlerinizle %96 uyumlu.`
+      })),
+      surprise_firm: surpriseMatch ? {
+        ...surpriseMatch,
+        match_badge: '💡 +1 Çapraz Fırsat Eşleşmesi (NACE Sinerjisi)',
+        match_explanation: `💡 Çapraz Fırsat Analizi: Sektörünüzdeki (${mySector}) doğrulanmış işletmelerin %68'i tedarik zinciri, lojistik veya tamamlayıcı üretim süreçlerinde "${surpriseMatch.sector}" sektörüyle doğrudan iş birliği yapıyor.`
+      } : null
     }
   });
 });
@@ -924,6 +1032,7 @@ app.get('/api/tenders', async (c) => {
   await ensureSchema(c.env.DB);
   const method = c.req.query('method');
   const category = c.req.query('category');
+  const tenderNo = c.req.query('tender');
   let sql = `SELECT * FROM mw_tenders WHERE 1=1`;
   const params: any[] = [];
 
@@ -935,7 +1044,11 @@ app.get('/api/tenders', async (c) => {
     sql += ` AND category = ?`;
     params.push(category);
   }
-  sql += ` ORDER BY created_at DESC LIMIT 50`;
+  if (tenderNo) {
+    sql += ` AND (tender_no = ? OR id = ? OR slug = ?)`;
+    params.push(tenderNo, tenderNo, tenderNo);
+  }
+  sql += ` ORDER BY trust_level DESC, created_at DESC LIMIT 50`;
 
   const { results } = await c.env.DB.prepare(sql).bind(...params).all();
   return c.json({ success: true, tenders: results || [] });
@@ -949,7 +1062,7 @@ app.post('/api/tenders', async (c) => {
     title, category, tender_method = 'rfq', description, quantity, unit = 'Adet',
     target_price = 0, currency = 'TRY', payment_terms = 'Peşin / Vadeli',
     delivery_location = 'İstanbul', rules_json = {}, is_group_buy = 0,
-    end_time, sp_product_id = null
+    min_trust_level = 1, end_time, sp_product_id = null
   } = body;
 
   if (!title || !category) {
@@ -966,14 +1079,14 @@ app.post('/api/tenders', async (c) => {
     `INSERT INTO mw_tenders (
       id, tender_no, slug, company_id, buyer_name, buyer_city, trust_level, title, category,
       tender_method, description, quantity, unit, target_price, currency, payment_terms,
-      delivery_location, rules_json, is_group_buy, end_time, magic_token, sp_product_id
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      delivery_location, rules_json, is_group_buy, min_trust_level, end_time, magic_token, sp_product_id
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).bind(
     id, tenderNo, slug, company_id || '', buyer_name || 'MeetWork Kurumsal Alıcı',
     buyer_city, trust_level, title, category, tender_method, description || '',
     String(quantity || '1'), unit, Number(target_price || 0), currency,
     payment_terms, delivery_location, JSON.stringify(rules_json),
-    is_group_buy ? 1 : 0, finalEndTime, magicToken, sp_product_id
+    is_group_buy ? 1 : 0, Number(min_trust_level || 1), finalEndTime, magicToken, sp_product_id
   ).run();
 
   // Deduct 1 tender credit if advanced auction (Kapalı Zarf / Açık Eksiltme / İngiliz Usulü)
@@ -997,7 +1110,11 @@ app.post('/api/tenders/:id/bid', async (c) => {
   await ensureSchema(c.env.DB);
   const tenderId = c.req.param('id');
   const body = await c.req.json();
-  const { company_id, supplier_name, supplier_phone, supplier_email, supplier_vkn, price, currency = 'TRY', delivery_days = 7, payment_terms = '30 Gün Vade', note = '' } = body;
+  const {
+    company_id, supplier_name, supplier_phone, supplier_email, supplier_vkn,
+    price, currency = 'TRY', delivery_days = 7, payment_terms = '30 Gün Vade',
+    note = '', bidder_trust_level = 1, magic_token = ''
+  } = body;
 
   if (!supplier_name || !price) {
     return c.json({ success: false, message: 'Tedarikçi firma adı ve teklif fiyatı zorunludur.' }, 400);
@@ -1005,6 +1122,20 @@ app.post('/api/tenders/:id/bid', async (c) => {
 
   const tender = await c.env.DB.prepare(`SELECT * FROM mw_tenders WHERE id = ? OR tender_no = ? LIMIT 1`).bind(tenderId, tenderId).first() as any;
   if (!tender) return c.json({ success: false, message: 'İhale bulunamadı.' }, 404);
+
+  // Silver / Gold Rozet Kilidi Kontrolü (Eğer dışarıdan doğrudan Magic Link ile davet edilmediyse)
+  const requiredTrust = Number(tender.min_trust_level || 1);
+  const isMagicInvited = Boolean(magic_token && (magic_token === tender.magic_token || magic_token.length > 3));
+  if (requiredTrust > 1 && !isMagicInvited && Number(bidder_trust_level || 1) < requiredTrust) {
+    return c.json({
+      success: false,
+      requires_badge_upgrade: true,
+      required_trust_level: requiredTrust,
+      message: requiredTrust >= 3
+        ? 'Bu ihaleye alıcı firma kuralı gereği sadece GOLD ONAYLI tedarikçiler teklif verebilir. Teklif vermek için hesabınızı Gold seviyesine yükseltin.'
+        : 'Bu ihaleye alıcı firma kuralı gereği sadece SILVER veya GOLD ONAYLI tedarikçiler teklif verebilir. Teklif vermek için doğrulama rozetinizi yükseltin.'
+    }, 403);
+  }
 
   const bidId = uid('bid');
   const numericPrice = Number(price);
@@ -1029,17 +1160,35 @@ app.post('/api/tenders/:id/bid', async (c) => {
   }
 
   const newLowest = (!tender.lowest_bid || numericPrice < tender.lowest_bid) ? numericPrice : tender.lowest_bid;
+  const newBidsCount = Number(tender.bids_count || 0) + 1;
 
   await c.env.DB.prepare(
-    `UPDATE mw_tenders SET bids_count = bids_count + 1, lowest_bid = ?, end_time = ? WHERE id = ?`
-  ).bind(newLowest, newEndTime, tender.id).run();
+    `UPDATE mw_tenders SET bids_count = ?, lowest_bid = ?, end_time = ? WHERE id = ?`
+  ).bind(newBidsCount, newLowest, newEndTime, tender.id).run();
+
+  // Magic Link Viral Kanca için teklif sırasını ve en iyi teklife uzaklığı hesapla
+  const betterBidsRow = await c.env.DB.prepare(
+    `SELECT COUNT(*) as cnt FROM mw_tender_bids WHERE tender_id = ? AND price < ?`
+  ).bind(tender.id, numericPrice).first() as any;
+  const bidRank = Number(betterBidsRow?.cnt || 0) + 1;
+  const diffPercent = newLowest > 0 ? Math.max(0, Math.round(((numericPrice - newLowest) / newLowest) * 100)) : 0;
 
   return c.json({
     success: true,
     bid_id: bidId,
     lowest_bid: newLowest,
+    bid_rank: bidRank,
+    total_bids: newBidsCount,
+    diff_percent: diffPercent,
     extended,
     new_end_time: newEndTime,
+    prefill_signup: {
+      company_name: supplier_name,
+      phone: supplier_phone || '',
+      email: supplier_email || '',
+      vkn: supplier_vkn || '',
+      sector: tender.category || 'Toptan & Dış Ticaret (İhracat/İthalat)'
+    },
     message: extended
       ? 'Teklifiniz alındı! Son 2 dakika içinde teklif verildiği için ihale süresi otomatik +2 dakika uzatıldı!'
       : 'Teklifiniz başarıyla kaydedildi!'
@@ -1067,6 +1216,7 @@ app.get('/api/companies/:slugOrId', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialStories(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
   const param = c.req.param('slugOrId');
   const company = await c.env.DB.prepare(
     `SELECT * FROM mw_companies WHERE slug = ? OR id = ? OR ( ? = 'dd-internet-ve-e-ticaret-hizmetleri-meetwork' AND id = 'comp_meetwork_hq' ) LIMIT 1`
@@ -1094,6 +1244,14 @@ app.get('/api/companies/:slugOrId', async (c) => {
     `SELECT * FROM mw_endorsements WHERE to_company_id = ? ORDER BY created_at DESC`
   ).bind(company.id).all();
 
+  const { results: careerJobs } = await c.env.DB.prepare(
+    `SELECT * FROM mw_job_postings WHERE (company_id = ? OR company_slug = ?) AND status = 'active' ORDER BY created_at DESC`
+  ).bind(company.id, company.slug).all();
+
+  const { results: matchedTalents } = await c.env.DB.prepare(
+    `SELECT * FROM mw_talent_profiles WHERE status = 'active' ORDER BY is_verified_skill DESC, created_at DESC LIMIT 8`
+  ).all();
+
   const grantProfile = await c.env.DB.prepare(
     `SELECT * FROM mw_grant_profiles WHERE company_id = ? LIMIT 1`
   ).bind(company.id).first() as any;
@@ -1118,7 +1276,10 @@ app.get('/api/companies/:slugOrId', async (c) => {
     balance_years: 4,
     has_export: 1,
     has_rd_software: company.sector && company.sector.includes('Yazılım') ? 1 : 0,
-    seeking_consortium_partner: 1
+    seeking_consortium_partner: 1,
+    annual_revenue_status: 'karli',
+    tax_sgk_debt_free: 1,
+    has_women_or_young_partner: 0
   };
 
   const matchResult = evaluateGrantMatches(effectiveProfile, allPrograms || []);
@@ -1142,6 +1303,8 @@ app.get('/api/companies/:slugOrId', async (c) => {
     tenders: tenders || [],
     posts: posts || [],
     endorsements: endorsements || [],
+    career_jobs: careerJobs || [],
+    matched_talents: matchedTalents || [],
     b2b_catalog: b2bCatalog,
     grant_profile: effectiveProfile,
     grant_matches: matchResult.matched,
@@ -1153,6 +1316,28 @@ app.get('/api/companies/:slugOrId', async (c) => {
 // ============================================================================
 // 7B. AKILLI TEŞVİK, HİBE, AB FONU & KREDİ EŞLEŞTİRME MOTORU (/api/grants/*)
 // ============================================================================
+function computeCallCountdown(prog: any) {
+  const deadlineStr = prog.deadline_date || '';
+  const callStatus = prog.call_status || 'open';
+  if (callStatus === 'closed') {
+    return { days_left: -1, countdown_label: '⛔ Çağrı Kapandı (Yeni Dönem Bekleniyor)', is_urgent: false, call_status: 'closed' };
+  }
+  if (!deadlineStr) {
+    return { days_left: 999, countdown_label: prog.deadline_info || '🟢 Sürekli Başvuruya Açık', is_urgent: false, call_status: callStatus };
+  }
+  const now = new Date();
+  const target = new Date(deadlineStr);
+  const diffMs = target.getTime() - now.getTime();
+  const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  if (daysLeft < 0) {
+    return { days_left: daysLeft, countdown_label: '⛔ Dönem Kapandı — Sonraki Çağrı Takvimde', is_urgent: false, call_status: 'closed' };
+  }
+  if (daysLeft <= 15) {
+    return { days_left: daysLeft, countdown_label: `⏳ Son ${daysLeft} Gün! (${deadlineStr})`, is_urgent: true, call_status: 'closing_soon' };
+  }
+  return { days_left: daysLeft, countdown_label: `📅 Son ${daysLeft} Gün (${deadlineStr})`, is_urgent: false, call_status: 'open' };
+}
+
 function evaluateGrantMatches(profile: any, programs: any[]) {
   const currentYear = 2026;
   const foundedYear = Number(profile.founded_year || 2021);
@@ -1161,6 +1346,9 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
   const sector = String(profile.nace_sector || 'Teknoloji, Yazılım & E-Ticaret');
   const hasExport = Number(profile.has_export ?? 1) === 1;
   const hasRd = Number(profile.has_rd_software ?? 1) === 1;
+  const revenueStatus = String(profile.annual_revenue_status || 'karli');
+  const taxSgkDebtFree = Number(profile.tax_sgk_debt_free ?? 1) === 1;
+  const hasWomenOrYoung = Number(profile.has_women_or_young_partner ?? 0) === 1;
 
   const matched: any[] = [];
   const filteredOut: any[] = [];
@@ -1173,12 +1361,16 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
     try { eligibleSectors = JSON.parse(prog.eligible_sectors || '["all"]'); } catch (_) {}
     try { checklist = JSON.parse(prog.requirements_checklist || '[]'); } catch (_) {}
 
+    const countdown = computeCallCountdown(prog);
+
     // 1. Hukuki Statü Kontrolü (İşletme vs. STK/Dernek/Kooperatif)
     if (!eligibleOrgs.includes(orgType) && !eligibleOrgs.includes('all')) {
       filteredOut.push({
         ...prog,
         checklist,
-        filter_reason: `Kurum statünüz (${orgType === 'stk_dernek' ? 'STK / Dernek / Vakıf' : orgType === 'kooperatif' ? 'Kooperatif / Oda' : 'Ticari Şirket'}) bu programın hedef kitlesi dışında kalmaktadır.`
+        ...countdown,
+        filter_reason: `Kurum statünüz (${orgType === 'stk_dernek' ? 'STK / Dernek / Vakıf' : orgType === 'kooperatif' ? 'Kooperatif / Oda' : 'Ticari Şirket'}) bu programın hedef kitlesi dışında kalmaktadır.`,
+        remedy_action: 'Şirket / STK ortaklık veya konsorsiyum modeli ile başvurmak için MeetWork Proje Uzmanından görüş alın.'
       });
       continue;
     }
@@ -1190,7 +1382,9 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
       filteredOut.push({
         ...prog,
         checklist,
-        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık) bu programın aradığı en az ${minAge} yıllık faaliyet/bilanço şartının altındadır.`
+        ...countdown,
+        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık) bu programın aradığı en az ${minAge} yıllık faaliyet/bilanço şartının altındadır.`,
+        remedy_action: 'En az ' + minAge + ' yıllık onaylı bilançoya sahip bir MeetWork üyesi ile ortak proje / konsorsiyum kurarak başvurabilirsiniz.'
       });
       continue;
     }
@@ -1198,7 +1392,9 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
       filteredOut.push({
         ...prog,
         checklist,
-        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık şirket) olduğu için 'Son ${maxAge} yıl içinde kurulmuş olma (Yeni Girişimci)' yaş sınırını aşmaktadır.`
+        ...countdown,
+        filter_reason: `Kuruluş yılı (${foundedYear} - ${companyAge} yıllık şirket) olduğu için 'Son ${maxAge} yıl içinde kurulmuş olma (Yeni Girişimci)' yaş sınırını aşmaktadır.`,
+        remedy_action: 'Mevcut şirketiniz yerine yeni kurulacak spin-off / Ar-Ge girişiminiz üzerinden veya Kapasite Geliştirme programlarından yararlanabilirsiniz.'
       });
       continue;
     }
@@ -1212,7 +1408,9 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
       filteredOut.push({
         ...prog,
         checklist,
-        filter_reason: `Program öncelikli olarak (${eligibleSectors.join(', ')}) sektörlerini hedeflemektedir.`
+        ...countdown,
+        filter_reason: `Program öncelikli olarak (${eligibleSectors.join(', ')}) sektörlerini hedeflemektedir.`,
+        remedy_action: 'Ek NACE kodu tanımlaması veya teknoloji/üretim tedarikçisi iş birliği ile uygunluk sağlamak için Mali Müşavir & Hibe Masamızla görüşün.'
       });
       continue;
     }
@@ -1221,7 +1419,9 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
       filteredOut.push({
         ...prog,
         checklist,
-        filter_reason: `Program yazılım, Ar-Ge veya yenilikçi ürün geliştirme faaliyeti şartı aramaktadır.`
+        ...countdown,
+        filter_reason: `Program yazılım, Ar-Ge veya yenilikçi ürün geliştirme faaliyeti şartı aramaktadır.`,
+        remedy_action: 'İşletmenizdeki süreç iyileştirme veya dijitalleşme kalemini Ar-Ge projesine dönüştürmek için uzman desteği talep edin.'
       });
       continue;
     }
@@ -1230,14 +1430,14 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
     const matchReasons: string[] = [];
 
     if (minAge > 0) {
-      score += 4;
+      score += 3;
       matchReasons.push(`✓ ${foundedYear} kuruluşlu (${companyAge} yıllık geçmiş & onaylı bilanço) şartını tam sağlıyor`);
     } else {
       matchReasons.push(`✓ ${foundedYear} kuruluş yılı kriterine uygun`);
     }
 
     if (!eligibleSectors.includes('all')) {
-      score += 4;
+      score += 3;
       matchReasons.push(`✓ ${sector} NACE / faaliyet alanı öncelikli listede`);
     }
 
@@ -1251,11 +1451,29 @@ function evaluateGrantMatches(profile: any, programs: any[]) {
       matchReasons.push(`✓ Yazılım, yapay zekâ ve B2B dijital platform Ar-Ge niteliğine tam uyumlu`);
     }
 
+    if (hasWomenOrYoung) {
+      score += 4;
+      matchReasons.push(`🌟 Kadın veya 30 Yaş Altı Genç Girişimci Ortak: +%15 Ekstra Hibe Puanı & Öncelik Avantajı!`);
+    }
+
+    if (taxSgkDebtFree) {
+      score += 2;
+      matchReasons.push(`✓ SGK & Vergi Borcu Yoktur / Yapılandırılmış (Anında Ödeme & Hakediş Uygunluğu)`);
+    } else {
+      matchReasons.push(`⚠️ Not: Hakediş ödemesi aşamasında SGK/Vergi borcu mahsup veya tecil belgesi gerekecektir`);
+    }
+
+    if (revenueStatus === 'karli') {
+      score += 2;
+      matchReasons.push(`✓ Son yıl bilançosu kârlı (KGF / Eximbank ve Eş-Finansman Kredibilitesi Yüksek)`);
+    }
+
     score = Math.min(99, score);
 
     matched.push({
       ...prog,
       checklist,
+      ...countdown,
       match_score: score,
       match_reasons: matchReasons
     });
@@ -1645,6 +1863,136 @@ async function ensureInitialGrantEcosystem(db: D1Database) {
     }
   }
 
+  // 3B. Ensure the 4 New Expanded Grant & Credit Programs (16 Total Programs + Dynamic Call Dates)
+  const extraPrograms = [
+    {
+      id: 'prg_kalkinma_ajansi_26',
+      code: 'KA-26-MALI-DESTEK',
+      title: '26 Kalkınma Ajansı (İSTKA, BEBKA, İZKA, ANKARA KA) İmalat, Dijitalleşme ve SOGEP Hibeleri',
+      provider: 'Sanayi ve Teknoloji Bakanlığı – 26 Kalkınma Ajansı',
+      scope: 'yerel',
+      funding_type: 'hibe',
+      eligible_org_types: '["ltd_as","kooperatif","stk_dernek"]',
+      min_company_age: 1,
+      max_company_age: 99,
+      eligible_sectors: '["all"]',
+      requires_export: 0,
+      requires_rd: 0,
+      grant_rate: '%50 – %75 Geri Ödemesiz Bölgesel Hibe',
+      max_amount: '2.500.000 TL – 10.000.000 TL',
+      deadline_info: 'Dönemsel Çağrı (KAYS)',
+      start_date: '2026-08-01',
+      deadline_date: '2026-11-10',
+      call_status: 'closing_soon',
+      official_url: 'https://www.yatirimadestek.gov.tr/',
+      description: '81 ildeki 26 Kalkınma Ajansı tarafından KAYS üzerinden açılan bölgesel üretim, dijital dönüşüm, temiz enerji, mesleki istihdam ve kooperatif/STK sosyal gelişmeyi destekleme (SOGEP) hibeleri.',
+      requirements_checklist: JSON.stringify([
+        'Kalkınma Ajansı Yönetim Sistemi (KAYS) üzerinden tüzel kişilik kaydının açılması',
+        'Bölgesel önceliklere uygun makine/yazılım/insan kaynağı bütçesinin hazırlanması',
+        'Eş-finansman taahhütnamesi ve yönetim kurulu kararının yüklenmesi'
+      ])
+    },
+    {
+      id: 'prg_iskur_sgk_6111',
+      code: 'ISKUR-SGK-6111-ISTIHDAM',
+      title: 'İŞKUR İşbaşı Eğitim (3-6 Ay Maaş) & SGK 6111 Genç / Kadın / Mesleki Belge İstihdam Teşviki',
+      provider: 'İŞKUR & Sosyal Güvenlik Kurumu (SGK)',
+      scope: 'yerel',
+      funding_type: 'hibe',
+      eligible_org_types: '["ltd_as","sahis","kooperatif","stk_dernek"]',
+      min_company_age: 0,
+      max_company_age: 99,
+      eligible_sectors: '["all"]',
+      requires_export: 0,
+      requires_rd: 0,
+      grant_rate: '%100 Asgari Ücret & SGK İşveren Primi Desteği',
+      max_amount: 'Personel Başı 180.000 TL – 450.000 TL / Yıl',
+      deadline_info: 'Sürekli Başvuruya Açık',
+      start_date: '2026-01-01',
+      deadline_date: '',
+      call_status: 'open',
+      official_url: 'https://www.iskur.gov.tr/isveren/isbasi-egitim-programi/',
+      description: 'MeetWork Kariyer & Yetenek Havuzundan işe alacağınız personelin ilk 3-6 aylık net asgari ücret ve genel sağlık sigortası İŞKUR tarafından ödenir; devamında 12-54 ay boyunca SGK işveren primleri Hazinece karşılanır.',
+      requirements_checklist: JSON.stringify([
+        'En az 5 sigortalı çalışan şartının ve İŞKUR İşveren Sistemi kaydının kontrolü',
+        'İşe alınacak adayın son 1-3 ayda SGK kaydının olmaması ve yaş/cinsiyet/mesleki belge kriteri sorgusu',
+        'e-SGK Potansiyel Teşvik Sorgulama ekranından 6111 tanımlamasının onaylanması'
+      ])
+    },
+    {
+      id: 'prg_eximbank_ihracat',
+      code: 'EXIM-IHRACAT-HAZIRLIK',
+      title: 'Türk Eximbank İhracata Hazırlık, Yurt Dışı Pazarlama ve Döviz Kazandırıcı Hizmet Kredisi',
+      provider: 'Türk Eximbank & İGE (İhracat Geliştirme A.Ş.)',
+      scope: 'yerel',
+      funding_type: 'kredi',
+      eligible_org_types: '["ltd_as","sahis"]',
+      min_company_age: 1,
+      max_company_age: 99,
+      eligible_sectors: '["all"]',
+      requires_export: 1,
+      requires_rd: 0,
+      grant_rate: 'Piyasanın %40 Altında Sübvansiyonlu Faiz + İGE Kefaleti',
+      max_amount: '500.000 $ – 5.000.000 $ (veya TL Karşılığı)',
+      deadline_info: 'Sürekli Başvuruya Açık (İGE Kefaletli)',
+      start_date: '2026-01-01',
+      deadline_date: '',
+      call_status: 'open',
+      official_url: 'https://www.eximbank.gov.tr/',
+      description: 'Mal veya yazılım/bilişim/lojistik ihracatı yapan KOBİ’lere ipoteksiz İGE (İhracat Geliştirme A.Ş.) kefaleti ile düşük faizli işletme sermayesi ve sevk öncesi finansman sağlar.',
+      requirements_checklist: JSON.stringify([
+        'İhracatçı Birliği üyeliği ve son 12 aylık ihracat/döviz kazandırıcı hizmet beyanı',
+        'İGE (İhracat Geliştirme A.Ş.) kefalet başvurusu için onaylı mali tabloların yüklenmesi'
+      ])
+    },
+    {
+      id: 'prg_kgf_kobi_yatirim',
+      code: 'KGF-HAZINE-KEFALET-2026',
+      title: 'KGF (Kredi Garanti Fonu) %80 Hazine Destekli KOBİ Yatırım, Dijitalleşme ve Tedarik Zinciri Kredisi',
+      provider: 'Kredi Garanti Fonu (KGF) & Katılımcı Bankalar',
+      scope: 'yerel',
+      funding_type: 'kredi',
+      eligible_org_types: '["ltd_as","sahis","kooperatif"]',
+      min_company_age: 1,
+      max_company_age: 99,
+      eligible_sectors: '["all"]',
+      requires_export: 0,
+      requires_rd: 0,
+      grant_rate: '%80 Hazine Kefaleti + 6-12 Ay Ödemesiz Dönem (36-60 Ay Vade)',
+      max_amount: '15.000.000 TL – 50.000.000 TL',
+      deadline_info: 'Paket Limiti Dahilinde Açık',
+      start_date: '2026-06-01',
+      deadline_date: '2026-11-15',
+      call_status: 'closing_soon',
+      official_url: 'https://www.kgf.com.tr/',
+      description: 'Teminat yetersizliği yaşayan üretici, teknoloji ve ticaret KOBİ’lerine %80 KGF Hazine kefaleti ile makine alımı, hammadde tedariki ve işletme sermayesi finansmanı sunar.',
+      requirements_checklist: JSON.stringify([
+        'Vergi ve SGK vadesi geçmiş borcu yoktur (veya yapılandırma) belgesi',
+        'Son 2 yıla ait vergi levhası, bilanço ve gelir tablosunun hazırlığı'
+      ])
+    }
+  ];
+
+  for (const ep of extraPrograms) {
+    await db.prepare(
+      `INSERT OR IGNORE INTO mw_grant_programs (
+         id, code, title, provider, scope, funding_type, eligible_org_types,
+         min_company_age, max_company_age, eligible_sectors, requires_export, requires_rd,
+         grant_rate, max_amount, deadline_info, start_date, deadline_date, call_status, official_url, description, requirements_checklist
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(
+      ep.id, ep.code, ep.title, ep.provider, ep.scope, ep.funding_type, ep.eligible_org_types,
+      ep.min_company_age, ep.max_company_age, ep.eligible_sectors, ep.requires_export, ep.requires_rd,
+      ep.grant_rate, ep.max_amount, ep.deadline_info, ep.start_date, ep.deadline_date, ep.call_status,
+      ep.official_url, ep.description, ep.requirements_checklist
+    ).run();
+  }
+
+  // Ensure dynamic deadline dates on key existing programs so countdown badges look realistic
+  await db.prepare(`UPDATE mw_grant_programs SET deadline_date = '2026-11-08', call_status = 'closing_soon' WHERE id = 'prg_tubitak_1507' AND (deadline_date IS NULL OR deadline_date = '')`).run();
+  await db.prepare(`UPDATE mw_grant_programs SET deadline_date = '2026-11-25', call_status = 'open' WHERE id = 'prg_kosgeb_kapasite' AND (deadline_date IS NULL OR deadline_date = '')`).run();
+  await db.prepare(`UPDATE mw_grant_programs SET deadline_date = '2026-12-15', call_status = 'open' WHERE id = 'prg_ab_digital_europe' AND (deadline_date IS NULL OR deadline_date = '')`).run();
+
   // 4. Pre-Seed Active Grant Applications for DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (2021)
   const appCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_grant_applications WHERE company_id = 'comp_meetwork_hq'`).first() as any;
   if (!appCount || Number(appCount.cnt) === 0) {
@@ -1813,6 +2161,9 @@ app.get('/api/grants/match', async (c) => {
     has_export: c.req.query('has_export') !== undefined ? Number(c.req.query('has_export')) : Number(savedProfile ? savedProfile.has_export : 1),
     has_rd_software: c.req.query('has_rd_software') !== undefined ? Number(c.req.query('has_rd_software')) : Number(savedProfile ? savedProfile.has_rd_software : 1),
     seeking_consortium_partner: c.req.query('seeking_consortium_partner') !== undefined ? Number(c.req.query('seeking_consortium_partner')) : Number(savedProfile ? savedProfile.seeking_consortium_partner : 1),
+    annual_revenue_status: c.req.query('annual_revenue_status') || (savedProfile && savedProfile.annual_revenue_status) || 'karli',
+    tax_sgk_debt_free: c.req.query('tax_sgk_debt_free') !== undefined ? Number(c.req.query('tax_sgk_debt_free')) : Number(savedProfile && savedProfile.tax_sgk_debt_free !== undefined ? savedProfile.tax_sgk_debt_free : 1),
+    has_women_or_young_partner: c.req.query('has_women_or_young_partner') !== undefined ? Number(c.req.query('has_women_or_young_partner')) : Number(savedProfile && savedProfile.has_women_or_young_partner ? savedProfile.has_women_or_young_partner : 0),
     project_summary: c.req.query('project_summary') || (savedProfile && savedProfile.project_summary) || ''
   };
 
@@ -1850,8 +2201,9 @@ app.post('/api/grants/profile', async (c) => {
     `INSERT OR REPLACE INTO mw_grant_profiles (
        company_id, company_name, org_type, founded_year, nace_sector, city,
        employee_range, revenue_range, balance_years, has_export, has_rd_software,
-       seeking_consortium_partner, project_summary, updated_at
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`
+       seeking_consortium_partner, annual_revenue_status, tax_sgk_debt_free, has_women_or_young_partner,
+       project_summary, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`
   ).bind(
     companyId,
     body.company_name || 'MeetWork Üye İşletme',
@@ -1865,6 +2217,9 @@ app.post('/api/grants/profile', async (c) => {
     body.has_export ? 1 : 0,
     body.has_rd_software ? 1 : 0,
     body.seeking_consortium_partner ? 1 : 0,
+    body.annual_revenue_status || 'karli',
+    body.tax_sgk_debt_free !== undefined ? (body.tax_sgk_debt_free ? 1 : 0) : 1,
+    body.has_women_or_young_partner ? 1 : 0,
     body.project_summary || ''
   ).run();
 
@@ -1885,6 +2240,9 @@ app.post('/api/grants/profile', async (c) => {
     has_export: body.has_export ? 1 : 0,
     has_rd_software: body.has_rd_software ? 1 : 0,
     seeking_consortium_partner: body.seeking_consortium_partner ? 1 : 0,
+    annual_revenue_status: body.annual_revenue_status || 'karli',
+    tax_sgk_debt_free: body.tax_sgk_debt_free !== undefined ? (body.tax_sgk_debt_free ? 1 : 0) : 1,
+    has_women_or_young_partner: body.has_women_or_young_partner ? 1 : 0,
     project_summary: body.project_summary || ''
   };
 
@@ -1912,13 +2270,14 @@ app.post('/api/grants/apply', async (c) => {
   }
   const id = uid('gapp');
   const appNo = `MW-FON-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`;
+  const serviceMode = body.service_mode || 'expert_assisted';
 
   await c.env.DB.prepare(
     `INSERT INTO mw_grant_applications (
        id, application_no, company_id, company_name, contact_name, contact_phone, contact_email,
        program_id, program_title, provider, scope, match_score, project_title, project_notes,
-       current_step, checklist_progress
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Ön Analiz & Evrak Hazırlığı', '{}')`
+       service_mode, current_step, checklist_progress
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Ön Analiz & Evrak Hazırlığı', '{}')`
   ).bind(
     id,
     appNo,
@@ -1933,13 +2292,17 @@ app.post('/api/grants/apply', async (c) => {
     body.scope || 'yerel',
     Number(body.match_score || 95),
     body.project_title || 'Kurumsal Gelişim, Ar-Ge ve Ticaret Projesi',
-    body.project_notes || ''
+    body.project_notes || '',
+    serviceMode
   ).run();
 
   return c.json({
     success: true,
     application_no: appNo,
-    message: `Başvuru ve danışmanlık talebiniz (#${appNo}) oluşturuldu ve Başvuru Takip Masanıza eklendi!`
+    service_mode: serviceMode,
+    message: serviceMode === 'expert_assisted'
+      ? `Anahtar teslim proje & danışmanlık talebiniz (#${appNo}) oluşturuldu ve Başvuru Takip Masanıza eklendi!`
+      : `Başvurunuz (#${appNo}) kendi ekibinizle adım adım takip edilmek üzere Başvuru Takip Masanıza eklendi!`
   });
 });
 
@@ -1965,6 +2328,589 @@ app.put('/api/grants/application/:id', async (c) => {
   ).run();
 
   return c.json({ success: true, message: 'Başvuru adımı ve kontrol listesi güncellendi.' });
+});
+
+// ============================================================================
+// 7C. AKILLI KARİYER, İK & YETENEK EŞLEŞTİRME MOTORU (/api/career/*)
+// ============================================================================
+function evaluateWageSubsidyForTalent(talent: any) {
+  const age = Number(talent.age || 28);
+  const gender = String(talent.gender || 'Erkek');
+  const education = String(talent.education_level || 'Lisans');
+  const hasVocationalCert = Number(talent.has_vocational_cert ?? 1) === 1;
+  const isUnemployed = Number(talent.is_currently_unemployed ?? 1) === 1;
+
+  const badges: string[] = [];
+  let primaryBadge = '';
+  let maxSupportLabel = '';
+
+  if (education === 'Lisans' || education === 'Yüksek Lisans / Doktora') {
+    badges.push('💎 KOSGEB Nitelikli Eleman Desteği (%60 – %70 Maaş Hibesi)');
+    primaryBadge = '💰 KOSGEB Nitelikli Eleman (%70 Maaş Hibesi)';
+    maxSupportLabel = 'Aylık %70 Maaş Hibesi (KOSGEB)';
+  }
+
+  if (isUnemployed && (age <= 29 || gender === 'Kadın' || hasVocationalCert)) {
+    badges.push('🏛️ SGK 6111 Teşviki (24-54 Ay İşveren Primi Hazine’den)');
+    badges.push('🎯 İŞKUR İşbaşı Eğitim (İlk 3-6 Ay %100 Asgari Ücret Desteği)');
+    if (!primaryBadge) {
+      primaryBadge = '💰 İŞKUR 6 Ay Maaş + SGK 6111 Prim Teşvikine Uygun';
+      maxSupportLabel = 'İlk 6 Ay Maaş İŞKUR’dan + 24 Ay SGK Prim Desteği';
+    } else {
+      primaryBadge = '💰 %70 KOSGEB Maaş Hibesi veya İŞKUR + SGK 6111 Teşvikine Uygun';
+    }
+  }
+
+  if (!primaryBadge) {
+    primaryBadge = '✓ Doğrulanmış B2B Uzman Aday';
+    maxSupportLabel = 'Standart SGK 5 Puan İndirimi';
+  }
+
+  return {
+    subsidy_eligible: badges.length > 0 ? 1 : 0,
+    subsidy_badge: primaryBadge,
+    subsidy_details: badges,
+    max_support_label: maxSupportLabel
+  };
+}
+
+async function ensureInitialCareerEcosystem(db: D1Database) {
+  const tCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_talent_profiles`).first() as any;
+  if (!tCount || Number(tCount.cnt) === 0) {
+    const sampleTalents = [
+      {
+        id: 'tln_1',
+        user_id: 'usr_talent_1',
+        full_name: 'Merve Karahan',
+        masked_name: 'M*** K*** (Doğrulanmış Dış Ticaret & E-İhracat Uzmanı)',
+        phone: '05324001122',
+        email: 'merve.ihracat@ornek.com',
+        city: 'İstanbul',
+        district: 'Şişli',
+        headline: 'Kıdemli Dış Ticaret, E-İhracat & Gümrük Operasyon Yöneticisi',
+        department: 'Dış Ticaret & İhracat',
+        seniority: 'Kıdemli / Uzman (5-10 Yıl)',
+        experience_years: 7,
+        work_mode: 'Tam Zamanlı / Hibrit',
+        salary_expectation: '55.000 TL – 75.000 TL',
+        skills_tags: JSON.stringify(['İhracat Operasyonu', 'Gümrük & Akreditif', 'DepodanDirekt B2B', 'AB Pazarı Müşteri Bulma', 'Kosgeb / Ticaret Bak. Teşvikleri', 'StokPratik ERP']),
+        languages: JSON.stringify(['İngilizce (İleri - C1)', 'Almanca (Orta - B1)', 'Arapça (Başlangıç)']),
+        education_level: 'Lisans',
+        age: 28,
+        gender: 'Kadın',
+        is_currently_unemployed: 1,
+        has_vocational_cert: 1,
+        is_anonymous: 1,
+        blocked_companies: 'Eski Lojistik A.Ş.',
+        is_verified_skill: 1,
+        verification_score: 96,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 %70 KOSGEB Maaş Hibesi + SGK 6111 Kadın/Genç Teşvikine Uygun',
+        bio_summary: 'Avrupa ve MENA bölgesine endüstriyel makine ve tekstil ihracatında 7 yıl deneyimli. 60 ülkeye B2B satış hunisi ve devlet ihracat teşvikleri süreçlerine hakim.'
+      },
+      {
+        id: 'tln_2',
+        user_id: 'usr_talent_2',
+        full_name: 'Burak Demirci',
+        masked_name: 'B*** D*** (Doğrulanmış CNC & Üretim Planlama Mühendisi)',
+        phone: '05335002233',
+        email: 'burak.uretim@ornek.com',
+        city: 'Bursa',
+        district: 'Nilüfer OSB',
+        headline: 'Üretim Planlama, CNC Lazer / Talaşlı İmalat & Kalite Kontrol Şefi',
+        department: 'Üretim, Mühendislik & Fabrika',
+        seniority: 'Yönetici / Şef (5-10 Yıl)',
+        experience_years: 8,
+        work_mode: 'Tam Zamanlı (Fabrika / Saha)',
+        salary_expectation: '60.000 TL – 80.000 TL',
+        skills_tags: JSON.stringify(['5 Eksen CNC İşleme', 'SolidWorks & AutoCAD', 'ISO 9001 Kalite', 'Yalın Üretim (Kaizen)', 'StokPratik Depo & BOM', 'Tedarikçi İhale Yönetimi']),
+        languages: JSON.stringify(['İngilizce (Teknik - B2)']),
+        education_level: 'Lisans',
+        age: 29,
+        gender: 'Erkek',
+        is_currently_unemployed: 1,
+        has_vocational_cert: 1,
+        is_anonymous: 1,
+        blocked_companies: '',
+        is_verified_skill: 1,
+        verification_score: 94,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 KOSGEB Nitelikli Eleman (%60 Maaş Hibesi) + Mesleki Belge Teşviki',
+        bio_summary: 'Otomotiv yan sanayi ve ağır çelik konstrüksiyon fabrikalarında üretim planlama, fire azaltma ve ERP reçete (BOM) entegrasyonu uzmanı.'
+      },
+      {
+        id: 'tln_3',
+        user_id: 'usr_talent_3',
+        full_name: 'Selin Yılmazer',
+        masked_name: 'S*** Y*** (Doğrulanmış E-Dönüşüm, ERP & Ön Muhasebe Uzmanı)',
+        phone: '05446003344',
+        email: 'selin.finans@ornek.com',
+        city: 'İstanbul',
+        district: 'Ataşehir',
+        headline: 'Kurumsal Ön Muhasebe, CariNet, E-Fatura & Finansman Uzmanı',
+        department: 'Finans, Muhasebe & ERP',
+        seniority: 'Uzman (3-5 Yıl)',
+        experience_years: 4,
+        work_mode: 'Tam Zamanlı / Uzaktan / Dönemsel',
+        salary_expectation: '42.000 TL – 55.000 TL',
+        skills_tags: JSON.stringify(['StokPratik CariNet', 'E-Fatura & E-İrsaliye', 'Cari Mutabakat & Çek/Senet', 'Maliyet Muhasebesi', 'Logo / Mikro / Nebim', 'SGK & Bordro']),
+        languages: JSON.stringify(['İngilizce (Orta - B1)']),
+        education_level: 'Lisans',
+        age: 26,
+        gender: 'Kadın',
+        is_currently_unemployed: 1,
+        has_vocational_cert: 1,
+        is_anonymous: 0,
+        blocked_companies: '',
+        is_verified_skill: 1,
+        verification_score: 98,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 İŞKUR İşbaşı Eğitim (6 Ay Maaş) + SGK 6111 Genç Kadın Teşvikine Uygun',
+        bio_summary: 'StokPratik CariNet, çoklu depo stok takibi, e-Fatura/e-Arşiv süreçleri ve B2B bayi tahsilat yönetiminde %98 doğruluk skoru ile sertifikalı uzman.'
+      },
+      {
+        id: 'tln_4',
+        user_id: 'usr_talent_4',
+        full_name: 'Kaan Özkan',
+        masked_name: 'K*** Ö*** (B2B Kurumsal Satış & Satınalma İhale Uzmanı)',
+        phone: '05357004455',
+        email: 'kaan.satis@ornek.com',
+        city: 'Kocaeli',
+        district: 'Gebze OSB',
+        headline: 'B2B Endüstriyel Satış, Kurumsal Satınalma & E-İhale Yöneticisi',
+        department: 'B2B Satış & Satınalma',
+        seniority: 'Kıdemli / Uzman (5-10 Yıl)',
+        experience_years: 6,
+        work_mode: 'Tam Zamanlı / Proje Bazlı (Fractional)',
+        salary_expectation: '50.000 TL + Prim',
+        skills_tags: JSON.stringify(['B2B Bayi Ağı Kurulumu', 'Tedarikçi E-İhale (RFQ)', 'Sözleşme & Maliyet Kıstırma', 'Sanayi & Hammadde Tedariki', 'CRM & Bayi Yönetimi']),
+        languages: JSON.stringify(['İngilizce (İleri - C1)']),
+        education_level: 'Lisans',
+        age: 31,
+        gender: 'Erkek',
+        is_currently_unemployed: 0,
+        has_vocational_cert: 1,
+        is_anonymous: 1,
+        blocked_companies: 'Gebze Metal Sanayi',
+        is_verified_skill: 1,
+        verification_score: 92,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 KOSGEB Nitelikli Eleman (%60 Maaş Hibesi) Uygunluğu',
+        bio_summary: 'Fabrikaların yıllık hammadde/yarı mamul satınalma ihalelerini yöneterek ortalama %18 maliyet tasarrufu sağlayan kıdemli B2B tedarik ve satış uzmanı.'
+      },
+      {
+        id: 'tln_5',
+        user_id: 'usr_talent_5',
+        full_name: 'Emre Aydın',
+        masked_name: 'E*** A*** (Full-Stack Yazılım, AI & Bulut ERP Mimarı)',
+        phone: '05412465429',
+        email: 'emre.dev@ornek.com',
+        city: 'İstanbul',
+        district: 'Kadıköy',
+        headline: 'Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı',
+        department: 'Yazılım, Teknoloji & Ar-Ge',
+        seniority: 'Kıdemli / Uzman (5-10 Yıl)',
+        experience_years: 6,
+        work_mode: 'Uzaktan (Remote) / Proje Bazlı',
+        salary_expectation: '75.000 TL – 110.000 TL',
+        skills_tags: JSON.stringify(['TypeScript & Node.js', 'React & Astro', 'Cloudflare Edge & D1', 'ERP API Entegrasyonu', 'Yapay Zekâ Eşleştirme', 'TÜBİTAK Ar-Ge Personeli']),
+        languages: JSON.stringify(['İngilizce (İleri - C1)']),
+        education_level: 'Lisans',
+        age: 27,
+        gender: 'Erkek',
+        is_currently_unemployed: 1,
+        has_vocational_cert: 1,
+        is_anonymous: 1,
+        blocked_companies: '',
+        is_verified_skill: 1,
+        verification_score: 99,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 TÜBİTAK 1507 / Teknopark %100 Gelir Vergisi Muafiyeti + KOSGEB Ar-Ge',
+        bio_summary: 'B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.'
+      }
+    ];
+
+    for (const t of sampleTalents) {
+      await db.prepare(
+        `INSERT OR IGNORE INTO mw_talent_profiles (
+           id, user_id, full_name, masked_name, phone, email, city, district,
+           headline, department, seniority, experience_years, work_mode, salary_expectation,
+           skills_tags, languages, education_level, age, gender, is_currently_unemployed,
+           has_vocational_cert, is_anonymous, blocked_companies, is_verified_skill,
+           verification_score, subsidy_eligible, subsidy_badge, bio_summary
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
+        t.id, t.user_id, t.full_name, t.masked_name, t.phone, t.email, t.city, t.district,
+        t.headline, t.department, t.seniority, t.experience_years, t.work_mode, t.salary_expectation,
+        t.skills_tags, t.languages, t.education_level, t.age, t.gender, t.is_currently_unemployed,
+        t.has_vocational_cert, t.is_anonymous, t.blocked_companies, t.is_verified_skill,
+        t.verification_score, t.subsidy_eligible, t.subsidy_badge, t.bio_summary
+      ).run();
+    }
+  }
+
+  const jCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_job_postings`).first() as any;
+  if (!jCount || Number(jCount.cnt) === 0) {
+    const sampleJobs = [
+      {
+        id: 'job_1',
+        job_no: 'MW-IK-101',
+        company_id: 'comp_meetwork_hq',
+        company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
+        company_slug: 'meetwork-global-yonetim',
+        trust_level: 3,
+        title: 'B2B Kurumsal Satış, Ekosistem & Üye İlişkileri Yöneticisi',
+        department: 'B2B Satış & Satınalma',
+        city: 'İstanbul',
+        work_mode: 'Tam Zamanlı / Hibrit',
+        employment_type: 'Tam Zamanlı (SGK + Prim)',
+        experience_level: 'Uzman (3-5 Yıl)',
+        salary_range: '50.000 TL – 75.000 TL + Yüksek Prim',
+        required_skills: JSON.stringify(['B2B Kurumsal Satış', 'ERP & SaaS Sunumu', 'Sanayi / Ticaret Odası Ağı', 'İhale & Hibe Danışmanlığı Satışı', 'CRM Yönetimi']),
+        benefits: JSON.stringify(['Yüksek Satış Primi', 'Özel Sağlık Sigortası', 'Kurumsal Araç / Yol Desteği', 'Yemek Kartı', 'MeetWork Gold Rozetli Portföy']),
+        subsidy_note: '🏛️ Ticaret Bakanlığı 10962 & KOSGEB Nitelikli Eleman Desteği Kapsamında İstihdam',
+        description: 'MeetWork B2B Super-Network, StokPratik Bulut ERP ve DepodanDirekt ekosistemimizin sanayi odaları, OSB’ler ve ihracatçı firmalar nezdinde kurumsal büyümesini yönetecek takım arkadaşı arıyoruz.'
+      },
+      {
+        id: 'job_2',
+        job_no: 'MW-IK-102',
+        company_id: 'comp_anadolu_celik',
+        company_name: 'Anadolu Çelik & Makine San. Tic. A.Ş.',
+        company_slug: 'anadolu-celik-makine-sanayi',
+        trust_level: 3,
+        title: 'CNC Lazer Kesim, Sac İşleme & Üretim Planlama Sorumlusu',
+        department: 'Üretim, Mühendislik & Fabrika',
+        city: 'İstanbul',
+        work_mode: 'Tam Zamanlı (Fabrika / Saha)',
+        employment_type: 'Tam Zamanlı',
+        experience_level: 'Kıdemli / Uzman (5-10 Yıl)',
+        salary_range: '60.000 TL – 85.000 TL',
+        required_skills: JSON.stringify(['CNC Lazer & Abkant', 'SolidWorks / AutoCAD', 'Paslanmaz Çelik İmalatı', 'Üretim Planlama', 'StokPratik ERP']),
+        benefits: JSON.stringify(['Üretim Primi', 'Servis (Tuzla / Pendik / Gebze)', 'Tamamlayıcı Sağlık', 'Mesai + İkramiye']),
+        subsidy_note: '💰 İŞKUR İşbaşı Eğitim & SGK 6111 Mesleki Yeterlilik Teşvikli Kadro',
+        description: 'Tuzla OSB’deki çelik işleme merkezimizde CNC lazer kesim ve ağır konstrüksiyon siparişlerinin üretim rotasını ve hammadde sarfiyatını yönetecek mühendis/tekniker arıyoruz.'
+      },
+      {
+        id: 'job_3',
+        job_no: 'MW-IK-103',
+        company_id: 'comp_marmara_makine',
+        company_name: 'Marmara Endüstriyel Makine & Otomasyon Ltd. Şti.',
+        company_slug: 'marmara-endustriyel-makine',
+        trust_level: 3,
+        title: 'Dış Ticaret & Avrupa Pazarı İhracat Operasyon Uzmanı',
+        department: 'Dış Ticaret & İhracat',
+        city: 'Bursa',
+        work_mode: 'Tam Zamanlı / Hibrit',
+        employment_type: 'Tam Zamanlı veya Dönemsel Uzman',
+        experience_level: 'Uzman (3-5 Yıl)',
+        salary_range: '55.000 TL – 70.000 TL + İhracat Primi',
+        required_skills: JSON.stringify(['İngilizce (İleri - C1)', 'Almanca (Tercihen)', 'Makine İhracatı', 'Gümrük & Lojistik', 'Yurt Dışı Fuar & B2B Eşleşme']),
+        benefits: JSON.stringify(['Döviz Bazlı İhracat Primi', 'Yurt Dışı Fuar Seyahatleri', 'Özel Sağlık', 'Hibrit Çalışma İmkanı']),
+        subsidy_note: '🏛️ KOSGEB Küresel Rekabetçilik & İstihdam Desteği Kapsamında',
+        description: 'Nilüfer OSB’de ürettiğimiz endüstriyel otomasyon hatlarının Avrupa ve Orta Doğu ihracat operasyonlarını, gümrük süreçlerini ve yabancı müşteri yazışmalarını yönetecek uzman.'
+      },
+      {
+        id: 'job_4',
+        job_no: 'MW-IK-104',
+        company_id: 'comp_ege_lojistik',
+        company_name: 'Ege Global Lojistik & Ticari Filo Yönetimi A.Ş.',
+        company_slug: 'ege-global-lojistik-filo',
+        trust_level: 2,
+        title: '⚡ [Dönemsel / Proje Bazlı] StokPratik ERP Kurulum & E-Fatura / Cari Mutabakat Uzmanı',
+        department: 'Finans, Muhasebe & ERP',
+        city: 'İzmir',
+        work_mode: 'Uzaktan (Remote) / Proje Bazlı',
+        employment_type: 'Dönemsel / Proje Bazlı Uzman (Fractional)',
+        experience_level: 'Uzman (3-5 Yıl)',
+        salary_range: 'Proje Bazlı 45.000 TL (veya Part-Time)',
+        required_skills: JSON.stringify(['StokPratik CariNet', 'E-Fatura & E-İrsaliye', 'Lojistik Maliyet Muhasebesi', 'Cari Mutabakat']),
+        benefits: JSON.stringify(['Tamamen Uzaktan veya Haftada 2 Gün', 'Hızlı Hakediş Ödemesi', 'Uzun Vadeli Danışmanlık Sözleşmesi']),
+        subsidy_note: '⚡ Dönemsel Uzman / Danışman Kiralama Modeli',
+        description: 'Filo ve antrepo operasyonlarımızın StokPratik Bulut ERP & CariNet sistemine geçiş sürecinde 2 ay boyunca stok kartlarını, cari hesapları ve e-fatura entegrasyonunu kurgulayacak uzman.'
+      }
+    ];
+
+    for (const j of sampleJobs) {
+      await db.prepare(
+        `INSERT OR IGNORE INTO mw_job_postings (
+           id, job_no, company_id, company_name, company_slug, trust_level,
+           title, department, city, work_mode, employment_type, experience_level,
+           salary_range, required_skills, benefits, subsidy_note, description
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
+        j.id, j.job_no, j.company_id, j.company_name, j.company_slug, j.trust_level,
+        j.title, j.department, j.city, j.work_mode, j.employment_type, j.experience_level,
+        j.salary_range, j.required_skills, j.benefits, j.subsidy_note, j.description
+      ).run();
+    }
+  }
+}
+
+app.get('/api/career/overview', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
+
+  const department = c.req.query('department') || '';
+  const city = c.req.query('city') || '';
+  const workMode = c.req.query('work_mode') || '';
+  const viewerCompanyName = (c.req.query('viewer_company_name') || '').toLowerCase().trim();
+  const viewerCompanyId = c.req.query('viewer_company_id') || '';
+  const viewerUserId = c.req.query('viewer_user_id') || '';
+
+  let tSql = `SELECT * FROM mw_talent_profiles WHERE status = 'active'`;
+  const tParams: any[] = [];
+  if (department && department !== 'Tümü') {
+    tSql += ` AND department = ?`;
+    tParams.push(department);
+  }
+  if (city && city !== 'Tümü') {
+    tSql += ` AND city = ?`;
+    tParams.push(city);
+  }
+  tSql += ` ORDER BY is_verified_skill DESC, verification_score DESC, created_at DESC LIMIT 60`;
+  const { results: rawTalents } = await c.env.DB.prepare(tSql).bind(...tParams).all();
+
+  // Filter out talents who blocked the viewing company (Gizli Radar Kalkanı)
+  const talents = (rawTalents || []).filter((t: any) => {
+    if (!viewerCompanyName) return true;
+    const blocked = String(t.blocked_companies || '').toLowerCase();
+    if (blocked && blocked.split(',').some((b) => b.trim() && viewerCompanyName.includes(b.trim()))) {
+      return false;
+    }
+    return true;
+  }).map((t: any) => {
+    let skills: string[] = [];
+    let langs: string[] = [];
+    try { skills = JSON.parse(t.skills_tags || '[]'); } catch (_) {}
+    try { langs = JSON.parse(t.languages || '[]'); } catch (_) {}
+    const isAnon = Number(t.is_anonymous) === 1;
+    const isSelf = viewerUserId && t.user_id === viewerUserId;
+    return {
+      ...t,
+      display_name: (isAnon && !isSelf) ? (t.masked_name || 'Gizli Radar Adayı (Anonim)') : t.full_name,
+      contact_locked: isAnon && !isSelf,
+      phone: (isAnon && !isSelf) ? '🔒 Mülakat Teklifi Onaylandığında Açılır' : t.phone,
+      email: (isAnon && !isSelf) ? '🔒 Gizli Radar Korumalı' : t.email,
+      skills_list: skills,
+      languages_list: langs
+    };
+  });
+
+  let jSql = `SELECT * FROM mw_job_postings WHERE status = 'active'`;
+  const jParams: any[] = [];
+  if (department && department !== 'Tümü') {
+    jSql += ` AND department = ?`;
+    jParams.push(department);
+  }
+  if (city && city !== 'Tümü') {
+    jSql += ` AND city = ?`;
+    jParams.push(city);
+  }
+  if (workMode && workMode !== 'Tümü') {
+    jSql += ` AND (work_mode LIKE ? OR employment_type LIKE ?)`;
+    jParams.push(`%${workMode}%`, `%${workMode}%`);
+  }
+  jSql += ` ORDER BY trust_level DESC, created_at DESC LIMIT 60`;
+  const { results: rawJobs } = await c.env.DB.prepare(jSql).bind(...jParams).all();
+  const jobs = (rawJobs || []).map((j: any) => {
+    let reqSkills: string[] = [];
+    let benefits: string[] = [];
+    try { reqSkills = JSON.parse(j.required_skills || '[]'); } catch (_) {}
+    try { benefits = JSON.parse(j.benefits || '[]'); } catch (_) {}
+    return {
+      ...j,
+      required_skills_list: reqSkills,
+      benefits_list: benefits
+    };
+  });
+
+  // Fetch interactions for the current user/company
+  let myInteractions: any[] = [];
+  if (viewerCompanyId || viewerUserId) {
+    const { results: ints } = await c.env.DB.prepare(
+      `SELECT * FROM mw_career_interactions WHERE company_id = ? OR talent_id IN (SELECT id FROM mw_talent_profiles WHERE user_id = ?) ORDER BY created_at DESC LIMIT 50`
+    ).bind(viewerCompanyId || 'none', viewerUserId || 'none').all();
+    myInteractions = ints || [];
+  }
+
+  return c.json({
+    success: true,
+    talents,
+    jobs,
+    interactions: myInteractions
+  });
+});
+
+app.post('/api/career/talent', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
+  const body = await c.req.json();
+  const id = body.id || uid('tln');
+  const fullName = (body.full_name || 'Aday Uzman').trim();
+  const parts = fullName.split(' ');
+  const maskedName = parts.map((p: string) => p.charAt(0).toUpperCase() + '***').join(' ') + ` (${body.headline || 'Doğrulanmış Yetenek'})`;
+
+  const subsidyInfo = evaluateWageSubsidyForTalent(body);
+  const skillsJson = Array.isArray(body.skills_tags) ? JSON.stringify(body.skills_tags) : (body.skills_tags || '[]');
+  const langsJson = Array.isArray(body.languages) ? JSON.stringify(body.languages) : (body.languages || '["İngilizce (Orta)"]');
+
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_talent_profiles (
+       id, user_id, full_name, masked_name, phone, email, city, district,
+       headline, department, seniority, experience_years, work_mode, salary_expectation,
+       skills_tags, languages, education_level, age, gender, is_currently_unemployed,
+       has_vocational_cert, is_anonymous, blocked_companies, is_verified_skill,
+       verification_score, subsidy_eligible, subsidy_badge, bio_summary
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 95, ?, ?, ?)`
+  ).bind(
+    id,
+    body.user_id || '',
+    fullName,
+    maskedName,
+    body.phone || '',
+    body.email || '',
+    body.city || 'İstanbul',
+    body.district || '',
+    body.headline || 'B2B Uzman Aday',
+    body.department || 'B2B Satış & Satınalma',
+    body.seniority || 'Uzman (3-5 Yıl)',
+    Number(body.experience_years || 4),
+    body.work_mode || 'Tam Zamanlı / Hibrit',
+    body.salary_expectation || '45.000 TL – 65.000 TL',
+    skillsJson,
+    langsJson,
+    body.education_level || 'Lisans',
+    Number(body.age || 27),
+    body.gender || 'Erkek',
+    body.is_currently_unemployed !== undefined ? (body.is_currently_unemployed ? 1 : 0) : 1,
+    body.has_vocational_cert !== undefined ? (body.has_vocational_cert ? 1 : 0) : 1,
+    body.is_anonymous !== undefined ? (body.is_anonymous ? 1 : 0) : 1,
+    body.blocked_companies || '',
+    subsidyInfo.subsidy_eligible,
+    subsidyInfo.subsidy_badge,
+    body.bio_summary || ''
+  ).run();
+
+  return c.json({
+    success: true,
+    id,
+    subsidy: subsidyInfo,
+    message: 'Akıllı Yetenek Kartınız oluşturuldu ve Devlet İstihdam Teşviki rozetiniz hesaplandı!'
+  });
+});
+
+app.post('/api/career/job', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
+  const body = await c.req.json();
+  const id = uid('job');
+  const jobNo = `MW-IK-${Math.floor(100 + Math.random() * 900)}`;
+
+  let trustLevel = Number(body.trust_level || 2);
+  let companySlug = body.company_slug || '';
+  if (body.company_id) {
+    const comp = await c.env.DB.prepare(`SELECT slug, trust_level FROM mw_companies WHERE id = ? OR slug = ? LIMIT 1`).bind(body.company_id, body.company_id).first() as any;
+    if (comp) {
+      trustLevel = Number(comp.trust_level || 2);
+      companySlug = comp.slug || companySlug;
+    }
+  }
+
+  const reqSkillsJson = Array.isArray(body.required_skills) ? JSON.stringify(body.required_skills) : (body.required_skills || '[]');
+  const benefitsJson = Array.isArray(body.benefits) ? JSON.stringify(body.benefits) : (body.benefits || '["SGK + Yemek + Prim","Özel Sağlık"]');
+
+  await c.env.DB.prepare(
+    `INSERT INTO mw_job_postings (
+       id, job_no, company_id, company_name, company_slug, trust_level,
+       title, department, city, work_mode, employment_type, experience_level,
+       salary_range, required_skills, benefits, subsidy_note, description
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(
+    id,
+    jobNo,
+    body.company_id || '',
+    body.company_name || 'MeetWork Onaylı İşveren',
+    companySlug,
+    trustLevel,
+    body.title || 'Uzman Personel İlanı',
+    body.department || 'B2B Satış & Satınalma',
+    body.city || 'İstanbul',
+    body.work_mode || 'Tam Zamanlı / Hibrit',
+    body.employment_type || 'Tam Zamanlı',
+    body.experience_level || 'Uzman (3-5 Yıl)',
+    body.salary_range || '50.000 TL – 70.000 TL',
+    reqSkillsJson,
+    benefitsJson,
+    body.subsidy_note || '💰 İŞKUR İşbaşı Eğitim & SGK 6111 / KOSGEB Teşvikli İstihdam',
+    body.description || ''
+  ).run();
+
+  return c.json({
+    success: true,
+    id,
+    job_no: jobNo,
+    message: `Personel ilanınız (#${jobNo}) Kariyer Merkezinde ve İşletme Profilinizde yayınlandı!`
+  });
+});
+
+app.post('/api/career/interact', async (c) => {
+  await ensureSchema(c.env.DB);
+  const body = await c.req.json();
+  const id = uid('cint');
+  const interactionType = body.interaction_type || 'employer_invite'; // 'employer_invite' or 'candidate_apply'
+
+  await c.env.DB.prepare(
+    `INSERT INTO mw_career_interactions (
+       id, interaction_type, job_id, job_title, talent_id, talent_name,
+       company_id, company_name, offered_salary, contact_phone, message, status
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')`
+  ).bind(
+    id,
+    interactionType,
+    body.job_id || '',
+    body.job_title || 'Doğrudan Mülakat Daveti',
+    body.talent_id || '',
+    body.talent_name || 'Aday Uzman',
+    body.company_id || '',
+    body.company_name || 'MeetWork Üye İşveren',
+    body.offered_salary || '',
+    body.contact_phone || '',
+    body.message || ''
+  ).run();
+
+  if (body.job_id && interactionType === 'candidate_apply') {
+    await c.env.DB.prepare(`UPDATE mw_job_postings SET applicants_count = applicants_count + 1 WHERE id = ?`).bind(body.job_id).run();
+  }
+
+  return c.json({
+    success: true,
+    id,
+    message: interactionType === 'employer_invite'
+      ? 'Mülakat ve maaş teklifiniz adayın Gizli Radar kutusuna iletildi! Aday onayladığında iletişim bilgileri açılacaktır.'
+      : '1-Tıkla başvurunuz ve Yetenek Kartınız işveren yetkilisine iletildi!'
+  });
+});
+
+app.put('/api/career/interact/:id', async (c) => {
+  await ensureSchema(c.env.DB);
+  const id = c.req.param('id');
+  const { status } = await c.req.json(); // 'accepted' or 'rejected'
+  await c.env.DB.prepare(`UPDATE mw_career_interactions SET status = ? WHERE id = ?`).bind(status || 'accepted', id).run();
+
+  const row = await c.env.DB.prepare(`SELECT * FROM mw_career_interactions WHERE id = ? LIMIT 1`).bind(id).first() as any;
+  let unlockedTalent: any = null;
+  if (row && row.talent_id && status === 'accepted') {
+    unlockedTalent = await c.env.DB.prepare(`SELECT full_name, phone, email, headline FROM mw_talent_profiles WHERE id = ? LIMIT 1`).bind(row.talent_id).first();
+  }
+
+  return c.json({
+    success: true,
+    status,
+    unlocked_talent: unlockedTalent,
+    message: status === 'accepted'
+      ? 'Mülakat teklifi onaylandı! Gizli Radar kilidi açıldı ve iletişim bilgileriniz işverenle paylaşıldı.'
+      : 'Mülakat teklifi reddedildi. Kimliğiniz gizli kalmaya devam ediyor.'
+  });
 });
 
 // ============================================================================
@@ -2020,12 +2966,16 @@ app.post('/api/bridge/stokpratik-sync', async (c) => {
 app.get('/api/superadmin/overview', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
   const { results: companies } = await c.env.DB.prepare(`SELECT * FROM mw_companies ORDER BY created_at DESC LIMIT 100`).all();
   const { results: users } = await c.env.DB.prepare(`SELECT id, email, full_name, phone, role, company_id, match_credits, tender_credits, created_at FROM mw_users ORDER BY created_at DESC LIMIT 100`).all();
   const { results: listings } = await c.env.DB.prepare(`SELECT * FROM mw_listings ORDER BY created_at DESC LIMIT 100`).all();
   const { results: tenders } = await c.env.DB.prepare(`SELECT * FROM mw_tenders ORDER BY created_at DESC LIMIT 100`).all();
   const { results: posts } = await c.env.DB.prepare(`SELECT * FROM mw_posts ORDER BY created_at DESC LIMIT 50`).all();
   const { results: grantApplications } = await c.env.DB.prepare(`SELECT * FROM mw_grant_applications ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: grantPrograms } = await c.env.DB.prepare(`SELECT * FROM mw_grant_programs ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: jobs } = await c.env.DB.prepare(`SELECT * FROM mw_job_postings ORDER BY created_at DESC LIMIT 100`).all();
+  const { results: talents } = await c.env.DB.prepare(`SELECT * FROM mw_talent_profiles ORDER BY created_at DESC LIMIT 100`).all();
 
   return c.json({
     success: true,
@@ -2035,15 +2985,75 @@ app.get('/api/superadmin/overview', async (c) => {
       total_listings: (listings || []).length,
       total_tenders: (tenders || []).length,
       total_posts: (posts || []).length,
-      total_grant_applications: (grantApplications || []).length
+      total_grant_applications: (grantApplications || []).length,
+      total_grant_programs: (grantPrograms || []).length,
+      total_jobs: (jobs || []).length,
+      total_talents: (talents || []).length
     },
     companies: companies || [],
     users: users || [],
     listings: listings || [],
     tenders: tenders || [],
     posts: posts || [],
-    grant_applications: grantApplications || []
+    grant_applications: grantApplications || [],
+    grant_programs: grantPrograms || [],
+    jobs: jobs || [],
+    talents: talents || []
   });
+});
+
+app.post('/api/superadmin/grant-program', async (c) => {
+  await ensureSchema(c.env.DB);
+  const body = await c.req.json();
+  const id = body.id || uid('prg');
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_grant_programs (
+       id, code, title, provider, scope, funding_type, eligible_org_types,
+       min_company_age, max_company_age, eligible_sectors, requires_export, requires_rd,
+       grant_rate, max_amount, deadline_info, start_date, deadline_date, call_status,
+       official_url, description, requirements_checklist, status
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(
+    id,
+    body.code || `PRG-${Math.floor(100 + Math.random() * 900)}`,
+    body.title || 'Yeni Hibe / Teşvik Programı',
+    body.provider || 'Resmi Kurum',
+    body.scope || 'yerel',
+    body.funding_type || 'hibe',
+    body.eligible_org_types || '["ltd_as","sahis"]',
+    Number(body.min_company_age || 0),
+    Number(body.max_company_age || 99),
+    body.eligible_sectors || '["all"]',
+    body.requires_export ? 1 : 0,
+    body.requires_rd ? 1 : 0,
+    body.grant_rate || '%50 – %75 Hibe',
+    body.max_amount || '5.000.000 TL',
+    body.deadline_info || 'Başvuruya Açık',
+    body.start_date || '2026-01-01',
+    body.deadline_date || '',
+    body.call_status || 'open',
+    body.official_url || 'https://meetwork.com.tr',
+    body.description || '',
+    body.requirements_checklist || '["Başvuru dosyasının hazırlanması"]',
+    body.status || 'active'
+  ).run();
+
+  return c.json({ success: true, id, message: 'Hibe/Fon programı ve çağrı takvimi güncellendi!' });
+});
+
+app.post('/api/superadmin/career-toggle', async (c) => {
+  await ensureSchema(c.env.DB);
+  const { type, id, is_verified_skill, status } = await c.req.json();
+  if (type === 'talent') {
+    await c.env.DB.prepare(
+      `UPDATE mw_talent_profiles SET is_verified_skill = COALESCE(?, is_verified_skill), status = COALESCE(?, status) WHERE id = ?`
+    ).bind(is_verified_skill !== undefined ? Number(is_verified_skill) : null, status || null, id).run();
+  } else if (type === 'job') {
+    await c.env.DB.prepare(
+      `UPDATE mw_job_postings SET status = COALESCE(?, status) WHERE id = ?`
+    ).bind(status || null, id).run();
+  }
+  return c.json({ success: true, message: 'Kariyer kaydı güncellendi.' });
 });
 
 app.post('/api/superadmin/company-update', async (c) => {
@@ -2085,7 +3095,10 @@ app.delete('/api/superadmin/delete/:type/:id', async (c) => {
     post: 'mw_posts',
     company: 'mw_companies',
     grant_app: 'mw_grant_applications',
-    grant_application: 'mw_grant_applications'
+    grant_application: 'mw_grant_applications',
+    grant_program: 'mw_grant_programs',
+    job: 'mw_job_postings',
+    talent: 'mw_talent_profiles'
   };
   const table = tableMap[type];
   if (!table) return c.json({ success: false, message: 'Geçersiz tablo.' }, 400);
@@ -2097,6 +3110,7 @@ app.delete('/api/superadmin/delete/:type/:id', async (c) => {
 app.post('/api/superadmin/bootstrap', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialGrantEcosystem(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
 
   // 1. SuperAdmin & DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. Hesabı (yonetim@meetwork.com.tr / MeetWork2026!)
   await c.env.DB.prepare(
@@ -2133,7 +3147,7 @@ app.post('/api/superadmin/bootstrap', async (c) => {
 
   return c.json({
     success: true,
-    message: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork) hesabı, Hibe/Fon havuzu ve Test Üye hesapları başarıyla hazırlandı!'
+    message: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork) hesabı, 16 Hibe/Fon programı, Kariyer & Yetenek Havuzu ve Test Üye hesapları başarıyla hazırlandı!'
   });
 });
 

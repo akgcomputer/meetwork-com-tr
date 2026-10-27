@@ -162,11 +162,19 @@ const topTalepler = talepler.slice(0, 15);
               <textarea id="ntDescription" class="form-control form-control-sm" rows="3" placeholder="Kalite standartları, numune şartı, teslim süresi ve ek ihale kurallarını belirtiniz..." required></textarea>
             </div>
 
-            <div class="col-12">
-              <div class="form-check">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Tedarikçi Güven / Rozet Kilidi (Kimler Teklif Verebilir?)</label>
+              <select id="ntMinTrustLevel" class="form-select form-select-sm border-warning fw-semibold">
+                <option value="1" selected>🌍 Tüm Tedarikçiler (Magic Link ile Üyesiz Dahil)</option>
+                <option value="2">🥈 Sadece Silver ve Gold Onaylı Tedarikçiler</option>
+                <option value="3">🥇 Sadece Gold Onaylı (Bilançosu Doğrulanmış) Tedarikçiler</option>
+              </select>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <div class="form-check mb-1">
                 <input class="form-check-input" type="checkbox" id="ntIsGroupBuy" />
                 <label class="form-check-label small fw-bold text-danger" for="ntIsGroupBuy">
-                  🤝 Bu ihaleyi "Ortak Satın Alma Havuzu" yap (Diğer MeetWork üyesi KOBİ'ler de kendi adetlerini ekleyip toplu iskonto alabilsin)
+                  🤝 "Ortak Satın Alma Havuzu" yap (Toplu İskonto)
                 </label>
               </div>
             </div>
@@ -213,18 +221,76 @@ const topTalepler = talepler.slice(0, 15);
             <div class="row g-2">
               <div class="col-6">
                 <label class="form-label small fw-bold">Teklif Fiyatınız (TL) *</label>
-                <input type="number" id="bidPrice" class="form-control form-control-sm" required />
+                <input type="number" id="bidPrice" class="form-control form-control-sm tabular-nums" required />
               </div>
               <div class="col-6">
                 <label class="form-label small fw-bold">Teslim Süresi (Gün)</label>
-                <input type="number" id="bidDeliveryDays" class="form-control form-control-sm" value="7" />
+                <input type="number" id="bidDeliveryDays" class="form-control form-control-sm tabular-nums" value="7" />
               </div>
             </div>
             <div>
               <label class="form-label small fw-bold">Teklif Notunuz / Vade Şartınız</label>
               <textarea id="bidNote" class="form-control form-control-sm" rows="2" placeholder="Nakliye dahil, 60 gün vadeli..."></textarea>
             </div>
-            <button type="submit" class="btn btn-danger fw-bold">Teklifimi İlet</button>
+            <button type="submit" class="btn btn-danger fw-bold">⚡ Teklifimi İlet & Sıralamamı Gör</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAGIC LINK "VİRAL KANCA" MODALI (TEKLİF SONRASI 1-TIKLA ÜYELİK DÖNÜŞÜMÜ) -->
+  <div class="modal fade" id="magicViralHookModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+        <div class="modal-header bg-dark text-white border-0 py-3 px-4">
+          <h5 class="modal-title fw-bold text-warning">
+            🎯 Teklifiniz Kaydedildi! Canlı İhale Sıralamanız:
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="p-3 rounded-3 bg-warning bg-opacity-10 border border-warning mb-3 text-center">
+            <div class="fs-4 fw-black text-danger tabular-nums mb-1" id="viralHookRankBanner">
+              Şu an bu ihalede 1. sıradasınız!
+            </div>
+            <div class="small text-dark fw-semibold" id="viralHookSubBanner">
+              Rakipleriniz fiyatınızı kırdığında anında SMS/WhatsApp bildirimi almak ve alıcı firmanın sonraki ihalelerine otomatik davet edilmek için ücretsiz hesabınızı tamamlayın.
+            </div>
+          </div>
+
+          <div class="small fw-bold text-success mb-2">
+            ✨ Firma bilgileriniz hazır dolduruldu — sadece e-posta ve şifre belirleyip 1 tıkla içeri girin:
+          </div>
+
+          <form id="mwViralQuickSignupForm" class="d-flex flex-column gap-2">
+            <div>
+              <label class="form-label small fw-bold mb-1">Firma Unvanınız (Hazır Dolu)</label>
+              <input type="text" id="vhCompanyName" class="form-control form-control-sm bg-light fw-bold" readonly />
+            </div>
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Telefonunuz</label>
+                <input type="text" id="vhPhone" class="form-control form-control-sm bg-light" readonly />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">VKN</label>
+                <input type="text" id="vhVkn" class="form-control form-control-sm bg-light" readonly />
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Kurumsal E-Posta *</label>
+                <input type="email" id="vhEmail" class="form-control form-control-sm" required placeholder="info@firmaniz.com" />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Şifre Belirleyin *</label>
+                <input type="password" id="vhPassword" class="form-control form-control-sm" required placeholder="En az 6 karakter" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success fw-bold py-2 mt-2">
+              🚀 1-Tıkla Ücretsiz Hesabımı Aç & İhale Bildirimlerini Başlat
+            </button>
           </form>
         </div>
       </div>
@@ -234,12 +300,20 @@ const topTalepler = talepler.slice(0, 15);
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let loadedTendersCache = [];
 
       function methodBadge(m) {
-        if (m === 'open_decrement') return '<span class="badge bg-danger">📉 Açık Eksiltme</span>';
+        if (m === 'open_decrement') return '<span class="badge bg-danger">📉 Açık Eksiltme (+Son 2 Dk Korumalı)</span>';
         if (m === 'sealed_envelope') return '<span class="badge bg-dark">✉️ Kapalı Zarf</span>';
         if (m === 'english_auction') return '<span class="badge bg-warning text-dark">🏆 İngiliz Usulü</span>';
         return '<span class="badge bg-secondary">⚡ Hızlı Teklif (RFQ)</span>';
+      }
+
+      function trustLockBadge(minTrust) {
+        const lvl = Number(minTrust || 1);
+        if (lvl >= 3) return '<span class="badge bg-warning text-dark fw-bold">🔒 Sadece 🥇 Gold Onaylılar</span>';
+        if (lvl === 2) return '<span class="badge bg-secondary text-white fw-bold">🔒 Sadece 🥈 Silver & Gold Onaylılar</span>';
+        return '<span class="badge bg-success-subtle text-success">🔗 Magic Link Açık</span>';
       }
 
       async function loadTenders(method = 'all') {
@@ -250,6 +324,7 @@ const topTalepler = talepler.slice(0, 15);
           const res = await fetch(`${API_URL}/api/tenders${qs}`);
           const data = await res.json();
           const tenders = data.tenders || [];
+          loadedTendersCache = tenders;
 
           if (tenders.length === 0) {
             listEl.innerHTML = `
@@ -264,26 +339,33 @@ const topTalepler = talepler.slice(0, 15);
             return;
           }
 
-          listEl.innerHTML = tenders.map((t) => `
+          const urlParams = new URLSearchParams(window.location.search);
+          const magicSlug = urlParams.get('tender') || '';
+
+          listEl.innerHTML = tenders.map((t) => {
+            const isHighlighted = magicSlug && (t.slug === magicSlug || t.id === magicSlug || t.tender_no === magicSlug);
+            return `
             <div class="col-md-6">
-              <div class="mw-panel-card p-3 h-100 d-flex flex-column justify-content-between shadow-sm">
+              <div class="mw-panel-card p-3 h-100 d-flex flex-column justify-content-between shadow-sm ${isHighlighted ? 'border-danger border-3' : ''}" style="border-left: 4px solid #ef4444 !important;">
                 <div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="d-flex gap-1 align-items-center">
+                  ${isHighlighted ? `<div class="badge bg-danger w-100 py-2 mb-2">⚡ MAGIC LINK HIZLI TEKLİF MASASI (30 Saniyede Teklif Verin)</div>` : ''}
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-1 mb-2">
+                    <div class="d-flex flex-wrap gap-1 align-items-center">
                       ${methodBadge(t.tender_method)}
+                      ${trustLockBadge(t.min_trust_level)}
                       ${t.is_group_buy ? '<span class="badge bg-success">🤝 Ortak Alım Havuzu</span>' : ''}
                     </div>
-                    <small class="text-muted fw-bold">#${t.tender_no}</small>
+                    <small class="text-muted fw-bold tabular-nums">#${t.tender_no}</small>
                   </div>
                   <h6 class="fw-bold mb-1">${t.title}</h6>
                   <div class="small text-muted mb-2">
-                    <strong>Alıcı:</strong> ${t.buyer_name} • <strong>Miktar:</strong> ${t.quantity} ${t.unit} • <strong>Teslim:</strong> ${t.delivery_location}
+                    <strong>Alıcı:</strong> ${t.buyer_name} • <strong>Miktar:</strong> <span class="tabular-nums">${t.quantity} ${t.unit}</span> • <strong>Teslim:</strong> ${t.delivery_location}
                   </div>
                   <p class="small text-muted mb-2">${t.description}</p>
                 </div>
 
                 <div class="pt-2 border-top d-flex justify-content-between align-items-center flex-wrap gap-2" style="border-color:var(--mw-border)!important;">
-                  <div class="small">
+                  <div class="small tabular-nums">
                     <span class="text-muted">Teklif Sayısı:</span> <strong>${t.bids_count || 0}</strong>
                     ${t.tender_method === 'open_decrement' && t.lowest_bid ? ` • <span class="text-danger fw-bold">En Düşük: ${Number(t.lowest_bid).toLocaleString('tr-TR')} ${t.currency}</span>` : ''}
                     ${t.tender_method === 'sealed_envelope' ? ` • <span class="text-muted fst-italic">🔒 Zarf Kapalı</span>` : ''}
@@ -293,12 +375,20 @@ const topTalepler = talepler.slice(0, 15);
                     class="btn btn-sm btn-danger fw-bold"
                     onclick="window.mwOpenBidModal('${t.id}', '${t.title.replace(/'/g, '')}')"
                   >
-                    Teklif Ver
+                    ⚡ Teklif Ver
                   </button>
                 </div>
               </div>
             </div>
-          `).join('');
+          `;
+          }).join('');
+
+          if (magicSlug) {
+            const targetT = tenders.find((t) => t.slug === magicSlug || t.id === magicSlug || t.tender_no === magicSlug);
+            if (targetT) {
+              window.mwOpenBidModal(targetT.id, targetT.title);
+            }
+          }
         } catch (_) {}
       }
 
@@ -319,6 +409,8 @@ const topTalepler = talepler.slice(0, 15);
             if (bName) bName.value = u.company_name || u.full_name || '';
             const sName = document.getElementById('bidSupplierName');
             if (sName) sName.value = u.company_name || u.full_name || '';
+            const sPhone = document.getElementById('bidSupplierPhone');
+            if (sPhone && u.phone) sPhone.value = u.phone;
           }
         } catch (_) {}
 
@@ -340,6 +432,7 @@ const topTalepler = talepler.slice(0, 15);
           const payload = {
             company_id: u ? u.company_id : '',
             trust_level: u ? u.trust_level : 1,
+            min_trust_level: Number(document.getElementById('ntMinTrustLevel')?.value || 1),
             tender_method: document.getElementById('ntMethod').value,
             category: document.getElementById('ntCategory').value,
             title: document.getElementById('ntTitle').value,
@@ -369,8 +462,13 @@ const topTalepler = talepler.slice(0, 15);
 
         document.getElementById('mwBidForm').addEventListener('submit', async (e) => {
           e.preventDefault();
+          let u = null;
+          try { u = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
           const tenderId = document.getElementById('bidTenderId').value;
           const payload = {
+            supplier_company_id: u ? u.company_id : '',
+            supplier_trust_level: u ? u.trust_level : 1,
             supplier_name: document.getElementById('bidSupplierName').value,
             supplier_phone: document.getElementById('bidSupplierPhone').value,
             supplier_vkn: document.getElementById('bidSupplierVkn').value,
@@ -386,9 +484,62 @@ const topTalepler = talepler.slice(0, 15);
               body: JSON.stringify(payload)
             });
             const out = await res.json();
-            if (out.success) {
+            if (!out.success) {
+              alert(out.message || 'Teklif iletilemedi.');
+              return;
+            }
+
+            // Close bid modal
+            const bidModalEl = document.getElementById('bidTenderModal');
+            if (bidModalEl && window.bootstrap) {
+              window.bootstrap.Modal.getInstance(bidModalEl)?.hide();
+            }
+
+            await loadTenders();
+
+            // If user is not logged in, trigger Magic Link Viral Hook Modal!
+            if (!u && out.prefill_signup) {
+              document.getElementById('viralHookRankBanner').textContent =
+                `Şu an bu ihalede ${out.bid_rank || 1}. sıradasınız! (Toplam ${out.total_bids || 1} teklif)`;
+              document.getElementById('viralHookSubBanner').textContent = out.viral_hook_text || out.message;
+              document.getElementById('vhCompanyName').value = out.prefill_signup.company_name || payload.supplier_name;
+              document.getElementById('vhPhone').value = out.prefill_signup.phone || payload.supplier_phone;
+              document.getElementById('vhVkn').value = out.prefill_signup.vkn || payload.supplier_vkn || '';
+              const vhModal = new window.bootstrap.Modal(document.getElementById('magicViralHookModal'));
+              vhModal.show();
+            } else {
               alert(out.message);
+            }
+          } catch (_) {}
+        });
+
+        // Viral Hook 1-Click Signup Submit
+        document.getElementById('mwViralQuickSignupForm')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const payload = {
+            company_name: document.getElementById('vhCompanyName').value,
+            full_name: document.getElementById('vhCompanyName').value,
+            phone: document.getElementById('vhPhone').value,
+            vkn: document.getElementById('vhVkn').value,
+            email: document.getElementById('vhEmail').value,
+            password: document.getElementById('vhPassword').value,
+            sector: 'Toptan & Dış Ticaret (İhracat/İthalat)',
+            city: 'İstanbul'
+          };
+          try {
+            const res = await fetch(`${API_URL}/api/auth/register`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const out = await res.json();
+            if (out.success && out.user) {
+              localStorage.setItem('mw_user', JSON.stringify(out.user));
+              localStorage.setItem('mw_token', out.token || '');
+              alert('🎉 Kurumsal üyeliğiniz tek tıkla oluşturuldu! Artık rakip teklif bildirimlerini anında alacaksınız.');
               window.location.reload();
+            } else {
+              alert(out.message || 'Kayıt tamamlanamadı.');
             }
           } catch (_) {}
         });

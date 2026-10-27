@@ -162,9 +162,9 @@ const SECTORS = [
             return;
           }
 
-          resultsEl.innerHTML = cards.map((c) => `
+          resultsEl.innerHTML = cards.map((c, idx) => `
             <div class="col-md-4">
-              <div class="mw-panel-card p-4 h-100 d-flex flex-column justify-content-between shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
+              <div class="mw-panel-card p-4 h-100 d-flex flex-column justify-content-between shadow-sm" style="border-top: 4px solid ${idx === 2 ? '#f59e0b' : 'var(--mw-red)'}!important;">
                 <div>
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <span class="badge ${c.badgeClass}"><i class="bi ${c.icon} me-1"></i> ${c.cardTitle}</span>
@@ -172,6 +172,11 @@ const SECTORS = [
                   </div>
                   <h5 class="fw-bold mb-1">${c.name}</h5>
                   <div class="small text-danger fw-semibold mb-2">${c.sector}</div>
+                  ${c.match_explanation ? `
+                    <div class="p-2 rounded border mb-2 small fw-semibold" style="background: ${idx === 2 ? 'rgba(245, 158, 11, 0.1)' : 'rgba(220, 53, 69, 0.06)'}; border-color: ${idx === 2 ? '#f59e0b' : 'var(--mw-border)'} !important;">
+                      ${c.match_explanation}
+                    </div>
+                  ` : ''}
                   <p class="small text-muted mb-3">
                     ${c.description || 'MeetWork doğrulanmış kurumsal üyesi. Toptan tedarik, fason üretim ve B2B iş birliğine açık işletme.'}
                   </p>

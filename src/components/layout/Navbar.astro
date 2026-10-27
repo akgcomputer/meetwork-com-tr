@@ -99,6 +99,9 @@ const currentPath = Astro.url.pathname;
             <a class="dropdown-item rounded py-1 small fw-semibold" href="/hibe-kredi-eslesme">
               <i class="bi bi-cash-coin text-success me-2"></i>Hibe, Fon & Kredi Eşleşmesi
             </a>
+            <a class="dropdown-item rounded py-1 small fw-semibold" href="/kariyer">
+              <i class="bi bi-people-fill text-primary me-2"></i>Kariyer, İK & Yetenek Havuzu
+            </a>
             <button type="button" class="dropdown-item rounded py-1 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
               <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
             </button>
@@ -148,12 +151,17 @@ const currentPath = Astro.url.pathname;
           </li>
           <li class="nav-item">
             <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/ihaleler') || currentPath.startsWith('/talepler') ? 'active' : ''}`} href="/ihaleler">
-              <i class="bi bi-hammer text-danger"></i> E-İhale & Talepler
+              <i class="bi bi-hammer text-danger"></i> E-İhale
             </a>
           </li>
           <li class="nav-item">
             <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/akilli-eslesme') ? 'active' : ''}`} href="/akilli-eslesme">
               <i class="bi bi-diagram-3-fill text-danger"></i> Akıllı Eşleşme
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link mw-nav-pill ${currentPath.startsWith('/kariyer') ? 'active' : ''}`} href="/kariyer">
+              <i class="bi bi-people-fill text-danger"></i> Kariyer & İK
             </a>
           </li>
           <li class="nav-item">
@@ -206,7 +214,7 @@ const currentPath = Astro.url.pathname;
           <li class="nav-item d-xl-none mt-2 pt-2 border-top">
             <div class="d-grid gap-2">
               <a href="/ilanlar?yeni=1" class="btn btn-danger btn-sm fw-bold">
-                <i class="bi bi-plus-circle me-1"></i> İlan / İhale Ver
+                <i class="bi bi-plus-circle me-1"></i> + Hızlı Oluştur (İlan / İhale / İK)
               </a>
               <div class="d-flex flex-wrap gap-2 small pt-1">
                 <a href="/acil-durum" class="text-danger fw-bold text-decoration-none">Acil Durum Destek</a> •
@@ -218,7 +226,7 @@ const currentPath = Astro.url.pathname;
           </li>
         </ul>
 
-        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + İkonu (Yazısız), Tema İkonu, Giriş/Profil İkonu -->
+        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + Hızlı Oluştur Dropdown, Tema İkonu, Giriş/Profil İkonu -->
         <div class="d-none d-xl-flex align-items-center gap-2 ms-2">
           <div class="dropdown">
             <a
@@ -226,25 +234,36 @@ const currentPath = Astro.url.pathname;
               class="mw-led-plus-btn"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              title="Hızlı Ekle: İlan Ver / E-İhale Aç / Paylaş"
-              aria-label="Hızlı Ekle"
+              title="+ Hızlı Oluştur: İhale / İlan / Personel İlanı / Hikaye"
+              aria-label="Hızlı Oluştur"
             >
               <i class="bi bi-plus-lg"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow border-danger p-2" style="min-width: 210px;">
+            <ul class="dropdown-menu dropdown-menu-end shadow border-danger p-2" style="min-width: 245px;">
+              <li class="px-2 py-1 small fw-bold text-danger border-bottom mb-1">+ Hızlı Oluştur Menüsü</li>
               <li>
-                <a class="dropdown-item rounded py-2 fw-semibold small" href="/ilanlar?yeni=1">
-                  <i class="bi bi-shop text-danger me-2"></i>Ücretsiz İlan Ver
+                <a class="dropdown-item rounded py-2 fw-semibold small" href="/ihaleler?yeni=1">
+                  <i class="bi bi-hammer text-danger me-2"></i>Yeni E-İhale / Talep Aç
                 </a>
               </li>
               <li>
-                <a class="dropdown-item rounded py-2 fw-semibold small" href="/ihaleler?yeni=1">
-                  <i class="bi bi-hammer text-danger me-2"></i>E-İhale / Talep Aç
+                <a class="dropdown-item rounded py-2 fw-semibold small" href="/ilanlar?yeni=1">
+                  <i class="bi bi-shop text-danger me-2"></i>Ücretsiz Fırsat İlanı Ver
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded py-2 fw-semibold small" href="/kariyer">
+                  <i class="bi bi-person-plus-fill text-primary me-2"></i>Personel / Uzman İlanı Aç
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded py-2 fw-semibold small" href="/kariyer">
+                  <i class="bi bi-person-vcard-fill text-success me-2"></i>Yetenek Kartı Oluştur (İK)
                 </a>
               </li>
               <li>
                 <a class="dropdown-item rounded py-2 fw-semibold small" href="/#mwQuickPostContent">
-                  <i class="bi bi-chat-square-text text-danger me-2"></i>Sosyal Akışta Paylaş
+                  <i class="bi bi-chat-square-text text-warning me-2"></i>Sosyal Akışta & Hikaye Paylaş
                 </a>
               </li>
             </ul>
@@ -285,6 +304,9 @@ const currentPath = Astro.url.pathname;
               </a>
               <a class="dropdown-item rounded py-2 small fw-semibold" href="/hibe-kredi-eslesme">
                 <i class="bi bi-cash-coin text-success me-2"></i>Hibe, Fon & Kredi Eşleşmesi
+              </a>
+              <a class="dropdown-item rounded py-2 small fw-semibold" href="/kariyer">
+                <i class="bi bi-people-fill text-primary me-2"></i>Kariyer, İK & Yetenek Havuzu
               </a>
               <a class="dropdown-item rounded py-2 small fw-semibold" href="/ilanlar?yeni=1">
                 <i class="bi bi-plus-circle text-danger me-2"></i>İlan / İhale Oluştur

@@ -186,6 +186,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
             </div>
 
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Son Yıl Bilanço / Ciro</label>
+                <select id="mwGrantRevenueStatus" class="form-select form-select-sm">
+                  <option value="karli" selected>📈 Kârlı Bilanço</option>
+                  <option value="basa_bas">⚖️ Başa Baş</option>
+                  <option value="zarar">📉 Yatırım / Zarar</option>
+                  <option value="yeni_kurulus">🌱 Yeni Kuruluş</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Vergi / SGK Borcu</label>
+                <select id="mwGrantTaxSgkDebtFree" class="form-select form-select-sm">
+                  <option value="1" selected>✅ Borcu Yok / Yapılandırılmış</option>
+                  <option value="0">⚠️ Vadesi Geçmiş Borç Var</option>
+                </select>
+              </div>
+            </div>
+
             <div class="p-2 rounded border mb-3" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
               <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" id="mwGrantHasRd" checked />
@@ -197,6 +216,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <input class="form-check-input" type="checkbox" id="mwGrantHasExport" checked />
                 <label class="form-check-label small fw-semibold" for="mwGrantHasExport">
                   İhracat / E-İhracat / Yurt Dışı Açılım Hedefi Var
+                </label>
+              </div>
+              <div class="form-check form-switch mb-1">
+                <input class="form-check-input" type="checkbox" id="mwGrantWomenOrYoung" />
+                <label class="form-check-label small fw-bold text-success" for="mwGrantWomenOrYoung">
+                  🌟 Kadın veya 30 Yaş Altı Genç Ortak (+%15 EkPuan)
                 </label>
               </div>
               <div class="form-check form-switch">
@@ -248,10 +273,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
             <div class="d-flex flex-wrap gap-1" id="mwScopeFilterBtns">
               <button type="button" class="btn btn-sm btn-dark rounded-pill px-3" data-scope-filter="all">
-                Tümü
+                Tümü (16 Program Havuzu)
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-scope-filter="yerel">
-                🇹🇷 Yerel (TÜBİTAK / Bakanlık / KOSGEB)
+                🇹🇷 Yerel (TÜBİTAK / KOSGEB / KA / Exim / KGF)
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-scope-filter="ab">
                 🇪🇺 AB Fonları (Eurostars / Dijital Avrupa / IPARD)
@@ -294,10 +319,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="mw-panel-card p-3 mb-3 border-start border-4 border-secondary">
             <h6 class="fw-bold mb-1">
               <i class="bi bi-shield-exclamation text-warning me-1"></i>
-              Kuruluş Yılı, Hukuki Statü veya Sektör Kriterine Göre Elenen Programlar
+              Kuruluş Yılı, Hukuki Statü veya Sektör Kriterine Göre Elenen Programlar & "Nasıl Uygun Olurum?" Çözümleri
             </h6>
             <p class="small text-muted mb-0">
-              Zaman kaybetmemeniz için işletmenizin kuruluş yılı (bilanço yaşı), hukuki statüsü veya NACE koduna uymayan programlar gerekçeleriyle aşağıda ayrıştırılmıştır:
+              Zaman kaybetmemeniz için işletmenizin mevcut kriterlerine uymayan programlar gerekçeleriyle ayrıştırılmıştır. Her kartın altındaki <strong>"Nasıl Uygun Olurum?"</strong> önerisiyle konsorsiyum veya ek NACE/proje yapılandırması talep edebilirsiniz:
             </p>
           </div>
           <div id="mwFilteredProgramsList" class="d-flex flex-column gap-2 mb-4"></div>
@@ -328,6 +353,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="p-2 rounded mb-3 border" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
               <div class="small fw-bold text-danger" id="mwApplyModalProgTitle">Program Adı</div>
               <small class="text-muted" id="mwApplyModalProvider">Kurum</small>
+            </div>
+
+            <!-- Başvuru & Danışmanlık Hizmet Modeli Seçimi -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold mb-1">Nasıl İlerlemek İstiyorsunuz? (Hizmet Modeli)</label>
+              <select id="mwApplyServiceMode" class="form-select form-select-sm fw-bold border-danger">
+                <option value="expert_assisted" selected>👨‍💼 MeetWork Proje Uzmanı / Mali Müşavir Anahtar Teslim Hazırlasın (Başarı Odaklı)</option>
+                <option value="self_track">📋 Kendi Ekibimle Adım Adım Takip Edeceğim (Ücretsiz Dijital Takip Masası)</option>
+              </select>
             </div>
 
             <div class="mb-2">
@@ -445,8 +479,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </li>
           `).join('');
 
+          const countdownBadgeHtml = p.is_urgent
+            ? `<span class="badge bg-danger text-white fw-bold tabular-nums">${p.countdown_label || p.deadline_info}</span>`
+            : `<span class="badge bg-light text-dark border fw-semibold tabular-nums">${p.countdown_label || p.deadline_info || '🟢 Sürekli Açık'}</span>`;
+
           return `
-            <div class="mw-panel-card ${zClass} p-3 shadow-sm">
+            <div class="mw-panel-card ${zClass} p-3 shadow-sm" style="border-left: 4px solid #10b981;">
               <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
                 <div class="d-flex flex-wrap align-items-center gap-1">
                   ${getScopeBadge(p.scope)}
@@ -454,7 +492,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <span class="badge bg-dark" style="font-size:0.7rem;">${p.provider}</span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                  <span class="badge bg-success fs-6">🎯 %${p.match_score} Uyumlu</span>
+                  ${countdownBadgeHtml}
+                  <span class="badge bg-success fs-6 tabular-nums">🎯 %${p.match_score} Uyumlu</span>
                 </div>
               </div>
 
@@ -465,19 +504,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="col-sm-4">
                   <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
                     <small class="text-muted d-block" style="font-size:0.68rem;">Destek / Hibe Oranı</small>
-                    <strong class="text-success small">${p.grant_rate}</strong>
+                    <strong class="text-success small tabular-nums">${p.grant_rate}</strong>
                   </div>
                 </div>
                 <div class="col-sm-5">
                   <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
                     <small class="text-muted d-block" style="font-size:0.68rem;">Üst Limit / Bütçe Tavanı</small>
-                    <strong class="text-danger small">${p.max_amount}</strong>
+                    <strong class="text-danger small tabular-nums">${p.max_amount}</strong>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="p-2 rounded border" style="background: var(--mw-surface); border-color: var(--mw-border) !important;">
-                    <small class="text-muted d-block" style="font-size:0.68rem;">Başvuru Takvimi</small>
-                    <strong class="small">${p.deadline_info || 'Açık'}</strong>
+                    <small class="text-muted d-block" style="font-size:0.68rem;">Çağrı Takvimi (Gün Bazlı)</small>
+                    <strong class="small ${p.is_urgent ? 'text-danger' : ''} tabular-nums">${p.countdown_label || p.deadline_info || 'Açık'}</strong>
                   </div>
                 </div>
               </div>
@@ -512,7 +551,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </button>
                   `}
                   <a
-                    href="https://wa.me/905412465429?text=${encodeURIComponent(p.title + ' başvurusu için işletmem adına MeetWork üzerinden destek almak istiyorum.')}"
+                    href="https://wa.me/905412465429?text=${encodeURIComponent(p.title + ' başvurusu için işletmem adına MeetWork Proje & Mali Müşavir Masasından destek almak istiyorum.')}"
                     target="_blank"
                     rel="noopener"
                     class="btn btn-sm btn-outline-success fw-semibold"
@@ -565,13 +604,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             'Onaylandı / Hibe Kullanımda'
           ];
 
+          const modeBadge = app.service_mode === 'self_track'
+            ? `<span class="badge bg-secondary ms-1">📋 Kendi Ekibimle Takip</span>`
+            : `<span class="badge bg-success ms-1">👨‍💼 Uzman / Mali Müşavir Destekli</span>`;
+
           return `
             <div class="mw-panel-card ${zClass} p-3 shadow-sm">
               <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
                 <div>
-                  <span class="badge bg-danger me-1">#${app.application_no}</span>
+                  <span class="badge bg-danger me-1 tabular-nums">#${app.application_no}</span>
                   ${getScopeBadge(app.scope)}
                   <span class="badge bg-dark ms-1">${app.provider || ''}</span>
+                  ${modeBadge}
                 </div>
                 <div class="d-flex align-items-center gap-2">
                   <label class="small fw-bold text-muted mb-0">Aşama:</label>
@@ -633,18 +677,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         if (!listEl) return;
 
         if (currentFiltered.length === 0) {
-          listEl.innerHTML = `<div class="mw-panel-card p-3 text-center text-muted small">Elenen program bulunmuyor.</div>`;
+          listEl.innerHTML = `<div class="mw-panel-card p-3 text-center text-muted small">Elenen program bulunmuyor. Tüm programlara uygunsunuz!</div>`;
           return;
         }
 
         listEl.innerHTML = currentFiltered.map((p) => `
-          <div class="mw-panel-card p-3 opacity-75">
-            <div class="d-flex justify-content-between align-items-center mb-1">
+          <div class="mw-panel-card p-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-1">
               <strong class="small">${p.title}</strong>
               <span class="badge bg-secondary">${p.provider}</span>
             </div>
-            <div class="small text-danger fw-semibold">
+            <div class="small text-danger fw-semibold mb-2">
               <i class="bi bi-x-circle-fill me-1"></i> Elenme Nedeni: ${p.filter_reason}
+            </div>
+            <div class="p-2 rounded border bg-warning bg-opacity-10 border-warning border-opacity-25 d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <div class="small text-dark">
+                <strong>💡 Nasıl Uygun Olurum?</strong> ${p.remedy_action || 'Ek NACE tanımlaması veya konsorsiyum ortaklığı ile uygunluk sağlanabilir.'}
+              </div>
+              <a
+                href="https://wa.me/905412465429?text=${encodeURIComponent(p.title + ' programında elenme kriterini aşmak (Nasıl Uygun Olurum?) için uzman/mali müşavir desteği almak istiyorum.')}"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-sm btn-warning fw-bold text-dark"
+              >
+                <i class="bi bi-whatsapp me-1"></i> Uzman / Mali Müşavir Desteği Al
+              </a>
             </div>
           </div>
         `).join('');
@@ -659,6 +716,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         if (prof.nace_sector) document.getElementById('mwGrantSector').value = prof.nace_sector;
         if (prof.city) document.getElementById('mwGrantCity').value = prof.city;
         if (prof.employee_range) document.getElementById('mwGrantEmployeeRange').value = prof.employee_range;
+        if (prof.annual_revenue_status && document.getElementById('mwGrantRevenueStatus')) {
+          document.getElementById('mwGrantRevenueStatus').value = prof.annual_revenue_status;
+        }
+        if (prof.tax_sgk_debt_free !== undefined && document.getElementById('mwGrantTaxSgkDebtFree')) {
+          document.getElementById('mwGrantTaxSgkDebtFree').value = String(Number(prof.tax_sgk_debt_free));
+        }
+        if (document.getElementById('mwGrantWomenOrYoung')) {
+          document.getElementById('mwGrantWomenOrYoung').checked = Number(prof.has_women_or_young_partner ?? 0) === 1;
+        }
         document.getElementById('mwGrantHasRd').checked = Number(prof.has_rd_software ?? 1) === 1;
         document.getElementById('mwGrantHasExport').checked = Number(prof.has_export ?? 1) === 1;
         document.getElementById('mwGrantSeekingPartner').checked = Number(prof.seeking_consortium_partner ?? 1) === 1;
@@ -675,7 +741,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         try {
           let data;
           if (!initialProfileLoaded && !saveToDb) {
-            // İlk yüklemede sadece giriş yapan işletmenin kayıtlı profilini çek
             const res = await fetch(`${API_URL}/api/grants/match?company_id=${encodeURIComponent(companyId)}`);
             data = await res.json();
             if (data && data.success && data.profile) {
@@ -692,6 +757,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               nace_sector: document.getElementById('mwGrantSector').value,
               city: document.getElementById('mwGrantCity').value,
               employee_range: document.getElementById('mwGrantEmployeeRange').value,
+              annual_revenue_status: document.getElementById('mwGrantRevenueStatus')?.value || 'karli',
+              tax_sgk_debt_free: Number(document.getElementById('mwGrantTaxSgkDebtFree')?.value ?? 1) === 1 ? 1 : 0,
+              has_women_or_young_partner: document.getElementById('mwGrantWomenOrYoung')?.checked ? 1 : 0,
               has_rd_software: document.getElementById('mwGrantHasRd').checked ? 1 : 0,
               has_export: document.getElementById('mwGrantHasExport').checked ? 1 : 0,
               seeking_consortium_partner: document.getElementById('mwGrantSeekingPartner').checked ? 1 : 0,
@@ -707,7 +775,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             if (fb && data.success) {
               fb.style.display = 'block';
               fb.className = 'small mb-2 text-success fw-bold';
-              fb.textContent = '✓ Kriterleriniz kaydedildi ve işletmenize uygun fonlar güncellendi!';
+              fb.textContent = '✓ Kriterleriniz kaydedildi ve işletmenize uygun 16 programlık fon havuzu güncellendi!';
               setTimeout(() => { fb.style.display = 'none'; }, 3500);
             }
           } else {
@@ -720,6 +788,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               nace_sector: document.getElementById('mwGrantSector').value,
               city: document.getElementById('mwGrantCity').value,
               employee_range: document.getElementById('mwGrantEmployeeRange').value,
+              annual_revenue_status: document.getElementById('mwGrantRevenueStatus')?.value || 'karli',
+              tax_sgk_debt_free: document.getElementById('mwGrantTaxSgkDebtFree')?.value || '1',
+              has_women_or_young_partner: document.getElementById('mwGrantWomenOrYoung')?.checked ? '1' : '0',
               has_rd_software: document.getElementById('mwGrantHasRd').checked ? '1' : '0',
               has_export: document.getElementById('mwGrantHasExport').checked ? '1' : '0',
               seeking_consortium_partner: document.getElementById('mwGrantSeekingPartner').checked ? '1' : '0'
@@ -926,6 +997,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         if (applyForm) {
           applyForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const serviceMode = document.getElementById('mwApplyServiceMode')?.value || 'expert_assisted';
             const payload = {
               company_id: document.getElementById('mwGrantCompanyId').value,
               company_name: document.getElementById('mwApplyCompanyName').value.trim(),
@@ -937,7 +1009,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               scope: document.getElementById('mwApplyScope').value,
               match_score: Number(document.getElementById('mwApplyMatchScore').value || 95),
               project_title: document.getElementById('mwApplyProjectTitle').value.trim(),
-              project_notes: document.getElementById('mwApplyProjectNotes').value.trim()
+              project_notes: document.getElementById('mwApplyProjectNotes').value.trim(),
+              service_mode: serviceMode
             };
 
             try {

@@ -117,6 +117,10 @@ const recentTalepler = talepler.slice(0, 5);
             <span><i class="bi bi-cash-coin text-success me-2"></i> Hibe, AB Fonu & Kredi</span>
             <span class="badge bg-success-subtle text-success rounded-pill">Eşleşme</span>
           </a>
+          <a href="/kariyer" class="mw-sidebar-cat">
+            <span><i class="bi bi-people-fill text-primary me-2"></i> Kariyer & Yetenek Havuzu</span>
+            <span class="badge bg-primary-subtle text-primary rounded-pill">Teşvikli İK</span>
+          </a>
           <a href="/meetwork-temsilciler-turkiye" class="mw-sidebar-cat">
             <span><i class="bi bi-globe-americas text-danger me-2"></i> Temsilcilikler & Bölgeler</span>
           </a>
@@ -678,16 +682,25 @@ const recentTalepler = talepler.slice(0, 5);
 
         const itemsHtml = stories.map((st, idx) => {
           const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+          const isGold = Number(st.trust_level) >= 3;
           const isSilver = Number(st.trust_level) === 2;
+          const ringClass = isGold ? 'mw-story-ring-gold' : (isSilver ? 'mw-story-ring-silver' : '');
           const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+          const catStr = String(st.category || '');
+          let pillText = '📢 Gündem';
+          let pillClass = 'bg-dark text-white';
+          if (catStr.includes('İhale')) { pillText = '🔴 İhale'; pillClass = 'bg-danger text-white'; }
+          else if (catStr.includes('Fırsat') || catStr.includes('Stok')) { pillText = '📦 Fırsat'; pillClass = 'bg-warning text-dark'; }
+          else if (catStr.includes('Yatırım') || catStr.includes('Fabrika')) { pillText = '🏭 Yatırım'; pillClass = 'bg-success text-white'; }
           return `
             <div class="mw-story-item" onclick="window.mwOpenStory(${idx})">
-              <div class="mw-story-ring ${isSilver ? 'mw-story-ring-silver' : ''}">
+              <div class="mw-story-ring ${ringClass}">
                 <div class="mw-story-inner" style="background: ${bg};">
                   ${initials}
                 </div>
               </div>
-              <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.69rem;">${st.company_name}</span>
+              <span class="mw-story-pill ${pillClass}">${pillText}</span>
+              <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.68rem;">${st.company_name}</span>
             </div>
           `;
         }).join('');
@@ -724,7 +737,7 @@ const recentTalepler = talepler.slice(0, 5);
         const initials = (post.company_name || post.author_name || 'MW').slice(0, 2).toUpperCase();
         const tag = post.tag || 'İş & Sektör Paylaşımı';
         return `
-          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm">
+          <div class="mw-panel-card mw-feed-card-hover ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-secondary">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <div class="d-flex gap-2 align-items-center">
                 <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0" style="width:42px;height:42px;">
@@ -738,7 +751,7 @@ const recentTalepler = talepler.slice(0, 5);
                   <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
                     ${getTrustBadge(post.trust_level)}
                     <span class="badge bg-secondary-subtle text-secondary" style="font-size:0.65rem;">${tag}</span>
-                    <small class="text-muted" style="font-size:0.68rem;">${new Date(post.created_at).toLocaleDateString('tr-TR')}</small>
+                    <small class="text-muted tabular-nums" style="font-size:0.68rem;">${new Date(post.created_at).toLocaleDateString('tr-TR')}</small>
                   </div>
                 </div>
               </div>
@@ -750,7 +763,7 @@ const recentTalepler = talepler.slice(0, 5);
             <p class="small mb-3" style="white-space:pre-line; line-height:1.55;">${post.content}</p>
             <div class="d-flex flex-wrap justify-content-between align-items-center pt-2 border-top small gap-2" style="border-color:var(--mw-border)!important;">
               <div class="d-flex align-items-center gap-3">
-                <button type="button" class="btn btn-sm btn-link text-decoration-none text-danger p-0 fw-semibold" onclick="window.mwLikePost('${post.id}', this)">
+                <button type="button" class="btn btn-sm btn-link text-decoration-none text-danger p-0 fw-semibold tabular-nums" onclick="window.mwLikePost('${post.id}', this)">
                   <i class="bi bi-hand-thumbs-up-fill"></i> Beğen (<span>${post.likes_count || 0}</span>)
                 </button>
                 <a href="/akilli-eslesme" class="text-muted text-decoration-none small">
@@ -767,13 +780,13 @@ const recentTalepler = talepler.slice(0, 5);
 
       function renderInlineListingCard(item, zebraClass) {
         return `
-          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-danger">
+          <div class="mw-panel-card mw-feed-card-hover ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-primary">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div class="d-flex align-items-center gap-2">
-                <span class="badge bg-danger"><i class="bi bi-shop me-1"></i> Vitrin İlanı • ${item.main_category}</span>
-                <span class="badge bg-dark" style="font-size:0.68rem;">${item.listing_type}</span>
+                <span class="badge bg-primary"><i class="bi bi-shop me-1"></i> B2B İlan Vitrini • ${item.main_category}</span>
+                <span class="badge bg-dark" style="font-size:0.68rem;">${item.listing_type} • Komisyonsuz</span>
               </div>
-              <small class="text-muted" style="font-size:0.7rem;">İlan No: #${item.listing_no}</small>
+              <small class="text-muted tabular-nums" style="font-size:0.7rem;">İlan No: #${item.listing_no}</small>
             </div>
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
               <div>
@@ -784,7 +797,7 @@ const recentTalepler = talepler.slice(0, 5);
                 </div>
               </div>
               <div class="text-end">
-                <div class="fw-black text-danger fs-6">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</div>
+                <div class="fw-black text-danger fs-6 tabular-nums">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</div>
                 <a href="/ilanlar?ilan=${encodeURIComponent(item.slug || item.listing_no)}" class="btn btn-sm btn-outline-danger mt-1 py-0 px-2 fw-bold" style="font-size:0.75rem;">
                   İlanı İncele →
                 </a>
@@ -796,15 +809,15 @@ const recentTalepler = talepler.slice(0, 5);
 
       function renderInlineTenderCard(tender, zebraClass) {
         return `
-          <div class="mw-panel-card ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-success">
+          <div class="mw-panel-card mw-feed-card-hover ${zebraClass || ''} p-3 shadow-sm border-start border-4 border-danger">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="badge bg-success"><i class="bi bi-hammer me-1"></i> Canlı E-İhale • ${tender.tender_type || 'Açık Eksiltme'}</span>
-              <small class="text-muted" style="font-size:0.7rem;">#${tender.tender_no || tender.id}</small>
+              <span class="badge bg-danger"><i class="bi bi-hammer me-1"></i> 🔴 Canlı E-İhale • ${tender.tender_type || 'Açık Eksiltme'}</span>
+              <small class="text-danger fw-bold tabular-nums" style="font-size:0.72rem;"><i class="bi bi-stopwatch"></i> #${tender.tender_no || tender.id}</small>
             </div>
             <h6 class="fw-bold mb-1">${tender.title}</h6>
             <p class="small text-muted mb-2">${tender.description || 'Kurumsal tedarik ve satın alma ihalesi.'}</p>
             <div class="d-flex justify-content-between align-items-center pt-2 border-top" style="border-color:var(--mw-border)!important;">
-              <span class="small fw-bold text-success">Başlangıç / Hedef: ${Number(tender.start_price || 0).toLocaleString('tr-TR')} ${tender.currency || 'TRY'}</span>
+              <span class="small fw-bold text-success tabular-nums">Başlangıç / Hedef: ${Number(tender.start_price || 0).toLocaleString('tr-TR')} ${tender.currency || 'TRY'}</span>
               <a href="/ihaleler" class="btn btn-sm btn-danger py-0 px-3 fw-bold" style="font-size:0.75rem;">Teklif Ver</a>
             </div>
           </div>

@@ -230,6 +230,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const listings = data.listings || [];
           const tenders = data.tenders || [];
           const catalog = data.b2b_catalog || [];
+          const careerJobs = data.career_jobs || [];
+          const matchedTalents = data.matched_talents || [];
           const grantMatches = data.grant_matches || [];
           const grantApps = data.grant_applications || [];
           const grantProfile = data.grant_profile || { founded_year: 2021 };
@@ -242,6 +244,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             loggedUser && (loggedUser.company_id === comp.id || loggedUser.company_slug === comp.slug)
           );
 
+          const avatarStyle = Number(comp.trust_level) >= 3
+            ? 'background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); color: #fff; border: 3px solid #fde68a;'
+            : 'background: linear-gradient(135deg, #cbd5e1 0%, #64748b 100%); color: #fff; border: 3px solid #f1f5f9;';
+
           container.style.display = 'block';
           container.innerHTML = `
             <div class="mw-panel-card overflow-hidden shadow">
@@ -249,7 +255,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="p-4 text-white" style="background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                   <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-3 bg-white text-danger fw-black d-flex align-items-center justify-content-center shadow flex-shrink-0" style="width:68px;height:68px;font-size:1.6rem;font-weight:900;">
+                    <div class="rounded-4 fw-black d-flex align-items-center justify-content-center shadow flex-shrink-0" style="width:70px;height:70px;font-size:1.6rem;font-weight:900;${avatarStyle}">
                       ${(comp.name || 'MW').slice(0, 2).toUpperCase()}
                     </div>
                     <div>
@@ -273,6 +279,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     ${isMyOwnCompany ? `
                       <a href="/hibe-kredi-eslesme" class="btn btn-warning btn-sm fw-bold text-dark">
                         <i class="bi bi-shield-lock-fill me-1"></i> Hibe, Fon & Kredi Eşleşmem (${grantMatches.length})
+                      </a>
+                      <a href="/kariyer?tab=post-job" class="btn btn-success btn-sm fw-bold text-white">
+                        <i class="bi bi-person-plus-fill me-1"></i> Personel İlanı Aç / Aday Bul
                       </a>
                     ` : ''}
                     <a href="/ihaleler?yeni=1" class="btn btn-light btn-sm fw-bold text-danger">
@@ -311,8 +320,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </div>
 
                 ${isMyOwnCompany ? `
-                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN: AKILLI TEŞVİK, HİBE, AB FONU & KREDİ EŞLEŞMESİ -->
-                  <div class="p-3 rounded border border-danger mb-4" style="background: var(--mw-surface-alt);">
+                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 1: AKILLI TEŞVİK, HİBE, AB FONU & KREDİ EŞLEŞMESİ -->
+                  <div class="p-3 rounded border border-danger mb-3" style="background: var(--mw-surface-alt);">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
                       <div>
                         <span class="badge bg-danger me-1"><i class="bi bi-shield-lock-fill me-1"></i>SADECE SİZE ÖZEL (DIŞARIYA KAPALI)</span>
@@ -335,13 +344,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                                 <span class="badge ${gm.scope === 'ab' ? 'bg-primary' : gm.scope === 'global' ? 'bg-info text-dark' : 'bg-danger'}" style="font-size:0.65rem;">
                                   ${gm.scope === 'ab' ? '🇪🇺 AB Fonu' : gm.scope === 'global' ? '🌍 Global Hibe' : '🇹🇷 Yerel Kamu'} • ${gm.provider}
                                 </span>
-                                <span class="badge bg-success" style="font-size:0.68rem;">%${gm.match_score} Uyumlu</span>
+                                <span class="badge bg-success tabular-nums" style="font-size:0.68rem;">%${gm.match_score} Uyumlu</span>
                               </div>
                               <div class="fw-bold small mb-1">${gm.title}</div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center pt-1 border-top mt-1" style="border-color: var(--mw-border) !important;">
-                              <small class="fw-bold text-success" style="font-size:0.72rem;">${gm.grant_rate} (${gm.max_amount})</small>
+                              <small class="fw-bold text-success tabular-nums" style="font-size:0.72rem;">${gm.grant_rate} (${gm.max_amount})</small>
                               <a href="/hibe-kredi-eslesme" class="small fw-bold text-danger text-decoration-none" style="font-size:0.72rem;">Başvur →</a>
+                            </div>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 2: AKILLI İK, PERSONEL ARAMA & DEVLET TEŞVİKLİ ADAY RADARI -->
+                  <div class="p-3 rounded border border-success mb-4" style="background: var(--mw-surface-alt);">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
+                      <div>
+                        <span class="badge bg-success me-1"><i class="bi bi-people-fill me-1"></i>İŞVEREN İK & YETENEK RADARI (SADECE SİZE ÖZEL)</span>
+                        <span class="badge bg-warning text-dark">💰 %70 KOSGEB & SGK 6111 Maaş Teşviki Entegreli</span>
+                        <h6 class="fw-bold mb-0 mt-1">
+                           İşletmenize Uygun Doğrulanmış Uzman Adaylar & Personel İlanı Yönetimi
+                        </h6>
+                      </div>
+                      <div class="d-flex gap-2">
+                        <a href="/kariyer?tab=post-job" class="btn btn-sm btn-success fw-bold">
+                          + 60 Saniyede Personel İlanı Aç
+                        </a>
+                        <a href="/kariyer" class="btn btn-sm btn-outline-dark fw-bold">
+                          Tüm Yetenek Havuzunu İncele (${matchedTalents.length}) →
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="row g-2">
+                      ${matchedTalents.slice(0, 4).map((tl) => `
+                        <div class="col-md-6">
+                          <div class="p-2 rounded border h-100 d-flex flex-column justify-content-between" style="background: var(--mw-surface); border-color: var(--mw-border) !important; border-left: 3px solid #10b981 !important;">
+                            <div>
+                              <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="badge bg-dark" style="font-size:0.65rem;">🕵️ ${tl.masked_name || tl.full_name}</span>
+                                <span class="badge bg-success tabular-nums" style="font-size:0.68rem;">%${tl.verification_score || 95} Uyum</span>
+                              </div>
+                              <div class="fw-bold small mb-1">${tl.headline}</div>
+                              <div class="small text-success fw-semibold" style="font-size:0.7rem;">${tl.subsidy_badge || '💰 KOSGEB / İŞKUR Teşvikine Uygun'}</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-1 border-top mt-1" style="border-color: var(--mw-border) !important;">
+                              <small class="text-muted tabular-nums" style="font-size:0.72rem;">📍 ${tl.city} • ${tl.salary_expectation}</small>
+                              <a href="/kariyer" class="small fw-bold text-success text-decoration-none" style="font-size:0.72rem;">Mülakat Teklifi Gönder →</a>
                             </div>
                           </div>
                         </div>
@@ -353,14 +404,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="row g-4">
                   <!-- Kurumsal Mağaza İlanları -->
                   <div class="col-md-6">
-                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-shop-window text-danger me-1"></i> Aktif İlanları (${listings.length})</h6>
+                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-shop-window text-danger me-1"></i> Aktif Ticari İlanları (${listings.length})</h6>
                     ${listings.length === 0 ? `<p class="small text-muted">Firmanın şu an aktif satılık/kiralık ilanı bulunmuyor.</p>` : listings.map(l => `
                       <a href="/ilanlar?ilan=${encodeURIComponent(l.slug)}" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
                         <div>
                           <div class="fw-bold small">${l.title}</div>
                           <small class="text-muted">${l.main_category} • ${l.listing_type}</small>
                         </div>
-                        <span class="fw-bold text-danger small">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</span>
+                        <span class="fw-bold text-danger small tabular-nums">${Number(l.price).toLocaleString('tr-TR')} ${l.currency}</span>
                       </a>
                     `).join('')}
                   </div>
@@ -386,6 +437,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                         <span class="badge bg-success">CariNet Toptan</span>
                       </div>
                     `).join('') : `<p class="small text-muted">Cariye özel toptan fiyat listesi için üstteki <strong>StokPratik CariNet</strong> veya <strong>DepodanDirekt</strong> butonunu kullanabilirsiniz.</p>`}
+                  </div>
+
+                  <!-- HERKESE AÇIK KURUMSAL İK VİTRİNİ: AÇIK İŞ & UZMAN İLANLARIMIZ -->
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                      <h6 class="fw-bold mb-0"><i class="bi bi-briefcase-fill text-primary me-1"></i> 📢 Açık İş & Dönemsel Uzman İlanlarımız (${careerJobs.length})</h6>
+                      <a href="/kariyer?tab=jobs" class="small fw-bold text-primary text-decoration-none">Tüm Kariyer & Yetenek Havuzunu Gör →</a>
+                    </div>
+                    ${careerJobs.length === 0 ? `
+                      <div class="p-3 rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="background: var(--mw-surface-alt);">
+                        <span class="small text-muted">Bu işletmenin şu an açık personel ilanı bulunmuyor. Yetenek Kartınızı bırakarak gelecekteki pozisyonlar için mülakat teklifi alabilirsiniz.</span>
+                        <a href="/kariyer?tab=candidate-desk" class="btn btn-sm btn-outline-primary fw-bold">⚡ 90 Sn'de Yetenek Kartı Bırak</a>
+                      </div>
+                    ` : `
+                      <div class="row g-2">
+                        ${careerJobs.map((cj) => `
+                          <div class="col-md-6">
+                            <div class="p-3 rounded border d-flex flex-column justify-content-between h-100" style="background: var(--mw-surface); border-left: 4px solid #f59e0b !important;">
+                              <div>
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                  <span class="badge bg-warning text-dark fw-bold">${cj.work_mode}</span>
+                                  <small class="text-muted tabular-nums">#${cj.job_no} • 📍 ${cj.city}</small>
+                                </div>
+                                <div class="fw-bold mb-1">${cj.title}</div>
+                                <div class="small text-success fw-semibold mb-2">${cj.subsidy_note || ''}</div>
+                              </div>
+                              <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                <strong class="small text-dark tabular-nums">${cj.salary_range}</strong>
+                                <a href="/kariyer?tab=jobs" class="btn btn-sm btn-primary fw-bold">⚡ 1-Tıkla Başvur</a>
+                              </div>
+                            </div>
+                          </div>
+                        `).join('')}
+                      </div>
+                    `}
                   </div>
                 </div>
               </div>

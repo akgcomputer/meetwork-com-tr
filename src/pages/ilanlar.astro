@@ -381,18 +381,33 @@ const CITIES = [
             let attrs = {};
             try { attrs = JSON.parse(item.attributes || '{}'); } catch (_) {}
             const attrLine = [attrs.attr1, attrs.attr2, attrs.attr3].filter(Boolean).join(' • ');
+            const cat = String(item.main_category || '');
+            let catIcon = 'bi-box-seam-fill';
+            let catGrad = 'linear-gradient(135deg, #1e293b 0%, #334155 100%)';
+            if (cat.includes('Emlak')) { catIcon = 'bi-buildings-fill'; catGrad = 'linear-gradient(135deg, #7f1d1d 0%, #dc3545 100%)'; }
+            else if (cat.includes('Vasıta')) { catIcon = 'bi-car-front-fill'; catGrad = 'linear-gradient(135deg, #0f172a 0%, #2563eb 100%)'; }
+            else if (cat.includes('Sanayi')) { catIcon = 'bi-cpu-fill'; catGrad = 'linear-gradient(135deg, #14532d 0%, #16a34a 100%)'; }
             return `
               <div class="col-md-4 col-sm-6">
-                <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="mw-vitrin-card p-3">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge ${item.is_urgent ? 'bg-danger' : 'bg-dark'}">${item.is_urgent ? '🔥 ACİL' : item.listing_type} • ${item.main_category}</span>
-                    <small class="text-muted">#${item.listing_no}</small>
+                <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="mw-vitrin-card">
+                  <div class="p-3 text-white d-flex justify-content-between align-items-start" style="background: ${catGrad}; min-height: 82px;">
+                    <div>
+                      <span class="badge ${item.is_urgent ? 'bg-warning text-dark' : 'bg-dark bg-opacity-75'}">${item.is_urgent ? '🔥 ACİL FIRSAT' : item.listing_type} • ${item.main_category}</span>
+                      <div class="small text-white-50 mt-1" style="font-size:0.68rem;">✓ Komisyonsuz B2B</div>
+                    </div>
+                    <i class="bi ${catIcon} fs-2 opacity-50"></i>
                   </div>
-                  <h6 class="fw-bold mb-1">${item.title}</h6>
-                  <small class="text-muted d-block mb-2">${attrLine || item.sub_category}</small>
-                  <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
-                    <span class="fw-bolder text-danger fs-6">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</span>
-                    <small class="text-muted"><i class="bi bi-geo-alt"></i> ${item.seller_city}</small>
+                  <div class="p-3 d-flex flex-column flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <small class="text-muted fw-semibold">${item.sub_category}</small>
+                      <small class="text-muted tabular-nums">#${item.listing_no}</small>
+                    </div>
+                    <h6 class="fw-bold mb-1">${item.title}</h6>
+                    <small class="text-muted d-block mb-2">${attrLine || item.seller_name}</small>
+                    <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center" style="border-color:var(--mw-border)!important;">
+                      <span class="fw-bolder text-danger fs-6 tabular-nums">${Number(item.price).toLocaleString('tr-TR')} ${item.currency}</span>
+                      <small class="text-muted"><i class="bi bi-geo-alt text-danger"></i> ${item.seller_city}</small>
+                    </div>
                   </div>
                 </a>
               </div>
