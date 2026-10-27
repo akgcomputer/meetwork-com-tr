@@ -1,980 +1,838 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const CITIES = [
+  'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Kocaeli', 'Gaziantep', 'Konya',
+  'Kayseri', 'Antalya', 'Adana', 'Mersin', 'Denizli', 'Manisa', 'Sakarya', 'Eskişehir'
+];
+
+const DEPARTMENTS = [
+  'Yazılım, Teknoloji & Ar-Ge',
+  'Dış Ticaret & İhracat',
+  'Üretim, Mühendislik & Fabrika',
+  'Finans, Muhasebe & ERP',
+  'B2B Satış & Satınalma',
+  'Lojistik, Depo & Filo'
+];
+
+const TARGET_SECTORS = [
+  'Tekstil',
+  'Tekstil & Hazır Giyim',
+  'Makine & Ekipman Üretimi',
+  'Yazılım & Bilişim',
+  'Gıda, Tarım & İçecek',
+  'Metal & Çelik Üretim',
+  'Lojistik, Nakliyat & Filo',
+  'Otomotiv & Yan Sanayi',
+  'Plastik, Kauçuk & Ambalaj',
+  'İnşaat, Yapı & Gayrimenkul'
+];
+
+const TARGET_POSITIONS = [
+  'IT Uzmanı',
+  'Full-Stack Yazılım Uzmanı',
+  'İhracat Müdürü',
+  'Dış Ticaret Operasyon Uzmanı',
+  'Üretim Planlama & Fabrika Şefi',
+  'CNC Lazer & CAM Uzmanı',
+  'ERP & Finansman Yöneticisi',
+  'Ön Muhasebe & E-Fatura Uzmanı',
+  'Satınalma & İhale Müdürü',
+  'Lojistik Operasyon Yöneticisi'
+];
 ---
 
 <BaseLayout
-  title="Akıllı Kariyer, İK & Yetenek Eşleştirme Merkezi | MeetWork"
-  description="CV yığınları arasında kaybolmayın! Doğrulanmış B2B Yetenek Kartları, Gizli Radar Kalkanı, Tersine Mülakat Teklifi ve %70 KOSGEB / İŞKUR / SGK 6111 Devlet İstihdam Teşviki hesaplayıcısı ile yeni nesil İK."
+  title="Doğrulanmış Adayı Bulun | MeetWork Kariyer & İK Vitrini"
+  description="MeetWork doğrulanmış aday havuzu. Sektör, pozisyon, uzmanlık etiketi ve devlet istihdam teşviki uyumuyla aradığınız personeli veya uzmanı hemen bulun."
 >
-  <section class="kariyer-page py-4">
-    <div class="container">
+  <style is:global>
+    .mw-career-hero {
+      background: linear-gradient(135deg, #0b0b0e 0%, #1a1c24 60%, #7f1d1d 100%);
+      border-radius: 14px;
+      border: 1px solid rgba(220, 53, 69, 0.35);
+      color: #ffffff;
+    }
+    .mw-candidate-card {
+      background: var(--mw-surface);
+      border: 1px solid var(--mw-border);
+      border-top: 3px solid var(--mw-red);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+    .mw-candidate-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.11);
+      border-color: var(--mw-red);
+    }
+    .mw-candidate-photo {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid rgba(220, 53, 69, 0.35);
+      flex-shrink: 0;
+      background: #1e293b;
+    }
+    .mw-candidate-h2 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.25;
+      color: var(--mw-text);
+    }
+    .mw-candidate-h3 {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--mw-red);
+      margin: 2px 0 3px 0;
+      line-height: 1.3;
+    }
+    .mw-candidate-meta {
+      font-size: 0.72rem;
+      color: var(--mw-text-muted);
+      font-weight: 600;
+    }
+    .mw-subsidy-strip {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.06) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #065f46;
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .mw-subsidy-strip {
+      color: #6ee7b7;
+      border-color: rgba(52, 211, 153, 0.35);
+    }
+    .mw-skill-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: var(--mw-surface-alt);
+      border: 1px solid var(--mw-border);
+      color: var(--mw-text);
+    }
+    .mw-lang-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: rgba(13, 110, 253, 0.1);
+      border: 1px solid rgba(13, 110, 253, 0.3);
+      color: #0d6efd;
+    }
+    [data-theme="dark"] .mw-lang-chip {
+      color: #60a5fa;
+    }
+    .mw-target-box {
+      background: var(--mw-surface-alt);
+      border: 1px dashed var(--mw-border);
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 0.73rem;
+    }
+    .mw-quick-filter-tag {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--mw-border);
+      background: var(--mw-surface-alt);
+      color: var(--mw-text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mw-quick-filter-tag:hover,
+    .mw-quick-filter-tag.active {
+      background: var(--mw-red);
+      color: #fff;
+      border-color: var(--mw-red);
+    }
+  </style>
 
-      <!-- Üst Hero & İstatistik Bandı -->
-      <div class="kariyer-hero rounded-4 p-4 p-lg-5 mb-4 text-white position-relative overflow-hidden shadow-lg">
-        <div class="row align-items-center g-4 position-relative" style="z-index:2;">
-          <div class="col-lg-8">
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill">🚀 YENİ NESİL B2B İK & YETENEK HAVUZU</span>
-              <span class="badge bg-success bg-opacity-25 text-white border border-success border-opacity-50 px-3 py-2 rounded-pill">💰 %70 KOSGEB & SGK 6111 Maaş Teşviki Entegreli</span>
-              <span class="badge bg-info bg-opacity-25 text-white border border-info border-opacity-50 px-3 py-2 rounded-pill">🕵️ Gizli Radar (Mevcut İşverene Kapalı)</span>
-            </div>
-            <h1 class="display-6 fw-bold mb-2 text-white">CV Yükleme Devri Bitti: Akıllı Yetenek Kartı & Tersine İK</h1>
-            <p class="text-white-50 mb-0 fs-6">
-              İş arayanlar <strong>90 saniyede tıklanabilir Yetenek Kartı</strong> oluşturup mevcut işverenlerinden gizlenerek vitrine çıkar;
-              Onaylı İşletmeler aradığı kriterleri seçip adayın <strong>Devlet Maaş/SGK Teşviki uygunluğunu</strong> görerek doğrudan mülakat teklifi gönderir.
-            </p>
-          </div>
-          <div class="col-lg-4">
-            <div class="bg-white bg-opacity-10 border border-white border-opacity-10 rounded-4 p-3 backdrop-blur">
-              <div class="row g-2 text-center">
-                <div class="col-6">
-                  <div class="p-2 rounded-3 bg-dark bg-opacity-50">
-                    <div class="fs-4 fw-bold text-warning tabular-nums" id="statTalentsCount">5+</div>
-                    <div class="small text-white-50" style="font-size:0.75rem;">Doğrulanmış Uzman & Mühendis</div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="p-2 rounded-3 bg-dark bg-opacity-50">
-                    <div class="fs-4 fw-bold text-info tabular-nums" id="statJobsCount">4+</div>
-                    <div class="small text-white-50" style="font-size:0.75rem;">Teşvikli Açık İş & Proje İlanı</div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="p-2 rounded-3 bg-success bg-opacity-25 border border-success border-opacity-25 text-white small fw-semibold">
-                    🏛️ İşverene Personel Başı <strong>450.000 TL/Yıl'a Varan</strong> İŞKUR & KOSGEB Hibesi!
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <!-- ÜST KARİYER BAŞLIĞI VE BAĞIMSIZ SAYFA NAVİGASYONU -->
+  <section class="mw-career-hero p-3 p-md-4 mb-4 shadow-sm">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+      <div>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+          <span class="badge bg-danger">MEETWORK KARİYER & İK</span>
+          <span class="badge bg-success"><i class="bi bi-cash-coin me-1"></i>SGK 6111 • İŞKUR • KOSGEB • TÜBİTAK Teşvikli İstihdam</span>
         </div>
+        <h1 class="h4 fw-black mb-1">🔍 Doğrulanmış Adayı Bulun</h1>
+        <p class="small text-white-50 mb-0">
+          Açık profil, doğrulanmış yetenek etiketleri, hedef sektör/pozisyon ve devlet istihdam teşviki uyumuyla aradığınız uzmana doğrudan mülakat teklifi gönderin.
+        </p>
       </div>
 
-      <!-- 4 Ana Sekme (Tab Bar) -->
-      <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-2">
-          <div class="nav nav-pills nav-fill gap-2" id="careerTabs" role="tablist">
-            <button class="nav-link active fw-bold py-3 rounded-3 d-flex align-items-center justify-content-center gap-2" data-tab="talents" type="button">
-              <span>🔍 Yetenek Havuzu</span>
-              <span class="badge bg-dark bg-opacity-25 text-white rounded-pill small">İşveren İçin Adaylar</span>
-            </button>
-            <button class="nav-link fw-bold py-3 rounded-3 d-flex align-items-center justify-content-center gap-2" data-tab="jobs" type="button">
-              <span>📢 Açık İş & Uzman İlanları</span>
-              <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill small">İş Arayanlar İçin</span>
-            </button>
-            <button class="nav-link fw-bold py-3 rounded-3 d-flex align-items-center justify-content-center gap-2" data-tab="candidate-desk" type="button">
-              <span>⚡ Yetenek Kartım & Kariyer Masam</span>
-              <span class="badge bg-success bg-opacity-10 text-success rounded-pill small">90 Sn Seç-Geç CV</span>
-            </button>
-            <button class="nav-link fw-bold py-3 rounded-3 d-flex align-items-center justify-content-center gap-2" data-tab="post-job" type="button">
-              <span>🏢 Personel İlanı Aç</span>
-              <span class="badge bg-warning bg-opacity-25 text-dark rounded-pill small">İşveren Paneli</span>
-            </button>
-          </div>
-        </div>
+      <!-- Çok Sayfalı Net Navigasyon Butonları -->
+      <div class="d-flex flex-wrap gap-2 flex-shrink-0">
+        <a href="/kariyer" class="btn btn-danger btn-sm fw-bold px-3">
+          🔍 Doğrulanmış Adayı Bulun
+        </a>
+        <a href="/kariyer/is-ara" class="btn btn-outline-light btn-sm fw-bold px-3">
+          📢 İş İlanlarını İncele
+        </a>
+        <a href="/kariyer/cv-olustur" class="btn btn-warning text-dark btn-sm fw-bold px-3">
+          <i class="bi bi-person-vcard-fill me-1"></i> İş Arıyorum / Özgeçmiş (CV) Oluştur
+        </a>
+        <!-- Sadece Kurumsal Giriş Yapmış İşverenlere Görünür -->
+        <a href="/isletmeler#mwEmployerHrPanel" id="mwEmployerPostJobBtn" class="btn btn-success btn-sm fw-bold px-3" style="display:none;">
+          <i class="bi bi-building-fill-add me-1"></i> İşletmem İçin İlan Aç
+        </a>
       </div>
-
-      <!-- Ortak Hızlı Filtre Barı (Yetenek Havuzu & İş İlanları İçin) -->
-      <div id="careerFilterBar" class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-3">
-          <div class="row g-2 align-items-center">
-            <div class="col-md-3">
-              <label class="form-label small fw-bold text-muted mb-1">Departman / Uzmanlık</label>
-              <select id="filterDept" class="form-select form-select-sm rounded-3">
-                <option value="Tümü">Tüm Departmanlar</option>
-                <option value="Dış Ticaret & İhracat">🌍 Dış Ticaret, E-İhracat & Gümrük</option>
-                <option value="Üretim, Mühendislik & Fabrika">🏭 Üretim, CNC, Mühendislik & Fabrika</option>
-                <option value="Finans, Muhasebe & ERP">📊 Finans, Ön Muhasebe & ERP (CariNet)</option>
-                <option value="B2B Satış & Satınalma">🤝 B2B Kurumsal Satış & Satınalma</option>
-                <option value="Yazılım, Teknoloji & Ar-Ge">💻 Yazılım, Teknoloji & Ar-Ge</option>
-                <option value="Lojistik, Depo & Filo">🚛 Lojistik, Depo & Filo Operasyon</option>
-              </select>
-            </div>
-            <div class="col-md-2">
-              <label class="form-label small fw-bold text-muted mb-1">Şehir</label>
-              <select id="filterCity" class="form-select form-select-sm rounded-3">
-                <option value="Tümü">81 İl (Tümü)</option>
-                <option value="İstanbul">İstanbul</option>
-                <option value="Bursa">Bursa</option>
-                <option value="Kocaeli">Kocaeli</option>
-                <option value="İzmir">İzmir</option>
-                <option value="Ankara">Ankara</option>
-                <option value="Gaziantep">Gaziantep</option>
-                <option value="Kayseri">Kayseri</option>
-                <option value="Konya">Konya</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label small fw-bold text-muted mb-1">Çalışma Şekli</label>
-              <select id="filterWorkMode" class="form-select form-select-sm rounded-3">
-                <option value="Tümü">Tüm Çalışma Modelleri</option>
-                <option value="Tam Zamanlı">Tam Zamanlı (Fabrika / Ofis / Hibrit)</option>
-                <option value="Proje Bazlı">⚡ Dönemsel / Proje Bazlı Uzman (Fractional)</option>
-                <option value="Uzaktan">🌍 Uzaktan (Remote)</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label small fw-bold text-muted mb-1">Yetenek Etiketi, ERP veya Makine Ara</label>
-              <div class="input-group input-group-sm">
-                <input type="text" id="filterSkillKeyword" class="form-control rounded-start-3" placeholder="Örn: CNC, StokPratik, İhracat, SolidWorks, E-Fatura..." />
-                <button class="btn btn-dark fw-semibold px-3" id="btnApplyCareerFilter" type="button">Filtrele</button>
-              </div>
-            </div>
-          </div>
-          <!-- Hızlı Etiket Bulutu -->
-          <div class="d-flex flex-wrap align-items-center gap-1 mt-2 pt-2 border-top">
-            <span class="small text-muted fw-semibold me-1" style="font-size:0.75rem;">Hızlı Etiketler:</span>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="">Tümü</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="StokPratik">📦 StokPratik ERP</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="İhracat">🌍 İhracat & Gümrük</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="CNC">⚙️ CNC & Üretim</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="E-Fatura">🧾 E-Fatura & Ön Muhasebe</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="Satınalma">🔨 Satınalma & E-İhale</button>
-            <button type="button" class="btn btn-sm btn-light border rounded-pill py-0 px-2 quick-skill-tag" style="font-size:0.74rem;" data-skill="TÜBİTAK">🧪 TÜBİTAK / Ar-Ge Personeli</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===================================================================== -->
-      <!-- SEKME 1: YETENEK HAVUZU (İŞVERENLER İÇİN "FUTBOLCU KARTI" ADAYLAR)    -->
-      <!-- ===================================================================== -->
-      <div id="tabContentTalents" class="career-tab-pane">
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-          <div>
-            <h2 class="h5 fw-bold mb-0">🔍 Doğrulanmış B2B Yetenek & Uzman Havuzu ("Tersine İhale")</h2>
-            <p class="small text-muted mb-0">Adayların teknik etiketlerini ve devlet istihdam teşviki uygunluğunu inceleyin; beğendiğiniz adaya doğrudan <strong>Mülakat & Maaş Teklifi</strong> gönderin.</p>
-          </div>
-          <button class="btn btn-sm btn-outline-primary fw-bold rounded-pill px-3" onclick="switchCareerTab('candidate-desk')">
-            + Ben de Yetenek Kartımı Oluşturmak İstiyorum
-          </button>
-        </div>
-
-        <div id="talentsGrid" class="row g-3">
-          <div class="col-12 text-center py-5 text-muted">Yetenek kartları yükleniyor...</div>
-        </div>
-      </div>
-
-      <!-- ===================================================================== -->
-      <!-- SEKME 2: AÇIK İŞ & UZMAN İLANLARI (İŞ ARAYANLAR İÇİN)                 -->
-      <!-- ===================================================================== -->
-      <div id="tabContentJobs" class="career-tab-pane d-none">
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-          <div>
-            <h2 class="h5 fw-bold mb-0">📢 Silver & Gold Onaylı İşletmelerin Açık İş ve Uzman İlanları</h2>
-            <p class="small text-muted mb-0">Şeffaf maaş aralığı, çalışma şekli, aranan 5 net yetenek ve şirket güven rozetini tek bakışta görün; 1 tıkla başvurun.</p>
-          </div>
-          <button class="btn btn-sm btn-primary fw-bold rounded-pill px-3" onclick="switchCareerTab('post-job')">
-            + İşletmem İçin Personel İlanı Aç
-          </button>
-        </div>
-
-        <div id="jobsGrid" class="row g-3">
-          <div class="col-12 text-center py-5 text-muted">Açık iş ilanları yükleniyor...</div>
-        </div>
-      </div>
-
-      <!-- ===================================================================== -->
-      <!-- SEKME 3: 90 SANİYEDE YETENEK KARTIM & KİŞİSEL KARİYER MASAM           -->
-      <!-- ===================================================================== -->
-      <div id="tabContentCandidateDesk" class="career-tab-pane d-none">
-        <div class="row g-4">
-          <!-- Sol: Gelen Mülakat Teklifleri & Gizli Radar Durumu -->
-          <div class="col-lg-5">
-            <div class="card border-0 shadow-sm rounded-4 mb-3 border-start border-4 border-success">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-1 rounded-pill">🕵️ GİZLİ RADAR KALKANI AKTİF</span>
-                  <span class="small text-muted fw-semibold">KVKK & Anonim Koruma</span>
-                </div>
-                <h3 class="h6 fw-bold mb-2">Nasıl Çalışır? Mevcut Patronunuz Sizi Göremez!</h3>
-                <ul class="small text-muted ps-3 mb-0">
-                  <li class="mb-1"><strong>Anonim Vitrin:</strong> İsim ve telefonunuz <code>M*** K***</code> olarak maskelenir.</li>
-                  <li class="mb-1"><strong>Şirket Engelleme:</strong> Yazdığınız mevcut işvereniniz kartınızı asla göremez.</li>
-                  <li><strong>Kontrol Sizde:</strong> Sadece siz gelen mülakat teklifinde <strong>[✅ Teklifi Kabul Et & İletişim Bilgimi Aç]</strong> butonuna bastığınızda numaranız işverenle paylaşılır.</li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Gelen Mülakat Teklifleri & Başvurularım Kutusu -->
-            <div class="card border-0 shadow-sm rounded-4">
-              <div class="card-header bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center">
-                <h3 class="h6 fw-bold mb-0">📬 Gelen Mülakat Teklifleri & Başvurularım</h3>
-                <span class="badge bg-primary rounded-pill" id="myInteractionsCount">0</span>
-              </div>
-              <div class="card-body p-3" id="myInteractionsList">
-                <div class="text-center py-4 text-muted small">
-                  Henüz bekleyen mülakat daveti yok. Sağdaki formdan Yetenek Kartınızı kaydettiğinizde onaylı işverenlerden gelen teklifler burada listelenir.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sağ: 90 Saniyede Seç-Geç Akıllı Yetenek Kartı Oluşturucu -->
-          <div class="col-lg-7">
-            <div class="card border-0 shadow-sm rounded-4">
-              <div class="card-header bg-dark text-white py-3 px-4 rounded-top-4 d-flex justify-content-between align-items-center">
-                <div>
-                  <h3 class="h5 fw-bold mb-0 text-white">⚡ 90 Saniyede Akıllı Yetenek Kartı Oluştur</h3>
-                  <small class="text-white-50">4 sayfalık sıkıcı CV doldurmayın; etiketleri seçin, devlet teşvik rozetinizi otomatik alın.</small>
-                </div>
-                <span class="badge bg-warning text-dark fw-bold">ÜCRETSİZ</span>
-              </div>
-              <div class="card-body p-4">
-                <form id="talentProfileForm">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Adınız Soyadınız *</label>
-                      <input type="text" id="tlFullName" class="form-control" required placeholder="Örn: Merve Karahan" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Uzmanlık Unvanınız (Kısa Başlık) *</label>
-                      <input type="text" id="tlHeadline" class="form-control" required placeholder="Örn: Kıdemli Dış Ticaret & E-İhracat Uzmanı" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Telefon Numaranız (Gizli Tutulur) *</label>
-                      <input type="text" id="tlPhone" class="form-control" required placeholder="05XX XXX XX XX" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">E-Posta Adresiniz</label>
-                      <input type="email" id="tlEmail" class="form-control" placeholder="ad.soyad@ornek.com" />
-                    </div>
-
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Ana Departman *</label>
-                      <select id="tlDepartment" class="form-select">
-                        <option value="Dış Ticaret & İhracat">🌍 Dış Ticaret & İhracat</option>
-                        <option value="Üretim, Mühendislik & Fabrika">🏭 Üretim, Mühendislik & Fabrika</option>
-                        <option value="Finans, Muhasebe & ERP">📊 Finans, Muhasebe & ERP</option>
-                        <option value="B2B Satış & Satınalma">🤝 B2B Satış & Satınalma</option>
-                        <option value="Yazılım, Teknoloji & Ar-Ge">💻 Yazılım, Teknoloji & Ar-Ge</option>
-                        <option value="Lojistik, Depo & Filo">🚛 Lojistik, Depo & Filo</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Deneyim Yılı *</label>
-                      <input type="number" id="tlExpYears" class="form-control" value="5" min="0" max="40" />
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Şehir *</label>
-                      <input type="text" id="tlCity" class="form-control" value="İstanbul" />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Tercih Ettiğiniz Çalışma Modeli</label>
-                      <select id="tlWorkMode" class="form-select">
-                        <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
-                        <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
-                        <option value="Uzaktan (Remote) / Proje Bazlı">⚡ Uzaktan veya Dönemsel Proje Bazlı</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Aylık Net Maaş / Hakediş Beklentiniz</label>
-                      <input type="text" id="tlSalary" class="form-control" placeholder="Örn: 55.000 TL – 70.000 TL" value="50.000 TL – 65.000 TL" />
-                    </div>
-
-                    <!-- Tıklanabilir Yetenek Etiketleri (Seç-Geç) -->
-                    <div class="col-12">
-                      <label class="form-label small fw-bold mb-1">🎯 Bildiğiniz Yazılım, ERP, Makine ve Yetkinlikleri Seçin (Tıklayın)</label>
-                      <div class="d-flex flex-wrap gap-1 mb-2" id="selectableSkillPills">
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn active" data-val="StokPratik CariNet">StokPratik CariNet</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn active" data-val="E-Fatura & E-İrsaliye">E-Fatura & E-İrsaliye</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="İhracat & Gümrük">İhracat & Gümrük</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="5 Eksen CNC İşleme">5 Eksen CNC İşleme</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="SolidWorks & AutoCAD">SolidWorks & AutoCAD</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn active" data-val="B2B Kurumsal Satış">B2B Kurumsal Satış</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="Tedarikçi E-İhale (RFQ)">Tedarikçi E-İhale (RFQ)</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="KOSGEB / TÜBİTAK Proje">KOSGEB / TÜBİTAK Proje</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="Logo / Mikro / SAP">Logo / Mikro / SAP</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="ISO 9001 Kalite">ISO 9001 Kalite</button>
-                        <button type="button" class="btn btn-sm btn-outline-dark rounded-pill skill-pill-btn" data-val="TypeScript & React">TypeScript & React</button>
-                      </div>
-                      <input type="text" id="tlExtraSkills" class="form-control form-control-sm" placeholder="Eklemek istediğiniz diğer yetenekler (virgülle ayırın)..." />
-                    </div>
-
-                    <!-- Devlet İstihdam Teşviki Otomatik Hesaplama Kriterleri -->
-                    <div class="col-12">
-                      <div class="p-3 rounded-3 bg-success bg-opacity-10 border border-success border-opacity-25">
-                        <div class="fw-bold small text-success mb-2">💰 İşverenleri Mıknatıs Gibi Çeken "Devlet Maaş Teşviki" Hesaplayıcısı</div>
-                        <div class="row g-2">
-                          <div class="col-md-3">
-                            <label class="form-label small mb-1">Yaşınız</label>
-                            <input type="number" id="tlAge" class="form-control form-control-sm" value="27" />
-                          </div>
-                          <div class="col-md-3">
-                            <label class="form-label small mb-1">Cinsiyet</label>
-                            <select id="tlGender" class="form-select form-select-sm">
-                              <option value="Kadın">Kadın</option>
-                              <option value="Erkek">Erkek</option>
-                            </select>
-                          </div>
-                          <div class="col-md-3">
-                            <label class="form-label small mb-1">Mezuniyet</label>
-                            <select id="tlEducation" class="form-select form-select-sm">
-                              <option value="Lisans">Lisans (4 Yıllık)</option>
-                              <option value="Yüksek Lisans / Doktora">Yüksek Lisans / Doktora</option>
-                              <option value="Ön Lisans / MYO">Ön Lisans (2 Yıllık MYO)</option>
-                              <option value="Meslek Lisesi / Lise">Meslek Lisesi / Lise</option>
-                            </select>
-                          </div>
-                          <div class="col-md-3">
-                            <label class="form-label small mb-1">Mesleki Belge</label>
-                            <select id="tlVocCert" class="form-select form-select-sm">
-                              <option value="1">Var (MYK / Ustalık / Sertifika)</option>
-                              <option value="0">Yok</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Gizli Radar & İşveren Engelleme -->
-                    <div class="col-12">
-                      <div class="p-3 rounded-3 bg-light border">
-                        <div class="form-check form-switch mb-2">
-                          <input class="form-check-input" type="checkbox" id="tlAnonymous" checked />
-                          <label class="form-check-label fw-bold small" for="tlAnonymous">
-                            🕵️ Gizli Radar Kalkanı Aktif (Adım ve iletişim bilgilerim ben onaylayana kadar gizli kalsın)
-                          </label>
-                        </div>
-                        <label class="form-label small text-muted mb-1">Kartınızı Görmesini İstemediğiniz Şirket Adları (Mevcut İşvereniniz):</label>
-                        <input type="text" id="tlBlockedCompanies" class="form-control form-control-sm" placeholder="Örn: ABC Metal Sanayi, XYZ Lojistik (Virgülle ayırabilirsiniz)" />
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label class="form-label small fw-bold">2 Cümlelik Başarı & Deneyim Özeti</label>
-                      <textarea id="tlBio" class="form-control" rows="2" placeholder="Örn: 6 yıldır makine ihracatı ve StokPratik ERP kurulum süreçlerini yönetiyorum."></textarea>
-                    </div>
-
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-success w-100 fw-bold py-2 rounded-3 shadow-sm">
-                        🚀 Yetenek Kartımı Kaydet & Devlet Teşvik Rozetimi Hesapla
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===================================================================== -->
-      <!-- SEKME 4: 60 SANİYEDE İŞVEREN PERSONEL / UZMAN İLANI AÇ                 -->
-      <!-- ===================================================================== -->
-      <div id="tabContentPostJob" class="career-tab-pane d-none">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="card border-0 shadow-sm rounded-4">
-              <div class="card-header bg-primary text-white py-3 px-4 rounded-top-4 d-flex justify-content-between align-items-center">
-                <div>
-                  <h3 class="h5 fw-bold mb-0 text-white">🏢 İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın</h3>
-                  <small class="text-white-50">İlanınız hem Kariyer Merkezinde hem de İşletme Profilinizin "Açık İş İlanlarımız" vitrininde yayınlanır.</small>
-                </div>
-                <span class="badge bg-warning text-dark fw-bold">GOLD / SILVER ÖNCELİKLİ</span>
-              </div>
-              <div class="card-body p-4">
-                <form id="postJobForm">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">İşveren Firma Adı *</label>
-                      <input type="text" id="jbCompanyName" class="form-control" required placeholder="Örn: Anadolu Çelik & Makine San. A.Ş." />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Aranan Pozisyon Başlığı *</label>
-                      <input type="text" id="jbTitle" class="form-control" required placeholder="Örn: Dış Ticaret & İhracat Operasyon Uzmanı" />
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Departman *</label>
-                      <select id="jbDepartment" class="form-select">
-                        <option value="Dış Ticaret & İhracat">🌍 Dış Ticaret & İhracat</option>
-                        <option value="Üretim, Mühendislik & Fabrika">🏭 Üretim, Mühendislik & Fabrika</option>
-                        <option value="Finans, Muhasebe & ERP">📊 Finans, Muhasebe & ERP</option>
-                        <option value="B2B Satış & Satınalma">🤝 B2B Satış & Satınalma</option>
-                        <option value="Yazılım, Teknoloji & Ar-Ge">💻 Yazılım, Teknoloji & Ar-Ge</option>
-                        <option value="Lojistik, Depo & Filo">🚛 Lojistik, Depo & Filo</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Şehir *</label>
-                      <input type="text" id="jbCity" class="form-control" value="İstanbul" required />
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label small fw-bold">Çalışma Şekli *</label>
-                      <select id="jbWorkMode" class="form-select">
-                        <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
-                        <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
-                        <option value="Uzaktan (Remote) / Proje Bazlı">⚡ Dönemsel / Proje Bazlı Uzman</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Deneyim Seviyesi</label>
-                      <select id="jbExpLevel" class="form-select">
-                        <option value="Uzman (3-5 Yıl)">Uzman (3-5 Yıl)</option>
-                        <option value="Kıdemli / Uzman (5-10 Yıl)">Kıdemli / Şef (5-10 Yıl)</option>
-                        <option value="Yeni Mezun / Yetiştirilmek Üzere (İŞKUR Teşvikli)">Yeni Mezun / Yetiştirilmek Üzere (İŞKUR Teşvikli)</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Teklif Edilen Maaş / Bütçe Aralığı *</label>
-                      <input type="text" id="jbSalary" class="form-control" required placeholder="Örn: 55.000 TL – 75.000 TL + Prim" />
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label small fw-bold">Aranan 5 Temel Yetkinlik / Program / Makine (Virgülle ayırın) *</label>
-                      <input type="text" id="jbSkills" class="form-control" required value="StokPratik ERP, İhracat Operasyonu, İngilizce (İleri), B2B Müşteri Yönetimi" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Yan Haklar (Virgülle ayırın)</label>
-                      <input type="text" id="jbBenefits" class="form-control" value="Yüksek Prim, Özel Sağlık Sigortası, Yemek Kartı, Servis / Yol" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small fw-bold">Devlet İstihdam Teşviki Notu</label>
-                      <select id="jbSubsidyNote" class="form-select">
-                        <option value="💰 KOSGEB Nitelikli Eleman (%70 Maaş Hibesi) & SGK 6111 Teşvikli Kadro">💰 KOSGEB Nitelikli Eleman (%70 Hibe) & SGK 6111 Kadrosu</option>
-                        <option value="🏛️ İŞKUR İşbaşı Eğitim (İlk 6 Ay Maaş Devlet’ten) Kapsamında">🏛️ İŞKUR İşbaşı Eğitim (İlk 6 Ay Maaş Devlet’ten)</option>
-                        <option value="⚡ Dönemsel / Proje Bazlı Uzman Danışmanlık Sözleşmesi">⚡ Dönemsel / Proje Bazlı Uzman Sözleşmesi</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label small fw-bold">Kısa Görev Tanımı (Net ve Öz)</label>
-                      <textarea id="jbDesc" class="form-control" rows="3" required placeholder="İşletmemizde hangi süreçleri yöneteceğini 2-3 cümleyle özetleyin..."></textarea>
-                    </div>
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-primary w-100 fw-bold py-2 rounded-3 shadow-sm">
-                        📢 Personel İlanını Yayınla & Uygun Adaylarla Eşleş
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- Mülakat & Maaş Teklifi Gönder Modalı (İşveren -> Adaya Tersine Başvuru) -->
-  <div class="modal fade" id="inviteCandidateModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow-lg">
-        <div class="modal-header bg-dark text-white rounded-top-4">
-          <h5 class="modal-title fw-bold text-white" id="inviteModalTitle">🤝 Adaya Doğrudan Mülakat & Maaş Teklifi Gönder</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body p-4">
-          <div class="alert alert-success small py-2 mb-3">
-            <strong>💡 Tersine İhale Mekanizması:</strong> Teklifiniz adayın Gizli Radar kutusuna düşer. Aday onayladığı saniye maskeli telefon ve e-posta bilgileri size açılır.
-          </div>
-          <form id="inviteCandidateForm">
-            <input type="hidden" id="invTalentId" />
-            <input type="hidden" id="invTalentName" />
-            <div class="mb-3">
-              <label class="form-label small fw-bold">İşveren Firma Adınız *</label>
-              <input type="text" id="invCompanyName" class="form-control" required placeholder="Firma Adınız" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-bold">Teklif Edilen Pozisyon *</label>
-              <input type="text" id="invJobTitle" class="form-control" required placeholder="Örn: Dış Ticaret Yöneticisi" />
-            </div>
-            <div class="row g-2 mb-3">
-              <div class="col-6">
-                <label class="form-label small fw-bold">Teklif Edilen Net Maaş / Bütçe *</label>
-                <input type="text" id="invOfferedSalary" class="form-control" required placeholder="Örn: 65.000 TL + Prim" />
-              </div>
-              <div class="col-6">
-                <label class="form-label small fw-bold">Yetkili Telefonunuz *</label>
-                <input type="text" id="invContactPhone" class="form-control" required placeholder="05XX XXX XX XX" />
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-bold">Mülakat Davet Notunuz</label>
-              <textarea id="invMessage" class="form-control" rows="2" placeholder="Merhaba, yetenek kartınızdaki ERP ve ihracat tecrübeniz şirketimizle tam uyumlu. Online/yüz yüze tanışmak isteriz."></textarea>
-            </div>
-            <button type="submit" class="btn btn-success w-100 fw-bold py-2 rounded-3">
-              🚀 Mülakat & Maaş Teklifini Gönder
+  <!-- ANA SAYFA DÜZENİ: SOL SÜTUN FİLTRELER (%25) + SAĞ SÜTUN YAN YANA 3 ADAY KARTI (%75) -->
+  <div class="row g-3 g-lg-4">
+
+    <!-- SOL SÜTUN: FİLTRELER (Mobilde Açılır/Kapanır, Masaüstünde Sabit) -->
+    <div class="col-lg-3">
+      <!-- Mobil Filtre Aç/Kapat Butonu -->
+      <div class="d-lg-none mb-2">
+        <button
+          class="btn btn-outline-danger w-100 fw-bold btn-sm d-flex justify-content-between align-items-center py-2"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mwCareerSidebarCollapse"
+          aria-expanded="false"
+        >
+          <span><i class="bi bi-funnel-fill me-1"></i> Aday Filtrelerini Göster / Gizle</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+
+      <div class="collapse d-lg-block" id="mwCareerSidebarCollapse">
+        <div class="mw-panel-card p-3 shadow-sm sticky-top" style="top: 86px;">
+          <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+            <h2 class="h6 fw-bold mb-0">
+              <i class="bi bi-sliders text-danger me-1"></i> Aday Filtreleme
+            </h2>
+            <button type="button" id="fltResetAllBtn" class="btn btn-link btn-sm text-danger text-decoration-none p-0 fw-semibold" style="font-size:0.74rem;">
+              Temizle
             </button>
+          </div>
+
+          <form id="mwCandidateFilterForm" class="d-flex flex-column gap-3">
+            <div>
+              <label class="form-label small fw-bold mb-1">Departman / Uzmanlık</label>
+              <select id="fltDepartment" class="form-select form-select-sm">
+                <option value="Tümü">Tüm Departmanlar</option>
+                {DEPARTMENTS.map(d => <option value={d}>{d}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label small fw-bold mb-1">İş Aradığı Sektör</label>
+              <select id="fltTargetSector" class="form-select form-select-sm">
+                <option value="Tümü">Tüm Sektörler</option>
+                {TARGET_SECTORS.map(s => <option value={s}>{s}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label small fw-bold mb-1">İş Aradığı Pozisyon</label>
+              <select id="fltTargetPosition" class="form-select form-select-sm">
+                <option value="Tümü">Tüm Pozisyonlar</option>
+                {TARGET_POSITIONS.map(p => <option value={p}>{p}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label small fw-bold mb-1">Şehir</label>
+              <select id="fltCity" class="form-select form-select-sm">
+                <option value="Tümü">81 İl (Tümü)</option>
+                {CITIES.map(c => <option value={c}>{c}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label small fw-bold mb-1">Çalışma Şekli</label>
+              <select id="fltWorkMode" class="form-select form-select-sm">
+                <option value="Tümü">Tüm Çalışma Modelleri</option>
+                <option value="Tam Zamanlı">Tam Zamanlı (Saha / Ofis)</option>
+                <option value="Hibrit">Hibrit</option>
+                <option value="Uzaktan">Uzaktan (Remote)</option>
+                <option value="Proje Bazlı">⚡ Dönemsel / Proje Bazlı Uzman</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label small fw-bold mb-1">Yetenek Etiketi, ERP veya Makine Ara</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-transparent text-danger"><i class="bi bi-search"></i></span>
+                <input
+                  type="text"
+                  id="fltSkillQuery"
+                  class="form-control"
+                  placeholder="Örn: CNC, StokPratik, İhracat..."
+                />
+              </div>
+            </div>
+
+            <div>
+              <div class="small fw-bold mb-1" style="font-size:0.74rem;">Hızlı Etiketler:</div>
+              <div class="d-flex flex-wrap gap-1">
+                <button type="button" class="mw-quick-filter-tag" data-skill="StokPratik">StokPratik</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="TypeScript">TypeScript & Node.js</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="CNC">CNC Lazer</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="İhracat">İhracat</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="E-Fatura">E-Fatura</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="TÜBİTAK">TÜBİTAK Ar-Ge</button>
+                <button type="button" class="mw-quick-filter-tag" data-skill="SolidWorks">SolidWorks</button>
+              </div>
+            </div>
+          </form>
+
+          <hr class="my-3" />
+
+          <div class="p-2 rounded border text-center" style="background:var(--mw-surface-alt);">
+            <div class="small fw-bold mb-1">Siz de İş mi Arıyorsunuz?</div>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">
+              90 saniyede fotoğrafınız, yetenek etiketleriniz ve aradığınız sektörle özgeçmişinizi oluşturun.
+            </p>
+            <a href="/kariyer/cv-olustur" class="btn btn-danger btn-sm w-100 fw-bold">
+              İş Arıyorum / Özgeçmiş (CV) Oluştur
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAĞ SÜTUN: YAN YANA 3 DAR KİŞİ KARTI (col-xl-4 col-md-6 col-12) -->
+    <div class="col-lg-9">
+      <!-- Üst Bilgi Bandı -->
+      <div class="mw-panel-card p-2 px-3 mb-3 shadow-sm d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="small fw-bold">
+          🔍 Toplam <span id="mwTalentCountBadge" class="text-danger tabular-nums">6</span> doğrulanmış aday listeleniyor
+          <span id="mwActiveFilterNotice" class="badge bg-danger-subtle text-danger ms-1" style="display:none;">Arama Kriterlerine Göre %Uyum Sıralı</span>
+        </div>
+        <div class="d-flex align-items-center gap-2 small">
+          <a href="/kariyer/is-ara" class="text-danger fw-bold text-decoration-none" style="font-size:0.78rem;">
+            📢 Açık İş İlanlarına Git →
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 Sütunlu Aday Kartları Grid Alanı -->
+      <div class="row g-3" id="mwTalentsGridContainer">
+        <!-- JS ile yan yana 3'lü kompakt kartlar buraya yüklenir -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MÜLAKAT TEKLİFİ GÖNDERME MODALI -->
+  <div class="modal fade" id="mwInviteTalentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-handshake text-danger me-1"></i> Adaya Doğrudan Mülakat Teklifi Gönder
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwInviteTalentForm" class="row g-3">
+            <input type="hidden" id="invTalentId" />
+            <div class="col-12">
+              <div class="p-2 rounded border small" style="background:var(--mw-surface-alt);">
+                <strong>Seçilen Aday:</strong> <span id="invTalentName" class="text-danger fw-bold"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold mb-1">İşveren Firma Adınız *</label>
+              <input type="text" id="invCompanyName" class="form-control form-control-sm" placeholder="Örn: Anadolu Çelik A.Ş." required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold mb-1">İletişim Telefonunuz *</label>
+              <input type="tel" id="invContactPhone" class="form-control form-control-sm" placeholder="0532 000 00 00" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold mb-1">Teklif Edilen Pozisyon *</label>
+              <input type="text" id="invJobTitle" class="form-control form-control-sm" placeholder="Örn: IT Uzmanı / İhracat Müdürü" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold mb-1">Önerilen Maaş / Hakediş Bandı *</label>
+              <input type="text" id="invOfferedSalary" class="form-control form-control-sm" placeholder="Örn: 75.000 TL + Prim" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-bold mb-1">Mülakat Davet Notunuz</label>
+              <textarea id="invMessage" class="form-control form-control-sm" rows="2" placeholder="Merhaba, profilinizi ve uzmanlık etiketlerinizi inceledik. Online veya yüz yüze tanışmak isteriz."></textarea>
+            </div>
+            <div id="invFeedback" class="col-12 small" style="display:none;"></div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-danger w-100 fw-bold">
+                <i class="bi bi-send-check-fill me-1"></i> Mülakat & Maaş Teklifini İlet
+              </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</BaseLayout>
 
-<style>
-  .kariyer-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #0f3d3e 100%);
-  }
-  .tabular-nums {
-    font-variant-numeric: tabular-nums;
-  }
-  .talent-bento-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-left: 4px solid #10b981;
-  }
-  .talent-bento-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1) !important;
-  }
-  .job-bento-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-left: 4px solid #f59e0b;
-  }
-  .job-bento-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1) !important;
-  }
-  .skill-pill-btn.active {
-    background-color: #0f172a;
-    color: #fff;
-    border-color: #0f172a;
-  }
-</style>
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let allTalents = [];
 
-<script is:inline>
-  const CAREER_API = 'https://meetwork-api.akgcomputer.workers.dev';
-  let allTalents = [];
-  let allJobs = [];
-  let myInteractions = [];
+      const FALLBACK_TALENTS = [
+        {
+          id: 'tln_emir_aksu',
+          full_name: 'Emir Aksu',
+          photo_url: 'https://ui-avatars.com/api/?name=Emir+Aksu&background=dc3545&color=fff&size=200&bold=true',
+          role_subtitle: 'Full-Stack Yazılım, AI & Bulut ERP Mimarı',
+          department: 'Yazılım, Teknoloji & Ar-Ge',
+          city: 'İstanbul',
+          experience_years: 6,
+          headline: 'Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı',
+          subsidy_badge: '💰 TÜBİTAK 1507 / Teknopark %100 Gelir Vergisi Muafiyeti + KOSGEB Ar-Ge',
+          skills_list: ['TypeScript & Node.js', 'React & Astro', 'Cloudflare Edge & D1', 'ERP API Entegrasyonu', 'Yapay Zekâ Eşleştirme', 'TÜBİTAK Ar-Ge Personeli'],
+          languages_list: ['İngilizce (İleri - C1)'],
+          bio_summary: 'B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.',
+          target_sector: 'Tekstil',
+          target_position: 'IT Uzmanı',
+          work_mode: 'Uzaktan (Remote) / Proje Bazlı',
+          salary_expectation: '75.000 TL – 110.000 TL'
+        },
+        {
+          id: 'tln_1',
+          full_name: 'Merve Karahan',
+          photo_url: 'https://ui-avatars.com/api/?name=Merve+Karahan&background=0d6efd&color=fff&size=200&bold=true',
+          role_subtitle: 'Uluslararası B2B Satış, İhracat & Gümrük Uzmanı',
+          department: 'Dış Ticaret & İhracat',
+          city: 'İstanbul',
+          experience_years: 7,
+          headline: 'Kıdemli Dış Ticaret, E-İhracat & Gümrük Operasyon Yöneticisi',
+          subsidy_badge: '💰 %70 KOSGEB Maaş Hibesi + SGK 6111 Kadın/Genç Teşvikine Uygun',
+          skills_list: ['İhracat Operasyonu', 'Gümrük & Akreditif', 'DepodanDirekt B2B', 'AB Pazarı Müşteri Bulma', 'Ticaret Bak. 5973 Teşvikleri', 'StokPratik ERP'],
+          languages_list: ['İngilizce (İleri - C1)', 'Almanca (Orta - B1)'],
+          bio_summary: 'Avrupa ve MENA bölgesine endüstriyel makine ve tekstil ihracatında 7 yıl deneyimli. 60 ülkeye B2B satış hunisi ve devlet ihracat teşvikleri süreçlerine hakim.',
+          target_sector: 'Tekstil & Hazır Giyim',
+          target_position: 'İhracat Müdürü',
+          work_mode: 'Tam Zamanlı / Hibrit',
+          salary_expectation: '55.000 TL – 75.000 TL'
+        },
+        {
+          id: 'tln_2',
+          full_name: 'Burak Demirci',
+          photo_url: 'https://ui-avatars.com/api/?name=Burak+Demirci&background=198754&color=fff&size=200&bold=true',
+          role_subtitle: 'CNC Lazer, Talaşlı İmalat & Kalite Kontrol Mühendisi',
+          department: 'Üretim, Mühendislik & Fabrika',
+          city: 'Bursa',
+          experience_years: 8,
+          headline: 'Üretim Planlama, CNC Lazer / Talaşlı İmalat & Kalite Kontrol Şefi',
+          subsidy_badge: '💰 KOSGEB Nitelikli Eleman (%60 Maaş Hibesi) + Mesleki Belge Teşviki',
+          skills_list: ['5 Eksen CNC İşleme', 'SolidWorks & AutoCAD', 'ISO 9001 Kalite', 'Yalın Üretim (Kaizen)', 'StokPratik Depo & BOM', 'Tedarikçi İhale Yönetimi'],
+          languages_list: ['İngilizce (Teknik - B2)'],
+          bio_summary: 'Otomotiv yan sanayi ve ağır çelik konstrüksiyon fabrikalarında üretim planlama, fire azaltma ve ERP reçete (BOM) entegrasyonu uzmanı.',
+          target_sector: 'Makine & Ekipman Üretimi',
+          target_position: 'Üretim Planlama & Fabrika Şefi',
+          work_mode: 'Tam Zamanlı (Fabrika / Saha)',
+          salary_expectation: '60.000 TL – 80.000 TL'
+        },
+        {
+          id: 'tln_3',
+          full_name: 'Selin Yılmazer',
+          photo_url: 'https://ui-avatars.com/api/?name=Selin+Yilmazer&background=6f42c1&color=fff&size=200&bold=true',
+          role_subtitle: 'E-Dönüşüm, Bulut ERP & Maliyet Muhasebesi Uzmanı',
+          department: 'Finans, Muhasebe & ERP',
+          city: 'İstanbul',
+          experience_years: 4,
+          headline: 'Kurumsal Ön Muhasebe, CariNet, E-Fatura & Finansman Uzmanı',
+          subsidy_badge: '💰 İŞKUR İşbaşı Eğitim (6 Ay Maaş) + SGK 6111 Genç Kadın Teşvikine Uygun',
+          skills_list: ['StokPratik CariNet', 'E-Fatura & E-İrsaliye', 'Cari Mutabakat & Çek/Senet', 'Maliyet Muhasebesi', 'Logo / Mikro / Nebim', 'SGK & Bordro'],
+          languages_list: ['İngilizce (Orta - B1)'],
+          bio_summary: 'StokPratik CariNet, çoklu depo stok takibi, e-Fatura/e-Arşiv süreçleri ve B2B bayi tahsilat yönetiminde %98 doğruluk skoru ile sertifikalı uzman.',
+          target_sector: 'Gıda, Tarım & İçecek',
+          target_position: 'ERP & Finansman Yöneticisi',
+          work_mode: 'Tam Zamanlı / Uzaktan / Dönemsel',
+          salary_expectation: '42.000 TL – 55.000 TL'
+        },
+        {
+          id: 'tln_4',
+          full_name: 'Kaan Özkan',
+          photo_url: 'https://ui-avatars.com/api/?name=Kaan+Ozkan&background=d97706&color=fff&size=200&bold=true',
+          role_subtitle: 'B2B Endüstriyel Satınalma & Tedarikçi E-İhale Uzmanı',
+          department: 'B2B Satış & Satınalma',
+          city: 'Kocaeli',
+          experience_years: 6,
+          headline: 'B2B Endüstriyel Satış, Kurumsal Satınalma & E-İhale Yöneticisi',
+          subsidy_badge: '💰 KOSGEB Nitelikli Eleman (%60 Maaş Hibesi) Uygunluğu',
+          skills_list: ['B2B Bayi Ağı Kurulumu', 'Tedarikçi E-İhale (RFQ)', 'Sözleşme & Maliyet Kıstırma', 'Sanayi & Hammadde Tedariki', 'CRM & Bayi Yönetimi'],
+          languages_list: ['İngilizce (İleri - C1)'],
+          bio_summary: 'Fabrikaların yıllık hammadde/yarı mamul satınalma ihalelerini yöneterek ortalama %18 maliyet tasarrufu sağlayan kıdemli B2B tedarik ve satış uzmanı.',
+          target_sector: 'Metal & Çelik Üretim',
+          target_position: 'Satınalma & İhale Müdürü',
+          work_mode: 'Tam Zamanlı / Proje Bazlı (Fractional)',
+          salary_expectation: '50.000 TL – 68.000 TL'
+        },
+        {
+          id: 'tln_6',
+          full_name: 'Zeynep Soylu',
+          photo_url: 'https://ui-avatars.com/api/?name=Zeynep+Soylu&background=0f766e&color=fff&size=200&bold=true',
+          role_subtitle: 'Tedarik Zinciri, Antrepo & Uluslararası Lojistik Uzmanı',
+          department: 'Lojistik, Depo & Filo',
+          city: 'İzmir',
+          experience_years: 5,
+          headline: 'Uluslararası Nakliyat, Filo Planlama & Depo Otomasyon Yöneticisi',
+          subsidy_badge: '💰 %70 KOSGEB Maaş Hibesi + SGK 6111 Genç Kadın Teşvikine Uygun',
+          skills_list: ['Uluslararası Kara/Deniz Nakliyat', 'WMS & Depo Otomasyonu', 'StokPratik Depo', 'ADR & Gümrük Mevzuatı', 'Filo Rota Optimizasyonu'],
+          languages_list: ['İngilizce (İleri - C1)'],
+          bio_summary: 'Ege ve Marmara bölgesi ihracatçı fabrikaların konteyner, parsiyel yük ve akıllı depo (WMS/ERP) süreçlerinde 5 yıl saha ve yönetim tecrübesi.',
+          target_sector: 'Lojistik, Nakliyat & Filo',
+          target_position: 'Lojistik Operasyon Yöneticisi',
+          work_mode: 'Tam Zamanlı / Hibrit',
+          salary_expectation: '48.000 TL – 65.000 TL'
+        }
+      ];
 
-  function getStoredUser() {
-    try {
-      return JSON.parse(localStorage.getItem('mw_user') || 'null');
-    } catch (_) {
-      return null;
-    }
-  }
+      // Dinamik Arama/Filtre Uyum Hesaplayıcısı (Rastgele değil, aktif filtrelere göre gerçek hesaplama)
+      function computeDynamicMatch(talent, filters) {
+        let activeCriteria = 0;
+        let matchedPoints = 0;
 
-  function switchCareerTab(tabName) {
-    document.querySelectorAll('#careerTabs .nav-link').forEach((btn) => {
-      btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
-    });
-    document.getElementById('tabContentTalents').classList.toggle('d-none', tabName !== 'talents');
-    document.getElementById('tabContentJobs').classList.toggle('d-none', tabName !== 'jobs');
-    document.getElementById('tabContentCandidateDesk').classList.toggle('d-none', tabName !== 'candidate-desk');
-    document.getElementById('tabContentPostJob').classList.toggle('d-none', tabName !== 'post-job');
-    document.getElementById('careerFilterBar').classList.toggle('d-none', tabName !== 'talents' && tabName !== 'jobs');
-  }
+        if (filters.dep !== 'Tümü') {
+          activeCriteria++;
+          if (String(talent.department || '') === filters.dep) matchedPoints += 1;
+        }
+        if (filters.sector !== 'Tümü') {
+          activeCriteria++;
+          const tSec = String(talent.target_sector || '').toLocaleLowerCase('tr-TR');
+          const fSec = filters.sector.toLocaleLowerCase('tr-TR');
+          if (tSec.includes(fSec) || fSec.includes(tSec)) matchedPoints += 1;
+        }
+        if (filters.pos !== 'Tümü') {
+          activeCriteria++;
+          const tPos = String(talent.target_position || '').toLocaleLowerCase('tr-TR');
+          const fPos = filters.pos.toLocaleLowerCase('tr-TR');
+          if (tPos.includes(fPos) || fPos.includes(tPos)) matchedPoints += 1;
+        }
+        if (filters.city !== 'Tümü') {
+          activeCriteria++;
+          if (String(talent.city || '') === filters.city) matchedPoints += 1;
+        }
+        if (filters.mode !== 'Tümü') {
+          activeCriteria++;
+          if (String(talent.work_mode || '').toLocaleLowerCase('tr-TR').includes(filters.mode.toLocaleLowerCase('tr-TR'))) {
+            matchedPoints += 1;
+          }
+        }
+        if (filters.q) {
+          activeCriteria++;
+          const hay = [
+            talent.full_name,
+            talent.role_subtitle,
+            talent.headline,
+            talent.department,
+            talent.target_sector,
+            talent.target_position,
+            talent.bio_summary,
+            ...(talent.skills_list || []),
+            ...(talent.languages_list || [])
+          ].join(' ').toLocaleLowerCase('tr-TR');
+          if (hay.includes(filters.q)) matchedPoints += 1;
+        }
 
-  document.querySelectorAll('#careerTabs .nav-link').forEach((btn) => {
-    btn.addEventListener('click', () => switchCareerTab(btn.getAttribute('data-tab')));
-  });
+        if (activeCriteria === 0) {
+          return { hasActiveFilter: false, score: 100, matchesAll: true };
+        }
 
-  document.querySelectorAll('.skill-pill-btn').forEach((btn) => {
-    btn.addEventListener('click', () => btn.classList.toggle('active'));
-  });
-
-  document.querySelectorAll('.quick-skill-tag').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const sk = btn.getAttribute('data-skill') || '';
-      document.getElementById('filterSkillKeyword').value = sk;
-      renderTalentsAndJobs();
-    });
-  });
-
-  async function loadCareerOverview() {
-    const user = getStoredUser();
-    const dept = document.getElementById('filterDept').value;
-    const city = document.getElementById('filterCity').value;
-    const workMode = document.getElementById('filterWorkMode').value;
-
-    const params = new URLSearchParams();
-    if (dept && dept !== 'Tümü') params.set('department', dept);
-    if (city && city !== 'Tümü') params.set('city', city);
-    if (workMode && workMode !== 'Tümü') params.set('work_mode', workMode);
-    if (user && user.company_name) params.set('viewer_company_name', user.company_name);
-    if (user && user.company_id) params.set('viewer_company_id', user.company_id);
-    if (user && user.id) params.set('viewer_user_id', user.id);
-
-    try {
-      const res = await fetch(`${CAREER_API}/api/career/overview?${params.toString()}`);
-      const data = await res.json();
-      if (data.success) {
-        allTalents = data.talents || [];
-        allJobs = data.jobs || [];
-        myInteractions = data.interactions || [];
-        document.getElementById('statTalentsCount').textContent = allTalents.length;
-        document.getElementById('statJobsCount').textContent = allJobs.length;
-        renderTalentsAndJobs();
-        renderInteractions();
+        const ratio = matchedPoints / activeCriteria;
+        const pct = Math.round(ratio * 100);
+        return {
+          hasActiveFilter: true,
+          score: pct,
+          matchesAll: matchedPoints === activeCriteria,
+          matchedPoints,
+          activeCriteria
+        };
       }
-    } catch (err) {
-      console.error('Kariyer yükleme hatası:', err);
-    }
-  }
 
-  function renderTalentsAndJobs() {
-    const kw = (document.getElementById('filterSkillKeyword').value || '').toLowerCase().trim();
+      function renderTalentsGrid() {
+        const grid = document.getElementById('mwTalentsGridContainer');
+        const countEl = document.getElementById('mwTalentCountBadge');
+        const filterNotice = document.getElementById('mwActiveFilterNotice');
+        if (!grid) return;
 
-    // 1. Render Talents ("Futbolcu Transfer Kartı" Görünümü)
-    const filteredTalents = allTalents.filter((t) => {
-      if (!kw) return true;
-      const hay = `${t.headline} ${t.department} ${(t.skills_list || []).join(' ')} ${t.bio_summary || ''}`.toLowerCase();
-      return hay.includes(kw);
-    });
+        const filters = {
+          dep: (document.getElementById('fltDepartment') || {}).value || 'Tümü',
+          sector: (document.getElementById('fltTargetSector') || {}).value || 'Tümü',
+          pos: (document.getElementById('fltTargetPosition') || {}).value || 'Tümü',
+          city: (document.getElementById('fltCity') || {}).value || 'Tümü',
+          mode: (document.getElementById('fltWorkMode') || {}).value || 'Tümü',
+          q: ((document.getElementById('fltSkillQuery') || {}).value || '').trim().toLocaleLowerCase('tr-TR')
+        };
 
-    const tGrid = document.getElementById('talentsGrid');
-    if (filteredTalents.length === 0) {
-      tGrid.innerHTML = `<div class="col-12"><div class="alert alert-light border text-center py-4">Bu filtreye uygun yetenek kartı bulunamadı. Filtreyi temizleyip tekrar deneyin.</div></div>`;
-    } else {
-      tGrid.innerHTML = filteredTalents.map((t) => {
-        const skillsHtml = (t.skills_list || []).map((s) =>
-          `<span class="badge bg-dark bg-opacity-10 text-dark border fw-semibold px-2 py-1">${s}</span>`
-        ).join(' ');
-        const langsHtml = (t.languages_list || []).map((l) =>
-          `<span class="badge bg-info bg-opacity-10 text-dark border border-info border-opacity-25 px-2 py-1">🗣️ ${l}</span>`
-        ).join(' ');
+        const sourceList = allTalents.length > 0 ? allTalents : FALLBACK_TALENTS;
 
-        return `
-          <div class="col-lg-6">
-            <div class="card talent-bento-card shadow-sm rounded-4 h-100">
-              <div class="card-body p-4 d-flex flex-column justify-content-between">
-                <div>
-                  <!-- Üst Rozet Satırı -->
-                  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="badge bg-success text-white fw-bold px-2 py-1 rounded-pill tabular-nums">%${t.verification_score || 95} Uyum & Doğrulama</span>
-                      ${t.contact_locked
-                        ? `<span class="badge bg-dark text-warning border border-warning border-opacity-50 px-2 py-1 rounded-pill">🕵️ Gizli Radar (Anonim)</span>`
-                        : `<span class="badge bg-primary bg-opacity-10 text-primary px-2 py-1 rounded-pill">🔓 Açık Profil</span>`
-                      }
-                    </div>
-                    <span class="small text-muted fw-semibold">📍 ${t.city} • ⏱️ ${t.experience_years} Yıl Deneyim</span>
-                  </div>
+        const evaluated = sourceList.map((t) => {
+          const match = computeDynamicMatch(t, filters);
+          return { talent: t, match };
+        });
 
-                  <!-- Aday Başlık & İsim -->
-                  <h3 class="h6 fw-bold text-dark mb-1">${t.headline}</h3>
-                  <div class="small text-muted fw-semibold mb-2">
-                    👤 ${t.display_name} • <span class="text-primary">${t.department}</span>
-                  </div>
+        // Filtre aktifse en az 1 kriteri tutan veya tüm kriterleri tutanları filtrele ve uyum yüzdesine göre sırala
+        const hasFilter = evaluated[0] && evaluated[0].match.hasActiveFilter;
+        if (filterNotice) {
+          filterNotice.style.display = hasFilter ? 'inline-block' : 'none';
+        }
 
-                  <!-- Devlet İstihdam Teşviki Rozeti (MeetWork Süper Kozu) -->
-                  <div class="p-2 rounded-3 bg-success bg-opacity-10 border border-success border-opacity-25 mb-3">
-                    <div class="small fw-bold text-success">${t.subsidy_badge || '💰 KOSGEB / İŞKUR İstihdam Teşvikine Uygun'}</div>
-                  </div>
+        let filtered = evaluated;
+        if (hasFilter) {
+          filtered = evaluated.filter(item => item.match.matchesAll);
+          filtered.sort((a, b) => b.match.score - a.match.score);
+        }
 
-                  <!-- Tıklanabilir Yetenek Etiketleri -->
-                  <div class="d-flex flex-wrap gap-1 mb-2">
-                    ${skillsHtml}
-                  </div>
-                  <div class="d-flex flex-wrap gap-1 mb-3">
-                    ${langsHtml}
-                  </div>
+        if (countEl) countEl.textContent = String(filtered.length);
 
-                  <p class="small text-muted mb-3">${t.bio_summary || ''}</p>
-                </div>
-
-                <!-- Alt Bar: Maaş Beklentisi & Mülakat Teklifi Butonu -->
-                <div class="pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-2">
-                  <div>
-                    <div class="text-muted" style="font-size:0.72rem;">Maaş / Hakediş Beklentisi (${t.work_mode})</div>
-                    <div class="fw-bold text-dark tabular-nums">${t.salary_expectation}</div>
-                  </div>
-                  <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-dark btn-sm fw-bold px-3 py-2 rounded-3" onclick="openInviteModal('${t.id}', '${(t.display_name || '').replace(/'/g, '')}', '${(t.headline || '').replace(/'/g, '')}', '${(t.salary_expectation || '').replace(/'/g, '')}')">
-                      🤝 Mülakat Teklifi Gönder
-                    </button>
-                  </div>
-                </div>
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="col-12">
+              <div class="mw-panel-card p-4 text-center">
+                <i class="bi bi-search fs-2 text-danger"></i>
+                <h6 class="fw-bold mt-2 mb-1">Seçtiğiniz tüm filtre kriterleriyle eşleşen aday bulunamadı</h6>
+                <p class="small text-muted mb-3">Filtrelerden birini gevşeterek tüm doğrulanmış adayları görüntüleyebilirsiniz.</p>
+                <button type="button" class="btn btn-sm btn-outline-danger fw-bold" onclick="document.getElementById('fltResetAllBtn').click()">
+                  Filtreleri Sıfırla & Tüm Adayları Göster
+                </button>
               </div>
             </div>
-          </div>
-        `;
-      }).join('');
-    }
+          `;
+          return;
+        }
 
-    // 2. Render Jobs (Açık İş & Dönemsel Uzman İlanları)
-    const filteredJobs = allJobs.filter((j) => {
-      if (!kw) return true;
-      const hay = `${j.title} ${j.company_name} ${j.department} ${(j.required_skills_list || []).join(' ')} ${j.description || ''}`.toLowerCase();
-      return hay.includes(kw);
-    });
+        grid.innerHTML = filtered.map(({ talent: t, match }) => {
+          const realName = t.full_name || t.display_name || 'Doğrulanmış Aday';
+          const photoUrl = t.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(realName)}&background=dc3545&color=fff&size=200&bold=true`;
+          const roleSub = t.role_subtitle || t.headline || 'B2B Uzman Aday';
+          const dept = t.department || 'B2B Uzmanlık';
+          const skills = Array.isArray(t.skills_list) ? t.skills_list : [];
+          const langs = Array.isArray(t.languages_list) ? t.languages_list : [];
+          const targetSector = t.target_sector || 'Tekstil';
+          const targetPosition = t.target_position || 'IT Uzmanı';
 
-    const jGrid = document.getElementById('jobsGrid');
-    if (filteredJobs.length === 0) {
-      jGrid.innerHTML = `<div class="col-12"><div class="alert alert-light border text-center py-4">Bu filtreye uygun açık iş ilanı bulunamadı.</div></div>`;
-    } else {
-      jGrid.innerHTML = filteredJobs.map((j) => {
-        const reqHtml = (j.required_skills_list || []).map((s) =>
-          `<span class="badge bg-warning bg-opacity-25 text-dark border border-warning fw-semibold px-2 py-1">${s}</span>`
-        ).join(' ');
-        const benHtml = (j.benefits_list || []).map((b) =>
-          `<span class="badge bg-light text-secondary border px-2 py-1">✓ ${b}</span>`
-        ).join(' ');
-        const badgeHtml = Number(j.trust_level) >= 3
-          ? `<span class="badge bg-warning text-dark fw-bold">🥇 Gold Onaylı İşveren</span>`
-          : `<span class="badge bg-secondary text-white fw-bold">🥈 Silver Onaylı İşveren</span>`;
+          const badgeHtml = match.hasActiveFilter
+            ? `<span class="badge bg-success tabular-nums" style="font-size:0.68rem;">%${match.score} Uyum & Doğrulama</span>`
+            : `<span class="badge bg-dark-subtle text-body border" style="font-size:0.66rem;"><i class="bi bi-patch-check-fill text-success me-1"></i>Doğrulanmış Özgeçmiş</span>`;
 
-        return `
-          <div class="col-lg-6">
-            <div class="card job-bento-card shadow-sm rounded-4 h-100">
-              <div class="card-body p-4 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
-                    <div class="d-flex align-items-center gap-2">
+          return `
+            <div class="col-xl-4 col-md-6 col-12">
+              <article class="mw-candidate-card p-3 shadow-sm">
+                <!-- 1. Fotoğraf Sağında İsim (h2), Altında Uzmanlık (h3), Altında Konum & Deneyim -->
+                <div class="d-flex align-items-start gap-2 mb-2">
+                  <img
+                    src="${photoUrl}"
+                    alt="${realName}"
+                    class="mw-candidate-photo"
+                    loading="lazy"
+                  />
+                  <div class="min-w-0 flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start gap-1">
+                      <h2 class="mw-candidate-h2 text-truncate" title="${realName}">
+                        👤 ${realName}
+                      </h2>
+                    </div>
+                    <h3 class="mw-candidate-h3">
+                      (${roleSub}) • ${dept}
+                    </h3>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mt-1">
+                      <span class="mw-candidate-meta">
+                        📍 ${t.city || 'İstanbul'} • ⏱️ ${t.experience_years || 5} Yıl Deneyim
+                      </span>
                       ${badgeHtml}
-                      <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold">${j.work_mode}</span>
                     </div>
-                    <span class="small text-muted tabular-nums">#${j.job_no} • 📍 ${j.city}</span>
-                  </div>
-
-                  <h3 class="h5 fw-bold text-dark mb-1">${j.title}</h3>
-                  <div class="small fw-semibold mb-2">
-                    <a href="/isletmeler?firma=${j.company_slug || j.company_id}" class="text-decoration-none text-primary">
-                      🏢 ${j.company_name} ↗
-                    </a>
-                    <span class="text-muted"> • ${j.department} (${j.experience_level})</span>
-                  </div>
-
-                  <div class="p-2 rounded-3 bg-warning bg-opacity-10 border border-warning border-opacity-25 mb-3">
-                    <div class="small fw-bold text-dark">${j.subsidy_note || '🏛️ Devlet İstihdam Teşvikli Kadro'}</div>
-                  </div>
-
-                  <div class="mb-2">
-                    <div class="text-muted small fw-bold mb-1" style="font-size:0.74rem;">Aranan Temel Yetkinlikler:</div>
-                    <div class="d-flex flex-wrap gap-1">${reqHtml}</div>
-                  </div>
-
-                  <div class="mb-3">
-                    <div class="text-muted small fw-bold mb-1" style="font-size:0.74rem;">Yan Haklar & Olanaklar:</div>
-                    <div class="d-flex flex-wrap gap-1">${benHtml}</div>
-                  </div>
-
-                  <p class="small text-muted mb-3">${j.description || ''}</p>
-                </div>
-
-                <div class="pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-2">
-                  <div>
-                    <div class="text-muted" style="font-size:0.72rem;">Teklif Edilen Maaş / Bütçe Aralığı</div>
-                    <div class="fw-bold text-success tabular-nums">${j.salary_range}</div>
-                  </div>
-                  <div class="d-flex gap-2">
-                    <a href="/isletmeler?firma=${j.company_slug || j.company_id}" class="btn btn-outline-secondary btn-sm rounded-3">Şirketi İncele</a>
-                    <button type="button" class="btn btn-primary btn-sm fw-bold px-3 rounded-3" onclick="quickApplyJob('${j.id}', '${(j.title || '').replace(/'/g, '')}', '${j.company_id}', '${(j.company_name || '').replace(/'/g, '')}')">
-                      ⚡ 1-Tıkla Başvur
-                    </button>
                   </div>
                 </div>
-              </div>
+
+                <!-- 2. Pozisyon Başlığı -->
+                <div class="fw-bold small mb-2" style="font-size:0.8rem; line-height:1.35;">
+                  ${t.headline || roleSub}
+                </div>
+
+                <!-- 3. Devlet İstihdam Teşviki Bandı -->
+                <div class="mw-subsidy-strip mb-2">
+                  ${t.subsidy_badge || '💰 SGK 6111 & KOSGEB Nitelikli Personel Teşvikine Uygun'}
+                </div>
+
+                <!-- 4. Yetenek & Yabancı Dil Etiketleri -->
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  ${skills.slice(0, 6).map(sk => `<span class="mw-skill-chip">${sk}</span>`).join('')}
+                  ${langs.map(lg => `<span class="mw-lang-chip">🗣️ ${lg}</span>`).join('')}
+                </div>
+
+                <!-- 5. Kısa Uzmanlık Özeti -->
+                <p class="small text-muted mb-2" style="font-size:0.74rem; line-height:1.45;">
+                  ${t.bio_summary || ''}
+                </p>
+
+                <!-- 6. İş Aradığı Sektör & Pozisyon -->
+                <div class="mw-target-box mb-2">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-muted">İş aradığı sektör :</span>
+                    <strong class="text-danger">${targetSector}</strong>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted">İş aradığı pozisyon :</span>
+                    <strong style="color:var(--mw-text);">${targetPosition}</strong>
+                  </div>
+                </div>
+
+                <!-- 7. Alt Maaş Beklentisi & Mülakat Teklifi Butonu -->
+                <div class="mt-auto pt-2 border-top" style="border-color:var(--mw-border)!important;">
+                  <div class="d-flex justify-content-between align-items-end mb-2">
+                    <div>
+                      <div class="text-muted" style="font-size:0.66rem;">
+                        Maaş / Hakediş Beklentisi (${t.work_mode || 'Tam Zamanlı'})
+                      </div>
+                      <div class="fw-black text-danger tabular-nums" style="font-size:0.9rem;">
+                        ${t.salary_expectation || '60.000 TL – 85.000 TL'}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm w-100 fw-bold py-1"
+                    onclick="window.mwOpenInviteModal('${t.id}', '${realName.replace(/'/g, "\\'")}', '${targetPosition.replace(/'/g, "\\'")}', '${(t.salary_expectation || '').replace(/'/g, "\\'")}')"
+                  >
+                    🤝 Mülakat Teklifi Gönder
+                  </button>
+                </div>
+              </article>
             </div>
-          </div>
-        `;
-      }).join('');
-    }
-  }
-
-  function renderInteractions() {
-    const countEl = document.getElementById('myInteractionsCount');
-    const listEl = document.getElementById('myInteractionsList');
-    countEl.textContent = myInteractions.length;
-    if (myInteractions.length === 0) return;
-
-    listEl.innerHTML = myInteractions.map((item) => {
-      const isInvite = item.interaction_type === 'employer_invite';
-      const statusBadge = item.status === 'accepted'
-        ? `<span class="badge bg-success">✅ Onaylandı (İletişim Açıldı)</span>`
-        : item.status === 'rejected'
-          ? `<span class="badge bg-danger">❌ Reddedildi (Gizli Kaldı)</span>`
-          : `<span class="badge bg-warning text-dark">⏳ Yanıt Bekliyor</span>`;
-
-      return `
-        <div class="p-3 rounded-3 border mb-2 bg-light">
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <span class="fw-bold small text-dark">${isInvite ? '🤝 İşveren Mülakat Teklifi' : '⚡ İş Başvurusu'}: ${item.job_title}</span>
-            ${statusBadge}
-          </div>
-          <div class="small text-muted mb-1">
-            🏢 <strong>${item.company_name}</strong> • 💰 Teklif: <strong class="text-success tabular-nums">${item.offered_salary || 'Görüşmede'}</strong>
-          </div>
-          <p class="small text-secondary mb-2">${item.message || ''}</p>
-          ${item.status === 'pending' ? `
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-success fw-bold" onclick="respondToInvite('${item.id}', 'accepted')">
-                ✅ Teklifi Kabul Et & İletişim Bilgimi Aç
-              </button>
-              <button class="btn btn-sm btn-outline-danger" onclick="respondToInvite('${item.id}', 'rejected')">
-                ❌ Reddet (Gizli Kal)
-              </button>
-            </div>
-          ` : ''}
-        </div>
-      `;
-    }).join('');
-  }
-
-  window.openInviteModal = function(talentId, talentName, headline, salaryExp) {
-    const user = getStoredUser();
-    document.getElementById('invTalentId').value = talentId;
-    document.getElementById('invTalentName').value = talentName;
-    document.getElementById('invCompanyName').value = (user && user.company_name) || '';
-    document.getElementById('invJobTitle').value = headline || 'Uzman Pozisyonu';
-    document.getElementById('invOfferedSalary').value = salaryExp || '60.000 TL';
-    document.getElementById('invContactPhone').value = (user && user.phone) || '';
-    const modal = new bootstrap.Modal(document.getElementById('inviteCandidateModal'));
-    modal.show();
-  };
-
-  document.getElementById('inviteCandidateForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const user = getStoredUser();
-    const payload = {
-      interaction_type: 'employer_invite',
-      talent_id: document.getElementById('invTalentId').value,
-      talent_name: document.getElementById('invTalentName').value,
-      company_id: (user && user.company_id) || 'comp_employer',
-      company_name: document.getElementById('invCompanyName').value,
-      job_title: document.getElementById('invJobTitle').value,
-      offered_salary: document.getElementById('invOfferedSalary').value,
-      contact_phone: document.getElementById('invContactPhone').value,
-      message: document.getElementById('invMessage').value
-    };
-    const res = await fetch(`${CAREER_API}/api/career/interact`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    alert(data.message || 'Mülakat teklifiniz iletildi!');
-    bootstrap.Modal.getInstance(document.getElementById('inviteCandidateModal'))?.hide();
-    loadCareerOverview();
-  });
-
-  window.quickApplyJob = async function(jobId, jobTitle, companyId, companyName) {
-    const user = getStoredUser();
-    const candidateName = (user && user.full_name) || prompt('Adınız Soyadınız ve Uzmanlığınız:', 'Aday Uzman');
-    if (!candidateName) return;
-    const phone = (user && user.phone) || prompt('İşverenin size ulaşacağı telefon numaranız:', '05320000000');
-    if (!phone) return;
-
-    const res = await fetch(`${CAREER_API}/api/career/interact`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        interaction_type: 'candidate_apply',
-        job_id: jobId,
-        job_title: jobTitle,
-        talent_id: (user && user.id) || 'tln_quick',
-        talent_name: candidateName,
-        company_id: companyId,
-        company_name: companyName,
-        contact_phone: phone,
-        message: '1-Tıkla Akıllı Yetenek Kartı ile başvuruldu.'
-      })
-    });
-    const data = await res.json();
-    alert(data.message || 'Başvurunuz işverene iletildi!');
-    loadCareerOverview();
-  };
-
-  window.respondToInvite = async function(interactionId, status) {
-    const res = await fetch(`${CAREER_API}/api/career/interact/${interactionId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status })
-    });
-    const data = await res.json();
-    alert(data.message);
-    loadCareerOverview();
-  };
-
-  // Save 90-Second Talent Card
-  document.getElementById('talentProfileForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const user = getStoredUser();
-    const selectedPills = Array.from(document.querySelectorAll('.skill-pill-btn.active')).map((b) => b.getAttribute('data-val'));
-    const extra = (document.getElementById('tlExtraSkills').value || '').split(',').map((s) => s.trim()).filter(Boolean);
-    const allSkills = [...selectedPills, ...extra];
-
-    const payload = {
-      user_id: (user && user.id) || 'usr_candidate',
-      full_name: document.getElementById('tlFullName').value,
-      headline: document.getElementById('tlHeadline').value,
-      phone: document.getElementById('tlPhone').value,
-      email: document.getElementById('tlEmail').value,
-      department: document.getElementById('tlDepartment').value,
-      experience_years: Number(document.getElementById('tlExpYears').value || 4),
-      city: document.getElementById('tlCity').value,
-      work_mode: document.getElementById('tlWorkMode').value,
-      salary_expectation: document.getElementById('tlSalary').value,
-      skills_tags: allSkills,
-      age: Number(document.getElementById('tlAge').value || 27),
-      gender: document.getElementById('tlGender').value,
-      education_level: document.getElementById('tlEducation').value,
-      has_vocational_cert: Number(document.getElementById('tlVocCert').value) === 1,
-      is_currently_unemployed: true,
-      is_anonymous: document.getElementById('tlAnonymous').checked,
-      blocked_companies: document.getElementById('tlBlockedCompanies').value,
-      bio_summary: document.getElementById('tlBio').value
-    };
-
-    const res = await fetch(`${CAREER_API}/api/career/talent`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (data.success) {
-      alert(`🎉 ${data.message}\n\nHesaplanan Teşvik Rozetiniz:\n${data.subsidy?.subsidy_badge || ''}`);
-      await loadCareerOverview();
-      switchCareerTab('talents');
-    }
-  });
-
-  // Post Employer Job Listing
-  document.getElementById('postJobForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const user = getStoredUser();
-    const skills = (document.getElementById('jbSkills').value || '').split(',').map((s) => s.trim()).filter(Boolean);
-    const benefits = (document.getElementById('jbBenefits').value || '').split(',').map((s) => s.trim()).filter(Boolean);
-
-    const payload = {
-      company_id: (user && user.company_id) || 'comp_meetwork_hq',
-      company_name: document.getElementById('jbCompanyName').value,
-      title: document.getElementById('jbTitle').value,
-      department: document.getElementById('jbDepartment').value,
-      city: document.getElementById('jbCity').value,
-      work_mode: document.getElementById('jbWorkMode').value,
-      experience_level: document.getElementById('jbExpLevel').value,
-      salary_range: document.getElementById('jbSalary').value,
-      required_skills: skills,
-      benefits: benefits,
-      subsidy_note: document.getElementById('jbSubsidyNote').value,
-      description: document.getElementById('jbDesc').value
-    };
-
-    const res = await fetch(`${CAREER_API}/api/career/job`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (data.success) {
-      alert(`🎉 ${data.message}`);
-      await loadCareerOverview();
-      switchCareerTab('jobs');
-    }
-  });
-
-  document.getElementById('btnApplyCareerFilter')?.addEventListener('click', loadCareerOverview);
-  document.getElementById('filterDept')?.addEventListener('change', loadCareerOverview);
-  document.getElementById('filterCity')?.addEventListener('change', loadCareerOverview);
-  document.getElementById('filterWorkMode')?.addEventListener('change', loadCareerOverview);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const user = getStoredUser();
-    if (user) {
-      if (user.company_name && document.getElementById('jbCompanyName')) {
-        document.getElementById('jbCompanyName').value = user.company_name;
+          `;
+        }).join('');
       }
-      if (user.full_name && document.getElementById('tlFullName')) {
-        document.getElementById('tlFullName').value = user.full_name;
+
+      async function loadTalentsFromApi() {
+        renderTalentsGrid();
+        try {
+          const res = await fetch(`${API_URL}/api/career/overview`);
+          const data = await res.json();
+          if (data && Array.isArray(data.talents) && data.talents.length > 0) {
+            allTalents = data.talents;
+            renderTalentsGrid();
+          }
+        } catch (_) {}
       }
-    }
-    const urlTab = new URLSearchParams(window.location.search).get('tab');
-    if (urlTab) switchCareerTab(urlTab);
-    loadCareerOverview();
-  });
-</script>
+
+      window.mwOpenInviteModal = function (id, name, pos, salary) {
+        document.getElementById('invTalentId').value = id;
+        document.getElementById('invTalentName').textContent = name;
+        document.getElementById('invJobTitle').value = pos || '';
+        document.getElementById('invOfferedSalary').value = salary || '';
+        const fb = document.getElementById('invFeedback');
+        if (fb) fb.style.display = 'none';
+
+        try {
+          const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (u) {
+            if (u.company_name) document.getElementById('invCompanyName').value = u.company_name;
+            if (u.phone) document.getElementById('invContactPhone').value = u.phone;
+          }
+        } catch (_) {}
+
+        const modalEl = document.getElementById('mwInviteTalentModal');
+        if (modalEl && window.bootstrap) {
+          new window.bootstrap.Modal(modalEl).show();
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Sadece kurumsal üye girişi varsa "İşletmem İçin İlan Aç" butonunu göster
+        try {
+          const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          const empBtn = document.getElementById('mwEmployerPostJobBtn');
+          if (u && u.company_id && empBtn) {
+            empBtn.style.display = 'inline-flex';
+            if (u.company_slug) {
+              empBtn.setAttribute('href', `/isletmeler?firma=${encodeURIComponent(u.company_slug)}#mwEmployerHrPanel`);
+            }
+          }
+        } catch (_) {}
+
+        loadTalentsFromApi();
+
+        ['fltDepartment', 'fltTargetSector', 'fltTargetPosition', 'fltCity', 'fltWorkMode'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('change', renderTalentsGrid);
+        });
+
+        const sq = document.getElementById('fltSkillQuery');
+        if (sq) sq.addEventListener('input', renderTalentsGrid);
+
+        document.querySelectorAll('.mw-quick-filter-tag').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const val = btn.getAttribute('data-skill') || '';
+            const input = document.getElementById('fltSkillQuery');
+            if (!input) return;
+            if (input.value === val) {
+              input.value = '';
+              btn.classList.remove('active');
+            } else {
+              document.querySelectorAll('.mw-quick-filter-tag').forEach(b => b.classList.remove('active'));
+              input.value = val;
+              btn.classList.add('active');
+            }
+            renderTalentsGrid();
+          });
+        });
+
+        const resetBtn = document.getElementById('fltResetAllBtn');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            document.getElementById('mwCandidateFilterForm').reset();
+            document.querySelectorAll('.mw-quick-filter-tag').forEach(b => b.classList.remove('active'));
+            renderTalentsGrid();
+          });
+        }
+
+        const invForm = document.getElementById('mwInviteTalentForm');
+        if (invForm) {
+          invForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let u = null;
+            try { u = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+            const fb = document.getElementById('invFeedback');
+
+            const payload = {
+              interaction_type: 'employer_invite',
+              talent_id: document.getElementById('invTalentId').value,
+              talent_name: document.getElementById('invTalentName').textContent,
+              company_id: u ? u.company_id : '',
+              company_name: document.getElementById('invCompanyName').value,
+              contact_phone: document.getElementById('invContactPhone').value,
+              job_title: document.getElementById('invJobTitle').value,
+              offered_salary: document.getElementById('invOfferedSalary').value,
+              message: document.getElementById('invMessage').value
+            };
+
+            try {
+              const res = await fetch(`${API_URL}/api/career/interact`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const out = await res.json();
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'col-12 small fw-bold text-success';
+                fb.textContent = out.message || '✓ Mülakat teklifiniz adaya başarıyla iletildi!';
+              }
+            } catch (_) {}
+          });
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

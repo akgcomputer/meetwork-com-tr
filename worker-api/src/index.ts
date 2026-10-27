@@ -289,6 +289,10 @@ async function ensureSchema(db: D1Database) {
       user_id TEXT DEFAULT '',
       full_name TEXT NOT NULL,
       masked_name TEXT DEFAULT '',
+      photo_url TEXT DEFAULT '',
+      role_subtitle TEXT DEFAULT '',
+      target_sector TEXT DEFAULT 'Tekstil & Hazır Giyim',
+      target_position TEXT DEFAULT 'Uzman / Yönetici',
       phone TEXT DEFAULT '',
       email TEXT DEFAULT '',
       city TEXT DEFAULT 'İstanbul',
@@ -306,7 +310,7 @@ async function ensureSchema(db: D1Database) {
       gender TEXT DEFAULT 'Erkek',
       is_currently_unemployed INTEGER DEFAULT 1,
       has_vocational_cert INTEGER DEFAULT 1,
-      is_anonymous INTEGER DEFAULT 1,
+      is_anonymous INTEGER DEFAULT 0,
       blocked_companies TEXT DEFAULT '',
       is_verified_skill INTEGER DEFAULT 1,
       verification_score INTEGER DEFAULT 95,
@@ -356,11 +360,9 @@ async function ensureSchema(db: D1Database) {
   ];
 
   try {
-    await db.prepare(`SELECT headline FROM mw_talent_profiles LIMIT 1`).first();
+    await db.prepare(`SELECT target_sector, target_position, photo_url FROM mw_talent_profiles LIMIT 1`).first();
   } catch (_) {
     try { await db.prepare(`DROP TABLE IF EXISTS mw_talent_profiles`).run(); } catch (_) {}
-    try { await db.prepare(`DROP TABLE IF EXISTS mw_job_postings`).run(); } catch (_) {}
-    try { await db.prepare(`DROP TABLE IF EXISTS mw_career_interactions`).run(); } catch (_) {}
   }
 
   for (const sql of statements) {
@@ -375,7 +377,11 @@ async function ensureSchema(db: D1Database) {
     `ALTER TABLE mw_grant_programs ADD COLUMN deadline_date TEXT DEFAULT '2026-12-31'`,
     `ALTER TABLE mw_grant_programs ADD COLUMN call_status TEXT DEFAULT 'open'`,
     `ALTER TABLE mw_grant_applications ADD COLUMN service_mode TEXT DEFAULT 'expert_assisted'`,
-    `ALTER TABLE mw_tenders ADD COLUMN min_trust_level INTEGER DEFAULT 1`
+    `ALTER TABLE mw_tenders ADD COLUMN min_trust_level INTEGER DEFAULT 1`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN photo_url TEXT DEFAULT ''`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN role_subtitle TEXT DEFAULT ''`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN target_sector TEXT DEFAULT 'Tekstil'`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN target_position TEXT DEFAULT 'IT Uzmanı'`
   ];
 
   for (const alt of alterMigrations) {
@@ -2376,13 +2382,51 @@ function evaluateWageSubsidyForTalent(talent: any) {
 
 async function ensureInitialCareerEcosystem(db: D1Database) {
   const tCount = await db.prepare(`SELECT COUNT(*) as cnt FROM mw_talent_profiles`).first() as any;
-  if (!tCount || Number(tCount.cnt) === 0) {
+  if (!tCount || Number(tCount.cnt) < 6) {
     const sampleTalents = [
+      {
+        id: 'tln_emir_aksu',
+        user_id: 'usr_talent_5',
+        full_name: 'Emir Aksu',
+        masked_name: 'Emir Aksu',
+        photo_url: 'https://ui-avatars.com/api/?name=Emir+Aksu&background=dc3545&color=fff&size=200&bold=true',
+        role_subtitle: 'Full-Stack Yazılım, AI & Bulut ERP Mimarı',
+        target_sector: 'Tekstil',
+        target_position: 'IT Uzmanı',
+        phone: '05412465429',
+        email: 'emir.aksu@ornek.com',
+        city: 'İstanbul',
+        district: 'Kadıköy',
+        headline: 'Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı',
+        department: 'Yazılım, Teknoloji & Ar-Ge',
+        seniority: 'Kıdemli / Uzman (5-10 Yıl)',
+        experience_years: 6,
+        work_mode: 'Uzaktan (Remote) / Proje Bazlı',
+        salary_expectation: '75.000 TL – 110.000 TL',
+        skills_tags: JSON.stringify(['TypeScript & Node.js', 'React & Astro', 'Cloudflare Edge & D1', 'ERP API Entegrasyonu', 'Yapay Zekâ Eşleştirme', 'TÜBİTAK Ar-Ge Personeli']),
+        languages: JSON.stringify(['İngilizce (İleri - C1)']),
+        education_level: 'Lisans',
+        age: 27,
+        gender: 'Erkek',
+        is_currently_unemployed: 1,
+        has_vocational_cert: 1,
+        is_anonymous: 0,
+        blocked_companies: '',
+        is_verified_skill: 1,
+        verification_score: 99,
+        subsidy_eligible: 1,
+        subsidy_badge: '💰 TÜBİTAK 1507 / Teknopark %100 Gelir Vergisi Muafiyeti + KOSGEB Ar-Ge',
+        bio_summary: 'B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.'
+      },
       {
         id: 'tln_1',
         user_id: 'usr_talent_1',
         full_name: 'Merve Karahan',
-        masked_name: 'M*** K*** (Doğrulanmış Dış Ticaret & E-İhracat Uzmanı)',
+        masked_name: 'Merve Karahan',
+        photo_url: 'https://ui-avatars.com/api/?name=Merve+Karahan&background=0d6efd&color=fff&size=200&bold=true',
+        role_subtitle: 'Uluslararası B2B Satış, İhracat & Gümrük Uzmanı',
+        target_sector: 'Tekstil & Hazır Giyim',
+        target_position: 'İhracat Müdürü',
         phone: '05324001122',
         email: 'merve.ihracat@ornek.com',
         city: 'İstanbul',
@@ -2393,15 +2437,15 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         experience_years: 7,
         work_mode: 'Tam Zamanlı / Hibrit',
         salary_expectation: '55.000 TL – 75.000 TL',
-        skills_tags: JSON.stringify(['İhracat Operasyonu', 'Gümrük & Akreditif', 'DepodanDirekt B2B', 'AB Pazarı Müşteri Bulma', 'Kosgeb / Ticaret Bak. Teşvikleri', 'StokPratik ERP']),
-        languages: JSON.stringify(['İngilizce (İleri - C1)', 'Almanca (Orta - B1)', 'Arapça (Başlangıç)']),
+        skills_tags: JSON.stringify(['İhracat Operasyonu', 'Gümrük & Akreditif', 'DepodanDirekt B2B', 'AB Pazarı Müşteri Bulma', 'Ticaret Bak. 5973 Teşvikleri', 'StokPratik ERP']),
+        languages: JSON.stringify(['İngilizce (İleri - C1)', 'Almanca (Orta - B1)']),
         education_level: 'Lisans',
         age: 28,
         gender: 'Kadın',
         is_currently_unemployed: 1,
         has_vocational_cert: 1,
-        is_anonymous: 1,
-        blocked_companies: 'Eski Lojistik A.Ş.',
+        is_anonymous: 0,
+        blocked_companies: '',
         is_verified_skill: 1,
         verification_score: 96,
         subsidy_eligible: 1,
@@ -2412,7 +2456,11 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         id: 'tln_2',
         user_id: 'usr_talent_2',
         full_name: 'Burak Demirci',
-        masked_name: 'B*** D*** (Doğrulanmış CNC & Üretim Planlama Mühendisi)',
+        masked_name: 'Burak Demirci',
+        photo_url: 'https://ui-avatars.com/api/?name=Burak+Demirci&background=198754&color=fff&size=200&bold=true',
+        role_subtitle: 'CNC Lazer, Talaşlı İmalat & Kalite Kontrol Mühendisi',
+        target_sector: 'Makine & Ekipman Üretimi',
+        target_position: 'Üretim Planlama & Fabrika Şefi',
         phone: '05335002233',
         email: 'burak.uretim@ornek.com',
         city: 'Bursa',
@@ -2430,7 +2478,7 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         gender: 'Erkek',
         is_currently_unemployed: 1,
         has_vocational_cert: 1,
-        is_anonymous: 1,
+        is_anonymous: 0,
         blocked_companies: '',
         is_verified_skill: 1,
         verification_score: 94,
@@ -2442,7 +2490,11 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         id: 'tln_3',
         user_id: 'usr_talent_3',
         full_name: 'Selin Yılmazer',
-        masked_name: 'S*** Y*** (Doğrulanmış E-Dönüşüm, ERP & Ön Muhasebe Uzmanı)',
+        masked_name: 'Selin Yılmazer',
+        photo_url: 'https://ui-avatars.com/api/?name=Selin+Yilmazer&background=6f42c1&color=fff&size=200&bold=true',
+        role_subtitle: 'E-Dönüşüm, Bulut ERP & Maliyet Muhasebesi Uzmanı',
+        target_sector: 'Gıda, Tarım & İçecek',
+        target_position: 'ERP & Finansman Yöneticisi',
         phone: '05446003344',
         email: 'selin.finans@ornek.com',
         city: 'İstanbul',
@@ -2472,7 +2524,11 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         id: 'tln_4',
         user_id: 'usr_talent_4',
         full_name: 'Kaan Özkan',
-        masked_name: 'K*** Ö*** (B2B Kurumsal Satış & Satınalma İhale Uzmanı)',
+        masked_name: 'Kaan Özkan',
+        photo_url: 'https://ui-avatars.com/api/?name=Kaan+Ozkan&background=d97706&color=fff&size=200&bold=true',
+        role_subtitle: 'B2B Endüstriyel Satınalma & Tedarikçi E-İhale Uzmanı',
+        target_sector: 'Metal & Çelik Üretim',
+        target_position: 'Satınalma & İhale Müdürü',
         phone: '05357004455',
         email: 'kaan.satis@ornek.com',
         city: 'Kocaeli',
@@ -2482,7 +2538,7 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         seniority: 'Kıdemli / Uzman (5-10 Yıl)',
         experience_years: 6,
         work_mode: 'Tam Zamanlı / Proje Bazlı (Fractional)',
-        salary_expectation: '50.000 TL + Prim',
+        salary_expectation: '50.000 TL – 68.000 TL',
         skills_tags: JSON.stringify(['B2B Bayi Ağı Kurulumu', 'Tedarikçi E-İhale (RFQ)', 'Sözleşme & Maliyet Kıstırma', 'Sanayi & Hammadde Tedariki', 'CRM & Bayi Yönetimi']),
         languages: JSON.stringify(['İngilizce (İleri - C1)']),
         education_level: 'Lisans',
@@ -2490,8 +2546,8 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         gender: 'Erkek',
         is_currently_unemployed: 0,
         has_vocational_cert: 1,
-        is_anonymous: 1,
-        blocked_companies: 'Gebze Metal Sanayi',
+        is_anonymous: 0,
+        blocked_companies: '',
         is_verified_skill: 1,
         verification_score: 92,
         subsidy_eligible: 1,
@@ -2499,52 +2555,56 @@ async function ensureInitialCareerEcosystem(db: D1Database) {
         bio_summary: 'Fabrikaların yıllık hammadde/yarı mamul satınalma ihalelerini yöneterek ortalama %18 maliyet tasarrufu sağlayan kıdemli B2B tedarik ve satış uzmanı.'
       },
       {
-        id: 'tln_5',
-        user_id: 'usr_talent_5',
-        full_name: 'Emre Aydın',
-        masked_name: 'E*** A*** (Full-Stack Yazılım, AI & Bulut ERP Mimarı)',
-        phone: '05412465429',
-        email: 'emre.dev@ornek.com',
-        city: 'İstanbul',
-        district: 'Kadıköy',
-        headline: 'Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı',
-        department: 'Yazılım, Teknoloji & Ar-Ge',
-        seniority: 'Kıdemli / Uzman (5-10 Yıl)',
-        experience_years: 6,
-        work_mode: 'Uzaktan (Remote) / Proje Bazlı',
-        salary_expectation: '75.000 TL – 110.000 TL',
-        skills_tags: JSON.stringify(['TypeScript & Node.js', 'React & Astro', 'Cloudflare Edge & D1', 'ERP API Entegrasyonu', 'Yapay Zekâ Eşleştirme', 'TÜBİTAK Ar-Ge Personeli']),
+        id: 'tln_6',
+        user_id: 'usr_talent_6',
+        full_name: 'Zeynep Soylu',
+        masked_name: 'Zeynep Soylu',
+        photo_url: 'https://ui-avatars.com/api/?name=Zeynep+Soylu&background=0f766e&color=fff&size=200&bold=true',
+        role_subtitle: 'Tedarik Zinciri, Antrepo & Uluslararası Lojistik Uzmanı',
+        target_sector: 'Lojistik, Nakliyat & Filo',
+        target_position: 'Lojistik Operasyon Yöneticisi',
+        phone: '05368005566',
+        email: 'zeynep.lojistik@ornek.com',
+        city: 'İzmir',
+        district: 'Bornova',
+        headline: 'Uluslararası Nakliyat, Filo Planlama & Depo Otomasyon Yöneticisi',
+        department: 'Lojistik, Depo & Filo',
+        seniority: 'Uzman (3-5 Yıl)',
+        experience_years: 5,
+        work_mode: 'Tam Zamanlı / Hibrit',
+        salary_expectation: '48.000 TL – 65.000 TL',
+        skills_tags: JSON.stringify(['Uluslararası Kara/Deniz Nakliyat', 'WMS & Depo Otomasyonu', 'StokPratik Depo', 'ADR & Gümrük Mevzuatı', 'Filo Rota Optimizasyonu']),
         languages: JSON.stringify(['İngilizce (İleri - C1)']),
         education_level: 'Lisans',
         age: 27,
-        gender: 'Erkek',
+        gender: 'Kadın',
         is_currently_unemployed: 1,
         has_vocational_cert: 1,
-        is_anonymous: 1,
+        is_anonymous: 0,
         blocked_companies: '',
         is_verified_skill: 1,
-        verification_score: 99,
+        verification_score: 95,
         subsidy_eligible: 1,
-        subsidy_badge: '💰 TÜBİTAK 1507 / Teknopark %100 Gelir Vergisi Muafiyeti + KOSGEB Ar-Ge',
-        bio_summary: 'B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.'
+        subsidy_badge: '💰 %70 KOSGEB Maaş Hibesi + SGK 6111 Genç Kadın Teşvikine Uygun',
+        bio_summary: 'Ege ve Marmara bölgesi ihracatçı fabrikaların konteyner, parsiyel yük ve akıllı depo (WMS/ERP) süreçlerinde 5 yıl saha ve yönetim tecrübesi.'
       }
     ];
 
     for (const t of sampleTalents) {
       await db.prepare(
-        `INSERT OR IGNORE INTO mw_talent_profiles (
-           id, user_id, full_name, masked_name, phone, email, city, district,
-           headline, department, seniority, experience_years, work_mode, salary_expectation,
-           skills_tags, languages, education_level, age, gender, is_currently_unemployed,
-           has_vocational_cert, is_anonymous, blocked_companies, is_verified_skill,
-           verification_score, subsidy_eligible, subsidy_badge, bio_summary
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        `INSERT OR REPLACE INTO mw_talent_profiles (
+           id, user_id, full_name, masked_name, photo_url, role_subtitle, target_sector, target_position,
+           phone, email, city, district, headline, department, seniority, experience_years,
+           work_mode, salary_expectation, skills_tags, languages, education_level, age, gender,
+           is_currently_unemployed, has_vocational_cert, is_anonymous, blocked_companies,
+           is_verified_skill, verification_score, subsidy_eligible, subsidy_badge, bio_summary
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(
-        t.id, t.user_id, t.full_name, t.masked_name, t.phone, t.email, t.city, t.district,
-        t.headline, t.department, t.seniority, t.experience_years, t.work_mode, t.salary_expectation,
-        t.skills_tags, t.languages, t.education_level, t.age, t.gender, t.is_currently_unemployed,
-        t.has_vocational_cert, t.is_anonymous, t.blocked_companies, t.is_verified_skill,
-        t.verification_score, t.subsidy_eligible, t.subsidy_badge, t.bio_summary
+        t.id, t.user_id, t.full_name, t.masked_name, t.photo_url, t.role_subtitle, t.target_sector, t.target_position,
+        t.phone, t.email, t.city, t.district, t.headline, t.department, t.seniority, t.experience_years,
+        t.work_mode, t.salary_expectation, t.skills_tags, t.languages, t.education_level, t.age, t.gender,
+        t.is_currently_unemployed, t.has_vocational_cert, 0, t.blocked_companies,
+        t.is_verified_skill, t.verification_score, t.subsidy_eligible, t.subsidy_badge, t.bio_summary
       ).run();
     }
   }
@@ -2653,7 +2713,6 @@ app.get('/api/career/overview', async (c) => {
   const department = c.req.query('department') || '';
   const city = c.req.query('city') || '';
   const workMode = c.req.query('work_mode') || '';
-  const viewerCompanyName = (c.req.query('viewer_company_name') || '').toLowerCase().trim();
   const viewerCompanyId = c.req.query('viewer_company_id') || '';
   const viewerUserId = c.req.query('viewer_user_id') || '';
 
@@ -2670,27 +2729,15 @@ app.get('/api/career/overview', async (c) => {
   tSql += ` ORDER BY is_verified_skill DESC, verification_score DESC, created_at DESC LIMIT 60`;
   const { results: rawTalents } = await c.env.DB.prepare(tSql).bind(...tParams).all();
 
-  // Filter out talents who blocked the viewing company (Gizli Radar Kalkanı)
-  const talents = (rawTalents || []).filter((t: any) => {
-    if (!viewerCompanyName) return true;
-    const blocked = String(t.blocked_companies || '').toLowerCase();
-    if (blocked && blocked.split(',').some((b) => b.trim() && viewerCompanyName.includes(b.trim()))) {
-      return false;
-    }
-    return true;
-  }).map((t: any) => {
+  const talents = (rawTalents || []).map((t: any) => {
     let skills: string[] = [];
     let langs: string[] = [];
     try { skills = JSON.parse(t.skills_tags || '[]'); } catch (_) {}
     try { langs = JSON.parse(t.languages || '[]'); } catch (_) {}
-    const isAnon = Number(t.is_anonymous) === 1;
-    const isSelf = viewerUserId && t.user_id === viewerUserId;
     return {
       ...t,
-      display_name: (isAnon && !isSelf) ? (t.masked_name || 'Gizli Radar Adayı (Anonim)') : t.full_name,
-      contact_locked: isAnon && !isSelf,
-      phone: (isAnon && !isSelf) ? '🔒 Mülakat Teklifi Onaylandığında Açılır' : t.phone,
-      email: (isAnon && !isSelf) ? '🔒 Gizli Radar Korumalı' : t.email,
+      display_name: t.full_name,
+      contact_locked: false,
       skills_list: skills,
       languages_list: langs
     };
@@ -2724,7 +2771,6 @@ app.get('/api/career/overview', async (c) => {
     };
   });
 
-  // Fetch interactions for the current user/company
   let myInteractions: any[] = [];
   if (viewerCompanyId || viewerUserId) {
     const { results: ints } = await c.env.DB.prepare(
@@ -2747,36 +2793,39 @@ app.post('/api/career/talent', async (c) => {
   const body = await c.req.json();
   const id = body.id || uid('tln');
   const fullName = (body.full_name || 'Aday Uzman').trim();
-  const parts = fullName.split(' ');
-  const maskedName = parts.map((p: string) => p.charAt(0).toUpperCase() + '***').join(' ') + ` (${body.headline || 'Doğrulanmış Yetenek'})`;
 
   const subsidyInfo = evaluateWageSubsidyForTalent(body);
   const skillsJson = Array.isArray(body.skills_tags) ? JSON.stringify(body.skills_tags) : (body.skills_tags || '[]');
   const langsJson = Array.isArray(body.languages) ? JSON.stringify(body.languages) : (body.languages || '["İngilizce (Orta)"]');
+  const defaultPhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=dc3545&color=fff&size=200&bold=true`;
 
   await c.env.DB.prepare(
     `INSERT OR REPLACE INTO mw_talent_profiles (
-       id, user_id, full_name, masked_name, phone, email, city, district,
-       headline, department, seniority, experience_years, work_mode, salary_expectation,
-       skills_tags, languages, education_level, age, gender, is_currently_unemployed,
-       has_vocational_cert, is_anonymous, blocked_companies, is_verified_skill,
-       verification_score, subsidy_eligible, subsidy_badge, bio_summary
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 95, ?, ?, ?)`
+       id, user_id, full_name, masked_name, photo_url, role_subtitle, target_sector, target_position,
+       phone, email, city, district, headline, department, seniority, experience_years,
+       work_mode, salary_expectation, skills_tags, languages, education_level, age, gender,
+       is_currently_unemployed, has_vocational_cert, is_anonymous, blocked_companies,
+       is_verified_skill, verification_score, subsidy_eligible, subsidy_badge, bio_summary
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, '', 1, 96, ?, ?, ?)`
   ).bind(
     id,
     body.user_id || '',
     fullName,
-    maskedName,
+    fullName,
+    body.photo_url || defaultPhoto,
+    body.role_subtitle || body.headline || 'B2B Uzman Aday',
+    body.target_sector || 'Tekstil',
+    body.target_position || 'IT Uzmanı',
     body.phone || '',
     body.email || '',
     body.city || 'İstanbul',
     body.district || '',
     body.headline || 'B2B Uzman Aday',
-    body.department || 'B2B Satış & Satınalma',
+    body.department || 'Yazılım, Teknoloji & Ar-Ge',
     body.seniority || 'Uzman (3-5 Yıl)',
     Number(body.experience_years || 4),
     body.work_mode || 'Tam Zamanlı / Hibrit',
-    body.salary_expectation || '45.000 TL – 65.000 TL',
+    body.salary_expectation || '50.000 TL – 75.000 TL',
     skillsJson,
     langsJson,
     body.education_level || 'Lisans',
@@ -2784,8 +2833,6 @@ app.post('/api/career/talent', async (c) => {
     body.gender || 'Erkek',
     body.is_currently_unemployed !== undefined ? (body.is_currently_unemployed ? 1 : 0) : 1,
     body.has_vocational_cert !== undefined ? (body.has_vocational_cert ? 1 : 0) : 1,
-    body.is_anonymous !== undefined ? (body.is_anonymous ? 1 : 0) : 1,
-    body.blocked_companies || '',
     subsidyInfo.subsidy_eligible,
     subsidyInfo.subsidy_badge,
     body.bio_summary || ''
@@ -2795,7 +2842,7 @@ app.post('/api/career/talent', async (c) => {
     success: true,
     id,
     subsidy: subsidyInfo,
-    message: 'Akıllı Yetenek Kartınız oluşturuldu ve Devlet İstihdam Teşviki rozetiniz hesaplandı!'
+    message: 'Özgeçmişiniz (CV) ve Devlet İstihdam Teşviki rozetiniz başarıyla yayınlandı!'
   });
 });
 

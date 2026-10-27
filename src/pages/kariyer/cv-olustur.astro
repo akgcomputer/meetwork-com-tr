@@ -1,0 +1,599 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const CITIES = [
+  'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Kocaeli', 'Gaziantep', 'Konya',
+  'Kayseri', 'Antalya', 'Adana', 'Mersin', 'Denizli', 'Manisa', 'Sakarya', 'Eskişehir'
+];
+
+const DEPARTMENTS = [
+  'Yazılım, Teknoloji & Ar-Ge',
+  'Dış Ticaret & İhracat',
+  'Üretim, Mühendislik & Fabrika',
+  'Finans, Muhasebe & ERP',
+  'B2B Satış & Satınalma',
+  'Lojistik, Depo & Filo'
+];
+
+const TARGET_SECTORS = [
+  'Tekstil',
+  'Tekstil & Hazır Giyim',
+  'Makine & Ekipman Üretimi',
+  'Yazılım & Bilişim',
+  'Gıda, Tarım & İçecek',
+  'Metal & Çelik Üretim',
+  'Lojistik, Nakliyat & Filo',
+  'Otomotiv & Yan Sanayi',
+  'Plastik, Kauçuk & Ambalaj',
+  'İnşaat, Yapı & Gayrimenkul'
+];
+---
+
+<BaseLayout
+  title="İş Arıyorum / Özgeçmiş (CV) Oluştur | MeetWork Kariyer"
+  description="90 saniyede fotoğrafınız, yetenek etiketleriniz, iş aradığınız sektör ve pozisyonla doğrulanmış özgeçmiş (CV) kartınızı oluşturun."
+>
+  <style is:global>
+    .mw-career-hero {
+      background: linear-gradient(135deg, #0b0b0e 0%, #1a1c24 60%, #7f1d1d 100%);
+      border-radius: 14px;
+      border: 1px solid rgba(220, 53, 69, 0.35);
+      color: #ffffff;
+    }
+    .mw-candidate-card {
+      background: var(--mw-surface);
+      border: 1px solid var(--mw-border);
+      border-top: 3px solid var(--mw-red);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    .mw-candidate-photo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid rgba(220, 53, 69, 0.35);
+      flex-shrink: 0;
+      background: #1e293b;
+    }
+    .mw-candidate-h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.25;
+      color: var(--mw-text);
+    }
+    .mw-candidate-h3 {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--mw-red);
+      margin: 2px 0 3px 0;
+      line-height: 1.3;
+    }
+    .mw-candidate-meta {
+      font-size: 0.73rem;
+      color: var(--mw-text-muted);
+      font-weight: 600;
+    }
+    .mw-subsidy-strip {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.06) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #065f46;
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .mw-subsidy-strip {
+      color: #6ee7b7;
+      border-color: rgba(52, 211, 153, 0.35);
+    }
+    .mw-skill-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.69rem;
+      font-weight: 600;
+      background: var(--mw-surface-alt);
+      border: 1px solid var(--mw-border);
+      color: var(--mw-text);
+    }
+    .mw-lang-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.69rem;
+      font-weight: 700;
+      background: rgba(13, 110, 253, 0.1);
+      border: 1px solid rgba(13, 110, 253, 0.3);
+      color: #0d6efd;
+    }
+    .mw-target-box {
+      background: var(--mw-surface-alt);
+      border: 1px dashed var(--mw-border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.75rem;
+    }
+    .mw-selectable-skill {
+      font-size: 0.73rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--mw-border);
+      background: var(--mw-surface-alt);
+      color: var(--mw-text);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .mw-selectable-skill.selected {
+      background: var(--mw-red);
+      color: #ffffff;
+      border-color: var(--mw-red);
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- ÜST BAŞLIK & BAĞIMSIZ SAYFA NAVİGASYONU -->
+  <section class="mw-career-hero p-3 p-md-4 mb-4 shadow-sm">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+      <div>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+          <span class="badge bg-warning text-dark">90 SANİYEDE ÖZGEÇMİŞ (CV)</span>
+          <span class="badge bg-success">Otomatik Devlet İstihdam Teşviki Hesaplamalı</span>
+        </div>
+        <h1 class="h4 fw-black mb-1">📝 İş Arıyorum / Özgeçmiş (CV) Oluştur</h1>
+        <p class="small text-white-50 mb-0">
+          Fotoğrafınızı ekleyin, iş aradığınız sektörü ve pozisyonu seçin; kartınız anında doğrulanmış aday vitrininde yerini alsın.
+        </p>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 flex-shrink-0">
+        <a href="/kariyer" class="btn btn-outline-light btn-sm fw-bold px-3">
+          🔍 Doğrulanmış Adayı Bulun
+        </a>
+        <a href="/kariyer/is-ara" class="btn btn-outline-light btn-sm fw-bold px-3">
+          📢 İş İlanlarını İncele
+        </a>
+        <a href="/kariyer/cv-olustur" class="btn btn-warning text-dark btn-sm fw-bold px-3">
+          <i class="bi bi-person-vcard-fill me-1"></i> İş Arıyorum / Özgeçmiş (CV) Oluştur
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="row g-4">
+    <!-- SOL SÜTUN (%60): 90 SANİYEDE ÖZGEÇMİŞ (CV) OLUŞTURMA FORMU -->
+    <div class="col-lg-7">
+      <div class="mw-panel-card p-3 p-md-4 shadow-sm">
+        <h2 class="h5 fw-bold border-bottom pb-2 mb-3">
+          <i class="bi bi-lightning-charge-fill text-danger me-1"></i> ⚡ 90 Saniyede Akıllı Yetenek Kartı & Özgeçmiş Oluştur
+        </h2>
+
+        <form id="mwCreateCvForm" class="row g-3">
+          <!-- 1. Küçük Profil Fotoğrafı Yükleme (Otomatik WebP <= 300px Küçültücü) -->
+          <div class="col-12">
+            <div class="p-3 rounded border d-flex flex-wrap align-items-center gap-3" style="background:var(--mw-surface-alt);">
+              <img
+                id="cvPhotoThumb"
+                src="https://ui-avatars.com/api/?name=Emir+Aksu&background=dc3545&color=fff&size=200&bold=true"
+                alt="Profil Fotoğrafı Önizleme"
+                class="mw-candidate-photo"
+              />
+              <div class="flex-grow-1">
+                <label class="form-label small fw-bold mb-1">Profil Fotoğrafı Ekle (Otomatik WebP & Maks. 300px)</label>
+                <input
+                  type="file"
+                  id="cvPhotoInput"
+                  accept="image/*"
+                  class="form-control form-control-sm"
+                />
+                <div class="text-muted mt-1" id="cvPhotoStatus" style="font-size:0.7rem;">
+                  Ne kadar büyük fotoğraf yüklerseniz yükleyin sistem otomatik olarak <strong>WebP formatına</strong> çevirir ve <strong>maksimum 300px</strong> boyuta küçültür.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Adınız Soyadınız (Açık Profil) *</label>
+            <input type="text" id="cvFullName" class="form-control form-control-sm" value="Emir Aksu" placeholder="Örn: Emir Aksu" required />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Kısa Uzmanlık Alt Başlığı (İsmin Altında Görünür) *</label>
+            <input type="text" id="cvRoleSubtitle" class="form-control form-control-sm" value="Full-Stack Yazılım, AI & Bulut ERP Mimarı" placeholder="Örn: Full-Stack Yazılım, AI & Bulut ERP Mimarı" required />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Ana Departman / Uzmanlık Alanı *</label>
+            <select id="cvDepartment" class="form-select form-select-sm" required>
+              {DEPARTMENTS.map(d => <option value={d}>{d}</option>)}
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label small fw-bold mb-1">Şehir *</label>
+            <select id="cvCity" class="form-select form-select-sm" required>
+              {CITIES.map(c => <option value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label small fw-bold mb-1">Deneyim (Yıl) *</label>
+            <input type="number" id="cvExpYears" class="form-control form-control-sm" value="6" min="0" max="45" required />
+          </div>
+
+          <!-- İŞ ARADIĞI SEKTÖR & İŞ ARADIĞI POZİSYON -->
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1 text-danger">İş Aradığı Sektör *</label>
+            <select id="cvTargetSector" class="form-select form-select-sm border-danger" required>
+              {TARGET_SECTORS.map(s => <option value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1 text-danger">İş Aradığı Pozisyon *</label>
+            <input
+              type="text"
+              id="cvTargetPosition"
+              class="form-control form-control-sm border-danger"
+              value="IT Uzmanı"
+              placeholder="Örn: IT Uzmanı, İhracat Müdürü, CNC Operatörü..."
+              required
+            />
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small fw-bold mb-1">Kariyer Unvanı & Pozisyon Özeti *</label>
+            <input
+              type="text"
+              id="cvHeadline"
+              class="form-control form-control-sm"
+              value="Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Çalışma Şekli Tercihi *</label>
+            <select id="cvWorkMode" class="form-select form-select-sm">
+              <option value="Uzaktan (Remote) / Proje Bazlı">Uzaktan (Remote) / Proje Bazlı</option>
+              <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
+              <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
+              <option value="Dönemsel / Proje Bazlı Uzman">⚡ Dönemsel / Proje Bazlı Uzman</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Maaş / Hakediş Beklentisi *</label>
+            <input type="text" id="cvSalary" class="form-control form-control-sm" value="75.000 TL – 110.000 TL" placeholder="Örn: 75.000 TL – 110.000 TL" required />
+          </div>
+
+          <!-- TIKLANABİLİR YETENEK ETİKETLERİ -->
+          <div class="col-12">
+            <label class="form-label small fw-bold mb-1">Yetenek Etiketleriniz (Tıklayarak Seçin veya Ekleyin)</label>
+            <div class="d-flex flex-wrap gap-1 mb-2" id="cvSelectableSkillsBox">
+              <span class="mw-selectable-skill selected">TypeScript & Node.js</span>
+              <span class="mw-selectable-skill selected">React & Astro</span>
+              <span class="mw-selectable-skill selected">Cloudflare Edge & D1</span>
+              <span class="mw-selectable-skill selected">ERP API Entegrasyonu</span>
+              <span class="mw-selectable-skill selected">Yapay Zekâ Eşleştirme</span>
+              <span class="mw-selectable-skill selected">TÜBİTAK Ar-Ge Personeli</span>
+              <span class="mw-selectable-skill">StokPratik CariNet</span>
+              <span class="mw-selectable-skill">E-Fatura & E-İrsaliye</span>
+              <span class="mw-selectable-skill">İhracat Operasyonu</span>
+              <span class="mw-selectable-skill">5 Eksen CNC İşleme</span>
+              <span class="mw-selectable-skill">SolidWorks & AutoCAD</span>
+              <span class="mw-selectable-skill">Tedarikçi E-İhale (RFQ)</span>
+            </div>
+            <input
+              type="text"
+              id="cvCustomSkills"
+              class="form-control form-control-sm"
+              placeholder="Eklemek istediğiniz diğer yetenekleri virgülle yazabilirsiniz..."
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small fw-bold mb-1">Yabancı Dil & Seviye</label>
+            <input type="text" id="cvLanguage" class="form-control form-control-sm" value="İngilizce (İleri - C1)" />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small fw-bold mb-1">Eğitim Durumu (Teşvik Hesabı)</label>
+            <select id="cvEducation" class="form-select form-select-sm">
+              <option value="Lisans">Lisans / Yüksek Lisans</option>
+              <option value="Önlisans">MYO / Önlisans</option>
+              <option value="Meslek Lisesi">Teknik / Meslek Lisesi</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small fw-bold mb-1">Yaşınız (SGK 6111 Teşviki)</label>
+            <input type="number" id="cvAge" class="form-control form-control-sm" value="27" min="18" max="65" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">Telefon Numaranız *</label>
+            <input type="tel" id="cvPhone" class="form-control form-control-sm" placeholder="0532 000 00 00" required />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-bold mb-1">E-Posta Adresiniz *</label>
+            <input type="email" id="cvEmail" class="form-control form-control-sm" placeholder="adiniz@ornek.com" required />
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small fw-bold mb-1">Kısa Uzmanlık & Başarı Özetiniz *</label>
+            <textarea id="cvBio" class="form-control form-control-sm" rows="2" required>B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.</textarea>
+          </div>
+
+          <div id="cvSubmitFeedback" class="col-12 small" style="display:none;"></div>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-danger w-100 fw-bold py-2">
+              <i class="bi bi-check2-circle me-1"></i> Özgeçmişimi (CV) Kaydet & Aday Vitrininde Yayınla
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SAĞ SÜTUN (%40): CANLI KART ÖNİZLEMESİ (BİREBİR EMİR AKSU ŞABLONU) -->
+    <div class="col-lg-5">
+      <div class="sticky-top" style="top: 86px;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="small fw-bold text-danger">
+            <i class="bi bi-eye-fill me-1"></i> Canlı Kart Önizlemesi (Vitrinde Böyle Görünür)
+          </span>
+          <span class="badge bg-success">Açık Profil</span>
+        </div>
+
+        <!-- ÖRNEK KART ÖNİZLEMESİ -->
+        <article class="mw-candidate-card p-3 shadow">
+          <div class="d-flex align-items-start gap-3 mb-2">
+            <img
+              id="prvPhoto"
+              src="https://ui-avatars.com/api/?name=Emir+Aksu&background=dc3545&color=fff&size=200&bold=true"
+              alt="Önizleme Fotoğraf"
+              class="mw-candidate-photo"
+            />
+            <div class="min-w-0 flex-grow-1">
+              <h2 class="mw-candidate-h2" id="prvName">👤 Emir Aksu</h2>
+              <h3 class="mw-candidate-h3" id="prvSub">
+                (Full-Stack Yazılım, AI & Bulut ERP Mimarı) • Yazılım, Teknoloji & Ar-Ge
+              </h3>
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mt-1">
+                <span class="mw-candidate-meta" id="prvMeta">📍 İstanbul • ⏱️ 6 Yıl Deneyim</span>
+                <span class="badge bg-success" style="font-size:0.68rem;">✓ Doğrulanmış Özgeçmiş</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fw-bold small mb-2" id="prvHeadline" style="font-size:0.82rem;">
+            Senior Full-Stack Developer & Endüstriyel ERP / AI Entegrasyon Uzmanı
+          </div>
+
+          <div class="mw-subsidy-strip mb-2" id="prvSubsidy">
+            💰 TÜBİTAK 1507 / Teknopark %100 Gelir Vergisi Muafiyeti + KOSGEB Ar-Ge
+          </div>
+
+          <div class="d-flex flex-wrap gap-1 mb-2" id="prvSkills"></div>
+
+          <p class="small text-muted mb-2" id="prvBio" style="font-size:0.75rem; line-height:1.45;">
+            B2B SaaS, E-İhale ve Bulut ERP mimarilerinde uzman. TÜBİTAK TEYDEB ve Ticaret Bakanlığı 10962 bilişim personeli hibe kriterlerine %100 uyumlu.
+          </p>
+
+          <div class="mw-target-box mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="text-muted">İş aradığı sektör :</span>
+              <strong class="text-danger" id="prvTargetSector">Tekstil</strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-muted">İş aradığı pozisyon :</span>
+              <strong id="prvTargetPosition" style="color:var(--mw-text);">IT Uzmanı</strong>
+            </div>
+          </div>
+
+          <div class="mt-auto pt-2 border-top" style="border-color:var(--mw-border)!important;">
+            <div class="text-muted" id="prvWorkModeLabel" style="font-size:0.68rem;">
+              Maaş / Hakediş Beklentisi (Uzaktan (Remote) / Proje Bazlı)
+            </div>
+            <div class="fw-black text-danger tabular-nums mb-2" id="prvSalary" style="font-size:0.95rem;">
+              75.000 TL – 110.000 TL
+            </div>
+            <button type="button" class="btn btn-danger btn-sm w-100 fw-bold" disabled>
+              🤝 Mülakat Teklifi Gönder
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentWebpDataUrl = '';
+
+      // HTML5 Canvas ile Resmi Otomatik <=300px Küçültüp WebP Formatına Çeviren Fonksiyon
+      function resizeAndConvertToWebP(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = function (ev) {
+            const img = new Image();
+            img.onload = function () {
+              const MAX_DIM = 300;
+              let width = img.width;
+              let height = img.height;
+
+              if (width > height) {
+                if (width > MAX_DIM) {
+                  height = Math.round((height * MAX_DIM) / width);
+                  width = MAX_DIM;
+                }
+              } else {
+                if (height > MAX_DIM) {
+                  width = Math.round((width * MAX_DIM) / height);
+                  height = MAX_DIM;
+                }
+              }
+
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+
+              const webpData = canvas.toDataURL('image/webp', 0.82);
+              resolve({ dataUrl: webpData, width, height });
+            };
+            img.onerror = reject;
+            img.src = ev.target.result;
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function getSelectedSkills() {
+        const chips = Array.from(document.querySelectorAll('#cvSelectableSkillsBox .mw-selectable-skill.selected')).map(el => el.textContent.trim());
+        const customRaw = (document.getElementById('cvCustomSkills').value || '').trim();
+        if (customRaw) {
+          customRaw.split(',').forEach(s => {
+            if (s.trim()) chips.push(s.trim());
+          });
+        }
+        return chips;
+      }
+
+      function updateLivePreview() {
+        const name = document.getElementById('cvFullName').value || 'Emir Aksu';
+        const sub = document.getElementById('cvRoleSubtitle').value || 'Uzman';
+        const dep = document.getElementById('cvDepartment').value || 'Yazılım, Teknoloji & Ar-Ge';
+        const city = document.getElementById('cvCity').value || 'İstanbul';
+        const exp = document.getElementById('cvExpYears').value || '6';
+        const headline = document.getElementById('cvHeadline').value || '';
+        const targetSector = document.getElementById('cvTargetSector').value || 'Tekstil';
+        const targetPos = document.getElementById('cvTargetPosition').value || 'IT Uzmanı';
+        const workMode = document.getElementById('cvWorkMode').value || 'Uzaktan (Remote) / Proje Bazlı';
+        const salary = document.getElementById('cvSalary').value || '75.000 TL – 110.000 TL';
+        const lang = document.getElementById('cvLanguage').value || 'İngilizce (İleri - C1)';
+        const bio = document.getElementById('cvBio').value || '';
+
+        document.getElementById('prvName').textContent = `👤 ${name}`;
+        document.getElementById('prvSub').textContent = `(${sub}) • ${dep}`;
+        document.getElementById('prvMeta').textContent = `📍 ${city} • ⏱️ ${exp} Yıl Deneyim`;
+        document.getElementById('prvHeadline').textContent = headline;
+        document.getElementById('prvTargetSector').textContent = targetSector;
+        document.getElementById('prvTargetPosition').textContent = targetPos;
+        document.getElementById('prvWorkModeLabel').textContent = `Maaş / Hakediş Beklentisi (${workMode})`;
+        document.getElementById('prvSalary').textContent = salary;
+        document.getElementById('prvBio').textContent = bio;
+
+        if (!currentWebpDataUrl) {
+          const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=dc3545&color=fff&size=200&bold=true`;
+          document.getElementById('prvPhoto').src = fallbackAvatar;
+          document.getElementById('cvPhotoThumb').src = fallbackAvatar;
+        }
+
+        const skills = getSelectedSkills();
+        const skillsHtml = skills.map(s => `<span class="mw-skill-chip">${s}</span>`).join('') +
+          (lang ? ` <span class="mw-lang-chip">🗣️ ${lang}</span>` : '');
+        document.getElementById('prvSkills').innerHTML = skillsHtml;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        updateLivePreview();
+
+        const photoInput = document.getElementById('cvPhotoInput');
+        if (photoInput) {
+          photoInput.addEventListener('change', async (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const statusEl = document.getElementById('cvPhotoStatus');
+            try {
+              const res = await resizeAndConvertToWebP(file);
+              currentWebpDataUrl = res.dataUrl;
+              document.getElementById('cvPhotoThumb').src = res.dataUrl;
+              document.getElementById('prvPhoto').src = res.dataUrl;
+              if (statusEl) {
+                statusEl.innerHTML = `<span class="text-success fw-bold">✓ Fotoğrafınız otomatik olarak WebP formatına ve ${res.width}x${res.height}px (<=300px) boyuta optimize edildi!</span>`;
+              }
+            } catch (_) {}
+          });
+        }
+
+        document.querySelectorAll('#cvSelectableSkillsBox .mw-selectable-skill').forEach(chip => {
+          chip.addEventListener('click', () => {
+            chip.classList.toggle('selected');
+            updateLivePreview();
+          });
+        });
+
+        ['cvFullName', 'cvRoleSubtitle', 'cvDepartment', 'cvCity', 'cvExpYears', 'cvTargetSector', 'cvTargetPosition', 'cvHeadline', 'cvWorkMode', 'cvSalary', 'cvCustomSkills', 'cvLanguage', 'cvBio'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener('input', updateLivePreview);
+            el.addEventListener('change', updateLivePreview);
+          }
+        });
+
+        const form = document.getElementById('mwCreateCvForm');
+        if (form) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let u = null;
+            try { u = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+            const name = document.getElementById('cvFullName').value.trim();
+            const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=dc3545&color=fff&size=200&bold=true`;
+
+            const payload = {
+              user_id: u ? u.user_id : '',
+              full_name: name,
+              photo_url: currentWebpDataUrl || fallbackAvatar,
+              role_subtitle: document.getElementById('cvRoleSubtitle').value.trim(),
+              department: document.getElementById('cvDepartment').value,
+              city: document.getElementById('cvCity').value,
+              experience_years: Number(document.getElementById('cvExpYears').value || 5),
+              target_sector: document.getElementById('cvTargetSector').value,
+              target_position: document.getElementById('cvTargetPosition').value.trim(),
+              headline: document.getElementById('cvHeadline').value.trim(),
+              work_mode: document.getElementById('cvWorkMode').value,
+              salary_expectation: document.getElementById('cvSalary').value.trim(),
+              skills_tags: getSelectedSkills(),
+              languages: [document.getElementById('cvLanguage').value.trim()].filter(Boolean),
+              education_level: document.getElementById('cvEducation').value,
+              age: Number(document.getElementById('cvAge').value || 27),
+              phone: document.getElementById('cvPhone').value.trim(),
+              email: document.getElementById('cvEmail').value.trim(),
+              bio_summary: document.getElementById('cvBio').value.trim(),
+              is_anonymous: 0
+            };
+
+            const fb = document.getElementById('cvSubmitFeedback');
+            try {
+              const res = await fetch(`${API_URL}/api/career/talent`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const out = await res.json();
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'col-12 p-2 rounded border border-success bg-success-subtle text-success small fw-bold';
+                fb.innerHTML = `✓ ${out.message || 'Özgeçmişiniz başarıyla yayınlandı!'} <a href="/kariyer" class="ms-2 text-danger text-decoration-underline">Aday Vitrininde Gör →</a>`;
+              }
+            } catch (_) {}
+          });
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

@@ -144,6 +144,69 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </div>
 
+  <!-- İŞLETME SAHİBİNE ÖZEL PERSONEL / DÖNEMSEL UZMAN İLANI AÇMA MODALI -->
+  <div class="modal fade" id="mwCompanyPostJobModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-briefcase-fill text-success me-1"></i> İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCompanyPostJobForm" class="row g-3">
+            <div class="col-md-8">
+              <label class="form-label small fw-bold mb-1">Aranan Pozisyon Başlığı *</label>
+              <input type="text" id="cpJobTitle" class="form-control form-control-sm" placeholder="Örn: Dış Ticaret & İhracat Uzmanı / CNC Lazer Operatörü / IT Uzmanı" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Departman *</label>
+              <select id="cpJobDepartment" class="form-select form-select-sm" required>
+                <option value="Yazılım, Teknoloji & Ar-Ge">Yazılım, Teknoloji & Ar-Ge</option>
+                <option value="Dış Ticaret & İhracat">Dış Ticaret & İhracat</option>
+                <option value="Üretim, Mühendislik & Fabrika">Üretim, Mühendislik & Fabrika</option>
+                <option value="Finans, Muhasebe & ERP">Finans, Muhasebe & ERP</option>
+                <option value="B2B Satış & Satınalma">B2B Satış & Satınalma</option>
+                <option value="Lojistik, Depo & Filo">Lojistik, Depo & Filo</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Şehir *</label>
+              <input type="text" id="cpJobCity" class="form-control form-control-sm" value="İstanbul" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Çalışma Şekli *</label>
+              <select id="cpJobWorkMode" class="form-select form-select-sm">
+                <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
+                <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
+                <option value="Uzaktan (Remote) / Proje Bazlı">⚡ Uzaktan (Remote) / Proje Bazlı</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Teklif Edilen Maaş / Hakediş *</label>
+              <input type="text" id="cpJobSalary" class="form-control form-control-sm" placeholder="Örn: 55.000 TL – 75.000 TL + Prim" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-bold mb-1">Aranan Yetenek Etiketleri (Virgülle Ayırın) *</label>
+              <input type="text" id="cpJobSkills" class="form-control form-control-sm" placeholder="Örn: StokPratik ERP, İngilizce C1, İhracat Operasyonu, SolidWorks" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-bold mb-1">Pozisyon Açıklaması & Yan Haklar *</label>
+              <textarea id="cpJobDesc" class="form-control form-control-sm" rows="3" placeholder="İş tanımını, çalışma koşullarını ve yan hakları kısaca yazınız..." required></textarea>
+            </div>
+            <div id="cpJobFeedback" class="col-12 small" style="display:none;"></div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success w-100 fw-bold">
+                <i class="bi bi-check2-circle me-1"></i> İş İlanını İşletme Profilimde ve Kariyer Vitrininde Yayınla
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
@@ -280,9 +343,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       <a href="/hibe-kredi-eslesme" class="btn btn-warning btn-sm fw-bold text-dark">
                         <i class="bi bi-shield-lock-fill me-1"></i> Hibe, Fon & Kredi Eşleşmem (${grantMatches.length})
                       </a>
-                      <a href="/kariyer?tab=post-job" class="btn btn-success btn-sm fw-bold text-white">
-                        <i class="bi bi-person-plus-fill me-1"></i> Personel İlanı Aç / Aday Bul
-                      </a>
+                      <button type="button" class="btn btn-success btn-sm fw-bold text-white" data-bs-toggle="modal" data-bs-target="#mwCompanyPostJobModal">
+                        <i class="bi bi-person-plus-fill me-1"></i> + Personel / Uzman İlanı Aç
+                      </button>
                     ` : ''}
                     <a href="/ihaleler?yeni=1" class="btn btn-light btn-sm fw-bold text-danger">
                       <i class="bi bi-hammer me-1"></i> Teklif İste / İhaleye Davet Et
@@ -358,41 +421,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
 
-                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 2: AKILLI İK, PERSONEL ARAMA & DEVLET TEŞVİKLİ ADAY RADARI -->
-                  <div class="p-3 rounded border border-success mb-4" style="background: var(--mw-surface-alt);">
+                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 2: İŞVEREN İK, PERSONEL İLANI AÇMA & ADAY RADARI -->
+                  <div id="mwEmployerHrPanel" class="p-3 rounded border border-success mb-4" style="background: var(--mw-surface-alt);">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
                       <div>
-                        <span class="badge bg-success me-1"><i class="bi bi-people-fill me-1"></i>İŞVEREN İK & YETENEK RADARI (SADECE SİZE ÖZEL)</span>
+                        <span class="badge bg-success me-1"><i class="bi bi-people-fill me-1"></i>İŞVEREN İK & PERSONEL İLANI YÖNETİMİ (SADECE SİZE ÖZEL)</span>
                         <span class="badge bg-warning text-dark">💰 %70 KOSGEB & SGK 6111 Maaş Teşviki Entegreli</span>
                         <h6 class="fw-bold mb-0 mt-1">
-                           İşletmenize Uygun Doğrulanmış Uzman Adaylar & Personel İlanı Yönetimi
+                          İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın & Doğrulanmış Adayları İnceleyin
                         </h6>
                       </div>
-                      <div class="d-flex gap-2">
-                        <a href="/kariyer?tab=post-job" class="btn btn-sm btn-success fw-bold">
-                          + 60 Saniyede Personel İlanı Aç
-                        </a>
+                      <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-sm btn-success fw-bold" data-bs-toggle="modal" data-bs-target="#mwCompanyPostJobModal">
+                          <i class="bi bi-plus-circle-fill me-1"></i> + Personel / Dönemsel Uzman İlanı Aç
+                        </button>
                         <a href="/kariyer" class="btn btn-sm btn-outline-dark fw-bold">
-                          Tüm Yetenek Havuzunu İncele (${matchedTalents.length}) →
+                          🔍 Doğrulanmış Adayları Bul (${matchedTalents.length}) →
                         </a>
                       </div>
                     </div>
 
                     <div class="row g-2">
-                      ${matchedTalents.slice(0, 4).map((tl) => `
-                        <div class="col-md-6">
+                      ${matchedTalents.slice(0, 3).map((tl) => `
+                        <div class="col-md-4">
                           <div class="p-2 rounded border h-100 d-flex flex-column justify-content-between" style="background: var(--mw-surface); border-color: var(--mw-border) !important; border-left: 3px solid #10b981 !important;">
                             <div>
                               <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="badge bg-dark" style="font-size:0.65rem;">🕵️ ${tl.masked_name || tl.full_name}</span>
-                                <span class="badge bg-success tabular-nums" style="font-size:0.68rem;">%${tl.verification_score || 95} Uyum</span>
+                                <span class="fw-bold small">👤 ${tl.full_name}</span>
+                                <span class="badge bg-success tabular-nums" style="font-size:0.65rem;">Doğrulanmış</span>
                               </div>
-                              <div class="fw-bold small mb-1">${tl.headline}</div>
-                              <div class="small text-success fw-semibold" style="font-size:0.7rem;">${tl.subsidy_badge || '💰 KOSGEB / İŞKUR Teşvikine Uygun'}</div>
+                              <div class="small text-danger fw-semibold mb-1" style="font-size:0.72rem;">${tl.role_subtitle || tl.headline}</div>
+                              <div class="small text-success fw-semibold" style="font-size:0.68rem;">${tl.subsidy_badge || '💰 KOSGEB / İŞKUR Teşvikine Uygun'}</div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center pt-1 border-top mt-1" style="border-color: var(--mw-border) !important;">
-                              <small class="text-muted tabular-nums" style="font-size:0.72rem;">📍 ${tl.city} • ${tl.salary_expectation}</small>
-                              <a href="/kariyer" class="small fw-bold text-success text-decoration-none" style="font-size:0.72rem;">Mülakat Teklifi Gönder →</a>
+                            <div class="d-flex justify-content-between align-items-center pt-1 border-top mt-2" style="border-color: var(--mw-border) !important;">
+                              <small class="text-muted tabular-nums" style="font-size:0.7rem;">📍 ${tl.city} • ${tl.salary_expectation}</small>
+                              <a href="/kariyer" class="small fw-bold text-success text-decoration-none" style="font-size:0.72rem;">İncele →</a>
                             </div>
                           </div>
                         </div>
@@ -443,12 +506,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <div class="col-12">
                     <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
                       <h6 class="fw-bold mb-0"><i class="bi bi-briefcase-fill text-primary me-1"></i> 📢 Açık İş & Dönemsel Uzman İlanlarımız (${careerJobs.length})</h6>
-                      <a href="/kariyer?tab=jobs" class="small fw-bold text-primary text-decoration-none">Tüm Kariyer & Yetenek Havuzunu Gör →</a>
+                      <div class="d-flex gap-2">
+                        ${isMyOwnCompany ? `
+                          <button type="button" class="btn btn-sm btn-success py-0 px-2 fw-bold" style="font-size:0.75rem;" data-bs-toggle="modal" data-bs-target="#mwCompanyPostJobModal">
+                            + Yeni İş İlanı Ekle
+                          </button>
+                        ` : ''}
+                        <a href="/kariyer/is-ara" class="small fw-bold text-primary text-decoration-none">Tüm İş İlanlarını Gör →</a>
+                      </div>
                     </div>
                     ${careerJobs.length === 0 ? `
                       <div class="p-3 rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="background: var(--mw-surface-alt);">
-                        <span class="small text-muted">Bu işletmenin şu an açık personel ilanı bulunmuyor. Yetenek Kartınızı bırakarak gelecekteki pozisyonlar için mülakat teklifi alabilirsiniz.</span>
-                        <a href="/kariyer?tab=candidate-desk" class="btn btn-sm btn-outline-primary fw-bold">⚡ 90 Sn'de Yetenek Kartı Bırak</a>
+                        <span class="small text-muted">Bu işletmenin şu an açık personel ilanı bulunmuyor. Özgeçmişinizi bırakarak gelecekteki pozisyonlar için mülakat teklifi alabilirsiniz.</span>
+                        <a href="/kariyer/cv-olustur" class="btn btn-sm btn-outline-danger fw-bold">İş Arıyorum / Özgeçmiş (CV) Oluştur</a>
                       </div>
                     ` : `
                       <div class="row g-2">
@@ -464,8 +534,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                                 <div class="small text-success fw-semibold mb-2">${cj.subsidy_note || ''}</div>
                               </div>
                               <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                                <strong class="small text-dark tabular-nums">${cj.salary_range}</strong>
-                                <a href="/kariyer?tab=jobs" class="btn btn-sm btn-primary fw-bold">⚡ 1-Tıkla Başvur</a>
+                                <strong class="small text-danger tabular-nums">${cj.salary_range}</strong>
+                                <a href="/kariyer/is-ara" class="btn btn-sm btn-danger fw-bold">⚡ Başvur</a>
                               </div>
                             </div>
                           </div>
@@ -577,6 +647,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   loadCompanyProfile(params.get('firma'));
                 } else {
                   loadGeneralStories();
+                }
+              }
+            } catch (_) {}
+          });
+        }
+
+        const postJobForm = document.getElementById('mwCompanyPostJobForm');
+        if (postJobForm) {
+          postJobForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let user = null;
+            try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+
+            const compId = currentActiveCompany ? currentActiveCompany.id : (user ? user.company_id : '');
+            const compName = currentActiveCompany ? currentActiveCompany.name : (user ? user.company_name : 'MeetWork Üye İşletme');
+            const compSlug = currentActiveCompany ? currentActiveCompany.slug : (user ? user.company_slug : '');
+            const trustLvl = currentActiveCompany ? currentActiveCompany.trust_level : (user ? user.trust_level : 2);
+            const skillsArr = (document.getElementById('cpJobSkills').value || '').split(',').map(s => s.trim()).filter(Boolean);
+            const fb = document.getElementById('cpJobFeedback');
+
+            try {
+              const res = await fetch(`${API_URL}/api/career/job`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  company_id: compId,
+                  company_name: compName,
+                  company_slug: compSlug,
+                  trust_level: trustLvl,
+                  title: document.getElementById('cpJobTitle').value.trim(),
+                  department: document.getElementById('cpJobDepartment').value,
+                  city: document.getElementById('cpJobCity').value.trim(),
+                  work_mode: document.getElementById('cpJobWorkMode').value,
+                  salary_range: document.getElementById('cpJobSalary').value.trim(),
+                  required_skills: skillsArr,
+                  description: document.getElementById('cpJobDesc').value.trim()
+                })
+              });
+              const out = await res.json();
+              if (out.success) {
+                postJobForm.reset();
+                if (fb) {
+                  fb.style.display = 'block';
+                  fb.className = 'col-12 small fw-bold text-success';
+                  fb.textContent = out.message || '✓ İş ilanınız başarıyla yayınlandı!';
+                }
+                if (params.get('firma')) {
+                  loadCompanyProfile(params.get('firma'));
                 }
               }
             } catch (_) {}
