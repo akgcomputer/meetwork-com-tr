@@ -108,6 +108,16 @@ const SECTORS = [
                   <button type="button" id="mwStokPratikSsoBtn" class="btn btn-outline-danger fw-bold py-2">
                     <i class="bi bi-lightning-charge-fill me-1"></i> StokPratik ERP / CariNet Hesabım İle Bağlan (SSO)
                   </button>
+
+                  <div class="p-3 rounded-3 border mt-1 d-flex flex-wrap justify-content-between align-items-center gap-2" style="background:var(--mw-surface-alt);">
+                    <div>
+                      <div class="fw-bold small text-dark">👤 İş Arayan / Uzman Aday mısınız?</div>
+                      <div class="text-muted" style="font-size:0.74rem;">Başvurduğunuz firmaları, profil ziyaretlerini ve mülakat davetlerinizi yönetin.</div>
+                    </div>
+                    <a href="/kariyer/profilim" class="btn btn-dark btn-sm rounded-pill px-3 fw-bold">
+                      👤 Aday Girişi & Profilim →
+                    </a>
+                  </div>
                 </form>
 
                 <!-- Giriş Yapmış Kullanıcı İçin Aktif Oturum Kutusu -->
@@ -117,7 +127,10 @@ const SECTORS = [
                       <div class="fw-bold text-danger" id="mwActiveUserName"></div>
                       <small class="text-muted" id="mwActiveCompanyName"></small>
                     </div>
-                    <button type="button" id="mwLogoutBtn" class="btn btn-sm btn-outline-secondary">Çıkış Yap</button>
+                    <div class="d-flex gap-2">
+                      <a href="/kariyer/profilim" id="mwCandidateProfileBtn" class="btn btn-sm btn-outline-primary d-none">👤 Aday Profilim</a>
+                      <button type="button" id="mwLogoutBtn" class="btn btn-sm btn-outline-secondary">Çıkış Yap</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -248,10 +261,16 @@ const SECTORS = [
             const box = document.getElementById('mwLoggedInBox');
             const uName = document.getElementById('mwActiveUserName');
             const cName = document.getElementById('mwActiveCompanyName');
+            const candBtn = document.getElementById('mwCandidateProfileBtn');
             if (box && uName && cName) {
               box.style.display = 'block';
               uName.textContent = u.full_name;
-              cName.textContent = `${u.company_name} (${u.sector})`;
+              if (u.role === 'candidate') {
+                cName.textContent = `👤 Bireysel Aday (${u.title || 'Kariyer & Yetenek Havuzu'})`;
+                candBtn?.classList.remove('d-none');
+              } else {
+                cName.textContent = `${u.company_name || ''} (${u.sector || ''})`;
+              }
             }
           }
         } catch (_) {}
@@ -282,8 +301,15 @@ const SECTORS = [
               if (data.success) {
                 localStorage.setItem('mw_token', data.token);
                 localStorage.setItem('mw_user', JSON.stringify(data.user));
+                if (data.user && data.user.talent_id) {
+                  localStorage.setItem('mw_my_talent_id', data.user.talent_id);
+                }
                 showAlert('success', 'Giriş başarılı! Yönlendiriliyorsunuz...');
-                const targetUrl = (data.user && data.user.role === 'superadmin') ? '/yonetim' : '/akilli-eslesme';
+                const targetUrl = (data.user && data.user.role === 'superadmin')
+                  ? '/yonetim'
+                  : (data.user && data.user.role === 'candidate')
+                    ? '/kariyer/profilim'
+                    : '/akilli-eslesme';
                 setTimeout(() => { window.location.href = targetUrl; }, 700);
               } else {
                 showAlert('danger', data.message || 'Giriş yapılamadı.');

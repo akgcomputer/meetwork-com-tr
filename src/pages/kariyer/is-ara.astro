@@ -79,6 +79,9 @@ const DEPARTMENTS = [
         <a href="/kariyer/cv-olustur" class="btn btn-warning text-dark btn-sm fw-bold px-3">
           <i class="bi bi-person-vcard-fill me-1"></i> İş Arıyorum / Özgeçmiş (CV) Oluştur
         </a>
+        <a href="/kariyer/profilim" class="btn btn-info text-dark btn-sm fw-bold px-3">
+          👤 Aday Profilim & Başvurularım
+        </a>
         <a href="/isletmeler#mwEmployerHrPanel" id="mwEmployerPostJobBtn" class="btn btn-success btn-sm fw-bold px-3" style="display:none;">
           <i class="bi bi-building-fill-add me-1"></i> İşletmem İçin İlan Aç
         </a>
@@ -146,11 +149,15 @@ const DEPARTMENTS = [
           </form>
 
           <hr class="my-3" />
-          <div class="p-2 rounded border text-center" style="background:var(--mw-surface-alt);">
-            <div class="small fw-bold mb-1">İşverenlerin Sizi Bulmasını İster misiniz?</div>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">
-              Özgeçmişinizi oluşturun, şirketler size doğrudan maaş teklifli mülakat daveti göndersin.
+          <div class="p-2 rounded border text-center mb-2" style="background:var(--mw-surface-alt);">
+            <div class="small fw-bold mb-1">🎯 Günlük Başvuru Kotanız</div>
+            <div class="fw-black text-danger tabular-nums mb-1" id="sidebarQuotaDisplay" style="font-size:0.95rem;">Kalan: 5 / 5 Hak</div>
+            <p class="text-muted mb-2" style="font-size:0.70rem;">
+              Her gün en fazla 5 firmaya neden başvurduğunuzu açıklayarak nitelikli müracaat yapabilirsiniz.
             </p>
+            <a href="/kariyer/profilim" class="btn btn-outline-dark btn-sm w-100 fw-bold mb-1">
+              👤 Başvurduğum Firmaları Gör
+            </a>
             <a href="/kariyer/cv-olustur" class="btn btn-danger btn-sm w-100 fw-bold">
               İş Arıyorum / Özgeçmiş (CV) Oluştur
             </a>
@@ -161,35 +168,44 @@ const DEPARTMENTS = [
 
     <!-- SAĞ SÜTUN: YAN YANA 3 İŞ İLANI KARTI -->
     <div class="col-lg-9">
-      <div class="mw-panel-card p-2 px-3 mb-3 shadow-sm d-flex justify-content-between align-items-center">
+      <div class="mw-panel-card p-2 px-3 mb-3 shadow-sm d-flex flex-wrap justify-content-between align-items-center gap-2">
         <div class="small fw-bold">
           📢 Toplam <span id="mwJobCountBadge" class="text-danger tabular-nums">4</span> açık pozisyon listeleniyor
         </div>
-        <a href="/kariyer" class="small text-danger fw-bold text-decoration-none" style="font-size:0.78rem;">
-          🔍 Doğrulanmış Aday Vitrinine Dön →
-        </a>
+        <div class="d-flex align-items-center gap-3">
+          <span class="badge bg-warning text-dark tabular-nums" id="topQuotaBadge">🎯 Günlük Başvuru Hakkınız: 5 / 5</span>
+          <a href="/kariyer/profilim" class="small text-primary fw-bold text-decoration-none" style="font-size:0.78rem;">
+            👤 Aday Profilim & Başvurularım →
+          </a>
+        </div>
       </div>
 
       <div class="row g-3" id="mwJobsGridContainer"></div>
     </div>
   </div>
 
-  <!-- İLANA HIZLI BAŞVURU MODALI -->
+  <!-- İLANA DETAYLI AÇIKLAMALI BAŞVURU MODALI -->
   <div class="modal fade" id="mwApplyJobModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content mw-panel-card border-danger">
         <div class="modal-header border-bottom">
           <h5 class="modal-title fw-bold">
-            <i class="bi bi-send-check-fill text-danger me-1"></i> İlana Hızlı Başvuru Gönder
+            <i class="bi bi-send-check-fill text-danger me-1"></i> İşletmeye Nitelikli Başvuru Gönder
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
         </div>
         <div class="modal-body">
           <form id="mwApplyJobForm" class="row g-3">
             <input type="hidden" id="apJobId" />
+            <input type="hidden" id="apCompanyId" />
+            <input type="hidden" id="apCompanyName" />
             <div class="col-12">
-              <div class="p-2 rounded border small" style="background:var(--mw-surface-alt);">
-                <strong>İlan:</strong> <span id="apJobTitle" class="text-danger fw-bold"></span>
+              <div class="p-2 rounded border small d-flex justify-content-between align-items-center" style="background:var(--mw-surface-alt);">
+                <div>
+                  <div class="text-muted" style="font-size:0.72rem;" id="apCompanyLabel">İşveren Firma</div>
+                  <strong>Pozisyon:</strong> <span id="apJobTitle" class="text-danger fw-bold"></span>
+                </div>
+                <span class="badge bg-warning text-dark tabular-nums" id="modalQuotaBadge">Kalan Hak: 5/5</span>
               </div>
             </div>
             <div class="col-md-6">
@@ -202,16 +218,31 @@ const DEPARTMENTS = [
             </div>
             <div class="col-12">
               <label class="form-label small fw-bold mb-1">Maaş / Hakediş Beklentiniz</label>
-              <input type="text" id="apExpectedSalary" class="form-control form-control-sm" placeholder="Örn: 60.000 TL" />
+              <input type="text" id="apExpectedSalary" class="form-control form-control-sm" placeholder="Örn: 65.000 TL – 80.000 TL" />
             </div>
             <div class="col-12">
-              <label class="form-label small fw-bold mb-1">Kısa Özgeçmiş / Deneyim Notunuz *</label>
-              <textarea id="apMessage" class="form-control form-control-sm" rows="3" placeholder="Deneyim sürenizi, bildiğiniz programları ve neden bu pozisyona uygun olduğunuzu kısaca yazınız..." required></textarea>
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-bold mb-0 text-danger">
+                  📝 Neden Bu İşe ve İşletmeye Başvuruyorsunuz? (Zorunlu Detay Açıklama) *
+                </label>
+                <span id="apCharCounter" class="text-muted tabular-nums" style="font-size:0.72rem;">0 / min. 20 karakter</span>
+              </div>
+              <textarea
+                id="apMessage"
+                class="form-control form-control-sm"
+                rows="4"
+                minlength="20"
+                placeholder="Sıradan tek tıkla başvuru yerine; bu işletmeye hangi tecrübenizle, hangi projelerle veya hangi ERP/üretim yetkinliğinizle katkı sağlayacağınızı detaylıca açıklayın..."
+                required
+              ></textarea>
+              <div class="form-text" style="font-size:0.71rem;">
+                💡 İşverenler aday vitrininde ve başvuru kutusunda ilk olarak bu açıklamayı okur. Başvurunuz <a href="/kariyer/profilim" class="fw-bold">Aday Profilim</a> sayfanızda listelenir.
+              </div>
             </div>
             <div id="apFeedback" class="col-12 small" style="display:none;"></div>
             <div class="col-12">
-              <button type="submit" class="btn btn-danger w-100 fw-bold">
-                Başvurumu İşverene İlet
+              <button type="submit" id="apSubmitBtn" class="btn btn-danger w-100 fw-bold">
+                🚀 Detaylı Açıklamamla Başvurumu İşverene İlet
               </button>
             </div>
           </form>
@@ -224,11 +255,14 @@ const DEPARTMENTS = [
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
       let allJobs = [];
+      let currentTalentId = 'tln_emir_aksu';
+      let remainingQuota = 5;
 
       const FALLBACK_JOBS = [
         {
           id: 'job_1',
           job_no: 'MW-IK-101',
+          company_id: 'comp_meetwork_hq',
           company_name: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)',
           company_slug: 'meetwork-global-yonetim',
           trust_level: 3,
@@ -245,6 +279,7 @@ const DEPARTMENTS = [
         {
           id: 'job_2',
           job_no: 'MW-IK-102',
+          company_id: 'comp_anadolu_celik',
           company_name: 'Anadolu Çelik & Makine San. Tic. A.Ş.',
           company_slug: 'anadolu-celik-makine-sanayi',
           trust_level: 3,
@@ -261,6 +296,7 @@ const DEPARTMENTS = [
         {
           id: 'job_3',
           job_no: 'MW-IK-103',
+          company_id: 'comp_marmara_makine',
           company_name: 'Marmara Endüstriyel Makine & Otomasyon Ltd. Şti.',
           company_slug: 'marmara-endustriyel-makine',
           trust_level: 3,
@@ -277,6 +313,7 @@ const DEPARTMENTS = [
         {
           id: 'job_4',
           job_no: 'MW-IK-104',
+          company_id: 'comp_ege_lojistik',
           company_name: 'Ege Global Lojistik & Ticari Filo Yönetimi A.Ş.',
           company_slug: 'ege-global-lojistik-filo',
           trust_level: 2,
@@ -291,6 +328,16 @@ const DEPARTMENTS = [
           description: 'Filo ve antrepo operasyonlarımızın StokPratik Bulut ERP & CariNet sistemine geçiş sürecini kurgulayacak dönemsel uzman.'
         }
       ];
+
+      function updateQuotaBadges(rem) {
+        remainingQuota = rem;
+        const sEl = document.getElementById('sidebarQuotaDisplay');
+        const tEl = document.getElementById('topQuotaBadge');
+        const mEl = document.getElementById('modalQuotaBadge');
+        if (sEl) sEl.textContent = `Kalan: ${rem} / 5 Hak`;
+        if (tEl) tEl.textContent = `🎯 Günlük Başvuru Hakkınız: ${rem} / 5`;
+        if (mEl) mEl.textContent = `Kalan Hak: ${rem}/5`;
+      }
 
       function renderJobs() {
         const grid = document.getElementById('mwJobsGridContainer');
@@ -322,6 +369,10 @@ const DEPARTMENTS = [
             ? '<span class="mw-trust-badge-3">★ Gold Onaylı İşveren</span>'
             : '<span class="mw-trust-badge-2">✓ Silver Onaylı İşveren</span>';
 
+          const safeTitle = (j.title || '').replace(/'/g, "\\'");
+          const safeCompName = (j.company_name || '').replace(/'/g, "\\'");
+          const safeCompId = (j.company_id || '').replace(/'/g, "\\'");
+
           return `
             <div class="col-xl-4 col-md-6 col-12">
               <article class="mw-job-card p-3 shadow-sm">
@@ -348,9 +399,9 @@ const DEPARTMENTS = [
                   <button
                     type="button"
                     class="btn btn-danger btn-sm w-100 fw-bold"
-                    onclick="window.mwOpenApplyJob('${j.id}', '${j.title.replace(/'/g, "\\'")}')"
+                    onclick="window.mwOpenApplyJob('${j.id}', '${safeTitle}', '${safeCompId}', '${safeCompName}')"
                   >
-                    ⚡ Hemen Başvur
+                    ⚡ Detaylı Açıklama ile Başvur
                   </button>
                 </div>
               </article>
@@ -359,9 +410,14 @@ const DEPARTMENTS = [
         }).join('');
       }
 
-      window.mwOpenApplyJob = function (id, title) {
+      window.mwOpenApplyJob = function (id, title, companyId, companyName) {
         document.getElementById('apJobId').value = id;
         document.getElementById('apJobTitle').textContent = title;
+        document.getElementById('apCompanyId').value = companyId || '';
+        document.getElementById('apCompanyName').value = companyName || 'MeetWork Üye İşveren';
+        const compLabel = document.getElementById('apCompanyLabel');
+        if (compLabel) compLabel.textContent = `🏢 ${companyName || 'MeetWork Üye İşveren'}`;
+
         const fb = document.getElementById('apFeedback');
         if (fb) fb.style.display = 'none';
         const modalEl = document.getElementById('mwApplyJobModal');
@@ -373,11 +429,29 @@ const DEPARTMENTS = [
       document.addEventListener('DOMContentLoaded', async () => {
         try {
           const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          const savedTid = localStorage.getItem('mw_my_talent_id');
+          if (savedTid) currentTalentId = savedTid;
           const empBtn = document.getElementById('mwEmployerPostJobBtn');
           if (u && u.company_id && empBtn) {
             empBtn.style.display = 'inline-flex';
           }
+          if (u) {
+            if (u.talent_id) currentTalentId = u.talent_id;
+            if (u.full_name) document.getElementById('apFullName').value = u.full_name;
+            if (u.phone) document.getElementById('apPhone').value = u.phone;
+          }
         } catch (_) {}
+
+        // Karakter sayacı
+        const msgInput = document.getElementById('apMessage');
+        const charCounter = document.getElementById('apCharCounter');
+        if (msgInput && charCounter) {
+          msgInput.addEventListener('input', () => {
+            const len = msgInput.value.trim().length;
+            charCounter.textContent = `${len} / min. 20 karakter`;
+            charCounter.className = len >= 20 ? 'text-success fw-bold tabular-nums' : 'text-danger tabular-nums';
+          });
+        }
 
         renderJobs();
         try {
@@ -386,6 +460,15 @@ const DEPARTMENTS = [
           if (data && Array.isArray(data.jobs) && data.jobs.length > 0) {
             allJobs = data.jobs;
             renderJobs();
+          }
+        } catch (_) {}
+
+        // Adayın günlük kota bilgisini çek
+        try {
+          const pRes = await fetch(`${API_URL}/api/career/my-profile?talent_id=${encodeURIComponent(currentTalentId)}`);
+          const pData = await pRes.json();
+          if (pData && pData.remaining_quota !== undefined) {
+            updateQuotaBadges(pData.remaining_quota);
           }
         } catch (_) {}
 
@@ -409,14 +492,27 @@ const DEPARTMENTS = [
           apForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const fb = document.getElementById('apFeedback');
+            const reason = document.getElementById('apMessage').value.trim();
+            if (reason.length < 20) {
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'col-12 small fw-bold text-danger';
+                fb.textContent = '⚠️ Lütfen işletmeye neden bu işe başvurduğunuzu en az 20 karakterlik detaylı bir açıklama ile yazınız.';
+              }
+              return;
+            }
+
             const payload = {
               interaction_type: 'candidate_apply',
+              talent_id: currentTalentId,
               job_id: document.getElementById('apJobId').value,
               job_title: document.getElementById('apJobTitle').textContent,
+              company_id: document.getElementById('apCompanyId').value,
+              company_name: document.getElementById('apCompanyName').value,
               talent_name: document.getElementById('apFullName').value,
               contact_phone: document.getElementById('apPhone').value,
               offered_salary: document.getElementById('apExpectedSalary').value,
-              message: document.getElementById('apMessage').value
+              message: reason
             };
             try {
               const res = await fetch(`${API_URL}/api/career/interact`, {
@@ -427,8 +523,13 @@ const DEPARTMENTS = [
               const out = await res.json();
               if (fb) {
                 fb.style.display = 'block';
-                fb.className = 'col-12 small fw-bold text-success';
-                fb.textContent = out.message || '✓ Başvurunuz işverene iletildi!';
+                fb.className = out.success ? 'col-12 small fw-bold text-success' : 'col-12 small fw-bold text-danger';
+                fb.innerHTML = out.success
+                  ? `✓ ${out.message} <a href="/kariyer/profilim" class="fw-bold text-decoration-underline ms-1">Başvurularımı Gör →</a>`
+                  : `⚠️ ${out.message || 'Başvuru gönderilemedi.'}`;
+              }
+              if (out.success && out.remaining_quota !== undefined) {
+                updateQuotaBadges(out.remaining_quota);
               }
             } catch (_) {}
           });

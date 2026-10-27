@@ -162,6 +162,9 @@ const TARGET_SECTORS = [
         <a href="/kariyer/cv-olustur" class="btn btn-warning text-dark btn-sm fw-bold px-3">
           <i class="bi bi-person-vcard-fill me-1"></i> İş Arıyorum / Özgeçmiş (CV) Oluştur
         </a>
+        <a href="/kariyer/profilim" class="btn btn-info text-dark btn-sm fw-bold px-3">
+          👤 Aday Profilim & Başvurularım
+        </a>
       </div>
     </div>
   </section>
@@ -259,7 +262,7 @@ const TARGET_SECTORS = [
             />
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label class="form-label small fw-bold mb-1">Çalışma Şekli Tercihi *</label>
             <select id="cvWorkMode" class="form-select form-select-sm">
               <option value="Uzaktan (Remote) / Proje Bazlı">Uzaktan (Remote) / Proje Bazlı</option>
@@ -269,9 +272,18 @@ const TARGET_SECTORS = [
             </select>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label class="form-label small fw-bold mb-1">Maaş / Hakediş Beklentisi *</label>
             <input type="text" id="cvSalary" class="form-control form-control-sm" value="75.000 TL – 110.000 TL" placeholder="Örn: 75.000 TL – 110.000 TL" required />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small fw-bold mb-1 text-success">İş Arama Durumunuz *</label>
+            <select id="cvAvailabilityStatus" class="form-select form-select-sm border-success fw-bold">
+              <option value="looking">🟢 Aktif İş Arıyor (Hemen Başlayabilir)</option>
+              <option value="open_to_offers">🟡 İş Tekliflerine Açık (Değerlendiriyor)</option>
+              <option value="not_looking">🔴 Şu An İş Aramıyor (Vitrinde Gizli)</option>
+            </select>
           </div>
 
           <!-- TIKLANABİLİR YETENEK ETİKETLERİ -->
@@ -555,7 +567,8 @@ const TARGET_SECTORS = [
             const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=dc3545&color=fff&size=200&bold=true`;
 
             const payload = {
-              user_id: u ? u.user_id : '',
+              id: (u && u.talent_id) || localStorage.getItem('mw_my_talent_id') || undefined,
+              user_id: u ? (u.id || u.user_id || '') : '',
               full_name: name,
               photo_url: currentWebpDataUrl || fallbackAvatar,
               role_subtitle: document.getElementById('cvRoleSubtitle').value.trim(),
@@ -567,6 +580,7 @@ const TARGET_SECTORS = [
               headline: document.getElementById('cvHeadline').value.trim(),
               work_mode: document.getElementById('cvWorkMode').value,
               salary_expectation: document.getElementById('cvSalary').value.trim(),
+              availability_status: (document.getElementById('cvAvailabilityStatus') || {}).value || 'looking',
               skills_tags: getSelectedSkills(),
               languages: [document.getElementById('cvLanguage').value.trim()].filter(Boolean),
               education_level: document.getElementById('cvEducation').value,
@@ -585,10 +599,13 @@ const TARGET_SECTORS = [
                 body: JSON.stringify(payload)
               });
               const out = await res.json();
+              if (out.id) {
+                localStorage.setItem('mw_my_talent_id', out.id);
+              }
               if (fb) {
                 fb.style.display = 'block';
                 fb.className = 'col-12 p-2 rounded border border-success bg-success-subtle text-success small fw-bold';
-                fb.innerHTML = `✓ ${out.message || 'Özgeçmişiniz başarıyla yayınlandı!'} <a href="/kariyer" class="ms-2 text-danger text-decoration-underline">Aday Vitrininde Gör →</a>`;
+                fb.innerHTML = `✓ ${out.message || 'Özgeçmişiniz başarıyla yayınlandı!'} <a href="/kariyer/profilim" class="ms-2 text-primary text-decoration-underline">👤 Aday Profilime Git →</a> <a href="/kariyer" class="ms-2 text-danger text-decoration-underline">🔍 Aday Vitrininde Gör →</a>`;
               }
             } catch (_) {}
           });

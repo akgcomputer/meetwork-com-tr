@@ -293,6 +293,11 @@ async function ensureSchema(db: D1Database) {
       role_subtitle TEXT DEFAULT '',
       target_sector TEXT DEFAULT 'Tekstil & Hazır Giyim',
       target_position TEXT DEFAULT 'Uzman / Yönetici',
+      availability_status TEXT DEFAULT 'actively_looking',
+      views_count INTEGER DEFAULT 28,
+      invites_count INTEGER DEFAULT 2,
+      notice_period TEXT DEFAULT 'Hemen Başlayabilir',
+      travel_ready TEXT DEFAULT 'Yurt İçi & Yurt Dışı Uygun',
       phone TEXT DEFAULT '',
       email TEXT DEFAULT '',
       city TEXT DEFAULT 'İstanbul',
@@ -360,7 +365,7 @@ async function ensureSchema(db: D1Database) {
   ];
 
   try {
-    await db.prepare(`SELECT target_sector, target_position, photo_url FROM mw_talent_profiles LIMIT 1`).first();
+    await db.prepare(`SELECT availability_status, views_count, invites_count, notice_period FROM mw_talent_profiles LIMIT 1`).first();
   } catch (_) {
     try { await db.prepare(`DROP TABLE IF EXISTS mw_talent_profiles`).run(); } catch (_) {}
   }
@@ -381,7 +386,12 @@ async function ensureSchema(db: D1Database) {
     `ALTER TABLE mw_talent_profiles ADD COLUMN photo_url TEXT DEFAULT ''`,
     `ALTER TABLE mw_talent_profiles ADD COLUMN role_subtitle TEXT DEFAULT ''`,
     `ALTER TABLE mw_talent_profiles ADD COLUMN target_sector TEXT DEFAULT 'Tekstil'`,
-    `ALTER TABLE mw_talent_profiles ADD COLUMN target_position TEXT DEFAULT 'IT Uzmanı'`
+    `ALTER TABLE mw_talent_profiles ADD COLUMN target_position TEXT DEFAULT 'IT Uzmanı'`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN availability_status TEXT DEFAULT 'actively_looking'`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN views_count INTEGER DEFAULT 28`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN invites_count INTEGER DEFAULT 2`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN notice_period TEXT DEFAULT 'Hemen Başlayabilir'`,
+    `ALTER TABLE mw_talent_profiles ADD COLUMN travel_ready TEXT DEFAULT 'Yurt İçi & Yurt Dışı Uygun'`
   ];
 
   for (const alt of alterMigrations) {
@@ -504,6 +514,77 @@ app.post('/api/auth/register', async (c) => {
     target_sectors = [], city = 'İstanbul', district = ''
   } = body;
 
+  // Bireysel İş Arayan / Kariyer Üyesi Kaydı (account_type === 'candidate')
+  if (body.account_type === 'candidate') {
+    if (!full_name || !email) {
+      return c.json({ success: false, message: 'Ad Soyad ve E-posta zorunludur.' }, 400);
+    }
+    const userId = uid('usr');
+    const talentId = `tln_${userId}`;
+    const cleanEmail = email.trim().toLowerCase();
+
+    await c.env.DB.prepare(
+      `INSERT INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
+       VALUES (?, ?, ?, ?, ?, ?, '', 'candidate', 5, 5)`
+    ).bind(
+      userId, cleanEmail, password || '123456', full_name.trim(),
+      phone || '', body.target_position || 'Uzman Aday'
+    ).run();
+
+    const defaultPhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(full_name.trim())}&background=dc3545&color=fff&size=200&bold=true`;
+    await c.env.DB.prepare(
+      `INSERT OR REPLACE INTO mw_talent_profiles (
+         id, user_id, full_name, masked_name, photo_url, role_subtitle, target_sector, target_position,
+         availability_status, views_count, invites_count, notice_period, travel_ready,
+         phone, email, city, headline, department, experience_years, work_mode, salary_expectation,
+         skills_tags, languages, subsidy_eligible, subsidy_badge, bio_summary
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'actively_looking', 12, 0, 'Hemen Başlayabilir', 'Yurt İçi & Yurt Dışı Uygun', ?, ?, ?, ?, ?, ?, ?, ?, ?, '["İngilizce (Orta)"]', 1, '💰 SGK 6111 & KOSGEB Nitelikli Personel Teşvikine Uygun', ?)`
+    ).bind(
+      talentId,
+      userId,
+      full_name.trim(),
+      full_name.trim(),
+      defaultPhoto,
+      body.role_subtitle || body.target_position || 'Doğrulanmış B2B Uzman Aday',
+      body.target_sector || sector || 'Tekstil',
+      body.target_position || 'IT Uzmanı',
+      phone || '',
+      cleanEmail,
+      city || 'İstanbul',
+      body.headline || `${body.target_position || 'Uzman'} • ${sector || 'B2B İş Ağı'}`,
+      body.department || 'Yazılım, Teknoloji & Ar-Ge',
+      Number(body.experience_years || 4),
+      body.work_mode || 'Tam Zamanlı / Hibrit',
+      body.salary_expectation || '55.000 TL – 80.000 TL',
+      JSON.stringify(body.skills_tags || ['StokPratik ERP', 'B2B Operasyon']),
+      body.bio_summary || 'MeetWork doğrulanmış kariyer üyesi.'
+    ).run();
+
+    const sessionToken = uid('mwsess');
+    const sessionData = {
+      user_id: userId,
+      talent_id: talentId,
+      full_name: full_name.trim(),
+      email: cleanEmail,
+      phone: phone || '',
+      role: 'candidate',
+      company_id: '',
+      company_slug: '',
+      company_name: `${full_name.trim()} (Kariyer Profili)`,
+      sector: body.target_sector || sector || 'Tekstil',
+      target_position: body.target_position || 'IT Uzmanı',
+      trust_level: 2
+    };
+    await c.env.KV.put(`session:${sessionToken}`, JSON.stringify(sessionData), { expirationTtl: 86400 * 30 });
+
+    return c.json({
+      success: true,
+      token: sessionToken,
+      user: sessionData,
+      message: 'Kariyer & Aday hesabınız oluşturuldu! Günlük 5 iş başvurusu hakkınız tanımlandı.'
+    });
+  }
+
   if (!full_name || !email || !company_name || !sector) {
     return c.json({ success: false, message: 'Ad Soyad, E-posta, İşletme Adı ve Ana Sektör zorunludur.' }, 400);
   }
@@ -602,6 +683,7 @@ app.post('/api/auth/register', async (c) => {
 
 app.post('/api/auth/login', async (c) => {
   await ensureSchema(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
   const { email, password, sso_provider } = await c.req.json();
   if (!email) return c.json({ success: false, message: 'E-posta veya VKN giriniz.' }, 400);
 
@@ -645,10 +727,25 @@ app.post('/api/auth/login', async (c) => {
     } catch (_) {}
   }
 
+  // If user not in mw_users yet, check if they exist in mw_talent_profiles by email
+  if (!user) {
+    const talentMatch = await c.env.DB.prepare(
+      `SELECT * FROM mw_talent_profiles WHERE lower(email) = ? LIMIT 1`
+    ).bind(clean).first() as any;
+    if (talentMatch) {
+      const uidCand = talentMatch.user_id || uid('usr');
+      await c.env.DB.prepare(
+        `INSERT OR REPLACE INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
+         VALUES (?, ?, '123456', ?, ?, ?, '', 'candidate', 5, 5)`
+      ).bind(uidCand, clean, talentMatch.full_name, talentMatch.phone || '', talentMatch.target_position || 'Uzman').run();
+      user = await c.env.DB.prepare(`SELECT * FROM mw_users WHERE id = ? LIMIT 1`).bind(uidCand).first() as any;
+    }
+  }
+
   if (!user) {
     return c.json({
       success: false,
-      message: 'Bu e-posta ile kayıtlı hesap bulunamadı. Lütfen "Üye Ol" sekmesinden 30 saniyede işletmenizi kaydedin.'
+      message: 'Bu e-posta ile kayıtlı hesap bulunamadı. Lütfen "Üye Ol" sekmesinden 30 saniyede kaydınızı oluşturun.'
     }, 404);
   }
 
@@ -656,21 +753,27 @@ app.post('/api/auth/login', async (c) => {
     return c.json({ success: false, message: 'Girdiğiniz şifre hatalı.' }, 401);
   }
 
+  const talentRow = await c.env.DB.prepare(
+    `SELECT id, target_sector, target_position FROM mw_talent_profiles WHERE user_id = ? OR lower(email) = ? LIMIT 1`
+  ).bind(user.id, clean).first() as any;
+
   const sessionToken = uid('mwsess');
   let parsedTargets: string[] = [];
   try { parsedTargets = JSON.parse(user.target_sectors || '[]'); } catch (_) {}
 
   const sessionData = {
     user_id: user.id,
+    talent_id: talentRow ? talentRow.id : '',
     full_name: user.full_name,
     email: user.email,
-    role: user.role || 'member',
-    company_id: user.company_id,
-    company_slug: user.company_slug,
-    company_name: user.company_name,
-    sector: user.sector,
+    phone: user.phone || '',
+    role: user.role || (talentRow && !user.company_id ? 'candidate' : 'member'),
+    company_id: user.company_id || '',
+    company_slug: user.company_slug || '',
+    company_name: user.company_name || (talentRow ? `${user.full_name} (Kariyer Profili)` : ''),
+    sector: user.sector || (talentRow ? talentRow.target_sector : ''),
     target_sectors: parsedTargets,
-    trust_level: user.trust_level || 1,
+    trust_level: user.trust_level || 2,
     sp_tenant_id: user.sp_tenant_id,
     match_credits: user.match_credits ?? 3,
     tender_credits: user.tender_credits ?? 3
@@ -2714,6 +2817,7 @@ app.get('/api/career/overview', async (c) => {
   const city = c.req.query('city') || '';
   const workMode = c.req.query('work_mode') || '';
   const viewerCompanyId = c.req.query('viewer_company_id') || '';
+  const viewerCompanyName = (c.req.query('viewer_company_name') || '').toLowerCase().trim();
   const viewerUserId = c.req.query('viewer_user_id') || '';
 
   let tSql = `SELECT * FROM mw_talent_profiles WHERE status = 'active'`;
@@ -2729,19 +2833,37 @@ app.get('/api/career/overview', async (c) => {
   tSql += ` ORDER BY is_verified_skill DESC, verification_score DESC, created_at DESC LIMIT 60`;
   const { results: rawTalents } = await c.env.DB.prepare(tSql).bind(...tParams).all();
 
-  const talents = (rawTalents || []).map((t: any) => {
-    let skills: string[] = [];
-    let langs: string[] = [];
-    try { skills = JSON.parse(t.skills_tags || '[]'); } catch (_) {}
-    try { langs = JSON.parse(t.languages || '[]'); } catch (_) {}
-    return {
-      ...t,
-      display_name: t.full_name,
-      contact_locked: false,
-      skills_list: skills,
-      languages_list: langs
-    };
-  });
+  const talents = (rawTalents || [])
+    .filter((t: any) => {
+      // Hide candidates who set status to 'not_looking' unless viewing own card
+      if (t.availability_status === 'not_looking' && (!viewerUserId || t.user_id !== viewerUserId)) {
+        return false;
+      }
+      // Hide candidate from blocked employer
+      if (viewerCompanyName && t.blocked_companies) {
+        const blocked = String(t.blocked_companies).toLowerCase();
+        if (blocked.includes(viewerCompanyName)) return false;
+      }
+      return true;
+    })
+    .map((t: any) => {
+      let skills: string[] = [];
+      let langs: string[] = [];
+      try { skills = JSON.parse(t.skills_tags || '[]'); } catch (_) {}
+      try { langs = JSON.parse(t.languages || '[]'); } catch (_) {}
+      return {
+        ...t,
+        availability_status: t.availability_status || 'looking',
+        views_count: Number(t.views_count || 18),
+        invites_count: Number(t.invites_count || 2),
+        notice_period: t.notice_period || 'Hemen Başlayabilir',
+        travel_ready: t.travel_ready !== undefined ? Number(t.travel_ready) : 1,
+        display_name: t.full_name,
+        contact_locked: false,
+        skills_list: skills,
+        languages_list: langs
+      };
+    });
 
   let jSql = `SELECT * FROM mw_job_postings WHERE status = 'active'`;
   const jParams: any[] = [];
@@ -2787,6 +2909,126 @@ app.get('/api/career/overview', async (c) => {
   });
 });
 
+app.get('/api/career/my-profile', async (c) => {
+  await ensureSchema(c.env.DB);
+  await ensureInitialCareerEcosystem(c.env.DB);
+
+  const userId = c.req.query('user_id') || '';
+  const email = (c.req.query('email') || '').toLowerCase().trim();
+  const talentId = c.req.query('talent_id') || '';
+
+  let profile: any = null;
+  if (talentId) {
+    profile = await c.env.DB.prepare(`SELECT * FROM mw_talent_profiles WHERE id = ? LIMIT 1`).bind(talentId).first();
+  }
+  if (!profile && userId) {
+    profile = await c.env.DB.prepare(`SELECT * FROM mw_talent_profiles WHERE user_id = ? LIMIT 1`).bind(userId).first();
+  }
+  if (!profile && email) {
+    profile = await c.env.DB.prepare(`SELECT * FROM mw_talent_profiles WHERE lower(email) = ? LIMIT 1`).bind(email).first();
+  }
+
+  if (!profile) {
+    return c.json({
+      success: true,
+      has_profile: false,
+      profile: null,
+      applied_jobs: [],
+      received_invites: [],
+      today_applications_count: 0,
+      daily_limit: 5,
+      remaining_quota: 5
+    });
+  }
+
+  let skills: string[] = [];
+  let langs: string[] = [];
+  try { skills = JSON.parse(profile.skills_tags || '[]'); } catch (_) {}
+  try { langs = JSON.parse(profile.languages || '[]'); } catch (_) {}
+
+  const { results: allInts } = await c.env.DB.prepare(
+    `SELECT * FROM mw_career_interactions WHERE talent_id = ? ORDER BY created_at DESC LIMIT 100`
+  ).bind(profile.id).all();
+
+  const interactions = allInts || [];
+  const appliedJobs = interactions.filter((i: any) => i.interaction_type === 'candidate_apply');
+  const receivedInvites = interactions.filter((i: any) => i.interaction_type === 'employer_invite');
+
+  const todayRow = await c.env.DB.prepare(
+    `SELECT COUNT(*) as cnt FROM mw_career_interactions WHERE talent_id = ? AND interaction_type = 'candidate_apply' AND date(created_at) = date('now')`
+  ).bind(profile.id).first() as any;
+
+  const todayCount = Number(todayRow?.cnt || 0);
+  const dailyLimit = 5;
+  const remainingQuota = Math.max(0, dailyLimit - todayCount);
+
+  return c.json({
+    success: true,
+    has_profile: true,
+    profile: {
+      ...profile,
+      availability_status: profile.availability_status || 'looking',
+      views_count: Number(profile.views_count || 24),
+      invites_count: Math.max(Number(profile.invites_count || 0), receivedInvites.length),
+      notice_period: profile.notice_period || 'Hemen Başlayabilir',
+      travel_ready: profile.travel_ready !== undefined ? Number(profile.travel_ready) : 1,
+      skills_list: skills,
+      languages_list: langs
+    },
+    applied_jobs: appliedJobs,
+    received_invites: receivedInvites,
+    today_applications_count: todayCount,
+    daily_limit: dailyLimit,
+    remaining_quota: remainingQuota
+  });
+});
+
+app.post('/api/career/talent/:id/status', async (c) => {
+  await ensureSchema(c.env.DB);
+  const id = c.req.param('id');
+  const body = await c.req.json();
+
+  const existing = await c.env.DB.prepare(`SELECT * FROM mw_talent_profiles WHERE id = ? LIMIT 1`).bind(id).first() as any;
+  if (!existing) {
+    return c.json({ success: false, message: 'Aday profili bulunamadı.' }, 404);
+  }
+
+  const newStatus = body.availability_status || existing.availability_status || 'looking';
+  const noticePeriod = body.notice_period !== undefined ? body.notice_period : (existing.notice_period || 'Hemen Başlayabilir');
+  const travelReady = body.travel_ready !== undefined ? (body.travel_ready ? 1 : 0) : Number(existing.travel_ready ?? 1);
+  const blockedCompanies = body.blocked_companies !== undefined ? body.blocked_companies : (existing.blocked_companies || '');
+  const targetSector = body.target_sector !== undefined ? body.target_sector : (existing.target_sector || 'Tekstil');
+  const targetPosition = body.target_position !== undefined ? body.target_position : (existing.target_position || 'IT Uzmanı');
+  const salaryExpectation = body.salary_expectation !== undefined ? body.salary_expectation : (existing.salary_expectation || '');
+
+  await c.env.DB.prepare(
+    `UPDATE mw_talent_profiles
+     SET availability_status = ?, notice_period = ?, travel_ready = ?, blocked_companies = ?,
+         target_sector = ?, target_position = ?, salary_expectation = ?
+     WHERE id = ?`
+  ).bind(newStatus, noticePeriod, travelReady, blockedCompanies, targetSector, targetPosition, salaryExpectation, id).run();
+
+  const statusLabels: Record<string, string> = {
+    looking: '🟢 Aktif İş Arıyor (Vitrinde Açık)',
+    open_to_offers: '🟡 İş Tekliflerine Açık (Seçici Radar)',
+    not_looking: '🔴 Şu An İş Aramıyor (Vitrinde Gizli)'
+  };
+
+  return c.json({
+    success: true,
+    availability_status: newStatus,
+    message: `Profil ve çalışma durumunuz güncellendi: ${statusLabels[newStatus] || newStatus}`
+  });
+});
+
+app.post('/api/career/talent/:id/view', async (c) => {
+  await ensureSchema(c.env.DB);
+  const id = c.req.param('id');
+  await c.env.DB.prepare(`UPDATE mw_talent_profiles SET views_count = COALESCE(views_count, 0) + 1 WHERE id = ?`).bind(id).run();
+  const row = await c.env.DB.prepare(`SELECT views_count FROM mw_talent_profiles WHERE id = ? LIMIT 1`).bind(id).first() as any;
+  return c.json({ success: true, views_count: Number(row?.views_count || 1) });
+});
+
 app.post('/api/career/talent', async (c) => {
   await ensureSchema(c.env.DB);
   await ensureInitialCareerEcosystem(c.env.DB);
@@ -2805,8 +3047,9 @@ app.post('/api/career/talent', async (c) => {
        phone, email, city, district, headline, department, seniority, experience_years,
        work_mode, salary_expectation, skills_tags, languages, education_level, age, gender,
        is_currently_unemployed, has_vocational_cert, is_anonymous, blocked_companies,
-       is_verified_skill, verification_score, subsidy_eligible, subsidy_badge, bio_summary
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, '', 1, 96, ?, ?, ?)`
+       is_verified_skill, verification_score, subsidy_eligible, subsidy_badge, bio_summary,
+       availability_status, views_count, invites_count, notice_period, travel_ready
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, 1, 96, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).bind(
     id,
     body.user_id || '',
@@ -2833,9 +3076,15 @@ app.post('/api/career/talent', async (c) => {
     body.gender || 'Erkek',
     body.is_currently_unemployed !== undefined ? (body.is_currently_unemployed ? 1 : 0) : 1,
     body.has_vocational_cert !== undefined ? (body.has_vocational_cert ? 1 : 0) : 1,
+    body.blocked_companies || '',
     subsidyInfo.subsidy_eligible,
     subsidyInfo.subsidy_badge,
-    body.bio_summary || ''
+    body.bio_summary || '',
+    body.availability_status || 'looking',
+    Number(body.views_count || 12),
+    Number(body.invites_count || 0),
+    body.notice_period || 'Hemen Başlayabilir',
+    body.travel_ready !== undefined ? (body.travel_ready ? 1 : 0) : 1
   ).run();
 
   return c.json({
@@ -2905,6 +3154,47 @@ app.post('/api/career/interact', async (c) => {
   const body = await c.req.json();
   const id = uid('cint');
   const interactionType = body.interaction_type || 'employer_invite'; // 'employer_invite' or 'candidate_apply'
+  const MAX_DAILY_APPLICATIONS = 5;
+
+  if (interactionType === 'candidate_apply') {
+    const reasonText = String(body.message || '').trim();
+    if (reasonText.length < 20) {
+      return c.json({
+        success: false,
+        message: 'Lütfen işletmeye neden bu pozisyona başvurduğunuzu ve sağlayacağınız katkıyı en az 20 karakterlik detaylı bir açıklama ile belirtin.'
+      }, 400);
+    }
+
+    if (body.talent_id) {
+      // Check duplicate application to same job
+      if (body.job_id) {
+        const dup = await c.env.DB.prepare(
+          `SELECT id FROM mw_career_interactions WHERE talent_id = ? AND job_id = ? AND interaction_type = 'candidate_apply' LIMIT 1`
+        ).bind(body.talent_id, body.job_id).first();
+        if (dup) {
+          return c.json({
+            success: false,
+            message: 'Bu iş ilanına zaten başvurdunuz. Başvurunuzu Aday Profilinizden takip edebilirsiniz.'
+          }, 400);
+        }
+      }
+
+      // Check daily max 5 applications quota
+      const todayRow = await c.env.DB.prepare(
+        `SELECT COUNT(*) as cnt FROM mw_career_interactions WHERE talent_id = ? AND interaction_type = 'candidate_apply' AND date(created_at) = date('now')`
+      ).bind(body.talent_id).first() as any;
+      const todayCount = Number(todayRow?.cnt || 0);
+      if (todayCount >= MAX_DAILY_APPLICATIONS) {
+        return c.json({
+          success: false,
+          quota_exceeded: true,
+          today_applications_count: todayCount,
+          daily_limit: MAX_DAILY_APPLICATIONS,
+          message: `Günlük maksimum başvuru kotanızı (${MAX_DAILY_APPLICATIONS} / ${MAX_DAILY_APPLICATIONS}) doldurdunuz. Nitelikli eşleşme kalitesini korumak için yarın tekrar başvuru yapabilirsiniz.`
+        }, 429);
+      }
+    }
+  }
 
   await c.env.DB.prepare(
     `INSERT INTO mw_career_interactions (
@@ -2929,12 +3219,25 @@ app.post('/api/career/interact', async (c) => {
     await c.env.DB.prepare(`UPDATE mw_job_postings SET applicants_count = applicants_count + 1 WHERE id = ?`).bind(body.job_id).run();
   }
 
+  if (body.talent_id && interactionType === 'employer_invite') {
+    await c.env.DB.prepare(`UPDATE mw_talent_profiles SET invites_count = COALESCE(invites_count, 0) + 1, views_count = COALESCE(views_count, 0) + 1 WHERE id = ?`).bind(body.talent_id).run();
+  }
+
+  let remainingQuota = MAX_DAILY_APPLICATIONS;
+  if (body.talent_id && interactionType === 'candidate_apply') {
+    const afterRow = await c.env.DB.prepare(
+      `SELECT COUNT(*) as cnt FROM mw_career_interactions WHERE talent_id = ? AND interaction_type = 'candidate_apply' AND date(created_at) = date('now')`
+    ).bind(body.talent_id).first() as any;
+    remainingQuota = Math.max(0, MAX_DAILY_APPLICATIONS - Number(afterRow?.cnt || 1));
+  }
+
   return c.json({
     success: true,
     id,
+    remaining_quota: remainingQuota,
     message: interactionType === 'employer_invite'
-      ? 'Mülakat ve maaş teklifiniz adayın Gizli Radar kutusuna iletildi! Aday onayladığında iletişim bilgileri açılacaktır.'
-      : '1-Tıkla başvurunuz ve Yetenek Kartınız işveren yetkilisine iletildi!'
+      ? 'Mülakat ve maaş teklifiniz adayın Kariyer Profiline iletildi!'
+      : `Başvurunuz ve detaylı ön yazınız işveren yetkilisine iletildi! (Bugün kalan başvuru hakkınız: ${remainingQuota}/${MAX_DAILY_APPLICATIONS})`
   });
 });
 
@@ -2955,8 +3258,8 @@ app.put('/api/career/interact/:id', async (c) => {
     status,
     unlocked_talent: unlockedTalent,
     message: status === 'accepted'
-      ? 'Mülakat teklifi onaylandı! Gizli Radar kilidi açıldı ve iletişim bilgileriniz işverenle paylaşıldı.'
-      : 'Mülakat teklifi reddedildi. Kimliğiniz gizli kalmaya devam ediyor.'
+      ? 'Mülakat daveti onaylandı! İşveren ile görüşme süreciniz başlatıldı.'
+      : 'Mülakat daveti teşekkür edilerek reddedildi.'
   });
 });
 
@@ -3192,9 +3495,34 @@ app.post('/api/superadmin/bootstrap', async (c) => {
      VALUES ('comp_ege_lojistik', 'ege-global-lojistik-filo', 'Ege Global Lojistik & Ticari Filo Yönetimi A.Ş.', '6789012345', 'Lojistik, Nakliyat & Filo', '["Toptan & Dış Ticaret (İhracat/İthalat)","Gıda, Tarım & İçecek"]', 'İzmir', 'Bornova', '05412465429', 'operasyon@egelojistik.com.tr', 2, 1, 'pro', 'Yurtiçi ve uluslararası ağır nakliyat, antrepo ve kurumsal ticari araç kiralama.')`
   ).run();
 
+  // 3. Test İş Arayan Aday Hesabı (emir.aksu@ornek.com / 123456) ve Örnek Başvuru / Davet Kayıtları
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_users (id, email, password_hash, full_name, phone, title, company_id, role, match_credits, tender_credits)
+     VALUES ('usr_talent_5', 'emir.aksu@ornek.com', '123456', 'Emir Aksu', '05412465429', 'Full-Stack Yazılım, AI & Bulut ERP Mimarı', '', 'candidate', 5, 5)`
+  ).run();
+
+  await c.env.DB.prepare(
+    `UPDATE mw_talent_profiles
+     SET user_id = 'usr_talent_5', email = 'emir.aksu@ornek.com', availability_status = 'looking',
+         views_count = 42, invites_count = 2, notice_period = 'Hemen Başlayabilir', travel_ready = 1
+     WHERE id = 'tln_emir_aksu'`
+  ).run();
+
+  // Emir Aksu için 2 örnek yaptığı başvuru + 2 aldığı mülakat daveti
+  await c.env.DB.prepare(
+    `INSERT OR REPLACE INTO mw_career_interactions (
+       id, interaction_type, job_id, job_title, talent_id, talent_name,
+       company_id, company_name, offered_salary, contact_phone, message, status
+     ) VALUES
+     ('cint_demo_apply_1', 'candidate_apply', 'job_1', 'B2B Kurumsal Satış, Ekosistem & Üye İlişkileri Yöneticisi', 'tln_emir_aksu', 'Emir Aksu', 'comp_meetwork_hq', 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork)', '85.000 TL', '05412465429', 'B2B SaaS, E-İhale ve Bulut ERP mimarilerinde 6 yıllık tecrübemle MeetWork ve StokPratik ekosisteminin teknik satış ve kurumsal entegrasyon süreçlerine doğrudan katkı sağlamak için başvuruyorum.', 'pending'),
+     ('cint_demo_apply_2', 'candidate_apply', 'job_4', '⚡ [Dönemsel / Proje Bazlı] StokPratik ERP Kurulum & E-Fatura / Cari Mutabakat Uzmanı', 'tln_emir_aksu', 'Emir Aksu', 'comp_ege_lojistik', 'Ege Global Lojistik & Ticari Filo Yönetimi A.Ş.', 'Proje Bazlı 55.000 TL', '05412465429', 'StokPratik CariNet API ve E-Fatura UBL-TR entegrasyonlarını daha önce 12 farklı lojistik ve üretim firmasında devreye aldım. 2 aylık geçiş projenizi anahtar teslim yönetebilirim.', 'accepted'),
+     ('cint_demo_invite_1', 'employer_invite', 'job_2', 'ERP & Üretim Otomasyon Yazılım Mimarı (Doğrudan Davet)', 'tln_emir_aksu', 'Emir Aksu', 'comp_anadolu_celik', 'Anadolu Çelik & Makine San. Tic. A.Ş.', '95.000 TL + Prim', '05321112233', 'Emir Bey merhaba, Tuzla OSB fabrikamızın CNC üretim hattı ile StokPratik ERP entegrasyonu için yetenek kartınızı inceledik. Sizinle online teknik mülakat yapmak isteriz.', 'pending'),
+     ('cint_demo_invite_2', 'employer_invite', 'job_3', 'B2B Dijital İhracat & AI Eşleştirme Danışmanı', 'tln_emir_aksu', 'Emir Aksu', 'comp_marmara_makine', 'Marmara Endüstriyel Makine & Otomasyon Ltd. Şti.', '90.000 TL (Uzaktan / Hibrit)', '05412465429', 'TÜBİTAK 1507 Ar-Ge projemiz kapsamında ihracat portalımızın geliştirilmesi için profiliniz %99 uyumlu çıktı. Müsaitliğiniz varsa bu hafta görüşelim.', 'pending')`
+  ).run();
+
   return c.json({
     success: true,
-    message: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork) hesabı, 16 Hibe/Fon programı, Kariyer & Yetenek Havuzu ve Test Üye hesapları başarıyla hazırlandı!'
+    message: 'DD İnternet ve E-Ticaret Hizmetleri Ltd. Şti. (MeetWork) hesabı, 16 Hibe/Fon programı, Kariyer & Yetenek Havuzu ve Test Üye/Aday hesapları başarıyla hazırlandı!'
   });
 });
 

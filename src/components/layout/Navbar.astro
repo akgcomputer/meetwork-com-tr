@@ -102,6 +102,9 @@ const currentPath = Astro.url.pathname;
             <a class="dropdown-item rounded py-1 small fw-semibold" href="/kariyer">
               <i class="bi bi-people-fill text-primary me-2"></i>Kariyer, İK & Yetenek Havuzu
             </a>
+            <a class="dropdown-item rounded py-1 small fw-semibold" href="/kariyer/profilim">
+              <i class="bi bi-person-badge-fill text-info me-2"></i>Aday Profilim & Başvurularım
+            </a>
             <button type="button" class="dropdown-item rounded py-1 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
               <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
             </button>
@@ -308,6 +311,9 @@ const currentPath = Astro.url.pathname;
               <a class="dropdown-item rounded py-2 small fw-semibold" href="/kariyer">
                 <i class="bi bi-people-fill text-primary me-2"></i>Kariyer, İK & Yetenek Havuzu
               </a>
+              <a class="dropdown-item rounded py-2 small fw-semibold" href="/kariyer/profilim">
+                <i class="bi bi-person-badge-fill text-info me-2"></i>Aday Profilim & Başvurularım
+              </a>
               <a class="dropdown-item rounded py-2 small fw-semibold" href="/ilanlar?yeni=1">
                 <i class="bi bi-plus-circle text-danger me-2"></i>İlan / İhale Oluştur
               </a>
@@ -403,7 +409,7 @@ const currentPath = Astro.url.pathname;
         const rawUser = localStorage.getItem(USER_KEY);
         if (rawUser) {
           const user = JSON.parse(rawUser);
-          if (user && (user.email || user.user_id)) {
+          if (user && (user.email || user.user_id || user.id)) {
             document.querySelectorAll('.mw-unified-auth-btn').forEach(btn => {
               btn.setAttribute('href', '#');
               btn.setAttribute('data-bs-toggle', 'dropdown');
@@ -420,16 +426,23 @@ const currentPath = Astro.url.pathname;
             });
 
             document.querySelectorAll('.mw-drop-company').forEach(el => {
-              el.textContent = user.company_name || 'Kurumsal İşletmem';
+              el.textContent = user.role === 'candidate'
+                ? '👤 İş Arayan / Uzman Aday'
+                : (user.company_name || 'Kurumsal İşletmem');
             });
             document.querySelectorAll('.mw-drop-user').forEach(el => {
               el.textContent = `${user.full_name || ''} (${user.email || ''})`;
             });
             document.querySelectorAll('.mw-drop-badge').forEach(el => {
-              el.innerHTML = getBadgeHtml(user.trust_level || 2);
+              el.innerHTML = user.role === 'candidate'
+                ? '<span class="badge bg-success-subtle text-success border border-success">✓ Doğrulanmış Aday</span>'
+                : getBadgeHtml(user.trust_level || 2);
             });
             document.querySelectorAll('.mw-drop-profile-link').forEach(el => {
-              if (user.company_slug) {
+              if (user.role === 'candidate') {
+                el.setAttribute('href', '/kariyer/profilim');
+                el.innerHTML = '<i class="bi bi-person-badge-fill text-info me-2"></i>Aday Profilim & Başvurularım';
+              } else if (user.company_slug) {
                 el.setAttribute('href', `/isletmeler?firma=${encodeURIComponent(user.company_slug)}`);
               }
             });

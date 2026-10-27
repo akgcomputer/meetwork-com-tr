@@ -1,0 +1,787 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Aday Profilim, Başvurularım & Mülakat Davetlerim | MeetWork Kariyer"
+  description="MeetWork iş arayan aday profili: başvurduğunuz firmaları, profilinizi ziyaret eden işveren sayısını, aldığınız mülakat davetlerini ve iş arama durumunuzu yönetin."
+>
+  <style is:global>
+    .mw-tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .mw-status-option {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid #e2e8f0;
+    }
+    .mw-status-option:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+    .mw-status-option.active-looking {
+      border-color: #10b981 !important;
+      background: #ecfdf5 !important;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.14);
+    }
+    .mw-status-option.active-open {
+      border-color: #f59e0b !important;
+      background: #fffbeb !important;
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.14);
+    }
+    .mw-status-option.active-not-looking {
+      border-color: #ef4444 !important;
+      background: #fef2f2 !important;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.14);
+    }
+    @media print {
+      header, footer, .no-print, #mwMobileBottomNav {
+        display: none !important;
+      }
+      body {
+        background: #fff !important;
+      }
+    }
+  </style>
+
+  <!-- ÜST BAR & SEKME NAVİGASYONU -->
+  <section class="py-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 65%, #31102f 100%); color: #fff;">
+    <div class="container">
+      <div class="row align-items-center g-3">
+        <div class="col-lg-7">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="badge bg-info text-dark px-3 py-1 rounded-pill fw-bold">👤 İŞ ARAYAN / UZMAN ADAY PANELİ</span>
+            <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold">🎯 Günlük Maks. 5 Nitelikli Başvuru</span>
+            <span class="badge bg-success px-3 py-1 rounded-pill fw-bold">🏛️ Devlet Teşvik Karnesi Entegreli</span>
+          </div>
+          <h1 class="h3 fw-bold text-white mb-1">👤 Aday Profilim & Başvuru Yönetim Merkezi</h1>
+          <p class="text-light opacity-75 small mb-0">
+            Profilinizi kaç işverenin ziyaret ettiğini görün, <strong>iş arama durumunuzu</strong> tek tıkla değiştirin, başvurduğunuz firmaları ve aldığınız mülakat davetlerini yönetin.
+          </p>
+        </div>
+        <div class="col-lg-5 text-lg-end no-print">
+          <div class="d-inline-flex flex-wrap gap-2 bg-dark bg-opacity-50 p-2 rounded-4 border border-secondary border-opacity-50">
+            <a href="/kariyer" class="btn btn-outline-light rounded-pill px-3 py-2 fw-bold small">
+              🔍 Aday Vitrinini Gör
+            </a>
+            <a href="/kariyer/is-ara" class="btn btn-outline-info rounded-pill px-3 py-2 fw-bold small">
+              📢 İş İlanlarına Başvur
+            </a>
+            <a href="/kariyer/cv-olustur" class="btn btn-outline-warning rounded-pill px-3 py-2 fw-bold small">
+              📝 CV Oluştur / Güncelle
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-4 bg-light min-vh-100">
+    <div class="container">
+
+      <!-- 1. GİRİŞ YAPMAMIŞ ADAY EKRANI (GİRİŞ / HIZLI ADAY KAYDI / DEMO GİRİŞ) -->
+      <div id="mwCandidateAuthBox" class="card border-0 shadow-sm rounded-4 mb-4 d-none no-print">
+        <div class="card-body p-4 p-lg-5">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-6 border-end-lg pe-lg-4">
+              <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-3 py-1 rounded-pill fw-bold mb-2">
+                🔐 ADAY GİRİŞİ & PROFİL YÖNETİMİ
+              </span>
+              <h2 class="h4 fw-bold text-dark mb-2">İş Arayan / Uzman Aday Hesabınıza Giriş Yapın</h2>
+              <p class="text-muted small mb-3">
+                Tıpkı işletme profillerinde olduğu gibi adaylarımız da kendi hesaplarıyla giriş yaparak; <strong>başvurdukları firmaları</strong>, <strong>profil ziyaret sayaçlarını</strong>, <strong>aldıkları mülakat davetlerini</strong> ve <strong>iş arama durumlarını</strong> yönetebilir.
+              </p>
+
+              <!-- HIZLI DEMO ADAY GİRİŞİ -->
+              <div class="p-3 rounded-4 mb-3" style="background: linear-gradient(135deg, #eff6ff 0%, #eef2ff 100%); border: 1px dashed #6366f1;">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                  <div>
+                    <div class="fw-bold text-dark small">🚀 Tek Tıkla Örnek Aday Profilini Test Edin</div>
+                    <div class="text-muted" style="font-size: 0.78rem;">
+                      <strong>Emir Aksu</strong> (Full-Stack Yazılım, AI & Bulut ERP Mimarı • <code>emir.aksu@ornek.com</code>)
+                    </div>
+                  </div>
+                  <button type="button" id="btnDemoCandidateLogin" class="btn btn-primary btn-sm rounded-pill px-3 fw-bold shadow-sm">
+                    ⚡ Emir Aksu Olarak Giriş Yap
+                  </button>
+                </div>
+              </div>
+
+              <form id="candidateLoginForm" class="row g-2">
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">E-Posta Adresiniz</label>
+                  <input type="email" id="candLoginEmail" class="form-control form-control-sm" placeholder="emir.aksu@ornek.com" required />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Şifreniz</label>
+                  <input type="password" id="candLoginPassword" class="form-control form-control-sm" placeholder="••••••" required />
+                </div>
+                <div class="col-12 mt-3 d-flex gap-2">
+                  <button type="submit" id="btnCandLoginSubmit" class="btn btn-dark btn-sm rounded-pill px-4 fw-bold">
+                    🔑 Aday Girişi Yap
+                  </button>
+                  <a href="/giris" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold">
+                    Kurumsal / Genel Giriş Ekranı
+                  </a>
+                </div>
+              </form>
+              <div id="candAuthAlert" class="alert d-none mt-3 mb-0 py-2 small"></div>
+            </div>
+
+            <div class="col-lg-6 ps-lg-4">
+              <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1 rounded-pill fw-bold mb-2">
+                ✨ YENİ ADAY HESABI OLUŞTUR
+              </span>
+              <h3 class="h5 fw-bold text-dark mb-2">Henüz Aday Hesabınız Yok mu? 30 Saniyede Kaydolun</h3>
+              <p class="text-muted small mb-3">
+                Şirket kurmanıza gerek olmadan bireysel <strong>İş Arayan / Uzman Aday</strong> hesabınızı açın ve hemen CV kartınızı oluşturun.
+              </p>
+              <form id="candidateRegisterForm" class="row g-2">
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Adınız Soyadınız *</label>
+                  <input type="text" id="candRegName" class="form-control form-control-sm" placeholder="Örn: Emir Aksu" required />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Uzmanlık Unvanınız *</label>
+                  <input type="text" id="candRegTitle" class="form-control form-control-sm" placeholder="Örn: İhracat & ERP Uzmanı" required />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">E-Posta Adresiniz *</label>
+                  <input type="email" id="candRegEmail" class="form-control form-control-sm" placeholder="ad.soyad@eposta.com" required />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Telefon (WhatsApp) *</label>
+                  <input type="tel" id="candRegPhone" class="form-control form-control-sm" placeholder="05XX XXX XX XX" required />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Şehir</label>
+                  <input type="text" id="candRegCity" class="form-control form-control-sm" value="İstanbul" />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label small fw-bold mb-1">Şifre Belirleyin *</label>
+                  <input type="password" id="candRegPassword" class="form-control form-control-sm" placeholder="En az 6 karakter" required />
+                </div>
+                <div class="col-12 mt-3">
+                  <button type="submit" id="btnCandRegSubmit" class="btn btn-success btn-sm rounded-pill px-4 fw-bold w-100 py-2">
+                    🚀 Bireysel Aday Hesabımı Aç & Profilime Geç
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. GİRİŞ YAPMIŞ ADAY DASHBOARD EKRANI -->
+      <div id="mwCandidateDashboard" class="d-none">
+
+        <!-- ADAY ÜST KİMLİK & ÇIKIŞ BARI -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+          <div class="card-body p-4">
+            <div class="row align-items-center g-3">
+              <div class="col-lg-7">
+                <div class="d-flex align-items-center gap-3">
+                  <img
+                    id="candProfileAvatar"
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop&q=80"
+                    alt="Aday Fotoğrafı"
+                    style="width:76px;height:76px;border-radius:18px;object-fit:cover;border:3px solid #10b981;"
+                  />
+                  <div>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                      <h2 class="h4 fw-bold text-dark mb-0" id="candProfileName">👤 Emir Aksu</h2>
+                      <span id="candStatusPill" class="badge bg-success rounded-pill px-3 py-1 fw-bold">
+                        🟢 Aktif İş Arıyor
+                      </span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary border border-primary rounded-pill px-2 py-1">
+                        ✓ Doğrulanmış Aday Profili
+                      </span>
+                    </div>
+                    <h3 class="h6 fw-semibold text-secondary mb-1" id="candProfileSubtitle">
+                      &gt; (Full-Stack Yazılım, AI & Bulut ERP Mimarı) • Yazılım, Teknoloji & Ar-Ge
+                    </h3>
+                    <div class="small text-muted" id="candProfileMeta">
+                      📍 İstanbul • ⏱️ 6 Yıl Deneyim • 🎯 Hedef: <strong>Tekstil / IT Uzmanı</strong> • ⏳ İhbar: <strong>Hemen Başlayabilir</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 text-lg-end no-print">
+                <div class="d-flex flex-wrap justify-content-lg-end gap-2">
+                  <button type="button" id="btnPrintCandidateCv" class="btn btn-outline-dark btn-sm rounded-pill px-3 fw-bold">
+                    🖨️ Teşvikli CV Yazdır / PDF
+                  </button>
+                  <a href="/kariyer/cv-olustur" class="btn btn-warning btn-sm rounded-pill px-3 fw-bold text-dark">
+                    ✏️ Özgeçmiş (CV) Kartımı Düzenle
+                  </a>
+                  <button type="button" id="btnCandidateLogout" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold">
+                    🚪 Çıkış Yap
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 CANLI KPI SAYACI (ZİYARET / DAVET / BAŞVURU / GÜNLÜK KOTA) -->
+        <div class="row g-3 mb-4">
+          <div class="col-xl-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 border-start border-4 border-primary">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="text-muted small fw-bold">👁️ PROFİL ZİYARETİ</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">Canlı Sayaç</span>
+                </div>
+                <div class="h3 fw-bold text-dark mb-0 mw-tabular-nums" id="kpiViewsCount">42</div>
+                <div class="text-muted" style="font-size: 0.76rem;">Profilinizi inceleyen onaylı işveren sayısı</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 border-start border-4 border-success">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="text-muted small fw-bold">🤝 ALDIĞIM DAVETLER</span>
+                  <span class="badge bg-success bg-opacity-10 text-success">Tersine İhale</span>
+                </div>
+                <div class="h3 fw-bold text-success mb-0 mw-tabular-nums" id="kpiInvitesCount">2</div>
+                <div class="text-muted" style="font-size: 0.76rem;">İşverenlerden gelen doğrudan mülakat teklifi</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 border-start border-4 border-info">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="text-muted small fw-bold">📨 BAŞVURDUĞUM FİRMALAR</span>
+                  <span class="badge bg-info bg-opacity-10 text-dark">Ön Yazılı</span>
+                </div>
+                <div class="h3 fw-bold text-dark mb-0 mw-tabular-nums" id="kpiAppliedCount">2</div>
+                <div class="text-muted" style="font-size: 0.76rem;">Detaylı açıklama ile başvurduğunuz ilanlar</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 border-start border-4 border-warning">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="text-muted small fw-bold">🎯 GÜNLÜK BAŞVURU KOTASI</span>
+                  <span class="badge bg-warning text-dark">Maks. 5 / Gün</span>
+                </div>
+                <div class="h3 fw-bold text-dark mb-0 mw-tabular-nums" id="kpiDailyQuota">5 / 5</div>
+                <div class="text-muted" style="font-size: 0.76rem;">Bugün kalan nitelikli iş başvurusu hakkınız</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- İŞ ARAMA DURUMU SEÇİCİ (3 MOD: İŞ ARIYOR / TEKLİFLERE AÇIK / İŞ ARAMIYOR) & GİZLİLİK AYARLARI -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 no-print">
+          <div class="card-header bg-white border-bottom p-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <h3 class="h6 fw-bold text-dark mb-0">🎛️ Çalışma & İş Arama Durumunuz (Anlık Vitrin Kontrolü)</h3>
+              <p class="text-muted small mb-0">Durumunuzu değiştirdiğiniz anda işveren arama motorundaki görünürlüğünüz güncellenir.</p>
+            </div>
+            <span id="statusSaveFeedback" class="badge bg-success d-none px-3 py-2">✓ Güncellendi</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <div class="p-3 rounded-4 mw-status-option active-looking" data-status-val="looking">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <span class="fw-bold text-success">🟢 Aktif İş Arıyor</span>
+                    <span class="badge bg-success">Vitrin Öncelikli</span>
+                  </div>
+                  <p class="text-muted small mb-0">
+                    İşveren aramalarında en üstte çıkarsınız. Hemen veya kısa sürede işbaşı yapmaya uygun olduğunuzu gösterir.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 rounded-4 mw-status-option" data-status-val="open_to_offers">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <span class="fw-bold text-warning">🟡 İş Tekliflerine Açık</span>
+                    <span class="badge bg-warning text-dark">Seçici Radar</span>
+                  </div>
+                  <p class="text-muted small mb-0">
+                    Aktif çalışıyorsunuz veya aceleniz yok ancak nitelikli pozisyon ve üst segment maaş tekliflerini değerlendirirsiniz.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 rounded-4 mw-status-option" data-status-val="not_looking">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <span class="fw-bold text-danger">🔴 Şu An İş Aramıyor</span>
+                    <span class="badge bg-danger">Vitrinde Gizli</span>
+                  </div>
+                  <p class="text-muted small mb-0">
+                    Yetenek kartınız silinmez ancak <code>/kariyer</code> işveren aramalarında gizlenir. İstediğiniz zaman tekrar açabilirsiniz.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- EKSTRA KARİYER TERCİHLERİ (İHBAR SÜRESİ, HEDEF SEKTÖR/POZİSYON, MEVCUT İŞVEREN ENGELLEME) -->
+            <form id="candidatePreferencesForm" class="row g-3 pt-2 border-top">
+              <div class="col-md-3">
+                <label class="form-label small fw-bold mb-1">⏳ İhbar Süresi / Başlama Zamanı</label>
+                <select id="prefNoticePeriod" class="form-select form-select-sm">
+                  <option value="Hemen Başlayabilir">Hemen Başlayabilir</option>
+                  <option value="1 Hafta İçinde">1 Hafta İçinde</option>
+                  <option value="2 Hafta İhbar Süresi">2 Hafta İhbar Süresi</option>
+                  <option value="4 Hafta İhbar Süresi">4 Hafta İhbar Süresi</option>
+                  <option value="Sadece Proje Bazlı / Part-Time">Sadece Proje Bazlı / Part-Time</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-bold mb-1">🏭 İş Aradığı Sektör</label>
+                <input type="text" id="prefTargetSector" class="form-control form-control-sm" placeholder="Örn: Tekstil" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-bold mb-1">🎯 İş Aradığı Pozisyon</label>
+                <input type="text" id="prefTargetPosition" class="form-control form-control-sm" placeholder="Örn: IT Uzmanı" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-bold mb-1">🛡️ Beni Görmesini İstemediğim Firma</label>
+                <input type="text" id="prefBlockedCompanies" class="form-control form-control-sm" placeholder="Mevcut şirketinizin adı (Opsiyonel)" />
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" id="btnSavePreferences" class="btn btn-dark btn-sm rounded-pill fw-bold w-100 py-2">
+                  💾 Tercihleri Kaydet
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- SOL SÜTUN: BAŞVURDUĞUM FİRMALAR LİSTESİ (DETAYLI AÇIKLAMALI) -->
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+                <div>
+                  <h3 class="h6 fw-bold text-dark mb-0">📨 Başvurduğum Firmalar & Başvuru Nedenlerim</h3>
+                  <p class="text-muted mb-0" style="font-size: 0.76rem;">İşletmelere yazdığınız özel başvuru açıklaması ve başvuru durumu</p>
+                </div>
+                <a href="/kariyer/is-ara" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold no-print">
+                  + Yeni Başvuru Yap
+                </a>
+              </div>
+              <div class="card-body p-3" id="candAppliedJobsList">
+                <div class="text-center py-4 text-muted small">Yükleniyor...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAĞ SÜTUN: İŞVERENLERDEN GELEN MÜLAKAT DAVETLERİ -->
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+                <div>
+                  <h3 class="h6 fw-bold text-dark mb-0">🤝 Aldığım Mülakat & Maaş Davetleri ("Tersine İhale")</h3>
+                  <p class="text-muted mb-0" style="font-size: 0.76rem;">Yetenek kartınızı beğenip doğrudan size teklif gönderen onaylı işverenler</p>
+                </div>
+                <span class="badge bg-success rounded-pill" id="badgeInviteCount">2 Teklif</span>
+              </div>
+              <div class="card-body p-3" id="candReceivedInvitesList">
+                <div class="text-center py-4 text-muted small">Yükleniyor...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const API_BASE = window.MW_API_BASE || 'https://meetwork-api.akgcomputer.workers.dev';
+      let currentUser = null;
+      let currentTalent = null;
+
+      function getSavedUser() {
+        try {
+          const u = JSON.parse(localStorage.getItem('mw_user') || 'null');
+          if (u && (u.id || u.email)) return u;
+        } catch (_) {}
+        return null;
+      }
+
+      function showAuthAlert(msg, type = 'danger') {
+        const el = document.getElementById('candAuthAlert');
+        if (!el) return;
+        el.className = `alert alert-${type} mt-3 mb-0 py-2 small`;
+        el.textContent = msg;
+      }
+
+      function renderStatusUI(status) {
+        const pill = document.getElementById('candStatusPill');
+        document.querySelectorAll('.mw-status-option').forEach((card) => {
+          card.classList.remove('active-looking', 'active-open', 'active-not-looking');
+          const val = card.getAttribute('data-status-val');
+          if (val === status) {
+            if (status === 'looking') card.classList.add('active-looking');
+            else if (status === 'open_to_offers') card.classList.add('active-open');
+            else card.classList.add('active-not-looking');
+          }
+        });
+
+        if (pill) {
+          if (status === 'looking') {
+            pill.className = 'badge bg-success rounded-pill px-3 py-1 fw-bold';
+            pill.textContent = '🟢 Aktif İş Arıyor';
+          } else if (status === 'open_to_offers') {
+            pill.className = 'badge bg-warning text-dark rounded-pill px-3 py-1 fw-bold';
+            pill.textContent = '🟡 İş Tekliflerine Açık';
+          } else {
+            pill.className = 'badge bg-danger rounded-pill px-3 py-1 fw-bold';
+            pill.textContent = '🔴 Şu An İş Aramıyor (Gizli)';
+          }
+        }
+      }
+
+      function renderAppliedJobs(list) {
+        const box = document.getElementById('candAppliedJobsList');
+        if (!box) return;
+        if (!list || list.length === 0) {
+          box.innerHTML = `
+            <div class="text-center py-4">
+              <div class="fs-2 mb-2">📭</div>
+              <div class="fw-bold text-dark small mb-1">Henüz başvurduğunuz bir iş ilanı bulunmuyor</div>
+              <p class="text-muted small mb-3">Günlük 5 nitelikli başvuru hakkınızı kullanarak onaylı B2B işletmelere neden başvurduğunuzu belirten bir ön yazıyla müracaat edebilirsiniz.</p>
+              <a href="/kariyer/is-ara" class="btn btn-primary btn-sm rounded-pill px-4 fw-bold">📢 Açık İş İlanlarını İncele</a>
+            </div>
+          `;
+          return;
+        }
+
+        box.innerHTML = list.map((item) => {
+          const stBadge = item.status === 'accepted'
+            ? '<span class="badge bg-success">🤝 İşveren İnceledi / Mülakat Onaylandı</span>'
+            : item.status === 'rejected'
+              ? '<span class="badge bg-secondary">Olumsuz / Kapandı</span>'
+              : '<span class="badge bg-warning text-dark">⏳ İşverene İletildi (İnceleniyor)</span>';
+
+          const dateStr = item.created_at ? new Date(item.created_at).toLocaleDateString('tr-TR') : 'Bugün';
+          return `
+            <div class="p-3 rounded-4 border bg-light mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-1">
+                <div>
+                  <div class="fw-bold text-dark" style="font-size:0.92rem;">🏢 ${item.company_name || 'MeetWork Üye İşveren'}</div>
+                  <div class="text-primary fw-semibold small">${item.job_title || 'Personel İlanı'}</div>
+                </div>
+                ${stBadge}
+              </div>
+              <div class="d-flex flex-wrap gap-3 text-muted my-1" style="font-size:0.75rem;">
+                <span>📅 Başvuru Tarihi: <strong>${dateStr}</strong></span>
+                ${item.offered_salary ? `<span>💰 Beklenti/Teklif: <strong class="mw-tabular-nums">${item.offered_salary}</strong></span>` : ''}
+              </div>
+              <div class="p-2 rounded-3 bg-white border mt-2" style="font-size:0.78rem;">
+                <div class="fw-bold text-secondary mb-1">📝 İşletmeye Yazdığınız Başvuru Nedeni / Ön Yazı:</div>
+                <div class="text-dark fst-italic">"${item.message || 'Niteliklerim pozisyonla tam uyumludur.'}"</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderReceivedInvites(list) {
+        const box = document.getElementById('candReceivedInvitesList');
+        const badge = document.getElementById('badgeInviteCount');
+        if (badge) badge.textContent = `${(list || []).length} Teklif`;
+        if (!box) return;
+
+        if (!list || list.length === 0) {
+          box.innerHTML = `
+            <div class="text-center py-4">
+              <div class="fs-2 mb-2">📡</div>
+              <div class="fw-bold text-dark small mb-1">Henüz doğrudan mülakat daveti almadınız</div>
+              <p class="text-muted small mb-0">Çalışma durumunuzu "🟢 Aktif İş Arıyor" olarak tuttuğunuzda işverenler yetenek kartınızı inceleyip doğrudan teklif gönderebilir.</p>
+            </div>
+          `;
+          return;
+        }
+
+        box.innerHTML = list.map((inv) => {
+          const isAccepted = inv.status === 'accepted';
+          const isRejected = inv.status === 'rejected';
+          const statusBadge = isAccepted
+            ? '<span class="badge bg-success">✅ Daveti Kabul Ettiniz</span>'
+            : isRejected
+              ? '<span class="badge bg-secondary">❌ Reddedildi</span>'
+              : '<span class="badge bg-danger">🔔 Yanıtınızı Bekliyor</span>';
+
+          return `
+            <div class="p-3 rounded-4 border ${isAccepted ? 'border-success bg-success bg-opacity-10' : 'bg-light'} mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-1">
+                <div>
+                  <div class="fw-bold text-dark" style="font-size:0.92rem;">🏭 ${inv.company_name || 'Onaylı İşveren'}</div>
+                  <div class="text-success fw-bold small">${inv.job_title || 'Doğrudan Mülakat Daveti'}</div>
+                </div>
+                ${statusBadge}
+              </div>
+              <div class="d-flex flex-wrap gap-3 text-muted my-1" style="font-size:0.76rem;">
+                <span>💰 Teklif Edilen Maaş: <strong class="text-dark mw-tabular-nums">${inv.offered_salary || 'Görüşmede Belirlenecek'}</strong></span>
+                ${inv.contact_phone ? `<span>📞 İşveren İletişim: <strong class="mw-tabular-nums">${inv.contact_phone}</strong></span>` : ''}
+              </div>
+              <div class="p-2 rounded-3 bg-white border my-2" style="font-size:0.78rem;">
+                <span class="fw-bold text-secondary">💬 İşveren Mesajı:</span> "${inv.message || 'Yetenek kartınızı inceledik, mülakata davet etmek istiyoruz.'}"
+              </div>
+              ${!isAccepted && !isRejected ? `
+                <div class="d-flex gap-2 mt-2 no-print">
+                  <button type="button" class="btn btn-success btn-sm rounded-pill px-3 fw-bold btn-respond-invite" data-id="${inv.id}" data-status="accepted">
+                    ✅ Daveti Kabul Et
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold btn-respond-invite" data-id="${inv.id}" data-status="rejected">
+                    ❌ Teşekkür Ederek Reddet
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+
+        box.querySelectorAll('.btn-respond-invite').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const id = btn.getAttribute('data-id');
+            const status = btn.getAttribute('data-status');
+            btn.disabled = true;
+            try {
+              const res = await fetch(`${API_BASE}/api/career/interact/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+              });
+              const data = await res.json();
+              alert(data.message || 'Yanıtınız kaydedildi.');
+              loadCandidateDashboard();
+            } catch (_) {
+              btn.disabled = false;
+            }
+          });
+        });
+      }
+
+      async function loadCandidateDashboard() {
+        currentUser = getSavedUser();
+        const authBox = document.getElementById('mwCandidateAuthBox');
+        const dashBox = document.getElementById('mwCandidateDashboard');
+
+        if (!currentUser) {
+          authBox?.classList.remove('d-none');
+          dashBox?.classList.add('d-none');
+          return;
+        }
+
+        authBox?.classList.add('d-none');
+        dashBox?.classList.remove('d-none');
+
+        const savedTalentId = localStorage.getItem('mw_my_talent_id') || currentUser.talent_id || '';
+        const qs = new URLSearchParams({
+          user_id: currentUser.id || '',
+          email: currentUser.email || '',
+          talent_id: savedTalentId
+        });
+
+        try {
+          const res = await fetch(`${API_BASE}/api/career/my-profile?${qs.toString()}`);
+          const data = await res.json();
+
+          const p = data.profile || {
+            id: savedTalentId || 'tln_emir_aksu',
+            full_name: currentUser.full_name || 'Emir Aksu',
+            photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.full_name || 'Aday')}&background=0f172a&color=fff&size=200`,
+            role_subtitle: currentUser.title || 'B2B Uzman Aday',
+            department: 'Yazılım, Teknoloji & Ar-Ge',
+            city: 'İstanbul',
+            experience_years: 5,
+            target_sector: 'Tekstil',
+            target_position: 'IT Uzmanı',
+            notice_period: 'Hemen Başlayabilir',
+            availability_status: 'looking',
+            views_count: 19,
+            invites_count: (data.received_invites || []).length
+          };
+
+          currentTalent = p;
+          if (p.id) localStorage.setItem('mw_my_talent_id', p.id);
+
+          document.getElementById('candProfileAvatar').src = p.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.full_name)}&background=0f172a&color=fff&size=200`;
+          document.getElementById('candProfileName').textContent = `👤 ${p.full_name}`;
+          document.getElementById('candProfileSubtitle').textContent = `> (${p.role_subtitle || p.headline}) • ${p.department || 'B2B Uzman'}`;
+          document.getElementById('candProfileMeta').innerHTML = `📍 ${p.city || 'İstanbul'} • ⏱️ ${p.experience_years || 4} Yıl Deneyim • 🎯 Hedef: <strong>${p.target_sector || 'Tekstil'} / ${p.target_position || 'IT Uzmanı'}</strong> • ⏳ İhbar: <strong>${p.notice_period || 'Hemen Başlayabilir'}</strong>`;
+
+          document.getElementById('kpiViewsCount').textContent = String(p.views_count || 24);
+          document.getElementById('kpiInvitesCount').textContent = String((data.received_invites || []).length || p.invites_count || 0);
+          document.getElementById('kpiAppliedCount').textContent = String((data.applied_jobs || []).length);
+          document.getElementById('kpiDailyQuota').textContent = `${data.remaining_quota ?? 5} / ${data.daily_limit ?? 5}`;
+
+          renderStatusUI(p.availability_status || 'looking');
+
+          const npEl = document.getElementById('prefNoticePeriod');
+          if (npEl && p.notice_period) npEl.value = p.notice_period;
+          const tsEl = document.getElementById('prefTargetSector');
+          if (tsEl) tsEl.value = p.target_sector || 'Tekstil';
+          const tpEl = document.getElementById('prefTargetPosition');
+          if (tpEl) tpEl.value = p.target_position || 'IT Uzmanı';
+          const bcEl = document.getElementById('prefBlockedCompanies');
+          if (bcEl) bcEl.value = p.blocked_companies || '';
+
+          renderAppliedJobs(data.applied_jobs || []);
+          renderReceivedInvites(data.received_invites || []);
+        } catch (err) {
+          console.error('Candidate profile load error:', err);
+        }
+      }
+
+      // Demo Aday Girişi (Emir Aksu)
+      document.getElementById('btnDemoCandidateLogin')?.addEventListener('click', async () => {
+        const demoUser = {
+          id: 'usr_talent_5',
+          email: 'emir.aksu@ornek.com',
+          full_name: 'Emir Aksu',
+          phone: '05412465429',
+          title: 'Full-Stack Yazılım, AI & Bulut ERP Mimarı',
+          role: 'candidate',
+          talent_id: 'tln_emir_aksu'
+        };
+        localStorage.setItem('mw_user', JSON.stringify(demoUser));
+        localStorage.setItem('mw_my_talent_id', 'tln_emir_aksu');
+        await loadCandidateDashboard();
+      });
+
+      // Normal Aday Girişi
+      document.getElementById('candidateLoginForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('candLoginEmail').value.trim();
+        const password = document.getElementById('candLoginPassword').value;
+        const btn = document.getElementById('btnCandLoginSubmit');
+        btn.disabled = true;
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+          const data = await res.json();
+          if (data.success && data.user) {
+            localStorage.setItem('mw_user', JSON.stringify(data.user));
+            if (data.user.talent_id) localStorage.setItem('mw_my_talent_id', data.user.talent_id);
+            await loadCandidateDashboard();
+          } else {
+            showAuthAlert(data.message || 'Giriş yapılamadı. Bilgilerinizi kontrol edin.');
+          }
+        } catch (_) {
+          showAuthAlert('Sunucu bağlantı hatası.');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      // Yeni Bireysel Aday Kaydı
+      document.getElementById('candidateRegisterForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const full_name = document.getElementById('candRegName').value.trim();
+        const title = document.getElementById('candRegTitle').value.trim();
+        const email = document.getElementById('candRegEmail').value.trim();
+        const phone = document.getElementById('candRegPhone').value.trim();
+        const city = document.getElementById('candRegCity').value.trim() || 'İstanbul';
+        const password = document.getElementById('candRegPassword').value;
+        const btn = document.getElementById('btnCandRegSubmit');
+        btn.disabled = true;
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              account_type: 'candidate',
+              full_name,
+              title,
+              email,
+              phone,
+              city,
+              password
+            })
+          });
+          const data = await res.json();
+          if (data.success && data.user) {
+            localStorage.setItem('mw_user', JSON.stringify(data.user));
+            if (data.user.talent_id) localStorage.setItem('mw_my_talent_id', data.user.talent_id);
+            await loadCandidateDashboard();
+          } else {
+            showAuthAlert(data.message || 'Kayıt oluşturulamadı.');
+          }
+        } catch (_) {
+          showAuthAlert('Kayıt sırasında hata oluştu.');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      // Çıkış Yap
+      document.getElementById('btnCandidateLogout')?.addEventListener('click', () => {
+        localStorage.removeItem('mw_user');
+        localStorage.removeItem('mw_token');
+        loadCandidateDashboard();
+      });
+
+      // Yazdır / PDF
+      document.getElementById('btnPrintCandidateCv')?.addEventListener('click', () => {
+        window.print();
+      });
+
+      // 3 Modlu Durum Seçici Tıklaması
+      document.querySelectorAll('.mw-status-option').forEach((card) => {
+        card.addEventListener('click', async () => {
+          const newStatus = card.getAttribute('data-status-val') || 'looking';
+          renderStatusUI(newStatus);
+          if (!currentTalent || !currentTalent.id) return;
+          try {
+            const res = await fetch(`${API_BASE}/api/career/talent/${currentTalent.id}/status`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ availability_status: newStatus })
+            });
+            const data = await res.json();
+            const fb = document.getElementById('statusSaveFeedback');
+            if (fb) {
+              fb.textContent = data.message || '✓ Durum Güncellendi';
+              fb.classList.remove('d-none');
+              setTimeout(() => fb.classList.add('d-none'), 3500);
+            }
+          } catch (_) {}
+        });
+      });
+
+      // Tercihleri Kaydet Formu
+      document.getElementById('candidatePreferencesForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!currentTalent || !currentTalent.id) return;
+        const btn = document.getElementById('btnSavePreferences');
+        btn.disabled = true;
+        try {
+          const payload = {
+            notice_period: document.getElementById('prefNoticePeriod').value,
+            target_sector: document.getElementById('prefTargetSector').value.trim(),
+            target_position: document.getElementById('prefTargetPosition').value.trim(),
+            blocked_companies: document.getElementById('prefBlockedCompanies').value.trim()
+          };
+          const res = await fetch(`${API_BASE}/api/career/talent/${currentTalent.id}/status`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          alert(data.message || 'Tercihleriniz kaydedildi.');
+          await loadCandidateDashboard();
+        } catch (_) {
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      loadCandidateDashboard();
+    })();
+  </script>
+</BaseLayout>

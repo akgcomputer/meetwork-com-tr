@@ -185,6 +185,9 @@ const TARGET_POSITIONS = [
         <a href="/kariyer/cv-olustur" class="btn btn-warning text-dark btn-sm fw-bold px-3">
           <i class="bi bi-person-vcard-fill me-1"></i> İş Arıyorum / Özgeçmiş (CV) Oluştur
         </a>
+        <a href="/kariyer/profilim" class="btn btn-info text-dark btn-sm fw-bold px-3">
+          👤 Aday Profilim & Başvurularım
+        </a>
         <!-- Sadece Kurumsal Giriş Yapmış İşverenlere Görünür -->
         <a href="/isletmeler#mwEmployerHrPanel" id="mwEmployerPostJobBtn" class="btn btn-success btn-sm fw-bold px-3" style="display:none;">
           <i class="bi bi-building-fill-add me-1"></i> İşletmem İçin İlan Aç
@@ -626,6 +629,13 @@ const TARGET_POSITIONS = [
             ? `<span class="badge bg-success tabular-nums" style="font-size:0.68rem;">%${match.score} Uyum & Doğrulama</span>`
             : `<span class="badge bg-dark-subtle text-body border" style="font-size:0.66rem;"><i class="bi bi-patch-check-fill text-success me-1"></i>Doğrulanmış Özgeçmiş</span>`;
 
+          const availStatus = t.availability_status || 'looking';
+          const availBadge = availStatus === 'open_to_offers'
+            ? `<span class="badge bg-warning text-dark" style="font-size:0.63rem;">🟡 İş Tekliflerine Açık</span>`
+            : `<span class="badge bg-success" style="font-size:0.63rem;">🟢 Aktif İş Arıyor</span>`;
+          const viewsCount = Number(t.views_count || 24);
+          const noticePeriod = t.notice_period || 'Hemen Başlayabilir';
+
           return `
             <div class="col-xl-4 col-md-6 col-12">
               <article class="mw-candidate-card p-3 shadow-sm">
@@ -642,15 +652,22 @@ const TARGET_POSITIONS = [
                       <h2 class="mw-candidate-h2 text-truncate" title="${realName}">
                         👤 ${realName}
                       </h2>
+                      <span class="text-muted tabular-nums flex-shrink-0" style="font-size:0.66rem;" title="Profil Ziyaret Sayısı">
+                        👁️ ${viewsCount}
+                      </span>
                     </div>
                     <h3 class="mw-candidate-h3">
-                      (${roleSub}) • ${dept}
+                      &gt; (${roleSub}) • ${dept}
                     </h3>
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-1 mt-1">
                       <span class="mw-candidate-meta">
                         📍 ${t.city || 'İstanbul'} • ⏱️ ${t.experience_years || 5} Yıl Deneyim
                       </span>
                       ${badgeHtml}
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center gap-1 mt-1">
+                      ${availBadge}
+                      <span class="badge bg-light text-secondary border" style="font-size:0.62rem;">⏳ ${noticePeriod}</span>
                     </div>
                   </div>
                 </div>
@@ -727,6 +744,10 @@ const TARGET_POSITIONS = [
       }
 
       window.mwOpenInviteModal = function (id, name, pos, salary) {
+        // Profil ziyaret sayacını artır
+        if (id) {
+          fetch(`${API_URL}/api/career/talent/${encodeURIComponent(id)}/view`, { method: 'POST' }).catch(() => {});
+        }
         document.getElementById('invTalentId').value = id;
         document.getElementById('invTalentName').textContent = name;
         document.getElementById('invJobTitle').value = pos || '';
