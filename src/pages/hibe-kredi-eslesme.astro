@@ -401,6 +401,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               ></textarea>
             </div>
 
+            <!-- İsteğe Bağlı Yerli Makine / Yazılım Proforma Teklif Talebi (DepodanDirekt & MeetWork Köprüsü) -->
+            <div class="p-2 rounded border border-success-subtle bg-success-subtle bg-opacity-10 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="mwApplyWantProformaLead" checked />
+                <label class="form-check-label small fw-bold text-success" for="mwApplyWantProformaLead">
+                  🏭 Makine / Ekipman / Yazılım Yatırımım İçin Yerli Üreticilerden Resmi Proforma Teklif Al
+                </label>
+              </div>
+              <small class="text-muted d-block mt-1" style="font-size:0.71rem;">
+                İşaretlendiğinde hibe dosyanıza eklenecek Yerli Malı Proforma Fatura için DepodanDirekt ve MeetWork üzerindeki onaylı üreticilere otomatik teklif çağrısı iletilir.
+              </small>
+            </div>
+
             <div id="mwApplyModalFeedback" class="small mb-2" style="display: none;"></div>
 
             <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold py-2">
@@ -522,7 +535,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
 
               <div class="mb-3">
-                <div class="small fw-bold mb-1" style="font-size:0.74rem;">Neden İşletmenize Uygun?</div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="small fw-bold" style="font-size:0.74rem;">Neden İşletmenize Uygun? (4 Katmanlı Doğruluk Filtresi)</span>
+                  <span class="badge bg-success-subtle text-success border border-success" style="font-size:0.66rem;">
+                    ✅ Resmi Kılavuz Kontrol Tarihi: ${p.verified_at || 'Güncel'}
+                  </span>
+                </div>
                 <div>${reasonsHtml}</div>
               </div>
 
@@ -1027,6 +1045,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 fb.textContent = out.message || 'Başvurunuz kaydedildi!';
               }
               if (out.success) {
+                const wantProforma = document.getElementById('mwApplyWantProformaLead')?.checked;
+                if (wantProforma) {
+                  try {
+                    await fetch(`${API_URL}/api/bridge/grant-buyer-lead`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        company_name: payload.company_name,
+                        grant_code: payload.program_id,
+                        grant_title: payload.program_title,
+                        requested_equipment: payload.project_title,
+                        nace_sector: document.getElementById('mwGrantNaceSector')?.value || 'Makine & Ekipman Üretimi'
+                      })
+                    });
+                  } catch (_) {}
+                }
                 await fetchMatchesWithCurrentForm(false);
                 setTimeout(() => {
                   const modalEl = document.getElementById('mwStartGrantApplyModal');

@@ -49,12 +49,17 @@ const topTalepler = talepler.slice(0, 15);
     <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="open_decrement">📉 Açık Eksiltme İhaleleri</button>
     <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="sealed_envelope">✉️ Kapalı Zarf Usulü</button>
     <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="english_auction">🏆 İngiliz Usulü</button>
-    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="rfq">⚡ Hızlı Teklif (RFQ)</button>
+    <button type="button" class="btn btn-sm btn-outline-danger mw-tender-filter" data-method="rfq">⚡ Hızlı Teklif Talebi</button>
   </div>
 
   <!-- CANLI D1 E-İHALELER LİSTESİ -->
   <div class="mb-5">
-    <h5 class="fw-bold mb-3"><i class="bi bi-broadcast text-danger me-1"></i> Canlı E-İhaleler & Ortak Satın Alma Havuzları</h5>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+      <h5 class="fw-bold mb-0"><i class="bi bi-broadcast text-danger me-1"></i> Canlı E-İhaleler & Güvenli Ödeme Proforma Masası</h5>
+      <a href="/talepler" class="btn btn-sm btn-success fw-bold">
+        🤝 Birlikte Alalım (Ortak Alım Havuzları) →
+      </a>
+    </div>
     <div id="mwLiveTendersList" class="row g-3">
       <div class="col-12 text-center py-4 text-muted">Canlı ihaleler yükleniyor...</div>
     </div>
@@ -92,7 +97,7 @@ const topTalepler = talepler.slice(0, 15);
       <div class="modal-content mw-panel-card">
         <div class="modal-header border-bottom">
           <h5 class="modal-title fw-bold">
-            <i class="bi bi-hammer text-danger me-1"></i> Yeni E-İhale veya Satın Alma Talebi Başlat
+            <i class="bi bi-hammer text-danger me-1"></i> Yeni Alım İhalesi veya Teklif Talebi Başlat
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
         </div>
@@ -101,7 +106,7 @@ const topTalepler = talepler.slice(0, 15);
             <div class="col-md-6">
               <label class="form-label small fw-bold">İhale Usulü *</label>
               <select id="ntMethod" class="form-select form-select-sm" required>
-                <option value="rfq">⚡ Hızlı Teklif Toplama (RFQ - Ücretsiz)</option>
+                <option value="rfq">⚡ Hızlı Teklif Toplama (Ücretsiz)</option>
                 <option value="open_decrement">📉 Açık Eksiltme Usulü İhale (+Son 2 Dk Uzatmalı)</option>
                 <option value="sealed_envelope">✉️ Kapalı Zarf Usulü İhale (Süre Sonunda Açılır)</option>
                 <option value="english_auction">🏆 İngiliz Usulü Çok Turlu İhale</option>
@@ -297,6 +302,73 @@ const topTalepler = talepler.slice(0, 15);
     </div>
   </div>
 
+  <!-- 🛡️ İHALEDEN "GÜVENLİ ÖDEME HAVUZUNA (PROFORMA)" & STOKPRATİK SİPARİŞE AKTARIM MODALI -->
+  <div class="modal fade" id="mwTenderToSafePayModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-shield-check text-success me-1"></i> İhaleyi Onayla & Güvenli Ödeme Havuzuna (Proforma) Aktar
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-success py-2 small mb-3">
+            <strong>Üçlü Ekosistem Köprüsü:</strong> Kazanan teklifi onayladığınızda <strong>DepodanDirekt Ödeme Korumalı Proforma</strong> ve <strong>StokPratik Satınalma Siparişi Taslağınız</strong> tek tıkla hazırlanır.
+          </div>
+          <form id="mwTenderToSafePayForm">
+            <input type="hidden" id="spayTenderId" />
+            <div class="mb-2">
+              <label class="form-label small fw-bold mb-1">İhale / Alım Kalemi</label>
+              <input type="text" id="spayTenderTitle" class="form-control form-control-sm fw-bold" readonly />
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Mal Bedeli (KDV Hariç) *</label>
+                <input type="number" id="spaySubtotal" class="form-control form-control-sm tabular-nums" value="55000" required />
+              </div>
+              <div class="col-3">
+                <label class="form-label small fw-bold mb-1">KDV (%)</label>
+                <select id="spayVatRate" class="form-select form-select-sm">
+                  <option value="20" selected>%20</option>
+                  <option value="10">%10</option>
+                  <option value="0">%0 (İhracat)</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label class="form-label small fw-bold mb-1">Para Birimi</label>
+                <select id="spayCurrency" class="form-select form-select-sm">
+                  <option value="TRY" selected>TRY (₺)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Navlun / Kargo Bedeli</label>
+                <input type="number" id="spayFreightCost" class="form-control form-control-sm tabular-nums" placeholder="Belli değilse boş bırakın" />
+                <small class="text-muted" style="font-size:0.66rem;">Boş bırakılırsa Proforma adımında satıcı ekler.</small>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Teslim Şekli (Incoterms)</label>
+                <select id="spayIncoterms" class="form-select form-select-sm">
+                  <option value="EXW" selected>EXW (Fabrika Teslim)</option>
+                  <option value="FOB">FOB (Liman / Gümrük Teslim)</option>
+                  <option value="DDP">DDP (Adrese / Depoya Teslim)</option>
+                </select>
+              </div>
+            </div>
+            <div id="spayResultBox" class="p-2 rounded border border-success bg-success-subtle text-dark small mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-success btn-sm w-100 fw-bold py-2">
+              🛡️ Ödeme Korumalı Proformayı & StokPratik Siparişini Oluştur
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
@@ -306,15 +378,29 @@ const topTalepler = talepler.slice(0, 15);
         if (m === 'open_decrement') return '<span class="badge bg-danger">📉 Açık Eksiltme (+Son 2 Dk Korumalı)</span>';
         if (m === 'sealed_envelope') return '<span class="badge bg-dark">✉️ Kapalı Zarf</span>';
         if (m === 'english_auction') return '<span class="badge bg-warning text-dark">🏆 İngiliz Usulü</span>';
-        return '<span class="badge bg-secondary">⚡ Hızlı Teklif (RFQ)</span>';
+        return '<span class="badge bg-secondary">⚡ Hızlı Teklif Talebi</span>';
       }
 
       function trustLockBadge(minTrust) {
         const lvl = Number(minTrust || 1);
         if (lvl >= 3) return '<span class="badge bg-warning text-dark fw-bold">🔒 Sadece 🥇 Gold Onaylılar</span>';
         if (lvl === 2) return '<span class="badge bg-secondary text-white fw-bold">🔒 Sadece 🥈 Silver & Gold Onaylılar</span>';
-        return '<span class="badge bg-success-subtle text-success">🔗 Magic Link Açık</span>';
+        return '<span class="badge bg-success-subtle text-success">🔗 Hızlı Teklif Linki Açık</span>';
       }
+
+      window.mwOpenSafePayModal = function (id, title, lowestBid) {
+        document.getElementById('spayTenderId').value = id;
+        document.getElementById('spayTenderTitle').value = title;
+        if (lowestBid && Number(lowestBid) > 0) {
+          document.getElementById('spaySubtotal').value = Number(lowestBid);
+        }
+        const rb = document.getElementById('spayResultBox');
+        if (rb) rb.style.display = 'none';
+        const modalEl = document.getElementById('mwTenderToSafePayModal');
+        if (window.bootstrap && modalEl) {
+          new window.bootstrap.Modal(modalEl).show();
+        }
+      };
 
       async function loadTenders(method = 'all') {
         const listEl = document.getElementById('mwLiveTendersList');
@@ -332,7 +418,7 @@ const topTalepler = talepler.slice(0, 15);
                 <div class="mw-panel-card p-4 text-center">
                   <i class="bi bi-hammer fs-2 text-danger"></i>
                   <h6 class="fw-bold mt-2">Bu kategoride aktif canlı e-ihale bulunmuyor</h6>
-                  <p class="small text-muted mb-3">İlk Açık Eksiltme veya Kapalı Zarf ihalenizi hemen başlatıp tedarikçilerinize Magic Link gönderebilirsiniz.</p>
+                  <p class="small text-muted mb-3">İlk Açık Eksiltme veya Kapalı Zarf ihalenizi hemen başlatıp tedarikçilerinize davet gönderebilirsiniz.</p>
                   <button class="btn btn-sm btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#newTenderModal">+ Yeni E-İhale Başlat</button>
                 </div>
               </div>`;
@@ -340,7 +426,7 @@ const topTalepler = talepler.slice(0, 15);
           }
 
           const urlParams = new URLSearchParams(window.location.search);
-          const magicSlug = urlParams.get('tender') || '';
+          const magicSlug = urlParams.get('tender') || urlParams.get('ihale') || '';
 
           listEl.innerHTML = tenders.map((t) => {
             const isHighlighted = magicSlug && (t.slug === magicSlug || t.id === magicSlug || t.tender_no === magicSlug);
@@ -348,18 +434,18 @@ const topTalepler = talepler.slice(0, 15);
             <div class="col-md-6">
               <div class="mw-panel-card p-3 h-100 d-flex flex-column justify-content-between shadow-sm ${isHighlighted ? 'border-danger border-3' : ''}" style="border-left: 4px solid #ef4444 !important;">
                 <div>
-                  ${isHighlighted ? `<div class="badge bg-danger w-100 py-2 mb-2">⚡ MAGIC LINK HIZLI TEKLİF MASASI (30 Saniyede Teklif Verin)</div>` : ''}
+                  ${isHighlighted ? `<div class="badge bg-danger w-100 py-2 mb-2">⚡ HIZLI TEKLİF MASASI (30 Saniyede Teklif Verin)</div>` : ''}
                   <div class="d-flex justify-content-between align-items-center flex-wrap gap-1 mb-2">
                     <div class="d-flex flex-wrap gap-1 align-items-center">
                       ${methodBadge(t.tender_method)}
                       ${trustLockBadge(t.min_trust_level)}
-                      ${t.is_group_buy ? '<span class="badge bg-success">🤝 Ortak Alım Havuzu</span>' : ''}
+                      ${t.is_group_buy ? '<span class="badge bg-success">🤝 Birlikte Alalım Havuzu</span>' : ''}
                     </div>
                     <small class="text-muted fw-bold tabular-nums">#${t.tender_no}</small>
                   </div>
                   <h6 class="fw-bold mb-1">${t.title}</h6>
                   <div class="small text-muted mb-2">
-                    <strong>Alıcı:</strong> ${t.buyer_name} • <strong>Miktar:</strong> <span class="tabular-nums">${t.quantity} ${t.unit}</span> • <strong>Teslim:</strong> ${t.delivery_location}
+                    <strong>Alıcı:</strong> ${t.buyer_name} • <strong>Miktar:</strong> <span class="tabular-nums">${t.quantity} ${t.unit}</span> • <strong>Teslim:</strong> ${t.delivery_location || 'İstanbul'}
                   </div>
                   <p class="small text-muted mb-2">${t.description}</p>
                 </div>
@@ -370,13 +456,23 @@ const topTalepler = talepler.slice(0, 15);
                     ${t.tender_method === 'open_decrement' && t.lowest_bid ? ` • <span class="text-danger fw-bold">En Düşük: ${Number(t.lowest_bid).toLocaleString('tr-TR')} ${t.currency}</span>` : ''}
                     ${t.tender_method === 'sealed_envelope' ? ` • <span class="text-muted fst-italic">🔒 Zarf Kapalı</span>` : ''}
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-danger fw-bold"
-                    onclick="window.mwOpenBidModal('${t.id}', '${t.title.replace(/'/g, '')}')"
-                  >
-                    ⚡ Teklif Ver
-                  </button>
+                  <div class="d-flex gap-1">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-success fw-bold"
+                      title="Kazanan Teklifi Güvenli Ödeme Havuzuna (Proforma) & StokPratik Siparişe Aktar"
+                      onclick="window.mwOpenSafePayModal('${t.id}', '${(t.title || '').replace(/'/g, '')}', '${t.lowest_bid || 55000}')"
+                    >
+                      🛡️ Güvenli Ödeme Proforması
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger fw-bold"
+                      onclick="window.mwOpenBidModal('${t.id}', '${(t.title || '').replace(/'/g, '')}')"
+                    >
+                      ⚡ Teklif Ver
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -540,6 +636,44 @@ const topTalepler = talepler.slice(0, 15);
               window.location.reload();
             } else {
               alert(out.message || 'Kayıt tamamlanamadı.');
+            }
+          } catch (_) {}
+        });
+
+        // 🛡️ İhaleden "Güvenli Ödeme Havuzuna (Proforma)" & StokPratik Siparişe Aktarım
+        document.getElementById('mwTenderToSafePayForm')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const freightRaw = document.getElementById('spayFreightCost').value;
+          const payload = {
+            tender_id: document.getElementById('spayTenderId').value,
+            title: document.getElementById('spayTenderTitle').value,
+            subtotal: Number(document.getElementById('spaySubtotal').value || 55000),
+            vat_rate: Number(document.getElementById('spayVatRate').value || 20),
+            freight_cost: freightRaw === '' ? null : Number(freightRaw),
+            currency: document.getElementById('spayCurrency').value || 'TRY',
+            incoterms: document.getElementById('spayIncoterms').value || 'EXW'
+          };
+          const rb = document.getElementById('spayResultBox');
+          try {
+            const res = await fetch(`${API_URL}/api/bridge/tender-to-escrow`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const out = await res.json();
+            if (rb) {
+              rb.style.display = 'block';
+              rb.innerHTML = `
+                <div class="fw-bold text-success mb-1">✅ ${out.message}</div>
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                  <a href="${out.dd_checkout_url || 'https://depodandirekt.com'}" target="_blank" class="btn btn-sm btn-success fw-bold">
+                    🛡️ DepodanDirekt Güvenli Ödeme Proformasını Aç →
+                  </a>
+                  <a href="${out.sp_purchase_order_url || 'https://stokpratik.com'}" target="_blank" class="btn btn-sm btn-dark fw-bold">
+                    📦 StokPratik Satınalma Siparişini Gör →
+                  </a>
+                </div>
+              `;
             }
           } catch (_) {}
         });

@@ -162,16 +162,41 @@ const SECTORS = [
             return;
           }
 
+          window.mwSyncMatchToCrm = async function (name, vkn, sector, city, phone, email, btnEl) {
+            if (btnEl) {
+              btnEl.disabled = true;
+              btnEl.innerHTML = '⏳ StokPratik CRM’e Aktarılıyor...';
+            }
+            try {
+              const r = await fetch(`${API_URL}/api/bridge/crm-cari-sync`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  action: 'match_handshake',
+                  matched_company: { company_name: name, vkn: vkn || '2720912021', sector, city, phone, email }
+                })
+              });
+              const d = await r.json();
+              if (btnEl) {
+                btnEl.className = 'btn btn-success btn-sm fw-bold';
+                btnEl.innerHTML = '✅ StokPratik Cari & CRM’e Aktarıldı';
+              }
+              alert(d.message || 'Firma StokPratik Cari Kartlarınıza ve CRM Fırsatlarınıza aktarıldı.');
+            } catch (_) {
+              if (btnEl) btnEl.disabled = false;
+            }
+          };
+
           resultsEl.innerHTML = cards.map((c, idx) => `
             <div class="col-md-4">
               <div class="mw-panel-card p-4 h-100 d-flex flex-column justify-content-between shadow-sm" style="border-top: 4px solid ${idx === 2 ? '#f59e0b' : 'var(--mw-red)'}!important;">
                 <div>
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <span class="badge ${c.badgeClass}"><i class="bi ${c.icon} me-1"></i> ${c.cardTitle}</span>
-                    <small class="text-muted">${c.city || 'İstanbul'}</small>
+                    <span class="badge bg-warning-subtle text-dark border border-warning" style="font-size:0.65rem;">💎 ${c.payment_score_tier || 'A+'} Ödeme Disiplini</span>
                   </div>
                   <h5 class="fw-bold mb-1">${c.name}</h5>
-                  <div class="small text-danger fw-semibold mb-2">${c.sector}</div>
+                  <div class="small text-danger fw-semibold mb-2">${c.sector} • ${c.city || 'İstanbul'}</div>
                   ${c.match_explanation ? `
                     <div class="p-2 rounded border mb-2 small fw-semibold" style="background: ${idx === 2 ? 'rgba(245, 158, 11, 0.1)' : 'rgba(220, 53, 69, 0.06)'}; border-color: ${idx === 2 ? '#f59e0b' : 'var(--mw-border)'} !important;">
                       ${c.match_explanation}
@@ -183,11 +208,18 @@ const SECTORS = [
                 </div>
 
                 <div class="d-grid gap-2 pt-3 border-top" style="border-color:var(--mw-border)!important;">
+                  <button
+                    type="button"
+                    class="btn btn-outline-success btn-sm fw-bold"
+                    onclick="window.mwSyncMatchToCrm('${(c.name || '').replace(/'/g, '')}', '${c.vkn || '2720912021'}', '${(c.sector || '').replace(/'/g, '')}', '${c.city || 'İstanbul'}', '${c.phone || '05412465429'}', '${c.email || 'info@meetwork.com.tr'}', this)"
+                  >
+                    📇 Onayla & StokPratik CRM / Cari Kartlarıma Aktar
+                  </button>
                   <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="btn btn-danger btn-sm fw-bold">
-                    <i class="bi bi-person-plus-fill me-1"></i> Ağına Ekle & Profilini İncele
+                    <i class="bi bi-person-plus-fill me-1"></i> Ağına Ekle & Toptan Vitrinini İncele
                   </a>
                   <a href="/ihaleler?yeni=1" class="btn btn-outline-secondary btn-sm fw-semibold">
-                    <i class="bi bi-hammer me-1"></i> Teklif İste / İhaleye Davet Et
+                    <i class="bi bi-hammer me-1"></i> Alım İhalesine Davet Et
                   </a>
                 </div>
               </div>

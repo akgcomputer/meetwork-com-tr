@@ -9,17 +9,20 @@ const currentPath = Astro.url.pathname;
     <div class="container-fluid px-lg-4 d-flex justify-content-between align-items-center py-2">
       <div class="d-flex align-items-center gap-3">
         <span class="badge bg-danger">B2B Super-Network</span>
-        <a href="https://stokpratik.com.tr" target="_blank" rel="noopener" class="mw-toplink">
-          <i class="bi bi-box-seam text-danger me-1"></i>StokPratik ERP & CariNet
+        <a href="https://stokpratik.com" data-sso-target="stokpratik" class="mw-toplink mw-sso-jump-link" title="StokPratik Bulut ERP & CariNet Paneline Tek Tıkla Şifresiz Geçiş">
+          <i class="bi bi-box-seam text-danger me-1"></i>StokPratik ERP & CariNet <span class="badge bg-danger-subtle text-danger ms-1" style="font-size:0.65rem;">⚡ Şifresiz Geçiş</span>
         </a>
-        <a href="https://depodandirekt.com" target="_blank" rel="noopener" class="mw-toplink">
-          <i class="bi bi-globe2 text-danger me-1"></i>DepodanDirekt Toptan & İhracat
+        <a href="https://depodandirekt.com" data-sso-target="depodandirekt" class="mw-toplink mw-sso-jump-link" title="DepodanDirekt Toptan & İhracat Pazaryerine Tek Tıkla Şifresiz Geçiş">
+          <i class="bi bi-globe2 text-danger me-1"></i>DepodanDirekt Toptan & İhracat <span class="badge bg-success-subtle text-success ms-1" style="font-size:0.65rem;">⚡ Şifresiz Geçiş</span>
         </a>
-        <a href="/etkinlik-takvimi" class="mw-toplink">
-          <i class="bi bi-calendar-check text-danger me-1"></i>Yüz Yüze Networking Toplantıları
+        <a href="/talepler" class="mw-toplink">
+          <i class="bi bi-people-fill text-danger me-1"></i>Birlikte Alalım (Ortak Alım Havuzu)
         </a>
       </div>
       <div class="d-flex align-items-center gap-3">
+        <a href="/hibe-kredi-eslesme" class="mw-toplink text-success fw-bold">
+          <i class="bi bi-patch-check-fill me-1"></i>4 Katmanlı Resmi Hibe Radarı
+        </a>
         <a href="/acil-durum" class="mw-toplink text-danger fw-bold">
           <i class="bi bi-exclamation-triangle-fill me-1"></i>Acil Durum Destek
         </a>
@@ -64,7 +67,7 @@ const currentPath = Astro.url.pathname;
         <div id="mwLiveSearchDropdown" class="mw-search-dropdown p-2"></div>
       </form>
 
-      <!-- Mobil Sağ Aksiyonlar (LED +, Tema, Giriş/Profil & Hamburger) -->
+      <!-- Mobil Sağ Aksiyonlar (LED +, Bildirim Zili, Tema, Giriş/Profil & Hamburger) -->
       <div class="d-flex align-items-center gap-2 d-xl-none">
         <a href="/ilanlar?yeni=1" class="mw-led-plus-btn" title="İlan veya İhale Ver" aria-label="İlan veya İhale Ver">
           <i class="bi bi-plus-lg"></i>
@@ -104,6 +107,13 @@ const currentPath = Astro.url.pathname;
             </a>
             <a class="dropdown-item rounded py-1 small fw-semibold" href="/kariyer/profilim">
               <i class="bi bi-person-badge-fill text-info me-2"></i>Aday Profilim & Başvurularım
+            </a>
+            <hr class="dropdown-divider my-1" />
+            <a class="dropdown-item rounded py-1 small fw-semibold mw-sso-jump-link" href="https://stokpratik.com" data-sso-target="stokpratik">
+              <i class="bi bi-box-seam text-danger me-2"></i>⚡ StokPratik ERP’ye Şifresiz Geç
+            </a>
+            <a class="dropdown-item rounded py-1 small fw-semibold mw-sso-jump-link" href="https://depodandirekt.com" data-sso-target="depodandirekt">
+              <i class="bi bi-globe2 text-success me-2"></i>⚡ DepodanDirekt’e Şifresiz Geç
             </a>
             <button type="button" class="dropdown-item rounded py-1 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
               <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
@@ -229,7 +239,7 @@ const currentPath = Astro.url.pathname;
           </li>
         </ul>
 
-        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + Hızlı Oluştur Dropdown, Tema İkonu, Giriş/Profil İkonu -->
+        <!-- Masaüstü Sağ Aksiyon Butonları: Yanıp Sönen LED + Hızlı Oluştur, Ortak Bildirim Zili, Tema İkonu, Giriş/Profil İkonu -->
         <div class="d-none d-xl-flex align-items-center gap-2 ms-2">
           <div class="dropdown">
             <a
@@ -246,12 +256,17 @@ const currentPath = Astro.url.pathname;
               <li class="px-2 py-1 small fw-bold text-danger border-bottom mb-1">+ Hızlı Oluştur Menüsü</li>
               <li>
                 <a class="dropdown-item rounded py-2 fw-semibold small" href="/ihaleler?yeni=1">
-                  <i class="bi bi-hammer text-danger me-2"></i>Yeni E-İhale / Talep Aç
+                  <i class="bi bi-hammer text-danger me-2"></i>Yeni Alım İhalesi / Talep Aç
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded py-2 fw-semibold small" href="/talepler">
+                  <i class="bi bi-people-fill text-success me-2"></i>Birlikte Alalım Havuzuna Katıl
                 </a>
               </li>
               <li>
                 <a class="dropdown-item rounded py-2 fw-semibold small" href="/ilanlar?yeni=1">
-                  <i class="bi bi-shop text-danger me-2"></i>Ücretsiz Fırsat İlanı Ver
+                  <i class="bi bi-shop text-danger me-2"></i>Ücretsiz Fırsat / Demirbaş İlanı Ver
                 </a>
               </li>
               <li>
@@ -272,6 +287,45 @@ const currentPath = Astro.url.pathname;
             </ul>
           </div>
 
+          <!-- 🔔 Ortak Ekosistem Bildirim & CariNet e-Mutabakat Zili -->
+          <div class="dropdown">
+            <button
+              type="button"
+              class="btn btn-sm mw-theme-btn position-relative"
+              id="mwEcosystemBellBtn"
+              data-bs-toggle="dropdown"
+              data-bs-auto-close="outside"
+              aria-expanded="false"
+              title="Ortak Ekosistem Bildirimleri & CariNet e-Mutabakat Onayı"
+            >
+              <i class="bi bi-bell-fill text-danger"></i>
+              <span
+                id="mwEcosystemBellCount"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                style="font-size: 0.62rem;"
+              >
+                4
+              </span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="width: 375px; max-width: 92vw; border-top: 3px solid var(--mw-red);">
+              <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom mb-2">
+                <span class="fw-bold small text-danger"><i class="bi bi-bell-fill me-1"></i>Üçlü Ekosistem & CariNet Bildirimleri</span>
+                <span class="badge bg-success-subtle text-success" style="font-size:0.65rem;">Canlı Senkron</span>
+              </div>
+              <div id="mwEcosystemNotificationsList" style="max-height: 360px; overflow-y: auto;">
+                <div class="text-center text-muted small py-3">Bildirimler yükleniyor...</div>
+              </div>
+              <div class="border-top pt-2 mt-1 d-flex justify-content-between px-2 small">
+                <a href="https://stokpratik.com" data-sso-target="stokpratik" class="text-danger fw-bold text-decoration-none mw-sso-jump-link">
+                  ⚡ StokPratik ERP’ye Geç
+                </a>
+                <a href="https://depodandirekt.com" data-sso-target="depodandirekt" class="text-success fw-bold text-decoration-none mw-sso-jump-link">
+                  ⚡ DepodanDirekt’e Geç
+                </a>
+              </div>
+            </div>
+          </div>
+
           <button
             type="button"
             class="btn btn-sm mw-theme-btn"
@@ -282,7 +336,7 @@ const currentPath = Astro.url.pathname;
             <span class="mw-theme-icon"><i class="bi bi-moon-stars-fill mw-moon-silver"></i></span>
           </button>
 
-          <!-- Masaüstü Tekil Giriş / Profil Butonu (Giriş yoksa User İkonu + Giriş, Giriş varsa Sadece User İkonu + Alt Menü) -->
+          <!-- Masaüstü Tekil Giriş / Profil Butonu -->
           <div class="dropdown">
             <a
               href="/giris"
@@ -293,7 +347,7 @@ const currentPath = Astro.url.pathname;
               <i class="bi bi-person-circle fs-6 mw-auth-icon"></i>
               <span class="mw-auth-text">Giriş</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 255px; border-top: 3px solid var(--mw-red);">
+            <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="min-width: 265px; border-top: 3px solid var(--mw-red);">
               <div class="px-3 py-2 border-bottom mb-1" style="border-color:var(--mw-border)!important;">
                 <div class="fw-bold small text-truncate mw-drop-company">İşletmem</div>
                 <div class="text-muted text-truncate mw-drop-user" style="font-size:0.74rem;">Üye</div>
@@ -314,9 +368,15 @@ const currentPath = Astro.url.pathname;
               <a class="dropdown-item rounded py-2 small fw-semibold" href="/kariyer/profilim">
                 <i class="bi bi-person-badge-fill text-info me-2"></i>Aday Profilim & Başvurularım
               </a>
-              <a class="dropdown-item rounded py-2 small fw-semibold" href="/ilanlar?yeni=1">
-                <i class="bi bi-plus-circle text-danger me-2"></i>İlan / İhale Oluştur
+              <hr class="dropdown-divider my-1" />
+              <div class="px-3 py-1 text-muted fw-bold" style="font-size:0.68rem;">⚡ TEK TIKLA ŞİFRESİZ GEÇİŞ</div>
+              <a class="dropdown-item rounded py-2 small fw-semibold mw-sso-jump-link" href="https://stokpratik.com" data-sso-target="stokpratik">
+                <i class="bi bi-box-seam text-danger me-2"></i>StokPratik ERP & CariNet’e Geç
               </a>
+              <a class="dropdown-item rounded py-2 small fw-semibold mw-sso-jump-link" href="https://depodandirekt.com" data-sso-target="depodandirekt">
+                <i class="bi bi-globe2 text-success me-2"></i>DepodanDirekt Toptan’a Geç
+              </a>
+              <hr class="dropdown-divider my-1" />
               <button type="button" class="dropdown-item rounded py-2 small fw-semibold" data-bs-toggle="modal" data-bs-target="#mwChangePasswordModal">
                 <i class="bi bi-key-fill text-warning me-2"></i>Şifre Değiştir
               </button>
@@ -610,6 +670,113 @@ const currentPath = Astro.url.pathname;
           }
         });
       }
+
+      // 🔔 Ortak Ekosistem Bildirim Zili & CariNet Tek Tıkla e-Mutabakat Onayı
+      const notifListEl = document.getElementById('mwEcosystemNotificationsList');
+      const notifCountEl = document.getElementById('mwEcosystemBellCount');
+
+      async function loadEcosystemNotifications() {
+        if (!notifListEl) return;
+        let currentUser = null;
+        try { currentUser = JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch (_) {}
+        const compId = (currentUser && currentUser.company_id) || 'comp_meetwork_hq';
+
+        try {
+          const res = await fetch(`${API_URL}/api/bridge/notifications?company_id=${encodeURIComponent(compId)}`);
+          const data = await res.json();
+          const items = data.notifications || [];
+          const unread = Number(data.unread_count ?? items.length);
+          if (notifCountEl) {
+            notifCountEl.textContent = String(unread);
+            notifCountEl.style.display = unread > 0 ? 'inline-block' : 'none';
+          }
+
+          if (items.length === 0) {
+            notifListEl.innerHTML = `<div class="text-center text-muted small py-3">Yeni ekosistem bildirimi bulunmuyor.</div>`;
+            return;
+          }
+
+          notifListEl.innerHTML = items.map(n => {
+            const isMutabakat = n.action_type === 'approve_mutabakat' && Number(n.is_read) === 0;
+            return `
+              <div class="p-2 mb-2 rounded border ${Number(n.is_read) === 0 ? 'border-danger-subtle bg-danger-subtle bg-opacity-10' : ''}" style="font-size:0.78rem;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge bg-dark text-white" style="font-size:0.63rem;">${n.source_app || 'MeetWork Ekosistem'}</span>
+                  <span class="text-muted" style="font-size:0.65rem;">${Number(n.is_read) === 0 ? '🟢 Yeni' : '✓ İşlendi'}</span>
+                </div>
+                <div class="fw-bold mb-1">${n.title}</div>
+                <div class="text-muted mb-2" style="font-size:0.73rem;">${n.message}</div>
+                ${isMutabakat ? `
+                  <button type="button" class="btn btn-success btn-sm w-100 fw-bold py-1 mw-approve-mutabakat-btn" data-notif-id="${n.id}" style="font-size:0.74rem;">
+                    ${n.action_label || '✅ Bakiyeyi Onayla (Mutabıkız)'}
+                  </button>
+                ` : `
+                  <a href="${n.action_url || '#'}" class="btn btn-outline-danger btn-sm w-100 fw-semibold py-1" style="font-size:0.73rem;">
+                    ${n.action_label || 'Detayı Gör →'}
+                  </a>
+                `}
+              </div>
+            `;
+          }).join('');
+
+          notifListEl.querySelectorAll('.mw-approve-mutabakat-btn').forEach(btn => {
+            btn.addEventListener('click', async (ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              const nid = btn.getAttribute('data-notif-id');
+              btn.disabled = true;
+              btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Zaman Damgasıyla Onaylanıyor...';
+              try {
+                const r = await fetch(`${API_URL}/api/bridge/e-mutabakat-approve`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ notification_id: nid })
+                });
+                const d = await r.json();
+                alert(d.message || 'Cari e-Mutabakat onaylandı!');
+                await loadEcosystemNotifications();
+              } catch (_) {
+                btn.disabled = false;
+              }
+            });
+          });
+        } catch (_) {}
+      }
+
+      loadEcosystemNotifications();
+
+      // ⚡ Tek Tıkla Şifresiz Geçiş (MeetWork -> StokPratik / DepodanDirekt)
+      document.querySelectorAll('.mw-sso-jump-link').forEach(link => {
+        link.addEventListener('click', async (e) => {
+          const targetApp = link.getAttribute('data-sso-target') || 'stokpratik';
+          let currentUser = null;
+          try { currentUser = JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch (_) {}
+          if (!currentUser || !currentUser.email) return; // Giriş yapmamışsa doğrudan linke gitsin
+          e.preventDefault();
+          try {
+            const res = await fetch(`${API_URL}/api/auth/sso-exchange`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                source_app: 'meetwork',
+                target_app: targetApp,
+                email: currentUser.email,
+                vkn: currentUser.vkn || '2720912021',
+                company_name: currentUser.company_name || 'MeetWork Üye İşletme',
+                full_name: currentUser.full_name || 'Firma Yetkilisi'
+              })
+            });
+            const data = await res.json();
+            if (data.success && data.auto_login_url) {
+              window.open(data.auto_login_url, '_blank');
+            } else {
+              window.open(link.getAttribute('href'), '_blank');
+            }
+          } catch (_) {
+            window.open(link.getAttribute('href'), '_blank');
+          }
+        });
+      });
     });
   })();
 </script>

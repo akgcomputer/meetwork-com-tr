@@ -442,6 +442,32 @@ const CITIES = [
         } catch (_) {}
       }
 
+      window.mwMarkListingSold = async function (listingId, price, currency, btnEl) {
+        if (btnEl) {
+          btnEl.disabled = true;
+          btnEl.innerHTML = '⏳ StokPratik Envanterine Bildiriliyor...';
+        }
+        try {
+          const r = await fetch(`${API_URL}/api/bridge/listing-sold`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              listing_id: listingId,
+              final_sale_price: Number(price || 0),
+              currency: currency || 'TRY'
+            })
+          });
+          const d = await r.json();
+          if (btnEl) {
+            btnEl.className = 'btn btn-secondary btn-sm fw-bold';
+            btnEl.innerHTML = '✅ Satıldı Olarak Kapatıldı (StokPratik Senkron)';
+          }
+          alert(d.message || 'İlan satıldı olarak işaretlendi ve StokPratik envanterine bildirildi.');
+        } catch (_) {
+          if (btnEl) btnEl.disabled = false;
+        }
+      };
+
       async function loadSingleListingDetail(slugOrNo) {
         const detailBox = document.getElementById('mwListingDetailView');
         if (!detailBox) return;
@@ -458,9 +484,12 @@ const CITIES = [
             <div class="mw-panel-card p-4 shadow-sm border-danger">
               <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 pb-3 mb-3 border-bottom">
                 <div>
-                  <div class="d-flex align-items-center gap-2 mb-1">
+                  <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
                     <span class="badge bg-danger">${item.listing_type}</span>
                     <span class="badge bg-secondary">${item.main_category} / ${item.sub_category}</span>
+                    ${item.source_type === 'sp_asset' ? '<span class="badge bg-warning text-dark">🏭 Doğrulanmış Fabrika Demirbaşı</span>' : ''}
+                    ${item.source_type === 'sp_vehicle' ? '<span class="badge bg-info text-dark">🚚 Doğrulanmış Kurumsal Filo Aracı</span>' : ''}
+                    ${item.source_type === 'sp_idle_stock' ? '<span class="badge bg-success">📦 StokPratik Seri Sonu Fırsatı</span>' : ''}
                     <small class="text-muted fw-bold">İlan No: #${item.listing_no}</small>
                   </div>
                   <h2 class="h4 fw-bold mb-0">${item.title}</h2>
@@ -496,8 +525,11 @@ const CITIES = [
                         <i class="bi bi-whatsapp me-1"></i> WhatsApp ile Mesaj Gönder
                       </a>
                       <a href="/isletmeler" class="btn btn-outline-danger btn-sm fw-bold">
-                        <i class="bi bi-shop me-1"></i> Satıcının Kurumsal Mağazası & B2B Vitrini
+                        <i class="bi bi-shop me-1"></i> Satıcının Kurumsal Mağazası & Toptan Vitrini
                       </a>
+                      <button type="button" class="btn btn-outline-dark btn-sm fw-bold" onclick="window.mwMarkListingSold('${item.id}', '${item.price}', '${item.currency}', this)">
+                        ✅ Satıldı Olarak İşaretle & StokPratik’e Bildir
+                      </button>
                       <a href="/ilanlar" class="btn btn-link btn-sm text-muted text-decoration-none">Tüm İlanlara Dön</a>
                     </div>
                   </div>

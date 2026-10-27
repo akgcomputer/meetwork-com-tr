@@ -43,6 +43,65 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
       <i class="bi bi-briefcase-fill position-absolute text-dark" style="opacity: 0.15; font-size: 20rem; right: -5%; top: 50%; transform: translateY(-50%) rotate(-15deg); pointer-events: none;"></i>
     </div>
 
+    <!-- 🤝 BİRLİKTE ALALIM (ORTAK SATIN ALMA HAVUZLARI - MEETWORK × DEPODANDİREKT CANLI SENKRON) -->
+    <div class="mw-panel-card p-4 mb-5 shadow-sm border border-success">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+        <div>
+          <span class="badge bg-success me-1">🤝 BİRLİKTE ALALIM (ORTAK ALIM HAVUZU)</span>
+          <span class="badge bg-warning text-dark">⚡ Canlı Kontenjan Kilidi Aktif</span>
+          <h4 class="h5 fw-bold mb-0 mt-1">
+            Fabrika Çıkış Fiyatına Toptan Ortak Satın Alma Havuzları (MeetWork × DepodanDirekt)
+          </h4>
+          <small class="text-muted">Küçük partiler halinde katılın, 1 Palet / 1 Konteyner hedefi dolduğunda tüm katılımcılar fabrika çıkış iskontosundan yararlanır!</small>
+        </div>
+        <a href="https://depodandirekt.com" target="_blank" class="btn btn-sm btn-outline-success fw-bold">
+          DepodanDirekt Tüm Kampanyalar →
+        </a>
+      </div>
+      <div id="mwGroupBuysContainer" class="row g-3">
+        <div class="col-12 text-center py-3 text-muted small">Ortak satın alma havuzları yükleniyor...</div>
+      </div>
+    </div>
+
+    <!-- 🤝 BİRLİKTE ALALIM HAVUZUNA KATILIM MODALI (KOTA KİLİTLİ) -->
+    <div class="modal fade" id="mwJoinGroupBuyModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content mw-panel-card border-success">
+          <div class="modal-header border-bottom">
+            <h6 class="modal-title fw-bold">
+              <i class="bi bi-people-fill text-success me-1"></i> "Birlikte Alalım" Ortak Alım Havuzuna Katıl
+            </h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body">
+            <form id="mwJoinGroupBuyForm">
+              <input type="hidden" id="gbJoinCampaignId" />
+              <div class="p-2 rounded border mb-3 small" style="background: var(--mw-surface-alt);">
+                <div class="fw-bold mb-1" id="gbJoinTitle">Havuz Başlığı</div>
+                <div class="d-flex justify-content-between text-muted">
+                  <span>Kalan Kontenjan Kilidi:</span>
+                  <strong class="text-danger" id="gbJoinRemaining">90 Adet</strong>
+                </div>
+                <div class="d-flex justify-content-between text-success fw-bold mt-1">
+                  <span>Ortak Alım Birim Fiyatı:</span>
+                  <strong id="gbJoinPrice">1.390 TL</strong>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold mb-1">Talep Ettiğiniz Miktar *</label>
+                <input type="number" id="gbJoinQty" class="form-control form-control-sm tabular-nums" min="1" value="15" required />
+                <small class="text-muted" id="gbJoinMinNote" style="font-size:0.7rem;">Hedef miktarı aşmamak için kalan kontenjan kadar talep girebilirsiniz.</small>
+              </div>
+              <div id="gbJoinFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+              <button type="submit" class="btn btn-success btn-sm w-100 fw-bold py-2">
+                🤝 Kontenjanımı Ayır & Ortak Alım Havuzuna Katıl
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12">
         <div class="mb-4 d-flex flex-wrap gap-2">
@@ -211,13 +270,116 @@ document.addEventListener('DOMContentLoaded', () => {
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        // Eğer trigger görünürse limiti artır
         visibleLimit += LOAD_STEP;
         applyFiltersAndRender();
       }
     }, { rootMargin: '100px' });
     
     observer.observe(trigger);
+  }
+
+  // 🤝 Birlikte Alalım (Ortak Satın Alma Havuzları) Canlı Yükleme & Kota Kilitli Katılım
+  const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+  const gbContainer = document.getElementById('mwGroupBuysContainer');
+
+  window.mwOpenJoinGroupBuy = function (campaignId, title, remaining, unit, groupPrice, currency, minQty) {
+    document.getElementById('gbJoinCampaignId').value = campaignId;
+    document.getElementById('gbJoinTitle').textContent = title;
+    document.getElementById('gbJoinRemaining').textContent = `${remaining} ${unit}`;
+    document.getElementById('gbJoinPrice').textContent = `${Number(groupPrice).toLocaleString('tr-TR')} ${currency} / ${unit}`;
+    const qtyInput = document.getElementById('gbJoinQty');
+    qtyInput.min = String(Math.min(Number(minQty || 1), Number(remaining || 1)));
+    qtyInput.max = String(remaining);
+    qtyInput.value = String(Math.min(Number(minQty || 10), Number(remaining || 10)));
+    document.getElementById('gbJoinMinNote').textContent = `Min. katılım: ${minQty} ${unit} • Kalan üst sınır (Kota Kilidi): ${remaining} ${unit}`;
+    const fb = document.getElementById('gbJoinFeedback');
+    if (fb) fb.style.display = 'none';
+    const modalEl = document.getElementById('mwJoinGroupBuyModal');
+    if (modalEl && window.bootstrap) new window.bootstrap.Modal(modalEl).show();
+  };
+
+  async function loadGroupBuys() {
+    if (!gbContainer) return;
+    try {
+      const res = await fetch(`${API_URL}/api/bridge/group-buys`);
+      const data = await res.json();
+      const pools = data.pools || [];
+      if (pools.length === 0) {
+        gbContainer.innerHTML = `<div class="col-12 text-center text-muted small py-2">Aktif ortak alım havuzu bulunmuyor.</div>`;
+        return;
+      }
+
+      gbContainer.innerHTML = pools.map(p => {
+        const pct = Math.min(100, Math.round((Number(p.current_qty) / Math.max(1, Number(p.target_qty))) * 100));
+        const rem = Math.max(0, Number(p.target_qty) - Number(p.current_qty));
+        const discountPct = Math.round(((Number(p.normal_unit_price) - Number(p.group_unit_price)) / Math.max(1, Number(p.normal_unit_price))) * 100);
+        return `
+          <div class="col-md-4">
+            <div class="p-3 rounded border h-100 d-flex flex-column justify-content-between" style="background: var(--mw-surface); border-left: 4px solid #16a34a !important;">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge bg-success" style="font-size:0.66rem;">-%${discountPct} Fabrika Çıkış İndirimi</span>
+                  <small class="text-muted fw-bold tabular-nums">#${p.campaign_id}</small>
+                </div>
+                <h6 class="fw-bold small mb-1">${p.title}</h6>
+                <div class="small text-muted mb-2" style="font-size:0.73rem;">
+                  🏭 <strong>Üretici:</strong> ${p.supplier_name} • 👥 <strong>${p.participants_count || 1} Firma Katıldı</strong>
+                </div>
+                <div class="d-flex justify-content-between small mb-1">
+                  <span class="text-muted text-decoration-line-through">Normal: ${Number(p.normal_unit_price).toLocaleString('tr-TR')} ${p.currency}</span>
+                  <strong class="text-success">Havuz Fiyatı: ${Number(p.group_unit_price).toLocaleString('tr-TR')} ${p.currency} / ${p.unit}</strong>
+                </div>
+                <div class="progress mb-1" style="height: 8px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: ${pct}%"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted mb-2" style="font-size:0.7rem;">
+                  <span>Toplanan: <strong>${p.current_qty} / ${p.target_qty} ${p.unit} (%${pct})</strong></span>
+                  <span class="text-danger fw-bold">Kalan: ${rem} ${p.unit}</span>
+                </div>
+              </div>
+              <div class="d-flex gap-2 pt-2 border-top">
+                ${rem > 0 ? `
+                  <button type="button" class="btn btn-success btn-sm w-100 fw-bold" onclick="window.mwOpenJoinGroupBuy('${p.campaign_id}', '${(p.title || '').replace(/'/g, '')}', ${rem}, '${p.unit}', ${p.group_unit_price}, '${p.currency}', ${p.min_order_qty || 5})">
+                    🤝 Havuza Katıl (${rem} ${p.unit} Kaldı)
+                  </button>
+                ` : `
+                  <span class="badge bg-secondary w-100 py-2">🎉 Havuz %100 Doldu</span>
+                `}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    } catch (_) {}
+  }
+
+  loadGroupBuys();
+
+  const gbForm = document.getElementById('mwJoinGroupBuyForm');
+  if (gbForm) {
+    gbForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fb = document.getElementById('gbJoinFeedback');
+      try {
+        const res = await fetch(`${API_URL}/api/bridge/group-buy-join`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            campaign_id: document.getElementById('gbJoinCampaignId').value,
+            requested_qty: Number(document.getElementById('gbJoinQty').value || 10)
+          })
+        });
+        const out = await res.json();
+        if (fb) {
+          fb.style.display = 'block';
+          fb.className = `small fw-bold mb-2 ${out.success ? 'text-success' : 'text-danger'}`;
+          fb.textContent = out.message || 'İşlem tamamlandı.';
+        }
+        if (out.success) {
+          await loadGroupBuys();
+        }
+      } catch (_) {}
+    });
   }
 });
 </script>

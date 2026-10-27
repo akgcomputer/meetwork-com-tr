@@ -207,16 +207,130 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </div>
 
+  <!-- 📱 QR DİJİTAL KARTVİZİT & TANIŞMA MODALI (KURAL 5: Otomatik İrsaliye Kesmez, Onaylı CRM Aktarımı Yapar) -->
+  <div class="modal fade" id="mwQrCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-qr-code-scan text-danger me-1"></i> Dijital Kurumsal Kartvizit & Tanışma Masası
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-4 border border-danger mb-3" style="background:#fff;">
+            <i class="bi bi-qr-code text-dark" style="font-size: 5.5rem; line-height: 1;"></i>
+          </div>
+          <h5 class="fw-bold mb-1" id="mwQrModalCompName">İşletme Adı</h5>
+          <div class="small text-muted mb-2" id="mwQrModalCompSector">Sektör • Şehir</div>
+          <div class="d-flex justify-content-center flex-wrap gap-1 mb-3">
+            <span class="badge bg-warning text-dark">💎 A+ Ödeme Disiplini</span>
+            <span class="badge bg-success">🏅 GİB e-Fatura Doğrulandı</span>
+          </div>
+          <div class="p-2 rounded border text-start small mb-3" style="background: var(--mw-surface-alt);">
+            <div><strong>VKN / Kurumsal Kimlik:</strong> <span id="mwQrModalCompVkn">2720912021</span></div>
+            <div><strong>Telefon:</strong> <span id="mwQrModalCompPhone">0541 246 54 29</span></div>
+            <div><strong>E-Posta:</strong> <span id="mwQrModalCompEmail">yonetim@meetwork.com.tr</span></div>
+          </div>
+          <div class="alert alert-light border small text-start py-2 mb-3" style="font-size:0.75rem;">
+            <i class="bi bi-shield-check text-success me-1"></i> <strong>Güvenli Tanışma Kuralı:</strong> QR Kartvizit açıldığında otomatik irsaliye veya fatura kesilmez. Yalnızca aşağıdaki onayınızla rehberinize eklenir.
+          </div>
+          <div id="mwQrModalFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-danger btn-sm fw-bold" id="mwQrSaveCrmBtn">
+              📇 Rehberime & StokPratik CRM / Cari Kartlarıma Kaydet
+            </button>
+            <button type="button" class="btn btn-outline-dark btn-sm fw-semibold" id="mwQrSaveWithQuoteBtn">
+              📝 İsteğe Bağlı: StokPratik’te Numune / Teklif Taslağı Hazırla
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ ONAYLI İŞE ALIM -> STOKPRATİK PDKS PERSONEL KARTI AKTARIM MODALI (KURAL 3) -->
+  <div class="modal fade" id="mwHireToPdksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-person-check-fill text-success me-1"></i> Adayı İşe Aldık → StokPratik PDKS’ye Aktar
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-success py-2 small mb-3">
+            <strong>Kullanıcı Onaylı Aktarım:</strong> Mülakat süreci tamamlanan aday, yalnızca aşağıdaki bilgileri onayladığınızda StokPratik <code>Personel & Puantaj (PDKS)</code> modülünüze aktarılır.
+          </div>
+          <form id="mwHireToPdksForm">
+            <div class="mb-2">
+              <label class="form-label small fw-bold mb-1">İşe Alınan Aday</label>
+              <input type="text" id="pdksCandName" class="form-control form-control-sm fw-bold" readonly />
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Görev / Pozisyon</label>
+                <input type="text" id="pdksCandPosition" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Şube / Fabrika</label>
+                <input type="text" id="pdksCandBranch" class="form-control form-control-sm" value="Merkez Kampüs / Fabrika" required />
+              </div>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">İşe Başlama Tarihi *</label>
+                <input type="date" id="pdksStartDate" class="form-control form-control-sm" value="2026-11-01" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Anlaşılan Net Maaş (TL) *</label>
+                <input type="number" id="pdksAgreedSalary" class="form-control form-control-sm" value="65000" required />
+              </div>
+            </div>
+            <div id="pdksTransferFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-success btn-sm w-100 fw-bold">
+              ✅ Onayla & StokPratik PDKS Personel Kartını Aç
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
       let currentActiveCompany = null;
 
-      function getTrustBadge(level) {
-        if (Number(level) >= 3) return '<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>';
-        if (Number(level) === 2) return '<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> Silver / VKN Onaylı</span>';
-        return '<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Doğrulanmış Üye</span>';
+      function getTrustBadge(level, paymentTier) {
+        const payBadge = `<span class="badge bg-warning-subtle text-dark border border-warning ms-1" title="Ticari sırlar gizli tutularak StokPratik & DepodanDirekt ödeme disiplini doğrulanmıştır">💎 ${paymentTier || 'A+'} Ödeme Disiplini</span>`;
+        if (Number(level) >= 3) return `<span class="mw-trust-badge-3"><i class="bi bi-patch-check-fill"></i> Gold Onaylı</span>${payBadge}`;
+        if (Number(level) === 2) return `<span class="mw-trust-badge-2"><i class="bi bi-shield-check"></i> Silver / VKN Onaylı</span>${payBadge}`;
+        return `<span class="mw-trust-badge-1"><i class="bi bi-check-circle"></i> Doğrulanmış Üye</span>${payBadge}`;
       }
+
+      window.mwOpenQrCardModal = function (name, sector, city, vkn, phone, email) {
+        document.getElementById('mwQrModalCompName').textContent = name || 'MeetWork Üye İşletme';
+        document.getElementById('mwQrModalCompSector').textContent = `${sector || 'Sanayi & Ticaret'} • ${city || 'İstanbul'}`;
+        document.getElementById('mwQrModalCompVkn').textContent = vkn || '2720912021';
+        document.getElementById('mwQrModalCompPhone').textContent = phone || '0541 246 54 29';
+        document.getElementById('mwQrModalCompEmail').textContent = email || 'yonetim@meetwork.com.tr';
+        const fb = document.getElementById('mwQrModalFeedback');
+        if (fb) fb.style.display = 'none';
+        window.__qrModalPartner = { company_name: name, sector, city, vkn: vkn || '2720912021', phone, email };
+        const modalEl = document.getElementById('mwQrCardModal');
+        if (modalEl && window.bootstrap) new window.bootstrap.Modal(modalEl).show();
+      };
+
+      window.mwOpenHirePdksModal = function (candName, position) {
+        document.getElementById('pdksCandName').value = candName || 'Uzman Aday';
+        document.getElementById('pdksCandPosition').value = position || 'B2B Satış & Operasyon Uzmanı';
+        const fb = document.getElementById('pdksTransferFeedback');
+        if (fb) fb.style.display = 'none';
+        const modalEl = document.getElementById('mwHireToPdksModal');
+        if (modalEl && window.bootstrap) new window.bootstrap.Modal(modalEl).show();
+      };
 
       function buildStoriesRowHtml(stories) {
         window.__mwCompStoriesList = stories || [];
@@ -292,12 +406,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const compStories = data.stories || [];
           const listings = data.listings || [];
           const tenders = data.tenders || [];
-          const catalog = data.b2b_catalog || [];
           const careerJobs = data.career_jobs || [];
           const matchedTalents = data.matched_talents || [];
           const grantMatches = data.grant_matches || [];
           const grantApps = data.grant_applications || [];
           const grantProfile = data.grant_profile || { founded_year: 2021 };
+
+          // Canlı Toptan Ürün Kataloğu & Birlikte Alalım Havuzlarını Çek (/api/bridge/company-catalog)
+          let liveCatalogProducts = [];
+          let liveGroupBuys = [];
+          try {
+            const catRes = await fetch(`${API_URL}/api/bridge/company-catalog?company_id=${encodeURIComponent(comp.id)}&vkn=${encodeURIComponent(comp.vkn || '')}`);
+            const catData = await catRes.json();
+            liveCatalogProducts = catData.products || [];
+            liveGroupBuys = catData.active_group_buys || [];
+          } catch (_) {}
+
           let targets = [];
           try { targets = JSON.parse(comp.target_sectors || '[]'); } catch (_) {}
 
@@ -322,10 +446,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       ${(comp.name || 'MW').slice(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <div class="mb-1">
-                        ${getTrustBadge(comp.trust_level)}
+                      <div class="mb-1 d-flex flex-wrap align-items-center gap-1">
+                        ${getTrustBadge(comp.trust_level, comp.payment_score_tier)}
+                        <span class="badge bg-success border border-light border-opacity-25" style="font-size:0.7rem;">
+                          🏅 Doğrulanmış Toptan & İhracat Tedarikçisi
+                        </span>
                         ${isMyOwnCompany ? `
-                          <span class="badge bg-dark border border-light border-opacity-25 ms-1" style="font-size:0.7rem;">
+                          <span class="badge bg-dark border border-light border-opacity-25" style="font-size:0.7rem;">
                             <i class="bi bi-lock-fill me-1"></i>Kendi İşletme Profilim (Kuruluş: ${grantProfile.founded_year || 2021})
                           </span>
                         ` : ''}
@@ -339,6 +466,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
                   <!-- Kurumsal Aksiyon Butonları -->
                   <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-light btn-sm fw-bold text-dark" onclick="window.mwOpenQrCardModal('${(comp.name || '').replace(/'/g, '')}', '${(comp.sector || '').replace(/'/g, '')}', '${comp.city || 'İstanbul'}', '${comp.vkn || '2720912021'}', '${comp.phone || '05412465429'}', '${comp.email || 'yonetim@meetwork.com.tr'}')">
+                      <i class="bi bi-qr-code text-danger me-1"></i> 📱 QR Dijital Kartvizit & Tanış
+                    </button>
                     ${isMyOwnCompany ? `
                       <a href="/hibe-kredi-eslesme" class="btn btn-warning btn-sm fw-bold text-dark">
                         <i class="bi bi-shield-lock-fill me-1"></i> Hibe, Fon & Kredi Eşleşmem (${grantMatches.length})
@@ -348,10 +478,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       </button>
                     ` : ''}
                     <a href="/ihaleler?yeni=1" class="btn btn-light btn-sm fw-bold text-danger">
-                      <i class="bi bi-hammer me-1"></i> Teklif İste / İhaleye Davet Et
+                      <i class="bi bi-hammer me-1"></i> Alım İhalesine Davet Et
                     </a>
-                    <a href="https://erp-eticaret.stokpratik.com.tr" target="_blank" class="btn btn-dark btn-sm fw-bold border-light">
-                      <i class="bi bi-lock-fill text-danger me-1"></i> StokPratik CariNet
+                    <a href="https://stokpratik.com" target="_blank" class="btn btn-dark btn-sm fw-bold border-light">
+                      <i class="bi bi-box-seam text-danger me-1"></i> StokPratik CariNet
                     </a>
                     <a href="https://depodandirekt.com" target="_blank" class="btn btn-danger btn-sm fw-bold border-light">
                       <i class="bi bi-globe2 me-1"></i> DepodanDirekt Vitrin
@@ -360,7 +490,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </div>
               </div>
 
-              <!-- İşletmeye Özel Yuvarlak Hikayeler Alanı (Ana Sayfa İle Aynı Tasarım) -->
+              <!-- İşletmeye Özel Yuvarlak Hikayeler Alanı -->
               <div class="px-4 pt-3 pb-2 border-bottom" style="background: var(--mw-surface-alt); border-color: var(--mw-border) !important;">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <span class="small fw-bold"><i class="bi bi-play-circle-fill text-danger me-1"></i> ${comp.name} — İşletme Hikayeleri & Güncellemeler</span>
@@ -382,15 +512,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   ${targets.length > 0 ? targets.map(t => `<span class="badge bg-danger-subtle text-danger me-1">${t}</span>`).join('') : '<span class="small text-muted">Tüm sektörlerle iş birliğine açık</span>'}
                 </div>
 
+                <!-- 🛍️ CANLI TOPTAN ÜRÜN KATALOĞU (KOLİ / PALET) & BİRLİKTE ALALIM VİTRİNİ -->
+                <div class="p-3 rounded border border-primary-subtle mb-4" style="background: var(--mw-surface-alt);">
+                  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+                    <div>
+                      <span class="badge bg-danger me-1">🛍️ CANLI TOPTAN KATALOG</span>
+                      <span class="badge bg-success">⚡ MeetWork Üyelerine Özel İskontolu</span>
+                      <h6 class="fw-bold mb-0 mt-1">
+                        Koli / Palet Toptan Ürün Fiyatları & Aktif "Birlikte Alalım" Havuzları
+                      </h6>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <a href="/talepler" class="btn btn-sm btn-outline-success fw-bold">
+                        🤝 Birlikte Alalım Havuzları (${liveGroupBuys.length})
+                      </a>
+                      <a href="https://depodandirekt.com" target="_blank" class="btn btn-sm btn-danger fw-bold">
+                        🛡️ Ödeme Korumalı Sipariş Ver →
+                      </a>
+                    </div>
+                  </div>
+                  <div class="row g-2">
+                    ${liveCatalogProducts.map(prod => `
+                      <div class="col-md-4">
+                        <div class="p-3 rounded border h-100 d-flex flex-column justify-content-between" style="background: var(--mw-surface);">
+                          <div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                              <span class="badge bg-dark" style="font-size:0.65rem;">SKU: ${prod.sku}</span>
+                              <span class="badge bg-danger-subtle text-danger fw-bold" style="font-size:0.68rem;">-%${prod.mw_member_discount_rate || 15} Üye İskontosu</span>
+                            </div>
+                            <div class="fw-bold small mb-2">${prod.name}</div>
+                            <div class="d-flex justify-content-between small text-muted mb-1">
+                              <span>📦 Koli Fiyatı:</span>
+                              <strong class="text-dark">${Number(prod.box_price).toLocaleString('tr-TR')} TL</strong>
+                            </div>
+                            <div class="d-flex justify-content-between small text-success fw-bold mb-2">
+                              <span>🏗️ Palet Fiyatı:</span>
+                              <strong>${Number(prod.pallet_price).toLocaleString('tr-TR')} TL / ${prod.unit}</strong>
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                            <small class="text-muted" style="font-size:0.7rem;">Min. Sipariş: ${prod.min_order_qty} ${prod.unit}</small>
+                            <a href="${prod.dd_product_url || 'https://depodandirekt.com'}" target="_blank" class="btn btn-sm btn-outline-danger py-0 px-2 fw-bold" style="font-size:0.73rem;">
+                              Toptan Al →
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+
                 ${isMyOwnCompany ? `
                   <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 1: AKILLI TEŞVİK, HİBE, AB FONU & KREDİ EŞLEŞMESİ -->
                   <div class="p-3 rounded border border-danger mb-3" style="background: var(--mw-surface-alt);">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
                       <div>
                         <span class="badge bg-danger me-1"><i class="bi bi-shield-lock-fill me-1"></i>SADECE SİZE ÖZEL (DIŞARIYA KAPALI)</span>
-                        <span class="badge bg-success">${grantProfile.founded_year || 2021} Kuruluş • ${2026 - Number(grantProfile.founded_year || 2021)} Yıllık Bilanço</span>
+                        <span class="badge bg-success">${grantProfile.founded_year || 2021} Kuruluş • 4 Katmanlı Resmi Kılavuz Kilidi Aktif</span>
                         <h6 class="fw-bold mb-0 mt-1">
-                          <i class="bi bi-cash-coin text-danger me-1"></i> İşletmeniz İçin Eşleşen Teşvik, Hibe, AB Fonu & Krediler (${grantMatches.length})
+                          <i class="bi bi-cash-coin text-danger me-1"></i> İşletmeniz İçin Doğrulanmış Hibe, AB Fonu & Krediler (${grantMatches.length})
                         </h6>
                       </div>
                       <a href="/hibe-kredi-eslesme" class="btn btn-sm btn-danger fw-bold">
@@ -421,14 +601,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
 
-                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 2: İŞVEREN İK, PERSONEL İLANI AÇMA & ADAY RADARI -->
+                  <!-- SADECE İŞLETME SAHİBİNE GÖRÜNEN GİZLİ ALAN 2: İŞVEREN İK, PERSONEL İLANI AÇMA & ONAYLI PDKS AKTARIMI -->
                   <div id="mwEmployerHrPanel" class="p-3 rounded border border-success mb-4" style="background: var(--mw-surface-alt);">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom" style="border-color: var(--mw-border) !important;">
                       <div>
-                        <span class="badge bg-success me-1"><i class="bi bi-people-fill me-1"></i>İŞVEREN İK & PERSONEL İLANI YÖNETİMİ (SADECE SİZE ÖZEL)</span>
+                        <span class="badge bg-success me-1"><i class="bi bi-people-fill me-1"></i>İŞVEREN İK & ONAYLI PDKS AKTARIM MASASI (SADECE SİZE ÖZEL)</span>
                         <span class="badge bg-warning text-dark">💰 %70 KOSGEB & SGK 6111 Maaş Teşviki Entegreli</span>
                         <h6 class="fw-bold mb-0 mt-1">
-                          İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın & Doğrulanmış Adayları İnceleyin
+                          Doğrulanmış Adayları İnceleyin & İşe Aldığınız Adayı Onayınızla StokPratik PDKS’ye Aktarın
                         </h6>
                       </div>
                       <div class="d-flex flex-wrap gap-2">
@@ -453,9 +633,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                               <div class="small text-danger fw-semibold mb-1" style="font-size:0.72rem;">${tl.role_subtitle || tl.headline}</div>
                               <div class="small text-success fw-semibold" style="font-size:0.68rem;">${tl.subsidy_badge || '💰 KOSGEB / İŞKUR Teşvikine Uygun'}</div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center pt-1 border-top mt-2" style="border-color: var(--mw-border) !important;">
-                              <small class="text-muted tabular-nums" style="font-size:0.7rem;">📍 ${tl.city} • ${tl.salary_expectation}</small>
-                              <a href="/kariyer" class="small fw-bold text-success text-decoration-none" style="font-size:0.72rem;">İncele →</a>
+                            <div class="pt-2 border-top mt-2" style="border-color: var(--mw-border) !important;">
+                              <div class="d-flex justify-content-between align-items-center mb-1">
+                                <small class="text-muted tabular-nums" style="font-size:0.7rem;">📍 ${tl.city} • ${tl.salary_expectation}</small>
+                                <a href="/kariyer" class="small fw-bold text-success text-decoration-none" style="font-size:0.72rem;">İncele →</a>
+                              </div>
+                              <button type="button" class="btn btn-outline-success btn-sm w-100 fw-bold py-1" style="font-size:0.71rem;" onclick="window.mwOpenHirePdksModal('${(tl.full_name || '').replace(/'/g, '')}', '${(tl.target_position || tl.role_subtitle || 'Uzman').replace(/'/g, '')}')">
+                                ✅ Adayı İşe Aldık → StokPratik PDKS’ye Aktar
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -467,7 +652,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="row g-4">
                   <!-- Kurumsal Mağaza İlanları -->
                   <div class="col-md-6">
-                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-shop-window text-danger me-1"></i> Aktif Ticari İlanları (${listings.length})</h6>
+                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-shop-window text-danger me-1"></i> Aktif Ticari & Demirbaş İlanları (${listings.length})</h6>
                     ${listings.length === 0 ? `<p class="small text-muted">Firmanın şu an aktif satılık/kiralık ilanı bulunmuyor.</p>` : listings.map(l => `
                       <a href="/ilanlar?ilan=${encodeURIComponent(l.slug)}" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
                         <div>
@@ -479,27 +664,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     `).join('')}
                   </div>
 
-                  <!-- Açık E-İhaleleri & StokPratik B2B Ürünleri -->
+                  <!-- Açık E-İhaleleri -->
                   <div class="col-md-6">
-                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-box-seam text-danger me-1"></i> B2B Toptan Katalog & Açık İhaleleri</h6>
+                    <h6 class="fw-bold border-bottom pb-2"><i class="bi bi-hammer text-danger me-1"></i> Açık Alım İhaleleri & Birlikte Alalım Havuzları</h6>
                     ${tenders.map(t => `
                       <a href="/ihaleler" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
                         <div>
-                          <span class="badge bg-danger me-1">${t.tender_method.toUpperCase()}</span>
+                          <span class="badge bg-danger me-1">ALIM İHALESİ</span>
                           <span class="fw-bold small">${t.title}</span>
                         </div>
                         <small class="text-danger fw-bold">Teklif Ver →</small>
                       </a>
                     `).join('')}
-                    ${catalog.length > 0 ? catalog.map(p => `
-                      <div class="p-2 rounded border d-flex justify-content-between align-items-center mb-2">
+                    ${liveGroupBuys.slice(0, 2).map(gb => `
+                      <a href="/talepler" class="p-2 rounded border d-flex justify-content-between align-items-center mb-2 text-decoration-none" style="color:var(--mw-text);">
                         <div>
-                          <div class="fw-bold small">${p.name}</div>
-                          <small class="text-muted">SKU: ${p.sku || '-'} • Stok: ${p.stock} ${p.unit || 'Adet'}</small>
+                          <span class="badge bg-success me-1">🤝 BİRLİKTE ALALIM</span>
+                          <span class="fw-bold small">${gb.title}</span>
                         </div>
-                        <span class="badge bg-success">CariNet Toptan</span>
-                      </div>
-                    `).join('') : `<p class="small text-muted">Cariye özel toptan fiyat listesi için üstteki <strong>StokPratik CariNet</strong> veya <strong>DepodanDirekt</strong> butonunu kullanabilirsiniz.</p>`}
+                        <small class="text-success fw-bold">${gb.current_qty}/${gb.target_qty} ${gb.unit} →</small>
+                      </a>
+                    `).join('')}
                   </div>
 
                   <!-- HERKESE AÇIK KURUMSAL İK VİTRİNİ: AÇIK İŞ & UZMAN İLANLARIMIZ -->
@@ -573,16 +758,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <div class="rounded-3 bg-danger text-white fw-bold d-flex align-items-center justify-content-center" style="width:42px;height:42px;">
                     ${(c.name || 'MW').slice(0, 2).toUpperCase()}
                   </div>
-                  ${getTrustBadge(c.trust_level)}
+                  <div class="text-end">
+                    ${getTrustBadge(c.trust_level, c.payment_score_tier)}
+                  </div>
                 </div>
                 <h6 class="fw-bold mb-1">${c.name}</h6>
-                <div class="small text-muted mb-3">
+                <div class="small text-muted mb-2">
                   <i class="bi bi-tag-fill text-danger me-1"></i> ${c.sector} • ${c.city || 'İstanbul'}
+                </div>
+                <div class="d-flex flex-wrap gap-1 mb-3">
+                  <span class="badge bg-success-subtle text-success" style="font-size:0.65rem;">🏅 Doğrulanmış Toptan Tedarikçi</span>
+                  <span class="badge bg-danger-subtle text-danger" style="font-size:0.65rem;">📦 Koli / Palet Katalog</span>
                 </div>
                 <div class="mt-auto d-flex gap-2 pt-2 border-top" style="border-color:var(--mw-border)!important;">
                   <a href="/isletmeler?firma=${encodeURIComponent(c.slug)}" class="btn btn-sm btn-danger w-100 fw-bold">
-                    Kurumsal Profil & Vitrin
+                    Kurumsal Profil & Toptan Vitrin
                   </a>
+                  <button type="button" class="btn btn-sm btn-outline-dark" title="QR Dijital Kartvizit" onclick="window.mwOpenQrCardModal('${(c.name || '').replace(/'/g, '')}', '${(c.sector || '').replace(/'/g, '')}', '${c.city || 'İstanbul'}', '${c.vkn || '2720912021'}', '${c.phone || '05412465429'}', '${c.email || 'info@meetwork.com.tr'}')">
+                    <i class="bi bi-qr-code"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -696,6 +890,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 if (params.get('firma')) {
                   loadCompanyProfile(params.get('firma'));
                 }
+              }
+            } catch (_) {}
+          });
+        }
+
+        // 📱 QR Dijital Kartvizit -> Onaylı CRM & Cari Kart Aktarımı (KURAL 5)
+        async function triggerQrCrmSync(createSampleQuote) {
+          const partner = window.__qrModalPartner || {};
+          const fb = document.getElementById('mwQrModalFeedback');
+          try {
+            const res = await fetch(`${API_URL}/api/bridge/crm-cari-sync`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'qr_card_handshake',
+                create_sample_quote: Boolean(createSampleQuote),
+                matched_company: partner
+              })
+            });
+            const out = await res.json();
+            if (fb) {
+              fb.style.display = 'block';
+              fb.className = 'small fw-bold mb-2 text-success';
+              fb.textContent = out.message || '✓ Rehberinize ve StokPratik Cari/CRM kartlarınıza kaydedildi!';
+            }
+          } catch (_) {}
+        }
+
+        const qrSaveBtn = document.getElementById('mwQrSaveCrmBtn');
+        const qrQuoteBtn = document.getElementById('mwQrSaveWithQuoteBtn');
+        if (qrSaveBtn) qrSaveBtn.addEventListener('click', () => triggerQrCrmSync(false));
+        if (qrQuoteBtn) qrQuoteBtn.addEventListener('click', () => triggerQrCrmSync(true));
+
+        // ✅ Onaylı İşe Alım -> StokPratik PDKS Personel Kartı Aktarımı (KURAL 3)
+        const pdksForm = document.getElementById('mwHireToPdksForm');
+        if (pdksForm) {
+          pdksForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fb = document.getElementById('pdksTransferFeedback');
+            try {
+              const res = await fetch(`${API_URL}/api/bridge/career-to-pdks`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  action: 'approve_hire_to_pdks',
+                  candidate: {
+                    full_name: document.getElementById('pdksCandName').value,
+                    position: document.getElementById('pdksCandPosition').value,
+                    branch_name: document.getElementById('pdksCandBranch').value,
+                    start_date: document.getElementById('pdksStartDate').value,
+                    agreed_salary: Number(document.getElementById('pdksAgreedSalary').value || 65000)
+                  }
+                })
+              });
+              const out = await res.json();
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'small fw-bold mb-2 text-success';
+                fb.textContent = out.message || '✓ Personel kartı StokPratik PDKS modülüne aktarıldı!';
               }
             } catch (_) {}
           });
