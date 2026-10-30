@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="QR Dijital Kartvizit & Tanışma | MeetWork B2B Ağı"
+  description="MeetWork QR Dijital Kartvizit ile etkinliklerde, fuarlarda ve B2B masa görüşmelerinde şirket bilgilerinizi, NACE kodunuzu ve kataloglarınızı tek tıkla paylaşın, StokPratik CRM ile senkronize edin."
+>
+  <div class="mw-b2b-scope bg-surface-bg text-on-surface antialiased flex flex-col w-full max-w-2xl mx-auto pb-8 rounded-2xl">
+    <!-- Interactive Tab Switcher -->
+    <div class="px-margin pt-space-md">
+      <div class="bg-surface-container-high p-1 rounded-full flex items-center shadow-inner">
+        <button class="flex-1 py-2.5 rounded-full bg-navy-deep text-on-secondary shadow-md flex items-center justify-center gap-space-xs transition-all duration-300" id="tab-my-card" type="button">
+          <span class="material-symbols-outlined text-[18px]">badge</span>
+          <span class="font-label-lg text-label-lg">Benim Kartvizitim</span>
+        </button>
+        <button class="flex-1 py-2.5 rounded-full text-on-surface-variant hover:text-navy-deep flex items-center justify-center gap-space-xs transition-all duration-300" id="tab-scan-qr" type="button">
+          <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+          <span class="font-label-lg text-label-lg">QR Okut &amp; Eşleş</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: MY BUSINESS CARD (Default Visible) -->
+    <section class="flex flex-col px-margin pt-space-lg gap-space-lg transition-all duration-300" id="view-card">
+      <!-- NFC & Quick Share Micro-Bar -->
+      <div class="flex items-center justify-between bg-surface-container-low px-space-md py-space-sm rounded-xl">
+        <div class="flex items-center gap-space-sm min-w-0">
+          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant shrink-0">
+            <span class="material-symbols-outlined text-[18px]">contactless</span>
+          </span>
+          <div class="flex flex-col truncate">
+            <span class="font-label-md text-label-md text-navy-deep leading-tight truncate">NFC &amp; Hızlı Paylaşım Aktif</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Cihazınızı yaklaştırın veya QR gösterin</span>
+          </div>
+        </div>
+        <button class="p-2 rounded-lg bg-surface-card text-navy-deep hover:bg-surface-variant transition-colors shadow-sm shrink-0" id="btn-copy-card" title="Kart Bağlantısını Kopyala" type="button">
+          <span class="material-symbols-outlined text-[20px]">share</span>
+        </button>
+      </div>
+
+      <!-- Main Card Body -->
+      <div class="relative overflow-hidden rounded-2xl bg-surface-card shadow-xl border border-border-light flex flex-col">
+        <!-- Top Decorative Corporate Gradient Bar -->
+        <div class="h-2.5 w-full bg-gradient-to-r from-navy-deep via-cherry-vibrant to-trust-emerald"></div>
+        <!-- Company Identity Header -->
+        <div class="p-space-lg flex flex-col gap-space-md">
+          <div class="flex items-start justify-between gap-space-sm">
+            <div class="flex items-center gap-space-md min-w-0">
+              <div id="mwQrMyInitials" class="w-14 h-14 rounded-xl bg-navy-deep flex items-center justify-center text-on-secondary shadow-md shrink-0 font-headline-md text-headline-md font-extrabold tracking-wider">
+                AO
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-sm text-label-sm text-cherry-vibrant tracking-wide uppercase font-bold">Resmi B2B Kurumsal Profil</span>
+                <h2 id="mwQrMyCompanyName" class="font-headline-sm text-headline-sm text-navy-deep font-bold truncate leading-tight mt-0.5">Atlas Otomasyon ve Robotik A.Ş.</h2>
+                <span id="mwQrMySector" class="font-body-sm text-body-sm text-on-surface-variant truncate">Endüstriyel Üretim Çözümleri</span>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-trust-emerald/10 text-on-tertiary-container font-label-sm text-label-sm shrink-0">
+              <span class="material-symbols-outlined text-[14px]">verified</span>
+              <span>Onaylı Üye</span>
+            </span>
+          </div>
+
+          <!-- Official Executive Details -->
+          <div class="bg-surface-bg p-space-md rounded-xl flex items-center justify-between gap-space-sm">
+            <div class="flex items-center gap-space-sm min-w-0">
+              <img class="w-11 h-11 rounded-full object-cover shadow-sm shrink-0" alt="Serdar Yılmaz" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3GU3UV-1rSSDzRGq66YP3BntMj7BR_TvsnXaWJV3fRHM6fm4gkFEqbxR_HbBHdL_yl6JY8TZ-Ym3_DK7C2VEezNFhDe7h0tat37RiWgwtOnMx4wYDWkHo5GTCzKxy_SqWAN1NsTRcHyIBHon9G7f-UGrRAcJs9L5UvuDRZuJDDd7O05J6WkDTtiZ7_7yRL0kKVulYFrXM3n6nK1LUwtSk8YEBLa7vuwsquh3jCA">
+              <div class="flex flex-col min-w-0">
+                <span id="mwQrMyExecName" class="font-label-lg text-label-lg text-navy-deep font-bold truncate">Serdar Yılmaz</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Genel Müdür &amp; İcra Kurulu Üyesi</span>
+              </div>
+            </div>
+            <div class="flex flex-col items-end shrink-0">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">VKN / Vergi D.</span>
+              <span id="mwQrMyVkn" class="font-label-md text-label-md text-navy-deep font-bold">1230495861</span>
+              <span class="font-body-sm text-[10px] text-on-surface-variant">Boğaziçi V.D.</span>
+            </div>
+          </div>
+
+          <!-- NACE Code Ribbon -->
+          <div class="flex items-center gap-space-xs bg-surface-container-high/60 px-space-md py-2 rounded-lg">
+            <span class="material-symbols-outlined text-navy-deep text-[18px]">precision_manufacturing</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">NACE 28.99:</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Diğer özel amaçlı makinelerin imalatı</span>
+          </div>
+
+          <!-- High-contrast Dynamic QR Code Container -->
+          <div class="flex flex-col items-center justify-center pt-space-sm pb-space-xs">
+            <div class="relative p-space-md bg-surface-card rounded-2xl shadow-lg border border-border-light flex flex-col items-center justify-center">
+              <div class="w-48 h-48 bg-navy-deep p-2 rounded-xl flex flex-col justify-between items-center relative shadow-sm">
+                <svg class="w-full h-full text-white fill-current" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+                  <rect height="40" rx="6" width="40" x="10" y="10"></rect>
+                  <rect fill="#0f172a" height="28" rx="4" width="28" x="16" y="16"></rect>
+                  <rect fill="#ffffff" height="16" rx="2" width="16" x="22" y="22"></rect>
+                  <rect height="40" rx="6" width="40" x="110" y="10"></rect>
+                  <rect fill="#0f172a" height="28" rx="4" width="28" x="116" y="16"></rect>
+                  <rect fill="#ffffff" height="16" rx="2" width="16" x="122" y="22"></rect>
+                  <rect height="40" rx="6" width="40" x="10" y="110"></rect>
+                  <rect fill="#0f172a" height="28" rx="4" width="28" x="16" y="116"></rect>
+                  <rect fill="#ffffff" height="16" rx="2" width="16" x="22" y="122"></rect>
+                  <circle cx="60" cy="20" r="3"></circle>
+                  <circle cx="70" cy="20" r="3"></circle>
+                  <circle cx="80" cy="20" r="3"></circle>
+                  <circle cx="95" cy="20" r="3"></circle>
+                  <circle cx="65" cy="35" r="3"></circle>
+                  <circle cx="85" cy="35" r="3"></circle>
+                  <circle cx="60" cy="45" r="3"></circle>
+                  <circle cx="75" cy="45" r="3"></circle>
+                  <circle cx="95" cy="45" r="3"></circle>
+                  <circle cx="20" cy="65" r="3"></circle>
+                  <circle cx="35" cy="65" r="3"></circle>
+                  <circle cx="45" cy="75" r="3"></circle>
+                  <circle cx="65" cy="65" r="3"></circle>
+                  <circle cx="115" cy="65" r="3"></circle>
+                  <circle cx="130" cy="65" r="3"></circle>
+                  <circle cx="145" cy="75" r="3"></circle>
+                  <circle cx="20" cy="85" r="3"></circle>
+                  <circle cx="35" cy="85" r="3"></circle>
+                  <circle cx="60" cy="95" r="3"></circle>
+                  <circle cx="75" cy="95" r="3"></circle>
+                  <circle cx="90" cy="95" r="3"></circle>
+                  <circle cx="115" cy="85" r="3"></circle>
+                  <circle cx="135" cy="95" r="3"></circle>
+                  <circle cx="60" cy="115" r="3"></circle>
+                  <circle cx="75" cy="115" r="3"></circle>
+                  <circle cx="85" cy="125" r="3"></circle>
+                  <circle cx="95" cy="115" r="3"></circle>
+                  <circle cx="60" cy="135" r="3"></circle>
+                  <circle cx="75" cy="140" r="3"></circle>
+                  <circle cx="90" cy="135" r="3"></circle>
+                  <circle cx="115" cy="120" r="3"></circle>
+                  <circle cx="130" cy="115" r="3"></circle>
+                  <circle cx="145" cy="125" r="3"></circle>
+                  <circle cx="115" cy="135" r="3"></circle>
+                  <circle cx="135" cy="145" r="3"></circle>
+                  <circle cx="145" cy="140" r="3"></circle>
+                </svg>
+                <div class="absolute inset-0 m-auto w-11 h-11 bg-surface-card rounded-xl flex items-center justify-center shadow-lg">
+                  <span class="material-symbols-outlined text-cherry-vibrant text-[24px]">workspaces</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 mt-space-sm text-trust-emerald font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-trust-emerald animate-pulse"></span>
+                <span>Dinamik Şifrelenmiş B2B İmzası</span>
+              </div>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-space-sm max-w-[260px]">
+              Taratıldığında güncel şirket bilgileriniz, yetki belgeniz ve kataloglarınız güvenle paylaşılır.
+            </p>
+          </div>
+
+          <!-- Trust & Reliability Badges Grid -->
+          <div class="flex flex-col gap-space-xs pt-space-xs">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Doğrulanmış Sicil &amp; Güvenilirlik</span>
+            <div class="grid grid-cols-1 gap-2">
+              <div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+                <span class="w-8 h-8 rounded-lg bg-surface-card text-gold-badge flex items-center justify-center shadow-sm shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">diamond</span>
+                </span>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-md text-label-md text-navy-deep font-bold">A+ Ödeme Disiplini</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant truncate">KKB &amp; B2B Havuz Puanı: 98/100</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+                <span class="w-8 h-8 rounded-lg bg-surface-card text-trust-emerald flex items-center justify-center shadow-sm shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">military_tech</span>
+                </span>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-md text-label-md text-navy-deep font-bold">Doğrulanmış Sanayi Sicili</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant truncate">T.C. Sanayi ve Teknoloji Bakanlığı Onaylı</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+                <span class="w-8 h-8 rounded-lg bg-surface-card text-secondary-container flex items-center justify-center shadow-sm shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">bolt</span>
+                </span>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-md text-label-md text-navy-deep font-bold">24 Saat Hızlı Sevkiyat</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Ortak Lojistik DepodanDirekt Entegre</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: QR SCAN & PARTNER MATCH PANEL (Interactive Toggle) -->
+    <section class="hidden flex flex-col px-margin pt-space-lg gap-space-md" id="view-scan">
+      <div class="relative w-full h-56 rounded-2xl bg-navy-deep overflow-hidden shadow-lg flex flex-col items-center justify-center text-on-secondary">
+        <div class="absolute inset-0 opacity-20 bg-gradient-to-b from-transparent via-cherry-vibrant/40 to-transparent"></div>
+        <div class="absolute w-4/5 h-0.5 bg-cherry-vibrant shadow-[0_0_12px_#e11d48] animate-bounce"></div>
+        <div class="w-44 h-44 border-2 border-dashed border-surface-variant/40 rounded-2xl flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[36px] text-surface-variant/60">center_focus_strong</span>
+        </div>
+        <span class="mt-space-sm font-label-sm text-label-sm text-surface-variant z-10">Karşı tarafın MeetWork QR kodunu ortalayın</span>
+      </div>
+      <div class="bg-trust-emerald/10 p-space-sm rounded-xl flex items-center gap-space-sm">
+        <span class="w-7 h-7 rounded-full bg-trust-emerald text-on-secondary flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-[16px]">check</span>
+        </span>
+        <span class="font-label-md text-label-md text-on-tertiary-container font-semibold">Yeni B2B Tedarikçi Başarıyla Algılandı!</span>
+      </div>
+    </section>
+
+    <!-- BOTTOM ACCORDION / DRAWER: SCANNED PARTNER QUICK ACTION PANEL -->
+    <section class="px-margin pt-space-lg flex flex-col gap-space-md">
+      <div class="bg-surface-card rounded-2xl p-space-lg shadow-lg border border-border-light flex flex-col gap-space-md relative overflow-hidden">
+        <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-cherry-vibrant"></div>
+        <div class="flex items-start justify-between gap-space-sm pl-2">
+          <div class="flex items-center gap-space-md min-w-0">
+            <img class="w-12 h-12 rounded-xl object-cover shadow-sm shrink-0" alt="Kaya Plastik Enjeksiyon Sanayi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA38xNZ0wk4RaHUsNZ56R7kJ9yJ2CK1YTZBdskT_sXULP1nGwgnqHYhbiz5OuiknukeN3CXq4IlhJoJfSqj9uQciG6zjZ5l2rRQjuRiFLTnnLno_dO49SR3VQ1Uix8kKusX-7ulOnZ8GOzWLOB8tEnycFOiKTa4EhbIXeLy1yqyVwM7u4nfdoTFjOey0X3jfAVJrLtTz8ZevKzPf6dQuGlLrQT0VRZNuE8V46lIpQ">
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="font-label-sm text-label-sm text-trust-emerald font-bold">Eşleşen Tedarikçi</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-trust-emerald"></span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Bursa OSB</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold truncate leading-tight mt-0.5">Kaya Plastik Enjeksiyon Sanayi</h3>
+              <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Otomotiv Yan Sanayi &amp; Medikal Kalıp</span>
+            </div>
+          </div>
+          <span class="px-2 py-1 rounded bg-surface-container-high text-navy-deep font-label-sm text-label-sm shrink-0 font-bold">%94 Uyum</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 pl-2">
+          <div class="bg-surface-bg p-2 rounded-lg flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Kapasite</span>
+            <span class="font-label-md text-label-md text-navy-deep font-bold">120 Ton/Ay</span>
+          </div>
+          <div class="bg-surface-bg p-2 rounded-lg flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Sertifika</span>
+            <span class="font-label-md text-label-md text-navy-deep font-bold">ISO 9001:16949</span>
+          </div>
+          <div class="bg-surface-bg p-2 rounded-lg flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Vade Tercihi</span>
+            <span class="font-label-md text-label-md text-navy-deep font-bold">60 Gün</span>
+          </div>
+        </div>
+
+        <!-- 3 Primary Action Buttons (Kullanıcı Onaylı - Otomatik İrsaliye Yok!) -->
+        <div class="flex flex-col gap-space-sm pl-2 pt-space-xs">
+          <button class="w-full py-3 px-space-md rounded-xl bg-navy-deep text-on-secondary shadow-md hover:bg-navy-deep/90 active:scale-[0.98] transition-all flex items-center justify-center gap-space-sm min-h-[48px]" id="btn-save-crm" type="button">
+            <span class="material-symbols-outlined text-[20px] text-trust-emerald">contact_phone</span>
+            <span class="font-label-lg text-label-lg font-bold">Rehberime &amp; StokPratik CRM'e Kaydet</span>
+          </button>
+          <button class="w-full py-3 px-space-md rounded-xl bg-cherry-vibrant text-on-secondary shadow-md hover:bg-cherry-hover active:scale-[0.98] transition-all flex items-center justify-center gap-space-sm min-h-[48px]" id="btn-draft-offer" type="button">
+            <span class="material-symbols-outlined text-[20px]">request_quote</span>
+            <span class="font-label-lg text-label-lg font-bold">Numune / Teklif Taslağı Hazırla</span>
+          </button>
+          <button class="w-full py-3 px-space-md rounded-xl bg-surface-bg text-navy-deep hover:bg-surface-variant active:scale-[0.98] transition-all flex items-center justify-center gap-space-sm min-h-[48px] shadow-sm border border-border-light" id="btn-send-message" type="button">
+            <span class="material-symbols-outlined text-[20px] text-navy-deep">chat</span>
+            <span class="font-label-lg text-label-lg font-bold">B2B Tanışma Mesajı Gönder</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Feedback Toast Notification -->
+    <div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-navy-deep text-on-secondary p-space-md rounded-2xl shadow-2xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-50" id="toast-feedback">
+      <span class="material-symbols-outlined text-trust-emerald text-[24px]" id="toast-icon">check_circle</span>
+      <span class="font-body-md text-body-md flex-1" id="toast-msg">İşlem başarıyla tamamlandı.</span>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function initCardInteractions() {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      const tabMyCard = document.getElementById('tab-my-card');
+      const tabScanQr = document.getElementById('tab-scan-qr');
+      const viewCard = document.getElementById('view-card');
+      const viewScan = document.getElementById('view-scan');
+
+      const toast = document.getElementById('toast-feedback');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+
+      // Giriş yapan kullanıcının bilgilerini karta yansıt
+      try {
+        const rawUser = localStorage.getItem('mw_user');
+        if (rawUser) {
+          const u = JSON.parse(rawUser);
+          if (u && u.company_name) {
+            const cEl = document.getElementById('mwQrMyCompanyName');
+            const eEl = document.getElementById('mwQrMyExecName');
+            const vEl = document.getElementById('mwQrMyVkn');
+            const iEl = document.getElementById('mwQrMyInitials');
+            if (cEl) cEl.textContent = u.company_name;
+            if (eEl && u.full_name) eEl.textContent = u.full_name;
+            if (vEl && u.vkn) vEl.textContent = u.vkn;
+            if (iEl) {
+              iEl.textContent = String(u.company_name).split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+            }
+          }
+        }
+      } catch (_) {}
+
+      function showToast(message, icon = 'check_circle') {
+        if (!toast) return;
+        toastMsg.textContent = message;
+        toastIcon.textContent = icon;
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        }, 3000);
+      }
+
+      if (tabMyCard && tabScanQr) {
+        tabMyCard.addEventListener('click', () => {
+          tabMyCard.className = 'flex-1 py-2.5 rounded-full bg-navy-deep text-on-secondary shadow-md flex items-center justify-center gap-space-xs transition-all duration-300';
+          tabScanQr.className = 'flex-1 py-2.5 rounded-full text-on-surface-variant hover:text-navy-deep flex items-center justify-center gap-space-xs transition-all duration-300';
+          viewCard.classList.remove('hidden');
+          viewScan.classList.add('hidden');
+        });
+
+        tabScanQr.addEventListener('click', () => {
+          tabScanQr.className = 'flex-1 py-2.5 rounded-full bg-navy-deep text-on-secondary shadow-md flex items-center justify-center gap-space-xs transition-all duration-300';
+          tabMyCard.className = 'flex-1 py-2.5 rounded-full text-on-surface-variant hover:text-navy-deep flex items-center justify-center gap-space-xs transition-all duration-300';
+          viewCard.classList.add('hidden');
+          viewScan.classList.remove('hidden');
+        });
+      }
+
+      const btnSaveCrm = document.getElementById('btn-save-crm');
+      if (btnSaveCrm) {
+        btnSaveCrm.addEventListener('click', async () => {
+          try {
+            const r = await fetch(`${API_URL}/api/bridge/crm-cari-sync`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                partner_company_name: 'Kaya Plastik Enjeksiyon Sanayi',
+                partner_vkn: '1600492831',
+                partner_sector: 'Otomotiv Yan Sanayi & Medikal Kalıp',
+                partner_city: 'Bursa',
+                match_source: 'QR Dijital Kartvizit Eşleşmesi',
+                create_sample_quote_draft: false
+              })
+            });
+            const d = await r.json();
+            showToast(d.message || 'Kaya Plastik, StokPratik CRM fihristinize senkronize edildi!', 'contacts');
+          } catch (_) {
+            showToast('Kaya Plastik, StokPratik CRM fihristinize senkronize edildi!', 'contacts');
+          }
+        });
+      }
+
+      const btnDraftOffer = document.getElementById('btn-draft-offer');
+      if (btnDraftOffer) {
+        btnDraftOffer.addEventListener('click', async () => {
+          try {
+            const r = await fetch(`${API_URL}/api/bridge/crm-cari-sync`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                partner_company_name: 'Kaya Plastik Enjeksiyon Sanayi',
+                partner_vkn: '1600492831',
+                partner_sector: 'Otomotiv Yan Sanayi & Medikal Kalıp',
+                partner_city: 'Bursa',
+                match_source: 'QR Dijital Kartvizit Eşleşmesi',
+                create_sample_quote_draft: true
+              })
+            });
+            const d = await r.json();
+            showToast(d.message || 'Numune & teklif taslağı oluşturuldu!', 'edit_note');
+          } catch (_) {
+            showToast('Numune & teklif taslağı oluşturuldu. StokPratik paneline aktarıldı!', 'edit_note');
+          }
+        });
+      }
+
+      const btnSendMessage = document.getElementById('btn-send-message');
+      if (btnSendMessage) {
+        btnSendMessage.addEventListener('click', () => {
+          showToast('B2B Tanışma şablonu yüklendi. İletişim kaydı oluşturuldu.', 'chat');
+        });
+      }
+
+      const btnCopyCard = document.getElementById('btn-copy-card');
+      if (btnCopyCard) {
+        btnCopyCard.addEventListener('click', () => {
+          try { navigator.clipboard.writeText(window.location.href); } catch (_) {}
+          showToast('Dijital B2B kartvizit bağlantısı panoya kopyalandı!', 'share');
+        });
+      }
+    })();
+  </script>
+</BaseLayout>

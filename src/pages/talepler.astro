@@ -19,7 +19,9 @@ if (fs.existsSync(dataDir)) {
 talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 ---
 
-<BaseLayout title="MeetWork - B2B İş Talepleri">
+<BaseLayout title="MeetWork - B2B İş Talepleri & Birlikte Alalım Ortak Havuzları">
+  <div class="mw-has-b2b-mobile">
+  <div class="mw-desktop-screen">
   <div class="container py-5">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
       <h1 class="fw-bold mb-0">Güncel İş ve Hizmet Talepleri</h1>
@@ -60,45 +62,6 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
       </div>
       <div id="mwGroupBuysContainer" class="row g-3">
         <div class="col-12 text-center py-3 text-muted small">Ortak satın alma havuzları yükleniyor...</div>
-      </div>
-    </div>
-
-    <!-- 🤝 BİRLİKTE ALALIM HAVUZUNA KATILIM MODALI (KOTA KİLİTLİ) -->
-    <div class="modal fade" id="mwJoinGroupBuyModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content mw-panel-card border-success">
-          <div class="modal-header border-bottom">
-            <h6 class="modal-title fw-bold">
-              <i class="bi bi-people-fill text-success me-1"></i> "Birlikte Alalım" Ortak Alım Havuzuna Katıl
-            </h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-          </div>
-          <div class="modal-body">
-            <form id="mwJoinGroupBuyForm">
-              <input type="hidden" id="gbJoinCampaignId" />
-              <div class="p-2 rounded border mb-3 small" style="background: var(--mw-surface-alt);">
-                <div class="fw-bold mb-1" id="gbJoinTitle">Havuz Başlığı</div>
-                <div class="d-flex justify-content-between text-muted">
-                  <span>Kalan Kontenjan Kilidi:</span>
-                  <strong class="text-danger" id="gbJoinRemaining">90 Adet</strong>
-                </div>
-                <div class="d-flex justify-content-between text-success fw-bold mt-1">
-                  <span>Ortak Alım Birim Fiyatı:</span>
-                  <strong id="gbJoinPrice">1.390 TL</strong>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label small fw-bold mb-1">Talep Ettiğiniz Miktar *</label>
-                <input type="number" id="gbJoinQty" class="form-control form-control-sm tabular-nums" min="1" value="15" required />
-                <small class="text-muted" id="gbJoinMinNote" style="font-size:0.7rem;">Hedef miktarı aşmamak için kalan kontenjan kadar talep girebilirsiniz.</small>
-              </div>
-              <div id="gbJoinFeedback" class="small fw-bold mb-2" style="display:none;"></div>
-              <button type="submit" class="btn btn-success btn-sm w-100 fw-bold py-2">
-                🤝 Kontenjanımı Ayır & Ortak Alım Havuzuna Katıl
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -157,6 +120,308 @@ talepler.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDa
               <span class="visually-hidden">Yükleniyor...</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- MOBİL & TABLET "BİRLİKTE ALALIM" ORTAK SATIN ALMA HAVUZLARI EKRANI (Screen 7) -->
+  <div class="mw-b2b-mobile-screen mw-b2b-scope">
+    <div class="flex flex-col w-full px-margin space-y-space-md pb-8">
+      <!-- Canlı Sayaç & Bilgilendirme Banner -->
+      <div class="rounded-xl p-space-md shadow-sm bg-gradient-to-r from-navy-deep to-primary-container text-on-primary relative overflow-hidden">
+        <div class="flex items-center justify-between gap-space-sm mb-space-xs">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cherry-vibrant text-on-secondary font-label-sm text-label-sm uppercase tracking-wide shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+            Toplu Alım Gücüyle Fabrika Fiyatı
+          </span>
+          <span class="inline-flex items-center gap-1 text-gold-badge font-label-md text-label-md font-semibold">
+            <span class="material-symbols-outlined text-base">savings</span>
+            Ort. %35 Tasarruf
+          </span>
+        </div>
+        <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-white tracking-tight">
+          Birlikte Alalım
+        </h1>
+        <p class="font-body-sm text-body-sm text-surface-container-high mt-1 leading-relaxed">
+          Küçük ve orta ölçekli işletmeler güçlerini birleştiriyor, doğrudan üreticiden konteyner/tır bazında toptan indirimle alıyor.
+        </p>
+        <div class="mt-space-sm pt-space-xs flex items-center justify-between text-surface-container-high font-label-sm text-label-sm">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px] text-trust-emerald">verified_user</span>
+            <span>Güvenli Ödeme Havuzu Güvencesi</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">local_shipping</span>
+            <span>Doğrudan Fabrikadan Sevk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Havuz Filtre Kapsülleri -->
+      <div class="flex items-center gap-space-xs overflow-x-auto pb-1 -mx-margin px-margin">
+        <button class="px-3.5 py-1.5 rounded-full bg-navy-deep text-on-secondary font-label-md text-label-md shrink-0 shadow-sm" type="button">
+          Tüm Havuzlar (8)
+        </button>
+        <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface-variant hover:text-navy-deep font-label-md text-label-md shrink-0 shadow-sm" type="button">
+          📦 Ambalaj &amp; Paketleme (3)
+        </button>
+        <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface-variant hover:text-navy-deep font-label-md text-label-md shrink-0 shadow-sm" type="button">
+          🏢 Ofis &amp; Kırtasiye (2)
+        </button>
+        <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface-variant hover:text-navy-deep font-label-md text-label-md shrink-0 shadow-sm" type="button">
+          🏭 Hammadde (3)
+        </button>
+      </div>
+
+      <!-- HAVUZ 1 (Öne Çıkan Kart) -->
+      <div class="rounded-xl p-space-md shadow-md bg-surface-card relative flex flex-col space-y-space-sm">
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-trust-emerald/10 text-trust-emerald font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+            Kapanmak Üzere
+          </span>
+          <div class="flex items-center gap-1 text-gold-badge bg-gold-badge/10 px-2.5 py-0.5 rounded-md font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[14px]">timer</span>
+            <span>2 Gün 18 Saat Kaldı</span>
+          </div>
+        </div>
+
+        <div class="flex gap-space-sm items-start">
+          <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-surface-container-low shadow-sm">
+            <img class="w-full h-full object-cover" alt="Çift Oluklu İhracat Kolisi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbf6IjxQwkf17VXe8tIQtSD7D7fCNIBRUS3hCMCCUBw3fzvY8lfbP-Lmtag6J71E9yGI4MRsubagqxPmR5UUiB_ewupCSvEm3zKfasoiwou5fsbRUS6fc3E8JsXcupfrXlGUISovADZqwJEhYNXvKYVKacCmkGlZlD0agrVm5OOD-5_M2VYRzdk2VJBLUbIIgy4GCzvVyYX8qyBDfF9nQCsE9Jg5OLT16vVMQ58w"/>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-headline-sm text-headline-sm text-navy-deep leading-snug">
+              Çift Oluklu İhracat Kolisi
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+              60x40x40 cm (Mukavemetli Kraft)
+            </p>
+            <p class="font-label-sm text-label-sm text-navy-deep/80 mt-0.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-trust-emerald">factory</span>
+              Öztürk Ambalaj Sanayi
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-lg p-space-sm bg-surface-container-low flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant line-through block">Piyasa: 42 ₺/Adet</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-metric-number text-metric-number text-cherry-vibrant">26 ₺</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">/ Adet</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-md text-label-md shadow-sm">
+              %38 Tasarruf
+            </span>
+            <span class="block font-label-sm text-label-sm text-trust-emerald font-semibold mt-0.5">Tır Bazı İndirimi</span>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex justify-between items-center font-label-sm text-label-sm">
+            <span class="font-bold text-navy-deep flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-cherry-vibrant"></span>
+              %76 Dolu (3.800 / 5.000 Adet)
+            </span>
+            <span class="text-cherry-vibrant font-bold">Kalan: 1.200 Adet</span>
+          </div>
+          <div class="w-full h-3 rounded-full bg-surface-container overflow-hidden p-0.5">
+            <div class="h-full rounded-full bg-gradient-to-r from-cherry-vibrant to-secondary transition-all duration-500" style="width: 76%;"></div>
+          </div>
+        </div>
+
+        <div class="pt-1 flex items-center justify-between gap-space-sm">
+          <div class="flex items-center -space-x-2 shrink-0">
+            <span class="w-7 h-7 rounded-full bg-navy-deep text-on-secondary font-label-sm text-label-sm flex items-center justify-center font-bold ring-2 ring-surface-card">AK</span>
+            <span class="w-7 h-7 rounded-full bg-trust-emerald text-on-secondary font-label-sm text-label-sm flex items-center justify-center font-bold ring-2 ring-surface-card">YT</span>
+            <span class="w-7 h-7 rounded-full bg-cherry-vibrant text-on-secondary font-label-sm text-label-sm flex items-center justify-center font-bold ring-2 ring-surface-card">+12</span>
+            <span class="pl-3 font-body-sm text-body-sm text-on-surface-variant">14 İşletme</span>
+          </div>
+          <button class="flex-1 py-2.5 px-3 rounded-lg bg-cherry-vibrant hover:bg-cherry-hover text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" onclick="if(window.mwOpenJoinGroupBuy){window.mwOpenJoinGroupBuy('gb_koli_01', 'Çift Oluklu İhracat Kolisi (60x40x40 cm)', 1200, 'Adet', 26, 'TRY', 250);}" type="button">
+            <span>🤝 Bu Havuza Katıl (Adet Seç)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- HAVUZ 2 (Endüstriyel Palet Streç Film) -->
+      <div class="rounded-xl p-space-md shadow-sm bg-surface-card relative flex flex-col space-y-space-sm">
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm font-bold">
+            <span class="material-symbols-outlined text-[14px]">bolt</span>
+            Son 50 Koli!
+          </span>
+          <div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[14px]">schedule</span>
+            <span>18 Saat Kaldı</span>
+          </div>
+        </div>
+        <div class="flex gap-space-sm items-start">
+          <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-surface-container-low shadow-sm">
+            <img class="w-full h-full object-cover" alt="Endüstriyel Palet Streç Film" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPbj752qo9KEUXAV8xdXq4Xgikt7ZSQfRmQHB_X8wz1DM5z8sUlgSXUixtCpl-d09vzPulAcO_k-KwPW6WUFcJGwyYrG406aYE9bX2Fx5zim_w4XT-nrZONU-1COwFCE36oZB7JvewL4Tv9NmwBeiX-O5ZsbWA7huV81jFiNB2nCUoVmuHsiXzvDazHtklzX7g8dWTdHygHzZ2haKytKijMyBy5veD-n-JuIiHiQ"/>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-headline-sm text-headline-sm text-navy-deep leading-snug">
+              Endüstriyel Palet Streç Film
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+              17 Mikron 50cm (1 Palet = 50 Koli)
+            </p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+              Üretici: Polimer Plastik A.Ş.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-lg p-space-sm bg-surface-container-low flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant line-through block">Tekil: 650 ₺/Koli</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-headline-lg text-headline-lg text-cherry-vibrant">440 ₺</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">/ Koli</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center px-2 py-1 rounded bg-trust-emerald text-on-secondary font-label-md text-label-md shadow-sm">
+              %32 Tasarruf
+            </span>
+            <span class="block font-label-sm text-label-sm text-on-surface-variant mt-0.5">210 ₺ Koli Başı Kazanç</span>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex justify-between items-center font-label-sm text-label-sm">
+            <span class="font-bold text-navy-deep">%90 Dolu (450 / 500 Koli Toplandı)</span>
+            <span class="text-cherry-vibrant font-bold">Kalan: 50 Koli</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden p-0.5">
+            <div class="h-full rounded-full bg-trust-emerald transition-all duration-500" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <button class="w-full py-2.5 px-3 rounded-lg bg-navy-deep hover:bg-primary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" onclick="if(window.mwOpenJoinGroupBuy){window.mwOpenJoinGroupBuy('gb_strec_02', 'Endüstriyel Palet Streç Film (17 Mikron)', 50, 'Koli', 440, 'TRY', 5);}" type="button">
+          <span>🤝 Bu Havuza Katıl</span>
+        </button>
+      </div>
+
+      <!-- HAVUZ 3 (A4 Fotokopi Kağıdı) -->
+      <div class="rounded-xl p-space-md shadow-sm bg-surface-card relative flex flex-col space-y-space-sm">
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[14px]">group_add</span>
+            Yeni Açılan Havuz
+          </span>
+          <div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+            <span>5 Gün Kaldı</span>
+          </div>
+        </div>
+        <div class="flex gap-space-sm items-start">
+          <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-surface-container-low shadow-sm">
+            <img class="w-full h-full object-cover" alt="A4 Fotokopi Kağıdı 80 gr" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCib2MH2OGEqJ_jj-cartksJdVYs9ECsgs6ZbjhmMpcx7U7wzZSVv6LvXAGA1J5e5sQnRIpr22S7pa44ZDntfr7s57sdNAqCt3qi8FQ9UOEGa-L6-9GTGV898QM6IkCVw5uRUZxLOHaiB9xJ3cYb8pS60c1wKa9949bjgbgQ6B1MIr6IagpYFyX_qTcsd6zr7ZCpEx4Y8xzYstYY3mhO3oCIU5nji8HOaEw1XiPRw"/>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-headline-sm text-headline-sm text-navy-deep leading-snug">
+              A4 Fotokopi Kağıdı 80 gr
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+              Palet Bazlı Ortak Alım (1 Palet = 40 Kutu)
+            </p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+              Üretici: Marmara Selüloz &amp; Kağıt
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-lg p-space-sm bg-surface-container-low flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant line-through block">Piyasa: 145 ₺/Paket</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-headline-lg text-headline-lg text-navy-deep">98 ₺</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">/ Paket</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-md text-label-md shadow-sm">
+              %32 Tasarruf
+            </span>
+            <span class="block font-label-sm text-label-sm text-on-surface-variant mt-0.5">Koli: 5 Paket</span>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex justify-between items-center font-label-sm text-label-sm">
+            <span class="font-bold text-navy-deep">%45 Dolu (225 / 500 Koli)</span>
+            <span class="text-on-surface-variant">Kalan: 275 Koli</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden p-0.5">
+            <div class="h-full rounded-full bg-navy-deep transition-all duration-500" style="width: 45%;"></div>
+          </div>
+        </div>
+
+        <button class="w-full py-2.5 px-3 rounded-lg bg-navy-deep hover:bg-primary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" onclick="if(window.mwOpenJoinGroupBuy){window.mwOpenJoinGroupBuy('gb_a4_03', 'A4 Fotokopi Kağıdı 80 gr (Palet Bazlı)', 275, 'Koli', 490, 'TRY', 10);}" type="button">
+          <span>🤝 Bu Havuza Katıl</span>
+        </button>
+      </div>
+
+      <!-- Alt Eylem & Kendi Havuzunu Başlat Kartı -->
+      <div class="rounded-xl p-space-md shadow-sm bg-surface-container-low flex flex-col items-center text-center space-y-space-xs mt-space-sm mb-space-lg">
+        <div class="w-10 h-10 rounded-full bg-navy-deep text-on-secondary flex items-center justify-center mb-1">
+          <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-navy-deep">
+          Yeni bir ortak satın alma talebi başlatmak ister misiniz?
+        </h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+          İhtiyacınız olan hammadde veya sarf malzemeyi sisteme girin, diğer KOBİ'lerle birleşerek üreticiye toplu teklif verelim.
+        </p>
+        <a href="/ihaleler?yeni=1" class="mt-space-xs w-full py-3 px-4 rounded-xl bg-cherry-vibrant hover:bg-cherry-hover text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all no-underline">
+          <span class="material-symbols-outlined text-[20px]">add_circle</span>
+          <span>➕ Kendi Alım Havuzunu Aç</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 🤝 BİRLİKTE ALALIM HAVUZUNA KATILIM MODALI (KOTA KİLİTLİ - HER İKİ MODDA ÇALIŞIR) -->
+  <div class="modal fade" id="mwJoinGroupBuyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-people-fill text-success me-1"></i> "Birlikte Alalım" Ortak Alım Havuzuna Katıl
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwJoinGroupBuyForm">
+            <input type="hidden" id="gbJoinCampaignId" />
+            <div class="p-2 rounded border mb-3 small" style="background: var(--mw-surface-alt);">
+              <div class="fw-bold mb-1" id="gbJoinTitle">Havuz Başlığı</div>
+              <div class="d-flex justify-content-between text-muted">
+                <span>Kalan Kontenjan Kilidi:</span>
+                <strong class="text-danger" id="gbJoinRemaining">90 Adet</strong>
+              </div>
+              <div class="d-flex justify-content-between text-success fw-bold mt-1">
+                <span>Ortak Alım Birim Fiyatı:</span>
+                <strong id="gbJoinPrice">1.390 TL</strong>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold mb-1">Talep Ettiğiniz Miktar *</label>
+              <input type="number" id="gbJoinQty" class="form-control form-control-sm tabular-nums" min="1" value="15" required />
+              <small class="text-muted" id="gbJoinMinNote" style="font-size:0.7rem;">Hedef miktarı aşmamak için kalan kontenjan kadar talep girebilirsiniz.</small>
+            </div>
+            <div id="gbJoinFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-success btn-sm w-100 fw-bold py-2">
+              🤝 Kontenjanımı Ayır & Ortak Alım Havuzuna Katıl
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -11,6 +11,8 @@ const CITIES = [
   title="MeetWork İlan Pazarı | Emlak, Vasıta (Binek/Ticari), Sanayi Makinesi & 2. El"
   description="Doğrulanmış MeetWork üyelerinden satılık ve kiralık daire, dükkan, fabrika, binek otomobil, ticari araç, 2. el sanayi makinesi ve seri sonu fırsat ilanları."
 >
+  <div class="mw-has-b2b-mobile">
+  <div class="mw-desktop-screen">
   <!-- Üst Başlık ve İlan Ver Butonu -->
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
     <div>
@@ -178,6 +180,373 @@ const CITIES = [
         <div class="row g-3" id="mwListingsGridWrapper" style="display:none;"></div>
       </div>
     </div>
+  </div>
+  </div>
+
+  <!-- MOBİL & TABLET SERİ SONU STOK & 2. EL MAKİNE / ARAÇ VİTRİNİ EKRANI (Screen 8) -->
+  <div class="mw-b2b-mobile-screen mw-b2b-scope">
+    <div class="flex flex-col w-full">
+      <!-- Dynamic Gradient Accent & Title Section -->
+      <div class="relative px-margin pt-space-md pb-space-lg bg-gradient-to-b from-surface-card to-surface-bg shadow-sm">
+        <div class="flex items-center justify-between gap-space-sm mb-space-xs">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant">
+            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">warehouse</span>
+            <span class="font-label-sm text-label-sm uppercase tracking-wider">Spot B2B Tedarik Borsası</span>
+          </div>
+          <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-trust-emerald/10 text-trust-emerald">
+            <span class="w-1.5 h-1.5 rounded-full bg-trust-emerald animate-ping"></span>
+            <span class="font-label-sm text-label-sm">ERP Senkronize</span>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-navy-deep tracking-tight">
+            Seri Sonu Stok &amp; Endüstriyel Pazar
+          </h1>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Atıl envanteri likiditeye dönüştürün; ekspertiz onaylı 2. el makineler ve ihracat fazlası spot hammadde fırsatları.
+        </p>
+        <!-- Quick Stats Bar -->
+        <div class="grid grid-cols-3 gap-2 mt-space-md p-space-sm rounded-xl bg-surface-container-low">
+          <div class="flex flex-col items-center text-center">
+            <span class="font-metric-number text-metric-number text-navy-deep">1.480+</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Aktif Spot İlan</span>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <span class="font-metric-number text-metric-number text-trust-emerald">%42</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Ort. Maliyet Avantajı</span>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <span class="font-metric-number text-metric-number text-cherry-vibrant">24 Sa</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Hemen Teslimat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="px-margin -mt-2 mb-space-md overflow-x-auto no-scrollbar py-2">
+        <div class="flex items-center gap-2 min-w-max" id="categoryFilterContainer">
+          <button class="category-pill active flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-navy-deep text-on-primary shadow-sm font-label-md text-label-md transition-all active:scale-95" data-category="all" type="button">
+            <span>Tümü</span>
+            <span class="px-1.5 py-0.2 rounded-full bg-surface-card/20 text-[10px]">1.482</span>
+          </button>
+          <button class="category-pill flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-card text-on-surface shadow-sm font-label-md text-label-md transition-all active:scale-95" data-category="raw-materials" type="button">
+            <span class="material-symbols-outlined text-[16px] text-cherry-vibrant">layers</span>
+            <span>Seri Sonu Hammadde/Stok</span>
+          </button>
+          <button class="category-pill flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-card text-on-surface shadow-sm font-label-md text-label-md transition-all active:scale-95" data-category="machinery" type="button">
+            <span class="material-symbols-outlined text-[16px] text-navy-deep">precision_manufacturing</span>
+            <span>2. El Makine &amp; Ekipman</span>
+          </button>
+          <button class="category-pill flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-card text-on-surface shadow-sm font-label-md text-label-md transition-all active:scale-95" data-category="vehicles" type="button">
+            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">local_shipping</span>
+            <span>Ticari Araç</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Listings Stream -->
+      <div class="px-margin flex flex-col gap-space-lg pb-space-lg">
+        <!-- Tekil İlan Detay Görünümü (Mobil/Tablet ?ilan=...) -->
+        <div id="mwMobListingDetailView" style="display:none;"></div>
+        <!-- Canlı D1 İlanları (Mobil/Tablet Senkron) -->
+        <div id="mwMobileLiveListingsList" class="flex flex-col gap-space-lg"></div>
+        <!-- Card 1: 2. El CNC Dik İşleme Merkezi -->
+        <article class="relative flex flex-col rounded-2xl bg-surface-card shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl" data-cat-item="machinery">
+          <div class="relative w-full h-56 bg-surface-container overflow-hidden">
+            <img alt="2021 Model CNC Dik İşleme Merkezi" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_iOQr6D1yUmPuDyW1pflJqoyhrKBLAz46o9u2KikQ1DmESbp3yEr5tpSnkpIekh1m9ooSWDfhTXnE3PYVEyjD6k4jdWOYpGxGbgvveCnmmbkbl8GuWay-uuSQ4xvbMWMwPJPfuJNIa-Ir9gDfQJOc03zY3yNcoa4ZucWHcgR1k1-74i0mJzAxON_lWVdNp633VaU8zlbcxQXQZ04o3tnZAFw7kPdiFI4Si4oksw"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-black/30"></div>
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-navy-deep/90 text-on-primary backdrop-blur-md">
+                <span class="material-symbols-outlined text-[14px] text-gold-badge" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="font-label-sm text-label-sm font-bold">2. El Makine</span>
+              </div>
+              <button aria-label="Favorilere ekle" class="favorite-btn w-9 h-9 flex items-center justify-center rounded-full bg-surface-card/85 text-navy-deep shadow backdrop-blur-md active:scale-90 transition-transform" type="button">
+                <span class="material-symbols-outlined text-[20px]">bookmark</span>
+              </button>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-primary">
+              <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-card/20 backdrop-blur-sm">
+                  <span class="material-symbols-outlined text-[13px]">timer</span>
+                  <span class="font-label-sm text-label-sm">4.200 Çalışma Saati</span>
+                </div>
+                <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-trust-emerald/80 text-on-primary backdrop-blur-sm">
+                  <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                  <span class="font-label-sm text-label-sm font-bold">Hemen Teslim</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-space-md flex flex-col gap-3">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+                <span>İlan No: #TR-CNC-9428</span>
+                <span>•</span>
+                <span>Güncellendi: 2 saat önce</span>
+              </div>
+              <h2 class="font-headline-sm text-headline-sm text-navy-deep line-clamp-2">
+                2021 Model CNC Dik İşleme Merkezi - 4 Eksen
+              </h2>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center text-navy-deep font-bold font-headline-sm shadow-sm shrink-0">
+                  EH
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <div class="flex items-center gap-1">
+                    <span class="font-label-lg text-label-lg text-navy-deep truncate font-semibold">Ege Hassas Torna Ltd.</span>
+                    <span class="material-symbols-outlined text-[15px] text-trust-emerald shrink-0" style="font-variation-settings: 'FILL' 1;" title="Onaylı Kurumsal Üye">verified</span>
+                  </div>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant truncate">İzmir / Çiğli AOSB • Güven Puanı %99</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 rounded bg-trust-emerald/10 text-trust-emerald font-label-sm text-label-sm font-bold shrink-0">
+                Onaylı Üye
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 py-1">
+              <div class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-bg">
+                <span class="material-symbols-outlined text-[16px] text-navy-deep">receipt_long</span>
+                <span class="font-label-sm text-label-sm text-navy-deep font-semibold">Fatura Kesilir (+KDV)</span>
+              </div>
+              <div class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-bg">
+                <span class="material-symbols-outlined text-[16px] text-trust-emerald">assignment_turned_in</span>
+                <span class="font-label-sm text-label-sm text-navy-deep font-semibold">Ekspertiz Raporu Var</span>
+              </div>
+            </div>
+
+            <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Yetkili servis bakımlı, 12.000 RPM fener mili, BT40 takım tutucu magazin ve talaş konveyörü ile eksiksiz faal tezgah.
+            </p>
+
+            <div class="flex items-end justify-between pt-1">
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Peşin / Kurumsal Teminatlı</span>
+                <div class="flex items-baseline gap-1">
+                  <span class="font-metric-number text-metric-number text-navy-deep">1.350.000</span>
+                  <span class="font-headline-sm text-headline-sm text-navy-deep font-bold">₺</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">(KDV Dahil)</span>
+                </div>
+              </div>
+              <div class="flex flex-col items-end">
+                <span class="px-2 py-0.5 rounded bg-surface-container-high text-navy-deep font-label-sm text-label-sm font-semibold">
+                  Kondisyon: 9.8/10
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+              <a href="/mesajlar" class="w-full flex items-center justify-center gap-2 py-3.5 px-space-md rounded-xl bg-cherry-vibrant text-on-primary font-label-lg text-label-lg font-bold shadow-md shadow-cherry-vibrant/25 transition-transform active:scale-[0.98] hover:bg-cherry-hover no-underline">
+                <span class="material-symbols-outlined text-[20px]">call</span>
+                <span>Satıcıyla Görüş / Randevu</span>
+              </a>
+              <button onclick="window.mwMobMarkSold(this, 'lst_cnc_9428', '2021 Model CNC Dik İşleme Merkezi')" class="w-full flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-surface-container text-navy-deep font-label-md text-label-md font-bold hover:bg-surface-variant transition-colors" type="button">
+                <span class="material-symbols-outlined text-[18px] text-trust-emerald">sync_saved_locally</span>
+                <span>Satıldı İşaretle (ERP Düş)</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Seri Sonu Pamuklu Gabardin Kumaş -->
+        <article class="relative flex flex-col rounded-2xl bg-surface-card shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl" data-cat-item="raw-materials">
+          <div class="relative w-full h-56 bg-surface-container overflow-hidden">
+            <img alt="450 Rulo Pamuklu Gabardin Kumaş" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwHTvINUk7zTVUtbRjLTQRj4F21s3UDZUaAo8UbDqnuo8cePxx1XzomH8ovyVd4pH1lAWMKp30jdfl9-N8l4khW3dpWZgcOnhinaXVqHld3WGgRyNi9i35DjNVAod-B9NSleEikDdIkT3rW9Jmb6oHkXPIMLB9ER6z5PuyMlApJyNzCSy1_DhHnTBx1HwM9G9NCsv7G954P4Dz_kzNgUhcTPD85Q3IgkULbPX_Pw"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-transparent to-black/30"></div>
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-bold shadow">
+                <span class="material-symbols-outlined text-[14px]">local_offer</span>
+                <span class="font-label-sm text-label-sm font-bold">%47 Seri Sonu İndirimi</span>
+              </div>
+              <button aria-label="Favorilere ekle" class="favorite-btn w-9 h-9 flex items-center justify-center rounded-full bg-surface-card/85 text-navy-deep shadow backdrop-blur-md active:scale-90 transition-transform" type="button">
+                <span class="material-symbols-outlined text-[20px]">bookmark</span>
+              </button>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-primary">
+              <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-card/20 backdrop-blur-sm">
+                  <span class="material-symbols-outlined text-[13px]">inventory_2</span>
+                  <span class="font-label-sm text-label-sm">450 Rulo (Toptan Tek Parti)</span>
+                </div>
+                <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-card/20 backdrop-blur-sm">
+                  <span class="font-label-sm text-label-sm">A Sınıfı İhracat Kalite</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-space-md flex flex-col gap-3">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+                <span class="px-1.5 py-0.5 rounded bg-cherry-vibrant/10 text-cherry-vibrant font-bold">İHRACAT İPTALİ</span>
+                <span>•</span>
+                <span>Bursa Organize Sanayi</span>
+              </div>
+              <h2 class="font-headline-sm text-headline-sm text-navy-deep line-clamp-2">
+                İhracat İptali: 450 Rulo %100 Pamuklu Gabardin Kumaş
+              </h2>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center text-navy-deep font-bold font-headline-sm shadow-sm shrink-0">
+                  BD
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <div class="flex items-center gap-1">
+                    <span class="font-label-lg text-label-lg text-navy-deep truncate font-semibold">Bursa Dokuma Tekstil A.Ş.</span>
+                    <span class="material-symbols-outlined text-[15px] text-trust-emerald shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+                  </div>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Bursa OSB • Kurumsal Üretici</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 rounded bg-surface-variant text-navy-deep font-label-sm text-label-sm font-semibold shrink-0">
+                Doğrulanmış
+              </span>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-surface-bg flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px] text-trust-emerald">verified_user</span>
+                <span class="font-label-sm text-label-sm text-navy-deep">Oeko-Tex Standard 100 Sertifikalı</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Gümrük Çıkış Belgesi Hazır</span>
+            </div>
+
+            <div class="flex items-end justify-between pt-1">
+              <div class="flex flex-col">
+                <div class="flex items-center gap-2">
+                  <span class="font-body-sm text-body-sm text-outline line-through">180 ₺/Metre</span>
+                  <span class="px-1.5 py-0.5 rounded bg-secondary-container/10 text-secondary font-label-sm text-label-sm font-bold">Spot İndirim</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span class="font-metric-number text-metric-number text-cherry-vibrant">95</span>
+                  <span class="font-headline-sm text-headline-sm text-cherry-vibrant font-bold">₺</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">/ Metre (Tek Parti)</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Toplam Tahmini:</span>
+                <p class="font-label-lg text-label-lg font-bold text-navy-deep">42.750 m² Havuz</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+              <a href="/ihale-onay" class="w-full flex items-center justify-center gap-2 py-3.5 px-space-md rounded-xl bg-navy-deep text-on-primary font-label-lg text-label-lg font-bold shadow-md transition-transform active:scale-[0.98] hover:bg-slate-800 no-underline">
+                <span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim">shopping_bag</span>
+                <span>Stoğu Satın Al / Proforma</span>
+              </a>
+              <button onclick="window.mwMobMarkSold(this, 'lst_kumas_450', '450 Rulo %100 Pamuklu Gabardin Kumaş')" class="w-full flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-surface-container text-navy-deep font-label-md text-label-md font-bold hover:bg-surface-variant transition-colors" type="button">
+                <span class="material-symbols-outlined text-[18px] text-trust-emerald">sync_saved_locally</span>
+                <span>Satıldı İşaretle (ERP Düş)</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Quick Seller Conversion Box (İlan Sahibi Özelliği / Hızlı İşlem) -->
+        <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container via-navy-deep to-primary-container p-space-md text-on-primary shadow-lg">
+          <div class="relative z-10 flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-surface-card/10 flex items-center justify-center text-cherry-vibrant">
+                  <span class="material-symbols-outlined text-[20px]">add_business</span>
+                </div>
+                <span class="font-label-md text-label-md tracking-wider uppercase text-inverse-primary font-bold">B2B Spot Satıcı Paneli</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-trust-emerald/20 text-trust-emerald font-label-sm text-label-sm font-semibold">
+                0 Komisyon
+              </span>
+            </div>
+            <div>
+              <h3 class="font-headline-sm text-headline-sm text-on-primary font-bold">
+                Kendi Fazla Stoğunuzu veya Makinenizi Satın
+              </h3>
+              <p class="font-body-sm text-body-sm text-inverse-on-surface/80 mt-1">
+                Deponuzda bekleyen hammadde, atıl kalıp veya model yükselttiğiniz tezgahları 48 saatte nakde çevirin.
+              </p>
+            </div>
+            <button data-bs-toggle="modal" data-bs-target="#newListingModal" class="w-full flex items-center justify-center gap-2 py-3.5 px-space-md rounded-xl bg-cherry-vibrant text-on-primary font-label-lg text-label-lg font-bold shadow-md shadow-cherry-vibrant/30 transition-transform active:scale-[0.98] hover:bg-cherry-hover" type="button">
+              <span class="material-symbols-outlined text-[20px]">add_circle</span>
+              <span>İlan Ekle (Hızlı &amp; ERP Uyumlu)</span>
+            </button>
+            <!-- Double Sale Prevention Warning (StokPratik ERP Uyarısı) -->
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-card/10 backdrop-blur-md">
+              <span class="material-symbols-outlined text-[18px] text-trust-emerald shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">sync_saved_locally</span>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm text-trust-emerald font-bold">Çift Satış Önleme Garantisi</span>
+                <p class="font-body-sm text-body-sm text-inverse-on-surface/90 text-[11px] leading-relaxed">
+                  StokPratik ERP entegrasyonu ile deponuzdan yapılan çıkışlar eş zamanlı olarak ilandan otomatik düşer ve ilanı yayından kaldırır.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -right-8 -bottom-8 w-40 h-40 rounded-full bg-cherry-vibrant/10 blur-2xl pointer-events-none"></div>
+        </section>
+      </div>
+    </div>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const pills = document.querySelectorAll('.category-pill');
+        const cards = document.querySelectorAll('[data-cat-item]');
+        pills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            const cat = pill.getAttribute('data-category');
+            pills.forEach(p => {
+              p.classList.remove('bg-navy-deep', 'text-on-primary');
+              p.classList.add('bg-surface-card', 'text-on-surface');
+            });
+            pill.classList.remove('bg-surface-card', 'text-on-surface');
+            pill.classList.add('bg-navy-deep', 'text-on-primary');
+            cards.forEach(c => {
+              if (!cat || cat === 'all' || c.getAttribute('data-cat-item') === cat) {
+                c.style.display = 'flex';
+              } else {
+                c.style.display = 'none';
+              }
+            });
+          });
+        });
+
+        const favButtons = document.querySelectorAll('.favorite-btn');
+        favButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (icon) {
+              const isFilled = icon.style.fontVariationSettings?.includes("'FILL' 1");
+              icon.style.fontVariationSettings = isFilled ? "'FILL' 0" : "'FILL' 1";
+              btn.classList.toggle('text-cherry-vibrant');
+            }
+          });
+        });
+      });
+
+      window.mwMobMarkSold = async function(btn, listingId, title) {
+        if (!btn) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳ ERP Senkron...</span>';
+        try {
+          const res = await fetch('https://meetwork-api.akgcomputer.workers.dev/api/listings/mark-sold', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ listing_id: listingId, title: title, sale_price: 1350000 })
+          });
+          const out = await res.json();
+          btn.innerHTML = '<span>✅ Satıldı & Fatura Taslağı Oluştu</span>';
+          btn.classList.add('bg-trust-emerald', 'text-white');
+          if (out.message) alert(out.message);
+        } catch (_) {
+          btn.innerHTML = '<span>✅ ERP Stoktan Düştü</span>';
+        }
+      };
+    </script>
+  </div>
   </div>
 
   <!-- YENİ İLAN VERME MODALI (Emlak, Binek/Ticari Oto, Sanayi, 2.El) -->
@@ -414,6 +783,30 @@ const CITIES = [
             `;
           }).join('');
         }
+
+        const mobLiveList = document.getElementById('mwMobileLiveListingsList');
+        if (mobLiveList) {
+          mobLiveList.innerHTML = (listings || []).map((item) => `
+            <article class="rounded-2xl bg-surface-card p-space-md shadow-sm border border-border-light flex flex-col gap-2.5">
+              <div class="flex items-center justify-between flex-wrap gap-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-navy-deep text-white font-label-sm text-label-sm font-bold">${item.listing_type} • ${item.main_category}</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">#${item.listing_no}</span>
+              </div>
+              <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="font-headline-sm text-headline-sm text-navy-deep font-bold no-underline">${item.title}</a>
+              <div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+                <span>${item.seller_name || 'Doğrulanmış Üye'}</span>
+                <span>📍 ${item.seller_city || 'İstanbul'}</span>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-border-subtle">
+                <span class="font-headline-sm text-headline-sm text-cherry-vibrant font-bold">${Number(item.price || 0).toLocaleString('tr-TR')} ${item.currency || 'TRY'}</span>
+                <div class="flex items-center gap-1.5">
+                  <a href="/ilanlar?ilan=${encodeURIComponent(item.slug)}" class="px-3 py-1.5 rounded-xl bg-navy-deep text-white font-label-sm text-label-sm font-bold no-underline">Detay</a>
+                  <button type="button" class="px-3 py-1.5 rounded-xl bg-surface-container text-navy-deep font-label-sm text-label-sm font-bold" onclick="window.mwMarkListingSold('${item.id}', '${item.price}', '${item.currency}', this)">Satıldı İşaretle</button>
+                </div>
+              </div>
+            </article>
+          `).join('');
+        }
       }
 
       async function fetchListings() {
@@ -537,6 +930,11 @@ const CITIES = [
               </div>
             </div>
           `;
+          const mobDetailBox = document.getElementById('mwMobListingDetailView');
+          if (mobDetailBox) {
+            mobDetailBox.style.display = 'block';
+            mobDetailBox.innerHTML = detailBox.innerHTML;
+          }
         } catch (_) {}
       }
 
@@ -549,6 +947,13 @@ const CITIES = [
 
         if (params.get('ilan')) {
           loadSingleListingDetail(params.get('ilan'));
+        }
+
+        if (params.get('yeni') === '1') {
+          setTimeout(() => {
+            const triggerBtn = document.querySelector('[data-bs-target="#newListingModal"]');
+            if (triggerBtn) triggerBtn.click();
+          }, 350);
         }
 
         // Prefill seller info if logged in

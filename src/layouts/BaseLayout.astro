@@ -3,7 +3,6 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import '../styles/global.scss';
 
-// BU SATIR Analytics kodunu localde göstermemek için!
 const isProduction = import.meta.env.PROD;
 
 export interface Props {
@@ -12,15 +11,20 @@ export interface Props {
 }
 
 const { title, description = 'MeetWork ile iş dünyasında yeni bağlantılar kurun, sektörler arası iş birliklerini keşfedin.' } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isAkis = currentPath === '/';
+const isEslesme = currentPath.startsWith('/akilli-eslesme');
+const isQr = currentPath.startsWith('/qr-kartvizit');
+const isTicaret = currentPath.startsWith('/ihaleler') || currentPath.startsWith('/ihale-onay') || currentPath.startsWith('/talepler') || currentPath.startsWith('/ilanlar') || currentPath.startsWith('/isletmeler');
+const isHibe = currentPath.startsWith('/hibe-kredi-eslesme');
 ---
 
 <!DOCTYPE html>
-<html lang="tr" data-theme="light" data-bs-theme="light">
+<html lang="tr" data-theme="light" data-bs-theme="light" data-mw-view="desktop">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta id="mwViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content={description}>
-  <!-- ... diğer meta tag'ler -->
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -30,7 +34,306 @@ const { title, description = 'MeetWork ile iş dünyasında yeni bağlantılar k
   })(window,document,'script','dataLayer','GTM-NTZGM3S4');</script>
   <!-- End Google Tag Manager -->
 
-  <!-- DÜZELTİLMİŞ FAVICON YOLLARI -->
+  <!-- MeetWork B2B Intelligence & Commerce Engine Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Tailwind CSS with Preflight Disabled (Zero collision with existing Bootstrap desktop layout) -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  <script is:inline id="tailwind-config">
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "border-light": "#e2e8f0",
+            "secondary-container": "#e21e49",
+            "on-secondary-container": "#fffbff",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#d3e4fe",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#920028",
+            "surface-container-high": "#dce9ff",
+            "primary-fixed": "#dae2fd",
+            "cherry-hover": "#be123c",
+            "primary-container": "#131b2e",
+            "border-subtle": "#f1f5f9",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-container-highest": "#d3e4fe",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#3f465c",
+            "on-surface-variant": "#45464d",
+            "outline": "#76777d",
+            "trust-emerald": "#10b981",
+            "on-secondary": "#ffffff",
+            "gold-badge": "#f59e0b",
+            "on-surface": "#0b1c30",
+            "navy-deep": "#0f172a",
+            "cherry-vibrant": "#e11d48",
+            "on-tertiary-container": "#009668",
+            "primary": "#000000",
+            "on-tertiary-fixed": "#002113",
+            "outline-variant": "#c6c6cd",
+            "surface-card": "#ffffff",
+            "surface-bg": "#f8fafc",
+            "inverse-surface": "#213145",
+            "surface": "#f8f9ff",
+            "secondary": "#ba0035",
+            "on-error": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "tertiary-container": "#002113",
+            "surface-container": "#e5eeff",
+            "secondary-fixed": "#ffdada",
+            "on-secondary-fixed": "#40000c",
+            "inverse-primary": "#bec6e0",
+            "surface-tint": "#565e74",
+            "surface-dim": "#cbdbf5",
+            "on-background": "#0b1c30",
+            "on-primary": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "tertiary": "#000000",
+            "on-primary-fixed": "#131b2e",
+            "secondary-fixed-dim": "#ffb3b6",
+            "background": "#f8f9ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-primary-container": "#7c839b",
+            "on-tertiary-fixed-variant": "#005236",
+            "primary-fixed-dim": "#bec6e0"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "margin": "1rem",
+            "margin-desktop": "2rem",
+            "gutter": "1rem",
+            "margin-tablet": "1.5rem"
+          },
+          fontFamily: {
+            "body-sm": ["Inter", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "label-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "metric-number": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          fontSize: {
+            "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }],
+            "headline-xl": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+            "display-lg": ["48px", { lineHeight: "56px", fontWeight: "800" }],
+            "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+            "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+            "label-sm": ["10px", { lineHeight: "14px", fontWeight: "700" }],
+            "display-lg-mobile": ["32px", { lineHeight: "40px", fontWeight: "800" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+            "metric-number": ["28px", { lineHeight: "32px", fontWeight: "800" }],
+            "label-md": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "headline-xl-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Girişte Cihaz Algılama & Görünüm Modu (Telefon / Tablet / Geniş Ekran) -->
+  <script is:inline>
+    (function () {
+      try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var forcedMode = urlParams.get('gorunum');
+        var manualMode = sessionStorage.getItem('mw_view_mode_manual');
+        var detectedMode = 'desktop';
+        if (forcedMode === 'mobile' || forcedMode === 'tablet' || forcedMode === 'desktop') {
+          detectedMode = forcedMode;
+          sessionStorage.setItem('mw_view_mode_manual', forcedMode);
+          localStorage.setItem('mw_view_mode', forcedMode);
+        } else if (manualMode === 'mobile' || manualMode === 'tablet' || manualMode === 'desktop') {
+          detectedMode = manualMode;
+        } else {
+          var w = window.innerWidth || document.documentElement.clientWidth || 1200;
+          if (w < 768) {
+            detectedMode = 'mobile';
+          } else if (w <= 1024) {
+            detectedMode = 'tablet';
+          } else {
+            detectedMode = 'desktop';
+          }
+        }
+        document.documentElement.setAttribute('data-mw-view', detectedMode);
+      } catch (e) {}
+    })();
+  </script>
+
+  <style is:global>
+    /* Scoped Preflight Reset for MeetWork B2B Mobile/Tablet Engine */
+    :where(.mw-b2b-scope),
+    :where(.mw-b2b-scope) *,
+    :where(.mw-b2b-scope) ::before,
+    :where(.mw-b2b-scope) ::after {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e2e8f0;
+    }
+    :where(.mw-b2b-scope) a {
+      color: inherit;
+      text-decoration: none;
+    }
+    :where(.mw-b2b-scope) h1,
+    :where(.mw-b2b-scope) h2,
+    :where(.mw-b2b-scope) h3,
+    :where(.mw-b2b-scope) h4,
+    :where(.mw-b2b-scope) p {
+      margin: 0;
+    }
+    :where(.mw-b2b-scope) button,
+    :where(.mw-b2b-scope) input,
+    :where(.mw-b2b-scope) select,
+    :where(.mw-b2b-scope) textarea {
+      font-family: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0;
+    }
+    :where(.mw-b2b-scope) button {
+      background-color: transparent;
+      background-image: none;
+      cursor: pointer;
+    }
+    :where(.mw-b2b-scope) img,
+    :where(.mw-b2b-scope) svg {
+      display: block;
+      vertical-align: middle;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* Görünüm Modu (Telefon / Tablet / Geniş Ekran) Kuralları */
+    html[data-mw-view="desktop"] .mw-b2b-app-header,
+    html[data-mw-view="desktop"] .mw-b2b-bottom-nav,
+    html[data-mw-view="desktop"] .mw-b2b-mobile-screen {
+      display: none !important;
+    }
+    html[data-mw-view="desktop"] .mw-desktop-screen {
+      display: block !important;
+    }
+    /* Telefondan giren kullanıcı Geniş Ekran moduna geçtiğinde üstte mod değiştirici bar görünür kalsın */
+    @media (max-width: 991.98px) {
+      html[data-mw-view="desktop"] .mw-desktop-Floating-mode-bar {
+        display: flex !important;
+      }
+    }
+
+    html[data-mw-view="mobile"] .mw-super-header,
+    html[data-mw-view="tablet"] .mw-super-header,
+    html[data-mw-view="mobile"] footer,
+    html[data-mw-view="tablet"] footer,
+    html[data-mw-view="mobile"] .mw-mobile-bottom-bar,
+    html[data-mw-view="tablet"] .mw-mobile-bottom-bar {
+      display: none !important;
+    }
+
+    html[data-mw-view="mobile"] .mw-b2b-app-header,
+    html[data-mw-view="tablet"] .mw-b2b-app-header {
+      display: block !important;
+    }
+    html[data-mw-view="mobile"] .mw-b2b-bottom-nav,
+    html[data-mw-view="tablet"] .mw-b2b-bottom-nav {
+      display: block !important;
+    }
+
+    /* Özel mobil tasarımı olan ekranlarda Telefon/Tablet modunda yeni ekran gösterilir, masaüstü ekran gizlenir */
+    html[data-mw-view="mobile"] .mw-has-b2b-mobile .mw-desktop-screen,
+    html[data-mw-view="tablet"] .mw-has-b2b-mobile .mw-desktop-screen {
+      display: none !important;
+    }
+    html[data-mw-view="mobile"] .mw-has-b2b-mobile .mw-b2b-mobile-screen,
+    html[data-mw-view="tablet"] .mw-has-b2b-mobile .mw-b2b-mobile-screen {
+      display: block !important;
+    }
+
+    /* Telefon ve Tablet Modunda Gövde ve Çerçeve Ölçekleme */
+    html[data-mw-view="mobile"] body,
+    html[data-mw-view="tablet"] body {
+      background-color: #e2e8f0;
+      padding-top: 64px !important;
+      padding-bottom: 88px !important;
+    }
+    @media (max-width: 767.98px) {
+      html[data-mw-view="mobile"] body {
+        background-color: #f8fafc;
+      }
+    }
+
+    html[data-mw-view="mobile"] #mwMainContainer {
+      max-width: 480px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      background-color: #f8fafc;
+      min-height: calc(100vh - 64px);
+      box-shadow: 0 0 36px rgba(15, 23, 42, 0.08);
+    }
+
+    html[data-mw-view="tablet"] #mwMainContainer {
+      max-width: 840px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      background-color: #f8fafc;
+      min-height: calc(100vh - 64px);
+      box-shadow: 0 0 36px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Diğer genel sayfalarda Telefon/Tablet modunda içerik boşluğu */
+    html[data-mw-view="mobile"] #mwMainContainer > :not(.mw-has-b2b-mobile),
+    html[data-mw-view="tablet"] #mwMainContainer > :not(.mw-has-b2b-mobile) {
+      padding: 1rem;
+    }
+  </style>
+
+  <!-- FAVICON YOLLARI -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="shortcut icon" href="/images/favicon.png">
@@ -38,10 +341,8 @@ const { title, description = 'MeetWork ile iş dünyasında yeni bağlantılar k
 
   <title>{title}</title>
 
-  {/* SADECE PRODUCTION'DA ANALYTICS */}
   {isProduction && (
     <>
-      <!-- Google Analytics -->
       <script is:inline>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -57,49 +358,454 @@ const { title, description = 'MeetWork ile iş dünyasında yeni bağlantılar k
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTZGM3S4"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-   
+
+  <!-- MASAÜSTÜ (GENİŞ EKRAN) ÜST NAVBAR -->
   <Navbar />
-  <main class="container py-4">
+
+  <!-- TELEFON / TABLET MODU SABİT ÜST APP HEADER (meetwork_b2b_ekosistemi Tasarımı) -->
+  <header class="mw-b2b-app-header mw-b2b-scope fixed top-0 left-0 right-0 w-full z-50 pt-safe bg-surface-card/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.06)] border-b border-border-light" style="display:none;">
+    <div class="h-16 px-3 sm:px-4 max-w-4xl mx-auto flex items-center justify-between gap-1.5">
+      <!-- Sol: MeetWork Logo & B2B AĞI Rozeti -->
+      <a href="/" class="flex items-center gap-1.5 shrink-0">
+        <span class="font-extrabold text-lg sm:text-xl tracking-tight font-sans select-none">
+          <span class="text-[#e11d48]">Meet</span><span class="text-slate-900">Work</span>
+        </span>
+        <span class="hidden xs:inline-block text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-50 text-[#e11d48] border border-rose-200">
+          B2B AĞI
+        </span>
+      </a>
+
+      <!-- Orta: 3'lü Görünüm Değiştirici Kapsül (Sadece İkon) -->
+      <div class="flex items-center bg-border-subtle p-1 rounded-full shadow-inner border border-border-light gap-0.5">
+        <button
+          type="button"
+          data-set-mw-view="mobile"
+          class="mw-view-switch-btn w-9 h-8 flex items-center justify-center rounded-full bg-navy-deep text-on-secondary shadow-sm transition-all"
+          title="Telefon Görünümü"
+          aria-label="Telefon Görünümü"
+        >
+          <span class="material-symbols-outlined text-[18px]">smartphone</span>
+        </button>
+        <button
+          type="button"
+          data-set-mw-view="tablet"
+          class="mw-view-switch-btn w-9 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-navy-deep transition-all"
+          title="Tablet Görünümü"
+          aria-label="Tablet Görünümü"
+        >
+          <span class="material-symbols-outlined text-[18px]">tablet_mac</span>
+        </button>
+        <button
+          type="button"
+          data-set-mw-view="desktop"
+          class="mw-view-switch-btn w-9 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-navy-deep transition-all"
+          title="Geniş Ekran Görünümü"
+          aria-label="Geniş Ekran Görünümü"
+        >
+          <span class="material-symbols-outlined text-[18px]">desktop_windows</span>
+        </button>
+      </div>
+
+      <!-- Sağ: Ekosistem Hızlı Geçiş (⚡), Bildirimler (🔔) ve Profil -->
+      <div class="flex items-center gap-1 shrink-0">
+        <button
+          type="button"
+          id="mwMobileBoltBtn"
+          class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors"
+          title="Tek Tıkla Ekosistem Geçişi: StokPratik & DepodanDirekt"
+        >
+          <span class="material-symbols-outlined text-[20px] text-cherry-vibrant">bolt</span>
+        </button>
+        <button
+          type="button"
+          id="mwMobileNotifBtn"
+          class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors"
+          title="Bildirimler & CariNet e-Mutabakat"
+        >
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class=" absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-cherry-vibrant ring-2 ring-surface-card animate-pulse"></span>
+        </button>
+        <a href="/profilim" id="mwMobileProfileLink" class="w-10 h-10 flex items-center justify-center pl-0.5" title="Profilim & İşletme Yönetimi">
+          <div class="w-8 h-8 rounded-full bg-navy-deep text-white font-bold text-xs flex items-center justify-center ring-2 ring-border-light hover:ring-cherry-vibrant transition-all" id="mwMobileProfileAvatar">
+            MW
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ticaret Modülü Alt Sekme Çubuğu (Ticaret ekranlarındayken hızlı geçiş sağlar) -->
+    {isTicaret && (
+      <div class="bg-surface-bg/95 border-t border-border-light px-3 py-1.5 overflow-x-auto no-scrollbar">
+        <div class="max-w-4xl mx-auto flex items-center gap-1.5 min-w-max">
+          <a
+            href="/ihaleler"
+            class={`px-3 py-1 rounded-full font-label-sm text-[11px] flex items-center gap-1 transition-all ${currentPath.startsWith('/ihaleler') ? 'bg-navy-deep text-white shadow-sm' : 'bg-surface-card text-navy-deep border border-border-light'}`}
+          >
+            <span class="material-symbols-outlined text-[14px]">gavel</span>
+            5. Canlı İhaleler
+          </a>
+          <a
+            href="/ihale-onay"
+            class={`px-3 py-1 rounded-full font-label-sm text-[11px] flex items-center gap-1 transition-all ${currentPath.startsWith('/ihale-onay') ? 'bg-trust-emerald text-white shadow-sm' : 'bg-surface-card text-navy-deep border border-border-light'}`}
+          >
+            <span class="material-symbols-outlined text-[14px]">verified_user</span>
+            6. İhale Onay & Güvenli Havuz
+          </a>
+          <a
+            href="/talepler"
+            class={`px-3 py-1 rounded-full font-label-sm text-[11px] flex items-center gap-1 transition-all ${currentPath.startsWith('/talepler') ? 'bg-cherry-vibrant text-white shadow-sm' : 'bg-surface-card text-navy-deep border border-border-light'}`}
+          >
+            <span class="material-symbols-outlined text-[14px]">groups</span>
+            7. Birlikte Alalım
+          </a>
+          <a
+            href="/ilanlar"
+            class={`px-3 py-1 rounded-full font-label-sm text-[11px] flex items-center gap-1 transition-all ${currentPath.startsWith('/ilanlar') ? 'bg-navy-deep text-white shadow-sm' : 'bg-surface-card text-navy-deep border border-border-light'}`}
+          >
+            <span class="material-symbols-outlined text-[14px]">warehouse</span>
+            8. Seri Sonu & 2.El Makine
+          </a>
+          <a
+            href="/isletmeler"
+            class={`px-3 py-1 rounded-full font-label-sm text-[11px] flex items-center gap-1 transition-all ${currentPath.startsWith('/isletmeler') ? 'bg-navy-deep text-white shadow-sm' : 'bg-surface-card text-navy-deep border border-border-light'}`}
+          >
+            <span class="material-symbols-outlined text-[14px]">storefront</span>
+            4. İşletmeler & Toptan Katalog
+          </a>
+        </div>
+      </div>
+    )}
+  </header>
+
+  <!-- MOBİL EKOSİSTEM HIZLI GEÇİŞ & TÜM EKRANLAR ÇEKMECESİ (⚡ Bolt Butonu) -->
+  <div id="mwMobileBoltDrawer" class="mw-b2b-scope hidden fixed inset-0 z-[60] bg-navy-deep/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-surface-card w-full max-w-md rounded-t-2xl sm:rounded-2xl p-4 shadow-2xl flex flex-col gap-3 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-border-light pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-cherry-vibrant/10 text-cherry-vibrant flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">bolt</span>
+          </span>
+          <div>
+            <h3 class="font-headline-sm text-navy-deep font-bold">Üçlü Ekosistem & Hızlı Erişim</h3>
+            <p class="font-body-sm text-on-surface-variant text-[11px]">Tek tıkla şifresiz geçiş ve B2B ekranları</p>
+          </div>
+        </div>
+        <button type="button" id="mwCloseBoltDrawer" class="w-8 h-8 rounded-lg bg-border-subtle text-navy-deep flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Tek Tıkla Şifresiz Geçiş Kartları -->
+      <div class="grid grid-cols-1 gap-2">
+        <a href="https://stokpratik.com" data-sso-target="stokpratik" class="mw-sso-jump-link flex items-center justify-between p-3 rounded-xl bg-navy-deep text-white shadow-sm hover:opacity-95">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[22px]">inventory_2</span>
+            <div class="flex flex-col">
+              <span class="font-label-lg font-bold">StokPratik Bulut ERP & CariNet</span>
+              <span class="font-body-sm text-[11px] text-slate-300">Stok, Üretim, PDKS ve Cari Mutabakat</span>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full bg-cherry-vibrant text-white font-label-sm text-[10px]">⚡ Şifresiz Geç</span>
+        </a>
+        <a href="https://depodandirekt.com" data-sso-target="depodandirekt" class="mw-sso-jump-link flex items-center justify-between p-3 rounded-xl bg-trust-emerald text-white shadow-sm hover:opacity-95">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-white text-[22px]">local_shipping</span>
+            <div class="flex flex-col">
+              <span class="font-label-lg font-bold">DepodanDirekt Toptan & İhracat</span>
+              <span class="font-body-sm text-[11px] text-emerald-50">Güvenli Ödeme Havuzu & Palet Pazaryeri</span>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full bg-navy-deep text-white font-label-sm text-[10px]">⚡ Şifresiz Geç</span>
+        </a>
+      </div>
+
+      <!-- 8 Ana Mobil B2B Ekran Kısayolu -->
+      <div class="pt-1">
+        <span class="font-label-sm text-on-surface-variant uppercase tracking-wider block mb-2">MeetWork B2B Ekosistemi Ekranları</span>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[18px]">home</span>
+            1. Canlı İş Akışı
+          </a>
+          <a href="/qr-kartvizit" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[18px]">qr_code_2</span>
+            2. QR Kartvizit
+          </a>
+          <a href="/akilli-eslesme" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-trust-emerald text-[18px]">handshake</span>
+            3. 2+1 Eşleşme
+          </a>
+          <a href="/isletmeler" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-navy-deep text-[18px]">storefront</span>
+            4. Toptan Katalog
+          </a>
+          <a href="/ihaleler" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[18px]">gavel</span>
+            5. Canlı İhaleler
+          </a>
+          <a href="/ihale-onay" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-trust-emerald text-[18px]">verified_user</span>
+            6. Güvenli Ödeme
+          </a>
+          <a href="/talepler" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-gold-badge text-[18px]">groups</span>
+            7. Birlikte Alalım
+          </a>
+          <a href="/ilanlar" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-navy-deep text-[18px]">precision_manufacturing</span>
+            8. Seri Sonu & 2.El
+          </a>
+          <a href="/hibe-kredi-eslesme" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-trust-emerald text-[18px]">radar</span>
+            9. Hibe Radarı
+          </a>
+          <a href="/kariyer" class="p-2.5 rounded-xl bg-surface-bg hover:bg-surface-container-low flex items-center gap-2 text-navy-deep font-label-md">
+            <span class="material-symbols-outlined text-navy-deep text-[18px]">badge</span>
+            10. Kariyer & İK
+          </a>
+          <a href="/profilim" class="p-2.5 rounded-xl bg-cherry-vibrant/10 hover:bg-cherry-vibrant/20 flex items-center gap-2 text-cherry-vibrant font-label-md font-bold">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[18px]">manage_accounts</span>
+            11. Profilim & Paylaş
+          </a>
+          <a href="/giris" class="p-2.5 rounded-xl bg-navy-deep text-white flex items-center gap-2 font-label-md font-bold">
+            <span class="material-symbols-outlined text-white text-[18px]">login</span>
+            12. Giriş / Üye Ol
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBİL BİLDİRİM & CARİNET E-MUTABAKAT ÇEKMECESİ (🔔 Zil Butonu) -->
+  <div id="mwMobileNotifDrawer" class="mw-b2b-scope hidden fixed inset-0 z-[60] bg-navy-deep/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-surface-card w-full max-w-md rounded-t-2xl sm:rounded-2xl p-4 shadow-2xl flex flex-col gap-3 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-border-light pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-cherry-vibrant/10 text-cherry-vibrant flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">notifications_active</span>
+          </span>
+          <div>
+            <h3 class="font-headline-sm text-navy-deep font-bold">Ekosistem & CariNet Bildirimleri</h3>
+            <p class="font-body-sm text-on-surface-variant text-[11px]">Tek tıkla e-Mutabakat onayı ve ihale uyarıları</p>
+          </div>
+        </div>
+        <button type="button" id="mwCloseNotifDrawer" class="w-8 h-8 rounded-lg bg-border-subtle text-navy-deep flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div id="mwMobileNotifList" class="flex flex-col gap-2">
+        <div class="text-center py-4 font-body-sm text-on-surface-variant">Bildirimler yükleniyor...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANA SAYFA İÇERİĞİ -->
+  <main id="mwMainContainer" class="container py-4">
     <slot />
   </main>
+
   <Footer />
 
-  <!-- MOBİL ALT NAVİGASYON BARI (Mobile Bottom Bar: Akış • İhaleler • + Oluştur • Kariyer • Profilim) -->
-  <nav class="mw-mobile-bottom-bar d-lg-none" aria-label="Mobil Hızlı Navigasyon">
-    <a href="/" class={`mw-mnav-item ${Astro.url.pathname === '/' ? 'active' : ''}`}>
-      <i class="bi bi-compass-fill"></i>
-      <span>Akış</span>
-    </a>
-    <a href="/ihaleler" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/ihaleler') ? 'active' : ''}`}>
-      <i class="bi bi-hammer"></i>
-      <span>İhaleler</span>
-    </a>
-    <a href="/ilanlar?yeni=1" class="mw-mnav-item" title="+ Hızlı Oluştur">
-      <div class="mw-mnav-plus">
-        <i class="bi bi-plus-lg"></i>
+  <!-- TELEFON / TABLET MODU 5 SEKMELİ SABİT ALT NAVİGASYON BARI (meetwork_b2b_ekosistemi Tasarımı) -->
+  <nav class="mw-b2b-bottom-nav mw-b2b-scope fixed bottom-0 left-0 right-0 w-full z-50 pb-safe bg-surface-card/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)] border-t border-border-light" style="display:none;" aria-label="Mobil B2B Navigasyon">
+    <div class="flex items-center justify-around h-20 px-1 max-w-md mx-auto relative">
+      <a
+        href="/"
+        class={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-all group ${isAkis ? 'text-navy-deep font-bold' : 'text-on-surface-variant hover:text-navy-deep'}`}
+      >
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="font-label-sm text-label-sm tracking-tight">Akış</span>
+        <span class={`w-1.5 h-1.5 rounded-full bg-navy-deep transition-transform duration-200 ${isAkis ? 'scale-100' : 'scale-0'}`}></span>
+      </a>
+
+      <a
+        href="/akilli-eslesme"
+        class={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-all group ${isEslesme ? 'text-navy-deep font-bold' : 'text-on-surface-variant hover:text-navy-deep'}`}
+      >
+        <span class="material-symbols-outlined text-[24px]">handshake</span>
+        <span class="font-label-sm text-label-sm tracking-tight">Eşleşme</span>
+        <span class={`w-1.5 h-1.5 rounded-full bg-navy-deep transition-transform duration-200 ${isEslesme ? 'scale-100' : 'scale-0'}`}></span>
+      </a>
+
+      <div class="flex flex-col items-center justify-center -mt-6">
+        <a
+          href="/qr-kartvizit"
+          class="w-14 h-14 rounded-full bg-cherry-vibrant hover:bg-cherry-hover text-on-secondary flex flex-col items-center justify-center shadow-lg shadow-cherry-vibrant/30 transition-transform active:scale-95"
+          title="QR Dijital Kartvizit & Tanışma"
+        >
+          <span class="material-symbols-outlined text-[28px] text-white">qr_code_2</span>
+        </a>
+        <span class="font-label-sm text-label-sm text-cherry-vibrant font-bold mt-1 tracking-tight">QR Kart</span>
       </div>
-      <span class="text-danger">+ Oluştur</span>
-    </a>
-    <a href="/kariyer" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/kariyer') ? 'active' : ''}`}>
-      <i class="bi bi-people-fill"></i>
-      <span>Kariyer</span>
-    </a>
-    <a href="/isletmeler" class={`mw-mnav-item ${Astro.url.pathname.startsWith('/isletmeler') ? 'active' : ''}`}>
-      <i class="bi bi-person-badge-fill"></i>
-      <span>Profilim</span>
-    </a>
+
+      <a
+        href="/ihaleler"
+        class={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-all group ${isTicaret ? 'text-navy-deep font-bold' : 'text-on-surface-variant hover:text-navy-deep'}`}
+      >
+        <span class="material-symbols-outlined text-[24px]">gavel</span>
+        <span class="font-label-sm text-label-sm tracking-tight">Ticaret</span>
+        <span class={`w-1.5 h-1.5 rounded-full bg-navy-deep transition-transform duration-200 ${isTicaret ? 'scale-100' : 'scale-0'}`}></span>
+      </a>
+
+      <a
+        href="/profilim"
+        class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-all group text-on-surface-variant hover:text-navy-deep"
+      >
+        <span class="material-symbols-outlined text-[24px]">person</span>
+        <span class="font-label-sm text-label-sm tracking-tight">Profilim</span>
+      </a>
+    </div>
   </nav>
-  
+
+  <!-- Görünüm Modu (Telefon / Tablet / Geniş Ekran) & Mobil Çekmece Yöneticisi -->
+  <script is:inline>
+    (function () {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function syncViewButtons(mode) {
+        document.querySelectorAll('[data-set-mw-view]').forEach((btn) => {
+          const btnMode = btn.getAttribute('data-set-mw-view');
+          if (btnMode === mode) {
+            btn.className = 'mw-view-switch-btn w-9 h-8 flex items-center justify-center rounded-full bg-navy-deep text-on-secondary shadow-sm transition-all';
+          } else {
+            btn.className = 'mw-view-switch-btn w-9 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-navy-deep transition-all';
+          }
+        });
+      }
+
+      window.setMwViewMode = function (mode) {
+        if (!mode) return;
+        document.documentElement.setAttribute('data-mw-view', mode);
+        sessionStorage.setItem('mw_view_mode_manual', mode);
+        localStorage.setItem('mw_view_mode', mode);
+        syncViewButtons(mode);
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const currentMode = document.documentElement.getAttribute('data-mw-view') || 'desktop';
+        syncViewButtons(currentMode);
+
+        document.querySelectorAll('[data-set-mw-view]').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetMode = btn.getAttribute('data-set-mw-view');
+            window.setMwViewMode(targetMode);
+          });
+        });
+
+        // Kullanıcı giriş yapmışsa mobil profil ikonunu güncelle
+        try {
+          const rawUser = localStorage.getItem('mw_user');
+          if (rawUser) {
+            const user = JSON.parse(rawUser);
+            const avatar = document.getElementById('mwMobileProfileAvatar');
+            const link = document.getElementById('mwMobileProfileLink');
+            if (user && (user.full_name || user.company_name)) {
+              const initials = String(user.company_name || user.full_name || 'MW')
+                .split(' ')
+                .map((w) => w[0])
+                .join('')
+                .slice(0, 2)
+                .toUpperCase();
+              if (avatar) avatar.textContent = initials;
+              if (link) link.setAttribute('href', '/profilim');
+            }
+          }
+        } catch (_) {}
+
+        // ⚡ Bolt Ekosistem Çekmecesi
+        const boltBtn = document.getElementById('mwMobileBoltBtn');
+        const boltDrawer = document.getElementById('mwMobileBoltDrawer');
+        const closeBolt = document.getElementById('mwCloseBoltDrawer');
+        if (boltBtn && boltDrawer) {
+          boltBtn.addEventListener('click', () => boltDrawer.classList.remove('hidden'));
+        }
+        if (closeBolt && boltDrawer) {
+          closeBolt.addEventListener('click', () => boltDrawer.classList.add('hidden'));
+          boltDrawer.addEventListener('click', (e) => {
+            if (e.target === boltDrawer) boltDrawer.classList.add('hidden');
+          });
+        }
+
+        // 🔔 Mobil Bildirim & CariNet e-Mutabakat Çekmecesi
+        const notifBtn = document.getElementById('mwMobileNotifBtn');
+        const notifDrawer = document.getElementById('mwMobileNotifDrawer');
+        const closeNotif = document.getElementById('mwCloseNotifDrawer');
+        const mobileNotifList = document.getElementById('mwMobileNotifList');
+
+        async function loadMobileNotifications() {
+          if (!mobileNotifList) return;
+          try {
+            const res = await fetch(`${API_URL}/api/bridge/notifications?company_id=comp_meetwork_hq`);
+            const data = await res.json();
+            const items = data.notifications || [];
+            if (items.length === 0) {
+              mobileNotifList.innerHTML = `<div class="text-center py-4 font-body-sm text-on-surface-variant">Yeni ekosistem bildirimi bulunmuyor.</div>`;
+              return;
+            }
+            mobileNotifList.innerHTML = items.map((n) => {
+              const isMutabakat = n.action_type === 'approve_mutabakat' && Number(n.is_read) === 0;
+              return `
+                <div class="p-3 rounded-xl bg-surface-bg border border-border-light flex flex-col gap-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="px-2 py-0.5 rounded bg-navy-deep text-white font-label-sm text-[10px]">${n.source_app || 'MeetWork'}</span>
+                    <span class="font-label-sm text-[10px] ${Number(n.is_read) === 0 ? 'text-trust-emerald' : 'text-on-surface-variant'}">${Number(n.is_read) === 0 ? '● Yeni' : '✓ Onaylandı'}</span>
+                  </div>
+                  <div class="font-label-lg text-navy-deep font-bold">${n.title}</div>
+                  <p class="font-body-sm text-on-surface-variant">${n.message}</p>
+                  ${isMutabakat ? `
+                    <button type="button" data-mobile-notif-id="${n.id}" class="mw-mobile-mutabakat-btn mt-1 w-full py-2 px-3 rounded-xl bg-trust-emerald text-white font-label-md font-bold shadow-sm">
+                      ${n.action_label || '✅ Bakiyeyi Onayla (Mutabıkız)'}
+                    </button>
+                  ` : `
+                    <a href="${n.action_url || '#'}" class="mt-1 w-full py-2 px-3 rounded-xl bg-surface-card text-navy-deep border border-border-light font-label-md font-bold text-center">
+                      ${n.action_label || 'Detayı İncele →'}
+                    </a>
+                  `}
+                </div>
+              `;
+            }).join('');
+
+            mobileNotifList.querySelectorAll('.mw-mobile-mutabakat-btn').forEach((b) => {
+              b.addEventListener('click', async () => {
+                const nid = b.getAttribute('data-mobile-notif-id');
+                b.textContent = 'Onaylanıyor...';
+                try {
+                  const r = await fetch(`${API_URL}/api/bridge/e-mutabakat-approve`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ notification_id: nid })
+                  });
+                  const d = await r.json();
+                  alert(d.message || 'CariNet e-Mutabakat onaylandı!');
+                  await loadMobileNotifications();
+                } catch (_) {}
+              });
+            });
+          } catch (_) {}
+        }
+
+        if (notifBtn && notifDrawer) {
+          notifBtn.addEventListener('click', () => {
+            notifDrawer.classList.remove('hidden');
+            loadMobileNotifications();
+          });
+        }
+        if (closeNotif && notifDrawer) {
+          closeNotif.addEventListener('click', () => notifDrawer.classList.add('hidden'));
+          notifDrawer.addEventListener('click', (e) => {
+            if (e.target === notifDrawer) notifDrawer.classList.add('hidden');
+          });
+        }
+      });
+    })();
+  </script>
+
   <script>
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
   </script>
 
-  
   <!-- MeetWork kullanıcıları için ücretsiz canlı destek sistemi -->
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="1791c3b5-9c49-4a59-bc9d-81ac3f456bda";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-
-  <!-- CHAT WIDGET SONU -->
-
 </body>
 </html>

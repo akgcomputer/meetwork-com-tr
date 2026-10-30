@@ -20,6 +20,8 @@ const topTalepler = talepler.slice(0, 15);
   title="E-İhale, Satın Alma (RFQ) & Ortak Alım Merkezi | MeetWork"
   description="Açık Eksiltme Usulü İhale, Kapalı Zarf İhale, İngiliz Usulü İhale, Ortak Satın Alma Havuzu ve StokPratik otomatik tedarik sistemi."
 >
+  <div class="mw-has-b2b-mobile">
+  <div class="mw-desktop-screen">
   <!-- Üst Başlık, İhale Kredisi ve Yeni İhale Başlat Butonu -->
   <div class="mw-panel-card p-4 mb-4 shadow-sm" style="border-top: 4px solid var(--mw-red)!important;">
     <div class="row align-items-center g-3">
@@ -89,6 +91,318 @@ const topTalepler = talepler.slice(0, 15);
         </a>
       ))}
     </div>
+  </div>
+  </div>
+
+  <!-- MOBİL & TABLET B2B CANLI ALIM İHALELERİ & AÇIK EKSİLTME EKRANI (Screen 5) -->
+  <div class="mw-b2b-mobile-screen mw-b2b-scope">
+    <div class="flex flex-col w-full px-margin pb-space-2xl gap-space-lg">
+      <!-- Sektör İhale Başlığı & Açık Eksiltme İndikatörü -->
+      <section class="flex flex-col gap-space-sm pt-space-sm">
+        <div class="flex items-center justify-between gap-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[24px]">gavel</span>
+            <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">Canlı B2B Alım İhaleleri</h1>
+          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm uppercase tracking-wider animate-pulse">
+            <span class="w-1.5 h-1.5 rounded-full bg-cherry-vibrant"></span>
+            Açık Eksiltme Usulü
+          </span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          Kurumsal onaylı alıcıların canlı eksiltme ihalelerine teminatlı teklif verin, doğrudan fabrika satış hacminizi büyütün.
+        </p>
+      </section>
+
+      <!-- Hızlı Metrik Özeti (Bento Bar) -->
+      <div class="grid grid-cols-3 gap-space-xs">
+        <div class="bg-surface-card p-space-sm rounded-xl shadow-sm flex flex-col">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Aktif Eksiltme</span>
+          <span class="font-headline-sm text-headline-sm text-navy-deep font-bold mt-0.5">42 İhale</span>
+          <span class="font-label-sm text-label-sm text-trust-emerald font-semibold mt-0.5">● 18 Canlı</span>
+        </div>
+        <div class="bg-surface-card p-space-sm rounded-xl shadow-sm flex flex-col">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Hacim (Bugün)</span>
+          <span class="font-headline-sm text-headline-sm text-navy-deep font-bold mt-0.5">14.8M ₺</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Kümülatif</span>
+        </div>
+        <div class="bg-surface-card p-space-sm rounded-xl shadow-sm flex flex-col">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Ortalama Kırım</span>
+          <span class="font-headline-sm text-headline-sm text-cherry-vibrant font-bold mt-0.5">-%8.4</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Maliyet Düşüşü</span>
+        </div>
+      </div>
+
+      <!-- Arama & Filtreleme Barı -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="relative w-full">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+            <span class="material-symbols-outlined text-[20px]">search</span>
+          </div>
+          <input class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-surface-card text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-navy-deep transition-all" placeholder="İhale kodu, hammadde veya şirket ara..." type="text"/>
+          <button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-navy-deep" title="Gelişmiş Filtre" type="button">
+            <span class="material-symbols-outlined text-[20px]">tune</span>
+          </button>
+        </div>
+
+        <!-- Sektör Kapsülleri (Yatay Kaydırma) -->
+        <div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-1">
+          <button class="px-3.5 py-1.5 rounded-full bg-navy-deep text-on-secondary font-label-md text-label-md shrink-0 shadow-sm transition-transform active:scale-95" type="button">
+            Tümü (42)
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface font-label-md text-label-md shrink-0 shadow-sm hover:bg-surface-variant transition-colors" type="button">
+            Metal &amp; Sac
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface font-label-md text-label-md shrink-0 shadow-sm hover:bg-surface-variant transition-colors" type="button">
+            Gıda Hammaddeleri
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface font-label-md text-label-md shrink-0 shadow-sm hover:bg-surface-variant transition-colors" type="button">
+            Kimya &amp; Petrokimya
+          </button>
+          <button class="px-3.5 py-1.5 rounded-full bg-surface-card text-on-surface font-label-md text-label-md shrink-0 shadow-sm hover:bg-surface-variant transition-colors" type="button">
+            Endüstriyel Ambalaj
+          </button>
+        </div>
+
+        <!-- Teminatlı İhaleler Anahtarı -->
+        <div class="flex items-center justify-between p-3 rounded-xl bg-surface-card shadow-sm">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-trust-emerald/10 text-trust-emerald flex items-center justify-center">
+              <span class="material-symbols-outlined text-[18px]">verified_user</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-navy-deep">Sadece Teminatlı İhaleler</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant">Banka teminat mektubu garantili işlemler</span>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input checked="" class="sr-only peer" id="guaranteeToggle" type="checkbox"/>
+            <div class="w-11 h-6 bg-border-light peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-card after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-trust-emerald"></div>
+          </label>
+        </div>
+      </section>
+
+      <!-- İhale Kartları Akışı -->
+      <div class="flex flex-col gap-space-md">
+        <!-- Canlı D1 İhaleleri (Mobil/Tablet Senkron) -->
+        <div id="mwMobileLiveTendersList" class="flex flex-col gap-space-md"></div>
+        <!-- 1. KART: Paslanmaz Rulo Sac -->
+        <article class="bg-surface-card rounded-2xl p-space-md shadow-sm flex flex-col gap-space-md relative overflow-hidden transition-all hover:shadow-md">
+          <div class="relative w-full h-36 rounded-xl overflow-hidden shadow-inner">
+            <img class="w-full h-full object-cover" alt="304 Kalite Paslanmaz Rulo Sac" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXd0pg85N-jECaXttaZ95TWDU-Ag4t87OtL_-gbsMjNq47ZAFkQfisoJFfIFIX0ZntpR_BPGmhXZGpX39e17VT8YdxX6wJv4gu1C3Y9K5hFCs5d9IOSW65uAPbkqPkBbA5iCpZIjVMW_OJxwKaZ-iky08yC2d6pnt7HDKeJ_IxB07BbZ7Arjciik_2vcQvYmh4_vnfL_iwhfUjBK1B1eVye3w14P1_EfDAcqhqwg"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/30 to-transparent"></div>
+            <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cherry-vibrant text-on-secondary shadow-md font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[15px] animate-spin">timelapse</span>
+              <span>03G : 05S : 42D</span>
+            </div>
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2 py-0.5 rounded bg-surface-card/90 backdrop-blur-md text-navy-deep font-label-sm text-[11px] font-bold">
+              <span>İHALE NO: #TR-9420</span>
+            </div>
+            <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-on-secondary">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-surface-card text-navy-deep flex items-center justify-center font-bold text-xs shadow-sm">ÖM</span>
+                <div class="flex flex-col">
+                  <div class="flex items-center gap-1">
+                    <span class="font-label-md text-label-md font-bold leading-tight">Özkan Metal San. A.Ş.</span>
+                    <span class="material-symbols-outlined text-trust-emerald text-[16px]" title="Onaylı Sanayici">verified</span>
+                  </div>
+                  <span class="font-body-sm text-[11px] opacity-90 leading-tight">Kocaeli OSB • Onaylı Sanayici</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-trust-emerald/20 backdrop-blur-md text-tertiary-fixed font-label-sm text-[10px] uppercase font-bold">Teminat Hazır</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <h2 class="font-headline-sm text-headline-sm text-navy-deep font-bold">
+              304 Kalite Paslanmaz Rulo Sac - 5 Ton
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              1.50 mm x 1250 mm ebatlarında, 2B yüzey korumalı, standart rulo paketleme.
+            </p>
+            <div class="flex flex-wrap items-center gap-1.5 mt-1">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px] text-navy-deep">workspace_premium</span>
+                ISO 9001 Şartı
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px] text-navy-deep">credit_card</span>
+                30 Gün Vadeli
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px] text-navy-deep">local_shipping</span>
+                Alıcı Depo Teslim
+              </span>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2.5">
+            <div class="flex items-center justify-between">
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Hedeflenen Tavan Bütçe</span>
+                <span class="font-label-lg text-label-lg text-on-surface-variant line-through">450.000 ₺</span>
+              </div>
+              <div class="flex flex-col items-end">
+                <div class="flex items-center gap-1 text-cherry-vibrant">
+                  <span class="material-symbols-outlined text-[16px]">trending_down</span>
+                  <span class="font-label-sm text-label-sm font-bold">En Düşük Teklif</span>
+                </div>
+                <span class="font-headline-md text-headline-md font-extrabold text-navy-deep">418.500 ₺</span>
+              </div>
+            </div>
+            <div class="w-full flex flex-col gap-1">
+              <div class="w-full bg-border-light h-2 rounded-full overflow-hidden">
+                <div class="bg-cherry-vibrant h-full rounded-full w-[72%]" title="%7 kırım gerçekleşti"></div>
+              </div>
+              <div class="flex justify-between items-center text-[11px] font-label-sm text-on-surface-variant">
+                <span>6 Firma Teklif Verdi</span>
+                <span class="text-trust-emerald font-bold">%7.0 Kırım Sağlandı</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs pt-1">
+            <button onclick="if(window.openBidModal){window.openBidModal('tnd_9420', '304 Kalite Paslanmaz Rulo Sac - 5 Ton');}" class="w-full py-3 px-4 rounded-xl bg-cherry-vibrant text-on-secondary hover:bg-cherry-hover font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md shadow-cherry-vibrant/20 transition-all active:scale-[0.98]" type="button">
+              <span class="material-symbols-outlined text-[18px]">gavel</span>
+              <span>Teklif Ver &amp; Eksiltmeye Katıl</span>
+            </button>
+            <a href="/ihale-onay" class="w-full py-3 px-4 rounded-xl bg-surface-container hover:bg-surface-variant text-navy-deep font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 transition-colors no-underline">
+              <span class="material-symbols-outlined text-[18px] text-trust-emerald">verified_user</span>
+              <span>İhaleyi Onayla (Proforma)</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2. KART: Rafine Ayçiçek Yağı -->
+        <article class="bg-surface-card rounded-2xl p-space-md shadow-sm flex flex-col gap-space-md relative overflow-hidden transition-all hover:shadow-md">
+          <div class="relative w-full h-36 rounded-xl overflow-hidden shadow-inner">
+            <img class="w-full h-full object-cover" alt="Sanayi Tipi Rafine Ayçiçek Yağı" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCG5QE3tzzYkBm5NlVmA4-_F-ubsTmiqfw0SjBLJokeMnsmQwVD35koinmCX3BgwcuMtd-NafZc7e7oCFhDftXIokZ5S1VaLt1ME2k6IYK5I6RpV5m1jMbO9sV5k5-0AjcOasB0z8RpzEN3kbK6dMEmRu6SPI6Gf21J1QKeG2x-6waFlul8iBTbSkf3dZNGrQ0q4B-UyCFc0CMNWEHY8cbDFxOB290F8F8aJiAVg"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/30 to-transparent"></div>
+            <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-badge text-navy-deep font-bold shadow-md font-label-sm text-label-sm animate-bounce">
+              <span class="material-symbols-outlined text-[16px]">alarm</span>
+              <span id="mwMobAuctionTimer">14S : 22D : 10Sn</span>
+            </div>
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2 py-0.5 rounded bg-surface-card/90 backdrop-blur-md text-navy-deep font-label-sm text-[11px] font-bold">
+              <span>İHALE NO: #TR-8812</span>
+            </div>
+            <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-on-secondary">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-surface-card text-navy-deep flex items-center justify-center font-bold text-xs shadow-sm">TG</span>
+                <div class="flex flex-col">
+                  <div class="flex items-center gap-1">
+                    <span class="font-label-md text-label-md font-bold leading-tight">Trakya Entegre Gıda A.Ş.</span>
+                    <span class="material-symbols-outlined text-trust-emerald text-[16px]">verified</span>
+                  </div>
+                  <span class="font-body-sm text-[11px] opacity-90 leading-tight">Tekirdağ • Sanayi Kuruluşu</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-gold-badge/20 backdrop-blur-md text-gold-badge font-label-sm text-[10px] uppercase font-bold">Acil Alım</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <h2 class="font-headline-sm text-headline-sm text-navy-deep font-bold">
+              Sanayi Tipi Rafine Ayçiçek Yağı - 20 Ton (Dökme Tanker)
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Asitlik derecesi max 0.2, gıda kodeksine uygun, fabrika tanker dolumu ile teslim.
+            </p>
+            <div class="flex flex-wrap items-center gap-1.5 mt-1">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                Dökme Tanker Teslim
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px]">payments</span>
+                Peşin / Akreditifli
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-navy-deep font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+                Analiz Sertifikası
+              </span>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2.5">
+            <div class="flex items-center justify-between">
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Hedeflenen Tavan Bütçe</span>
+                <span class="font-label-lg text-label-lg text-on-surface-variant line-through">950.000 ₺</span>
+              </div>
+              <div class="flex flex-col items-end">
+                <div class="flex items-center gap-1 text-cherry-vibrant">
+                  <span class="material-symbols-outlined text-[16px]">trending_down</span>
+                  <span class="font-label-sm text-label-sm font-bold">Şu Anki En Düşük</span>
+                </div>
+                <span class="font-headline-md text-headline-md font-extrabold text-navy-deep">890.000 ₺</span>
+              </div>
+            </div>
+            <div class="w-full flex flex-col gap-1">
+              <div class="w-full bg-border-light h-2 rounded-full overflow-hidden">
+                <div class="bg-gold-badge h-full rounded-full w-[63%]" title="%6.3 kırım"></div>
+              </div>
+              <div class="flex justify-between items-center text-[11px] font-label-sm text-on-surface-variant">
+                <span>4 Firma Yarışıyor</span>
+                <span class="text-trust-emerald font-bold">60.000 ₺ Tasarruf Sağlandı</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs pt-1">
+            <button onclick="if(window.openBidModal){window.openBidModal('tnd_8812', 'Sanayi Tipi Rafine Ayçiçek Yağı - 20 Ton');}" class="w-full py-3 px-4 rounded-xl bg-cherry-vibrant text-on-secondary hover:bg-cherry-hover font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md shadow-cherry-vibrant/20 transition-all active:scale-[0.98]" type="button">
+              <span class="material-symbols-outlined text-[18px]">gavel</span>
+              <span>Teklif Ver &amp; Eksiltmeye Katıl</span>
+            </button>
+            <a href="/ihale-onay" class="w-full py-3 px-4 rounded-xl bg-surface-container hover:bg-surface-variant text-navy-deep font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 transition-colors no-underline">
+              <span class="material-symbols-outlined text-[18px] text-trust-emerald">verified_user</span>
+              <span>İhaleyi Onayla (Proforma)</span>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Yeni İhale Başlat Tanıtım Kartı & Eylemi -->
+      <section class="bg-navy-deep text-on-secondary p-space-lg rounded-2xl shadow-xl flex flex-col gap-space-md relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-cherry-vibrant/20 blur-2xl pointer-events-none"></div>
+        <div class="flex items-start gap-space-md">
+          <div class="w-12 h-12 rounded-xl bg-cherry-vibrant flex items-center justify-center shrink-0 shadow-lg shadow-cherry-vibrant/30">
+            <span class="material-symbols-outlined text-[26px] text-on-secondary">add_business</span>
+          </div>
+          <div class="flex flex-col">
+            <h3 class="font-headline-sm text-headline-sm font-bold text-on-secondary">Kendi Alım İhalenizi Açın</h3>
+            <p class="font-body-sm text-body-sm text-surface-container-high/80 mt-1">
+              Yüksek hacimli satın alımlarınızda tedarikçileri açık eksiltmeye davet edin, en uygun fabrika çıkış fiyatını yakalayın.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-space-xs pt-2">
+          <button data-bs-toggle="modal" data-bs-target="#newTenderModal" class="w-full py-3 px-space-md rounded-xl bg-cherry-vibrant hover:bg-cherry-hover text-on-secondary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md shadow-cherry-vibrant/30 transition-all active:scale-[0.98]" type="button">
+            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+            <span>Hemen Yeni İhale Başlat</span>
+          </button>
+          <a href="/ihale-onay" class="w-full sm:w-auto py-3 px-space-md rounded-xl bg-surface-card/10 hover:bg-surface-card/20 text-on-secondary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 transition-colors no-underline">
+            <span class="material-symbols-outlined text-[18px]">shield_lock</span>
+            <span>Güvenli Ödeme Havuzu</span>
+          </a>
+        </div>
+      </section>
+    </div>
+    <script is:inline>
+      (function initAuctionTimers() {
+        let secondsLeft = 14 * 3600 + 22 * 60 + 10;
+        const timerBadge = document.getElementById('mwMobAuctionTimer');
+        if (!timerBadge) return;
+        setInterval(() => {
+          if (secondsLeft <= 0) return;
+          secondsLeft--;
+          const hours = Math.floor(secondsLeft / 3600);
+          const minutes = Math.floor((secondsLeft % 3600) / 60);
+          const seconds = secondsLeft % 60;
+          timerBadge.textContent = `${String(hours).padStart(2, '0')}S : ${String(minutes).padStart(2, '0')}D : ${String(seconds).padStart(2, '0')}Sn`;
+        }, 1000);
+      })();
+    </script>
+  </div>
   </div>
 
   <!-- YENİ E-İHALE BAŞLATMA MODALI -->
@@ -479,6 +793,35 @@ const topTalepler = talepler.slice(0, 15);
           `;
           }).join('');
 
+          const mobTendersList = document.getElementById('mwMobileLiveTendersList');
+          if (mobTendersList) {
+            mobTendersList.innerHTML = tenders.map((t) => `
+              <article class="bg-surface-card rounded-2xl p-space-md shadow-sm border border-border-light flex flex-col gap-3">
+                <div class="flex items-center justify-between flex-wrap gap-1">
+                  <span class="px-2.5 py-0.5 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm font-bold">
+                    🔴 Canlı E-İhale • #${t.tender_no || t.id}
+                  </span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">${t.delivery_location || 'İstanbul'}</span>
+                </div>
+                <div>
+                  <h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold">${t.title}</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">${t.description || ''}</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-border-subtle flex-wrap gap-2">
+                  <span class="font-label-md text-label-md text-navy-deep font-bold">Miktar: ${t.quantity} ${t.unit}</span>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" class="px-3 py-1.5 rounded-xl bg-trust-emerald text-white font-label-sm text-label-sm font-bold" onclick="window.mwOpenSafePayModal('${t.id}', '${(t.title || '').replace(/'/g, '')}', '${t.lowest_bid || 55000}')">
+                      🛡️ Güvenli Ödeme
+                    </button>
+                    <button type="button" class="px-3.5 py-1.5 rounded-xl bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold" onclick="window.mwOpenBidModal('${t.id}', '${(t.title || '').replace(/'/g, '')}')">
+                      ⚡ Teklif Ver
+                    </button>
+                  </div>
+                </div>
+              </article>
+            `).join('');
+          }
+
           if (magicSlug) {
             const targetT = tenders.find((t) => t.slug === magicSlug || t.id === magicSlug || t.tender_no === magicSlug);
             if (targetT) {
@@ -509,6 +852,14 @@ const topTalepler = talepler.slice(0, 15);
             if (sPhone && u.phone) sPhone.value = u.phone;
           }
         } catch (_) {}
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('yeni') === '1') {
+          setTimeout(() => {
+            const triggerBtn = document.querySelector('[data-bs-target="#newTenderModal"]');
+            if (triggerBtn) triggerBtn.click();
+          }, 350);
+        }
 
         loadTenders();
 

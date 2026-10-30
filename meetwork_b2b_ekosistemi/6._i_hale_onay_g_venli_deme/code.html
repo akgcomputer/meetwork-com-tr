@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "border-light": "#e2e8f0", "secondary-container": "#e21e49", "on-secondary-container": "#fffbff", "tertiary-fixed-dim": "#4edea3", "surface-variant": "#d3e4fe", "on-error-container": "#93000a", "surface-container-lowest": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#920028", "surface-container-high": "#dce9ff", "primary-fixed": "#dae2fd", "cherry-hover": "#be123c", "primary-container": "#131b2e", "border-subtle": "#f1f5f9", "inverse-on-surface": "#eaf1ff", "surface-container-highest": "#d3e4fe", "error": "#ba1a1a", "on-primary-fixed-variant": "#3f465c", "on-surface-variant": "#45464d", "outline": "#76777d", "trust-emerald": "#10b981", "on-secondary": "#ffffff", "gold-badge": "#f59e0b", "on-surface": "#0b1c30", "navy-deep": "#0f172a", "cherry-vibrant": "#e11d48", "on-tertiary-container": "#009668", "primary": "#000000", "on-tertiary-fixed": "#002113", "outline-variant": "#c6c6cd", "surface-card": "#ffffff", "surface-bg": "#f8fafc", "inverse-surface": "#213145", "surface": "#f8f9ff", "secondary": "#ba0035", "on-error": "#ffffff", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "tertiary-container": "#002113", "surface-container": "#e5eeff", "secondary-fixed": "#ffdada", "on-secondary-fixed": "#40000c", "inverse-primary": "#bec6e0", "surface-tint": "#565e74", "surface-dim": "#cbdbf5", "on-background": "#0b1c30", "on-primary": "#ffffff", "surface-container-low": "#eff4ff", "tertiary": "#000000", "on-primary-fixed": "#131b2e", "secondary-fixed-dim": "#ffb3b6", "background": "#f8f9ff", "tertiary-fixed": "#6ffbbe", "on-primary-container": "#7c839b", "on-tertiary-fixed-variant": "#005236", "primary-fixed-dim": "#bec6e0" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-desktop": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-2xl": "3rem", "margin": "1rem", "margin-desktop": "2rem", "gutter": "1rem", "margin-tablet": "1.5rem" }, "fontFamily": { "body-sm": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "metric-number": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "display-lg": ["48px", { "lineHeight": "56px", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "700" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "metric-number": ["28px", { "lineHeight": "32px", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}body{min-height:max(884px,100dvh);}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-bg text-on-surface antialiased flex flex-col min-h-screen selection:bg-cherry-vibrant selection:text-on-secondary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-card/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm shrink-0"><button class="w-11 h-11 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><span class="font-headline-sm text-headline-sm text-navy-deep truncate max-w-[190px]">6. İhale Onay &amp; Güvenli Ödeme</span></div><div class="flex items-center gap-space-xs shrink-0"><button class="relative w-11 h-11 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors" title="Tek Tıkla Ekosistem Geçişi" type="button"><span class="material-symbols-outlined text-[20px]">bolt</span></button><button class="relative w-11 h-11 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors" title="Bildirimler" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-8 bg-surface-bg flex-1"><div class="flex flex-col w-full">
+<!-- Adım İlerleme Çubuğu & Durum Göstergesi -->
+<div class="px-margin pt-space-md pb-space-xs">
+<div class="bg-surface-container rounded-xl p-space-sm shadow-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-full bg-trust-emerald text-surface-card flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Adım 3 / 3</span>
+<span class="font-label-md text-label-md text-navy-deep truncate">Kesinleşme &amp; Güvenli Havuz</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 shrink-0 px-2.5 py-1 bg-surface-card rounded-full shadow-sm">
+<span class="w-2 h-2 rounded-full bg-trust-emerald animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-navy-deep font-semibold">Aktif Oturum</span>
+</div>
+</div>
+</div>
+<!-- Açıklama Metni -->
+<div class="px-margin pt-space-xs pb-space-sm">
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Kazanan teklifi onaylayın; sözleşme ve proforma bedeli <span class="font-semibold text-navy-deep">MeetWork Güvenli Havuzu</span>'na bloke edilsin, teslimat tamamlanana kadar riskiniz sıfırlansın.
+    </p>
+</div>
+<!-- Özet İhale Kartı -->
+<div class="px-margin pb-space-md">
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<!-- Arka Plan Dekoratif Vurgu Çizgisi -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-trust-emerald"></div>
+<div class="pl-2">
+<div class="flex items-start justify-between gap-space-sm mb-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-navy-deep font-label-sm text-label-sm font-bold tracking-wide">
+              #İHL-2024-88
+            </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+              Ters İhale Sonucu
+            </span>
+</div>
+<span class="inline-flex items-center gap-1 text-trust-emerald font-label-sm text-label-sm font-bold bg-surface-container-low px-2 py-0.5 rounded-full shrink-0">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+            En Düşük Teklif
+          </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-navy-deep mb-space-sm">
+          304 Kalite Paslanmaz Sac (5 Ton)
+        </h2>
+<!-- Kazanan Tedarikçi Bilgi Bloğu -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-navy-deep text-surface-card flex items-center justify-center font-headline-sm text-headline-sm shrink-0">
+              K
+            </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-label-lg text-label-lg text-navy-deep font-bold truncate">
+                  Kardemir Rulo Sac &amp; Çelik A.Ş.
+                </span>
+<span class="material-symbols-outlined text-trust-emerald text-[16px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-card text-navy-deep font-label-sm text-label-sm font-bold shadow-sm">
+                  A+ Ödeme Disiplini
+                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-0.5">
+<span class="material-symbols-outlined text-gold-badge text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  %98 Güven Skoru
+                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mali Kırılım & Proforma Tablosu -->
+<div class="px-margin pb-space-md">
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-navy-deep text-[20px]">receipt_long</span>
+<h3 class="font-headline-sm text-headline-sm text-navy-deep">Mali Kırılım &amp; Proforma</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">
+          Resmi Taslak
+        </span>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<!-- Kalem 1 -->
+<div class="flex items-center justify-between py-1.5 text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant opacity-40"></span>
+            Mal Bedeli <span class="font-body-sm text-body-sm text-on-surface-variant opacity-75">(5 Ton x 80.000 ₺)</span>
+</span>
+<span class="font-semibold text-navy-deep">400.000 ₺</span>
+</div>
+<!-- Kalem 2: Tasarruf -->
+<div class="flex items-center justify-between py-1.5 text-trust-emerald font-body-md text-body-md bg-surface-container-low px-2 rounded-lg">
+<span class="flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+            İhale Eksiltme Tasarrufu
+          </span>
+<span class="font-bold">-20.000 ₺</span>
+</div>
+<!-- Kalem 3 -->
+<div class="flex items-center justify-between py-1.5 text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant opacity-40"></span>
+            KDV (%20)
+          </span>
+<span class="font-semibold text-navy-deep">76.000 ₺</span>
+</div>
+<!-- Kalem 4 -->
+<div class="flex items-center justify-between py-1.5 text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant opacity-40"></span>
+            Sigortalı Navlun &amp; Lojistik Bedeli
+          </span>
+<span class="font-semibold text-navy-deep">14.500 ₺</span>
+</div>
+<!-- Kalem 5: Kampanya -->
+<div class="flex items-center justify-between py-1.5 text-cherry-vibrant font-body-md text-body-md bg-surface-container-low px-2 rounded-lg">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">redeem</span>
+            MeetWork Havuz Komisyonu
+          </span>
+<span class="font-bold uppercase font-label-md text-label-md">0 ₺ (Ücretsiz Kampanya)</span>
+</div>
+<!-- Toplam Tutar Bloğu -->
+<div class="mt-space-sm pt-space-sm bg-navy-deep text-surface-card rounded-xl p-space-md shadow-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-wider">Ödenecek Havuz Blokesi</span>
+<span class="font-label-lg text-label-lg text-surface-card font-bold">TOPLAM PROFORMA</span>
+</div>
+<div class="text-right">
+<span class="font-display-lg-mobile text-display-lg-mobile font-extrabold tracking-tight text-surface-card">
+              470.500 <span class="font-headline-sm text-headline-sm text-tertiary-fixed-dim">₺</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Teslim Şekli ve Lojistik Seçimi -->
+<div class="px-margin pb-space-md">
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-sm">
+<span class="material-symbols-outlined text-navy-deep text-[20px]">local_shipping</span>
+<h3 class="font-headline-sm text-headline-sm text-navy-deep">Teslimat &amp; Güvence Şartları</h3>
+</div>
+<!-- Segmented Teslimat Seçici -->
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider mb-2">
+        Teslim Şekli (Incoterms 2020)
+      </label>
+<div class="grid grid-cols-2 gap-space-xs p-1 bg-surface-container-low rounded-xl mb-space-md" id="deliveryModeSelector">
+<button class="delivery-btn py-2.5 px-3 rounded-lg text-center transition-all flex flex-col items-center justify-center gap-0.5 bg-surface-card shadow-sm text-navy-deep" onclick="selectDelivery(this, 'EXW')" type="button">
+<span class="font-label-lg text-label-lg font-bold">Fabrikada Teslim</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">EXW (Alıcı Alır)</span>
+</button>
+<button class="delivery-btn py-2.5 px-3 rounded-lg text-center transition-all flex flex-col items-center justify-center gap-0.5 bg-navy-deep text-surface-card shadow-sm" onclick="selectDelivery(this, 'DDP')" type="button">
+<span class="font-label-lg text-label-lg font-bold flex items-center gap-1">
+            Adrese Teslim
+            <span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+<span class="font-label-sm text-label-sm text-surface-variant font-medium">DDP (Gümrük &amp; Sigortalı)</span>
+</button>
+</div>
+<!-- Ödeme Güvenlik Protokolü Kartı -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-start gap-space-sm mb-space-md">
+<div class="w-9 h-9 rounded-xl bg-trust-emerald text-surface-card flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-navy-deep font-bold">
+            Güvenli Havuz Blokesi Koruma Modeli
+          </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+            Paranız doğrudan satıcıya gitmez. MeetWork BDDK lisanslı emanet havuzunda bloke edilir; malzeme deponuza ulaşıp muayene onayınız verilene kadar korunur.
+          </p>
+</div>
+</div>
+<!-- Sözleşme Onay Checkbox (Özel İnteraktif UI) -->
+<div class="bg-surface-container rounded-xl p-space-sm flex items-start gap-space-sm cursor-pointer select-none" onclick="toggleAgreement()">
+<input checked="" class="mt-1 w-5 h-5 rounded accent-navy-deep cursor-pointer" id="contractConsent" onclick="event.stopPropagation(); updateConsentState();" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-navy-deep cursor-pointer leading-snug" for="contractConsent">
+<span class="font-bold underline decoration-navy-deep/40">Elektronik B2B Ticaret Sözleşmesini</span> ve 
+          <span class="font-bold underline decoration-navy-deep/40">Muayene / Mal Kabul Şartlarını</span> okudum, eksiksiz onaylıyorum.
+        </label>
+</div>
+</div>
+</div>
+<!-- Büyük Aksiyon Alanı & Güvenlik Rozetleri -->
+<div class="px-margin pb-space-xl">
+<div class="bg-surface-card rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+<!-- Ana CTA Butonu -->
+<button class="w-full py-4 px-space-md rounded-xl bg-navy-deep text-surface-card font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-sm shadow-lg hover:bg-slate-800 active:scale-[0.99] transition-all relative overflow-hidden group" id="submitTenderBtn" onclick="triggerTenderApproval()" type="button">
+<!-- Zümrüt Yeşili Güven Vurgusu İkon Kutusu -->
+<span class="w-7 h-7 rounded-lg bg-trust-emerald text-surface-card flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</span>
+<span class="truncate" id="btnText">İhaleyi Onayla &amp; Güvenli Ödeme Havuzuna Aktar</span>
+</button>
+<!-- Güven & Lisans Damgası -->
+<div class="flex items-center justify-center gap-2 py-1 text-center">
+<span class="material-symbols-outlined text-trust-emerald text-[18px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">
+          BDDK Lisanslı Ödeme ve Blokaj Altyapısı ile %100 Güvence Altındadır
+        </span>
+</div>
+<!-- Mikro Karşılıklı Taahhüt Rozetleri -->
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs text-center">
+<div class="bg-surface-container-low rounded-lg p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-navy-deep text-[18px] mb-1">security</span>
+<span class="font-label-sm text-label-sm text-navy-deep font-bold">256-Bit SSL</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90">Banka Düzeyi</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-navy-deep text-[18px] mb-1">fact_check</span>
+<span class="font-label-sm text-label-sm text-navy-deep font-bold">Mal Kabul Şartı</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90">Onaysız Aktarılmaz</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-navy-deep text-[18px] mb-1">balance</span>
+<span class="font-label-sm text-label-sm text-navy-deep font-bold">Tahkim Koruması</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90">MeetWork Hukuk</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Başarı Durumu Modalı (Gizli / Dinamik Açılır) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-margin bg-navy-deep/60 backdrop-blur-sm" id="successModal">
+<div class="bg-surface-card rounded-2xl p-space-lg w-full max-w-sm shadow-2xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-200">
+<div class="w-16 h-16 rounded-full bg-trust-emerald/10 text-trust-emerald flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold mb-1">
+        Tutar Başarıyla Bloke Edildi!
+      </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+        470.500 ₺ MeetWork Güvenli Havuzu'na aktarıldı. <span class="font-semibold text-navy-deep">Kardemir Rulo Sac &amp; Çelik A.Ş.</span> sevkiyat hazırlığına başladı.
+      </p>
+<div class="w-full bg-surface-container-low rounded-xl p-space-sm mb-space-md text-left font-body-sm text-body-sm space-y-1">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Blokaj Referansı:</span>
+<span class="font-bold text-navy-deep">MW-ESC-892401</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Tahmini Teslimat:</span>
+<span class="font-bold text-navy-deep">3 İş Günü</span>
+</div>
+</div>
+<button class="w-full py-3 bg-navy-deep text-surface-card font-label-lg text-label-lg font-bold rounded-xl shadow-md" onclick="closeSuccessModal()" type="button">
+        Sipariş Takip Ekranına Git
+      </button>
+</div>
+</div>
+</div>
+<script>
+  function selectDelivery(btn, mode) {
+    const buttons = document.querySelectorAll('.delivery-btn');
+    buttons.forEach(b => {
+      b.className = 'delivery-btn py-2.5 px-3 rounded-lg text-center transition-all flex flex-col items-center justify-center gap-0.5 bg-surface-card shadow-sm text-navy-deep';
+      const checkIcon = b.querySelector('.material-symbols-outlined');
+      if (checkIcon) checkIcon.remove();
+    });
+
+    btn.className = 'delivery-btn py-2.5 px-3 rounded-lg text-center transition-all flex flex-col items-center justify-center gap-0.5 bg-navy-deep text-surface-card shadow-sm';
+    const titleSpan = btn.querySelector('.font-label-lg');
+    if (titleSpan && !titleSpan.querySelector('.material-symbols-outlined')) {
+      titleSpan.innerHTML += ' <span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: \'FILL\' 1;">check</span>';
+    }
+  }
+
+  function toggleAgreement() {
+    const cb = document.getElementById('contractConsent');
+    cb.checked = !cb.checked;
+    updateConsentState();
+  }
+
+  function updateConsentState() {
+    const cb = document.getElementById('contractConsent');
+    const btn = document.getElementById('submitTenderBtn');
+    if (!cb.checked) {
+      btn.classList.add('opacity-50', 'pointer-events-none');
+    } else {
+      btn.classList.remove('opacity-50', 'pointer-events-none');
+    }
+  }
+
+  function triggerTenderApproval() {
+    const btn = document.getElementById('submitTenderBtn');
+    const btnText = document.getElementById('btnText');
+    const modal = document.getElementById('successModal');
+
+    btnText.textContent = 'Güvenli Havuz İşlemi Yapılıyor...';
+    btn.classList.add('opacity-75');
+
+    setTimeout(() => {
+      btnText.textContent = 'İhaleyi Onayla & Güvenli Ödeme Havuzuna Aktar';
+      btn.classList.remove('opacity-75');
+      modal.classList.remove('hidden');
+    }, 900);
+  }
+
+  function closeSuccessModal() {
+    const modal = document.getElementById('successModal');
+    modal.classList.add('hidden');
+  }
+</script></main></body></html>

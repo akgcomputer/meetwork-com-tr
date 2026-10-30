@@ -122,12 +122,13 @@ const SECTORS = [
 
                 <!-- Giriş Yapmış Kullanıcı İçin Aktif Oturum Kutusu -->
                 <div id="mwLoggedInBox" class="mt-4 p-3 rounded border" style="display:none; border-color:var(--mw-border)!important;">
-                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                     <div>
                       <div class="fw-bold text-danger" id="mwActiveUserName"></div>
                       <small class="text-muted" id="mwActiveCompanyName"></small>
                     </div>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex flex-wrap gap-2">
+                      <a href="/profilim" class="btn btn-sm btn-danger fw-bold"><i class="bi bi-person-gear me-1"></i> Profilim & Paylaşım</a>
                       <a href="/kariyer/profilim" id="mwCandidateProfileBtn" class="btn btn-sm btn-outline-primary d-none">👤 Aday Profilim</a>
                       <button type="button" id="mwLogoutBtn" class="btn btn-sm btn-outline-secondary">Çıkış Yap</button>
                     </div>
@@ -236,9 +237,17 @@ const SECTORS = [
 
       document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
-        if (params.get('tab') === 'register') {
+        if (params.get('tab') === 'register' || params.get('kayit') === '1') {
           const regTabBtn = document.getElementById('tab-register-btn');
-          if (regTabBtn) regTabBtn.click();
+          const loginTabBtn = document.getElementById('tab-login-btn');
+          const regPane = document.getElementById('tab-register');
+          const loginPane = document.getElementById('tab-login');
+          if (regTabBtn && loginTabBtn && regPane && loginPane) {
+            loginTabBtn.classList.remove('active');
+            regTabBtn.classList.add('active');
+            loginPane.classList.remove('show', 'active');
+            regPane.classList.add('show', 'active');
+          }
         }
 
         // Enforce max 5 target sector checkboxes

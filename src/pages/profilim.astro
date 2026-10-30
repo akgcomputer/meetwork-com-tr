@@ -1,0 +1,624 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Profilim & İşletme Yönetim Merkezim | MeetWork B2B İş Ağı"
+  description="MeetWork B2B profil bilgilerinizi, 5 hedef sektörünüzü, sosyal paylaşımlarınızı, hikayelerinizi, ihalelerinizi ve QR dijital kartvizitinizi tüm ekran modlarında yönetin."
+>
+  <div class="mw-has-b2b-mobile">
+    <!-- GENİŞ EKRAN (MASAÜSTÜ) PROFİL & İŞLETME KONTROL MERKEZİ -->
+    <div class="mw-desktop-screen py-2">
+      <!-- Üst Kurumsal Başlık Bandı -->
+      <div class="mw-panel-card p-4 mb-4 border-0 text-white shadow-sm" style="background: linear-gradient(135deg, #0b0b0e 0%, #161821 55%, #dc3545 100%);">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-8 d-flex align-items-center gap-3">
+            <div id="deskProfAvatar" class="rounded-4 bg-white text-danger fw-black d-flex align-items-center justify-content-center shadow flex-shrink-0" style="width:72px;height:72px;font-size:1.75rem;font-weight:900;">
+              MW
+            </div>
+            <div>
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                <span class="badge bg-warning text-dark fw-bold"><i class="bi bi-patch-check-fill me-1"></i> Doğrulanmış Kurumsal Üye</span>
+                <span class="badge bg-success"><i class="bi bi-shield-check me-1"></i> A+ Ödeme Disiplini</span>
+              </div>
+              <h2 id="deskProfCompTitle" class="h4 fw-black mb-1 text-white">MeetWork Üye İşletme Profili</h2>
+              <p id="deskProfUserSubtitle" class="small text-white-50 mb-0">Kurumsal Üye • İstanbul • VKN: 2720912021</p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-lg-end d-flex flex-wrap justify-content-lg-end gap-2">
+            <a id="deskProfVitrinBtn" href="/isletmeler" class="btn btn-light text-danger fw-bold btn-sm px-3">
+              <i class="bi bi-shop-window me-1"></i> İşletme Vitrinim
+            </a>
+            <a href="/qr-kartvizit" class="btn btn-outline-light fw-bold btn-sm px-3">
+              <i class="bi bi-qr-code me-1"></i> QR Kartvizitim
+            </a>
+            <button type="button" class="btn btn-dark fw-bold btn-sm px-3 mw-logout-btn">
+              <i class="bi bi-box-arrow-right me-1"></i> Çıkış
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Giriş Yapmamış Kullanıcı Uyarı Bandı -->
+      <div id="deskGuestNotice" class="alert alert-warning border-warning d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4" style="display:none;">
+        <div>
+          <strong><i class="bi bi-person-exclamation me-1"></i> Ziyaretçi Modundasınız:</strong>
+          Profil bilgilerinizi kalıcı kaydetmek veya kendi firmanız adına paylaşım yapmak için giriş yapabilir ya da ücretsiz üye olabilirsiniz.
+        </div>
+        <div class="d-flex gap-2">
+          <a href="/giris" class="btn btn-sm btn-dark fw-bold">Giriş Yap</a>
+          <a href="/giris?kayit=1" class="btn btn-sm btn-danger fw-bold">Ücretsiz Üye Ol</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Sol Sütun: Profil & İşletme Bilgileri + 5 Hedef Sektör + Şifre -->
+        <div class="col-lg-5">
+          <div class="mw-panel-card p-4 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-building-gear text-danger me-1"></i> İşletme &amp; Üyelik Bilgilerim</h5>
+            <form class="mw-profile-update-form row g-3">
+              <div class="col-12">
+                <label class="form-label small fw-bold mb-1">Firma / Kurum Ünvanı *</label>
+                <input type="text" name="company_name" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">Yetkili Ad Soyad *</label>
+                <input type="text" name="full_name" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">VKN / TCKN *</label>
+                <input type="text" name="vkn" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">Ana Sektör *</label>
+                <input type="text" name="sector" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">Şehir *</label>
+                <input type="text" name="city" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">Kurumsal E-Posta *</label>
+                <input type="email" name="email" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold mb-1">Telefon *</label>
+                <input type="text" name="phone" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold mb-1">2+1 Akıllı Eşleşme İçin 5 Hedef Sektörünüz (Virgülle Ayırın)</label>
+                <input type="text" name="target_sectors" class="form-control form-control-sm" placeholder="Örn: Lojistik, Ambalaj, Gıda, Metal, E-Ticaret" />
+              </div>
+              <div class="col-12">
+                <div class="mw-profile-save-feedback small fw-bold mb-2" style="display:none;"></div>
+                <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold py-2">
+                  <i class="bi bi-check2-circle me-1"></i> Profil &amp; Hedef Sektör Bilgilerimi Güncelle
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Şifre Değiştirme Kartı -->
+          <div class="mw-panel-card p-4 shadow-sm">
+            <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-key-fill text-danger me-1"></i> Güvenlik &amp; Şifre Güncelleme</h6>
+            <form class="mw-password-update-form row g-2">
+              <div class="col-12">
+                <input type="password" name="current_password" class="form-control form-control-sm" placeholder="Mevcut Şifreniz" required />
+              </div>
+              <div class="col-12">
+                <input type="password" name="new_password" class="form-control form-control-sm" placeholder="Yeni Şifreniz (En az 6 karakter)" minlength="6" required />
+              </div>
+              <div class="col-12">
+                <div class="mw-password-feedback small fw-bold mb-2" style="display:none;"></div>
+                <button type="submit" class="btn btn-outline-dark btn-sm w-100 fw-bold">Şifremi Güncelle</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sağ Sütun: Hızlı İşlevler, Sosyal Paylaşım, Hikaye Ekleme ve İhale/İlan Kısayolları -->
+        <div class="col-lg-7">
+          <!-- Hızlı İşlev Kutuları -->
+          <div class="mw-panel-card p-4 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-lightning-charge-fill text-danger me-1"></i> Hızlı B2B İşlevlerim (Tek Tıkla İşlem)</h5>
+            <div class="row g-2">
+              <div class="col-md-4 col-6">
+                <a href="/ihaleler?yeni=1" class="btn btn-outline-danger w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-hammer d-block fs-5 mb-1"></i> + Alım İhalesi Aç
+                </a>
+              </div>
+              <div class="col-md-4 col-6">
+                <a href="/talepler" class="btn btn-outline-success w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-people-fill d-block fs-5 mb-1"></i> + Birlikte Alalım
+                </a>
+              </div>
+              <div class="col-md-4 col-6">
+                <a href="/ilanlar?yeni=1" class="btn btn-outline-primary w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-tag-fill d-block fs-5 mb-1"></i> + Vitrin İlanı Ver
+                </a>
+              </div>
+              <div class="col-md-4 col-6">
+                <a href="/akilli-eslesme" class="btn btn-outline-dark w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-diagram-3-fill d-block fs-5 mb-1"></i> 2+1 Akıllı Eşleşme
+                </a>
+              </div>
+              <div class="col-md-4 col-6">
+                <a href="/qr-kartvizit" class="btn btn-outline-secondary w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-qr-code-scan d-block fs-5 mb-1"></i> QR Kartvizit &amp; CRM
+                </a>
+              </div>
+              <div class="col-md-4 col-6">
+                <a href="/hibe-kredi-eslesme" class="btn btn-outline-warning text-dark w-100 fw-bold py-2 text-start">
+                  <i class="bi bi-radar d-block fs-5 mb-1"></i> Hibe &amp; Teşvik Radarı
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profilden Canlı İş Ağı Paylaşımı Yap -->
+          <div class="mw-panel-card p-4 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-megaphone-fill text-danger me-1"></i> İş Ağında Yeni Paylaşım Yap</h5>
+            <form class="mw-profile-post-form">
+              <div class="mb-2">
+                <select name="tag" class="form-select form-select-sm mb-2">
+                  <option value="İş & Sektör Paylaşımı">💬 İş &amp; Sektör Paylaşımı</option>
+                  <option value="Tedarik & Alım Talebi">📦 Tedarik &amp; Alım Talebi</option>
+                  <option value="Üretim & Kapasite">🏭 Üretim &amp; Kapasite Duyurusu</option>
+                  <option value="İhracat & Ortaklık">🌍 İhracat &amp; Ortaklık Çağrısı</option>
+                </select>
+                <textarea name="content" rows="3" class="form-control form-control-sm" placeholder="Firmanızın tedarik talebini, seri sonu stok fırsatını veya iş birliği duyurusunu yazın..." required></textarea>
+              </div>
+              <div class="mw-profile-post-feedback small fw-bold mb-2" style="display:none;"></div>
+              <button type="submit" class="btn btn-danger btn-sm fw-bold px-4">
+                <i class="bi bi-send-fill me-1"></i> Canlı İş Akışında Paylaş
+              </button>
+            </form>
+          </div>
+
+          <!-- Profilden 24 Saatlik Hikaye Yayınla -->
+          <div class="mw-panel-card p-4 shadow-sm">
+            <h5 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-plus-circle-fill text-danger me-1"></i> 24 Saatlik İşletme Hikayesi Yayınla</h5>
+            <form class="mw-profile-story-form row g-2">
+              <div class="col-md-6">
+                <select name="category" class="form-select form-select-sm">
+                  <option value="Günün İhalesi">🔴 Günün İhalesi / Tedarik Çağrısı</option>
+                  <option value="Stok Fırsatı">📦 Seri Sonu / Stok Fırsatı</option>
+                  <option value="Yeni Yatırım">🏭 Yeni Fabrika / Üretim Hattı</option>
+                  <option value="İş Gündemi">📢 Sektörel Duyuru</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <input type="text" name="title" class="form-control form-control-sm" placeholder="Kısa Hikaye Başlığı *" required />
+              </div>
+              <div class="col-12">
+                <textarea name="content" rows="2" class="form-control form-control-sm" placeholder="Hikaye detayı / fırsat açıklaması *" required></textarea>
+              </div>
+              <div class="col-12">
+                <div class="mw-profile-story-feedback small fw-bold mb-2" style="display:none;"></div>
+                <button type="submit" class="btn btn-dark btn-sm fw-bold px-4">
+                  <i class="bi bi-broadcast me-1"></i> Hikayeyi Vitrine Ekle
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.mw-desktop-screen -->
+
+    <!-- MOBİL & TABLET PROFİL VE İŞLETME YÖNETİM MERKEZİ -->
+    <div class="mw-b2b-mobile-screen mw-b2b-scope bg-surface-bg text-on-surface antialiased flex flex-col w-full pb-10" style="display:none;">
+      <!-- Mobil Üst Kurumsal Kimlik Kartı -->
+      <div class="px-margin pt-4 pb-2">
+        <div class="rounded-2xl p-4 text-white shadow-md flex flex-col gap-3" style="background: linear-gradient(135deg, #131b2e 0%, #c0001a 100%);">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <div id="mobProfAvatar" class="w-14 h-14 rounded-2xl bg-white text-cherry-vibrant font-bold text-xl flex items-center justify-center shrink-0 shadow">
+                MW
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/20 text-white font-label-sm text-label-sm w-fit mb-1">
+                  <span class="material-symbols-outlined text-[13px]">verified</span> Doğrulanmış Üye
+                </span>
+                <h1 id="mobProfCompTitle" class="font-headline-md text-headline-md text-white font-bold truncate">MeetWork Üye İşletme</h1>
+                <span id="mobProfUserSubtitle" class="font-body-sm text-body-sm text-white/80 truncate">Kurumsal Üye • İstanbul</span>
+              </div>
+            </div>
+            <button type="button" class="mw-logout-btn px-2.5 py-1.5 rounded-xl bg-black/30 text-white font-label-sm text-label-sm font-bold shrink-0">
+              Çıkış
+            </button>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/15">
+            <a id="mobProfVitrinBtn" href="/isletmeler" class="flex items-center justify-center gap-1.5 py-2 rounded-xl bg-white text-navy-deep font-label-md text-label-md font-bold">
+              <span class="material-symbols-outlined text-[18px] text-cherry-vibrant">storefront</span>
+              <span>İşletme Vitrinim</span>
+            </a>
+            <a href="/qr-kartvizit" class="flex items-center justify-center gap-1.5 py-2 rounded-xl bg-white/15 text-white font-label-md text-label-md font-bold">
+              <span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+              <span>QR Kartvizitim</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ziyaretçi Giriş/Kayıt Bandı (Oturum Yoksa) -->
+      <div id="mobGuestNotice" class="mx-margin my-2 p-3.5 rounded-2xl bg-surface-card border border-cherry-vibrant/30 shadow-sm flex items-center justify-between gap-2" style="display:none;">
+        <div class="flex flex-col">
+          <span class="font-label-md text-label-md text-navy-deep font-bold">Henüz Giriş Yapmadınız</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Üye olun veya kurumsal hesabınızla giriş yapın.</span>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a href="/giris" class="px-3 py-1.5 rounded-xl bg-navy-deep text-white font-label-sm text-label-sm font-bold">Giriş</a>
+          <a href="/giris?kayit=1" class="px-3 py-1.5 rounded-xl bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold">Üye Ol</a>
+        </div>
+      </div>
+
+      <!-- Mobil Hızlı İşlev Izgarası (6 Kısayol) -->
+      <div class="px-margin py-2">
+        <div class="grid grid-cols-3 gap-2.5">
+          <a href="/ihaleler?yeni=1" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[22px]">gavel</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">+ İhale Aç</span>
+          </a>
+          <a href="/talepler" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-trust-emerald text-[22px]">groups</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">Birlikte Alalım</span>
+          </a>
+          <a href="/ilanlar?yeni=1" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-navy-deep text-[22px]">sell</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">+ İlan Ver</span>
+          </a>
+          <a href="/akilli-eslesme" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[22px]">diversity_3</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">Akıllı Eşleşme</span>
+          </a>
+          <a href="/hibe-kredi-eslesme" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-gold-badge text-[22px]">radar</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">Hibe Radarı</span>
+          </a>
+          <a href="/kariyer" class="bg-surface-card p-3 rounded-xl border border-border-light shadow-sm flex flex-col items-center text-center gap-1">
+            <span class="material-symbols-outlined text-navy-deep text-[22px]">badge</span>
+            <span class="font-label-sm text-label-sm text-navy-deep font-bold">İK &amp; PDKS</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobil Profilden Sosyal Paylaşım Yap -->
+      <div class="px-margin py-2">
+        <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light">
+          <h2 class="font-label-lg text-label-lg text-navy-deep font-bold mb-2 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[20px]">campaign</span>
+            <span>İş Ağında Paylaşım Yap</span>
+          </h2>
+          <form class="mw-profile-post-form flex flex-col gap-2.5">
+            <select name="tag" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-label-md text-label-md text-navy-deep">
+              <option value="İş & Sektör Paylaşımı">💬 İş &amp; Sektör Paylaşımı</option>
+              <option value="Tedarik & Alım Talebi">📦 Tedarik &amp; Alım Talebi</option>
+              <option value="Üretim & Kapasite">🏭 Üretim &amp; Kapasite Duyurusu</option>
+              <option value="İhracat & Ortaklık">🌍 İhracat &amp; Ortaklık Çağrısı</option>
+            </select>
+            <textarea name="content" rows="3" class="w-full rounded-xl bg-surface-bg border border-border-light p-3 font-body-sm text-body-sm text-navy-deep" placeholder="Tedarik talebinizi, seri sonu stok fırsatınızı veya iş birliği duyurunuzu yazın..." required></textarea>
+            <div class="mw-profile-post-feedback small fw-bold" style="display:none;"></div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-cherry-vibrant text-white font-label-md text-label-md font-bold shadow-sm">
+              Canlı İş Akışında Paylaş
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobil Profilden Hikaye Yayınla -->
+      <div class="px-margin py-2">
+        <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light">
+          <h2 class="font-label-lg text-label-lg text-navy-deep font-bold mb-2 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-cherry-vibrant text-[20px]">add_circle</span>
+            <span>24 Saatlik Hikaye Yayınla</span>
+          </h2>
+          <form class="mw-profile-story-form flex flex-col gap-2.5">
+            <select name="category" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-label-md text-label-md text-navy-deep">
+              <option value="Günün İhalesi">🔴 Günün İhalesi / Tedarik Çağrısı</option>
+              <option value="Stok Fırsatı">📦 Seri Sonu / Stok Fırsatı</option>
+              <option value="Yeni Yatırım">🏭 Yeni Fabrika / Üretim Hattı</option>
+              <option value="İş Gündemi">📢 Sektörel Duyuru</option>
+            </select>
+            <input type="text" name="title" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" placeholder="Kısa Hikaye Başlığı *" required />
+            <textarea name="content" rows="2" class="w-full rounded-xl bg-surface-bg border border-border-light p-3 font-body-sm text-body-sm text-navy-deep" placeholder="Hikaye detayı / fırsat açıklaması *" required></textarea>
+            <div class="mw-profile-story-feedback small fw-bold" style="display:none;"></div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-navy-deep text-white font-label-md text-label-md font-bold shadow-sm">
+              Hikayeyi Canlı Vitrine Ekle
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobil İşletme & Üyelik Bilgilerim Formu -->
+      <div class="px-margin py-2">
+        <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light">
+          <h2 class="font-label-lg text-label-lg text-navy-deep font-bold mb-3 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-navy-deep text-[20px]">manage_accounts</span>
+            <span>İşletme &amp; Profil Bilgilerim</span>
+          </h2>
+          <form class="mw-profile-update-form flex flex-col gap-2.5">
+            <div>
+              <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Firma / Kurum Ünvanı *</label>
+              <input type="text" name="company_name" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Yetkili Ad Soyad *</label>
+                <input type="text" name="full_name" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">VKN / TCKN *</label>
+                <input type="text" name="vkn" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Ana Sektör *</label>
+                <input type="text" name="sector" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Şehir *</label>
+                <input type="text" name="city" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">E-Posta *</label>
+                <input type="email" name="email" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+              <div>
+                <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Telefon *</label>
+                <input type="text" name="phone" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" required />
+              </div>
+            </div>
+            <div>
+              <label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">5 Hedef Sektörünüz (Virgülle Ayırın)</label>
+              <input type="text" name="target_sectors" class="w-full rounded-xl bg-surface-bg border border-border-light px-3 py-2 font-body-sm text-body-sm text-navy-deep" placeholder="Lojistik, Ambalaj, Gıda, Metal, E-Ticaret" />
+            </div>
+            <div class="mw-profile-save-feedback small fw-bold" style="display:none;"></div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-cherry-vibrant text-white font-label-md text-label-md font-bold shadow-sm">
+              Profil Bilgilerimi Kaydet
+            </button>
+          </form>
+        </div>
+      </div>
+    </div><!-- /.mw-b2b-mobile-screen -->
+  </div><!-- /.mw-has-b2b-mobile -->
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+
+      function getActiveUser() {
+        try {
+          return JSON.parse(localStorage.getItem('mw_user') || 'null');
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function populateProfileUI() {
+        const user = getActiveUser();
+        const deskGuest = document.getElementById('deskGuestNotice');
+        const mobGuest = document.getElementById('mobGuestNotice');
+
+        const active = user || {
+          user_id: 'demo-user',
+          company_id: 'comp-anadolu',
+          company_name: 'Anadolu Endüstriyel Metal A.Ş.',
+          company_slug: 'anadolu-endustriyel-metal',
+          full_name: 'Ahmet Yılmaz',
+          vkn: '2720912021',
+          sector: 'Metal & Makine Sanayi',
+          city: 'İstanbul',
+          email: 'ahmet@anadolumetal.com.tr',
+          phone: '0541 246 54 29',
+          trust_level: 3,
+          target_sectors: 'Otomotiv Yan Sanayi, Lojistik & Filo, İnşaat & Yapı, Savunma Sanayi, Enerji Sistemleri'
+        };
+
+        if (!user) {
+          if (deskGuest) deskGuest.style.display = 'flex';
+          if (mobGuest) mobGuest.style.display = 'flex';
+        } else {
+          if (deskGuest) deskGuest.style.display = 'none';
+          if (mobGuest) mobGuest.style.display = 'none';
+        }
+
+        const initials = (active.company_name || active.full_name || 'MW').slice(0, 2).toUpperCase();
+        const vitrinUrl = active.company_slug ? `/isletmeler?firma=${encodeURIComponent(active.company_slug)}` : '/isletmeler';
+
+        const deskAvatar = document.getElementById('deskProfAvatar');
+        const mobAvatar = document.getElementById('mobProfAvatar');
+        if (deskAvatar) deskAvatar.textContent = initials;
+        if (mobAvatar) mobAvatar.textContent = initials;
+
+        const deskTitle = document.getElementById('deskProfCompTitle');
+        const mobTitle = document.getElementById('mobProfCompTitle');
+        if (deskTitle) deskTitle.textContent = active.company_name || active.full_name;
+        if (mobTitle) mobTitle.textContent = active.company_name || active.full_name;
+
+        const deskSub = document.getElementById('deskProfUserSubtitle');
+        const mobSub = document.getElementById('mobProfUserSubtitle');
+        if (deskSub) deskSub.textContent = `${active.full_name || 'Kurumsal Üye'} • ${active.sector || 'Sanayi'} • ${active.city || 'İstanbul'} • VKN: ${active.vkn || '2720912021'}`;
+        if (mobSub) mobSub.textContent = `${active.full_name || 'Kurumsal Üye'} • ${active.sector || 'Sanayi'}`;
+
+        const deskVitrin = document.getElementById('deskProfVitrinBtn');
+        const mobVitrin = document.getElementById('mobProfVitrinBtn');
+        if (deskVitrin) deskVitrin.setAttribute('href', vitrinUrl);
+        if (mobVitrin) mobVitrin.setAttribute('href', vitrinUrl);
+
+        document.querySelectorAll('.mw-profile-update-form').forEach((form) => {
+          form.elements['company_name'].value = active.company_name || '';
+          form.elements['full_name'].value = active.full_name || '';
+          form.elements['vkn'].value = active.vkn || '2720912021';
+          form.elements['sector'].value = active.sector || '';
+          form.elements['city'].value = active.city || 'İstanbul';
+          form.elements['email'].value = active.email || '';
+          form.elements['phone'].value = active.phone || '';
+          form.elements['target_sectors'].value = Array.isArray(active.target_sectors)
+            ? active.target_sectors.join(', ')
+            : (active.target_sectors || 'Lojistik, Ambalaj, Gıda, Metal, E-Ticaret');
+        });
+      }
+
+      populateProfileUI();
+
+      // Profil & Hedef Sektör Güncelleme (Tüm Modlarda)
+      document.querySelectorAll('.mw-profile-update-form').forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const current = getActiveUser() || {};
+          const updated = {
+            ...current,
+            user_id: current.user_id || 'usr-' + Date.now(),
+            company_id: current.company_id || 'comp-anadolu',
+            company_slug: current.company_slug || 'anadolu-endustriyel-metal',
+            trust_level: current.trust_level || 2,
+            company_name: form.elements['company_name'].value.trim(),
+            full_name: form.elements['full_name'].value.trim(),
+            vkn: form.elements['vkn'].value.trim(),
+            sector: form.elements['sector'].value.trim(),
+            city: form.elements['city'].value.trim(),
+            email: form.elements['email'].value.trim(),
+            phone: form.elements['phone'].value.trim(),
+            target_sectors: form.elements['target_sectors'].value.trim()
+          };
+          localStorage.setItem('mw_user', JSON.stringify(updated));
+          populateProfileUI();
+
+          const sectorsArr = updated.target_sectors.split(',').map((s) => s.trim()).filter(Boolean).slice(0, 5);
+          try {
+            await fetch(`${API_URL}/api/companies/target-sectors`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                company_id: updated.company_id,
+                target_sectors: sectorsArr
+              })
+            });
+          } catch (_) {}
+
+          const fb = form.querySelector('.mw-profile-save-feedback');
+          if (fb) {
+            fb.style.display = 'block';
+            fb.className = 'mw-profile-save-feedback small fw-bold text-success mb-2';
+            fb.textContent = '✓ Kurumsal profiliniz ve 5 hedef sektörünüz tüm modlarda güncellendi!';
+          }
+        });
+      });
+
+      // Profilden Sosyal Paylaşım Gönderme (Tüm Modlarda)
+      document.querySelectorAll('.mw-profile-post-form').forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const user = getActiveUser() || {};
+          const tag = form.elements['tag'].value;
+          const content = form.elements['content'].value.trim();
+          if (!content) return;
+
+          const fb = form.querySelector('.mw-profile-post-feedback');
+          try {
+            const res = await fetch(`${API_URL}/api/posts`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                user_id: user.user_id || 'member',
+                company_id: user.company_id || '',
+                author_name: user.full_name || 'Kurumsal Üye',
+                company_name: user.company_name || 'MeetWork Üye İşletme',
+                company_slug: user.company_slug || '',
+                trust_level: user.trust_level || 2,
+                content: `[${tag}] ${content}`
+              })
+            });
+            const out = await res.json();
+            if (out.success) {
+              form.reset();
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'mw-profile-post-feedback small fw-bold text-success mb-2';
+                fb.innerHTML = '✓ Paylaşımınız canlı iş akışına eklendi! <a href="/" class="text-danger underline ms-1">Akışı Gör →</a>';
+              }
+            }
+          } catch (_) {}
+        });
+      });
+
+      // Profilden 24 Saatlik Hikaye Yayınlama (Tüm Modlarda)
+      document.querySelectorAll('.mw-profile-story-form').forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const user = getActiveUser() || {};
+          const category = form.elements['category'].value;
+          const title = form.elements['title'].value.trim();
+          const content = form.elements['content'].value.trim();
+          if (!title || !content) return;
+
+          const fb = form.querySelector('.mw-profile-story-feedback');
+          try {
+            const res = await fetch(`${API_URL}/api/stories`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                company_id: user.company_id || '',
+                company_name: user.company_name || 'MeetWork Üye İşletme',
+                company_slug: user.company_slug || '',
+                author_name: user.full_name || 'Kurumsal Üye',
+                trust_level: user.trust_level || 2,
+                title,
+                content,
+                category,
+                bg_gradient: 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)'
+              })
+            });
+            const out = await res.json();
+            if (out.success) {
+              form.reset();
+              if (fb) {
+                fb.style.display = 'block';
+                fb.className = 'mw-profile-story-feedback small fw-bold text-success mb-2';
+                fb.innerHTML = '✓ Hikayeniz canlı vitrine eklendi! <a href="/" class="text-danger underline ms-1">Vitrine Git →</a>';
+              }
+            }
+          } catch (_) {}
+        });
+      });
+
+      // Şifre Güncelleme
+      document.querySelectorAll('.mw-password-update-form').forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const user = getActiveUser() || {};
+          const fb = form.querySelector('.mw-password-feedback');
+          try {
+            await fetch(`${API_URL}/api/auth/change-password`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: user.email || 'yonetim@meetwork.com.tr',
+                current_password: form.elements['current_password'].value,
+                new_password: form.elements['new_password'].value
+              })
+            });
+          } catch (_) {}
+          form.reset();
+          if (fb) {
+            fb.style.display = 'block';
+            fb.className = 'mw-password-feedback small fw-bold text-success mb-2';
+            fb.textContent = '✓ Şifreniz güvenli şekilde güncellendi.';
+          }
+        });
+      });
+
+      // Çıkış Yap Butonları
+      document.querySelectorAll('.mw-logout-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          localStorage.removeItem('mw_user');
+          localStorage.removeItem('mw_token');
+          window.location.href = '/giris';
+        });
+      });
+    });
+  </script>
+</BaseLayout>

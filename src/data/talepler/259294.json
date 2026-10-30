@@ -1,0 +1,22 @@
+{
+  "id": "259294",
+  "title": "ABB ACS880 ZINT-571 3AUA0000077333 Interface Board Alım Talebi",
+  "slug": "abb-acs880-zint-571-3aua0000077333-interface-board-alm-talebi-259294",
+  "company": "Gizli Müşteri",
+  "status": "Teklif Aşamasında",
+  "publishDate": "2026-10-31T00:25:26.269340",
+  "endDate": "2026-11-02T10:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "ABB ACS880 ZINT-571 3AUA0000077333 Interface Board",
+      "quantity": "2 Adet"
+    },
+    {
+      "name": "3AUA0000114288 CBH 215 C H 414 5R0, HIGH QUALITIY RESISTOR",
+      "quantity": "4 Adet"
+    }
+  ]
+}

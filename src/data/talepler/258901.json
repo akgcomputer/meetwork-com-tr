@@ -1,0 +1,22 @@
+{
+  "id": "258901",
+  "title": "BORU GALVANİZLİ 1 1/2\" Alım Talebi",
+  "slug": "boru-galvanizli-1-12-alm-talebi-258901",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-10-31T00:25:26.271844",
+  "endDate": "2026-10-29T11:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "BORU GALVANİZLİ 1 1/2\"",
+      "quantity": "30 Metre"
+    },
+    {
+      "name": "BORU GALVANİZLİ 1/2\"",
+      "quantity": "48 Metre"
+    }
+  ]
+}

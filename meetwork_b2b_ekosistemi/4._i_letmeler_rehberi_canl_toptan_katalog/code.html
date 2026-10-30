@@ -1,0 +1,567 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "border-light": "#e2e8f0", "secondary-container": "#e21e49", "on-secondary-container": "#fffbff", "tertiary-fixed-dim": "#4edea3", "surface-variant": "#d3e4fe", "on-error-container": "#93000a", "surface-container-lowest": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#920028", "surface-container-high": "#dce9ff", "primary-fixed": "#dae2fd", "cherry-hover": "#be123c", "primary-container": "#131b2e", "border-subtle": "#f1f5f9", "inverse-on-surface": "#eaf1ff", "surface-container-highest": "#d3e4fe", "error": "#ba1a1a", "on-primary-fixed-variant": "#3f465c", "on-surface-variant": "#45464d", "outline": "#76777d", "trust-emerald": "#10b981", "on-secondary": "#ffffff", "gold-badge": "#f59e0b", "on-surface": "#0b1c30", "navy-deep": "#0f172a", "cherry-vibrant": "#e11d48", "on-tertiary-container": "#009668", "primary": "#000000", "on-tertiary-fixed": "#002113", "outline-variant": "#c6c6cd", "surface-card": "#ffffff", "surface-bg": "#f8fafc", "inverse-surface": "#213145", "surface": "#f8f9ff", "secondary": "#ba0035", "on-error": "#ffffff", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "tertiary-container": "#002113", "surface-container": "#e5eeff", "secondary-fixed": "#ffdada", "on-secondary-fixed": "#40000c", "inverse-primary": "#bec6e0", "surface-tint": "#565e74", "surface-dim": "#cbdbf5", "on-background": "#0b1c30", "on-primary": "#ffffff", "surface-container-low": "#eff4ff", "tertiary": "#000000", "on-primary-fixed": "#131b2e", "secondary-fixed-dim": "#ffb3b6", "background": "#f8f9ff", "tertiary-fixed": "#6ffbbe", "on-primary-container": "#7c839b", "on-tertiary-fixed-variant": "#005236", "primary-fixed-dim": "#bec6e0" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-desktop": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-2xl": "3rem", "margin": "1rem", "margin-desktop": "2rem", "gutter": "1rem", "margin-tablet": "1.5rem" }, "fontFamily": { "body-sm": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-lg": ["Plus Jakarta Sans"], "metric-number": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "display-lg": ["48px", { "lineHeight": "56px", "fontWeight": "800" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "700" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "metric-number": ["28px", { "lineHeight": "32px", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface-bg text-on-surface antialiased flex flex-col min-h-screen selection:bg-cherry-vibrant selection:text-on-secondary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-card/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm shrink-0"><div class="flex items-center gap-1.5"><span class="font-extrabold text-xl tracking-tight font-sans select-none"><span class="text-[#e11d48]">Meet</span><span class="text-slate-900 dark:text-white">Work</span></span><span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-50 text-[#e11d48] border border-rose-200">B2B AĞI</span></div></div><div class="hidden sm:flex items-center bg-border-subtle p-space-xs rounded-full shadow-inner"><button class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-navy-deep text-on-secondary shadow-sm min-h-[44px]" type="button"><span class="material-symbols-outlined text-[16px]">smartphone</span><span class="font-label-sm text-label-sm">Telefon</span></button><button class="flex items-center gap-space-xs px-space-sm py-1 rounded-full text-on-surface-variant hover:text-navy-deep min-h-[44px]" type="button"><span class="material-symbols-outlined text-[16px]">tablet_mac</span><span class="font-label-sm text-label-sm">Tablet</span></button><button class="flex items-center gap-space-xs px-space-sm py-1 rounded-full text-on-surface-variant hover:text-navy-deep min-h-[44px]" type="button"><span class="material-symbols-outlined text-[16px]">desktop_windows</span><span class="font-label-sm text-label-sm">Geniş Ekran</span></button></div><div class="flex items-center gap-space-xs shrink-0"><button class="relative w-11 h-11 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors" title="Ekosistem Geçişi: StokPratik &amp; DepodanDirekt" type="button"><span class="material-symbols-outlined text-[20px]">bolt</span></button><button class="relative w-11 h-11 flex items-center justify-center rounded-xl bg-border-subtle text-navy-deep hover:bg-surface-variant transition-colors" title="Bildirimler" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-cherry-vibrant ring-2 ring-surface-card animate-pulse"></span></button><button class="w-11 h-11 flex items-center justify-center pl-1" type="button"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-border-light hover:ring-navy-deep transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7IDvA1y97ATYrYy5gQJ-GUry3auxy4PsJqmzd-f06q8XVPD9ZCMDuNf3obUZEP1_vcSYLna1l7mt5qdAASBEXQygyuENqgmHbZYtTQ6BndDg6yooPWHDKzYeDBEV5DaRTgLjTgT3ENvaelYagek-FWlz2JTnQWYIwyLaF0R7qKjeHM2nbm5bg6r8Z75aNy1FOh4p4ct9ldX3Zw-y_BO0JmF9-a8h1yHIp_NVHaw"></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface-bg flex-1"><div class="flex flex-col w-full pb-8">
+<!-- Dynamic Notification / Floating Toast -->
+<div class="fixed top-20 right-4 z-50 transform translate-y-[-120%] opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-sm bg-navy-deep text-on-primary px-space-md py-space-sm rounded-xl shadow-xl max-w-[90vw]" id="toast-notification">
+<span class="material-symbols-outlined text-trust-emerald text-[20px]">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium" id="toast-message">İşlem başarıyla kaydedildi</span>
+</div>
+<!-- Header Banner & Stats Capsule -->
+<div class="px-margin pt-space-md pb-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-cherry-vibrant animate-pulse"></span>
+          Canlı B2B Vitrin Ağı
+        </span>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-navy-deep mt-1 tracking-tight">İşletmeler Rehberi</h1>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-card px-3 py-1.5 rounded-xl shadow-sm text-navy-deep">
+<span class="material-symbols-outlined text-[18px] text-trust-emerald">verified_user</span>
+<span class="font-label-md text-label-md font-bold">1.480+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Firma</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Doğrulanmış üreticiler, fabrikalar ve toptan B2B indirimli ürün katalogları.</p>
+</div>
+<!-- Search & Smart Filter Module -->
+<div class="px-margin mt-space-sm">
+<div class="bg-surface-card p-space-md rounded-2xl shadow-sm flex flex-col gap-space-md">
+<!-- Search Input -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-bg text-navy-deep placeholder:text-outline font-body-md text-body-md pl-11 pr-10 py-3 rounded-xl outline-none focus:bg-surface-card transition-all" id="company-search-input" placeholder="Firma, VKN, ürün veya NACE kodu ara..." type="text">
+<button class="absolute right-3 text-outline hover:text-navy-deep transition-colors" title="Barkod &amp; Karekod Tara" type="button">
+<span class="material-symbols-outlined text-[20px]">filter_center_focus</span>
+</button>
+</div>
+<!-- Sector Pills (Horizontal Scroll) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Sektörler</span>
+<span class="font-body-sm text-body-sm text-cherry-vibrant font-medium cursor-pointer" onclick="resetFilters()">Sıfırla</span>
+</div>
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5" id="sector-pill-container">
+<button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-navy-deep text-on-primary shadow-sm" data-sector="all" type="button">Tümü</button>
+<button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="ambalaj" type="button">Tekstil &amp; Ambalaj</button>
+<button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="kimya" type="button">Kimya &amp; Plastik</button>
+<button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="metal" type="button">Metal &amp; Makine</button>
+<button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="gida" type="button">Gıda &amp; Tarım</button>
+</div>
+</div>
+<!-- City Selector & Verified Toggle Bar -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+<!-- City Select Dropdown Replacement -->
+<div class="relative">
+<select class="w-full appearance-none bg-surface-bg text-navy-deep font-body-sm text-body-sm px-3.5 py-2.5 rounded-xl outline-none font-medium pr-8 cursor-pointer" id="city-filter">
+<option value="">Tüm Şehirler (Türkiye)</option>
+<option value="bursa">Bursa (Sanayi Bölgesi)</option>
+<option value="istanbul">İstanbul</option>
+<option value="izmir">İzmir</option>
+<option value="gaziantep">Gaziantep</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Verified Only Toggle -->
+<label class="flex items-center justify-between bg-surface-bg px-3.5 py-2 rounded-xl cursor-pointer select-none">
+<span class="flex items-center gap-1.5 font-label-md text-label-md text-navy-deep">
+<span class="material-symbols-outlined text-[18px] text-trust-emerald" style="font-variation-settings: 'FILL' 1;">verified</span>
+            Yalnızca Doğrulanmış Firmalar
+          </span>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" id="verified-toggle" type="checkbox">
+<div class="w-9 h-5 bg-border-light peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-card after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-card after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-navy-deep"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Listing Meta Bar -->
+<div class="px-margin mt-space-md flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="font-bold text-navy-deep" id="visible-count">2</span> fabrika &amp; toptancı listelendi
+    </div>
+<div class="flex items-center gap-1 text-navy-deep font-medium cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">swap_vert</span>
+<span class="">B2B Hacmine Göre</span>
+</div>
+</div>
+<!-- Companies Container -->
+<div class="px-margin mt-space-sm flex flex-col gap-space-md">
+<!-- COMPANY CARD 1: ÖZTÜRK AMBALAJ -->
+<div class="company-card bg-surface-card rounded-2xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md" data-city="bursa" data-sector="ambalaj">
+<!-- Card Header Accent -->
+<div class="h-2 bg-gradient-to-r from-navy-deep via-cherry-vibrant to-gold-badge"></div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Brand Info Header -->
+<div class="flex items-start gap-space-md">
+<div class="relative shrink-0">
+<img alt="Öztürk Endüstriyel Ambalaj" class="w-16 h-16 rounded-xl object-cover shadow-inner" data-alt="Modern corrugated box and industrial packaging factory production line in Bursa, showing neat stacked kraft paper boxes, warm warehouse lighting with high-tech automated machinery in the background, sharp focus, industrial Turkish manufacturing excellence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbkutLpdd0vdqAP4675p8TtzmlhMtloOnxvIbuUW2INNPunofew1FbZ0QPx21F3_BFeuSSbCu-iWpn8WS5mjifx8bT8ST1xE1I-T6f7fNyMA6nux4iNzLe0LMHjk4ausZeURzQfQETwWD2H_O5-u7e0Kq0YWGvJy0EpKRR8t3hajZjjKev-LHeahHzw4d91tmLNgjvHUYVtFbVF-vD7sFbjXhg51PH2DPQrTv1tw">
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-trust-emerald text-on-secondary flex items-center justify-center shadow" title="Doğrulanmış Tedarikçi">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-navy-deep truncate font-bold">Öztürk Endüstriyel Ambalaj Ltd.</h2>
+<button class="text-outline hover:text-cherry-vibrant p-1 transition-colors" onclick="toggleFavorite(this)" title="Favorilere Ekle" type="button">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-cherry-vibrant">location_on</span>
+<span class="truncate">Bursa / Nilüfer Organize Sanayi</span>
+<span class="text-outline">•</span>
+<span class="text-trust-emerald font-medium">VKN: 6920381920</span>
+</div>
+<!-- Trust & Status Badges -->
+<div class="flex flex-wrap items-center gap-1.5 mt-2">
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-lg text-navy-deep font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-gold-badge text-[14px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                🏅 Doğrulanmış Üretici
+              </span>
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-navy-deep px-2 py-0.5 rounded-lg font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-cherry-vibrant text-[14px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+                💎 MeetWork B2B Üyesi
+              </span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Oluklu mukavva koli, palet streci ve köşebent toptan üreticisi. Aylık 850 ton işleme kapasitesiyle doğrudan ihracatçı standartlarında sevkiyat.
+        </p>
+<!-- Company Quick Key Metrics -->
+<div class="grid grid-cols-3 gap-2 bg-surface-bg p-space-sm rounded-xl">
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min. Sipariş</span>
+<span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">5.000 ₺</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ort. Termin</span>
+<span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">3 İş Günü</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tedarik Skoru</span>
+<span class="font-label-md text-label-md text-trust-emerald font-bold mt-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">star</span>
+              9.8/10
+            </span>
+</div>
+</div>
+<!-- Catalog Expandable Toggle Button (HERO ACTION) -->
+<button class="w-full flex items-center justify-between px-space-md py-3 rounded-xl bg-navy-deep text-on-primary hover:bg-primary-container transition-all shadow-sm active:scale-[0.99] group" id="catalog-toggle-btn-1" onclick="toggleCatalog('catalog-container-1', 'catalog-toggle-btn-1')" type="button">
+<div class="flex items-center gap-2">
+<span class="text-xl">🛍️</span>
+<span class="font-label-lg text-label-lg font-bold">Canlı Toptan Ürün Kataloğu</span>
+<span class="bg-cherry-vibrant text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">38 Ürün</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-primary-fixed font-medium group-hover:text-on-primary">Fiyatları Gör</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 transform" id="catalog-icon-1">expand_more</span>
+</div>
+</button>
+<!-- Dynamic Product Catalog Showcase (Collapsible) -->
+<div class="hidden flex-col gap-space-md pt-space-xs transition-all" id="catalog-container-1">
+<div class="flex items-center justify-between border-b border-border-light pb-2">
+<span class="font-label-md text-label-md font-bold text-navy-deep flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-cherry-vibrant">local_offer</span>
+              Anlık Toptan Fiyat Listesi (KDV Hariç)
+            </span>
+<span class="font-body-sm text-body-sm text-trust-emerald font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-trust-emerald"></span>
+              Stoktan Hızlı Teslim
+            </span>
+</div>
+<!-- Product Item 1 -->
+<div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-start gap-space-sm">
+<div class="relative shrink-0">
+<img alt="A-Kalite Çift Dalga İhracat Kolisi" class="w-20 h-20 rounded-lg object-cover" data-alt="Heavy-duty double-wall brown corrugated cardboard export boxes stacked high on an industrial European pine pallet in clean distribution warehouse, cinematic commercial photo with soft natural lighting and warm cardboard tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7-GsHwlYIofM8zDo7FOLTzfpbx5Tx86u-P2YiLaoU8jjMMfdMYqlQ2ZiS2rjNi4bfqqfKrJFihxjiSyO9qmASicBsJYwnWy9oRo3EnQMWl7KSTzdXW28qISPtRos_eXsI7pJoQiyOmZA21uNzNIAepF6QdXwm9t4HOTkfvu0Mrk9qBred8fIlLc8MeGSO90Wrj6jfZUpAK1K34tCK_inplNoh3pmIU9oPD6KWXg">
+<span class="absolute top-1 left-1 bg-cherry-vibrant text-on-secondary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                  -%17
+                </span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                    A-Kalite Çift Dalga İhracat Kolisi (60x40x40 cm)
+                  </h3>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">500 Adet</strong></span>
+<span class="text-outline">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dopel (KSSSK)</span>
+</div>
+<!-- Dual Price Showcase -->
+<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mt-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">Piyasa Toptan: 38,50 ₺</span>
+<div class="flex items-baseline gap-1">
+<span class="font-metric-number text-metric-number text-cherry-vibrant font-extrabold">31,80 ₺</span>
+<span class="font-label-sm text-label-sm text-navy-deep font-semibold">/ Adet</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded font-label-sm text-label-sm font-bold">
+                    MeetWork Üye İndirimi
+                  </span>
+</div>
+</div>
+</div>
+<!-- Product Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all" onclick="showToast('Teklif talebiniz Öztürk Ambalaj satış ekibine iletildi.')" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+                Hızlı Teklif İste
+              </button>
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-card text-navy-deep font-label-md text-label-md font-bold hover:bg-surface-variant shadow-sm active:scale-95 transition-all" onclick="showToast('500 Adet İhracat Kolisi sipariş taslağınıza eklendi.')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                Sepete / Talebe Ekle
+              </button>
+</div>
+</div>
+<!-- Product Item 2 -->
+<div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative shrink-0">
+<img alt="Otomatik Sarım Makine Streci" class="w-20 h-20 rounded-lg object-cover" data-alt="Heavy industrial 23 micron transparent machine stretch wrap rolls on clean concrete floor in modern plastics factory, bright clean packaging warehouse, high clarity stretch film roll, professional B2B photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGTB9dgTyrq4h_gcPp33f_IjKhdh_iII6KPGL4HFZFrmugpb4fZdATk20MQcmFqJuXN_zxIDc7tRd-Qt3ptCA3TtRFrnEcF1om86DGEQKS42w2XKKQudkLBwGfZkOX51Oy6ek2rTBJWYK1JEWzKEmpzaJHcI8cjMWeuQKW6QTNSFzjAue2nfi3DuwAU4M5akNOA20iGIxAUQ4lPfDfnJs-Ovyny1XMixjiuHHQ9Q">
+<span class="absolute top-1 left-1 bg-trust-emerald text-on-secondary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                  Toptan
+                </span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                  Otomatik Sarım Makine Streci 23 Mikron 16 kg
+                </h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">10 Rulo</strong></span>
+<span class="text-outline">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">%300 Esneme Payı</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-metric-number text-metric-number text-navy-deep font-extrabold">1.150 ₺</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">/ Rulo (MeetWork Fiyatı)</span>
+</div>
+</div>
+</div>
+<!-- Product Action Buttons -->
+<div class="flex items-center gap-space-sm pt-2">
+<button class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-navy-deep text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container shadow-sm active:scale-95 transition-all" onclick="showToast('Ücretsiz numune talebi oluşturuldu. Kargo adresi teyidi için aranacaksınız.')" type="button">
+<span class="material-symbols-outlined text-[18px]">science</span>
+                🔨 Numune Talep Et
+              </button>
+<button class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-card text-navy-deep hover:bg-surface-variant shadow-sm transition-colors shrink-0" onclick="showToast('Toptan palet alım fiyat listesi PDF olarak indiriliyor.')" title="Şartname &amp; TDS İndir" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+<!-- Catalog Footer Action -->
+<div class="text-center pt-1">
+<button class="font-label-sm text-label-sm text-navy-deep font-bold hover:text-cherry-vibrant inline-flex items-center gap-1" type="button">
+              Kalan 36 Ürünü &amp; Teknik Şartnameleri İncele
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Direct Connect Buttons -->
+<div class="flex items-center gap-space-sm pt-1 border-t border-border-subtle">
+<button class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors" onclick="showToast('Bursa fabrikası ile B2B doğrudan mesajlaşma odası açılıyor...')" type="button">
+<span class="material-symbols-outlined text-[18px] text-cherry-vibrant">chat</span>
+            Fabrikayla Görüş
+          </button>
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors shrink-0" onclick="showToast('Öztürk Ambalaj VKN Doğrulama Raporu ve Kapasite Raporu açılıyor.')" type="button">
+<span class="material-symbols-outlined text-[18px] text-trust-emerald">verified</span>
+            Sicil &amp; Rapor
+          </button>
+</div>
+</div>
+</div>
+<!-- COMPANY CARD 2: DOĞA KİMYA & POLİMER -->
+<div class="company-card bg-surface-card rounded-2xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md" data-city="istanbul" data-sector="kimya">
+<!-- Card Header Accent -->
+<div class="h-2 bg-gradient-to-r from-trust-emerald via-navy-deep to-surface-variant"></div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Brand Info Header -->
+<div class="flex items-start gap-space-md">
+<div class="relative shrink-0">
+<img alt="Doğa Kimya &amp; Polimer A.Ş." class="w-16 h-16 rounded-xl object-cover shadow-inner" data-alt="Modern polymer chemical processing plant with giant shiny stainless steel silos, clean laboratory testing of plastic raw material granules and polyethylene pellets, dramatic cool lighting, high quality industrial B2B chemical facility" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOysvSzawxPA8Qpz1OXfyWzcX4JKrN-xf4gbqb2B9Oew9tElnedA0GTeHVhG7xLE1KK-pbdoFxBjjimjPX6xzOHatmNjqmZekJCs8HqSYF15qTzpf7Q5XbftdWczquPdLy8xaT5gq2XBYvKsZF7QBDK4IRzDdRebs3a8jeOrpY0lE2D3ooUTuf5CYGxxbLcM7SEFMabJCG_i0ZT6ZWWd50IBmOtefl5xSYhOtDFA">
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-trust-emerald text-on-secondary flex items-center justify-center shadow" title="Doğrulanmış Kimya İthalatçısı">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-navy-deep truncate font-bold">Doğa Kimya &amp; Polimer A.Ş.</h2>
+<button class="text-outline hover:text-cherry-vibrant p-1 transition-colors" onclick="toggleFavorite(this)" title="Favorilere Ekle" type="button">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-cherry-vibrant">location_on</span>
+<span class="truncate">İstanbul / Tuzla Kimyacılar OSB</span>
+<span class="text-outline">•</span>
+<span class="text-trust-emerald font-medium">VKN: 3109405811</span>
+</div>
+<!-- Trust Badges -->
+<div class="flex flex-wrap items-center gap-1.5 mt-2">
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-lg text-navy-deep font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-trust-emerald text-[14px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                🏅 Akredite Distribütör
+              </span>
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-navy-deep px-2 py-0.5 rounded-lg font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-cherry-vibrant text-[14px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+                💎 MeetWork Kurumsal
+              </span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Plastik Hammadde &amp; Granül Toptan Satışı. Enjeksiyon ve ekstrüzyon için orijinal &amp; geri dönüştürülmüş Polipropilen (PP), HDPE ve LDPE granül tedariki.
+        </p>
+<!-- Company Metrics -->
+<div class="grid grid-cols-3 gap-2 bg-surface-bg p-space-sm rounded-xl">
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min. Sipariş</span>
+<span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">1 Ton</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stok Hacmi</span>
+<span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">2.400 Ton</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tedarik Skoru</span>
+<span class="font-label-md text-label-md text-trust-emerald font-bold mt-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">star</span>
+              9.9/10
+            </span>
+</div>
+</div>
+<!-- Catalog Expandable Toggle Button (HERO ACTION) -->
+<button class="w-full flex items-center justify-between px-space-md py-3 rounded-xl bg-navy-deep text-on-primary hover:bg-primary-container transition-all shadow-sm active:scale-[0.99] group" id="catalog-toggle-btn-2" onclick="toggleCatalog('catalog-container-2', 'catalog-toggle-btn-2')" type="button">
+<div class="flex items-center gap-2">
+<span class="text-xl">🛍️</span>
+<span class="font-label-lg text-label-lg font-bold">Canlı Toptan Hammadde Kataloğu</span>
+<span class="bg-trust-emerald text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">24 Kalem</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-primary-fixed font-medium group-hover:text-on-primary">Fiyatları Gör</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 transform" id="catalog-icon-2">expand_more</span>
+</div>
+</button>
+<!-- Dynamic Product Catalog Showcase 2 (Collapsible) -->
+<div class="hidden flex-col gap-space-md pt-space-xs transition-all" id="catalog-container-2">
+<div class="flex items-center justify-between border-b border-border-light pb-2">
+<span class="font-label-md text-label-md font-bold text-navy-deep flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-cherry-vibrant">candlestick_chart</span>
+              Spot B2B Hammadde Borsa Fiyatları (USD / Ton)
+            </span>
+<span class="font-body-sm text-body-sm text-cherry-vibrant font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-cherry-vibrant animate-ping"></span>
+              Güncel Spot
+            </span>
+</div>
+<!-- Product Item 2.1 -->
+<div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="relative shrink-0">
+<img alt="PP Homopolimer Granül" class="w-20 h-20 rounded-lg object-cover" data-alt="Macro close up shot of virgin white translucent polypropylene polymer granules spilling from factory sample bag, high quality industrial plastics testing laboratory setup, crisp studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiVVSLMg94NTKKEz0znXW6ltznCr_JFbhXmicDKzPBbwOH3WcvFSVHX5hK-2bazAJqdHV0DCpKPM7RWIY0qr786cYNh4IDmQQ5y--NKLxoBMENrzYpX03_IUHL4GbzVHMxJXsW9Ak6fEtuxRyrJkRPzITJg9fO1elfbWBtptsVITVWIZT3N6ca3NMkQTblEc0ONZ6NzpWGtOk_7RAA2y7xLTObLoSq48ZLrE0Y5A">
+<span class="absolute top-1 left-1 bg-navy-deep text-on-primary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                  MFI 25
+                </span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                  PP Homopolimer Enjeksiyonluk Granül (Orijinal)
+                </h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">1 Palet (1.250 kg)</strong></span>
+<span class="text-outline">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Menşei: Suudi Arabistan</span>
+</div>
+<!-- Price -->
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-metric-number text-metric-number text-navy-deep font-extrabold">$1.090</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">/ Ton + KDV (Liman Teslim)</span>
+</div>
+</div>
+</div>
+<!-- Product Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all" onclick="showToast('Doğa Kimya satış birimine spot tonaj teklif talebiniz gönderildi.')" type="button">
+<span class="material-symbols-outlined text-[18px]">request_quote</span>
+                Tonaj Teklifi İste
+              </button>
+<button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-card text-navy-deep font-label-md text-label-md font-bold hover:bg-surface-variant shadow-sm active:scale-95 transition-all" onclick="showToast('5 kg test numunesi talebiniz oluşturuldu.')" type="button">
+<span class="material-symbols-outlined text-[18px]">science</span>
+                Test Numunesi İste
+              </button>
+</div>
+</div>
+</div>
+<!-- Direct Connect Buttons -->
+<div class="flex items-center gap-space-sm pt-1 border-t border-border-subtle">
+<button class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors" onclick="showToast('Doğa Kimya genel müdürlüğü ile canlı bağlantı kuruluyor...')" type="button">
+<span class="material-symbols-outlined text-[18px] text-cherry-vibrant">chat</span>
+            Distribütörle İletişim
+          </button>
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors shrink-0" onclick="showToast('Doğa Kimya Reach, RoHS ve ISO 9001 sertifikaları görüntüleniyor.')" type="button">
+<span class="material-symbols-outlined text-[18px] text-trust-emerald">verified</span>
+            Sertifikalar (RoHS)
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Delight B2B Banner -->
+<div class="px-margin mt-space-lg">
+<div class="bg-gradient-to-br from-navy-deep to-primary-container text-on-primary p-space-lg rounded-2xl shadow-lg relative overflow-hidden flex flex-col gap-space-sm">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-cherry-vibrant/10 blur-xl pointer-events-none"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gold-badge text-[24px]">storefront</span>
+<span class="font-label-lg text-label-lg font-bold">Kendi Toptan Kataloğunuzu Ekleyin</span>
+</div>
+<p class="font-body-sm text-body-sm text-inverse-on-surface">
+        Türkiye genelindeki 1.480+ kurumsal satın almacıya ve fabrikaya anında ulaşın. MeetWork komisyonsuz doğrudan B2B ticaret altyapısı sunar.
+      </p>
+<div class="pt-2">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all" onclick="showToast('Üretici vitrin başvuru formuna yönlendiriliyorsunuz...')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+          Fabrikanızı / Kataloğunuzu Ekleyin
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Toast Helper
+  function showToast(message) {
+    const toast = document.getElementById('toast-notification');
+    const toastText = document.getElementById('toast-message');
+    if (!toast || !toastText) return;
+    
+    toastText.textContent = message;
+    toast.classList.remove('translate-y-[-120%]', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-[-120%]', 'opacity-0');
+    }, 3200);
+  }
+
+  // Toggle Favorite State
+  function toggleFavorite(btn) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon.textContent === 'bookmark_border') {
+      icon.textContent = 'bookmark';
+      icon.classList.add('text-cherry-vibrant');
+      icon.style.fontVariationSettings = "'FILL' 1";
+      showToast('Firma takip listenize ve B2B radara eklendi.');
+    } else {
+      icon.textContent = 'bookmark_border';
+      icon.classList.remove('text-cherry-vibrant');
+      icon.style.fontVariationSettings = "'FILL' 0";
+      showToast('Firma takip listenizden çıkarıldı.');
+    }
+  }
+
+  // Toggle Catalog Visibility
+  function toggleCatalog(containerId, buttonId) {
+    const container = document.getElementById(containerId);
+    const iconId = containerId === 'catalog-container-1' ? 'catalog-icon-1' : 'catalog-icon-2';
+    const icon = document.getElementById(iconId);
+
+    if (!container) return;
+
+    if (container.classList.contains('hidden')) {
+      container.classList.remove('hidden');
+      container.classList.add('flex');
+      if (icon) icon.style.transform = 'rotate(180deg)';
+      showToast('Canlı toptan katalog yüklendi.');
+    } else {
+      container.classList.add('hidden');
+      container.classList.remove('flex');
+      if (icon) icon.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  // Client-side Filter Simulator
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('company-search-input');
+    const sectorPills = document.querySelectorAll('.sector-pill');
+    const citySelect = document.getElementById('city-filter');
+    const verifiedToggle = document.getElementById('verified-toggle');
+    const cards = document.querySelectorAll('.company-card');
+    const visibleCount = document.getElementById('visible-count');
+
+    let activeSector = 'all';
+
+    function filterCompanies() {
+      const query = (searchInput.value || '').toLowerCase().trim();
+      const city = (citySelect.value || '').toLowerCase();
+      let matchCount = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const cardSector = card.getAttribute('data-sector') || '';
+        const cardCity = card.getAttribute('data-city') || '';
+
+        const matchesQuery = !query || text.includes(query);
+        const matchesSector = (activeSector === 'all') || (cardSector === activeSector);
+        const matchesCity = !city || cardCity === city;
+
+        if (matchesQuery && matchesSector && matchesCity) {
+          card.classList.remove('hidden');
+          matchCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount) {
+        visibleCount.textContent = matchCount;
+      }
+    }
+
+    sectorPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        sectorPills.forEach(p => {
+          p.classList.remove('bg-navy-deep', 'text-on-primary');
+          p.classList.add('bg-border-subtle', 'text-navy-deep');
+        });
+        pill.classList.remove('bg-border-subtle', 'text-navy-deep');
+        pill.classList.add('bg-navy-deep', 'text-on-primary');
+
+        activeSector = pill.getAttribute('data-sector');
+        filterCompanies();
+      });
+    });
+
+    if (searchInput) searchInput.addEventListener('input', filterCompanies);
+    if (citySelect) citySelect.addEventListener('change', filterCompanies);
+    if (verifiedToggle) {
+      verifiedToggle.addEventListener('change', (e) => {
+        showToast(e.target.checked ? 'Doğrulanmış firmalar filtrelendi.' : 'Tüm tedarikçi havuzu gösteriliyor.');
+      });
+    }
+
+    window.resetFilters = function() {
+      if (searchInput) searchInput.value = '';
+      if (citySelect) citySelect.value = '';
+      activeSector = 'all';
+      sectorPills.forEach((p, idx) => {
+        if (idx === 0) {
+          p.classList.remove('bg-border-subtle', 'text-navy-deep');
+          p.classList.add('bg-navy-deep', 'text-on-primary');
+        } else {
+          p.classList.remove('bg-navy-deep', 'text-on-primary');
+          p.classList.add('bg-border-subtle', 'text-navy-deep');
+        }
+      });
+      filterCompanies();
+      showToast('Filtreler sıfırlandı.');
+    };
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-card/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-navy-deep font-bold [&amp;_span.indicator]:scale-100"><div class="flex items-center justify-around h-20 px-space-xs max-w-md mx-auto relative"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-navy-deep transition-all group" data-path="akis" href="#"><span class="material-symbols-outlined text-[24px]">home</span><span class="font-label-sm text-label-sm tracking-tight">Akış</span><span class="indicator w-1.5 h-1.5 rounded-full bg-navy-deep scale-0 transition-transform duration-200"></span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-navy-deep transition-all group" data-path="eslesme" href="#"><span class="material-symbols-outlined text-[24px]">handshake</span><span class="font-label-sm text-label-sm tracking-tight">Eşleşme</span><span class="indicator w-1.5 h-1.5 rounded-full bg-navy-deep scale-0 transition-transform duration-200"></span></a><div class="flex flex-col items-center justify-center -mt-6"><a class="w-14 h-14 rounded-full bg-cherry-vibrant hover:bg-cherry-hover text-on-secondary flex flex-col items-center justify-center shadow-lg shadow-cherry-vibrant/30 transition-transform active:scale-95" data-path="qr-kartvizit" href="#"><span class="material-symbols-outlined text-[28px]">qr_code_2</span></a><span class="font-label-sm text-label-sm text-cherry-vibrant font-bold mt-1 tracking-tight">QR Kart</span></div><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-all group text-navy-deep font-bold [&amp;_span.indicator]:scale-100" data-path="ticaret" href="#"><span class="material-symbols-outlined text-[24px]">gavel</span><span class="font-label-sm text-label-sm tracking-tight">Ticaret</span><span class="indicator w-1.5 h-1.5 rounded-full bg-navy-deep scale-0 transition-transform duration-200"></span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-navy-deep transition-all group" data-path="hibe-ve-menu" href="#"><span class="material-symbols-outlined text-[24px]">radar</span><span class="font-label-sm text-label-sm tracking-tight">Hibe &amp; Menü</span><span class="indicator w-1.5 h-1.5 rounded-full bg-navy-deep scale-0 transition-transform duration-200"></span></a></div></nav>
+
+</body></html>

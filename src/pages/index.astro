@@ -24,6 +24,8 @@ const recentTalepler = talepler.slice(0, 5);
   title="MeetWork | İş Ağı, Sosyal Medya, Akıllı Eşleşme, İlan Pazarı & E-İhale Ekosistemi"
   description="Türkiye'nin yeni nesil B2B sosyal iş ağı ve ticaret platformu. İş dünyası sosyal akışı, Akıllı Eşleşme, E-İhale, Emlak/Vasıta/Sanayi ilan pazarı, StokPratik ERP ve DepodanDirekt tek çatı altında."
 >
+  <div class="mw-has-b2b-mobile">
+  <div class="mw-desktop-screen">
   <!-- ANA 3 SÜTUNLU SOSYAL İŞ AĞI MİMARİSİ: Sol (Profil & Networking) + Orta (Yuvarlak Hikayeler, 5'li Gündem, Post Kutusu & Sosyal Akış) + Sağ (Akıllı Eşleşme & İhale Radarı) -->
   <div class="row g-4 mb-5">
 
@@ -427,97 +429,6 @@ const recentTalepler = talepler.slice(0, 5);
     </div>
   </section>
 
-  <!-- HİKAYE GÖRÜNTÜLEYİCİ (STORY VIEWER) MODALI -->
-  <div class="modal fade" id="mwStoryViewerModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
-      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
-        <div id="mwStoryModalBody" class="p-4 text-white d-flex flex-column justify-content-between" style="min-height: 460px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
-          <!-- Üst Bar -->
-          <div>
-            <div class="progress mb-3" style="height: 3px; background: rgba(255,255,255,0.25);">
-              <div class="progress-bar bg-white" style="width: 100%;"></div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center gap-2">
-                <div id="mwStoryViewAvatar" class="rounded-circle bg-white text-danger fw-black d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: 900;">
-                  MW
-                </div>
-                <div>
-                  <div class="fw-bold small text-white" id="mwStoryViewCompany">İşletme</div>
-                  <small class="text-white-50" style="font-size: 0.72rem;" id="mwStoryViewCategory">İş Gündemi</small>
-                </div>
-              </div>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
-            </div>
-          </div>
-
-          <!-- Orta Hikaye İçeriği -->
-          <div class="my-4 py-3">
-            <span class="badge bg-light text-dark mb-2" id="mwStoryViewBadge">Gold Onaylı İşletme</span>
-            <h4 class="fw-bold mb-3 text-white" id="mwStoryViewTitle">Hikaye Başlığı</h4>
-            <p class="mb-0 text-white" style="font-size: 0.95rem; line-height: 1.6; opacity: 0.95;" id="mwStoryViewContent"></p>
-          </div>
-
-          <!-- Alt Aksiyonlar -->
-          <div class="d-flex gap-2 pt-3 border-top border-light border-opacity-25">
-            <a href="/isletmeler" id="mwStoryViewCta" class="btn btn-light text-danger fw-bold w-100">
-              İşletme Vitrinini İncele →
-            </a>
-            <a href="/ihaleler?yeni=1" class="btn btn-outline-light fw-semibold flex-shrink-0">
-              Teklif İste
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- YENİ HİKAYE EKLEME MODALI -->
-  <div class="modal fade" id="mwAddStoryModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mw-panel-card border-danger">
-        <div class="modal-header border-bottom" style="border-color:var(--mw-border)!important;">
-          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> Yeni İşletme Hikayesi Paylaş</h6>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body">
-          <form id="mwAddStoryForm">
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Hikaye Kategorisi</label>
-              <select id="mwStoryCategory" class="form-select form-select-sm">
-                <option value="Üretim & Yatırım">🏭 Üretim & Yeni Yatırım</option>
-                <option value="Fırsat & Stok">🔥 Fırsat İlanı / Hazır Stok</option>
-                <option value="Canlı E-İhale">⚖️ Satın Alma & İhale Duyurusu</option>
-                <option value="B2B Etkinlik">☕ B2B Toplantı & İş Birliği</option>
-              </select>
-            </div>
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Kısa Başlık</label>
-              <input type="text" id="mwStoryTitle" class="form-control form-control-sm" placeholder="Örn: Yeni CNC Lazer Hattımız Devrede" required />
-            </div>
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Hikaye Detayı / Mesajınız</label>
-              <textarea id="mwStoryContent" class="form-control form-control-sm" rows="3" placeholder="İş dünyasına ve ziyaretçilere göstermek istediğiniz gelişmeyi yazın..." required></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold mb-1">Arka Plan Teması</label>
-              <select id="mwStoryGradient" class="form-select form-select-sm">
-                <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı & Siyah (MeetWork Kurumsal)</option>
-                <option value="linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)">Gold / Hardal (Gold Vitrin)</option>
-                <option value="linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)">Gümüş / Antrasit (Kurumsal Silver)</option>
-                <option value="linear-gradient(135deg, #052e16 0%, #15803d 100%)">Zümrüt Yeşili (İhracat & Lojistik)</option>
-              </select>
-            </div>
-            <div id="mwAddStoryFeedback" class="small mb-2" style="display:none;"></div>
-            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">
-              <i class="bi bi-send-fill me-1"></i> Hikayeyi Yayınla
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script is:inline>
     (function () {
       const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
@@ -636,76 +547,120 @@ const recentTalepler = talepler.slice(0, 5);
 
         const avatar = document.getElementById('mwSidebarAvatar');
         const composerAvatar = document.getElementById('mwComposerAvatar');
+        const mobComposerAvatar = document.getElementById('mwMobComposerAvatar');
         const userName = document.getElementById('mwSidebarUserName');
         const compName = document.getElementById('mwSidebarCompanyName');
         const badgeWrap = document.getElementById('mwSidebarBadgeWrap');
         const actions = document.getElementById('mwSidebarAuthActions');
+        const mobAuthBar = document.getElementById('mwMobUserAuthBar');
 
         const initials = (user.company_name || user.full_name || 'MW').slice(0, 2).toUpperCase();
         if (avatar) avatar.textContent = initials;
         if (composerAvatar) composerAvatar.textContent = initials;
+        if (mobComposerAvatar) mobComposerAvatar.textContent = initials;
         if (userName) userName.textContent = user.company_name || user.full_name || 'MeetWork Üyesi';
         if (compName) compName.textContent = `${user.full_name || 'Kurumsal Üye'} • ${user.sector || 'B2B İş Ağı'}`;
         if (badgeWrap) badgeWrap.innerHTML = getTrustBadge(user.trust_level || 2);
 
+        const profileHref = user.company_slug ? `/isletmeler?firma=${encodeURIComponent(user.company_slug)}` : '/profilim';
         if (actions) {
-          const profileHref = user.company_slug ? `/isletmeler?firma=${encodeURIComponent(user.company_slug)}` : '/isletmeler';
           actions.innerHTML = `
             <a href="${profileHref}" class="btn btn-danger btn-sm fw-bold">
               <i class="bi bi-building-fill-check me-1"></i> İşletme Vitrinim
             </a>
             <div class="d-flex gap-1">
-              <a href="/akilli-eslesme" class="btn btn-outline-secondary btn-sm flex-grow-1" style="font-size:0.75rem;">Akıllı Eşleşme</a>
+              <a href="/profilim" class="btn btn-outline-secondary btn-sm flex-grow-1" style="font-size:0.75rem;">Profilim</a>
               ${user.role === 'superadmin' ? '<a href="/yonetim" class="btn btn-dark btn-sm flex-grow-1" style="font-size:0.75rem;"><i class="bi bi-shield-lock-fill text-danger"></i> Yönetim</a>' : '<a href="/ilanlar?yeni=1" class="btn btn-outline-danger btn-sm flex-grow-1" style="font-size:0.75rem;">+ İlan Ver</a>'}
+            </div>
+          `;
+        }
+
+        if (mobAuthBar) {
+          mobAuthBar.innerHTML = `
+            <div class="flex items-center justify-between gap-2 w-full">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-9 h-9 rounded-full bg-cherry-vibrant text-white flex items-center justify-center font-bold text-xs shrink-0">${initials}</div>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-md text-label-md text-navy-deep font-bold truncate">${user.company_name || user.full_name || 'MeetWork Üyesi'}</span>
+                  <span class="font-body-sm text-[11px] text-on-surface-variant truncate">${user.full_name || 'Kurumsal Üye'} • ${user.sector || 'B2B İş Ağı'}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <a href="${profileHref}" class="px-2.5 py-1.5 rounded-lg bg-navy-deep text-white font-label-sm text-label-sm font-bold">Vitrinim</a>
+                <a href="/profilim" class="px-2.5 py-1.5 rounded-lg bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold">Profilim</a>
+              </div>
             </div>
           `;
         }
       }
 
       function renderStoriesBar() {
-        const row = document.getElementById('mwHomeStoriesRow');
-        if (!row) return;
         const stories = (cachedFeedData.stories && cachedFeedData.stories.length > 0)
           ? cachedFeedData.stories
           : fallbackStories;
 
         window.__mwStoriesList = stories;
 
-        const addBtnHtml = `
-          <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwAddStoryModal">
-            <div class="mw-story-add-ring">
-              <i class="bi bi-plus-lg"></i>
-            </div>
-            <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
-          </div>
-        `;
-
-        const itemsHtml = stories.map((st, idx) => {
-          const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
-          const isGold = Number(st.trust_level) >= 3;
-          const isSilver = Number(st.trust_level) === 2;
-          const ringClass = isGold ? 'mw-story-ring-gold' : (isSilver ? 'mw-story-ring-silver' : '');
-          const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
-          const catStr = String(st.category || '');
-          let pillText = '📢 Gündem';
-          let pillClass = 'bg-dark text-white';
-          if (catStr.includes('İhale')) { pillText = '🔴 İhale'; pillClass = 'bg-danger text-white'; }
-          else if (catStr.includes('Fırsat') || catStr.includes('Stok')) { pillText = '📦 Fırsat'; pillClass = 'bg-warning text-dark'; }
-          else if (catStr.includes('Yatırım') || catStr.includes('Fabrika')) { pillText = '🏭 Yatırım'; pillClass = 'bg-success text-white'; }
-          return `
-            <div class="mw-story-item" onclick="window.mwOpenStory(${idx})">
-              <div class="mw-story-ring ${ringClass}">
-                <div class="mw-story-inner" style="background: ${bg};">
-                  ${initials}
-                </div>
+        const row = document.getElementById('mwHomeStoriesRow');
+        if (row) {
+          const addBtnHtml = `
+            <div class="mw-story-item" data-bs-toggle="modal" data-bs-target="#mwAddStoryModal">
+              <div class="mw-story-add-ring">
+                <i class="bi bi-plus-lg"></i>
               </div>
-              <span class="mw-story-pill ${pillClass}">${pillText}</span>
-              <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.68rem;">${st.company_name}</span>
+              <span class="fw-bold text-truncate w-100 text-center" style="font-size: 0.7rem;">Hikaye Ekle</span>
             </div>
           `;
-        }).join('');
 
-        row.innerHTML = addBtnHtml + itemsHtml;
+          const itemsHtml = stories.map((st, idx) => {
+            const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+            const isGold = Number(st.trust_level) >= 3;
+            const isSilver = Number(st.trust_level) === 2;
+            const ringClass = isGold ? 'mw-story-ring-gold' : (isSilver ? 'mw-story-ring-silver' : '');
+            const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+            const catStr = String(st.category || '');
+            let pillText = '📢 Gündem';
+            let pillClass = 'bg-dark text-white';
+            if (catStr.includes('İhale')) { pillText = '🔴 İhale'; pillClass = 'bg-danger text-white'; }
+            else if (catStr.includes('Fırsat') || catStr.includes('Stok')) { pillText = '📦 Fırsat'; pillClass = 'bg-warning text-dark'; }
+            else if (catStr.includes('Yatırım') || catStr.includes('Fabrika')) { pillText = '🏭 Yatırım'; pillClass = 'bg-success text-white'; }
+            return `
+              <div class="mw-story-item" onclick="window.mwOpenStory(${idx})">
+                <div class="mw-story-ring ${ringClass}">
+                  <div class="mw-story-inner" style="background: ${bg};">
+                    ${initials}
+                  </div>
+                </div>
+                <span class="mw-story-pill ${pillClass}">${pillText}</span>
+                <span class="fw-semibold text-truncate w-100 text-center" style="font-size: 0.68rem;">${st.company_name}</span>
+              </div>
+            `;
+          }).join('');
+
+          row.innerHTML = addBtnHtml + itemsHtml;
+        }
+
+        const mobDynamicStories = document.getElementById('mwMobileDynamicStories');
+        if (mobDynamicStories) {
+          mobDynamicStories.innerHTML = stories.map((st, idx) => {
+            const initials = (st.company_name || 'MW').slice(0, 2).toUpperCase();
+            const bg = st.bg_gradient || 'linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)';
+            return `
+              <button type="button" onclick="window.mwOpenStory(${idx})" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none border-0 bg-transparent p-0">
+                <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-secondary-container via-cherry-vibrant to-gold-badge">
+                  <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+                    <div class="w-full h-full rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: ${bg};">
+                      ${initials}
+                    </div>
+                  </div>
+                </div>
+                <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-cherry-vibrant transition-colors">
+                  ${st.company_name}
+                </span>
+              </button>
+            `;
+          }).join('');
+        }
       }
 
       window.mwOpenStory = function (idx) {
@@ -829,9 +784,54 @@ const recentTalepler = talepler.slice(0, 5);
         return index % 2 === 0 ? 'mw-zebra-odd' : 'mw-zebra-even';
       }
 
+      function renderMobilePostCard(post) {
+        const initials = (post.company_name || post.author_name || 'MW').slice(0, 2).toUpperCase();
+        const tag = post.tag || 'İş & Sektör Paylaşımı';
+        const vitrinUrl = post.company_slug ? `/isletmeler?firma=${encodeURIComponent(post.company_slug)}` : '/isletmeler';
+        return `
+          <article class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light flex flex-col gap-3 relative transition-shadow hover:shadow-md">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-cherry-vibrant text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  ${initials}
+                </div>
+                <div class="flex flex-col">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="font-label-lg text-label-lg text-navy-deep font-bold">${post.company_name || post.author_name}</span>
+                    <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-trust-emerald/15 text-on-tertiary-container font-label-sm text-label-sm">
+                      <span class="material-symbols-outlined text-[12px] text-trust-emerald">verified</span>
+                      ${post.author_name || 'Onaylı Üye'}
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+                    <span>${tag}</span>
+                    <span>•</span>
+                    <span>${new Date(post.created_at || Date.now()).toLocaleDateString('tr-TR')}</span>
+                  </div>
+                </div>
+              </div>
+              <a href="${vitrinUrl}" class="px-2.5 py-1 rounded-lg bg-surface-container text-navy-deep font-label-sm text-label-sm font-bold shrink-0">
+                Vitrin
+              </a>
+            </div>
+            <div class="font-body-md text-body-md text-on-surface leading-relaxed whitespace-pre-line">${post.content}</div>
+            <div class="pt-2 border-t border-border-subtle flex items-center justify-between">
+              <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-cherry-vibrant hover:bg-border-subtle transition-colors" onclick="window.mwLikePost('${post.id}', this)" type="button">
+                <span class="material-symbols-outlined text-[18px]">thumb_up</span>
+                <span class="font-label-sm text-label-sm font-bold">${post.likes_count || 0}</span>
+              </button>
+              <div class="flex items-center gap-1.5">
+                <a href="/ihaleler?yeni=1" class="px-2.5 py-1.5 rounded-lg bg-surface-container-low text-navy-deep font-label-sm text-label-sm font-bold">Teklif İste</a>
+                <a href="/akilli-eslesme" class="px-2.5 py-1.5 rounded-lg bg-navy-deep text-on-secondary font-label-sm text-label-sm font-bold">+ Ağa Ekle</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
       function renderFeedStream() {
         const feedContainer = document.getElementById('mwHomeSocialFeed');
-        if (!feedContainer) return;
+        const mobLiveContainer = document.getElementById('mwMobileLivePostsContainer');
 
         const apiPosts = cachedFeedData.posts || [];
         const combinedPosts = [...apiPosts, ...fallbackSocialPosts];
@@ -844,6 +844,43 @@ const recentTalepler = talepler.slice(0, 5);
         });
         const listings = cachedFeedData.vitrinListings || [];
         const tenders = cachedFeedData.activeTenders || [];
+
+        if (mobLiveContainer) {
+          if (currentFilter === 'tenders') {
+            mobLiveContainer.innerHTML = tenders.map((t) => `
+              <article class="bg-surface-card rounded-2xl p-4 shadow-sm border-l-4 border-cherry-vibrant flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <span class="px-2 py-0.5 rounded bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold">🔴 Canlı Alım İhalesi</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">#${t.tender_no || t.id}</span>
+                </div>
+                <h4 class="font-label-lg text-label-lg text-navy-deep font-bold">${t.title}</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">${t.description || ''}</p>
+                <div class="flex items-center justify-between pt-2 border-t border-border-subtle">
+                  <span class="font-label-md text-label-md text-trust-emerald font-bold">${Number(t.start_price || 0).toLocaleString('tr-TR')} ${t.currency || 'TRY'}</span>
+                  <a href="/ihaleler" class="px-3 py-1.5 rounded-lg bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold">Teklif Ver</a>
+                </div>
+              </article>
+            `).join('');
+          } else if (currentFilter === 'listings') {
+            mobLiveContainer.innerHTML = listings.map((item) => `
+              <article class="bg-surface-card rounded-2xl p-4 shadow-sm border-l-4 border-navy-deep flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <span class="px-2 py-0.5 rounded bg-navy-deep text-white font-label-sm text-label-sm font-bold">${item.main_category} • ${item.listing_type}</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">#${item.listing_no}</span>
+                </div>
+                <h4 class="font-label-lg text-label-lg text-navy-deep font-bold">${item.title}</h4>
+                <div class="flex items-center justify-between pt-2 border-t border-border-subtle">
+                  <span class="font-label-md text-label-md text-cherry-vibrant font-bold">${Number(item.price || 0).toLocaleString('tr-TR')} ${item.currency || 'TRY'}</span>
+                  <a href="/ilanlar?ilan=${encodeURIComponent(item.slug || item.listing_no)}" class="px-3 py-1.5 rounded-lg bg-navy-deep text-white font-label-sm text-label-sm font-bold">İlanı İncele</a>
+                </div>
+              </article>
+            `).join('');
+          } else {
+            mobLiveContainer.innerHTML = posts.map((p) => renderMobilePostCard(p)).join('');
+          }
+        }
+
+        if (!feedContainer) return;
 
         if (currentFilter === 'posts') {
           feedContainer.innerHTML = posts.map((p, idx) => renderPostCard(p, getZebraClass(idx))).join('');
@@ -930,21 +967,64 @@ const recentTalepler = talepler.slice(0, 5);
         }
       };
 
+      async function handleQuickPostSubmit(contentInputEl, tagSelectEl, feedbackEl, submitBtnEl) {
+        if (!contentInputEl || !submitBtnEl) return;
+        const text = contentInputEl.value.trim();
+        if (!text) return;
+
+        let user = null;
+        try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
+        const selectedTag = tagSelectEl ? tagSelectEl.value : 'İş & Sektör Paylaşımı';
+
+        submitBtnEl.disabled = true;
+        try {
+          const res = await fetch(`${API_URL}/api/posts`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id: user ? user.user_id : 'guest',
+              company_id: user ? user.company_id : '',
+              author_name: user ? user.full_name : 'MeetWork İş Ağı Üyesi',
+              company_name: user ? user.company_name : 'Doğrulanmış İş Ağı',
+              company_slug: user ? user.company_slug : '',
+              trust_level: user ? user.trust_level : 1,
+              content: `[${selectedTag}] ${text}`
+            })
+          });
+          const out = await res.json();
+          if (out.success) {
+            contentInputEl.value = '';
+            if (feedbackEl) {
+              feedbackEl.style.display = 'block';
+              feedbackEl.className = 'small mt-2 text-success fw-bold';
+              feedbackEl.textContent = '✓ Paylaşımınız canlı iş ağı akışına eklendi!';
+            }
+            loadHomeFeed();
+          }
+        } catch (_) {}
+        submitBtnEl.disabled = false;
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         hydrateUserSidebar();
         loadHomeFeed();
 
-        // Filtre sekmeleri
+        // Filtre sekmeleri (Geniş Ekran + Mobil/Tablet senkron)
         const filterButtons = document.querySelectorAll('[data-feed-filter]');
         filterButtons.forEach((btn) => {
           btn.addEventListener('click', () => {
-            filterButtons.forEach((b) => {
-              b.classList.remove('btn-danger');
-              b.classList.add('btn-outline-secondary');
-            });
-            btn.classList.remove('btn-outline-secondary');
-            btn.classList.add('btn-danger');
             currentFilter = btn.getAttribute('data-feed-filter') || 'all';
+            filterButtons.forEach((b) => {
+              const isAct = (b.getAttribute('data-feed-filter') || 'all') === currentFilter;
+              if (b.classList.contains('mw-mob-filter-pill')) {
+                b.className = isAct
+                  ? 'mw-mob-filter-pill px-3 py-1.5 rounded-full bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold shrink-0'
+                  : 'mw-mob-filter-pill px-3 py-1.5 rounded-full bg-surface-card text-navy-deep border border-border-light font-label-sm text-label-sm shrink-0';
+              } else {
+                b.classList.toggle('btn-danger', isAct);
+                b.classList.toggle('btn-outline-secondary', !isAct);
+              }
+            });
             renderFeedStream();
           });
         });
@@ -993,51 +1073,511 @@ const recentTalepler = talepler.slice(0, 5);
           });
         }
 
-        // Hızlı Post Paylaşımı
+        // Geniş Ekran Hızlı Post Paylaşımı
         const submitBtn = document.getElementById('mwQuickPostSubmit');
         const contentInput = document.getElementById('mwQuickPostContent');
         const tagSelect = document.getElementById('mwQuickPostTag');
         const feedback = document.getElementById('mwQuickPostFeedback');
-
         if (submitBtn && contentInput) {
-          submitBtn.addEventListener('click', async () => {
-            const text = contentInput.value.trim();
-            if (!text) return;
+          submitBtn.addEventListener('click', () => handleQuickPostSubmit(contentInput, tagSelect, feedback, submitBtn));
+        }
 
-            let user = null;
-            try { user = JSON.parse(localStorage.getItem('mw_user') || 'null'); } catch (_) {}
-            const selectedTag = tagSelect ? tagSelect.value : 'İş & Sektör Paylaşımı';
-
-            submitBtn.disabled = true;
-            try {
-              const res = await fetch(`${API_URL}/api/posts`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  user_id: user ? user.user_id : 'guest',
-                  company_id: user ? user.company_id : '',
-                  author_name: user ? user.full_name : 'MeetWork İş Ağı Üyesi',
-                  company_name: user ? user.company_name : 'Doğrulanmış İş Ağı',
-                  company_slug: user ? user.company_slug : '',
-                  trust_level: user ? user.trust_level : 1,
-                  content: `[${selectedTag}] ${text}`
-                })
-              });
-              const out = await res.json();
-              if (out.success) {
-                contentInput.value = '';
-                if (feedback) {
-                  feedback.style.display = 'block';
-                  feedback.className = 'small mt-2 text-success fw-bold';
-                  feedback.textContent = '✓ Paylaşımınız canlı iş ağı akışına eklendi!';
-                }
-                loadHomeFeed();
-              }
-            } catch (_) {}
-            submitBtn.disabled = false;
-          });
+        // Mobil & Tablet Hızlı Post Paylaşımı
+        const mobSubmitBtn = document.getElementById('mwMobQuickPostSubmit');
+        const mobContentInput = document.getElementById('mwMobQuickPostContent');
+        const mobTagSelect = document.getElementById('mwMobQuickPostTag');
+        const mobFeedback = document.getElementById('mwMobQuickPostFeedback');
+        if (mobSubmitBtn && mobContentInput) {
+          mobSubmitBtn.addEventListener('click', () => handleQuickPostSubmit(mobContentInput, mobTagSelect, mobFeedback, mobSubmitBtn));
         }
       });
     })();
+  </script>
+  </div><!-- /.mw-desktop-screen -->
+
+  <!-- EKRAN 1: MOBİL & TABLET ANA SAYFA VE CANLI İŞ AKIŞI (meetwork_b2b_ekosistemi/1._ana_sayfa_canl_i_ak) -->
+  <div class="mw-b2b-mobile-screen mw-b2b-scope bg-surface-bg text-on-surface antialiased flex flex-col w-full pb-8" style="display:none;">
+    <!-- Mobil Üye Durum & Hızlı Giriş Çubuğu -->
+    <div id="mwMobUserAuthBar" class="mx-margin mt-3 px-3.5 py-2.5 rounded-xl bg-surface-card border border-border-light shadow-sm flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="material-symbols-outlined text-cherry-vibrant text-[20px]">verified_user</span>
+        <span class="font-label-md text-label-md text-navy-deep truncate">B2B İş Ağına Katılın &amp; Paylaşım Yapın</span>
+      </div>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <a href="/giris" class="px-2.5 py-1.5 rounded-lg bg-navy-deep text-white font-label-sm text-label-sm font-bold">Giriş Yap</a>
+        <a href="/giris?kayit=1" class="px-2.5 py-1.5 rounded-lg bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold">Üye Ol</a>
+      </div>
+    </div>
+
+    <!-- Üst Hikayeler / Fırsat Halkaları (B2B Stories + Canlı Hikaye Ekle) -->
+    <div class="w-full overflow-x-auto py-space-sm px-margin flex items-center gap-space-md no-scrollbar">
+      <!-- + Hikaye Ekle (Modal Tetikleyici) -->
+      <button type="button" data-bs-toggle="modal" data-bs-target="#mwAddStoryModal" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none border-0 bg-transparent p-0">
+        <div class="relative p-0.5 rounded-full border-2 border-dashed border-cherry-vibrant">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-cherry-vibrant/10 flex items-center justify-center text-cherry-vibrant">
+              <span class="material-symbols-outlined text-[28px]">add</span>
+            </div>
+          </div>
+        </div>
+        <span class="font-label-md text-label-md text-cherry-vibrant font-bold text-center w-16 truncate">
+          + Hikaye Ekle
+        </span>
+      </button>
+
+      <!-- Canlı D1 Hikayeleri -->
+      <div id="mwMobileDynamicStories" class="flex items-center gap-space-md shrink-0"></div>
+
+      <!-- Story 1: Günün İhaleleri -->
+      <a href="/ihaleler" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none">
+        <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-secondary-container via-cherry-vibrant to-secondary-container">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-secondary-container/10 flex items-center justify-center text-cherry-vibrant">
+              <span class="material-symbols-outlined text-[28px]">gavel</span>
+            </div>
+          </div>
+          <span class="absolute -top-1 -right-1 px-1.5 py-0.2 bg-cherry-vibrant text-on-secondary rounded-full font-label-sm text-label-sm tracking-tight shadow-sm animate-pulse">
+            CANLI
+          </span>
+        </div>
+        <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-cherry-vibrant transition-colors">
+          Günün İhaleleri
+        </span>
+      </a>
+      <!-- Story 2: Açık Hibeler -->
+      <a href="/hibe-kredi-eslesme" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none">
+        <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-trust-emerald via-tertiary-fixed-dim to-trust-emerald">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-trust-emerald/10 flex items-center justify-center text-trust-emerald">
+              <span class="material-symbols-outlined text-[28px]">radar</span>
+            </div>
+          </div>
+        </div>
+        <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-trust-emerald transition-colors">
+          Açık Hibeler
+        </span>
+      </a>
+      <!-- Story 3: Yaklaşan Etkinlikler -->
+      <a href="/etkinlik-takvimi" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none">
+        <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-surface-variant via-primary-fixed to-surface-variant">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-surface-variant/30 flex items-center justify-center text-navy-deep">
+              <span class="material-symbols-outlined text-[28px]">event_available</span>
+            </div>
+          </div>
+        </div>
+        <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-navy-deep transition-colors">
+          Etkinlikler
+        </span>
+      </a>
+      <!-- Story 4: Toplu Alım Fırsatları -->
+      <a href="/talepler" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none">
+        <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-gold-badge via-amber-400 to-gold-badge">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-gold-badge/15 flex items-center justify-center text-gold-badge">
+              <span class="material-symbols-outlined text-[28px]">groups</span>
+            </div>
+          </div>
+        </div>
+        <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-gold-badge transition-colors">
+          Toplu Alım
+        </span>
+      </a>
+      <!-- Story 5: Yeni Üye Firmalar -->
+      <a href="/isletmeler" class="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none">
+        <div class="relative p-0.5 rounded-full bg-gradient-to-tr from-outline-variant via-border-light to-outline-variant">
+          <div class="w-16 h-16 rounded-full bg-surface-card p-0.5 flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-border-subtle flex items-center justify-center text-on-surface-variant">
+              <span class="material-symbols-outlined text-[28px]">domain_add</span>
+            </div>
+          </div>
+        </div>
+        <span class="font-label-md text-label-md text-navy-deep text-center w-16 truncate group-hover:text-navy-deep transition-colors">
+          Yeni Üyeler
+        </span>
+      </a>
+    </div>
+
+    <!-- Hızlı Erişim Modül Kutuları (2x2 Grid) -->
+    <div class="px-margin pt-space-sm pb-space-md">
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Modül 1: Akıllı Eşleşme -->
+        <a class="flex flex-col p-3.5 rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-all active:scale-[0.98] group relative overflow-hidden border border-border-light" href="/akilli-eslesme">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-10 h-10 rounded-lg bg-cherry-vibrant/10 text-cherry-vibrant flex items-center justify-center group-hover:bg-cherry-vibrant group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined text-[22px]">diversity_3</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-secondary-container/10 text-cherry-vibrant font-label-sm text-label-sm">
+              Bugün +3
+            </span>
+          </div>
+          <span class="font-label-lg text-label-lg text-navy-deep leading-snug">2+1 Akıllı Eşleşme</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">3 yeni potansiyel ortak hazır</span>
+        </a>
+        <!-- Modül 2: Canlı Alım İhalesi -->
+        <a class="flex flex-col p-3.5 rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-all active:scale-[0.98] group relative overflow-hidden border border-border-light" href="/ihaleler">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-10 h-10 rounded-lg bg-navy-deep/10 text-navy-deep flex items-center justify-center group-hover:bg-navy-deep group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined text-[22px]">gavel</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-navy-deep/10 text-navy-deep font-label-sm text-label-sm">
+              42 Aktif
+            </span>
+          </div>
+          <span class="font-label-lg text-label-lg text-navy-deep leading-snug">Canlı Alım İhalesi</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Açık eksiltmeli teklifler</span>
+        </a>
+        <!-- Modül 3: Birlikte Alalım -->
+        <a class="flex flex-col p-3.5 rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-all active:scale-[0.98] group relative overflow-hidden border border-border-light" href="/talepler">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-10 h-10 rounded-lg bg-gold-badge/15 text-gold-badge flex items-center justify-center group-hover:bg-gold-badge group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined text-[22px]">handshake</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-gold-badge/20 text-navy-deep font-label-sm text-label-sm">
+              8 Havuz
+            </span>
+          </div>
+          <span class="font-label-lg text-label-lg text-navy-deep leading-snug">Birlikte Alalım</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Toplu alım maliyet avantajı</span>
+        </a>
+        <!-- Modül 4: Hibe Radarı -->
+        <a class="flex flex-col p-3.5 rounded-xl bg-surface-card shadow-sm hover:shadow-md transition-all active:scale-[0.98] group relative overflow-hidden border border-border-light" href="/hibe-kredi-eslesme">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-10 h-10 rounded-lg bg-trust-emerald/15 text-trust-emerald flex items-center justify-center group-hover:bg-trust-emerald group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined text-[22px]">track_changes</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-trust-emerald/20 text-on-tertiary-container font-label-sm text-label-sm">
+              16 Aktif
+            </span>
+          </div>
+          <span class="font-label-lg text-label-lg text-navy-deep leading-snug">Hibe Radarı</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">KOSGEB &amp; TÜBİTAK teşvikleri</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobil & Tablet B2B Sosyal Paylaşım Kutusu (Composer) -->
+    <div class="px-margin pb-space-md">
+      <div class="bg-surface-card rounded-2xl p-3.5 shadow-sm border border-border-light flex flex-col gap-2.5">
+        <div class="flex items-start gap-2.5">
+          <div id="mwMobComposerAvatar" class="w-9 h-9 rounded-full bg-cherry-vibrant text-white flex items-center justify-center font-bold text-xs shrink-0">MW</div>
+          <textarea
+            id="mwMobQuickPostContent"
+            rows="2"
+            class="w-full rounded-xl bg-surface-bg border border-border-light p-2.5 font-body-sm text-body-sm text-navy-deep focus:outline-none focus:border-cherry-vibrant"
+            placeholder="B2B iş ağında tedarik ilanı, iş birliği fırsatı veya sektörel duyuru paylaşın..."
+          ></textarea>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-border-subtle">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <select id="mwMobQuickPostTag" class="rounded-lg bg-surface-bg border border-border-light px-2 py-1 font-label-sm text-label-sm text-navy-deep">
+              <option value="İş & Sektör Paylaşımı">💬 İş &amp; Sektör Paylaşımı</option>
+              <option value="Tedarik & Alım Talebi">📦 Tedarik &amp; Alım Talebi</option>
+              <option value="Üretim & Kapasite">🏭 Üretim &amp; Kapasite</option>
+              <option value="İhracat & Ortaklık">🌍 İhracat &amp; Ortaklık</option>
+            </select>
+            <a href="/ihaleler?yeni=1" class="px-2 py-1 rounded-lg bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm font-bold">+ İhale Aç</a>
+            <a href="/ilanlar?yeni=1" class="px-2 py-1 rounded-lg bg-navy-deep/10 text-navy-deep font-label-sm text-label-sm font-bold">+ İlan Ver</a>
+          </div>
+          <button id="mwMobQuickPostSubmit" type="button" class="px-3.5 py-1.5 rounded-lg bg-cherry-vibrant text-white font-label-md text-label-md font-bold shadow-sm active:scale-95">
+            Paylaş
+          </button>
+        </div>
+        <div id="mwMobQuickPostFeedback" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Canlı B2B Akış Başlığı & Filtre Sekmeleri -->
+    <div class="px-margin flex items-center justify-between mb-2 mt-1">
+      <div class="flex items-center gap-2">
+        <span class="font-headline-md text-headline-md text-navy-deep tracking-tight">Canlı İş Akışı</span>
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cherry-vibrant opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-cherry-vibrant"></span>
+        </span>
+      </div>
+      <a href="/ilanlar" class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-navy-deep">
+        <span class="material-symbols-outlined text-[16px]">tune</span>
+        <span>Seri Sonu &amp; 2.El Pazar</span>
+      </a>
+    </div>
+
+    <!-- Mobil Akış Filtre Sekmeleri -->
+    <div class="px-margin pb-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <button type="button" class="mw-mob-filter-pill px-3 py-1.5 rounded-full bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold shrink-0" data-feed-filter="all">
+        Tümü (Akış)
+      </button>
+      <button type="button" class="mw-mob-filter-pill px-3 py-1.5 rounded-full bg-surface-card text-navy-deep border border-border-light font-label-sm text-label-sm shrink-0" data-feed-filter="posts">
+        Sosyal Paylaşımlar
+      </button>
+      <button type="button" class="mw-mob-filter-pill px-3 py-1.5 rounded-full bg-surface-card text-navy-deep border border-border-light font-label-sm text-label-sm shrink-0" data-feed-filter="tenders">
+        Canlı İhaleler
+      </button>
+      <button type="button" class="mw-mob-filter-pill px-3 py-1.5 rounded-full bg-surface-card text-navy-deep border border-border-light font-label-sm text-label-sm shrink-0" data-feed-filter="listings">
+        Vitrin İlanları
+      </button>
+    </div>
+
+    <!-- Akış Gönderileri -->
+    <div class="px-margin flex flex-col gap-4" id="mwMobileB2BFeedList">
+      <!-- Canlı D1 Paylaşımları & Filtrelenen Akış Öğeleri -->
+      <div id="mwMobileLivePostsContainer" class="flex flex-col gap-4"></div>
+      <!-- Gönderi 1: Özkan Metal San. A.Ş. (İhale) -->
+      <article class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light flex flex-col gap-3 relative transition-shadow hover:shadow-md">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img class="w-12 h-12 rounded-xl object-cover shadow-inner bg-border-subtle shrink-0" alt="Özkan Metal San. A.Ş." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlB2r-4te2sevXMgLz6PVYkfjmYpsPhIt2QXgSgZyOZ0BI7E7K4PPzrJqptqitxw6aNTI7rX_dO36OiY7E2fOpporbbIxejaggKq_t2HyjbZXZDk91l5QZe-R5ffRZzDXNY1mE-cRuO8taTi5wAE-Rg9vuU3GC3kJbA6vSJXTz5Wtl5K9doEO7oh9phK-hy8kmYnkt0TsIZ9kYOTtLLi91ukuCJp_viiRhlnt04g">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-label-lg text-label-lg text-navy-deep font-bold">Özkan Metal San. A.Ş.</span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-trust-emerald/15 text-on-tertiary-container font-label-sm text-label-sm">
+                  <span class="material-symbols-outlined text-[12px] text-trust-emerald">verified</span>
+                  Onaylı Sanayici
+                </span>
+              </div>
+              <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+                <span>Kocaeli OSB</span>
+                <span>•</span>
+                <span>18 dk önce</span>
+                <span>•</span>
+                <span class="text-cherry-vibrant font-medium flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[14px]">timer</span> 03G : 05S
+                </span>
+              </div>
+            </div>
+          </div>
+          <a href="/ihaleler" class="text-on-surface-variant hover:text-navy-deep p-1 rounded-lg hover:bg-border-subtle">
+            <span class="material-symbols-outlined text-[20px]">more_horiz</span>
+          </a>
+        </div>
+        <div class="font-body-md text-body-md text-on-surface leading-relaxed">
+          <p>304 Kalite Paslanmaz Rulo Sac için acil <strong>5 ton</strong> tedarikçi arıyoruz. Şartnameye uygun firmalar için kapalı zarf / eksiltmeli ihale oturumu başlatılmıştır.</p>
+        </div>
+        <div class="rounded-xl overflow-hidden bg-border-subtle relative flex flex-col">
+          <img class="w-full h-44 object-cover" alt="304 Kalite Paslanmaz Rulo Sac" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4OamJmWH_qlWpdfb4VmihmKCg-oAyfEDJHsfL3Rc_WLmYYX2w67NQcjfYaU74utgG90fv8RSqABrk7AN1GgRFzaNL-6oKAUZAY6mK8iQFrrtiUHUnMag0OfOd1zKHyEh8171YKzadUs2SmiPMchRs34G2XHBsdKjHVe-ubKWgDwKMuDXBwZRL-v30LVt8CxD0WLq2HZDPEzJrnGquvV81uxyfRh9_R7Vno09zHg">
+          <div class="bg-navy-deep p-3 text-on-secondary flex items-center justify-between gap-2">
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">İhale Kodu: #OZK-2024-88</span>
+              <span class="font-label-lg text-label-lg font-bold">Tahmini Bütçe: 420.000 ₺</span>
+            </div>
+            <a href="/ihaleler" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cherry-vibrant text-on-secondary font-label-md text-label-md hover:bg-cherry-hover shadow-sm transition-transform active:scale-95 shrink-0">
+              <span class="material-symbols-outlined text-[16px]">gavel</span>
+              İhaleyi Gör &amp; Teklif Ver
+            </a>
+          </div>
+        </div>
+        <div class="pt-2 flex items-center justify-between">
+          <div class="flex items-center gap-1">
+            <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-border-subtle transition-colors group" onclick="this.classList.toggle('text-cherry-vibrant')" type="button">
+              <span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">thumb_up</span>
+              <span class="font-label-sm text-label-sm">24</span>
+            </button>
+            <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-border-subtle transition-colors" type="button">
+              <span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+              <span class="font-label-sm text-label-sm">7</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button class="mw-mobile-crm-save-btn flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container-low text-navy-deep font-label-sm text-label-sm hover:bg-surface-variant transition-colors" data-company-name="Özkan Metal San. A.Ş." data-vkn="4100293847" data-sector="Metal & Sanayi" data-city="Kocaeli" type="button">
+              <span class="material-symbols-outlined text-[16px] text-navy-deep">contact_page</span>
+              <span>CRM'e Kaydet</span>
+            </button>
+            <a href="/ihaleler" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-navy-deep text-on-secondary font-label-sm text-label-sm hover:bg-primary-container transition-colors shadow-sm">
+              <span class="material-symbols-outlined text-[16px]">mail</span>
+              <span>Hızlı Mesaj</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Gönderi 2: Ege Organik Gıda Ltd. (Stok / İhracat Fazlası) -->
+      <article class="bg-surface-card rounded-2xl p-4 shadow-sm border border-border-light flex flex-col gap-3 relative transition-shadow hover:shadow-md">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img class="w-12 h-12 rounded-xl object-cover shadow-inner bg-border-subtle shrink-0" alt="Ege Organik Gıda Ltd." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYfI8JTD1TlPhtQbPhSrRKl3UWX0yLQCT5SrWm5mcbOzlRl2_5w1A9l6MEOiSsufUS2JbGBx4KiL3FVKJ8mISAaNdMwuFziXtHseXzqhic5zvB_4OFtCsx41DI5Vu3xOi6CNlXlz50d09zkK3FKvknREeTxFWJ2rB8G1nxRWowBc1R-wpT50e3FJWIPLPD6FdPljsbgMkE141viO2UZ98_l7i-LB-VepzWf_OwuA">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-label-lg text-label-lg text-navy-deep font-bold">Ege Organik Gıda Ltd.</span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-trust-emerald/15 text-on-tertiary-container font-label-sm text-label-sm">
+                  <span class="material-symbols-outlined text-[12px] text-trust-emerald">verified</span>
+                  İhracatçı Birliği Üyesi
+                </span>
+              </div>
+              <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+                <span>İzmir / Bornova</span>
+                <span>•</span>
+                <span>1 saat önce</span>
+              </div>
+            </div>
+          </div>
+          <a href="/isletmeler" class="text-on-surface-variant hover:text-navy-deep p-1 rounded-lg hover:bg-border-subtle">
+            <span class="material-symbols-outlined text-[20px]">more_horiz</span>
+          </a>
+        </div>
+        <div class="font-body-md text-body-md text-on-surface leading-relaxed">
+          <p>Almanya ihracat fazlası <strong>120 koli kurutulmuş dağ inciri</strong> stoktan hemen teslim. IFS &amp; BIO sertifikalı, barkodlu ve gümrük analiz raporları tamdır.</p>
+        </div>
+        <div class="rounded-xl overflow-hidden bg-border-subtle relative flex flex-col">
+          <img class="w-full h-44 object-cover" alt="Ege Organik Gıda İhracat Kolisi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTQVm7O1_zoE1XnCCHJGBYBinZqtymJgVR4lNegGNWU8vMJv-zuNUGUfHFMHfaJ2slo3dJsZ8cTAuvSBZgpphSwc1UlfaIrOnX6Z5_8ZFsBnVBQPuGYTe5XfStbusdTee-ILl1laSmTC5JjRACg9HuDipWt9Oe-GMPKp1UigjnIlzM2HK8EKBkqJCWcOX3_suYs0GDjgd016uiT_tKPJUgqc5rzSGbnjfGE7YLRw">
+          <div class="p-3 bg-surface-container flex items-center justify-between gap-2">
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Koli İçi: 24 Paket (500g)</span>
+              <span class="font-label-lg text-label-lg text-navy-deep font-bold">1.450 ₺ / Koli</span>
+            </div>
+            <a href="/isletmeler" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-navy-deep text-on-secondary font-label-md text-label-md hover:bg-primary-container shadow-sm transition-transform active:scale-95 shrink-0">
+              <span class="material-symbols-outlined text-[16px]">menu_book</span>
+              Kataloğu İncele
+            </a>
+          </div>
+        </div>
+        <div class="pt-2 flex items-center justify-between">
+          <div class="flex items-center gap-1">
+            <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-border-subtle transition-colors group" onclick="this.classList.toggle('text-cherry-vibrant')" type="button">
+              <span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">thumb_up</span>
+              <span class="font-label-sm text-label-sm">41</span>
+            </button>
+            <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-border-subtle transition-colors" type="button">
+              <span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+              <span class="font-label-sm text-label-sm">12</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button class="mw-mobile-crm-save-btn flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container-low text-navy-deep font-label-sm text-label-sm hover:bg-surface-variant transition-colors" data-company-name="Ege Organik Gıda Ltd." data-vkn="3500192837" data-sector="Gıda & Tarım" data-city="İzmir" type="button">
+              <span class="material-symbols-outlined text-[16px] text-navy-deep">contact_page</span>
+              <span>CRM'e Kaydet</span>
+            </button>
+            <a href="/isletmeler" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-navy-deep text-on-secondary font-label-sm text-label-sm hover:bg-primary-container transition-colors shadow-sm">
+              <span class="material-symbols-outlined text-[16px]">mail</span>
+              <span>Hızlı Mesaj</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Sayfa Sonu Mikro Bilgi & Akış Yenileme -->
+    <div class="mt-6 mb-2 flex flex-col items-center justify-center gap-2 text-center px-margin">
+      <div class="w-8 h-8 rounded-full bg-border-subtle flex items-center justify-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-[18px] animate-spin text-cherry-vibrant">autorenew</span>
+      </div>
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Yeni B2B fırsatları anlık taranıyor...</span>
+    </div>
+  </div>
+  </div><!-- /.mw-has-b2b-mobile -->
+
+  <!-- HİKAYE GÖRÜNTÜLEME MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwStoryViewerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
+        <div id="mwStoryModalBody" class="p-4 text-white position-relative" style="min-height: 390px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%); display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="w-100 rounded-pill mb-3 overflow-hidden" style="height: 4px; background: rgba(255,255,255,0.25);">
+              <div class="bg-white h-100" style="width: 100%;"></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <div id="mwStoryViewAvatar" class="rounded-circle bg-white text-dark fw-bold d-flex align-items-center justify-content-center" style="width:42px; height:42px;">
+                  MW
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-1">
+                    <h6 id="mwStoryViewCompany" class="fw-bold mb-0 text-white">İşletme Adı</h6>
+                    <span id="mwStoryViewCategory" class="badge bg-warning text-dark" style="font-size:0.65rem;">Gündem</span>
+                  </div>
+                  <small id="mwStoryViewBadge" class="text-white-50" style="font-size:0.72rem;">Onaylı İşletme</small>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+          </div>
+
+          <div class="my-4 py-2">
+            <h4 id="mwStoryViewTitle" class="fw-black mb-3">Hikaye Başlığı</h4>
+            <p id="mwStoryViewContent" class="mb-0" style="font-size: 1rem; line-height: 1.6; opacity: 0.95;">Hikaye detayı...</p>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top border-white border-opacity-25">
+            <span class="small text-white-50"><i class="bi bi-clock-history me-1"></i> 24 Saatlik Canlı İş Gündemi</span>
+            <a id="mwStoryViewCta" href="/isletmeler" class="btn btn-light btn-sm fw-bold px-3 text-danger">
+              İncele &amp; İletişime Geç →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YENİ HİKAYE EKLEME MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwAddStoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background: var(--mw-surface); color: var(--mw-text);">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> İş Ağında Hikaye Paylaş (24 Saat)</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <form id="mwAddStoryForm" class="modal-body">
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Hikaye Kategorisi</label>
+            <select id="mwStoryCategory" class="form-select form-select-sm" required>
+              <option value="Günün İhalesi">🔴 Günün İhalesi / Tedarik Çağrısı</option>
+              <option value="Stok Fırsatı">📦 Seri Sonu / Stok Fırsatı</option>
+              <option value="Yeni Yatırım">🏭 Yeni Fabrika / Üretim Hattı</option>
+              <option value="İş Gündemi">📢 Sektörel Duyuru / İş Gündemi</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Kısa Başlık *</label>
+            <input type="text" id="mwStoryTitle" class="form-control form-control-sm" placeholder="Örn: 50 Ton Alüminyum Profil İhalesi Başladı" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Hikaye Mesajı / Fırsat Detayı *</label>
+            <textarea id="mwStoryContent" rows="3" class="form-control form-control-sm" placeholder="İş ortaklarınıza hızlıca duyurmak istediğiniz fırsatı yazın..." required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Arka Plan Teması</label>
+            <select id="mwStoryGradient" class="form-select form-select-sm">
+              <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı &amp; Antrasit (MeetWork Klasik)</option>
+              <option value="linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)">Kurumsal Gece Mavisi</option>
+              <option value="linear-gradient(135deg, #064e3b 0%, #10b981 100%)">Zümrüt Yeşili (Üretim &amp; İhracat)</option>
+              <option value="linear-gradient(135deg, #78350f 0%, #f59e0b 100%)">Altın Kehribar (Gold الفırsat)</option>
+            </select>
+          </div>
+          <div id="mwAddStoryFeedback" class="small mb-2" style="display:none;"></div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-danger fw-bold">Hikayeyi Canlı Vitrine Ekle</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_URL = 'https://meetwork-api.akgcomputer.workers.dev';
+      document.querySelectorAll('.mw-mobile-crm-save-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const companyName = btn.getAttribute('data-company-name') || 'MeetWork İş Ortağı';
+          const vkn = btn.getAttribute('data-vkn') || '2720912021';
+          const sector = btn.getAttribute('data-sector') || 'Sanayi';
+          const city = btn.getAttribute('data-city') || 'İstanbul';
+          btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">sync</span><span>Kaydediliyor...</span>';
+          try {
+            await fetch(`${API_URL}/api/bridge/crm-cari-sync`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                partner_company_name: companyName,
+                partner_vkn: vkn,
+                partner_sector: sector,
+                partner_city: city,
+                match_source: 'Canlı İş Akışı (Mobil)',
+                create_sample_quote_draft: false
+              })
+            });
+          } catch (_) {}
+          btn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-trust-emerald">check_circle</span><span>CRM\'e Aktarıldı</span>';
+        });
+      });
+    });
   </script>
 </BaseLayout>

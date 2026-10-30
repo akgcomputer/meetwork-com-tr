@@ -6,6 +6,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Vitrin, Kurumsal İşletmeler & CariNet Mağazaları | MeetWork"
   description="MeetWork üyesi doğrulanmış işletmeler, işletme hikayeleri, kurumsal ilan mağazaları, DepodanDirekt toptan ihracat vitrinleri ve StokPratik CariNet B2B bayi portalları."
 >
+  <div class="mw-has-b2b-mobile">
+  <div class="mw-desktop-screen">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
     <div>
       <span class="badge bg-danger mb-1">Doğrulanmış Kurumsal İş Ağı & B2B Vitrin</span>
@@ -53,248 +55,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div id="mwCompaniesGrid" class="row g-3">
       <div class="col-12 text-center py-4 text-muted">İşletmeler yükleniyor...</div>
-    </div>
-  </div>
-
-  <!-- HİKAYE GÖRÜNTÜLEYİCİ (STORY VIEWER) MODALI -->
-  <div class="modal fade" id="mwCompanyStoryViewerModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
-      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
-        <div id="mwCompStoryModalBody" class="p-4 text-white d-flex flex-column justify-content-between" style="min-height: 460px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
-          <div>
-            <div class="progress mb-3" style="height: 3px; background: rgba(255,255,255,0.25);">
-              <div class="progress-bar bg-white" style="width: 100%;"></div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center gap-2">
-                <div id="mwCompStoryViewAvatar" class="rounded-circle bg-white text-danger fw-black d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: 900;">
-                  MW
-                </div>
-                <div>
-                  <div class="fw-bold small text-white" id="mwCompStoryViewCompany">İşletme</div>
-                  <small class="text-white-50" style="font-size: 0.72rem;" id="mwCompStoryViewCategory">İş Gündemi</small>
-                </div>
-              </div>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
-            </div>
-          </div>
-
-          <div class="my-4 py-3">
-            <span class="badge bg-light text-dark mb-2" id="mwCompStoryViewBadge">Gold Onaylı İşletme</span>
-            <h4 class="fw-bold mb-3 text-white" id="mwCompStoryViewTitle">Hikaye Başlığı</h4>
-            <p class="mb-0 text-white" style="font-size: 0.95rem; line-height: 1.6; opacity: 0.95;" id="mwCompStoryViewContent"></p>
-          </div>
-
-          <div class="d-flex gap-2 pt-3 border-top border-light border-opacity-25">
-            <a href="/isletmeler" id="mwCompStoryViewCta" class="btn btn-light text-danger fw-bold w-100">
-              İşletme Vitrinini İncele →
-            </a>
-            <a href="/ihaleler?yeni=1" class="btn btn-outline-light fw-semibold flex-shrink-0">
-              Teklif İste
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- İŞLETME HİKAYE EKLEME MODALI -->
-  <div class="modal fade" id="mwCompanyAddStoryModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mw-panel-card border-danger">
-        <div class="modal-header border-bottom" style="border-color:var(--mw-border)!important;">
-          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> İşletme Hikayesi Ekle</h6>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body">
-          <form id="mwCompanyAddStoryForm">
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Kategori</label>
-              <select id="mwCompStoryCategory" class="form-select form-select-sm">
-                <option value="Üretim & Yatırım">🏭 Üretim & Yeni Yatırım</option>
-                <option value="Fırsat & Stok">🔥 Fırsat İlanı / Hazır Stok</option>
-                <option value="Canlı E-İhale">⚖️ Satın Alma & İhale Duyurusu</option>
-                <option value="B2B Etkinlik">☕ B2B Toplantı & İş Birliği</option>
-              </select>
-            </div>
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Başlık</label>
-              <input type="text" id="mwCompStoryTitle" class="form-control form-control-sm" placeholder="Örn: Yeni İhracat Sevkiyatımız" required />
-            </div>
-            <div class="mb-2">
-              <label class="form-label small fw-semibold mb-1">Açıklama</label>
-              <textarea id="mwCompStoryContent" class="form-control form-control-sm" rows="3" placeholder="İşletmenizden güncel gelişmeyi paylaşın..." required></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold mb-1">Tema</label>
-              <select id="mwCompStoryGradient" class="form-select form-select-sm">
-                <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı & Siyah (MeetWork Kurumsal)</option>
-                <option value="linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)">Gold / Hardal (Gold Vitrin)</option>
-                <option value="linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)">Gümüş / Antrasit (Kurumsal Silver)</option>
-                <option value="linear-gradient(135deg, #052e16 0%, #15803d 100%)">Zümrüt Yeşili (İhracat & Lojistik)</option>
-              </select>
-            </div>
-            <div id="mwCompAddStoryFeedback" class="small mb-2" style="display:none;"></div>
-            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">
-              <i class="bi bi-send-fill me-1"></i> Hikayeyi Yayınla
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- İŞLETME SAHİBİNE ÖZEL PERSONEL / DÖNEMSEL UZMAN İLANI AÇMA MODALI -->
-  <div class="modal fade" id="mwCompanyPostJobModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content mw-panel-card border-success">
-        <div class="modal-header border-bottom">
-          <h5 class="modal-title fw-bold">
-            <i class="bi bi-briefcase-fill text-success me-1"></i> İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body">
-          <form id="mwCompanyPostJobForm" class="row g-3">
-            <div class="col-md-8">
-              <label class="form-label small fw-bold mb-1">Aranan Pozisyon Başlığı *</label>
-              <input type="text" id="cpJobTitle" class="form-control form-control-sm" placeholder="Örn: Dış Ticaret & İhracat Uzmanı / CNC Lazer Operatörü / IT Uzmanı" required />
-            </div>
-            <div class="col-md-4">
-              <label class="form-label small fw-bold mb-1">Departman *</label>
-              <select id="cpJobDepartment" class="form-select form-select-sm" required>
-                <option value="Yazılım, Teknoloji & Ar-Ge">Yazılım, Teknoloji & Ar-Ge</option>
-                <option value="Dış Ticaret & İhracat">Dış Ticaret & İhracat</option>
-                <option value="Üretim, Mühendislik & Fabrika">Üretim, Mühendislik & Fabrika</option>
-                <option value="Finans, Muhasebe & ERP">Finans, Muhasebe & ERP</option>
-                <option value="B2B Satış & Satınalma">B2B Satış & Satınalma</option>
-                <option value="Lojistik, Depo & Filo">Lojistik, Depo & Filo</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label small fw-bold mb-1">Şehir *</label>
-              <input type="text" id="cpJobCity" class="form-control form-control-sm" value="İstanbul" required />
-            </div>
-            <div class="col-md-4">
-              <label class="form-label small fw-bold mb-1">Çalışma Şekli *</label>
-              <select id="cpJobWorkMode" class="form-select form-select-sm">
-                <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
-                <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
-                <option value="Uzaktan (Remote) / Proje Bazlı">⚡ Uzaktan (Remote) / Proje Bazlı</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label small fw-bold mb-1">Teklif Edilen Maaş / Hakediş *</label>
-              <input type="text" id="cpJobSalary" class="form-control form-control-sm" placeholder="Örn: 55.000 TL – 75.000 TL + Prim" required />
-            </div>
-            <div class="col-12">
-              <label class="form-label small fw-bold mb-1">Aranan Yetenek Etiketleri (Virgülle Ayırın) *</label>
-              <input type="text" id="cpJobSkills" class="form-control form-control-sm" placeholder="Örn: StokPratik ERP, İngilizce C1, İhracat Operasyonu, SolidWorks" required />
-            </div>
-            <div class="col-12">
-              <label class="form-label small fw-bold mb-1">Pozisyon Açıklaması & Yan Haklar *</label>
-              <textarea id="cpJobDesc" class="form-control form-control-sm" rows="3" placeholder="İş tanımını, çalışma koşullarını ve yan hakları kısaca yazınız..." required></textarea>
-            </div>
-            <div id="cpJobFeedback" class="col-12 small" style="display:none;"></div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-success w-100 fw-bold">
-                <i class="bi bi-check2-circle me-1"></i> İş İlanını İşletme Profilimde ve Kariyer Vitrininde Yayınla
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 📱 QR DİJİTAL KARTVİZİT & TANIŞMA MODALI (KURAL 5: Otomatik İrsaliye Kesmez, Onaylı CRM Aktarımı Yapar) -->
-  <div class="modal fade" id="mwQrCardModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mw-panel-card border-danger">
-        <div class="modal-header border-bottom">
-          <h6 class="modal-title fw-bold">
-            <i class="bi bi-qr-code-scan text-danger me-1"></i> Dijital Kurumsal Kartvizit & Tanışma Masası
-          </h6>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body text-center">
-          <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-4 border border-danger mb-3" style="background:#fff;">
-            <i class="bi bi-qr-code text-dark" style="font-size: 5.5rem; line-height: 1;"></i>
-          </div>
-          <h5 class="fw-bold mb-1" id="mwQrModalCompName">İşletme Adı</h5>
-          <div class="small text-muted mb-2" id="mwQrModalCompSector">Sektör • Şehir</div>
-          <div class="d-flex justify-content-center flex-wrap gap-1 mb-3">
-            <span class="badge bg-warning text-dark">💎 A+ Ödeme Disiplini</span>
-            <span class="badge bg-success">🏅 GİB e-Fatura Doğrulandı</span>
-          </div>
-          <div class="p-2 rounded border text-start small mb-3" style="background: var(--mw-surface-alt);">
-            <div><strong>VKN / Kurumsal Kimlik:</strong> <span id="mwQrModalCompVkn">2720912021</span></div>
-            <div><strong>Telefon:</strong> <span id="mwQrModalCompPhone">0541 246 54 29</span></div>
-            <div><strong>E-Posta:</strong> <span id="mwQrModalCompEmail">yonetim@meetwork.com.tr</span></div>
-          </div>
-          <div class="alert alert-light border small text-start py-2 mb-3" style="font-size:0.75rem;">
-            <i class="bi bi-shield-check text-success me-1"></i> <strong>Güvenli Tanışma Kuralı:</strong> QR Kartvizit açıldığında otomatik irsaliye veya fatura kesilmez. Yalnızca aşağıdaki onayınızla rehberinize eklenir.
-          </div>
-          <div id="mwQrModalFeedback" class="small fw-bold mb-2" style="display:none;"></div>
-          <div class="d-grid gap-2">
-            <button type="button" class="btn btn-danger btn-sm fw-bold" id="mwQrSaveCrmBtn">
-              📇 Rehberime & StokPratik CRM / Cari Kartlarıma Kaydet
-            </button>
-            <button type="button" class="btn btn-outline-dark btn-sm fw-semibold" id="mwQrSaveWithQuoteBtn">
-              📝 İsteğe Bağlı: StokPratik’te Numune / Teklif Taslağı Hazırla
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ✅ ONAYLI İŞE ALIM -> STOKPRATİK PDKS PERSONEL KARTI AKTARIM MODALI (KURAL 3) -->
-  <div class="modal fade" id="mwHireToPdksModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mw-panel-card border-success">
-        <div class="modal-header border-bottom">
-          <h6 class="modal-title fw-bold">
-            <i class="bi bi-person-check-fill text-success me-1"></i> Adayı İşe Aldık → StokPratik PDKS’ye Aktar
-          </h6>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-        </div>
-        <div class="modal-body">
-          <div class="alert alert-success py-2 small mb-3">
-            <strong>Kullanıcı Onaylı Aktarım:</strong> Mülakat süreci tamamlanan aday, yalnızca aşağıdaki bilgileri onayladığınızda StokPratik <code>Personel & Puantaj (PDKS)</code> modülünüze aktarılır.
-          </div>
-          <form id="mwHireToPdksForm">
-            <div class="mb-2">
-              <label class="form-label small fw-bold mb-1">İşe Alınan Aday</label>
-              <input type="text" id="pdksCandName" class="form-control form-control-sm fw-bold" readonly />
-            </div>
-            <div class="row g-2 mb-2">
-              <div class="col-6">
-                <label class="form-label small fw-bold mb-1">Görev / Pozisyon</label>
-                <input type="text" id="pdksCandPosition" class="form-control form-control-sm" required />
-              </div>
-              <div class="col-6">
-                <label class="form-label small fw-bold mb-1">Şube / Fabrika</label>
-                <input type="text" id="pdksCandBranch" class="form-control form-control-sm" value="Merkez Kampüs / Fabrika" required />
-              </div>
-            </div>
-            <div class="row g-2 mb-3">
-              <div class="col-6">
-                <label class="form-label small fw-bold mb-1">İşe Başlama Tarihi *</label>
-                <input type="date" id="pdksStartDate" class="form-control form-control-sm" value="2026-11-01" required />
-              </div>
-              <div class="col-6">
-                <label class="form-label small fw-bold mb-1">Anlaşılan Net Maaş (TL) *</label>
-                <input type="number" id="pdksAgreedSalary" class="form-control form-control-sm" value="65000" required />
-              </div>
-            </div>
-            <div id="pdksTransferFeedback" class="small fw-bold mb-2" style="display:none;"></div>
-            <button type="submit" class="btn btn-success btn-sm w-100 fw-bold">
-              ✅ Onayla & StokPratik PDKS Personel Kartını Aç
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -732,6 +492,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
             </div>
           `;
+          const mobProfileContainer = document.getElementById('mwMobCompanyProfileContainer');
+          if (mobProfileContainer) {
+            mobProfileContainer.style.display = 'block';
+            mobProfileContainer.innerHTML = container.innerHTML;
+          }
         } catch (_) {}
       }
 
@@ -956,4 +721,755 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     })();
   </script>
+  </div><!-- /.mw-desktop-screen -->
+
+  <!-- EKRAN 4: MOBİL & TABLET İŞLETMELER REHBERİ VE CANLI TOPTAN KATALOG VİTRİNİ (meetwork_b2b_ekosistemi/4._i_letmeler_rehberi_canl_toptan_katalog) -->
+  <div class="mw-b2b-mobile-screen mw-b2b-scope bg-surface-bg text-on-surface antialiased flex flex-col w-full pb-8" style="display:none;">
+    <!-- Dynamic Notification / Floating Toast -->
+    <div class="fixed top-20 right-4 z-50 transform translate-y-[-120%] opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-sm bg-navy-deep text-on-primary px-space-md py-space-sm rounded-xl shadow-xl max-w-[90vw]" id="toast-notification">
+      <span class="material-symbols-outlined text-trust-emerald text-[20px]">check_circle</span>
+      <span class="font-body-sm text-body-sm font-medium" id="toast-message">İşlem başarıyla kaydedildi</span>
+    </div>
+
+    <!-- Header Banner & Stats Capsule -->
+    <div class="px-margin pt-space-md pb-space-sm flex flex-col gap-space-xs">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cherry-vibrant/10 text-cherry-vibrant font-label-sm text-label-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-cherry-vibrant animate-pulse"></span>
+            Canlı B2B Vitrin Ağı
+          </span>
+          <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-navy-deep mt-1 tracking-tight">İşletmeler Rehberi</h1>
+        </div>
+        <div class="flex items-center gap-1.5 bg-surface-card px-3 py-1.5 rounded-xl shadow-sm border border-border-light text-navy-deep">
+          <span class="material-symbols-outlined text-[18px] text-trust-emerald">verified_user</span>
+          <span class="font-label-md text-label-md font-bold">1.480+</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Firma</span>
+        </div>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">Doğrulanmış üreticiler, fabrikalar ve toptan B2B indirimli ürün katalogları.</p>
+      <!-- Mobil & Tablet Hızlı İşletme İşlevleri Çubuğu (Tüm Modlarda Eşit İşlev) -->
+      <div class="flex flex-wrap items-center gap-2 pt-2">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#mwCompanyAddStoryModal" class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-cherry-vibrant text-white font-label-sm text-label-sm font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">add_circle</span>
+          <span>+ Hikaye Ekle</span>
+        </button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#mwCompanyPostJobModal" class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-trust-emerald text-white font-label-sm text-label-sm font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">work</span>
+          <span>+ Personel İlanı Aç</span>
+        </button>
+        <a href="/qr-kartvizit" class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-navy-deep text-white font-label-sm text-label-sm font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+          <span>QR Kartvizit</span>
+        </a>
+        <a href="/profilim" class="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-surface-card border border-border-light text-navy-deep font-label-sm text-label-sm font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">manage_accounts</span>
+          <span>Profilim</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Tekil İşletme Vitrin & Yönetim Paneli (Mobil/Tablet ?firma=... görünümü) -->
+    <div id="mwMobCompanyProfileContainer" class="px-margin my-2" style="display:none;"></div>
+
+    <!-- Search & Smart Filter Module -->
+    <div class="px-margin mt-space-sm">
+      <div class="bg-surface-card p-space-md rounded-2xl shadow-sm border border-border-light flex flex-col gap-space-md">
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px]">search</span>
+          <input class="w-full bg-surface-bg text-navy-deep placeholder:text-outline font-body-md text-body-md pl-11 pr-10 py-3 rounded-xl outline-none focus:bg-surface-card border border-border-light transition-all" id="company-search-input" placeholder="Firma, VKN, ürün veya NACE kodu ara..." type="text">
+          <a href="/qr-kartvizit" class="absolute right-3 text-outline hover:text-navy-deep transition-colors" title="Barkod & Karekod Tara">
+            <span class="material-symbols-outlined text-[20px]">filter_center_focus</span>
+          </a>
+        </div>
+
+        <!-- Sector Pills (Horizontal Scroll) -->
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Sektörler</span>
+            <span class="font-body-sm text-body-sm text-cherry-vibrant font-medium cursor-pointer" onclick="window.resetMwMobileCatalogFilters && window.resetMwMobileCatalogFilters()">Sıfırla</span>
+          </div>
+          <div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5" id="sector-pill-container">
+            <button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-navy-deep text-on-primary shadow-sm" data-sector="all" type="button">Tümü</button>
+            <button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="ambalaj" type="button">Tekstil &amp; Ambalaj</button>
+            <button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="kimya" type="button">Kimya &amp; Plastik</button>
+            <button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="metal" type="button">Metal &amp; Makine</button>
+            <button class="sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant" data-sector="gida" type="button">Gıda &amp; Tarım</button>
+          </div>
+        </div>
+
+        <!-- City Selector & Verified Toggle Bar -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+          <div class="relative">
+            <select class="w-full appearance-none bg-surface-bg text-navy-deep font-body-sm text-body-sm px-3.5 py-2.5 rounded-xl outline-none font-medium pr-8 cursor-pointer border border-border-light" id="city-filter">
+              <option value="">Tüm Şehirler (Türkiye)</option>
+              <option value="bursa">Bursa (Sanayi Bölgesi)</option>
+              <option value="istanbul">İstanbul</option>
+              <option value="izmir">İzmir</option>
+              <option value="gaziantep">Gaziantep</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-[18px]">expand_more</span>
+          </div>
+          <label class="flex items-center justify-between bg-surface-bg px-3.5 py-2 rounded-xl cursor-pointer select-none border border-border-light">
+            <span class="flex items-center gap-1.5 font-label-md text-label-md text-navy-deep">
+              <span class="material-symbols-outlined text-[18px] text-trust-emerald" style="font-variation-settings: 'FILL' 1;">verified</span>
+              Yalnızca Doğrulanmış Firmalar
+            </span>
+            <input checked class="w-4 h-4 accent-navy-deep" id="verified-toggle" type="checkbox">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listing Meta Bar -->
+    <div class="px-margin mt-space-md flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+      <div class="flex items-center gap-1">
+        <span class="font-bold text-navy-deep" id="visible-count">2</span> fabrika &amp; toptancı listelendi
+      </div>
+      <div class="flex items-center gap-1 text-navy-deep font-medium cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">swap_vert</span>
+        <span>B2B Hacmine Göre</span>
+      </div>
+    </div>
+
+    <!-- Companies Container -->
+    <div class="px-margin mt-space-sm flex flex-col gap-space-md">
+      <!-- COMPANY CARD 1: ÖZTÜRK AMBALAJ -->
+      <div class="company-card bg-surface-card rounded-2xl shadow-sm border border-border-light overflow-hidden transition-all duration-300 hover:shadow-md" data-city="bursa" data-sector="ambalaj">
+        <div class="h-2 bg-gradient-to-r from-navy-deep via-cherry-vibrant to-gold-badge"></div>
+        <div class="p-space-md flex flex-col gap-space-md">
+          <div class="flex items-start gap-space-md">
+            <div class="relative shrink-0">
+              <img alt="Öztürk Endüstriyel Ambalaj" class="w-16 h-16 rounded-xl object-cover shadow-inner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbkutLpdd0vdqAP4675p8TtzmlhMtloOnxvIbuUW2INNPunofew1FbZ0QPx21F3_BFeuSSbCu-iWpn8WS5mjifx8bT8ST1xE1I-T6f7fNyMA6nux4iNzLe0LMHjk4ausZeURzQfQETwWD2H_O5-u7e0Kq0YWGvJy0EpKRR8t3hajZjjKev-LHeahHzw4d91tmLNgjvHUYVtFbVF-vD7sFbjXhg51PH2DPQrTv1tw">
+              <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-trust-emerald text-on-secondary flex items-center justify-center shadow" title="Doğrulanmış Tedarikçi">
+                <span class="material-symbols-outlined text-[13px]">check</span>
+              </span>
+            </div>
+            <div class="flex flex-col flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <h2 class="font-headline-sm text-headline-sm text-navy-deep truncate font-bold">Öztürk Endüstriyel Ambalaj Ltd.</h2>
+                <button class="text-outline hover:text-cherry-vibrant p-1 transition-colors" onclick="window.toggleMwFav && window.toggleMwFav(this)" title="Favorilere Ekle" type="button">
+                  <span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+                <span class="material-symbols-outlined text-[16px] text-cherry-vibrant">location_on</span>
+                <span class="truncate">Bursa / Nilüfer Organize Sanayi</span>
+                <span class="text-outline">•</span>
+                <span class="text-trust-emerald font-medium">VKN: 6920381920</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                <span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-lg text-navy-deep font-label-sm text-label-sm font-semibold">
+                  🏅 Doğrulanmış Üretici
+                </span>
+                <span class="inline-flex items-center gap-1 bg-primary-fixed text-navy-deep px-2 py-0.5 rounded-lg font-label-sm text-label-sm font-semibold">
+                  💎 A+ Ödeme Disiplini
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Oluklu mukavva koli, palet streci ve köşebent toptan üreticisi. Aylık 850 ton işleme kapasitesiyle doğrudan ihracatçı standartlarında sevkiyat.
+          </p>
+
+          <div class="grid grid-cols-3 gap-2 bg-surface-bg p-space-sm rounded-xl">
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Min. Sipariş</span>
+              <span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">5.000 ₺</span>
+            </div>
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Ort. Termin</span>
+              <span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">3 İş Günü</span>
+            </div>
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Tedarik Skoru</span>
+              <span class="font-label-md text-label-md text-trust-emerald font-bold mt-0.5 flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[14px]">star</span>
+                9.8/10
+              </span>
+            </div>
+          </div>
+
+          <!-- Catalog Expandable Toggle Button (HERO ACTION) -->
+          <button class="w-full flex items-center justify-between px-space-md py-3 rounded-xl bg-navy-deep text-on-primary hover:bg-primary-container transition-all shadow-sm active:scale-[0.99] group" id="catalog-toggle-btn-1" onclick="window.toggleMwCatalog && window.toggleMwCatalog('catalog-container-1', 'catalog-icon-1')" type="button">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🛍️</span>
+              <span class="font-label-lg text-label-lg font-bold">Canlı Toptan Ürün Kataloğu</span>
+              <span class="bg-cherry-vibrant text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">38 Ürün</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="font-label-sm text-label-sm text-primary-fixed font-medium group-hover:text-on-primary">Fiyatları Gör</span>
+              <span class="material-symbols-outlined text-[20px] transition-transform duration-300 transform" id="catalog-icon-1">expand_more</span>
+            </div>
+          </button>
+
+          <!-- Dynamic Product Catalog Showcase (Collapsible - Default Open on First Card) -->
+          <div class="flex flex-col gap-space-md pt-space-xs transition-all" id="catalog-container-1">
+            <div class="flex items-center justify-between border-b border-border-light pb-2">
+              <span class="font-label-md text-label-md font-bold text-navy-deep flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[18px] text-cherry-vibrant">local_offer</span>
+                Anlık Toptan Fiyat Listesi (KDV Hariç)
+              </span>
+              <span class="font-body-sm text-body-sm text-trust-emerald font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-trust-emerald"></span>
+                Stoktan Hızlı Teslim
+              </span>
+            </div>
+
+            <!-- Product Item 1 -->
+            <div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm relative overflow-hidden border border-border-light">
+              <div class="flex items-start gap-space-sm">
+                <div class="relative shrink-0">
+                  <img alt="A-Kalite Çift Dalga İhracat Kolisi" class="w-20 h-20 rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7-GsHwlYIofM8zDo7FOLTzfpbx5Tx86u-P2YiLaoU8jjMMfdMYqlQ2ZiS2rjNi4bfqqfKrJFihxjiSyO9qmASicBsJYwnWy9oRo3EnQMWl7KSTzdXW28qISPtRos_eXsI7pJoQiyOmZA21uNzNIAepF6QdXwm9t4HOTkfvu0Mrk9qBred8fIlLc8MeGSO90Wrj6jfZUpAK1K34tCK_inplNoh3pmIU9oPD6KWXg">
+                  <span class="absolute top-1 left-1 bg-cherry-vibrant text-on-secondary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                    -%17
+                  </span>
+                </div>
+                <div class="flex flex-col flex-1 min-w-0">
+                  <h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                    A-Kalite Çift Dalga İhracat Kolisi (60x40x40 cm)
+                  </h3>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">500 Adet</strong></span>
+                    <span class="text-outline">•</span>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Dopel (KSSSK)</span>
+                  </div>
+                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mt-2">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-outline line-through">Piyasa Toptan: 38,50 ₺</span>
+                      <div class="flex items-baseline gap-1">
+                        <span class="font-metric-number text-metric-number text-cherry-vibrant font-extrabold">31,80 ₺</span>
+                        <span class="font-label-sm text-label-sm text-navy-deep font-semibold">/ Adet</span>
+                      </div>
+                    </div>
+                    <span class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded font-label-sm text-label-sm font-bold">
+                      MeetWork Üye İndirimi
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-space-sm pt-2">
+                <button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all" onclick="window.showMwCatalogToast && window.showMwCatalogToast('Teklif talebiniz Öztürk Ambalaj satış ekibine iletildi.')" type="button">
+                  <span class="material-symbols-outlined text-[18px]">gavel</span>
+                  Hızlı Teklif İste
+                </button>
+                <a href="/talepler" class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-card text-navy-deep border border-border-light font-label-md text-label-md font-bold hover:bg-surface-variant shadow-sm active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[18px]">groups</span>
+                  Birlikte Alalım Havuzu
+                </a>
+              </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm border border-border-light">
+              <div class="flex items-start gap-space-sm">
+                <div class="relative shrink-0">
+                  <img alt="Otomatik Sarım Makine Streci" class="w-20 h-20 rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGTB9dgTyrq4h_gcPp33f_IjKhdh_iII6KPGL4HFZFrmugpb4fZdATk20MQcmFqJuXN_zxIDc7tRd-Qt3ptCA3TtRFrnEcF1om86DGEQKS42w2XKKQudkLBwGfZkOX51Oy6ek2rTBJWYK1JEWzKEmpzaJHcI8cjMWeuQKW6QTNSFzjAue2nfi3DuwAU4M5akNOA20iGIxAUQ4lPfDfnJs-Ovyny1XMixjiuHHQ9Q">
+                  <span class="absolute top-1 left-1 bg-trust-emerald text-on-secondary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                    Toptan
+                  </span>
+                </div>
+                <div class="flex flex-col flex-1 min-w-0">
+                  <h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                    Otomatik Sarım Makine Streci 23 Mikron 16 kg
+                  </h3>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">10 Rulo</strong></span>
+                    <span class="text-outline">•</span>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">%300 Esneme Payı</span>
+                  </div>
+                  <div class="flex items-baseline gap-1 mt-2">
+                    <span class="font-metric-number text-metric-number text-navy-deep font-extrabold">1.150 ₺</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">/ Rulo (MeetWork Fiyatı)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-sm pt-2">
+                <button class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-navy-deep text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container shadow-sm active:scale-95 transition-all" onclick="window.showMwCatalogToast && window.showMwCatalogToast('Numune talebi oluşturuldu. Kargo teyidi için aranacaksınız.')" type="button">
+                  <span class="material-symbols-outlined text-[18px]">science</span>
+                  🔨 Numune Talep Et
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Connect Buttons -->
+          <div class="flex items-center gap-space-sm pt-1 border-t border-border-subtle">
+            <a href="/qr-kartvizit" class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors">
+              <span class="material-symbols-outlined text-[18px] text-cherry-vibrant">qr_code_2</span>
+              QR Kartvizit &amp; CRM
+            </a>
+            <button class="flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-surface-bg hover:bg-surface-variant text-navy-deep font-label-md text-label-md font-semibold transition-colors shrink-0" onclick="window.showMwCatalogToast && window.showMwCatalogToast('Öztürk Ambalaj VKN Doğrulama ve Kapasite Raporu doğrulandı.')" type="button">
+              <span class="material-symbols-outlined text-[18px] text-trust-emerald">verified</span>
+              Sicil &amp; Rapor
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPANY CARD 2: DOĞA KİMYA & POLİMER -->
+      <div class="company-card bg-surface-card rounded-2xl shadow-sm border border-border-light overflow-hidden transition-all duration-300 hover:shadow-md" data-city="istanbul" data-sector="kimya">
+        <div class="h-2 bg-gradient-to-r from-trust-emerald via-navy-deep to-surface-variant"></div>
+        <div class="p-space-md flex flex-col gap-space-md">
+          <div class="flex items-start gap-space-md">
+            <div class="relative shrink-0">
+              <img alt="Doğa Kimya & Polimer A.Ş." class="w-16 h-16 rounded-xl object-cover shadow-inner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOysvSzawxPA8Qpz1OXfyWzcX4JKrN-xf4gbqb2B9Oew9tElnedA0GTeHVhG7xLE1KK-pbdoFxBjjimjPX6xzOHatmNjqmZekJCs8HqSYF15qTzpf7Q5XbftdWczquPdLy8xaT5gq2XBYvKsZF7QBDK4IRzDdRebs3a8jeOrpY0lE2D3ooUTuf5CYGxxbLcM7SEFMabJCG_i0ZT6ZWWd50IBmOtefl5xSYhOtDFA">
+              <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-trust-emerald text-on-secondary flex items-center justify-center shadow">
+                <span class="material-symbols-outlined text-[13px]">check</span>
+              </span>
+            </div>
+            <div class="flex flex-col flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <h2 class="font-headline-sm text-headline-sm text-navy-deep truncate font-bold">Doğa Kimya &amp; Polimer A.Ş.</h2>
+                <button class="text-outline hover:text-cherry-vibrant p-1 transition-colors" onclick="window.toggleMwFav && window.toggleMwFav(this)" title="Favorilere Ekle" type="button">
+                  <span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+                <span class="material-symbols-outlined text-[16px] text-cherry-vibrant">location_on</span>
+                <span class="truncate">İstanbul / Tuzla Kimyacılar OSB</span>
+                <span class="text-outline">•</span>
+                <span class="text-trust-emerald font-medium">VKN: 3109405811</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                <span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-lg text-navy-deep font-label-sm text-label-sm font-semibold">
+                  🏅 Akredite Distribütör
+                </span>
+                <span class="inline-flex items-center gap-1 bg-primary-fixed text-navy-deep px-2 py-0.5 rounded-lg font-label-sm text-label-sm font-semibold">
+                  💎 MeetWork Kurumsal
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Plastik Hammadde &amp; Granül Toptan Satışı. Enjeksiyon ve ekstrüzyon için orijinal &amp; geri dönüştürülmüş Polipropilen (PP), HDPE ve LDPE granül tedariki.
+          </p>
+
+          <div class="grid grid-cols-3 gap-2 bg-surface-bg p-space-sm rounded-xl">
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Min. Sipariş</span>
+              <span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">1 Ton</span>
+            </div>
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Stok Hacmi</span>
+              <span class="font-label-md text-label-md text-navy-deep font-bold mt-0.5">2.400 Ton</span>
+            </div>
+            <div class="flex flex-col items-center justify-center text-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Tedarik Skoru</span>
+              <span class="font-label-md text-label-md text-trust-emerald font-bold mt-0.5 flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[14px]">star</span>
+                9.9/10
+              </span>
+            </div>
+          </div>
+
+          <button class="w-full flex items-center justify-between px-space-md py-3 rounded-xl bg-navy-deep text-on-primary hover:bg-primary-container transition-all shadow-sm active:scale-[0.99] group" id="catalog-toggle-btn-2" onclick="window.toggleMwCatalog && window.toggleMwCatalog('catalog-container-2', 'catalog-icon-2')" type="button">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🛍️</span>
+              <span class="font-label-lg text-label-lg font-bold">Canlı Toptan Hammadde Kataloğu</span>
+              <span class="bg-trust-emerald text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">24 Kalem</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="font-label-sm text-label-sm text-primary-fixed font-medium group-hover:text-on-primary">Fiyatları Gör</span>
+              <span class="material-symbols-outlined text-[20px] transition-transform duration-300 transform" id="catalog-icon-2">expand_more</span>
+            </div>
+          </button>
+
+          <div class="hidden flex-col gap-space-md pt-space-xs transition-all" id="catalog-container-2">
+            <div class="bg-surface-bg p-space-md rounded-xl flex flex-col gap-space-sm border border-border-light">
+              <div class="flex items-start gap-space-sm">
+                <div class="relative shrink-0">
+                  <img alt="PP Homopolimer Granül" class="w-20 h-20 rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiVVSLMg94NTKKEz0znXW6ltznCr_JFbhXmicDKzPBbwOH3WcvFSVHX5hK-2bazAJqdHV0DCpKPM7RWIY0qr786cYNh4IDmQQ5y--NKLxoBMENrzYpX03_IUHL4GbzVHMxJXsW9Ak6fEtuxRyrJkRPzITJg9fO1elfbWBtptsVITVWIZT3N6ca3NMkQTblEc0ONZ6NzpWGtOk_7RAA2y7xLTObLoSq48ZLrE0Y5A">
+                  <span class="absolute top-1 left-1 bg-navy-deep text-on-primary font-label-sm text-label-sm font-bold px-1.5 py-0.5 rounded shadow">
+                    MFI 25
+                  </span>
+                </div>
+                <div class="flex flex-col flex-1 min-w-0">
+                  <h3 class="font-headline-sm text-headline-sm text-navy-deep font-bold leading-tight">
+                    PP Homopolimer Enjeksiyonluk Granül (Orijinal)
+                  </h3>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Min. Alım: <strong class="text-navy-deep">1 Palet (1.250 kg)</strong></span>
+                  </div>
+                  <div class="flex items-baseline gap-1 mt-2">
+                    <span class="font-metric-number text-metric-number text-navy-deep font-extrabold">38.200 ₺</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">/ Ton + KDV</span>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-space-sm pt-2">
+                <button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all" onclick="window.showMwCatalogToast && window.showMwCatalogToast('Doğa Kimya satış birimine spot tonaj teklif talebiniz gönderildi.')" type="button">
+                  <span class="material-symbols-outlined text-[18px]">request_quote</span>
+                  Tonaj Teklifi İste
+                </button>
+                <button class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-card text-navy-deep border border-border-light font-label-md text-label-md font-bold hover:bg-surface-variant shadow-sm active:scale-95 transition-all" onclick="window.showMwCatalogToast && window.showMwCatalogToast('5 kg test numunesi talebiniz oluşturuldu.')" type="button">
+                  <span class="material-symbols-outlined text-[18px]">science</span>
+                  Test Numunesi İste
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Delight B2B Banner -->
+    <div class="px-margin mt-space-lg">
+      <div class="bg-gradient-to-br from-navy-deep to-primary-container text-on-primary p-space-lg rounded-2xl shadow-lg relative overflow-hidden flex flex-col gap-space-sm">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-gold-badge text-[24px]">storefront</span>
+          <span class="font-label-lg text-label-lg font-bold">Kendi Toptan Kataloğunuzu Ekleyin</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-inverse-on-surface">
+          Türkiye genelindeki 1.480+ kurumsal satın almacıya ve fabrikaya anında ulaşın. StokPratik veya DepodanDirekt vitrininizi tek tıkla bağlayın.
+        </p>
+        <div class="pt-2">
+          <a href="/giris?tab=register" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cherry-vibrant text-on-secondary font-label-md text-label-md font-bold hover:bg-cherry-hover shadow-sm active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span>
+            Fabrikanızı / Kataloğunuzu Ekleyin
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /.mw-has-b2b-mobile -->
+
+  <script is:inline>
+    window.showMwCatalogToast = function (message) {
+      const toast = document.getElementById('toast-notification');
+      const toastText = document.getElementById('toast-message');
+      if (!toast || !toastText) return;
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-[-120%]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-[-120%]', 'opacity-0');
+      }, 3000);
+    };
+
+    window.toggleMwFav = function (btn) {
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (!icon) return;
+      if (icon.textContent === 'bookmark_border') {
+        icon.textContent = 'bookmark';
+        icon.classList.add('text-cherry-vibrant');
+        window.showMwCatalogToast('Firma takip listenize eklendi.');
+      } else {
+        icon.textContent = 'bookmark_border';
+        icon.classList.remove('text-cherry-vibrant');
+        window.showMwCatalogToast('Firma takip listenizden çıkarıldı.');
+      }
+    };
+
+    window.toggleMwCatalog = function (containerId, iconId) {
+      const container = document.getElementById(containerId);
+      const icon = document.getElementById(iconId);
+      if (!container) return;
+      if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        container.classList.add('flex');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        container.classList.add('hidden');
+        container.classList.remove('flex');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('company-search-input');
+      const sectorPills = document.querySelectorAll('.sector-pill');
+      const citySelect = document.getElementById('city-filter');
+      const cards = document.querySelectorAll('.company-card');
+      const visibleCount = document.getElementById('visible-count');
+      let activeSector = 'all';
+
+      function filterCompanies() {
+        const query = ((searchInput && searchInput.value) || '').toLowerCase().trim();
+        const city = ((citySelect && citySelect.value) || '').toLowerCase();
+        let matchCount = 0;
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          const cardSector = card.getAttribute('data-sector') || '';
+          const cardCity = card.getAttribute('data-city') || '';
+          const matchesQuery = !query || text.includes(query);
+          const matchesSector = activeSector === 'all' || cardSector === activeSector;
+          const matchesCity = !city || cardCity === city;
+          if (matchesQuery && matchesSector && matchesCity) {
+            card.classList.remove('hidden');
+            matchCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        if (visibleCount) visibleCount.textContent = String(matchCount);
+      }
+
+      sectorPills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          sectorPills.forEach((p) => {
+            p.className = 'sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-border-subtle text-navy-deep hover:bg-surface-variant';
+          });
+          pill.className = 'sector-pill shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-navy-deep text-on-primary shadow-sm';
+          activeSector = pill.getAttribute('data-sector') || 'all';
+          filterCompanies();
+        });
+      });
+
+      if (searchInput) searchInput.addEventListener('input', filterCompanies);
+      if (citySelect) citySelect.addEventListener('change', filterCompanies);
+
+      window.resetMwMobileCatalogFilters = function () {
+        if (searchInput) searchInput.value = '';
+        if (citySelect) citySelect.value = '';
+        activeSector = 'all';
+        filterCompanies();
+      };
+    });
+  </script>
+
+  <!-- HİKAYE GÖRÜNTÜLEYİCİ (STORY VIEWER) MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwCompanyStoryViewerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+      <div class="modal-content border-0 overflow-hidden shadow-lg" style="border-radius: 18px;">
+        <div id="mwCompStoryModalBody" class="p-4 text-white d-flex flex-column justify-content-between" style="min-height: 460px; background: linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%);">
+          <div>
+            <div class="progress mb-3" style="height: 3px; background: rgba(255,255,255,0.25);">
+              <div class="progress-bar bg-white" style="width: 100%;"></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <div id="mwCompStoryViewAvatar" class="rounded-circle bg-white text-danger fw-black d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: 900;">
+                  MW
+                </div>
+                <div>
+                  <div class="fw-bold small text-white" id="mwCompStoryViewCompany">İşletme</div>
+                  <small class="text-white-50" style="font-size: 0.72rem;" id="mwCompStoryViewCategory">İş Gündemi</small>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+          </div>
+
+          <div class="my-4 py-3">
+            <span class="badge bg-light text-dark mb-2" id="mwCompStoryViewBadge">Gold Onaylı İşletme</span>
+            <h4 class="fw-bold mb-3 text-white" id="mwCompStoryViewTitle">Hikaye Başlığı</h4>
+            <p class="mb-0 text-white" style="font-size: 0.95rem; line-height: 1.6; opacity: 0.95;" id="mwCompStoryViewContent"></p>
+          </div>
+
+          <div class="d-flex gap-2 pt-3 border-top border-light border-opacity-25">
+            <a href="/isletmeler" id="mwCompStoryViewCta" class="btn btn-light text-danger fw-bold w-100">
+              İşletme Vitrinini İncele →
+            </a>
+            <a href="/ihaleler?yeni=1" class="btn btn-outline-light fw-semibold flex-shrink-0">
+              Teklif İste
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İŞLETME HİKAYE EKLEME MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwCompanyAddStoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom" style="border-color:var(--mw-border)!important;">
+          <h6 class="modal-title fw-bold"><i class="bi bi-plus-circle-fill text-danger me-1"></i> İşletme Hikayesi Ekle</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCompanyAddStoryForm">
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Kategori</label>
+              <select id="mwCompStoryCategory" class="form-select form-select-sm">
+                <option value="Üretim & Yatırım">🏭 Üretim & Yeni Yatırım</option>
+                <option value="Fırsat & Stok">🔥 Fırsat İlanı / Hazır Stok</option>
+                <option value="Canlı E-İhale">⚖️ Satın Alma & İhale Duyurusu</option>
+                <option value="B2B Etkinlik">☕ B2B Toplantı & İş Birliği</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Başlık</label>
+              <input type="text" id="mwCompStoryTitle" class="form-control form-control-sm" placeholder="Örn: Yeni İhracat Sevkiyatımız" required />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold mb-1">Açıklama</label>
+              <textarea id="mwCompStoryContent" class="form-control form-control-sm" rows="3" placeholder="İşletmenizden güncel gelişmeyi paylaşın..." required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold mb-1">Tema</label>
+              <select id="mwCompStoryGradient" class="form-select form-select-sm">
+                <option value="linear-gradient(135deg, #0b0b0e 0%, #dc3545 100%)">Kırmızı & Siyah (MeetWork Kurumsal)</option>
+                <option value="linear-gradient(135deg, #111115 0%, #b45309 50%, #f59e0b 100%)">Gold / Hardal (Gold Vitrin)</option>
+                <option value="linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%)">Gümüş / Antrasit (Kurumsal Silver)</option>
+                <option value="linear-gradient(135deg, #052e16 0%, #15803d 100%)">Zümrüt Yeşili (İhracat & Lojistik)</option>
+              </select>
+            </div>
+            <div id="mwCompAddStoryFeedback" class="small mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-danger btn-sm w-100 fw-bold">
+              <i class="bi bi-send-fill me-1"></i> Hikayeyi Yayınla
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İŞLETME SAHİBİNE ÖZEL PERSONEL / DÖNEMSEL UZMAN İLANI AÇMA MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwCompanyPostJobModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-briefcase-fill text-success me-1"></i> İşletmeniz İçin Personel veya Dönemsel Uzman İlanı Açın
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="mwCompanyPostJobForm" class="row g-3">
+            <div class="col-md-8">
+              <label class="form-label small fw-bold mb-1">Aranan Pozisyon Başlığı *</label>
+              <input type="text" id="cpJobTitle" class="form-control form-control-sm" placeholder="Örn: Dış Ticaret & İhracat Uzmanı / CNC Lazer Operatörü / IT Uzmanı" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Departman *</label>
+              <select id="cpJobDepartment" class="form-select form-select-sm" required>
+                <option value="Yazılım, Teknoloji & Ar-Ge">Yazılım, Teknoloji & Ar-Ge</option>
+                <option value="Dış Ticaret & İhracat">Dış Ticaret & İhracat</option>
+                <option value="Üretim, Mühendislik & Fabrika">Üretim, Mühendislik & Fabrika</option>
+                <option value="Finans, Muhasebe & ERP">Finans, Muhasebe & ERP</option>
+                <option value="B2B Satış & Satınalma">B2B Satış & Satınalma</option>
+                <option value="Lojistik, Depo & Filo">Lojistik, Depo & Filo</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Şehir *</label>
+              <input type="text" id="cpJobCity" class="form-control form-control-sm" value="İstanbul" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Çalışma Şekli *</label>
+              <select id="cpJobWorkMode" class="form-select form-select-sm">
+                <option value="Tam Zamanlı / Hibrit">Tam Zamanlı / Hibrit</option>
+                <option value="Tam Zamanlı (Fabrika / Saha)">Tam Zamanlı (Fabrika / Saha)</option>
+                <option value="Uzaktan (Remote) / Proje Bazlı">⚡ Uzaktan (Remote) / Proje Bazlı</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-1">Teklif Edilen Maaş / Hakediş *</label>
+              <input type="text" id="cpJobSalary" class="form-control form-control-sm" placeholder="Örn: 55.000 TL – 75.000 TL + Prim" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-bold mb-1">Aranan Yetenek Etiketleri (Virgülle Ayırın) *</label>
+              <input type="text" id="cpJobSkills" class="form-control form-control-sm" placeholder="Örn: StokPratik ERP, İngilizce C1, İhracat Operasyonu, SolidWorks" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label small fw-bold mb-1">Pozisyon Açıklaması & Yan Haklar *</label>
+              <textarea id="cpJobDesc" class="form-control form-control-sm" rows="3" placeholder="İş tanımını, çalışma koşullarını ve yan hakları kısaca yazınız..." required></textarea>
+            </div>
+            <div id="cpJobFeedback" class="col-12 small" style="display:none;"></div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success w-100 fw-bold">
+                <i class="bi bi-check2-circle me-1"></i> İş İlanını İşletme Profilimde ve Kariyer Vitrininde Yayınla
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📱 QR DİJİTAL KARTVİZİT & TANIŞMA MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwQrCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-danger">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-qr-code-scan text-danger me-1"></i> Dijital Kurumsal Kartvizit & Tanışma Masası
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-4 border border-danger mb-3" style="background:#fff;">
+            <i class="bi bi-qr-code text-dark" style="font-size: 5.5rem; line-height: 1;"></i>
+          </div>
+          <h5 class="fw-bold mb-1" id="mwQrModalCompName">İşletme Adı</h5>
+          <div class="small text-muted mb-2" id="mwQrModalCompSector">Sektör • Şehir</div>
+          <div class="d-flex justify-content-center flex-wrap gap-1 mb-3">
+            <span class="badge bg-warning text-dark">💎 A+ Ödeme Disiplini</span>
+            <span class="badge bg-success">🏅 GİB e-Fatura Doğrulandı</span>
+          </div>
+          <div class="p-2 rounded border text-start small mb-3" style="background: var(--mw-surface-alt);">
+            <div><strong>VKN / Kurumsal Kimlik:</strong> <span id="mwQrModalCompVkn">2720912021</span></div>
+            <div><strong>Telefon:</strong> <span id="mwQrModalCompPhone">0541 246 54 29</span></div>
+            <div><strong>E-Posta:</strong> <span id="mwQrModalCompEmail">yonetim@meetwork.com.tr</span></div>
+          </div>
+          <div class="alert alert-light border small text-start py-2 mb-3" style="font-size:0.75rem;">
+            <i class="bi bi-shield-check text-success me-1"></i> <strong>Güvenli Tanışma Kuralı:</strong> QR Kartvizit açıldığında otomatik irsaliye veya fatura kesilmez. Yalnızca aşağıdaki onayınızla rehberinize eklenir.
+          </div>
+          <div id="mwQrModalFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-danger btn-sm fw-bold" id="mwQrSaveCrmBtn">
+              📇 Rehberime & StokPratik CRM / Cari Kartlarıma Kaydet
+            </button>
+            <button type="button" class="btn btn-outline-dark btn-sm fw-semibold" id="mwQrSaveWithQuoteBtn">
+              📝 İsteğe Bağlı: StokPratik’te Numune / Teklif Taslağı Hazırla
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ ONAYLI İŞE ALIM -> STOKPRATİK PDKS PERSONEL KARTI AKTARIM MODALI (Tüm Modlarda Ortak) -->
+  <div class="modal fade" id="mwHireToPdksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mw-panel-card border-success">
+        <div class="modal-header border-bottom">
+          <h6 class="modal-title fw-bold">
+            <i class="bi bi-person-check-fill text-success me-1"></i> Adayı İşe Aldık → StokPratik PDKS’ye Aktar
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-success py-2 small mb-3">
+            <strong>Kullanıcı Onaylı Aktarım:</strong> Mülakat süreci tamamlanan aday, yalnızca aşağıdaki bilgileri onayladığınızda StokPratik <code>Personel & Puantaj (PDKS)</code> modülünüze aktarılır.
+          </div>
+          <form id="mwHireToPdksForm">
+            <div class="mb-2">
+              <label class="form-label small fw-bold mb-1">İşe Alınan Aday</label>
+              <input type="text" id="pdksCandName" class="form-control form-control-sm fw-bold" readonly />
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Görev / Pozisyon</label>
+                <input type="text" id="pdksCandPosition" class="form-control form-control-sm" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Şube / Fabrika</label>
+                <input type="text" id="pdksCandBranch" class="form-control form-control-sm" value="Merkez Kampüs / Fabrika" required />
+              </div>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">İşe Başlama Tarihi *</label>
+                <input type="date" id="pdksStartDate" class="form-control form-control-sm" value="2026-11-01" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold mb-1">Anlaşılan Net Maaş (TL) *</label>
+                <input type="number" id="pdksAgreedSalary" class="form-control form-control-sm" value="65000" required />
+              </div>
+            </div>
+            <div id="pdksTransferFeedback" class="small fw-bold mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-success btn-sm w-100 fw-bold">
+              ✅ Onayla & StokPratik PDKS Personel Kartını Aç
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

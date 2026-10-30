@@ -1,0 +1,34 @@
+{
+  "id": "258858",
+  "title": "M2803/PR01/24-1/OR KULP ÇENE Alım Talebi",
+  "slug": "m2803pr0124-1or-kulp-cene-alm-talebi-258858",
+  "company": "Gizli Müşteri",
+  "status": "Kapalı",
+  "publishDate": "2026-10-31T00:25:26.273843",
+  "endDate": "2026-10-29T10:00:00",
+  "category": "Makine Sanayi",
+  "categoryEmoji": "⚙️",
+  "categoryColor": "#52525B",
+  "items": [
+    {
+      "name": "M2803/PR01/24-1/OR KULP ÇENE",
+      "quantity": "8 Adet"
+    },
+    {
+      "name": "M2803/PR01/24-2/OR UZUN ÇENE",
+      "quantity": "30 Adet"
+    },
+    {
+      "name": "M2803/PR01/24-3/OR KISA ÇENE",
+      "quantity": "84 Adet"
+    },
+    {
+      "name": "M2803/PR01/24-4/OR GÖZ ÇENE",
+      "quantity": "12 Adet"
+    },
+    {
+      "name": "M2803/PR01/24-5/OR BADEM ÇENE",
+      "quantity": "12 Adet"
+    }
+  ]
+}
